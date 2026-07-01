@@ -34,6 +34,7 @@ files:
   - automation/yawn.bot.readme-young-reader-audit.yawn
   - automation/yawn.bot.license-reference-audit.yawn
   - automation/yawn.ai.funnel-bridge.yawn
+  - automation/yawn.bot.ai-writing-scan.yawn
   - core/agency.yawn
   - core/design-principles.yawn
   - core/folder-node.yawn
@@ -93,6 +94,7 @@ files:
   - records/yawn.bot-trending-ledger.yawn
   - records/yawn.bot-license-risk-ledger.yawn
   - records/yawn.ai-funnel-bridge-ledger.yawn
+  - records/yawn.bot-ai-writing-ledger.yawn
   - start/first-yawn.yawn
   - start/node.yawn
   - start/value-proposition.yawn
@@ -165,18 +167,19 @@ files:
   - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
   - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
+  - 08-research/july-01-2026-ai-writing-scan-lock.ion
   - 08-research/research-map.ion
 
 counts:
   markdown: 3
-  ion: 48
-  yawn: 102
+  ion: 49
+  yawn: 104
   yml: 3
   html: 1
   sql: 1
   license: 1
   dotfile: 1
-  total: 160
+  total: 163
 
 proof:
   source:
@@ -192,5 +195,6 @@ proof:
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
-  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, automation, yawn.bot daily service automation, the yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, and the yawn.ai open-source funnel bridge.
+    - 08-research/july-01-2026-ai-writing-scan-lock.ion
+  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, automation, yawn.bot daily service automation, the yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, the yawn.ai open-source funnel bridge, and the AI-writing scan.
   proof_state: seed-backed

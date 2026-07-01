@@ -172,6 +172,22 @@ research_threads:
       - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/lib/site.ts
       - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/llms.txt/route.ts
       - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/api/agent-manifest/route.ts
+  ai_writing_scan:
+    target_files:
+      - automation/yawn.bot.ai-writing-scan.yawn
+      - records/yawn.bot-ai-writing-ledger.yawn
+      - automation/yawn.bot.readme-young-reader-audit.yawn
+      - automation/yawn.bot.daily.yawn
+      - automation/yawn.ai.funnel-bridge.yawn
+      - agents/yawn.bot.policy.yawn
+      - records/automation-log.yawn
+      - readme.yawn
+      - 08-research/july-01-2026-ai-writing-scan-lock.ion
+      - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/page.tsx
+      - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/training/page.tsx
+      - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/security/page.tsx
+      - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/agent-discovery/page.tsx
+      - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/lib/site.ts
   next_move_logic:
     target_files:
       - core/next-move-logic.yawn
@@ -257,6 +273,7 @@ open_research_lacunae:
   - which GitHub App or dedicated service account should eventually carry yawn.bot publicly
   - when to replace Codex-only loops with a least-privilege GitHub App
   - which remote repository should own the yawn.ai homepage app
+  - what level of repeated Yawn ritual language is intentional versus AI-polished filler
   - when and how the remaining .ion bridge files should collapse into .yawn
 
 next_research_move:
@@ -278,5 +295,6 @@ proof:
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
-  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, contributor automation files, yawn.bot service files, yawn.bot commit-gate files, yawn.bot architecture-observer files, yawn.ai funnel bridge files, database files, and ownership/license files it supports.
+    - 08-research/july-01-2026-ai-writing-scan-lock.ion
+  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, contributor automation files, yawn.bot service files, yawn.bot commit-gate files, yawn.bot architecture-observer files, yawn.ai funnel bridge files, AI-writing scan files, database files, and ownership/license files it supports.
   proof_state: seed-backed

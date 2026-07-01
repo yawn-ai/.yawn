@@ -73,6 +73,14 @@ current_entries:
     allowed_effects: "update local homepage files, agent discovery surfaces, bridge state, and validation reports"
     blocked_effects: "mutate .yawn source files, push, deploy, change domains, manage secrets, expose private evidence, or overstate unproven claims"
     proof: "created through Codex app automation_update"
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-bot-ai-writing-scan"
+    name: "yawn.bot AI-writing scan"
+    schedule: "twice daily at 10:30 AM and 4:30 PM America/Denver"
+    scope: "scan public .yawn repository text and yawn.ai homepage text for AI-generated-sounding language, canned cadence, assistant residue, and generic promotional polish"
+    allowed_effects: "report suspicious excerpts, false-positive caveats, and bounded human-voice rewrite suggestions"
+    blocked_effects: "declare authorship as AI, rely on AI-detector scores as proof, scan dependencies/build output, commit, push, comment, PR, or deploy without authorization"
+    proof: "created through Codex app automation_update"
 
 proof:
   source:
@@ -84,5 +92,6 @@ proof:
     - automation/yawn.bot.readme-young-reader-audit.yawn
     - automation/yawn.bot.license-reference-audit.yawn
     - automation/yawn.ai.funnel-bridge.yawn
+    - automation/yawn.bot.ai-writing-scan.yawn
     - records/access-log.yawn
   status: seed-backed

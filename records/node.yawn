@@ -19,6 +19,7 @@ holds:
   - yawn.bot trending ledger
   - yawn.bot license risk ledger
   - yawn.ai funnel bridge ledger
+  - yawn.bot AI-writing ledger
   - llm access
   - github access
   - backup log
@@ -47,6 +48,7 @@ produces:
   - trending pattern records
   - license-risk records
   - yawn.ai bridge records
+  - AI-writing review records
 
 questions:
   - what happened materially
@@ -61,6 +63,7 @@ questions:
   - what pattern is forming
   - what license or privacy risk remains
   - what source-backed homepage update was made
+  - what public text sounds too generically AI-written
 
 links:
   - records/material-time.yawn
@@ -73,6 +76,7 @@ links:
   - records/yawn.bot-trending-ledger.yawn
   - records/yawn.bot-license-risk-ledger.yawn
   - records/yawn.ai-funnel-bridge-ledger.yawn
+  - records/yawn.bot-ai-writing-ledger.yawn
   - records/llm-access.yawn
   - records/github-access.yawn
   - records/backup-log.yawn
@@ -87,6 +91,7 @@ proof:
     - records/yawn.bot-verification-2026-07-01.yawn
     - records/yawn.bot-pattern-ledger.yawn
     - records/yawn.ai-funnel-bridge-ledger.yawn
+    - records/yawn.bot-ai-writing-ledger.yawn
     - records/feedback-log.yawn
     - readme.yawn
   status: seed-backed

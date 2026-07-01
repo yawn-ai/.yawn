@@ -90,6 +90,7 @@ automation_links:
   yawn_bot_readme_audit: automation/yawn.bot.readme-young-reader-audit.yawn
   yawn_bot_license_audit: automation/yawn.bot.license-reference-audit.yawn
   yawn_ai_funnel_bridge: automation/yawn.ai.funnel-bridge.yawn
+  yawn_bot_ai_writing_scan: automation/yawn.bot.ai-writing-scan.yawn
   automation_log: records/automation-log.yawn
 
 record_links:
@@ -107,6 +108,7 @@ record_links:
   yawn_bot_trending_ledger: records/yawn.bot-trending-ledger.yawn
   yawn_bot_license_risk_ledger: records/yawn.bot-license-risk-ledger.yawn
   yawn_ai_funnel_bridge_ledger: records/yawn.ai-funnel-bridge-ledger.yawn
+  yawn_bot_ai_writing_ledger: records/yawn.bot-ai-writing-ledger.yawn
   next_move_ledger: records/next-move-ledger.yawn
 
 template_links:
@@ -207,3 +209,4 @@ source:
   - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
   - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
+  - 08-research/july-01-2026-ai-writing-scan-lock.ion

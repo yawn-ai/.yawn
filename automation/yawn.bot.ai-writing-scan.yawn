@@ -1,0 +1,101 @@
+id: automation/yawn.bot.ai-writing-scan
+title: "yawn.bot AI-writing scan"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-bot-ai-writing-scan
+schedule: "twice daily at 10:30 AM and 4:30 PM America/Denver"
+runtime: "Codex app cron automation"
+workspaces:
+  - "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
+  - "C:/Users/dave/OneDrive/Documents/yawn-ai-homepage"
+policy: agents/yawn.bot.policy.yawn
+ledger: records/yawn.bot-ai-writing-ledger.yawn
+external_reference: "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+
+purpose: >
+  Scan public .yawn repository text and yawn.ai homepage text for language that
+  sounds generically AI-generated, over-polished, canned, promotional, or
+  mechanically patterned, then recommend bounded human-voice rewrites.
+
+why_added: >
+  The phrase "The app can come later. The graph can come later. The game world
+  can come later. The agent cockpit can come later." reached readme.yawn because
+  existing audits focused on comprehension, license risk, privacy, and source
+  correctness, but did not explicitly check for canned parallel rhythm or
+  AI-shaped prose.
+
+scan_scope:
+  source_repo:
+    include:
+      - "*.yawn"
+      - "*.ion"
+      - "*.md"
+      - "*.html"
+      - "*.yml"
+    exclude:
+      - ".git"
+  homepage:
+    include:
+      - "README.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - ".yawn-source-bridge.json"
+      - "src/**/*.ts"
+      - "src/**/*.tsx"
+    exclude:
+      - ".git"
+      - ".next"
+      - "node_modules"
+      - "package-lock.json"
+
+signals_to_check:
+  - repeated parallel ladders such as "X can come later" or "not only X, but also Y"
+  - rule-of-three filler that sounds rhythmic but does not add meaning
+  - vague significance, legacy, broader-trend, or "plays a key role" phrasing
+  - promotional, advertisement-like, or high-gloss funnel language without proof
+  - generic conclusions about challenges, future prospects, or unlocking potential
+  - overuse of AI-vocabulary words such as leverage, robust, seamless, transformative, holistic, nuanced, crucial, pivotal, or underscores
+  - collaborative assistant residue such as "of course", "certainly", "I hope this helps", "let me know", or "would you like"
+  - markdown or citation artifacts from model output such as turn0search0, oaicite, contentReference, attributableIndex, or placeholder template text
+  - abrupt style shifts between adjacent sections
+  - sections that sound polished but remove concrete Yawn words, proof, body, file, or next-move specificity
+
+review_rules:
+  - Treat AI-writing signs as review signals, not proof of AI authorship.
+  - Quote only the smallest needed excerpt.
+  - Record file path, line, signal type, severity, false-positive possibility, and suggested rewrite.
+  - Prefer plainer, more specific Yawn language over generic sophistication.
+  - Preserve intentional repetition when it carries meaning, ritual, or memorable interface structure.
+  - Do not use AI-detection scores as authority.
+  - Do not shame authors or accuse a human of using AI.
+
+severity:
+  low: "minor polish smell; leave unless nearby work touches it"
+  medium: "noticeable canned rhythm or generic phrasing; suggest rewrite"
+  high: "public-facing text sounds model-generated, promotional, or misleading; recommend immediate rewrite"
+
+output:
+  - files scanned
+  - suspicious excerpts with line references
+  - signal category
+  - severity
+  - why this may be a false positive
+  - smallest rewrite suggestion
+  - whether the issue should update README, homepage, or automation rules
+  - commit-readiness state
+
+blocked:
+  - declare text AI-generated as fact
+  - rely on external AI detectors as proof
+  - rewrite private or generated dependency files
+  - scan node_modules or build output
+  - make commits, pushes, comments, PRs, or deployments without explicit current human authorization
+
+proof:
+  source:
+    - 08-research/july-01-2026-ai-writing-scan-lock.ion
+    - records/yawn.bot-ai-writing-ledger.yawn
+    - https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
+  status: seed-backed

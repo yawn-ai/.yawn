@@ -18,6 +18,7 @@ holds:
   - yawn.bot README young-reader audit
   - yawn.bot license reference audit
   - yawn.ai open-source funnel bridge
+  - yawn.bot AI-writing scan
 
 receives:
   - GitHub issues
@@ -29,6 +30,7 @@ receives:
   - README comprehension gaps
   - license and reference risks
   - public .yawn main-branch diffs for yawn.ai
+  - AI-writing-style signals in public text
 
 produces:
   - triage summaries
@@ -41,6 +43,7 @@ produces:
   - README clarity reports
   - license-risk reports
   - yawn.ai homepage bridge reports
+  - AI-writing risk reports
   - human-review queues
 
 questions:
@@ -54,6 +57,7 @@ questions:
   - can a young reader understand the README
   - is there a license or privacy risk
   - should this public .yawn change update the yawn.ai teaching funnel
+  - does this public text sound generically AI-written
   - does this require human authorization
 
 links:
@@ -66,6 +70,7 @@ links:
   - automation/yawn.bot.readme-young-reader-audit.yawn
   - automation/yawn.bot.license-reference-audit.yawn
   - automation/yawn.ai.funnel-bridge.yawn
+  - automation/yawn.bot.ai-writing-scan.yawn
   - records/automation-log.yawn
 
 proof:
@@ -75,4 +80,5 @@ proof:
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
+    - 08-research/july-01-2026-ai-writing-scan-lock.ion
   status: seed-backed

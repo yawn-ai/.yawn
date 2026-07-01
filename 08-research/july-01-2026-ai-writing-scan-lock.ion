@@ -1,0 +1,52 @@
+ion:
+  id: 08-research/july-01-2026-ai-writing-scan-lock
+  title: AI-writing scan lock
+  type: research-lock
+  status: seed-canon
+  updated: 2026-07-01
+
+source:
+  kind: user correction and external style reference
+  received_as: user message with Wikipedia reference
+  external_reference: https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
+  summary: >
+    The user identified a phrase in readme.yawn that sounded AI-generated:
+    "The app can come later. The graph can come later. The game world can come
+    later. The agent cockpit can come later." They asked for the relevant
+    automations to explain why this was missed and to scan both the open-source
+    .yawn repo and yawn.ai twice daily for AI-generated-sounding prose.
+
+observed_gap:
+  missed_because: >
+    Existing automations checked comprehension, feedback, license risk, private
+    staging, source translation, and proof boundaries. They did not explicitly
+    check for canned parallel rhythm, generic polished sequencing, or other
+    signs that public text might sound model-generated.
+  corrected_example:
+    file: readme.yawn
+    old: "The app can come later. The graph can come later. The game world can come later. The agent cockpit can come later."
+    new: "First, make the frame readable in plain files. When that holds, an app, graph, world, or cockpit has something real to display."
+
+scan_principles:
+  - AI-writing signs are indicators, not proof.
+  - Human voice means concrete Yawn language, not anti-AI theater.
+  - Intentional repetition can stay when it carries meaning.
+  - Public-facing copy should avoid generic polish, promotional inflation, and assistant residue.
+  - The scan must cover both .yawn source text and yawn.ai homepage text.
+
+target_files:
+  - readme.yawn
+  - automation/yawn.bot.ai-writing-scan.yawn
+  - records/yawn.bot-ai-writing-ledger.yawn
+  - automation/yawn.bot.readme-young-reader-audit.yawn
+  - automation/yawn.bot.daily.yawn
+  - automation/yawn.ai.funnel-bridge.yawn
+  - agents/yawn.bot.policy.yawn
+  - records/automation-log.yawn
+
+proof:
+  source:
+    - user request on 2026-07-01
+    - https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
+  claim: A dedicated twice-daily scan is needed because previous automation scopes did not include AI-writing-style review.
+  proof_state: seed-backed

@@ -27,6 +27,8 @@ sources:
     role: "yawn.bot architecture-observer policy, private draft PR staging, audits, and ledgers"
   - file: 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
     role: "yawn.ai homepage bridge from public .yawn main changes into source-backed training funnel updates"
+  - file: 08-research/july-01-2026-ai-writing-scan-lock.ion
+    role: "AI-writing-style scan for public .yawn and yawn.ai text"
 
 proof:
   source:
@@ -36,4 +38,5 @@ proof:
     - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.feedback-loop.yawn
     - automation/yawn.ai.funnel-bridge.yawn
+    - automation/yawn.bot.ai-writing-scan.yawn
   status: seed-backed

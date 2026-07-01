@@ -59,6 +59,7 @@ The point is to interface better with yourself.
 - README clarity audit: [automation/yawn.bot.readme-young-reader-audit.yawn](automation/yawn.bot.readme-young-reader-audit.yawn)
 - License/reference audit: [automation/yawn.bot.license-reference-audit.yawn](automation/yawn.bot.license-reference-audit.yawn)
 - yawn.ai funnel bridge: [automation/yawn.ai.funnel-bridge.yawn](automation/yawn.ai.funnel-bridge.yawn)
+- AI-writing scan: [automation/yawn.bot.ai-writing-scan.yawn](automation/yawn.bot.ai-writing-scan.yawn)
 
 ## The Loop
 

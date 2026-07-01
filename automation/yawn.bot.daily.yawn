@@ -12,10 +12,12 @@ service_identity: agents/yawn.bot.yawn
 policy: agents/yawn.bot.policy.yawn
 feedback_loop: automation/yawn.bot.feedback-loop.yawn
 private_pr_loop: automation/yawn.bot.private-pr-loop.yawn
+ai_writing_scan: automation/yawn.bot.ai-writing-scan.yawn
 
 purpose: >
   Run a daily yawn.bot loop that inspects the repository, feedback surfaces, and
-  contributor signals, then prepares a bounded contribution recommendation.
+  contributor signals, then prepares a bounded contribution recommendation
+  without letting public text drift into generic AI-generated-sounding prose.
 
 input_surfaces:
   - local .yawn filesystem
@@ -27,6 +29,7 @@ input_surfaces:
   - AI-agent contributor proposals
   - records and node files
   - private staging handoff records
+  - AI-writing scan records
 
 daily_report_fields:
   - observed signals
@@ -37,6 +40,7 @@ daily_report_fields:
   - proof needed
   - risk or boundary
   - privacy state
+  - AI-writing-style risk
   - staging recommendation
   - commit readiness
   - human authorization needed
@@ -58,6 +62,12 @@ private_staging_rule: >
   automation/yawn.bot.private-pr-loop.yawn. Public .yawn promotion must be
   sanitized and separately reviewed.
 
+voice_quality_rule: >
+  Before recommending public text changes, apply automation/yawn.bot.ai-writing-scan.yawn.
+  Flag canned rhythm, generic promotional polish, assistant residue, repeated
+  parallel ladders, and vague significance language as review risks. Treat these
+  signs as signals, not proof of AI authorship.
+
 default_boundary: >
   The daily automation may inspect, summarize, classify, and recommend. It must
   not commit, push, merge, comment, change permissions, send email, manage
@@ -70,7 +80,9 @@ proof:
     - agents/yawn.bot.yawn
     - automation/yawn.bot.feedback-loop.yawn
     - automation/yawn.bot.private-pr-loop.yawn
+    - automation/yawn.bot.ai-writing-scan.yawn
     - records/automation-log.yawn
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+    - 08-research/july-01-2026-ai-writing-scan-lock.ion
   status: seed-backed

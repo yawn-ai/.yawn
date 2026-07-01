@@ -14,6 +14,7 @@ target_surface: "C:/Users/dave/OneDrive/Documents/yawn-ai-homepage"
 target_state: "C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/.yawn-source-bridge.json"
 policy: agents/yawn.bot.policy.yawn
 ledger: records/yawn.ai-funnel-bridge-ledger.yawn
+ai_writing_scan: automation/yawn.bot.ai-writing-scan.yawn
 
 purpose: >
   Bridge the public open-source .yawn repository into the yawn.ai homepage so
@@ -27,6 +28,7 @@ loop:
   - inspect changed public source files only
   - classify changes as no_site_change, public_protocol, training, security_control, agent_discovery, proof_memory, or funnel_copy
   - translate only source-backed, public, useful changes into the homepage app
+  - run an AI-writing-style review on any candidate public copy before keeping it
   - keep the homepage as a teaching funnel, not the canonical protocol
   - run npm run lint and npm run build in the homepage app after edits
   - update target_state only after validation passes
@@ -52,6 +54,12 @@ translation_rules:
   funnel_copy: "clarify who should apply, what they bring, and what they leave with"
   no_site_change: "record that the source changed but the homepage should stay still"
 
+voice_quality_rule: >
+  Do not move AI-polished language from .yawn into yawn.ai. Flag repeated
+  parallel ladders, vague significance language, promotional gloss without
+  proof, assistant residue, and abrupt style shifts. Prefer concrete Yawn terms:
+  frame, file, proof, boundary, body, access, replay, next move.
+
 git_behavior:
   current_state: "homepage app is local and not git-backed"
   if_target_is_not_git_backed: "leave validated homepage changes local and report them"
@@ -75,6 +83,7 @@ output:
   - changed files
   - classification by file or theme
   - homepage edits made or no-site-change reason
+  - AI-writing-style scan result
   - validation results
   - state update result
   - git state of homepage app
@@ -85,4 +94,5 @@ proof:
     - agents/yawn.bot.policy.yawn
     - records/yawn.ai-funnel-bridge-ledger.yawn
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
+    - automation/yawn.bot.ai-writing-scan.yawn
   status: seed-backed

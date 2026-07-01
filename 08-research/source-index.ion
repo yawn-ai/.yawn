@@ -66,6 +66,11 @@ sources:
     kind: user requirement and local project inspection
     received_as: user message and local filesystem state
     role: source for the yawn.ai open-source funnel bridge automation and homepage bridge state
+  - id: july-01-2026-ai-writing-scan-lock
+    file: 08-research/july-01-2026-ai-writing-scan-lock.ion
+    kind: user correction and external style reference
+    received_as: user message with Wikipedia reference
+    role: source for the twice-daily AI-writing scan across .yawn and yawn.ai
 
 source_rules:
   - preserve source claims separately from canonical files
@@ -87,5 +92,6 @@ proof:
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
-  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, yawn.bot daily service automation, yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, and the yawn.ai open-source funnel bridge.
+    - 08-research/july-01-2026-ai-writing-scan-lock.ion
+  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, yawn.bot daily service automation, yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, the yawn.ai open-source funnel bridge, and the AI-writing scan.
   proof_state: seed-backed
