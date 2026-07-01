@@ -19,7 +19,16 @@ entry_shape:
   next_move_effect: ""
   boundary: ""
 
-current_entries: []
+current_entries:
+  - timestamp: "2026-07-01"
+    repository: "https://github.com/yawn-ai/.yawn"
+    surface: "repo | branch | commit"
+    identifier: "main@4f7773c3ee69f1793dd55f0f137365ffcb8cebbb"
+    actor: "codex"
+    action: "inspect | update | push"
+    evidence: "published seed .yawn filesystem to main and confirmed remote repo is public MIT"
+    next_move_effect: "the public address now resolves to the seeded .yawn filesystem"
+    boundary: "human requested GitHub publication and MIT/The Yawn Company ownership alignment"
 
 proof:
   source:

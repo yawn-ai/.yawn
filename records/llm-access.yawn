@@ -25,7 +25,15 @@ entry_shape:
   next_move_effect: ""
   boundary: ""
 
-current_entries: []
+current_entries:
+  - timestamp: "2026-07-01"
+    model_or_agent: "codex"
+    detected_surface: "local git repo and GitHub repo yawn-ai/.yawn"
+    used_surface: "git, gh cli, local .yawn filesystem"
+    evidence_seen: "remote existed with public visibility, main branch, and MIT license before seed publication"
+    inference_made: "local filesystem should be connected to origin and published to main"
+    next_move_effect: "added GitHub address, MIT/The Yawn Company ownership language, usage instructions, and pushed seed filesystem"
+    boundary: "recorded AI/tool access as material time; AI output is not authority"
 
 proof:
   source:
