@@ -18,8 +18,9 @@ checks:
   - first screen starts with the concrete noticing use case
   - first screen defines .yawn as inference before action
   - public opening avoids mythology, bot automation, and full ontology
-  - Learn section follows the top-level holonic repo map
-  - Learn section avoids becoming an undifferentiated link pile
+  - Shape section follows the top-level holonic repo map
+  - Shape section avoids becoming an undifferentiated link pile
+  - influence and credibility language stays explicit about proof boundaries
   - confusing words
   - worldview leaps
   - missing beginner links
@@ -44,11 +45,18 @@ front_door_rule: >
   records inference before action and that proof, boundary, and replay keep the
   frame honest.
 
-learn_section_rule: >
-  Replace broad beginner link piles with a Learn section that maps the
+shape_section_rule: >
+  Replace broad beginner link piles with a Shape section that maps the
   system as nested wholes: root, start, core, interface, templates, examples,
   observations, records, agents, and feedback. Each row should say what the
   layer teaches and point to one best entry file.
+
+credibility_rule: >
+  The README may name philosophy, esoteric practice, metaphysics, manifestation
+  culture, systems theory, cybernetics, information theory, interface design,
+  and AI agent work as influences, but it must not imply that any influence is
+  proof or authority. Public language should keep the standard visible: signal,
+  inference, reference, boundary, proof, and replay.
 
 output:
   - beginner comprehension report

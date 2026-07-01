@@ -89,6 +89,45 @@ YAWN exists because agents act from inferences they often cannot see.
 
 `.yawn` makes those inferences visible before action.
 
+## Influences and credibility
+
+YAWN comes from a practical observation: across many ways of studying human
+experience, the same pattern keeps appearing.
+
+People notice a signal, make meaning from it, test it against a boundary, move,
+and then learn from what actually changed.
+
+The influences are intentionally broad: philosophy, esoteric practice,
+metaphysics, manifestation culture, systems theory, cybernetics, cognitive
+science, information theory, interface design, and AI agent work. In this repo
+they are references and pattern sources, not authority.
+
+The public claim is narrower: a `.yawn` is a shape for making inference
+legible. It keeps this movement visible:
+
+```text
+signal
+-> inference
+-> boundary
+-> move
+-> proof
+-> replay
+```
+
+The edge YAWN is exploring is the information interface: the place where signal
+becomes inference, inference becomes bounded action, and proof changes memory.
+
+Credibility in a `.yawn` comes from clear labels:
+
+| Handle | Credibility question |
+| --- | --- |
+| Signal | What was noticed? |
+| Inference | What meaning is being made from it? |
+| Reference | What influenced this frame? |
+| Boundary | What must not be assumed? |
+| Proof | What would show real change? |
+| Replay | What changed after movement? |
+
 ## What is a `.yawn`?
 
 A `.yawn` is a movement frame.
@@ -131,15 +170,14 @@ See the interface objects:
 - [interface/move.yawn](interface/move.yawn)
 - [interface/memory.yawn](interface/memory.yawn)
 
-## Learn
+## Shape
 
-The repo is a holonic map: every folder is a small whole with its own
-`node.yawn`, and every layer can be read without holding the entire system at
-once.
+The repo has shape: every folder is a small whole with its own `node.yawn`, and
+every layer can be read without holding the entire system at once.
 
 Open the smallest layer you need:
 
-| Layer | What it teaches | Start |
+| Shape | What it holds | Start |
 | --- | --- | --- |
 | Root | The whole frame in one object | [readme.yawn](readme.yawn) |
 | Start | How to make a first `.yawn` | [start/first-yawn.yawn](start/first-yawn.yawn) |

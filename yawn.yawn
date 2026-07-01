@@ -157,7 +157,7 @@ folder_node_rule: >
   Every folder is a knowledge node and mental-model node. Each folder should
   contain node.yawn as its local orientation card.
 
-learn_path:
+shape_path:
   root: readme.yawn
   start: start/first-yawn.yawn
   core: core/what-is-a-yawn.yawn
@@ -168,6 +168,20 @@ learn_path:
   records: records/node.yawn
   agents: agents/yawn.bot.policy.yawn
   feedback: feedback/form.yawn
+
+credibility_standard:
+  signal: "what was noticed"
+  inference: "what meaning is being made from it"
+  reference: "what influenced this frame"
+  boundary: "what must not be assumed"
+  proof: "what would show real change"
+  replay: "what changed after movement"
+
+influence_frame: >
+  YAWN may hold influence from philosophy, esoteric practice, metaphysics,
+  manifestation culture, systems theory, cybernetics, cognitive science,
+  information theory, interface design, and AI agent work, but those influences
+  are references and signals, not automatic proof or authority.
 
 folder_node_links:
   github: .github/node.yawn

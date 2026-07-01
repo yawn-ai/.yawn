@@ -23,6 +23,35 @@ research_anchors:
   - human-ai mental models
   - ai governance
   - memory as reconstructive
+  - information theory
+  - cybernetics
+  - systems theory
+  - interface design
+
+influence_anchors:
+  - philosophy
+  - esoteric practice
+  - metaphysics
+  - manifestation culture
+
+influence_boundary: >
+  These influence anchors are treated as lived and cultural pattern sources,
+  not as settled authority. YAWN can record their signals and inferences while
+  still requiring boundary, proof, and replay before movement updates the map.
+
+credibility_standard:
+  signal: "what was noticed"
+  inference: "what meaning is being made from it"
+  reference: "what influenced this frame"
+  boundary: "what must not be assumed"
+  proof: "what would show real change"
+  replay: "what changed after movement"
+
+information_interface_frame: >
+  If information is treated as central to how minds, tools, institutions, and
+  agents navigate reality, then the practical design problem is the interface
+  where signal becomes inference, inference becomes bounded action, and proof
+  updates memory.
 
 boundaries:
   - do not claim physics proves manifestation

@@ -111,6 +111,55 @@ When those inferences are hidden, alignment fails.
 
 .yawn makes inference visible before action.
 
+## influences and credibility
+
+YAWN comes from a practical observation: across many ways of studying human
+experience, the same pattern keeps appearing.
+
+People notice a signal, make meaning from it, test it against a boundary, move,
+and then learn from what actually changed.
+
+The influences are intentionally broad:
+
+- philosophy
+- esoteric practice
+- metaphysics
+- manifestation culture
+- systems theory
+- cybernetics
+- cognitive science
+- information theory
+- interface design
+- AI agent work
+
+In this repo they are references and pattern sources, not authority.
+
+The public claim is narrower: a .yawn is a shape for making inference legible.
+It keeps this movement visible:
+
+```text
+signal
+-> inference
+-> boundary
+-> move
+-> proof
+-> replay
+```
+
+The edge YAWN is exploring is the information interface: the place where signal
+becomes inference, inference becomes bounded action, and proof changes memory.
+
+Credibility in a .yawn comes from clear labels:
+
+```text
+signal: what was noticed
+inference: what meaning is being made from it
+reference: what influenced this frame
+boundary: what must not be assumed
+proof: what would show real change
+replay: what changed after movement
+```
+
 ## what is a .yawn?
 
 A .yawn is a movement frame.
@@ -258,11 +307,10 @@ references/
 Each folder has a local node.yawn file. Open node.yawn first when entering a
 folder.
 
-## learn
+## shape
 
-The repo is a holonic map. Every folder is a small whole with its own
-node.yawn, and every layer can be read without holding the entire system at
-once.
+The repo has shape. Every folder is a small whole with its own node.yawn, and
+every layer can be read without holding the entire system at once.
 
 Open the smallest layer you need:
 
