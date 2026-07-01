@@ -34,6 +34,14 @@ current_entries:
     inference_made: "local filesystem should be connected to origin and published to main"
     next_move_effect: "added GitHub address, MIT/The Yawn Company ownership language, usage instructions, and pushed seed filesystem"
     boundary: "recorded AI/tool access as material time; AI output is not authority"
+  - timestamp: "2026-07-01"
+    model_or_agent: "codex"
+    detected_surface: "live GitHub first view and GitHub Pages feedback form"
+    used_surface: "in-app browser, git, gh cli, local .yawn filesystem"
+    evidence_seen: "GitHub renders readme.md first; Pages renders feedback/index.html at the public feedback URL"
+    inference_made: "readme.md needed the first-hit awakening explanation, while readme.yawn stays canonical"
+    next_move_effect: "expanded readme.md, added feedback intake/database contracts, enabled Pages, verified feedback form"
+    boundary: "browser review read public pages only; no feedback email was sent"
 
 proof:
   source:

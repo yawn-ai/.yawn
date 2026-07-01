@@ -30,6 +30,16 @@ current_entries:
     output_or_evidence: "repo is public at https://github.com/yawn-ai/.yawn; seed commit 4f7773c pushed to main"
     risk_or_boundary: "LICENSE kept uppercase as GitHub compatibility exception; human authority remains visible"
     linked_yawn: "references/ownership-and-license.yawn"
+  - id: "2026-07-01-feedback-pages-validation"
+    timestamp: "2026-07-01"
+    actor: "agent"
+    access_type: "github"
+    surface: "https://github.com/yawn-ai/.yawn and https://yawn-ai.github.io/.yawn/feedback/"
+    action: "inspect | update"
+    reason: "review repo as a new user and verify the feedback form path"
+    output_or_evidence: "GitHub README now starts with the fundamental problem and Pages feedback form renders with five fields"
+    risk_or_boundary: "did not submit feedback email; only verified rendering"
+    linked_yawn: "feedback/form.yawn"
 
 proof:
   source:

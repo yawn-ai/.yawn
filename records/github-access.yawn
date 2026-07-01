@@ -29,6 +29,15 @@ current_entries:
     evidence: "published seed .yawn filesystem to main and confirmed remote repo is public MIT"
     next_move_effect: "the public address now resolves to the seeded .yawn filesystem"
     boundary: "human requested GitHub publication and MIT/The Yawn Company ownership alignment"
+  - timestamp: "2026-07-01"
+    repository: "https://github.com/yawn-ai/.yawn"
+    surface: "repo | branch | commit | pages"
+    identifier: "main@abd07752f58dcbcbde8acc9833e23a2e7827b0d1"
+    actor: "codex"
+    action: "inspect | update | push"
+    evidence: "expanded GitHub first-view README, added feedback intake files, enabled Pages, and verified https://yawn-ai.github.io/.yawn/feedback/ renders"
+    next_move_effect: "new users now see the mirror/madlibs explanation first and can open a feedback email form"
+    boundary: "verified form visually without submitting email"
 
 proof:
   source:
