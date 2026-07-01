@@ -1,0 +1,43 @@
+id: database/feedback-intake
+title: "feedback database intake"
+kind: database-contract
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Define where parsed feedback should land after Codex/T4O classifies it.
+
+target_table: feedback_items
+
+required_fields:
+  - feedback_id
+  - received_at
+  - source
+  - raw_subject
+  - raw_body
+  - summary
+  - sentiment
+  - category
+  - affected_node
+  - suggested_next_move
+  - severity
+  - follow_up_allowed
+  - status
+
+status_flow:
+  - raw
+  - parsed
+  - inserted
+  - needs-review
+  - linked-to-node
+  - closed
+
+placement_rule: >
+  Feedback should be attached to the most relevant node. If no node is obvious,
+  place it in feedback/node.yawn and mark affected_node as unknown.
+
+proof:
+  source:
+    - database/feedback-schema.sql
+    - feedback/codex-t4o-parser.yawn
+  status: seed-backed

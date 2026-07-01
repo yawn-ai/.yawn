@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YAWN feedback</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      max-width: 720px;
+      margin: 48px auto;
+      padding: 0 20px;
+      color: #181818;
+      background: #fbfbf8;
+    }
+    label {
+      display: block;
+      font-weight: 650;
+      margin-top: 18px;
+    }
+    input, textarea {
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font: inherit;
+      background: white;
+    }
+    textarea {
+      min-height: 88px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 6px;
+      background: #181818;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+    }
+    .note {
+      color: #555;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>YAWN feedback</h1>
+  <p>Tell us where the mirror helped, where it got confusing, or what should exist next.</p>
+  <p class="note">This form opens an email to yawn@yawn.ai. Your email app sends it.</p>
+
+  <form id="feedback-form">
+    <label for="tried">What did you try?</label>
+    <textarea id="tried" name="tried"></textarea>
+
+    <label for="confusing">What was confusing?</label>
+    <textarea id="confusing" name="confusing"></textarea>
+
+    <label for="useful">What felt useful?</label>
+    <textarea id="useful" name="useful"></textarea>
+
+    <label for="next">What should exist next?</label>
+    <textarea id="next" name="next"></textarea>
+
+    <label for="follow">Can we follow up? Type yes or no.</label>
+    <input id="follow" name="follow" autocomplete="off">
+
+    <button type="submit">Send feedback email</button>
+  </form>
+
+  <script>
+    document.getElementById("feedback-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const value = (id) => document.getElementById(id).value.trim();
+      const body = [
+        "What did you try?",
+        value("tried"),
+        "",
+        "What was confusing?",
+        value("confusing"),
+        "",
+        "What felt useful?",
+        value("useful"),
+        "",
+        "What should exist next?",
+        value("next"),
+        "",
+        "Can we follow up?",
+        value("follow")
+      ].join("\n");
+      window.location.href = "mailto:yawn@yawn.ai?subject=YAWN%20feedback&body=" + encodeURIComponent(body);
+    });
+  </script>
+</body>
+</html>

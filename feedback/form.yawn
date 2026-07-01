@@ -1,0 +1,30 @@
+id: feedback/form
+title: "feedback form"
+kind: feedback-surface
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Give a first-time user one obvious place to send feedback without needing an
+  account, app, or database connection.
+
+destination_email: yawn@yawn.ai
+
+mailto_url: "mailto:yawn@yawn.ai?subject=YAWN%20feedback&body=What%20did%20you%20try%3F%0A%0AWhat%20was%20confusing%3F%0A%0AWhat%20felt%20useful%3F%0A%0AWhat%20should%20exist%20next%3F%0A%0ACan%20we%20follow%20up%3F%20yes%2Fno%0A"
+
+fields:
+  - what did you try
+  - what was confusing
+  - what felt useful
+  - what should exist next
+  - can we follow up
+
+rule: >
+  The form should send email first. Automation can happen after the email
+  arrives.
+
+proof:
+  source:
+    - feedback/node.yawn
+    - templates/feedback.yawn
+  status: seed-backed

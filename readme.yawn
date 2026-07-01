@@ -98,6 +98,32 @@ start/how-to-use-yawn.yawn
 templates/basic.yawn
 ```
 
+## feedback
+
+Feedback should be easy.
+
+If something is confusing, useful, missing, too abstract, too intense, or
+surprisingly helpful, send it to:
+
+```text
+yawn@yawn.ai
+```
+
+The feedback node lives in:
+
+```text
+feedback/node.yawn
+feedback/form.yawn
+feedback/email-intake.yawn
+feedback/codex-t4o-parser.yawn
+records/feedback-log.yawn
+database/feedback-intake.yawn
+```
+
+The near-term form is intentionally simple: it opens an email to
+`yawn@yawn.ai`. The intake contract says that feedback email should be logged,
+parsed by Codex/T4O, classified, and written to the correct database location.
+
 ## the leading question
 
 The leading question is:
@@ -448,7 +474,10 @@ That is the altruistic bet.
 9. Keep the GitHub repo public at `https://github.com/yawn-ai/.yawn`, under the
    MIT License, with The Yawn Company as copyright holder.
 
-10. Treat apps, graphs, games, and agents as later surfaces over the file tree,
+10. Add a feedback path that sends email to `yawn@yawn.ai`, logs feedback as a
+    record, and defines how Codex/T4O should parse it into the database.
+
+11. Treat apps, graphs, games, and agents as later surfaces over the file tree,
    not the root.
 
 ## first proof strip

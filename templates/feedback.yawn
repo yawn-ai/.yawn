@@ -1,0 +1,25 @@
+id: ""
+title: ""
+kind: feedback
+received_at: ""
+
+source: "email | form | github | conversation | other"
+from: ""
+follow_up_allowed: "yes | no | unknown"
+
+what_did_you_try: ""
+what_was_confusing: ""
+what_felt_useful: ""
+what_should_exist_next: ""
+
+parser:
+  summary: ""
+  sentiment: ""
+  category: ""
+  affected_node: ""
+  suggested_next_move: ""
+  severity: ""
+  database_status: "raw"
+
+source_template:
+  template: templates/feedback.yawn

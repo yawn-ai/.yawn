@@ -1,0 +1,41 @@
+id: database/node
+title: "database node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold database placement rules and schemas for turning material records into
+  queryable product memory.
+
+holds:
+  - feedback intake database contract
+  - feedback schema
+
+receives:
+  - parsed feedback
+  - records
+  - parser output
+
+produces:
+  - database rows
+  - placement rules
+  - queryable product memory
+
+questions:
+  - where should parsed feedback go
+  - what table stores it
+  - what fields are required
+  - what still needs human review
+
+links:
+  - database/feedback-intake.yawn
+  - database/feedback-schema.sql
+  - feedback/codex-t4o-parser.yawn
+  - records/feedback-log.yawn
+
+proof:
+  source:
+    - feedback/codex-t4o-parser.yawn
+    - 08-research/july-01-2026-feedback-intake-lock.ion
+  status: seed-backed

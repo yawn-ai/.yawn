@@ -1,0 +1,41 @@
+id: feedback/codex-t4o-parser
+title: "codex t4o feedback parser"
+kind: parser-contract
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Define how Codex/T4O should parse feedback into structured database fields and
+  place it in the correct bucket.
+
+input:
+  - email metadata
+  - raw feedback body
+  - optional linked repo path
+  - optional user consent flag
+
+output:
+  feedback_id: ""
+  summary: ""
+  sentiment: "confused | interested | blocked | excited | concerned | neutral"
+  category: "onboarding | template | ontology | feedback-form | safety | docs | agent | database | other"
+  affected_node: ""
+  suggested_next_move: ""
+  severity: "low | medium | high"
+  follow_up_allowed: "yes | no | unknown"
+  database_table: "feedback_items"
+
+placement_rule: >
+  Put onboarding confusion near start/readme nodes, ontology confusion near core
+  or interface nodes, safety concerns near proof/boundary, and tooling requests
+  near feedback, records, database, or agents.
+
+boundary: >
+  The parser summarizes and classifies. It does not decide product truth, expose
+  personal details, or overwrite canonical files without human review.
+
+proof:
+  source:
+    - feedback/email-intake.yawn
+    - database/feedback-intake.yawn
+  status: seed-backed

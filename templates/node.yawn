@@ -10,6 +10,7 @@ purpose: >
 
 holds:
   - basic template
+  - feedback template
   - full template
   - decision template
   - relationship template
@@ -43,6 +44,7 @@ links:
 proof:
   source:
     - templates/basic.yawn
+    - templates/feedback.yawn
     - templates/full.yawn
     - templates/proof-receipt.yawn
   status: seed-backed

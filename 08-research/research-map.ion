@@ -17,6 +17,8 @@ research_threads:
   folder_nodes:
     target_files:
       - core/folder-node.yawn
+      - database/node.yawn
+      - feedback/node.yawn
       - 00-start/node.yawn
       - 01-core/node.yawn
       - 02-interface/node.yawn
@@ -65,10 +67,25 @@ research_threads:
       - records/llm-access.yawn
       - records/github-access.yawn
       - records/backup-log.yawn
+      - records/feedback-log.yawn
       - records/next-move-ledger.yawn
       - templates/access-record.yawn
       - templates/backup-record.yawn
+      - templates/feedback.yawn
       - templates/next-move-record.yawn
+  feedback_intake:
+    target_files:
+      - feedback/node.yawn
+      - feedback/form.yawn
+      - feedback/index.html
+      - feedback/email-intake.yawn
+      - feedback/codex-t4o-parser.yawn
+      - records/feedback-log.yawn
+      - templates/feedback.yawn
+      - database/node.yawn
+      - database/feedback-intake.yawn
+      - database/feedback-schema.sql
+      - 08-research/july-01-2026-feedback-intake-lock.ion
   next_move_logic:
     target_files:
       - core/next-move-logic.yawn
@@ -135,6 +152,11 @@ research_threads:
       - readme.md
       - readme.yawn
       - yawn.yawn
+  database:
+    target_files:
+      - database/node.yawn
+      - database/feedback-intake.yawn
+      - database/feedback-schema.sql
 
 open_research_lacunae:
   - what exact app routes currently exist, if any
@@ -159,5 +181,6 @@ proof:
     - 08-research/july-01-2026-readme-yawn-lock.ion
     - 08-research/july-01-2026-folder-node-lock.ion
     - 08-research/july-01-2026-github-license-use-lock.ion
-  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, and ownership/license files it supports.
+    - 08-research/july-01-2026-feedback-intake-lock.ion
+  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, database files, and ownership/license files it supports.
   proof_state: seed-backed

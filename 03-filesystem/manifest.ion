@@ -6,6 +6,7 @@ ion:
   updated: 2026-07-01
 
 files:
+  - .nojekyll
   - LICENSE
   - readme.yawn
   - readme.md
@@ -25,6 +26,9 @@ files:
   - core/proof-and-boundary.yawn
   - core/what-is-a-yawn.yawn
   - core/yawn-space.yawn
+  - database/feedback-intake.yawn
+  - database/feedback-schema.sql
+  - database/node.yawn
   - examples/choice.yawn
   - examples/decision.yawn
   - examples/node.yawn
@@ -32,6 +36,11 @@ files:
   - examples/relationship-tension.yawn
   - examples/signal.yawn
   - examples/stuck.yawn
+  - feedback/codex-t4o-parser.yawn
+  - feedback/email-intake.yawn
+  - feedback/form.yawn
+  - feedback/index.html
+  - feedback/node.yawn
   - interface/map.yawn
   - interface/meaning.yawn
   - interface/memory.yawn
@@ -52,6 +61,7 @@ files:
   - records/github-access.yawn
   - records/llm-access.yawn
   - records/material-time.yawn
+  - records/feedback-log.yawn
   - records/next-move-ledger.yawn
   - records/node.yawn
   - start/first-yawn.yawn
@@ -63,6 +73,7 @@ files:
   - templates/backup-record.yawn
   - templates/basic.yawn
   - templates/decision.yawn
+  - templates/feedback.yawn
   - templates/full.yawn
   - templates/next-move-record.yawn
   - templates/node.yawn
@@ -119,14 +130,18 @@ files:
   - 08-research/july-01-2026-readme-yawn-lock.ion
   - 08-research/july-01-2026-folder-node-lock.ion
   - 08-research/july-01-2026-github-license-use-lock.ion
+  - 08-research/july-01-2026-feedback-intake-lock.ion
   - 08-research/research-map.ion
 
 counts:
   markdown: 1
-  ion: 42
-  yawn: 70
+  ion: 43
+  yawn: 78
+  html: 1
+  sql: 1
   license: 1
-  total: 114
+  no_extension: 1
+  total: 126
 
 proof:
   source:
@@ -136,5 +151,6 @@ proof:
     - 08-research/july-01-2026-readme-yawn-lock.ion
     - 08-research/july-01-2026-folder-node-lock.ion
     - 08-research/july-01-2026-github-license-use-lock.ion
-  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, and MIT license.
+    - 08-research/july-01-2026-feedback-intake-lock.ion
+  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, and feedback intake.
   proof_state: seed-backed

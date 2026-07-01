@@ -61,16 +61,26 @@ interface_links:
 observation_links:
   lived_agency: observations/lived-agency.yawn
 
+feedback_links:
+  node: feedback/node.yawn
+  form: feedback/form.yawn
+  email_intake: feedback/email-intake.yawn
+  parser: feedback/codex-t4o-parser.yawn
+  feedback_log: records/feedback-log.yawn
+  database_intake: database/feedback-intake.yawn
+
 record_links:
   material_time: records/material-time.yawn
   access_log: records/access-log.yawn
   llm_access: records/llm-access.yawn
   github_access: records/github-access.yawn
   backup_log: records/backup-log.yawn
+  feedback_log: records/feedback-log.yawn
   next_move_ledger: records/next-move-ledger.yawn
 
 template_links:
   basic: templates/basic.yawn
+  feedback: templates/feedback.yawn
   full: templates/full.yawn
   decision: templates/decision.yawn
   relationship: templates/relationship.yawn
@@ -108,6 +118,8 @@ folder_node_rule: >
   contain node.yawn as its local orientation card.
 
 folder_node_links:
+  database: database/node.yawn
+  feedback: feedback/node.yawn
   start: start/node.yawn
   core: core/node.yawn
   interface: interface/node.yawn

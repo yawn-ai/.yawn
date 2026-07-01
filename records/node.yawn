@@ -14,6 +14,7 @@ holds:
   - llm access
   - github access
   - backup log
+  - feedback log
   - next-move ledger
 
 receives:
@@ -22,17 +23,20 @@ receives:
   - file access
   - external surfaces
   - proof and replay events
+  - feedback emails
 
 produces:
   - auditable memory
   - next-move rationale
   - recovery and provenance records
+  - feedback records
 
 questions:
   - what happened materially
   - what did the agent use
   - what access shaped the next move
   - what backup or proof exists
+  - what feedback has arrived
 
 links:
   - records/material-time.yawn
@@ -40,10 +44,12 @@ links:
   - records/llm-access.yawn
   - records/github-access.yawn
   - records/backup-log.yawn
+  - records/feedback-log.yawn
   - records/next-move-ledger.yawn
 
 proof:
   source:
     - records/material-time.yawn
+    - records/feedback-log.yawn
     - readme.yawn
   status: seed-backed

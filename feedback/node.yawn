@@ -1,0 +1,46 @@
+id: feedback/node
+title: "feedback node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the public feedback path: a simple email surface for humans and a
+  structured intake path for agents, parsing, records, and database placement.
+
+holds:
+  - feedback form
+  - email intake contract
+  - codex/t4o parser contract
+
+receives:
+  - user confusion
+  - user praise
+  - missing-feature reports
+  - field-test notes
+  - safety or boundary concerns
+
+produces:
+  - email to yawn@yawn.ai
+  - feedback record
+  - classification for database placement
+  - next-move signals
+
+questions:
+  - what did the user try
+  - where did the frame break
+  - what should exist next
+  - should a human follow up
+
+links:
+  - feedback/form.yawn
+  - feedback/email-intake.yawn
+  - feedback/codex-t4o-parser.yawn
+  - records/feedback-log.yawn
+  - database/feedback-intake.yawn
+
+proof:
+  source:
+    - readme.yawn
+    - 08-research/july-01-2026-feedback-intake-lock.ion
+  status: seed-backed

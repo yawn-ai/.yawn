@@ -1,0 +1,36 @@
+id: feedback/email-intake
+title: "feedback email intake"
+kind: intake-contract
+status: v0-seed
+updated: 2026-07-01
+
+inbox: yawn@yawn.ai
+
+purpose: >
+  Define how feedback email becomes a logged feedback record.
+
+intake_steps:
+  - receive email at yawn@yawn.ai
+  - create raw feedback record
+  - preserve sender, subject, timestamp, and body
+  - classify whether follow-up is allowed
+  - pass content to codex/t4o parser
+  - write parsed result to database and feedback log
+
+minimum_record:
+  received_at: ""
+  from_email: ""
+  subject: ""
+  body_raw: ""
+  consent_to_follow_up: "unknown | yes | no"
+  source: "email"
+
+privacy_boundary: >
+  Store only what is needed to process feedback. Do not publish personal
+  details. Do not treat feedback as consent for marketing or unrelated contact.
+
+proof:
+  source:
+    - feedback/form.yawn
+    - records/feedback-log.yawn
+  status: seed-backed

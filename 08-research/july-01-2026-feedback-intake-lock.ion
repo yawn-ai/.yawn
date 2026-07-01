@@ -1,0 +1,31 @@
+ion:
+  id: 08-research/july-01-2026-feedback-intake-lock
+  title: july 01 2026 feedback intake lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user asked for a new-user browser review and a feedback form that sends
+  email to yawn@yawn.ai, logs feedback, and can trigger Codex/T4O parsing into
+  the correct database location.
+
+primary_claims:
+  - the GitHub first view needs to land for a normal new user
+  - feedback should be easy to send by email
+  - the destination email is yawn@yawn.ai
+  - feedback should be logged as feedback
+  - Codex/T4O should parse feedback into structured categories
+  - parsed feedback should land in the correct database spot
+
+implementation_decision:
+  Expanded readme.md for the GitHub first view, added feedback/index.html,
+  feedback .yawn contracts, a feedback log, a feedback template, and a database
+  schema/intake contract.
+
+proof:
+  source:
+    - user-message
+    - browser-review-of-https://github.com/yawn-ai/.yawn
+  claim: This file captures the feedback intake requirement and response.
+  proof_state: source-summary

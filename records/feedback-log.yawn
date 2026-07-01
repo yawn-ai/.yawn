@@ -1,0 +1,29 @@
+id: records/feedback-log
+title: "feedback log"
+kind: record-log
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Track feedback received through yawn@yawn.ai and later parsed into the
+  database.
+
+entry_shape:
+  feedback_id: ""
+  received_at: ""
+  source: "email"
+  subject: ""
+  summary: ""
+  category: ""
+  affected_node: ""
+  suggested_next_move: ""
+  database_status: "raw | parsed | inserted | needs-review"
+  follow_up_allowed: "yes | no | unknown"
+
+current_entries: []
+
+proof:
+  source:
+    - feedback/email-intake.yawn
+    - database/feedback-intake.yawn
+  status: seed-backed
