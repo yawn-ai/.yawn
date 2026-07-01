@@ -106,19 +106,34 @@ research_threads:
       - automation/github-feedback-triage.yawn
       - automation/codex-repo-agent.yawn
       - automation/yawn.bot.daily.yawn
+      - automation/yawn.bot.feedback-loop.yawn
       - records/automation-log.yawn
       - records/yawn.bot-log.yawn
+      - records/yawn.bot-verification-2026-07-01.yawn
       - 08-research/july-01-2026-agent-contributor-automation-lock.ion
       - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+      - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
   yawn_bot_service:
     target_files:
       - agents/yawn.bot.yawn
       - automation/yawn.bot.daily.yawn
+      - automation/yawn.bot.feedback-loop.yawn
       - records/yawn.bot-log.yawn
+      - records/yawn.bot-verification-2026-07-01.yawn
       - records/automation-log.yawn
       - records/access-log.yawn
       - records/llm-access.yawn
       - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+      - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  yawn_bot_commit_gate:
+    target_files:
+      - automation/yawn.bot.feedback-loop.yawn
+      - records/yawn.bot-verification-2026-07-01.yawn
+      - automation/yawn.bot.daily.yawn
+      - agents/yawn.bot.yawn
+      - feedback/codex-t4o-parser.yawn
+      - database/feedback-intake.yawn
+      - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
   next_move_logic:
     target_files:
       - core/next-move-logic.yawn
@@ -220,5 +235,6 @@ proof:
     - 08-research/july-01-2026-feedback-intake-lock.ion
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
-  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, contributor automation files, yawn.bot service files, database files, and ownership/license files it supports.
+    - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, contributor automation files, yawn.bot service files, yawn.bot commit-gate files, database files, and ownership/license files it supports.
   proof_state: seed-backed

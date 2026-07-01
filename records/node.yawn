@@ -13,6 +13,7 @@ holds:
   - access log
   - automation log
   - yawn.bot log
+  - yawn.bot verification reports
   - llm access
   - github access
   - backup log
@@ -35,6 +36,7 @@ produces:
   - feedback records
   - automation records
   - bot service records
+  - bot verification records
 
 questions:
   - what happened materially
@@ -44,12 +46,14 @@ questions:
   - what feedback has arrived
   - what automation was created or ran
   - what did yawn.bot observe or propose
+  - what suggestion did a verification run produce
 
 links:
   - records/material-time.yawn
   - records/access-log.yawn
   - records/automation-log.yawn
   - records/yawn.bot-log.yawn
+  - records/yawn.bot-verification-2026-07-01.yawn
   - records/llm-access.yawn
   - records/github-access.yawn
   - records/backup-log.yawn
@@ -61,6 +65,7 @@ proof:
     - records/material-time.yawn
     - records/automation-log.yawn
     - records/yawn.bot-log.yawn
+    - records/yawn.bot-verification-2026-07-01.yawn
     - records/feedback-log.yawn
     - readme.yawn
   status: seed-backed

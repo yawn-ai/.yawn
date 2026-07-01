@@ -1,0 +1,30 @@
+ion:
+  id: 08-research/july-01-2026-yawn-bot-feedback-loop-lock
+  title: july 01 2026 yawn bot feedback loop lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user asked to run and verify the yawn.bot automation with a meaningful
+  suggestion, describing a feedback loop where enough feedback creates a solid
+  thesis, risks are weighed, and then yawn.bot can commit.
+
+primary_claims:
+  - feedback should not become a commit until it forms a coherent thesis
+  - the thesis should be weighed against risks and dissent
+  - yawn.bot should be able to recommend and eventually commit bounded changes
+  - authority must remain explicit so the bot does not mutate the repo from weak signals
+
+implementation_decision:
+  Added automation/yawn.bot.feedback-loop.yawn and
+  records/yawn.bot-verification-2026-07-01.yawn. The first verification found
+  no live external feedback, issues, or pull requests, so the meaningful
+  suggestion was to encode the feedback-to-commit gate itself.
+
+proof:
+  source:
+    - user-message
+    - manual-yawn-bot-verification-run
+  claim: This file captures the yawn.bot feedback-loop and commit-gate requirement.
+  proof_state: source-summary

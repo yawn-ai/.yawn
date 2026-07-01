@@ -51,6 +51,11 @@ sources:
     kind: conversational requirement
     received_as: user message
     role: source for yawn.bot service identity and daily Codex automation
+  - id: july-01-2026-yawn-bot-feedback-loop-lock
+    file: 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+    kind: conversational requirement and manual verification
+    received_as: user message and agent run
+    role: source for yawn.bot feedback-to-thesis-to-risk-to-commit gate
 
 source_rules:
   - preserve source claims separately from canonical files
@@ -69,5 +74,6 @@ proof:
     - 08-research/july-01-2026-feedback-intake-lock.ion
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
-  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, and yawn.bot daily service automation.
+    - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, yawn.bot daily service automation, and the yawn.bot feedback-to-commit gate.
   proof_state: seed-backed

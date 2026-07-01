@@ -21,10 +21,13 @@ sources:
     role: "AI-agent contributor path and feedback triage automation"
   - file: 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     role: "yawn.bot service identity and daily Codex automation"
+  - file: 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+    role: "yawn.bot feedback-to-thesis-to-risk-to-commit gate"
 
 proof:
   source:
     - readme.yawn
     - references/ownership-and-license.yawn
     - agents/yawn.bot.yawn
+    - automation/yawn.bot.feedback-loop.yawn
   status: seed-backed

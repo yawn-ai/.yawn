@@ -12,6 +12,7 @@ holds:
   - GitHub feedback triage automation
   - Codex repo agent contract
   - yawn.bot daily repo contributor automation
+  - yawn.bot feedback-to-commit gate
 
 receives:
   - GitHub issues
@@ -23,6 +24,7 @@ produces:
   - triage summaries
   - node classifications
   - recommended next moves
+  - feedback signal-strength decisions
   - daily yawn.bot contributor reports
   - human-review queues
 
@@ -31,16 +33,19 @@ questions:
   - what node does it affect
   - what should move next
   - what should yawn.bot contribute today
+  - when is feedback strong enough to become a commit
   - does this require human authorization
 
 links:
   - automation/github-feedback-triage.yawn
   - automation/codex-repo-agent.yawn
   - automation/yawn.bot.daily.yawn
+  - automation/yawn.bot.feedback-loop.yawn
   - records/automation-log.yawn
 
 proof:
   source:
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+    - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
   status: seed-backed

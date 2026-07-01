@@ -1,0 +1,76 @@
+id: automation/yawn.bot.feedback-loop
+title: "yawn.bot feedback loop"
+kind: automation-gate
+status: active-seed
+updated: 2026-07-01
+
+purpose: >
+  Define how yawn.bot turns feedback into a thesis, weighs risk, and decides
+  whether a contribution is ready to be committed.
+
+loop:
+  - collect feedback and repo signals
+  - parse each signal into a node
+  - look for repeated lacunae
+  - form a clear thesis
+  - weigh risks and proof
+  - choose the smallest bounded change
+  - commit only when the gate is satisfied and authority is present
+
+signal_strength:
+  none: "no external issue, pull request, email, or feedback signal"
+  single_signal: "one signal with unclear pattern"
+  pattern_forming: "two or more related signals, or one high-severity proof-backed issue"
+  thesis_ready: "a recurring lacuna can be stated as a clear, testable thesis"
+  commit_ready: "the thesis, risk review, proof check, rollback path, and authority state are all explicit"
+
+thesis_shape:
+  claim: "what enough feedback appears to show"
+  affected_node: "where the change belongs"
+  proposed_move: "the smallest repo change that could reduce the lacuna"
+  proof: "what would show the change helped"
+  dissent: "what feedback or risk argues against the move"
+
+risk_review:
+  - low-quality feedback may look like a pattern before it is one
+  - the bot may overfit to the loudest signal
+  - a helpful change may make first-use onboarding harder
+  - private feedback may include personal data
+  - automation may appear to have authority it does not have
+  - commits may create maintenance burden or obscure human intent
+
+commit_gate:
+  required_before_commit:
+    - signal strength is thesis_ready or commit_ready
+    - affected node is named
+    - smallest bounded file change is named
+    - proof check is named
+    - risk review includes dissent or uncertainty
+    - rollback path is named
+    - human authorization or approved bot runtime policy is present
+  default_commit_target: "branch or draft pull request, not direct main"
+  main_branch_rule: "main branch updates require explicit human authorization until a future policy changes this"
+
+daily_output:
+  - signal strength
+  - thesis if any
+  - affected node
+  - suggested change
+  - proof check
+  - risk review
+  - commit readiness
+  - authorization state
+
+first_meaningful_suggestion: >
+  Because the repo currently has no open issues or pull requests, yawn.bot
+  should not infer a product thesis yet. The correct first contribution is to
+  encode this feedback-to-commit gate so future feedback can be promoted from
+  raw signal to thesis to risk-reviewed contribution.
+
+proof:
+  source:
+    - records/yawn.bot-verification-2026-07-01.yawn
+    - agents/yawn.bot.yawn
+    - automation/yawn.bot.daily.yawn
+    - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  status: seed-backed

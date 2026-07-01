@@ -56,6 +56,15 @@ current_entries:
     evidence: "created yawn.bot service files, Codex automation yawn-bot-daily-repo-contributor, and GitHub label yawn.bot"
     next_move_effect: "the repo now has a named daily contributor service contract"
     boundary: "no GitHub account, app install, issue comment, commit, push, or merge should be automated without exact human authorization"
+  - timestamp: "2026-07-01"
+    repository: "https://github.com/yawn-ai/.yawn"
+    surface: "issues | pull-request | pages | commit-gate"
+    identifier: "manual yawn.bot verification run"
+    actor: "codex as yawn.bot verification"
+    action: "inspect | update | push"
+    evidence: "open issues 0; open pull requests 0; feedback page HTTP 200; feedback-to-commit gate added"
+    next_move_effect: "yawn.bot can now report signal strength, thesis, risk, proof, and commit readiness"
+    boundary: "future bot commits should default to branch or draft PR unless main is explicitly authorized"
 
 proof:
   source:

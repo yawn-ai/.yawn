@@ -83,6 +83,7 @@ automation_links:
   github_feedback_triage: automation/github-feedback-triage.yawn
   codex_repo_agent: automation/codex-repo-agent.yawn
   yawn_bot_daily: automation/yawn.bot.daily.yawn
+  yawn_bot_feedback_loop: automation/yawn.bot.feedback-loop.yawn
   automation_log: records/automation-log.yawn
 
 record_links:
@@ -94,6 +95,7 @@ record_links:
   feedback_log: records/feedback-log.yawn
   automation_log: records/automation-log.yawn
   yawn_bot_log: records/yawn.bot-log.yawn
+  yawn_bot_verification: records/yawn.bot-verification-2026-07-01.yawn
   next_move_ledger: records/next-move-ledger.yawn
 
 template_links:
@@ -190,3 +192,4 @@ source:
   - 08-research/june-30-2026-public-readme.ion
   - 08-research/june-30-2026-alignment.ion
   - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+  - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion

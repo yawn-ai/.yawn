@@ -58,6 +58,14 @@ current_entries:
     inference_made: "yawn.bot should be represented as a service identity plus a conservative daily Codex automation contract"
     next_move_effect: "created agents/yawn.bot.yawn, automation/yawn.bot.daily.yawn, records/yawn.bot-log.yawn, and daily Codex automation yawn-bot-daily-repo-contributor"
     boundary: "service can inspect, classify, and recommend by default; external writes and GitHub account/app setup remain approval-bound"
+  - timestamp: "2026-07-01"
+    model_or_agent: "codex as yawn.bot verification"
+    detected_surface: "active yawn.bot automation, GitHub repo state, feedback page, parser and database contracts"
+    used_surface: "Codex automation view, gh cli, Invoke-WebRequest, local .yawn files"
+    evidence_seen: "automation active; open issues 0; open PRs 0; feedback page HTTP 200; feedback parser/database contracts exist"
+    inference_made: "before yawn.bot can commit from feedback, the repo needs an explicit feedback-to-thesis-to-risk-to-commit gate"
+    next_move_effect: "added automation/yawn.bot.feedback-loop.yawn and records/yawn.bot-verification-2026-07-01.yawn"
+    boundary: "manual verification is not a scheduled run-now event; no external product feedback pattern exists yet"
 
 proof:
   source:

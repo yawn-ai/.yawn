@@ -22,13 +22,22 @@ current_entries:
     name: "yawn.bot daily repo contributor"
     schedule: "daily at 9:00 AM America/Denver"
     scope: "inspect the repo, feedback surfaces, issues, pull requests, and agent-contributor proposals"
-    allowed_effects: "summarize, classify, recommend next moves, prepare contribution plans"
+    allowed_effects: "summarize, classify, assess signal strength, recommend next moves, prepare contribution plans"
     blocked_effects: "commit, push, merge, comment, change permissions, send email, manage secrets, install apps, create accounts, write database"
     proof: "created through Codex app automation_update"
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-bot-daily-repo-contributor"
+    name: "yawn.bot daily repo contributor"
+    schedule: "daily at 9:00 AM America/Denver"
+    scope: "updated prompt to use feedback-to-thesis-to-risk-to-commit gate"
+    allowed_effects: "report signal strength, thesis, risk review, proof check, rollback, and commit readiness"
+    blocked_effects: "autonomous product commits from weak feedback or hidden authority"
+    proof: "manual verification run recorded in records/yawn.bot-verification-2026-07-01.yawn"
 
 proof:
   source:
     - automation/github-feedback-triage.yawn
     - automation/yawn.bot.daily.yawn
+    - automation/yawn.bot.feedback-loop.yawn
     - records/access-log.yawn
   status: seed-backed

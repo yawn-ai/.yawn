@@ -9,6 +9,7 @@ schedule: "daily at 9:00 AM America/Denver"
 workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
 runtime: "Codex app cron automation"
 service_identity: agents/yawn.bot.yawn
+feedback_loop: automation/yawn.bot.feedback-loop.yawn
 
 purpose: >
   Run a daily yawn.bot loop that inspects the repository, feedback surfaces, and
@@ -26,10 +27,13 @@ input_surfaces:
 
 daily_report_fields:
   - observed signals
+  - signal strength
   - affected nodes
+  - thesis if any
   - suggested change
   - proof needed
   - risk or boundary
+  - commit readiness
   - human authorization needed
 
 contribution_modes:
@@ -37,6 +41,12 @@ contribution_modes:
   propose: "name the smallest bounded repo improvement"
   draft: "prepare patch or PR text when a human asks in the current run"
   execute: "perform GitHub writes only after exact human authorization"
+
+feedback_to_commit_rule: >
+  Use automation/yawn.bot.feedback-loop.yawn before recommending any commit.
+  Feedback must be promoted from raw signal to thesis, risk review, proof
+  check, rollback path, and explicit authority state before yawn.bot treats a
+  change as commit-ready.
 
 default_boundary: >
   The daily automation may inspect, summarize, classify, and recommend. It must
@@ -47,6 +57,8 @@ default_boundary: >
 proof:
   source:
     - agents/yawn.bot.yawn
+    - automation/yawn.bot.feedback-loop.yawn
     - records/automation-log.yawn
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+    - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
   status: seed-backed

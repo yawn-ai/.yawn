@@ -32,10 +32,18 @@ current_entries:
     next_move_effect: "issues and PRs can be routed to the yawn.bot service loop"
     boundary: "label is routing metadata, not an autonomous GitHub identity"
     linked_yawn: ".github/node.yawn"
+  - timestamp: "2026-07-01"
+    actor: "codex as yawn.bot verification"
+    event: "manual yawn.bot verification run"
+    evidence: "automation is active, feedback page returns 200, open GitHub issues and PRs are both zero"
+    next_move_effect: "added feedback-to-thesis-to-risk-to-commit gate as the first meaningful suggestion"
+    boundary: "no product thesis inferred from zero external feedback; commit pathway remains gated by proof and authority"
+    linked_yawn: "records/yawn.bot-verification-2026-07-01.yawn"
 
 proof:
   source:
     - agents/yawn.bot.yawn
     - automation/yawn.bot.daily.yawn
+    - automation/yawn.bot.feedback-loop.yawn
     - records/automation-log.yawn
   status: seed-backed

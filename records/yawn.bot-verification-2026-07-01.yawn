@@ -1,0 +1,65 @@
+id: records/yawn.bot-verification-2026-07-01
+title: "yawn.bot verification run 2026-07-01"
+kind: automation-verification-report
+status: complete
+updated: 2026-07-01
+
+purpose: >
+  Record the first manual verification run of the yawn.bot daily automation
+  contract.
+
+run_context:
+  automation_id: "yawn-bot-daily-repo-contributor"
+  run_type: "manual verification of saved automation prompt"
+  reason: "Codex automation tool exposes view/update but no manual run-now action"
+  repository: "https://github.com/yawn-ai/.yawn"
+
+observed_signals:
+  - "automation exists and is active in the Codex app"
+  - "local repo is clean and tracks origin/main"
+  - "GitHub open issues: 0"
+  - "GitHub open pull requests: 0"
+  - "GitHub Pages feedback form returns HTTP 200"
+  - "feedback form opens an email to yawn@yawn.ai"
+  - "no external feedback pattern is visible yet"
+
+affected_nodes:
+  - automation/yawn.bot.daily.yawn
+  - automation/yawn.bot.feedback-loop.yawn
+  - agents/yawn.bot.yawn
+  - feedback/node.yawn
+  - records/yawn.bot-log.yawn
+
+meaningful_suggestion:
+  summary: >
+    Add an explicit feedback-to-thesis-to-risk-to-commit gate before allowing
+    yawn.bot to make repo changes from feedback.
+  thesis: >
+    yawn.bot should not commit from vibes or isolated signals. It should commit
+    only after feedback forms a clear thesis, the affected node is known, risks
+    and dissent are named, proof is defined, and authority is present.
+  suggested_change: "Add automation/yawn.bot.feedback-loop.yawn and update the daily automation prompt to use it."
+  proof_needed: "A future run should classify real feedback into signal strength, thesis, risk, proof, and commit readiness."
+
+risk_review:
+  - risk: "bot commits too early from thin feedback"
+    mitigation: "require thesis_ready or commit_ready signal strength"
+  - risk: "bot overfits to one loud user"
+    mitigation: "require repeated signals or a high-severity proof-backed issue"
+  - risk: "automation appears to have hidden authority"
+    mitigation: "keep authorization state explicit in every daily report"
+  - risk: "direct main commits hide review"
+    mitigation: "default to branch or draft PR unless current human authorization is explicit"
+
+decision:
+  signal_strength: "none for product feedback; commit_ready for the bot's own operating rule"
+  authorization_state: "human requested this verification and bot-commit pathway in the current run"
+  action_taken: "prepare and commit the feedback-loop gate as a yawn.bot verification improvement"
+
+proof:
+  source:
+    - automation/yawn.bot.daily.yawn
+    - agents/yawn.bot.yawn
+    - feedback/codex-t4o-parser.yawn
+    - database/feedback-intake.yawn
+  status: verified

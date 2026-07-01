@@ -441,6 +441,7 @@ Today, `yawn.bot` runs as a daily Codex automation:
 ```text
 agents/yawn.bot.yawn
 automation/yawn.bot.daily.yawn
+automation/yawn.bot.feedback-loop.yawn
 records/yawn.bot-log.yawn
 ```
 
@@ -448,6 +449,16 @@ It can inspect, classify, and recommend. It can help prepare a contribution.
 It does not secretly become a GitHub account, install an app, commit, push,
 comment, merge, send email, or write a database without current human
 authorization.
+
+The feedback-to-commit gate is:
+
+```text
+feedback -> node -> thesis -> risk review -> proof -> bounded change -> commit readiness
+```
+
+Enough feedback is not only volume. It means a pattern can be stated as a
+clear thesis, the risks and dissent are visible, proof is named, and the
+authority state is explicit.
 
 ## open-source agent contributors
 
@@ -541,7 +552,11 @@ That is the altruistic bet.
 13. Run the `yawn-bot-daily-repo-contributor` automation daily as the named
    `yawn.bot` service loop for repo contribution recommendations.
 
-14. Treat apps, graphs, games, and agents as later surfaces over the file tree,
+14. Use `automation/yawn.bot.feedback-loop.yawn` to decide when feedback is
+   strong enough to become a thesis, a risk-reviewed move, and eventually a
+   commit-ready contribution.
+
+15. Treat apps, graphs, games, and agents as later surfaces over the file tree,
    not the root.
 
 ## first proof strip
