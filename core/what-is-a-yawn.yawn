@@ -1,0 +1,46 @@
+id: core/what-is-a-yawn
+title: "what is a .yawn"
+kind: definition
+status: v0-seed
+updated: 2026-06-30
+
+definition: >
+  A .yawn is a human-readable movement frame. It captures a moment of
+  orientation so a human or agent can move from implicit pattern to explicit
+  agency.
+
+not_just:
+  - note
+  - task
+  - prompt
+  - journal entry
+  - productivity object
+
+captures:
+  - what has attention
+  - what frame is active
+  - what is possible
+  - what is missing
+  - what move is available
+  - what must be protected
+  - what would prove change
+  - what changed after movement
+
+movement_path:
+  - signal
+  - frame
+  - lacuna
+  - movement
+  - boundary
+  - proof
+  - replay
+
+format_rule: >
+  A .yawn can look like Markdown, YAML, or simple structured prose. It should
+  stay boring, readable, and portable.
+
+proof:
+  source:
+    - yawn.yawn
+    - 08-research/june-30-2026-public-readme.ion
+  status: seed-backed

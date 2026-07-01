@@ -1,0 +1,35 @@
+ion:
+  id: 05-proof/proof-receipt
+  title: proof receipt
+  type: proof-template
+  status: seed-canon
+  updated: 2026-06-30
+
+receipt:
+  id:
+  date:
+  linked_file:
+  claim_tested:
+  bounded_move:
+  evidence:
+  result:
+  cost:
+  boundary_observed:
+  replay_summary:
+  map_update:
+  next_lacuna:
+
+promotion_rule:
+  A receipt can promote a file from oriented to proof-bound only when the
+  evidence is concrete enough for another reader to inspect.
+
+example_use:
+  Use one receipt per meaningful move. Keep receipts short, factual, and
+  linked to the file they update.
+
+proof:
+  source:
+    - 05-proof/proof-contract.ion
+    - 05-proof/replay.ion
+  claim: Proof receipts make movement auditable across time and agents.
+  proof_state: seed-backed

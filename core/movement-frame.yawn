@@ -1,0 +1,32 @@
+id: core/movement-frame
+title: "movement frame"
+kind: core
+status: v0-seed
+updated: 2026-07-01
+
+definition: >
+  A movement frame is a readable object that turns raw signal into current
+  state, possible state, missing bridge, bounded move, proof, and replay.
+
+path:
+  - raw life signal
+  - readable frame
+  - missing bridge
+  - possible move
+  - proof condition
+  - replayable memory
+
+fields:
+  current: "what is happening now"
+  possible: "what could become possible"
+  lacuna: "what is missing or blocked"
+  move: "what relation or action is invited"
+  boundary: "what must not be forced"
+  proof: "what would update the map"
+  replay: "what changed"
+
+proof:
+  source:
+    - readme.yawn
+    - core/movement-loop.yawn
+  status: seed-backed

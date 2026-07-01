@@ -1,0 +1,22 @@
+id: start/first-yawn
+title: "first yawn"
+kind: start-template
+status: v0-seed
+updated: 2026-07-01
+
+title_field: "my first yawn"
+
+current: "something has my attention"
+possible: "i can see it more clearly"
+lacuna: "i do not yet know what is missing"
+
+move: "pause and name the signal"
+boundary: "do not force an answer"
+proof: "i can name one clearer question"
+replay: "what changed after naming it?"
+
+proof:
+  source:
+    - readme.yawn
+    - templates/basic.yawn
+  status: seed-backed

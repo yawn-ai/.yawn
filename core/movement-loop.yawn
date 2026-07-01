@@ -1,0 +1,43 @@
+id: core/movement-loop
+title: "movement loop"
+kind: protocol
+status: v0-seed
+updated: 2026-06-30
+
+formal_loop:
+  - observe
+  - orient
+  - choose
+  - move
+  - replay
+
+human_loop:
+  - pause
+  - see
+  - steer
+  - move
+  - learn
+
+north_star_loop:
+  - see the frame
+  - name the lacuna
+  - choose a bounded move
+  - gather proof
+  - replay what changed
+
+stage_notes:
+  observe: "notice what has attention without forcing action"
+  orient: "name the current frame, possible frame, and lacuna"
+  choose: "select a bounded move that preserves stability"
+  move: "take the smallest meaningful step reality can answer"
+  replay: "compare expectation, action, proof, cost, and update"
+
+holding_rule: >
+  Some yawns are not ready for action. Holding can be the correct movement
+  stage when proof, boundary, or stability is missing.
+
+proof:
+  source:
+    - yawn.yawn
+    - 01-core/movement-loop.ion
+  status: seed-backed

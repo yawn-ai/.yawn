@@ -1,0 +1,55 @@
+ion:
+  id: 08-research/source-index
+  title: source index
+  type: research-index
+  status: seed-canon
+  updated: 2026-07-01
+
+sources:
+  - id: june-30-2026-alignment
+    file: 08-research/june-30-2026-alignment.ion
+    kind: pasted alignment document
+    received_as: user attachment
+    role: seed source for this filesystem
+  - id: june-30-2026-public-readme
+    file: 08-research/june-30-2026-public-readme.ion
+    kind: pasted public readme draft
+    received_as: user attachment
+    role: seed source for the public .yawn layer
+  - id: july-01-2026-material-record-reframe
+    file: 08-research/july-01-2026-material-record-reframe.ion
+    kind: conversational reframe
+    received_as: user message
+    role: source for the material-time records, access logs, backups, and next-move logic layer
+  - id: july-01-2026-readme-yawn-lock
+    file: 08-research/july-01-2026-readme-yawn-lock.ion
+    kind: local documents and pasted lock
+    received_as: user attachment and local files
+    role: source for readme.yawn, the .yawn-only naming lock, the five-command interface, and the object-of-observation file
+  - id: july-01-2026-folder-node-lock
+    file: 08-research/july-01-2026-folder-node-lock.ion
+    kind: conversational reframe
+    received_as: user message
+    role: source for treating every folder as a knowledge node and mental-model node
+  - id: july-01-2026-github-license-use-lock
+    file: 08-research/july-01-2026-github-license-use-lock.ion
+    kind: conversational reframe
+    received_as: user message
+    role: source for GitHub address, MIT license, The Yawn Company rights, and madlibs-style usage language
+
+source_rules:
+  - preserve source claims separately from canonical files
+  - promote claims only when their target files include proof state
+  - link source-backed claims back to this research area
+  - keep research inspectable but do not let it sprawl into ontology for its own sake
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+    - 08-research/june-30-2026-public-readme.ion
+    - 08-research/july-01-2026-material-record-reframe.ion
+    - 08-research/july-01-2026-readme-yawn-lock.ion
+    - 08-research/july-01-2026-folder-node-lock.ion
+    - 08-research/july-01-2026-github-license-use-lock.ion
+  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, and GitHub/license usage lock.
+  proof_state: seed-backed

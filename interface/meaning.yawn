@@ -1,0 +1,25 @@
+id: interface/meaning
+title: "/meaning"
+kind: cognition-handle
+status: v0-seed
+updated: 2026-07-01
+
+function: "name the gap between current and possible"
+
+asks:
+  - what does this mean to the observer
+  - what possible state is visible
+  - what is the lacuna
+  - what is desired, feared, called, avoided, or unknown
+
+output:
+  current: ""
+  possible: ""
+  lacuna: ""
+  possible_kind: "desired | feared | called | avoided | unknown | unproven"
+
+proof:
+  source:
+    - readme.yawn
+    - core/lacuna.yawn
+  status: seed-backed

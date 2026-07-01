@@ -1,0 +1,17 @@
+id: ""
+title: ""
+kind: access-record
+timestamp: ""
+
+actor: "human | agent | llm | tool | integration"
+access_type: "file | command | app | github | web | database | backup | other"
+surface: ""
+action: "read | write | search | inspect | create | update | delete | restore"
+reason: ""
+output_or_evidence: ""
+risk_or_boundary: ""
+linked_yawn: ""
+next_move_effect: ""
+
+source:
+  template: templates/access-record.yawn

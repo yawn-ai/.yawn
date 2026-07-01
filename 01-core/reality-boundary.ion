@@ -1,0 +1,38 @@
+ion:
+  id: 01-core/reality-boundary
+  title: reality boundary
+  type: safety-rail
+  status: seed-canon
+  updated: 2026-06-30
+
+lock:
+  Signal is not instruction. Resonance is not proof. Coincidence is not
+  command. Memory is not objective record. AI output is not authority.
+  Intensity is not truth.
+
+only_proof_updates_the_map:
+  true
+
+interpretation_rule:
+  Signals can be noticed. They cannot command action until they become a
+  bounded move with a proof plan and a stability boundary.
+
+anti_apophenia_rail:
+  - separate fact from interpretation
+  - name the lacuna
+  - choose a reversible move
+  - record what happens
+  - replay without lying
+
+stop_conditions:
+  - immediate physical risk
+  - inability to sleep or eat
+  - financial or relational harm escalating
+  - belief becoming more important than proof
+  - agent output treated as command
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: The system must keep mystery, signal, and pattern subordinate to proof and stability.
+  proof_state: seed-backed

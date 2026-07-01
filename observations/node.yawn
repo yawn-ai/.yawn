@@ -1,0 +1,38 @@
+id: observations/node
+title: "observations node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold named objects of observation so the system knows what it is studying
+  before it starts mapping everything.
+
+holds:
+  - lived agency
+
+receives:
+  - leading question
+  - scientific frame
+  - interface signals
+
+produces:
+  - object-of-observation clarity
+  - scope boundaries
+  - links from ontology to real phenomena
+
+questions:
+  - what exactly are we observing
+  - what is out of scope
+  - what interface is being made visible
+
+links:
+  - observations/lived-agency.yawn
+  - readme.yawn
+  - references/scientific-frame.yawn
+
+proof:
+  source:
+    - observations/lived-agency.yawn
+    - readme.yawn
+  status: seed-backed

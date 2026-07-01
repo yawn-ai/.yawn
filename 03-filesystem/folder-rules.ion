@@ -1,0 +1,39 @@
+ion:
+  id: 03-filesystem/folder-rules
+  title: folder rules
+  type: syntax-rule
+  status: seed-canon
+  updated: 2026-06-30
+
+lowercase_lock:
+  true
+
+rules:
+  - use lowercase folder names
+  - use lowercase file names
+  - use hyphenated words for readability
+  - keep canonical working files in .ion
+  - keep only readme.md as Markdown unless a later proof-backed exception is made
+  - allow LICENSE as the uppercase GitHub license-detection exception
+  - do not create ontology folders before a movement need exists
+  - prefer small, inspectable files over one giant doctrine file
+
+uppercase_exceptions:
+  - LICENSE
+
+numbered_folders:
+  purpose: preserve reading order without hiding the plain-language name
+  pattern: nn-name
+
+file_promotion:
+  raw: may be loose
+  seed-canon: aligned to source docs
+  proof-bound: backed by receipt and replay
+
+proof:
+  source:
+    - 00-start/root.ion
+    - 08-research/june-30-2026-alignment.ion
+    - 08-research/july-01-2026-github-license-use-lock.ion
+  claim: Lowercase syntax is the committed filesystem convention, with LICENSE as the GitHub license-detection exception.
+  proof_state: seed-backed

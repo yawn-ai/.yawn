@@ -1,0 +1,38 @@
+id: records/next-move-ledger
+title: "next move ledger"
+kind: decision-log
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Store suggested moves with the record-based logic that produced them.
+
+entry_shape:
+  timestamp: ""
+  frame: ""
+  candidate_move: ""
+  records_consulted: []
+  accesses_consulted: []
+  proof_gap: ""
+  score:
+    proof_value: 0
+    unblock_value: 0
+    reversibility: 0
+    freshness: 0
+    record_completeness: 0
+    cost: 0
+    risk: 0
+    dependency_uncertainty: 0
+    total: 0
+  boundary_check: ""
+  suggested: false
+  reason: ""
+  replay_after: ""
+
+current_entries: []
+
+proof:
+  source:
+    - core/next-move-logic.yawn
+    - 05-proof/replay.ion
+  status: seed-backed

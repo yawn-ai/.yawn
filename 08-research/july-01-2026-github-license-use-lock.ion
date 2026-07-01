@@ -1,0 +1,32 @@
+ion:
+  id: 08-research/july-01-2026-github-license-use-lock
+  title: july 01 2026 github license use lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user clarified that the public home should be github.com/yawn-ai/.yawn,
+  the repository should be MIT licensed, The Yawn Company should hold rights,
+  and YAWN should be explained as a mirror used by filling out .yawn files like
+  madlibs with help from any AI.
+
+primary_claims:
+  - the public repository address is https://github.com/yawn-ai/.yawn
+  - the repo should be MIT licensed
+  - The Yawn Company should be named as copyright holder
+  - YAWN is a mirror
+  - people use YAWN by filling out .yawn files like madlibs
+  - any AI can help the user interface better with themselves
+  - AI support must preserve human authorization
+
+implementation_decision:
+  Updated LICENSE, readme.yawn, readme.md, yawn.yawn, start/how-to-use-yawn.yawn,
+  references/ownership-and-license.yawn, and the indexes to reflect the GitHub,
+  MIT license, ownership, and usage lock.
+
+proof:
+  source:
+    - user-message
+  claim: This file captures the GitHub, license, ownership, and usage clarification.
+  proof_state: source-summary

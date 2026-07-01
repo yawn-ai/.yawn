@@ -1,0 +1,29 @@
+id: ""
+title: ""
+kind: next-move-record
+timestamp: ""
+
+frame: ""
+candidate_move: ""
+records_consulted: []
+accesses_consulted: []
+proof_gap: ""
+
+score:
+  proof_value: 0
+  unblock_value: 0
+  reversibility: 0
+  freshness: 0
+  record_completeness: 0
+  cost: 0
+  risk: 0
+  dependency_uncertainty: 0
+  total: 0
+
+boundary_check: ""
+suggested: false
+reason: ""
+replay_after: ""
+
+source:
+  template: templates/next-move-record.yawn

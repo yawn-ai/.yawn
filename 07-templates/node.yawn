@@ -1,0 +1,39 @@
+id: 07-templates/node
+title: "07-templates node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the original .ion templates that informed the public .yawn templates.
+
+holds:
+  - basic template
+  - interface template
+  - proof template
+  - relationship template
+  - agent handoff template
+
+receives:
+  - core format rules
+  - proof and boundary requirements
+
+produces:
+  - reusable public template shapes
+  - bridge between .ion and .yawn templates
+
+questions:
+  - what fields are reusable
+  - what should a template protect
+  - what can be deleted when not useful
+
+links:
+  - templates/node.yawn
+  - core/folder-node.yawn
+
+proof:
+  source:
+    - 07-templates/template.basic.ion
+    - 07-templates/template.interface.ion
+    - 07-templates/template.proof.ion
+  status: seed-backed

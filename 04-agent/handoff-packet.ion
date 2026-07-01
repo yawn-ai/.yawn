@@ -1,0 +1,35 @@
+ion:
+  id: 04-agent/handoff-packet
+  title: handoff packet
+  type: agent-template
+  status: seed-canon
+  updated: 2026-06-30
+
+purpose:
+  A handoff packet gives an agent enough context to continue a movement loop
+  without inventing the frame.
+
+packet:
+  current_frame:
+  active_lacuna:
+  relevant_files:
+  stability_state:
+  chosen_move:
+  proof_plan:
+  boundaries:
+  last_replay:
+  open_questions:
+
+handoff_rule:
+  A handoff is valid only if it names what the agent may do, what it may not
+  assume, and what proof would count as an update.
+
+minimal_instruction:
+  Read the linked files. Preserve the reality boundary. Help the human choose
+  or complete one bounded move. Record proof. Replay changes.
+
+proof:
+  source:
+    - 04-agent/agent-orientation-charter.ion
+  claim: Agent continuity requires explicit frame, move, proof, and boundary context.
+  proof_state: seed-backed

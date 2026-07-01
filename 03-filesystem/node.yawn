@@ -1,0 +1,44 @@
+id: 03-filesystem/node
+title: "03-filesystem node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the filesystem doctrine: folders are not storage only, they are
+  coherence containers and interface nodes.
+
+holds:
+  - cognitive filesystem
+  - coherence container
+  - recoherence
+  - folder rules
+  - manifest
+
+receives:
+  - all folder and file structure
+  - proof state
+  - naming rules
+
+produces:
+  - manifest
+  - folder-node logic
+  - recoherence procedure
+
+questions:
+  - what is canonical
+  - what is unresolved
+  - what is proof-backed
+  - what can move next
+
+links:
+  - core/folder-node.yawn
+  - readme.yawn
+  - records/node.yawn
+
+proof:
+  source:
+    - 03-filesystem/cognitive-filesystem.ion
+    - 03-filesystem/coherence-container.ion
+    - 03-filesystem/manifest.ion
+  status: seed-backed

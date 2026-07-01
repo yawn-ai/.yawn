@@ -1,0 +1,41 @@
+ion:
+  id: 02-interface/axis-map
+  title: axis map
+  type: interface-map
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  The axis map names the active dimensions of the frame so a human and agent
+  can inspect what is moving.
+
+axes:
+  beliefs: []
+  habits: []
+  values: []
+  body: []
+  access: []
+  constraints: []
+  relationships: []
+  artifacts: []
+  proof: []
+  boundaries: []
+
+axis_entry:
+  name:
+  current_signal:
+  interpretation:
+  evidence:
+  missing_proof:
+  possible_move:
+  boundary:
+
+reading_rule:
+  An axis is not a verdict. It is a coordinate for movement.
+
+proof:
+  source:
+    - 00-start/what-is-an-ion.ion
+    - 02-interface/projection-stack.ion
+  claim: Axes make the lived frame addressable without overclaiming certainty.
+  proof_state: seed-backed

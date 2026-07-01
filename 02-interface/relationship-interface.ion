@@ -1,0 +1,39 @@
+ion:
+  id: 02-interface/relationship-interface
+  title: relationship interface
+  type: interface-surface
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  A relationship interface maps how other people shape, constrain, stabilize,
+  or distort the current frame.
+
+relationship_entry:
+  person_or_group:
+  role_in_frame:
+  active_story:
+  known_facts:
+  interpretation:
+  need:
+  boundary:
+  possible_move:
+  proof_needed:
+
+uses:
+  - separate fact from projection
+  - see dependence and support clearly
+  - name social costs
+  - protect consent and boundaries
+  - choose communication moves that can be replayed
+
+boundary:
+  Other people are not props in the frame. They have their own agency,
+  limits, privacy, and interpretation rights.
+
+proof:
+  source:
+    - 01-core/reality-boundary.ion
+    - 02-interface/projection-stack.ion
+  claim: Relationships are part of the interface and require special boundary care.
+  proof_state: seed-backed

@@ -1,0 +1,16 @@
+id: examples/signal
+title: "a signal has attention"
+kind: example
+status: example
+
+current: "a signal keeps pulling my attention"
+possible: "i can observe it without treating it as an instruction"
+lacuna: "i do not yet know whether the signal means anything actionable"
+
+move: "write the signal down and separate fact from interpretation"
+boundary: "do not convert intensity into truth"
+proof: "i can name what is known, inferred, and still unproven"
+replay: "what changed after separating signal from story?"
+
+source:
+  template: templates/basic.yawn

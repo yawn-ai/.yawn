@@ -1,0 +1,25 @@
+id: references/source-index
+title: "source index"
+kind: reference-index
+status: v0-seed
+updated: 2026-07-01
+
+sources:
+  - file: references/ownership-and-license.yawn
+    role: "github address, MIT license, and The Yawn Company copyright holder"
+  - file: references/scientific-frame.yawn
+    role: "scientific and publishable framing"
+  - file: references/july-01-lock.yawn
+    role: "current readme.yawn and file-tree lock"
+  - file: 08-research/june-30-2026-alignment.ion
+    role: "duality and proof-bearing filesystem seed"
+  - file: 08-research/june-30-2026-public-readme.ion
+    role: "public .yawn README seed"
+  - file: 08-research/july-01-2026-material-record-reframe.ion
+    role: "material time and access-record reframe"
+
+proof:
+  source:
+    - readme.yawn
+    - references/ownership-and-license.yawn
+  status: seed-backed

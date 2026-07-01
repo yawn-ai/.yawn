@@ -1,0 +1,34 @@
+id: records/material-time
+title: "material time"
+kind: record-protocol
+status: v0-seed
+updated: 2026-07-01
+
+definition: >
+  Material time is the inspectable record of what actually happened: files,
+  tools, accesses, backups, commits, external surfaces, decisions, costs, and
+  proof receipts.
+
+why_it_matters: >
+  Movement needs memory that can be checked. Material records keep the system
+  from relying only on interpretation, vibes, or model narration.
+
+record_types:
+  - file access
+  - llm/tool access
+  - github access
+  - backup
+  - commit or branch
+  - external account or service
+  - proof receipt
+  - next-move rationale
+
+rule: >
+  If an access, backup, or external surface changes what the next move should
+  be, record it.
+
+proof:
+  source:
+    - yawn.yawn
+    - core/yawn-space.yawn
+  status: seed-backed

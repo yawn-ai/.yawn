@@ -1,0 +1,34 @@
+ion:
+  id: 06-product/docs-mirror-lens
+  title: docs mirror lens
+  type: product-surface
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  The docs mirror lens is a documentation surface that reflects the living .ion
+  filesystem instead of becoming a separate doctrine.
+
+docs_should_show:
+  - current canonical files
+  - proof state
+  - unresolved lacunae
+  - product rails
+  - movement templates
+  - agent boundaries
+
+docs_should_not:
+  - invent a separate frame
+  - hide proof gaps
+  - make the ontology feel complete when movement is missing
+
+implementation_direction:
+  Wire /docs to read from .ion files so documentation, interface, and agent
+  handoff share the same source of truth.
+
+proof:
+  source:
+    - 03-filesystem/cognitive-filesystem.ion
+    - 06-product/v1-proof-strip.ion
+  claim: Docs should mirror the canon rather than fork it.
+  proof_state: seed-backed

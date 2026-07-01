@@ -1,0 +1,41 @@
+ion:
+  id: 02-interface/projection-stack
+  title: projection stack
+  type: interface-map
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  The projection stack is the layered set of forces shaping what the human
+  experiences as possible, impossible, obvious, taboo, available, or invisible.
+
+layers:
+  beliefs:
+    question: what do I currently treat as true
+  habits:
+    question: what do I repeat before choosing
+  values:
+    question: what am I protecting or pursuing
+  body:
+    question: what is my nervous system making louder or quieter
+  relationships:
+    question: who is included in the frame
+  constraints:
+    question: what limits are real enough to respect
+  artifacts:
+    question: what files, tools, spaces, or commitments shape the field
+  proof_gaps:
+    question: what have I not tested yet
+  boundary_pressures:
+    question: where is reality pushing back
+
+translation:
+  Beliefs, habits, language, relationships, constraints, artifacts, proof
+  receipts, and agent packets are code in the user's current interface with
+  reality.
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: The projection stack exposes the components shaping possible action.
+  proof_state: seed-backed

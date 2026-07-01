@@ -1,0 +1,27 @@
+id: interface/memory
+title: "/memory"
+kind: cognition-handle
+status: v0-seed
+updated: 2026-07-01
+
+function: "record proof and replay what changed"
+
+asks:
+  - what happened
+  - what was expected
+  - what proof appeared
+  - what changed in behavior, memory, relationship, or environment
+  - what remains open
+
+output:
+  before: ""
+  after: ""
+  evidence: []
+  changed: []
+  still_open: []
+
+proof:
+  source:
+    - readme.yawn
+    - 05-proof/replay.ion
+  status: seed-backed

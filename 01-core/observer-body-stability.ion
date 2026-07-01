@@ -1,0 +1,45 @@
+ion:
+  id: 01-core/observer-body-stability
+  title: observer body stability
+  type: operating-rail
+  status: seed-canon
+  updated: 2026-06-30
+
+purpose:
+  Keep the observer function connected to ordinary human stability.
+
+observer_can:
+  - step back
+  - compare frames
+  - notice loops
+  - detect lacunae
+  - propose bounded moves
+  - inspect proof
+
+body_needs:
+  - sleep
+  - nutrition
+  - hydration
+  - physical safety
+  - money reality
+  - relational continuity
+  - nervous-system regulation
+  - time away from abstraction
+
+stability_check:
+  before_move:
+    - is the human fed enough
+    - is the human rested enough
+    - is there immediate danger
+    - is this move reversible
+    - does the move respect money and time constraints
+  if_unstable:
+    movement_stage: hold
+    allowed_action: name the condition and choose a stabilizing move
+
+proof:
+  source:
+    - 01-core/duality.ion
+    - 08-research/june-30-2026-alignment.ion
+  claim: Observation must remain tethered to embodied stability.
+  proof_state: seed-backed

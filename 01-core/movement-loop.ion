@@ -1,0 +1,43 @@
+ion:
+  id: 01-core/movement-loop
+  title: movement loop
+  type: loop-definition
+  status: seed-canon
+  updated: 2026-06-30
+
+compressed_loop:
+  - pause
+  - see
+  - steer
+  - move
+  - replay
+
+north_star_loop:
+  - see the frame
+  - name the lacuna
+  - choose a bounded move
+  - gather proof
+  - replay what changed
+
+stage_definitions:
+  pause:
+    function: interrupt automatic pattern
+  see:
+    function: render the current frame visible
+  steer:
+    function: select a direction without pretending certainty
+  move:
+    function: perform a bounded test in ordinary reality
+  replay:
+    function: compare expectation, action, evidence, and update
+
+failure_modes:
+  stuck_observe: seeing without moving
+  impulsive_move: moving without boundary or proof
+  false_replay: narrating change without evidence
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: The movement loop is the core operating rhythm.
+  proof_state: seed-backed

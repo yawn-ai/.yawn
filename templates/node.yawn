@@ -1,0 +1,48 @@
+id: templates/node
+title: "templates node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold reusable .yawn shapes that people and agents can copy without learning
+  the whole ontology.
+
+holds:
+  - basic template
+  - full template
+  - decision template
+  - relationship template
+  - proof template
+  - proof receipt template
+  - agent handoff template
+  - access record template
+  - backup record template
+  - next-move record template
+
+receives:
+  - repeated movement patterns
+  - proof and boundary constraints
+  - agent handoff needs
+
+produces:
+  - copyable forms
+  - consistent records
+  - lower cognitive load
+
+questions:
+  - what shape should this yawn use
+  - what fields are required
+  - what can be deleted
+
+links:
+  - start/node.yawn
+  - examples/node.yawn
+  - records/node.yawn
+
+proof:
+  source:
+    - templates/basic.yawn
+    - templates/full.yawn
+    - templates/proof-receipt.yawn
+  status: seed-backed

@@ -1,0 +1,157 @@
+id: yawn
+title: ".yawn"
+kind: protocol-root
+status: v0-seed
+updated: 2026-07-01
+github: https://github.com/yawn-ai/.yawn
+license: MIT
+copyright_holder: The Yawn Company
+
+canonical_root: readme.yawn
+compatibility_readme: readme.md
+
+summary: >
+  .yawn is a tiny open filesystem for shared mental models, lived agency,
+  material records, access history, and next-move rationale.
+
+canonical_sentence: >
+  .yawn is the simplest possible interface for structured movement.
+
+root_loop:
+  - see the frame
+  - name the lacuna
+  - choose a bounded move
+  - gather proof
+  - replay what changed
+
+file_priority:
+  - human-readable first
+  - machine-addressable second
+  - proof-bound when promoted
+
+core_links:
+  root_orientation: readme.yawn
+  what_is_a_yawn: core/what-is-a-yawn.yawn
+  folder_node: core/folder-node.yawn
+  movement_frame: core/movement-frame.yawn
+  movement_loop: core/movement-loop.yawn
+  next_move_logic: core/next-move-logic.yawn
+  lacuna: core/lacuna.yawn
+  agency: core/agency.yawn
+  yawn_space: core/yawn-space.yawn
+  observer_and_body: core/observer-and-body.yawn
+  proof_and_boundary: core/proof-and-boundary.yawn
+  human_use: core/human-use.yawn
+  design_principles: core/design-principles.yawn
+
+start_links:
+  what_is_a_yawn: start/what-is-a-yawn.yawn
+  how_to_use_yawn: start/how-to-use-yawn.yawn
+  first_yawn: start/first-yawn.yawn
+  value_proposition: start/value-proposition.yawn
+
+interface_links:
+  mirror: interface/mirror.yawn
+  map: interface/map.yawn
+  meaning: interface/meaning.yawn
+  move: interface/move.yawn
+  memory: interface/memory.yawn
+  projection_stack: interface/projection-stack.yawn
+
+observation_links:
+  lived_agency: observations/lived-agency.yawn
+
+record_links:
+  material_time: records/material-time.yawn
+  access_log: records/access-log.yawn
+  llm_access: records/llm-access.yawn
+  github_access: records/github-access.yawn
+  backup_log: records/backup-log.yawn
+  next_move_ledger: records/next-move-ledger.yawn
+
+template_links:
+  basic: templates/basic.yawn
+  full: templates/full.yawn
+  decision: templates/decision.yawn
+  relationship: templates/relationship.yawn
+  proof: templates/proof.yawn
+  proof_receipt: templates/proof-receipt.yawn
+  agent_handoff: templates/agent-handoff.yawn
+  access_record: templates/access-record.yawn
+  backup_record: templates/backup-record.yawn
+  next_move_record: templates/next-move-record.yawn
+
+example_links:
+  stuck: examples/stuck.yawn
+  decision: examples/decision.yawn
+  relationship_tension: examples/relationship-tension.yawn
+  signal: examples/signal.yawn
+  choice: examples/choice.yawn
+  repair: examples/repair.yawn
+
+agent_links:
+  orientation: agents/orientation.yawn
+
+reference_links:
+  source_index: references/source-index.yawn
+  ownership_and_license: references/ownership-and-license.yawn
+  scientific_frame: references/scientific-frame.yawn
+  july_01_lock: references/july-01-lock.yawn
+
+usage_frame: >
+  YAWN is a mirror. Use it by filling out .yawn files like madlibs for your
+  life, projects, records, and next moves. Any AI can help you mirror and
+  organize, but the human remains the source of authorization.
+
+folder_node_rule: >
+  Every folder is a knowledge node and mental-model node. Each folder should
+  contain node.yawn as its local orientation card.
+
+folder_node_links:
+  start: start/node.yawn
+  core: core/node.yawn
+  interface: interface/node.yawn
+  observations: observations/node.yawn
+  records: records/node.yawn
+  templates: templates/node.yawn
+  examples: examples/node.yawn
+  references: references/node.yawn
+  agents: agents/node.yawn
+  bridge_start: 00-start/node.yawn
+  bridge_core: 01-core/node.yawn
+  bridge_interface: 02-interface/node.yawn
+  bridge_filesystem: 03-filesystem/node.yawn
+  bridge_agent: 04-agent/node.yawn
+  bridge_proof: 05-proof/node.yawn
+  bridge_product: 06-product/node.yawn
+  bridge_templates: 07-templates/node.yawn
+  bridge_research: 08-research/node.yawn
+
+boundary:
+  - signal is not instruction
+  - resonance is not proof
+  - coincidence is not command
+  - memory is not objective record
+  - ai output is not authority
+  - intensity is not truth
+  - only proof updates the map
+
+first_move:
+  instruction: >
+    Copy templates/basic.yawn into a new file. Name one thing that has
+    attention. Do not force the answer.
+  proof: "You can point to one clearer next question."
+  replay: "What changed after naming it?"
+
+material_record_rule: >
+  When an agent or human uses an important file, tool, account, external
+  service, backup, GitHub surface, or other access path, record what was used,
+  why it mattered, what changed, and what proof or risk remains.
+
+source:
+  - readme.yawn
+  - readme.md
+  - references/scientific-frame.yawn
+  - references/july-01-lock.yawn
+  - 08-research/june-30-2026-public-readme.ion
+  - 08-research/june-30-2026-alignment.ion

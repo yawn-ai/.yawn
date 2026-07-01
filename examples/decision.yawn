@@ -1,0 +1,16 @@
+id: examples/decision
+title: "I need to make a decision"
+kind: example
+status: example
+
+current: "I am holding multiple options and switching frames whenever I compare them."
+possible: "I can name the decision criteria before choosing."
+lacuna: "I do not know which constraint matters most."
+
+move: "List the three constraints that would make the decision real."
+boundary: "Do not decide while pretending all options cost the same."
+proof: "One constraint becomes clearly heavier than the others."
+replay: "What changed after the criteria were named?"
+
+source:
+  template: templates/basic.yawn

@@ -1,0 +1,30 @@
+id: start/what-is-a-yawn
+title: "what is a yawn"
+kind: start
+status: v0-seed
+updated: 2026-07-01
+
+answer: >
+  A .yawn is a readable movement frame. It gives a human or agent one place to
+  see the current frame, the missing bridge, the bounded move, the boundary,
+  the proof condition, and the replay.
+
+smallest_shape:
+  current: "what is happening now"
+  possible: "what could become possible"
+  lacuna: "what is missing"
+  move: "what can be safely tried"
+  boundary: "what must not be forced"
+  proof: "what would show change"
+  replay: "what changed"
+
+read_next:
+  - start/first-yawn.yawn
+  - templates/basic.yawn
+  - readme.yawn
+
+proof:
+  source:
+    - readme.yawn
+    - core/what-is-a-yawn.yawn
+  status: seed-backed

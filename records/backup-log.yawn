@@ -1,0 +1,27 @@
+id: records/backup-log
+title: "backup log"
+kind: record-log
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Track backups, restores, exports, snapshots, and recoverability assumptions.
+
+entry_shape:
+  timestamp: ""
+  source: ""
+  destination: ""
+  method: ""
+  actor: ""
+  reason: ""
+  restore_tested: false
+  evidence: ""
+  boundary: ""
+
+current_entries: []
+
+proof:
+  source:
+    - records/material-time.yawn
+    - templates/backup-record.yawn
+  status: seed-backed

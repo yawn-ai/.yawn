@@ -1,0 +1,31 @@
+ion:
+  id: 03-filesystem/cognitive-filesystem
+  title: cognitive filesystem
+  type: filesystem-definition
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  The file tree is the first interface. It is a living cognitive filesystem
+  with coherence, conflicts, weights, proof gaps, and replay visibility.
+
+why_file_tree_first:
+  The file tree can show where the frame lives, what it depends on, what is
+  unresolved, what is proof-backed, and what can move next.
+
+not_dumb_navigation:
+  Folders and files are not only storage. They are addressable surfaces for
+  orientation, handoff, proof, and replay.
+
+filesystem_prompts:
+  - what is canonical here
+  - what is unresolved here
+  - what proof backs this
+  - what move does this file enable
+  - what agent can safely infer from this file
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: The folder system itself is the first working interface.
+  proof_state: seed-backed

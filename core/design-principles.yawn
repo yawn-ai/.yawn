@@ -1,0 +1,38 @@
+id: core/design-principles
+title: "design principles"
+kind: principles
+status: v0-seed
+updated: 2026-06-30
+
+principles:
+  - human-readable first
+  - machine-addressable second
+  - proof over certainty
+  - boundary over force
+  - small moves over grand claims
+  - replay over memory drift
+  - forks over hidden mutation
+  - folders over dashboards until dashboards are earned
+
+v0_lock:
+  - plain text
+  - simple folders
+  - clear templates
+  - no required parser
+  - no required UI
+  - no hidden agent authority
+
+not_this:
+  - simulation claim
+  - manifestation tool
+  - therapy
+  - diagnosis
+  - spiritual authority
+  - oracle
+  - productivity framework that forces every feeling into action
+
+proof:
+  source:
+    - yawn.yawn
+    - 08-research/june-30-2026-public-readme.ion
+  status: seed-backed

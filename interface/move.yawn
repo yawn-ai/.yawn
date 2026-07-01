@@ -1,0 +1,30 @@
+id: interface/move
+title: "/move"
+kind: cognition-handle
+status: v0-seed
+updated: 2026-07-01
+
+function: "choose the smallest authorized step"
+
+asks:
+  - observe, ask, hold, test, or move
+  - what is the smallest step
+  - is it reversible
+  - what does it cost
+  - what proof would it produce
+  - what boundary protects the human
+
+output:
+  mode: "observe | ask | hold | test | move"
+  smallest_step: ""
+  reversible: true
+  cost: ""
+  proof_condition: ""
+  boundary: ""
+
+proof:
+  source:
+    - readme.yawn
+    - core/agency.yawn
+    - core/next-move-logic.yawn
+  status: seed-backed

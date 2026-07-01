@@ -1,0 +1,35 @@
+ion:
+  id: 01-core/self-authorization
+  title: self authorization
+  type: agency-rail
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  Self-authorization is the act of choosing one bounded move without waiting
+  for inherited identity, social permission, or an agent to become the final
+  authority.
+
+allowed:
+  - choose a small test
+  - name uncertainty
+  - spend limited agency currency
+  - gather proof
+  - revise the map
+
+not_allowed:
+  - confuse intensity with truth
+  - hand authority to the model
+  - make irreversible moves from untested signal
+  - abandon ordinary obligations in the name of insight
+
+self_authorization_prompt:
+  What is one bounded move I can choose from here that keeps me stable and
+  gives reality a chance to answer?
+
+proof:
+  source:
+    - 01-core/duality.ion
+    - 05-proof/proof-contract.ion
+  claim: Agency is exercised through bounded, proof-seeking moves.
+  proof_state: seed-backed

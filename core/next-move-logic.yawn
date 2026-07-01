@@ -1,0 +1,61 @@
+id: core/next-move-logic
+title: "next move logic"
+kind: decision-protocol
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Show why a next move is suggested. The logic is inspectable ranking, not
+  authority.
+
+preconditions:
+  - stability boundary is checked
+  - relevant records are named
+  - known accesses are visible
+  - proof gap is explicit
+  - move is bounded enough to replay
+
+candidate_fields:
+  candidate_move: ""
+  proof_value: 0
+  unblock_value: 0
+  reversibility: 0
+  freshness: 0
+  record_completeness: 0
+  cost: 0
+  risk: 0
+  dependency_uncertainty: 0
+
+scale:
+  0: "absent or unknown"
+  1: "low"
+  2: "medium"
+  3: "high"
+
+score_shape: >
+  score = proof_value + unblock_value + reversibility + freshness +
+  record_completeness - cost - risk - dependency_uncertainty
+
+selection_rule: >
+  Prefer the highest-scoring move only if it passes boundary and stability
+  checks. If a lower-scoring move is safer, cheaper, or more reversible, name
+  that reason explicitly.
+
+output:
+  suggested_move: ""
+  because:
+    records: []
+    proof_gap: ""
+    expected_unblock: ""
+    cost: ""
+    risk: ""
+    reversibility: ""
+  not_authority: true
+
+proof:
+  source:
+    - yawn.yawn
+    - records/next-move-ledger.yawn
+    - 01-core/agency-currency.ion
+    - 05-proof/proof-contract.ion
+  status: seed-backed

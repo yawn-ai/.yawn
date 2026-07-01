@@ -1,0 +1,30 @@
+ion:
+  id: 08-research/july-01-2026-material-record-reframe
+  title: july 01 2026 material record reframe
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user reframed .yawn as a filesystem for material time, organization,
+  backup, records, LLM-detected or LLM-used accesses, next-move logic, and
+  GitHub access surfaces.
+
+primary_claims:
+  - .yawn should track material time, not only inner movement
+  - records, backups, and access paths are part of the filesystem
+  - the LLM should be able to show what it detected, read, or used
+  - next moves should come with the logic that produced them
+  - GitHub access and other external surfaces belong in the record layer
+  - any existing test-on-base or mathematical decision logic should be located and integrated when available
+
+implementation_decision:
+  Added a records folder, material-time protocol, access logs, LLM access log,
+  GitHub access log, backup log, next-move ledger, access/backup/next-move
+  templates, and inspectable next-move scoring logic.
+
+proof:
+  source:
+    - user-message
+  claim: This file captures the user's material-record reframe and the implementation response.
+  proof_state: source-summary

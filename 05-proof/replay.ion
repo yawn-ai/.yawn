@@ -1,0 +1,39 @@
+ion:
+  id: 05-proof/replay
+  title: replay
+  type: proof-process
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  Replay is the act of reviewing what changed after a bounded move.
+
+replay_fields:
+  original_frame:
+  lacuna:
+  chosen_move:
+  expectation:
+  action_taken:
+  evidence_collected:
+  cost_paid:
+  body_state_after:
+  map_update:
+  next_move:
+
+replay_questions:
+  - what did I think would happen
+  - what actually happened
+  - what changed in the frame
+  - what remains unresolved
+  - what proof is strong enough to promote
+  - what should stay provisional
+
+rule:
+  Replay must preserve both evidence and uncertainty.
+
+proof:
+  source:
+    - 01-core/movement-loop.ion
+    - 05-proof/proof-contract.ion
+  claim: Replay closes the movement loop and keeps the map honest.
+  proof_state: seed-backed

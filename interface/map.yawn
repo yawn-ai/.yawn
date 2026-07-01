@@ -1,0 +1,27 @@
+id: interface/map
+title: "/map"
+kind: cognition-handle
+status: v0-seed
+updated: 2026-07-01
+
+function: "show what this belongs to"
+
+asks:
+  - what folder does this live in
+  - what depends on it
+  - what conflicts with it
+  - what echoes it
+  - what records or proofs are linked
+
+output:
+  parent_frames: []
+  child_frames: []
+  dependencies: []
+  conflicts: []
+  proof_links: []
+
+proof:
+  source:
+    - readme.yawn
+    - 03-filesystem/cognitive-filesystem.ion
+  status: seed-backed

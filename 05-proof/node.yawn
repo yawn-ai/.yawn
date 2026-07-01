@@ -1,0 +1,40 @@
+id: 05-proof/node
+title: "05-proof node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold proof contract, replay, and receipt logic from the bridge layer.
+
+holds:
+  - proof contract
+  - replay process
+  - proof receipt template
+
+receives:
+  - bounded moves
+  - observed outcomes
+  - evidence and costs
+
+produces:
+  - proof receipts
+  - replay summaries
+  - map updates
+
+questions:
+  - what would count as proof
+  - what changed after movement
+  - what remains unproven
+
+links:
+  - core/proof-and-boundary.yawn
+  - interface/memory.yawn
+  - templates/proof-receipt.yawn
+
+proof:
+  source:
+    - 05-proof/proof-contract.ion
+    - 05-proof/replay.ion
+    - 05-proof/proof-receipt.ion
+  status: seed-backed

@@ -1,0 +1,33 @@
+id: core/human-use
+title: "how humans use .yawn"
+kind: use-protocol
+status: v0-seed
+updated: 2026-06-30
+
+use_when:
+  - something has attention
+  - you feel stuck
+  - you keep repeating a pattern
+  - you need to make a decision
+  - a relationship feels charged
+  - a project has too many threads
+  - you want to move without forcing yourself
+
+basic_process:
+  - create a .yawn file
+  - name the current frame
+  - name the possible frame
+  - name the lacuna
+  - choose a bounded move
+  - define proof
+  - replay what changed
+
+minimum_instruction: >
+  If the frame is unclear, do not solve it yet. Name one thing that has
+  attention and one thing that must not be forced.
+
+proof:
+  source:
+    - yawn.yawn
+    - templates/basic.yawn
+  status: seed-backed

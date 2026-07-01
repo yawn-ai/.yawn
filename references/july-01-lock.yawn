@@ -1,0 +1,32 @@
+id: references/july-01-lock
+title: "july 01 lock"
+kind: reference
+status: v0-seed
+updated: 2026-07-01
+
+lock:
+  - the file tree itself is the first interface
+  - the root file is readme.yawn
+  - .yawn is the actual file extension
+  - the leading question is how a human moves from implicit pattern to explicit agency
+  - the public ontology starts with mirror, map, meaning, move, memory
+  - the duality is observer and embodied human
+  - proof and boundary stay built in
+
+repo_shape:
+  - readme.yawn
+  - start/
+  - core/
+  - interface/
+  - observations/
+  - records/
+  - templates/
+  - examples/
+  - references/
+  - agents/
+
+proof:
+  source:
+    - "C:/Users/dave/OneDrive/Desktop/README.yawn"
+    - "C:/Users/dave/.codex/attachments/5bb87b42-cfe9-4b45-a682-aa8b353e6fae/pasted-text.txt"
+  status: source-backed

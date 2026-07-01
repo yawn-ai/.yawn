@@ -1,0 +1,43 @@
+id: start/node
+title: "start node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the easiest entry points for someone who has not learned the ontology.
+
+holds:
+  - what is a yawn
+  - how to use yawn
+  - first yawn
+  - value proposition
+
+receives:
+  - readme.yawn
+  - new user attention
+  - first movement question
+
+produces:
+  - first usable frame
+  - first proof path
+  - gentle entry into core ontology
+
+questions:
+  - what is this
+  - how do i use it
+  - how do i start
+  - what value does it create
+
+links:
+  - readme.yawn
+  - templates/basic.yawn
+  - examples/node.yawn
+
+proof:
+  source:
+    - start/what-is-a-yawn.yawn
+    - start/how-to-use-yawn.yawn
+    - start/first-yawn.yawn
+    - start/value-proposition.yawn
+  status: seed-backed

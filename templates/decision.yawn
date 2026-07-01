@@ -1,0 +1,22 @@
+title: ""
+kind: decision-frame
+
+current: ""
+possible: ""
+decision: ""
+lacuna: ""
+
+options:
+  - name: ""
+    cost: ""
+    risk: ""
+    reversibility: true
+    proof_needed: ""
+
+move: ""
+boundary: ""
+proof: ""
+replay: ""
+
+source:
+  template: templates/decision.yawn

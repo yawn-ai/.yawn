@@ -1,0 +1,61 @@
+id: core/yawn-space
+title: "yawn space"
+kind: filesystem-protocol
+status: v0-seed
+updated: 2026-07-01
+
+definition: >
+  A Yawn Space is a folder or repository of .yawn files. The file tree is the
+  first UI.
+
+minimal_shape:
+  - readme.yawn
+  - readme.md
+  - yawn.yawn
+  - start/
+  - core/
+  - interface/
+  - observations/
+  - records/
+  - templates/
+  - examples/
+  - references/
+  - agents/
+
+folder_role: >
+  Folders are coherence containers. They show what belongs together, what is
+  unresolved, what depends on what, and where movement is invited.
+
+node_rule: >
+  Every folder is also a knowledge node and mental-model node. The local
+  node.yawn file explains the folder before a person or agent opens every file
+  inside it.
+
+filesystem_affordances:
+  - read
+  - copied
+  - forked
+  - diffed
+  - committed
+  - linked
+  - searched
+  - versioned
+  - reviewed
+  - replayed
+
+rule: >
+  Keep the root simple enough to work without an app, account, server, hidden
+  database, or proprietary editor.
+
+records_role: >
+  The records folder preserves material time: access logs, backups, external
+  surfaces, tool use, and next-move ledgers. It keeps the system from becoming
+  only interpretation.
+
+proof:
+  source:
+    - readme.yawn
+    - yawn.yawn
+    - core/folder-node.yawn
+    - 03-filesystem/cognitive-filesystem.ion
+  status: seed-backed

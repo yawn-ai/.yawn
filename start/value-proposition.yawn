@@ -1,0 +1,27 @@
+id: start/value-proposition
+title: "value proposition"
+kind: start
+status: v0-seed
+updated: 2026-07-01
+
+for_humans: >
+  See the loop you are inside, name what is missing, choose one safe move, and
+  learn what changed.
+
+for_agents: >
+  Receive the same frame the human sees, respect boundaries, track proof, and
+  support movement without hidden authority.
+
+for_teams: >
+  Share mental models, expose assumptions, find conflicts, and re-cohere around
+  proof.
+
+for_builders: >
+  Use plain text as the source of truth, then build apps, graphs, games,
+  agents, and interfaces on top without losing the readable root.
+
+proof:
+  source:
+    - readme.yawn
+    - 00-start/value-proposition.ion
+  status: seed-backed

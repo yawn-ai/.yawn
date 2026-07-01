@@ -1,0 +1,36 @@
+ion:
+  id: 07-templates/template.agent-handoff
+  title: agent handoff ion template
+  type: template
+  status: seed-canon
+  updated: 2026-06-30
+
+template:
+  ion:
+    id:
+    title:
+    type: agent-handoff
+    status:
+    updated:
+  handoff:
+    current_frame:
+    active_lacuna:
+    relevant_files: []
+    stability_state:
+    chosen_move:
+    proof_plan:
+    boundaries:
+    last_replay:
+    open_questions:
+    agent_may:
+    agent_may_not:
+
+use:
+  Use when an agent needs to continue work without inventing context.
+
+proof:
+  source:
+    - 04-agent/handoff-packet.ion
+    - 04-agent/agent-boundaries.ion
+  claim: This template preserves frame, move, proof, and boundaries for agent continuity.
+  proof_state: seed-backed

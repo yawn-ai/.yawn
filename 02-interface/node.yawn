@@ -1,0 +1,43 @@
+id: 02-interface/node
+title: "02-interface node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the original interface maps that explain projection, tension, axes,
+  mental models, and relationships.
+
+holds:
+  - projection stack
+  - tension field
+  - axis map
+  - mental-model interface
+  - relationship interface
+
+receives:
+  - core duality
+  - lived frame signals
+  - relationship and model complexity
+
+produces:
+  - public interface handles
+  - maps for what shapes possibility
+  - boundaries for social and mental-model work
+
+questions:
+  - what is shaping what appears possible
+  - what belongs on the axis map
+  - what is fact versus interpretation
+
+links:
+  - interface/node.yawn
+  - core/node.yawn
+  - observations/lived-agency.yawn
+
+proof:
+  source:
+    - 02-interface/projection-stack.ion
+    - 02-interface/axis-map.ion
+    - 02-interface/relationship-interface.ion
+  status: seed-backed

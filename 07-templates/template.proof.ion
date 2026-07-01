@@ -1,0 +1,37 @@
+ion:
+  id: 07-templates/template.proof
+  title: proof ion template
+  type: template
+  status: seed-canon
+  updated: 2026-06-30
+
+template:
+  ion:
+    id:
+    title:
+    type: proof-receipt
+    status:
+    updated:
+  receipt:
+    date:
+    linked_file:
+    claim_tested:
+    bounded_move:
+    expected_signal:
+    evidence_collected:
+    result:
+    cost:
+    boundary_observed:
+    replay_summary:
+    map_update:
+    next_lacuna:
+
+use:
+  Use after a bounded move produces inspectable evidence.
+
+proof:
+  source:
+    - 05-proof/proof-contract.ion
+    - 05-proof/proof-receipt.ion
+  claim: This template follows the proof receipt contract for bounded movement.
+  proof_state: seed-backed

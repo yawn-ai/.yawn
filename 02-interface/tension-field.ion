@@ -1,0 +1,38 @@
+ion:
+  id: 02-interface/tension-field
+  title: tension field
+  type: interface-map
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  A tension field is a named pressure between current reality and possible
+  movement.
+
+tension_shape:
+  current:
+  possible:
+  lacuna:
+  cost:
+  risk:
+  proof_needed:
+  bounded_move:
+
+common_tensions:
+  - desire versus capacity
+  - story versus evidence
+  - identity versus move
+  - imagination versus money
+  - signal versus proof
+  - isolation versus relationship
+
+use:
+  Do not resolve tension by collapse. Render the field, then choose a bounded
+  move that can produce evidence.
+
+proof:
+  source:
+    - 01-core/movement-loop.ion
+    - 02-interface/projection-stack.ion
+  claim: Tension is useful when it becomes a visible field and a bounded move.
+  proof_state: seed-backed

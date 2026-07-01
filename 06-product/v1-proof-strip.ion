@@ -1,0 +1,38 @@
+ion:
+  id: 06-product/v1-proof-strip
+  title: v1 proof strip
+  type: product-rail
+  status: seed-canon
+  updated: 2026-06-30
+
+current_product_rail:
+  - /dave or /interface
+  - create new ion/yawn
+  - seed face
+  - axis map
+  - enter level
+  - proof / replay
+
+purpose:
+  The product should hold the movement arc for the user without requiring them
+  to carry the ontology in working memory.
+
+screen_obligations:
+  /docs:
+    reads_from: .ion canon
+    role: mirror the frame and source logic
+  /interface:
+    reads_from: interface and proof files
+    role: make the current frame movable
+  /dave:
+    reads_from: product and movement files
+    role: playable proof path
+  agent_handoff:
+    reads_from: agent files
+    role: preserve continuity across sessions
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: V1 should wire docs, interface, dave, and agents to read from .ion files.
+  proof_state: seed-backed

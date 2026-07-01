@@ -1,0 +1,26 @@
+id: interface/mirror
+title: "/mirror"
+kind: cognition-handle
+status: v0-seed
+updated: 2026-07-01
+
+function: "pause and show what is here"
+
+asks:
+  - what has attention
+  - what signal is present
+  - what body cue or emotion is present
+  - what is known versus interpreted
+
+output:
+  current_signal: ""
+  known_facts: []
+  interpretations: []
+  body_signal: ""
+  open_questions: []
+
+proof:
+  source:
+    - readme.yawn
+    - 02-interface/interface.ion
+  status: seed-backed

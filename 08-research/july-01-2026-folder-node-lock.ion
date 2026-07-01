@@ -1,0 +1,28 @@
+ion:
+  id: 08-research/july-01-2026-folder-node-lock
+  title: july 01 2026 folder node lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user clarified that each folder should be treated as a knowledge node or
+  mental-model node, not merely as storage.
+
+primary_claims:
+  - the file tree is the first interface
+  - folders should act as knowledge nodes
+  - folders should act as mental-model nodes
+  - each folder needs a local orientation surface
+  - agents should be able to understand a folder before reading every file
+
+implementation_decision:
+  Added core/folder-node.yawn as the node protocol and node.yawn files to every
+  existing folder in the repository.
+
+proof:
+  source:
+    - user-message
+    - 08-research/july-01-2026-readme-yawn-lock.ion
+  claim: This file captures the folder-as-node lock and implementation response.
+  proof_state: source-summary

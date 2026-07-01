@@ -1,0 +1,16 @@
+id: examples/choice
+title: "a choice is asking for attention"
+kind: example
+status: example
+
+current: "i am trying to choose while the criteria are still blurry"
+possible: "i can name what would make the choice honest"
+lacuna: "i do not know which value, cost, or constraint should lead"
+
+move: "write the choice criteria before choosing"
+boundary: "do not choose from pressure alone"
+proof: "one criterion becomes clearly more important"
+replay: "what changed after naming the criteria?"
+
+source:
+  template: templates/decision.yawn

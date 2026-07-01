@@ -1,0 +1,49 @@
+id: interface/node
+title: "interface node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the five-command brain interface and projection stack.
+
+holds:
+  - mirror
+  - map
+  - meaning
+  - move
+  - memory
+  - projection stack
+
+receives:
+  - lived signals
+  - current frames
+  - missing bridges
+  - proof and replay needs
+
+produces:
+  - cognition handles
+  - frame maps
+  - movement choices
+  - replay surfaces
+
+questions:
+  - what is here
+  - what does it belong to
+  - what is missing
+  - what can move
+  - what changed
+
+links:
+  - readme.yawn
+  - observations/lived-agency.yawn
+  - core/node.yawn
+
+proof:
+  source:
+    - interface/mirror.yawn
+    - interface/map.yawn
+    - interface/meaning.yawn
+    - interface/move.yawn
+    - interface/memory.yawn
+  status: seed-backed

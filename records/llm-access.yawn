@@ -1,0 +1,34 @@
+id: records/llm-access
+title: "llm access"
+kind: record-log
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Record what an LLM or agent detected, read, used, inferred from, or changed
+  while helping with the Yawn Space.
+
+record_when:
+  - a file or folder shapes the answer
+  - a command output changes the next move
+  - an external source is used
+  - a tool reads or writes material state
+  - an inference depends on a specific record
+
+entry_shape:
+  timestamp: ""
+  model_or_agent: ""
+  detected_surface: ""
+  used_surface: ""
+  evidence_seen: ""
+  inference_made: ""
+  next_move_effect: ""
+  boundary: ""
+
+current_entries: []
+
+proof:
+  source:
+    - records/access-log.yawn
+    - agents/orientation.yawn
+  status: seed-backed

@@ -1,0 +1,42 @@
+id: 08-research/node
+title: "08-research node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold source summaries, research maps, and provenance for why the filesystem
+  has its current shape.
+
+holds:
+  - source index
+  - research map
+  - alignment source summaries
+  - material reframe source
+  - readme.yawn lock source
+
+receives:
+  - user documents
+  - pasted locks
+  - implementation decisions
+
+produces:
+  - source-backed claims
+  - research threads
+  - open lacunae
+
+questions:
+  - where did this claim come from
+  - what source backs this file
+  - what research lacuna remains
+
+links:
+  - references/node.yawn
+  - 03-filesystem/node.yawn
+  - readme.yawn
+
+proof:
+  source:
+    - 08-research/source-index.ion
+    - 08-research/research-map.ion
+  status: seed-backed

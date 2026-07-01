@@ -1,0 +1,38 @@
+ion:
+  id: 08-research/june-30-2026-alignment
+  title: june 30 2026 alignment
+  type: source-summary
+  status: seed-canon
+  updated: 2026-06-30
+
+source_context:
+  The user provided a pasted alignment document titled "According to the
+  freshest alignment docs from June 30, 2026, the project should..." as the
+  basis for assembling this filesystem.
+
+primary_claims:
+  - stop expanding ontology and turn the frame into canonical proof-bearing files
+  - keep the north-star loop: see the frame, name the lacuna, choose a bounded move, gather proof, replay what changed
+  - treat .ion as Interface Orientation Node
+  - make files human-readable first, machine-addressable second, proof-bound when promoted
+  - center duality as observer and embodied human
+  - define the move as stable embodiment plus enough distance to see the pattern
+  - make the file tree the first interface
+  - define the product as structured movement through the frame
+  - translate "source code of reality" into "source code of the user's current interface with reality"
+  - preserve a safety rail against confusing signal, resonance, coincidence, memory, intensity, or AI output with proof
+  - make V1 follow the proof strip from /dave or /interface through proof and replay
+  - wire /docs, /interface, /dave, and agent handoff to read from .ion files
+
+canonical_sentence:
+  .ion is how YAWN turns a lived frame into a readable, movable, proof-bound object.
+
+implementation_decision:
+  This repository now contains a lowercase .ion filesystem, with this research
+  file acting as the seed source summary.
+
+proof:
+  source:
+    - user-attached-pasted-text
+  claim: This file summarizes the attachment used to create the current seed filesystem.
+  proof_state: source-summary

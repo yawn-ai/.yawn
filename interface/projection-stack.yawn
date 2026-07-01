@@ -1,0 +1,29 @@
+id: interface/projection-stack
+title: "projection stack"
+kind: interface-map
+status: v0-seed
+updated: 2026-07-01
+
+definition: >
+  The projection stack is the set of forces shaping what appears possible in a
+  frame.
+
+asks:
+  - what beliefs shape this frame
+  - what habits reinforce it
+  - what values pull it
+  - what body signals flag it
+  - what relationships permit, punish, hide, or invite movement
+  - what constraints limit access
+  - what proof is missing
+  - what boundary pressure exists
+
+rule: >
+  The projection stack is not proof of truth. It is a map of what is currently
+  shaping the interface.
+
+proof:
+  source:
+    - readme.yawn
+    - 02-interface/projection-stack.ion
+  status: seed-backed

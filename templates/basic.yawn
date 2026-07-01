@@ -1,0 +1,13 @@
+title: ""
+
+current: ""
+possible: ""
+lacuna: ""
+
+move: ""
+boundary: ""
+proof: ""
+replay: ""
+
+source:
+  template: templates/basic.yawn

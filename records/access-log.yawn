@@ -1,0 +1,28 @@
+id: records/access-log
+title: "access log"
+kind: record-log
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Track meaningful accesses used by a human, agent, LLM, tool, or integration.
+
+entry_shape:
+  id: ""
+  timestamp: ""
+  actor: "human | agent | llm | tool | integration"
+  access_type: "file | command | app | github | web | database | backup | other"
+  surface: ""
+  action: "read | write | search | inspect | create | update | delete | restore"
+  reason: ""
+  output_or_evidence: ""
+  risk_or_boundary: ""
+  linked_yawn: ""
+
+current_entries: []
+
+proof:
+  source:
+    - records/material-time.yawn
+    - templates/access-record.yawn
+  status: seed-backed

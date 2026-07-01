@@ -1,0 +1,36 @@
+ion:
+  id: 02-interface/interface
+  title: interface
+  type: interface-definition
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  The interface is the visible surface between the embodied human, the observer,
+  the current frame, and the next bounded move.
+
+primary_surfaces:
+  - frame
+  - lacuna
+  - axis map
+  - tension field
+  - move
+  - proof
+  - replay
+
+john_role:
+  John observes and organizes. John does not command.
+
+human_role:
+  The embodied human authorizes moves, pays costs, receives consequences, and
+  updates the lived map.
+
+interface_question:
+  What is shaping what appears possible right now?
+
+proof:
+  source:
+    - 00-start/root.ion
+    - 02-interface/projection-stack.ion
+  claim: John is the observer-interface layer for making the current frame inspectable.
+  proof_state: seed-backed

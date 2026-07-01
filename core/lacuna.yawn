@@ -1,0 +1,33 @@
+id: core/lacuna
+title: "lacuna"
+kind: core
+status: v0-seed
+updated: 2026-07-01
+
+definition: >
+  A lacuna is the missing bridge between the current frame and a possible
+  movement.
+
+not_the_same_as:
+  - failure
+  - flaw
+  - task
+  - destiny
+  - proof
+
+questions:
+  - what is missing
+  - what is unknown
+  - what is blocked
+  - what cannot yet be assumed
+  - what would make the next move safer
+
+use: >
+  Name the lacuna before choosing a move. If the lacuna is unclear, the next
+  move may be observation rather than action.
+
+proof:
+  source:
+    - readme.yawn
+    - 01-core/movement-loop.ion
+  status: seed-backed

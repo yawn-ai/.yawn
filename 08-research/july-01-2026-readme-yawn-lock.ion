@@ -1,0 +1,37 @@
+ion:
+  id: 08-research/july-01-2026-readme-yawn-lock
+  title: july 01 2026 readme yawn lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user provided a local README.yawn draft, a public observer-protocol
+  research document, and a pasted July 1 lock stating that README.yawn should
+  be the root file and that the file tree itself is the first interface.
+
+primary_claims:
+  - the root file should be readme.yawn
+  - the extension should remain .yawn
+  - the root should be easy to understand first and become more complex gradually
+  - the README should include a TL;DR or abstraction-1 section at the top
+  - the ontology should be taught through mirror, map, meaning, move, and memory
+  - the object of observation should be named directly
+  - the central duality is observer and embodied human
+  - the project needs shared mental models between humans and AI agents
+  - the altruistic frame is making disagreement and institutional reasoning more legible
+  - references should preserve the scientific and alignment basis
+
+implementation_decision:
+  Added readme.yawn as the canonical root orientation object, kept readme.md as
+  a compatibility pointer, added observations/lived-agency.yawn as the named
+  observation node, added public start/interface/reference files, and linked
+  the updated ontology through the file tree.
+
+proof:
+  source:
+    - "C:/Users/dave/Downloads/YAWN as an Observer Protocol for Lived Agency.md"
+    - "C:/Users/dave/OneDrive/Desktop/README.yawn"
+    - "C:/Users/dave/.codex/attachments/5bb87b42-cfe9-4b45-a682-aa8b353e6fae/pasted-text.txt"
+  claim: This file captures the July 1 README.yawn lock and implementation response.
+  proof_state: source-summary

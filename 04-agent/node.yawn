@@ -1,0 +1,40 @@
+id: 04-agent/node
+title: "04-agent node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the original agent rules for orientation, handoff, and boundary.
+
+holds:
+  - agent orientation charter
+  - handoff packet
+  - agent boundaries
+
+receives:
+  - human frame
+  - relevant files
+  - proof and boundary requirements
+
+produces:
+  - agent-safe handoff logic
+  - blocked behaviors
+  - continuity constraints
+
+questions:
+  - what may an agent help with
+  - what must an agent not assume
+  - what proof or boundary is required
+
+links:
+  - agents/node.yawn
+  - templates/agent-handoff.yawn
+  - records/llm-access.yawn
+
+proof:
+  source:
+    - 04-agent/agent-orientation-charter.ion
+    - 04-agent/handoff-packet.ion
+    - 04-agent/agent-boundaries.ion
+  status: seed-backed

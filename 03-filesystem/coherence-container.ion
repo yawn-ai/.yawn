@@ -1,0 +1,35 @@
+ion:
+  id: 03-filesystem/coherence-container
+  title: coherence container
+  type: filesystem-rail
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  A coherence container holds related .ion files together so their claims,
+  tensions, proof gaps, and movement paths can be inspected as a set.
+
+container_fields:
+  scope:
+  included_files:
+  current_coherence:
+  known_conflicts:
+  proof_gaps:
+  next_recoherence_move:
+
+coherence_states:
+  raw: entered but not organized
+  oriented: readable but not proof-bound
+  proof-bound: backed by receipts
+  conflicted: contains visible unresolved contradiction
+  stale: needs replay or review
+
+rule:
+  Coherence does not mean everything agrees. Coherence means the system can
+  see what agrees, what conflicts, and what proof is missing.
+
+proof:
+  source:
+    - 03-filesystem/cognitive-filesystem.ion
+  claim: Coherence is a visibility property, not a forced agreement.
+  proof_state: seed-backed

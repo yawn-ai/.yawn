@@ -1,0 +1,38 @@
+ion:
+  id: 02-interface/mental-model-interface
+  title: mental model interface
+  type: interface-surface
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  A mental model interface makes the user's operating assumptions visible
+  enough to test.
+
+model_entry:
+  assumption:
+  origin:
+  usefulness:
+  cost:
+  evidence_for:
+  evidence_against:
+  lacuna:
+  bounded_test:
+  replay:
+
+questions:
+  - what must be true for this model to hold
+  - where did this model come from
+  - what does this model help me do
+  - what does this model prevent me from seeing
+  - what small test could update it
+
+boundary:
+  Do not treat a model as identity. A model is a tool inside the frame.
+
+proof:
+  source:
+    - 02-interface/projection-stack.ion
+    - 05-proof/proof-contract.ion
+  claim: Mental models become movable when assumptions and tests are visible.
+  proof_state: seed-backed

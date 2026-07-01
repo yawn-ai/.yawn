@@ -1,0 +1,44 @@
+id: core/node
+title: "core node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the public core concepts for understanding and using .yawn.
+
+holds:
+  - what a yawn is
+  - movement frame
+  - movement loop
+  - lacuna
+  - agency
+  - observer and body
+  - proof and boundary
+  - folder-node protocol
+
+receives:
+  - readme.yawn
+  - scientific frame
+  - bridge-layer core files
+
+produces:
+  - public ontology terms
+  - safe movement rules
+  - reusable mental models
+
+questions:
+  - what is the smallest true concept here
+  - how does movement stay bounded
+  - what does proof protect
+
+links:
+  - readme.yawn
+  - interface/node.yawn
+  - observations/lived-agency.yawn
+
+proof:
+  source:
+    - readme.yawn
+    - core/folder-node.yawn
+  status: seed-backed

@@ -1,0 +1,42 @@
+id: examples/node
+title: "examples node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold small example yawns so a person can see the protocol in ordinary use.
+
+holds:
+  - stuck example
+  - decision example
+  - relationship tension example
+  - signal example
+  - choice example
+  - repair example
+
+receives:
+  - templates
+  - common lived situations
+  - proof and boundary rules
+
+produces:
+  - concrete starting points
+  - readable demonstrations
+  - copyable patterns
+
+questions:
+  - what does a simple yawn look like
+  - how does proof appear in an example
+  - what boundary keeps the example safe
+
+links:
+  - templates/node.yawn
+  - start/first-yawn.yawn
+
+proof:
+  source:
+    - examples/stuck.yawn
+    - examples/decision.yawn
+    - examples/relationship-tension.yawn
+  status: seed-backed

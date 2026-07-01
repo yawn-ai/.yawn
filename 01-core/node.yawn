@@ -1,0 +1,43 @@
+id: 01-core/node
+title: "01-core node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the original core locks for duality, stability, movement, agency, and
+  reality boundary.
+
+holds:
+  - observer and embodied human duality
+  - movement loop
+  - self authorization
+  - agency currency
+  - reality boundary
+
+receives:
+  - alignment claims
+  - safety constraints
+  - movement doctrine
+
+produces:
+  - core .yawn concepts
+  - stability checks
+  - proof-first boundaries
+
+questions:
+  - what must stay true for movement to be safe
+  - how does observer relate to embodied human
+  - what updates the map
+
+links:
+  - core/node.yawn
+  - observations/lived-agency.yawn
+  - interface/node.yawn
+
+proof:
+  source:
+    - 01-core/duality.ion
+    - 01-core/movement-loop.ion
+    - 01-core/reality-boundary.ion
+  status: seed-backed

@@ -1,0 +1,41 @@
+ion:
+  id: 05-proof/proof-contract
+  title: proof contract
+  type: proof-rail
+  status: seed-canon
+  updated: 2026-06-30
+
+contract:
+  Only proof updates the map.
+
+proof_can_be:
+  - observed outcome
+  - completed action
+  - external artifact
+  - timestamped note
+  - message sent or received
+  - body state after a move
+  - changed constraint
+  - replayed comparison between expectation and result
+
+proof_is_not:
+  - resonance alone
+  - intensity alone
+  - coincidence alone
+  - model output alone
+  - a story that cannot be checked
+
+proof_plan:
+  claim:
+  bounded_move:
+  expected_signal:
+  evidence_to_collect:
+  boundary:
+  replay_time:
+
+proof:
+  source:
+    - 01-core/reality-boundary.ion
+    - 08-research/june-30-2026-alignment.ion
+  claim: The proof contract prevents the interface from confusing signal with truth.
+  proof_state: seed-backed

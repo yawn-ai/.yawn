@@ -1,0 +1,34 @@
+ion:
+  id: 00-start/value-proposition
+  title: value proposition
+  type: product-frame
+  status: seed-canon
+  updated: 2026-06-30
+
+value_proposition:
+  YAWN / ION helps people turn implicit life patterns into visible movement
+  frames, so agency becomes inspectable, spendable, testable, and replayable.
+
+not_the_product:
+  - notes
+  - files
+  - ai chat
+  - a game
+  - an abstract ontology
+
+the_product:
+  Structured movement through the frame.
+
+user_promise:
+  The user does not need to understand the entire ontology. The interface
+  holds the arc: pause, see, steer, move, replay.
+
+product_translation:
+  The user is not seeing the source code of the universe. The user is seeing
+  the source code of their current interface with reality.
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: The value proposition is movement-first rather than note-first or chat-first.
+  proof_state: seed-backed

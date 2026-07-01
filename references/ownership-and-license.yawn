@@ -1,0 +1,25 @@
+id: references/ownership-and-license
+title: "ownership and license"
+kind: reference
+status: v0-seed
+updated: 2026-07-01
+
+repository: https://github.com/yawn-ai/.yawn
+license: MIT
+license_file: LICENSE
+copyright_holder: The Yawn Company
+
+public_use: >
+  The repository is intended to be open source under the MIT License. People may
+  use, copy, modify, merge, publish, distribute, sublicense, and sell copies
+  subject to the license terms.
+
+project_rights: >
+  The Yawn Company is named as the copyright holder in the license file.
+
+proof:
+  source:
+    - LICENSE
+    - readme.yawn
+    - yawn.yawn
+  status: seed-backed

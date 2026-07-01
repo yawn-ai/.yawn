@@ -1,0 +1,16 @@
+id: examples/repair
+title: "a repair may be needed"
+kind: example
+status: example
+
+current: "something feels strained or unresolved"
+possible: "i can separate repair from self-blame or blame of the other person"
+lacuna: "i do not yet know what repair would actually require"
+
+move: "name the known facts, the impact, and one clean repair question"
+boundary: "do not assume the other person's inner state"
+proof: "i can identify one concrete repair action or boundary"
+replay: "what changed after making the repair need specific?"
+
+source:
+  template: templates/relationship.yawn

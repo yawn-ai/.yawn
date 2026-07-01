@@ -1,0 +1,41 @@
+id: 06-product/node
+title: "06-product node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold product rails that translate the ontology into a first usable proof
+  path.
+
+holds:
+  - v1 proof strip
+  - dave playable proof
+  - docs mirror lens
+
+receives:
+  - movement loop
+  - proof contract
+  - interface surfaces
+
+produces:
+  - first proof strip
+  - playable movement scenario
+  - docs as mirror of canon
+
+questions:
+  - what is the smallest product proof
+  - what should docs read from
+  - what loop must work first
+
+links:
+  - readme.yawn
+  - interface/node.yawn
+  - records/next-move-ledger.yawn
+
+proof:
+  source:
+    - 06-product/v1-proof-strip.ion
+    - 06-product/dave-playable-proof.ion
+    - 06-product/docs-mirror-lens.ion
+  status: seed-backed

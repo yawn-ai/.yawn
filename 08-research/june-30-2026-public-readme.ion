@@ -1,0 +1,35 @@
+ion:
+  id: 08-research/june-30-2026-public-readme
+  title: june 30 2026 public readme
+  type: source-summary
+  status: seed-canon
+  updated: 2026-06-30
+
+source_context:
+  The user provided a pasted public-facing README draft for yawn-ai/.yawn. The
+  draft reframes the project around .yawn as a plain-text movement layer and
+  folder protocol.
+
+primary_claims:
+  - .yawn is a tiny open filesystem for structured movement
+  - the file tree is the first UI
+  - a .yawn file captures a moment of orientation
+  - the core path is signal, frame, lacuna, movement, boundary, proof, replay
+  - the loop is observe, orient, choose, move, replay
+  - .yawn should remain plain text, boring, readable, and portable
+  - a Yawn Space is a folder or repository of .yawn files
+  - observer and embodied human must remain in dual stance
+  - proof and boundary prevent false certainty
+  - agents may assist orientation but must not become hidden authority
+  - v0 should define format, templates, examples, useful folders, proof, and boundary
+
+implementation_decision:
+  The repository now has a public .yawn layer with readme.md as the front door
+  and yawn.yawn as the canonical root file. Major README sections link to
+  concrete .yawn files.
+
+proof:
+  source:
+    - user-attached-pasted-text
+  claim: This file summarizes the public README draft used to create the .yawn layer.
+  proof_state: source-summary

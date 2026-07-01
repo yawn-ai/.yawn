@@ -1,0 +1,56 @@
+id: ""
+title: ""
+
+movement:
+  stage: "observe" # observe | orient | choose | move | replay
+  mode: "hold"     # observe | ask | hold | test | move
+
+observer:
+  what_has_attention: ""
+  body_signal: ""
+  emotional_tone: ""
+
+frame:
+  current: ""
+  possible: ""
+  context: ""
+
+lacuna:
+  gap: ""
+  missing_bridge: ""
+  open_questions: []
+
+axis:
+  beliefs: []
+  habits: []
+  values: []
+  access: []
+  constraints: []
+  relationships: []
+
+move:
+  invited: ""
+  smallest_step: ""
+  reversible: true
+  agency_cost: ""
+
+boundary:
+  must_not_force: []
+  blocked_effects:
+    external_action: true
+    silent_mutation: true
+    hidden_authority: true
+
+proof:
+  condition: ""
+  evidence: []
+  status: "unproven"
+
+replay:
+  before: ""
+  after: ""
+  changed: []
+  still_open: []
+
+source:
+  template: templates/full.yawn

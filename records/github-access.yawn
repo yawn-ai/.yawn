@@ -1,0 +1,28 @@
+id: records/github-access
+title: "github access"
+kind: record-log
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Track GitHub repositories, branches, commits, issues, pull requests, actions,
+  review comments, and permissions that shape the next move.
+
+entry_shape:
+  timestamp: ""
+  repository: ""
+  surface: "repo | branch | commit | issue | pull-request | action | review | release"
+  identifier: ""
+  actor: ""
+  action: "inspect | create | update | comment | merge | push | restore | other"
+  evidence: ""
+  next_move_effect: ""
+  boundary: ""
+
+current_entries: []
+
+proof:
+  source:
+    - records/access-log.yawn
+    - core/next-move-logic.yawn
+  status: seed-backed

@@ -1,0 +1,37 @@
+ion:
+  id: 03-filesystem/recoherence
+  title: recoherence
+  type: filesystem-process
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  Recoherence is the process of updating the map after new proof, conflict,
+  cost, or boundary information appears.
+
+trigger_conditions:
+  - proof contradicts an assumption
+  - a move produces unexpected cost
+  - a relationship boundary changes
+  - a file becomes stale
+  - two canonical files conflict
+  - the human body reports instability
+
+process:
+  - locate the affected files
+  - name the conflict or update
+  - preserve the old claim if it matters
+  - add or link the proof receipt
+  - update the relevant map
+  - replay what changed
+
+output:
+  A recoherence pass should leave the filesystem more inspectable than it was
+  before, even if the answer remains uncertain.
+
+proof:
+  source:
+    - 03-filesystem/coherence-container.ion
+    - 05-proof/replay.ion
+  claim: Recoherence is how the file tree stays alive after reality answers.
+  proof_state: seed-backed

@@ -1,0 +1,42 @@
+id: agents/node
+title: "agents node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the public mental model for AI agents working inside a YAWN space.
+
+holds:
+  - agent orientation
+  - first read order
+  - allowed help
+  - blocked hidden authority
+  - access recording expectations
+
+receives:
+  - readme.yawn
+  - observations/lived-agency.yawn
+  - proof and boundary files
+  - material records
+
+produces:
+  - safe agent behavior
+  - handoff discipline
+  - access records
+
+questions:
+  - what should an agent read first
+  - what can an agent safely infer
+  - what must remain human-authorized
+
+links:
+  - agents/orientation.yawn
+  - templates/agent-handoff.yawn
+  - records/llm-access.yawn
+
+proof:
+  source:
+    - agents/orientation.yawn
+    - readme.yawn
+  status: seed-backed

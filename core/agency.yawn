@@ -1,0 +1,32 @@
+id: core/agency
+title: "agency"
+kind: core
+status: v0-seed
+updated: 2026-07-01
+
+definition: >
+  Agency is the capacity to choose a relation or move under real constraints.
+
+agency_is:
+  - bounded
+  - embodied
+  - spendable
+  - protectable
+  - strengthened by proof and replay
+
+agency_questions:
+  - what move is available
+  - what does it cost
+  - is it reversible
+  - who authorizes it
+  - what proof would make it real enough to update the map
+
+boundary: >
+  Agency does not mean forcing action. Sometimes the agency-preserving move is
+  to observe, hold, ask, or rest.
+
+proof:
+  source:
+    - readme.yawn
+    - 01-core/agency-currency.ion
+  status: seed-backed

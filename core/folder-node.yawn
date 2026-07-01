@@ -1,0 +1,33 @@
+id: core/folder-node
+title: "folder node protocol"
+kind: node-protocol
+status: v0-seed
+updated: 2026-07-01
+
+definition: >
+  A folder node is a knowledge node and mental-model node. It explains what a
+  folder holds, why it exists, what it receives, what it produces, and how it
+  links to the rest of the YAWN space.
+
+node_shape:
+  id: ""
+  title: ""
+  kind: "knowledge-node | mental-model-node | bridge-node"
+  purpose: ""
+  holds: []
+  receives: []
+  produces: []
+  questions: []
+  links: []
+  proof: {}
+
+rule: >
+  Every folder should be understandable as a node before a person opens every
+  file inside it.
+
+proof:
+  source:
+    - readme.yawn
+    - core/yawn-space.yawn
+    - 03-filesystem/cognitive-filesystem.ion
+  status: seed-backed

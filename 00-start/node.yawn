@@ -1,0 +1,40 @@
+id: 00-start/node
+title: "00-start node"
+kind: bridge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold the earliest seed orientation files from the .ion bridge layer.
+
+holds:
+  - root lock
+  - ion definition
+  - value proposition
+
+receives:
+  - june 30 alignment source
+  - initial ontology compression
+
+produces:
+  - seed root frame
+  - portable value proposition
+  - format bridge into .yawn
+
+questions:
+  - what was the first stable frame
+  - what did .ion mean before collapsing toward .yawn
+  - what value proposition started the system
+
+links:
+  - readme.yawn
+  - yawn.yawn
+  - start/node.yawn
+  - 08-research/node.yawn
+
+proof:
+  source:
+    - 00-start/root.ion
+    - 00-start/what-is-an-ion.ion
+    - 00-start/value-proposition.ion
+  status: seed-backed

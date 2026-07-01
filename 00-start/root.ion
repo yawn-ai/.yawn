@@ -1,0 +1,43 @@
+ion:
+  id: 00-start/root
+  title: master control root
+  system: master-control.yawn
+  interface_name: john
+  type: observer-interface-root
+  status: seed-canon
+  updated: 2026-06-30
+
+purpose:
+  Master Control / John is an observer interface for structured movement
+  through a lived frame. It lets a human see patterns without leaving ordinary
+  life, choose bounded moves, gather proof, and replay what changed.
+
+syntax_lock:
+  folders: lowercase
+  files: lowercase
+  working_format: .ion
+  markdown_exception: readme.md
+
+north_star_loop:
+  - see the frame
+  - name the lacuna
+  - choose a bounded move
+  - gather proof
+  - replay what changed
+
+operating_condition:
+  observer: can witness patterns, stories, models, emotions, roles, and loops
+  embodied_human: needs stability, food, sleep, money, love, safety, continuity, and regulation
+
+central_move:
+  Stay human enough to be stable.
+  Step back enough to see the pattern.
+  Self-authorize one bounded move.
+  Use proof to update the map.
+  Replay what changed.
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: This root file implements the June 30, 2026 alignment lock as a filesystem substrate.
+  proof_state: seed-backed

@@ -1,0 +1,35 @@
+ion:
+  id: 07-templates/template.relationship
+  title: relationship ion template
+  type: template
+  status: seed-canon
+  updated: 2026-06-30
+
+template:
+  ion:
+    id:
+    title:
+    type: relationship-frame
+    status:
+    updated:
+  relationship:
+    person_or_group:
+    role_in_frame:
+    known_facts:
+    active_story:
+    interpretation:
+    need:
+    consent_or_privacy_boundary:
+    possible_move:
+    proof_needed:
+    replay:
+
+use:
+  Use when another person or group is a meaningful part of the frame.
+
+proof:
+  source:
+    - 02-interface/relationship-interface.ion
+    - 01-core/reality-boundary.ion
+  claim: This template keeps relationship frames tied to fact, interpretation, consent, and boundary.
+  proof_state: seed-backed

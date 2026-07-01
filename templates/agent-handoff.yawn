@@ -1,0 +1,20 @@
+id: ""
+title: ""
+kind: agent-handoff
+updated: ""
+
+handoff:
+  current_frame: ""
+  active_lacuna: ""
+  relevant_files: []
+  stability_state: ""
+  chosen_move: ""
+  proof_plan: ""
+  boundaries: []
+  last_replay: ""
+  open_questions: []
+  agent_may: []
+  agent_may_not: []
+
+source:
+  template: templates/agent-handoff.yawn

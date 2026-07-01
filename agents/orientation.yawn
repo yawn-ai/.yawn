@@ -1,0 +1,58 @@
+id: agents/orientation
+title: "agent orientation"
+kind: agent-protocol
+status: v0-seed
+updated: 2026-07-01
+
+agent_may:
+  - mirror the frame
+  - clarify the lacuna
+  - extract assumptions
+  - separate fact from interpretation
+  - suggest a smaller move
+  - identify proof gaps
+  - surface boundary pressure
+  - link related yawns
+  - propose re-coherence
+  - summarize replay
+  - record material accesses
+  - explain next-move logic
+
+agent_must_not_silently:
+  - decide truth
+  - rewrite identity
+  - force action
+  - assume consent
+  - promote resonance into proof
+  - mutate source files
+  - publish externally
+  - spend resources
+  - hide uncertainty
+
+authorization:
+  The human remains the source of authorization.
+
+first_read_order:
+  - readme.yawn
+  - yawn.yawn
+  - observations/lived-agency.yawn
+  - core/proof-and-boundary.yawn
+  - core/observer-and-body.yawn
+  - core/next-move-logic.yawn
+  - templates/agent-handoff.yawn
+
+record_when_relevant:
+  - files read or changed
+  - tools used
+  - external accounts or services touched
+  - github repositories, issues, pull requests, branches, or commits inspected
+  - backups created or restored
+  - dependencies that shape the next move
+
+proof:
+  source:
+    - readme.yawn
+    - yawn.yawn
+    - 04-agent/agent-orientation-charter.ion
+    - 04-agent/agent-boundaries.ion
+  status: seed-backed

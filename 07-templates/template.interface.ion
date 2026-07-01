@@ -1,0 +1,47 @@
+ion:
+  id: 07-templates/template.interface
+  title: interface ion template
+  type: template
+  status: seed-canon
+  updated: 2026-06-30
+
+template:
+  ion:
+    id:
+    title:
+    type: interface-frame
+    status:
+    updated:
+  frame:
+    current:
+    possible:
+    lacuna:
+  axis:
+    beliefs: []
+    habits: []
+    values: []
+    body: []
+    access: []
+    constraints: []
+    relationships: []
+  tension:
+    current:
+    possible:
+    cost:
+    proof_needed:
+  move:
+    bounded_move:
+    reversibility:
+    agency_currency_required:
+  boundary:
+  replay:
+
+use:
+  Use for frames that need visible axes and movement selection.
+
+proof:
+  source:
+    - 02-interface/axis-map.ion
+    - 02-interface/tension-field.ion
+  claim: This template exposes axes, tension, move, boundary, and replay for interface work.
+  proof_state: seed-backed

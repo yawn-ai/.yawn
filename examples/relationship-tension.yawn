@@ -1,0 +1,16 @@
+id: examples/relationship-tension
+title: "This relationship feels charged"
+kind: example
+status: example
+
+current: "I am mixing facts, feelings, and guesses about what the other person means."
+possible: "I can separate known facts from interpretation."
+lacuna: "I do not know what is true versus what I am projecting."
+
+move: "Write two columns: known facts and interpretations."
+boundary: "Do not send a message while the columns are still mixed."
+proof: "I can identify one clean question or one clean boundary."
+replay: "What changed after separating fact from interpretation?"
+
+source:
+  template: templates/basic.yawn

@@ -1,0 +1,24 @@
+id: ""
+title: ""
+kind: proof-receipt
+date: ""
+
+linked_yawn: ""
+claim_tested: ""
+bounded_move: ""
+expected_signal: ""
+evidence_collected: []
+result: ""
+cost: ""
+boundary_observed: ""
+map_update: ""
+next_lacuna: ""
+
+replay:
+  before: ""
+  after: ""
+  changed: []
+  still_open: []
+
+source:
+  template: templates/proof-receipt.yawn

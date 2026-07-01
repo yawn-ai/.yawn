@@ -1,0 +1,33 @@
+id: core/observer-and-body
+title: "observer and body"
+kind: safety-protocol
+status: v0-seed
+updated: 2026-06-30
+
+stance:
+  observer: "can step back and see patterns"
+  embodied_human: "needs stability, safety, sleep, food, money, relationship, regulation, and ordinary reality"
+
+lock:
+  - see the pattern without becoming the pattern
+  - imagine the possible without forcing it as truth
+  - choose one bounded move without abandoning stability
+  - let proof update the map
+
+must_not: >
+  A .yawn should never ask someone to abandon being human. It should help them
+  observe clearly while staying grounded enough to move safely.
+
+stability_check:
+  - is the human rested enough
+  - is the human fed enough
+  - is there immediate risk
+  - is the move reversible
+  - does the move respect money, time, and relationship constraints
+
+proof:
+  source:
+    - yawn.yawn
+    - 01-core/duality.ion
+    - 01-core/observer-body-stability.ion
+  status: seed-backed

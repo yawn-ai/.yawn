@@ -1,0 +1,54 @@
+ion:
+  id: 01-core/duality
+  title: duality
+  type: core-lock
+  status: seed-canon
+  updated: 2026-06-30
+
+lock:
+  The missing layer is duality.
+
+duality:
+  observer:
+    can_witness:
+      - beliefs
+      - habits
+      - values
+      - emotions
+      - mental models
+      - inherited identity
+      - social patterns
+      - roles
+      - loops
+  embodied_human:
+    needs:
+      - stability
+      - food
+      - sleep
+      - money
+      - love
+      - safety
+      - continuity
+      - nervous-system regulation
+      - ordinary reality
+
+movement:
+  The move is not to escape being human. The move is to remain human enough to
+  be stable while stepping back enough to see the pattern.
+
+operating_sentences:
+  - notice the pattern without becoming the pattern
+  - inhabit the body without being trapped by inherited identity
+  - imagine a possible frame without forcing it as truth
+  - choose a bounded move without abandoning stability
+  - use proof without crushing mystery
+
+boundary:
+  Any interface that intensifies observation while weakening stability is out
+  of bounds until the embodied human is supported again.
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: Duality is the center of the observer-interface system.
+  proof_state: seed-backed

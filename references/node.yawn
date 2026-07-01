@@ -1,0 +1,47 @@
+id: references/node
+title: "references node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold public reference frames that make the system understandable and
+  defensible without overclaiming.
+
+holds:
+  - source index
+  - ownership and license
+  - scientific frame
+  - july 01 lock
+
+receives:
+  - local documents
+  - pasted locks
+  - research summaries
+
+produces:
+  - publishable framing
+  - naming locks
+  - source pointers for public readers
+
+questions:
+  - who holds copyright
+  - what license applies
+  - what is the defensible claim
+  - what source supports the lock
+  - what should remain metaphor or boundary
+
+links:
+  - references/source-index.yawn
+  - references/ownership-and-license.yawn
+  - references/scientific-frame.yawn
+  - references/july-01-lock.yawn
+  - 08-research/node.yawn
+
+proof:
+  source:
+    - references/source-index.yawn
+    - references/ownership-and-license.yawn
+    - references/scientific-frame.yawn
+    - references/july-01-lock.yawn
+  status: seed-backed

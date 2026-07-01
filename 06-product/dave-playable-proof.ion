@@ -1,0 +1,34 @@
+ion:
+  id: 06-product/dave-playable-proof
+  title: dave playable proof
+  type: product-scenario
+  status: seed-canon
+  updated: 2026-06-30
+
+goal:
+  Make one path where Dave can experience the system as playable proof rather
+  than abstract doctrine.
+
+playable_loop:
+  start:
+    prompt: what frame are you in right now
+  seed_face:
+    prompt: what does this frame look like when personified or surfaced
+  axis_map:
+    prompt: which axes are active
+  enter_level:
+    prompt: what bounded move is available
+  proof:
+    prompt: what will count as evidence
+  replay:
+    prompt: what changed after reality answered
+
+success_condition:
+  Dave can point to one file, one move, one receipt, and one replay that shows
+  the system worked.
+
+proof:
+  source:
+    - 06-product/v1-proof-strip.ion
+  claim: The first product proof should be a playable movement loop.
+  proof_state: seed-backed

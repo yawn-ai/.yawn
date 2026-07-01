@@ -1,0 +1,49 @@
+id: records/node
+title: "records node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold material time: access logs, LLM-used context, GitHub surfaces, backups,
+  next-move ledgers, and proof-related records.
+
+holds:
+  - material time
+  - access log
+  - llm access
+  - github access
+  - backup log
+  - next-move ledger
+
+receives:
+  - agent actions
+  - tool use
+  - file access
+  - external surfaces
+  - proof and replay events
+
+produces:
+  - auditable memory
+  - next-move rationale
+  - recovery and provenance records
+
+questions:
+  - what happened materially
+  - what did the agent use
+  - what access shaped the next move
+  - what backup or proof exists
+
+links:
+  - records/material-time.yawn
+  - records/access-log.yawn
+  - records/llm-access.yawn
+  - records/github-access.yawn
+  - records/backup-log.yawn
+  - records/next-move-ledger.yawn
+
+proof:
+  source:
+    - records/material-time.yawn
+    - readme.yawn
+  status: seed-backed

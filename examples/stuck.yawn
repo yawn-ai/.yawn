@@ -1,0 +1,16 @@
+id: examples/stuck
+title: "I feel stuck"
+kind: example
+status: example
+
+current: "I keep circling the same problem."
+possible: "I can see one small next move."
+lacuna: "I do not know what is actually blocking movement."
+
+move: "Write down the pattern without trying to solve it."
+boundary: "Do not force a conclusion."
+proof: "I can name the blocker more clearly after writing."
+replay: "What changed after I observed it?"
+
+source:
+  template: templates/basic.yawn

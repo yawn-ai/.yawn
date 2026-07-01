@@ -1,0 +1,43 @@
+id: start/how-to-use-yawn
+title: "how to use yawn"
+kind: start
+status: v0-seed
+updated: 2026-07-01
+
+short_version: >
+  Use YAWN as a mirror. Fill out .yawn files like madlibs so your frame,
+  missing bridge, next move, boundary, proof, and replay become visible.
+
+madlibs_frame:
+  observing: "i am observing ___"
+  current: "the current frame is ___"
+  possible: "the possible frame is ___"
+  lacuna: "what is missing is ___"
+  move: "the smallest safe move is ___"
+  boundary: "what must not be forced is ___"
+  proof: "proof would look like ___"
+  replay: "afterward, what changed was ___"
+
+how:
+  - copy templates/basic.yawn
+  - name one thing that has attention
+  - fill in only the blanks that help
+  - ask any AI to mirror, clarify, or simplify the frame
+  - keep proof and boundary visible
+  - replay what changed
+
+ai_use: >
+  Any AI can help you use YAWN. Ask it to mirror the frame, ask better
+  questions, separate fact from interpretation, make the move smaller, or find
+  proof gaps. Do not let the AI become hidden authority.
+
+mission: >
+  Interface better with yourself by making the frame visible enough to relate
+  to it consciously.
+
+proof:
+  source:
+    - readme.yawn
+    - templates/basic.yawn
+    - agents/orientation.yawn
+  status: seed-backed

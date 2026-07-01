@@ -1,0 +1,34 @@
+ion:
+  id: 07-templates/template.basic
+  title: basic ion template
+  type: template
+  status: seed-canon
+  updated: 2026-06-30
+
+template:
+  ion:
+    id:
+    title:
+    type:
+    status: raw | oriented | seed-canon | proof-bound | conflicted | stale
+    updated:
+  current:
+  possible:
+  lacuna:
+  move:
+  proof:
+    source: []
+    claim:
+    proof_state:
+  boundary:
+  replay:
+
+use:
+  Start here when the frame is still simple.
+
+proof:
+  source:
+    - 00-start/what-is-an-ion.ion
+    - 05-proof/proof-contract.ion
+  claim: This template follows the minimal .ion shape defined by the seed canon.
+  proof_state: seed-backed

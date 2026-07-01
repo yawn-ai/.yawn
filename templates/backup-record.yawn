@@ -1,0 +1,17 @@
+id: ""
+title: ""
+kind: backup-record
+timestamp: ""
+
+source: ""
+destination: ""
+method: ""
+actor: ""
+reason: ""
+restore_tested: false
+evidence: ""
+boundary: ""
+next_move_effect: ""
+
+source_template:
+  template: templates/backup-record.yawn

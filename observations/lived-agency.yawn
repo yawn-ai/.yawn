@@ -1,0 +1,44 @@
+id: observations/lived-agency
+title: "lived agency"
+kind: observation-node
+status: v0-seed
+updated: 2026-07-01
+
+observing: >
+  The way a human or agent moves from implicit pattern to explicit agency
+  through a visible frame, bounded move, proof receipt, and replay.
+
+not_observing:
+  - the source code of the universe
+  - hidden motives as certainty
+  - cosmic commands
+  - identity as a fixed verdict
+
+leading_question: >
+  How does a human move from implicit pattern to explicit agency?
+
+interfaces_in_scope:
+  - attention
+  - memory
+  - body signal
+  - emotion
+  - belief
+  - habit
+  - value
+  - relationship
+  - constraint
+  - tool
+  - agent
+  - proof
+  - replay
+
+observer_duality:
+  observer: "steps back enough to see the pattern"
+  embodied_human: "stays stable enough to live and move"
+
+proof:
+  source:
+    - readme.yawn
+    - references/scientific-frame.yawn
+    - 01-core/duality.ion
+  status: seed-backed

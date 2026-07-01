@@ -1,0 +1,43 @@
+ion:
+  id: 01-core/agency-currency
+  title: agency currency
+  type: agency-model
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  Agency currency is the usable capacity a human can spend on bounded moves.
+  It is not infinite and should not be treated as a motivational slogan.
+
+inputs:
+  - attention
+  - time
+  - energy
+  - money
+  - social trust
+  - emotional bandwidth
+  - body capacity
+  - technical access
+
+spend_rule:
+  Spend the smallest meaningful amount of agency currency that can create
+  proof.
+
+ledger:
+  before_move:
+    available_capacity:
+    required_capacity:
+    risk:
+    reversibility:
+  after_move:
+    cost_paid:
+    proof_gained:
+    energy_change:
+    map_update:
+
+proof:
+  source:
+    - 00-start/value-proposition.ion
+    - 05-proof/proof-contract.ion
+  claim: Agency becomes inspectable and spendable when moves are bounded and receipted.
+  proof_state: seed-backed

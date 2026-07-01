@@ -1,0 +1,44 @@
+id: core/proof-and-boundary
+title: "proof and boundary"
+kind: safety-protocol
+status: v0-seed
+updated: 2026-06-30
+
+contract: "only proof updates the map"
+
+safety_rail:
+  - signal is not instruction
+  - resonance is not proof
+  - coincidence is not command
+  - memory is not objective record
+  - ai output is not authority
+  - intensity is not truth
+
+labels:
+  - known
+  - inferred
+  - imagined
+  - desired
+  - unproven
+  - proved
+
+allowed_material: >
+  A .yawn may hold intuition, dreams, feelings, hypotheses, fears, hopes, and
+  interpretations, but it should label them honestly.
+
+proof_can_be:
+  - observed outcome
+  - completed action
+  - external artifact
+  - timestamped note
+  - message sent or received
+  - body state after a move
+  - changed constraint
+  - replayed comparison between expectation and result
+
+proof:
+  source:
+    - yawn.yawn
+    - 01-core/reality-boundary.ion
+    - 05-proof/proof-contract.ion
+  status: seed-backed

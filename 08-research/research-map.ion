@@ -1,0 +1,163 @@
+ion:
+  id: 08-research/research-map
+  title: research map
+  type: research-map
+  status: seed-canon
+  updated: 2026-07-01
+
+research_threads:
+  readme_yawn_root:
+    target_files:
+      - readme.yawn
+      - readme.md
+      - yawn.yawn
+      - references/july-01-lock.yawn
+      - references/ownership-and-license.yawn
+      - start/how-to-use-yawn.yawn
+  folder_nodes:
+    target_files:
+      - core/folder-node.yawn
+      - 00-start/node.yawn
+      - 01-core/node.yawn
+      - 02-interface/node.yawn
+      - 03-filesystem/node.yawn
+      - 04-agent/node.yawn
+      - 05-proof/node.yawn
+      - 06-product/node.yawn
+      - 07-templates/node.yawn
+      - 08-research/node.yawn
+      - agents/node.yawn
+      - core/node.yawn
+      - examples/node.yawn
+      - interface/node.yawn
+      - observations/node.yawn
+      - records/node.yawn
+      - references/node.yawn
+      - start/node.yawn
+      - templates/node.yawn
+  observation_object:
+    target_files:
+      - observations/lived-agency.yawn
+      - references/scientific-frame.yawn
+  public_yawn_protocol:
+    target_files:
+      - readme.yawn
+      - yawn.yawn
+      - start/what-is-a-yawn.yawn
+      - start/how-to-use-yawn.yawn
+      - start/first-yawn.yawn
+      - start/value-proposition.yawn
+      - core/what-is-a-yawn.yawn
+      - core/yawn-space.yawn
+      - core/design-principles.yawn
+  five_command_interface:
+    target_files:
+      - interface/mirror.yawn
+      - interface/map.yawn
+      - interface/meaning.yawn
+      - interface/move.yawn
+      - interface/memory.yawn
+      - interface/projection-stack.yawn
+  material_records:
+    target_files:
+      - records/material-time.yawn
+      - records/access-log.yawn
+      - records/llm-access.yawn
+      - records/github-access.yawn
+      - records/backup-log.yawn
+      - records/next-move-ledger.yawn
+      - templates/access-record.yawn
+      - templates/backup-record.yawn
+      - templates/next-move-record.yawn
+  next_move_logic:
+    target_files:
+      - core/next-move-logic.yawn
+      - records/next-move-ledger.yawn
+  duality:
+    target_files:
+      - 01-core/duality.ion
+      - 01-core/observer-body-stability.ion
+      - core/observer-and-body.yawn
+  movement:
+    target_files:
+      - 01-core/movement-loop.ion
+      - 05-proof/replay.ion
+      - core/movement-frame.yawn
+      - core/movement-loop.yawn
+      - core/lacuna.yawn
+      - core/agency.yawn
+  proof:
+    target_files:
+      - 05-proof/proof-contract.ion
+      - 05-proof/proof-receipt.ion
+      - core/proof-and-boundary.yawn
+      - templates/proof.yawn
+  interface:
+    target_files:
+      - 02-interface/interface.ion
+      - 02-interface/projection-stack.ion
+      - 02-interface/axis-map.ion
+      - interface/mirror.yawn
+      - interface/map.yawn
+      - interface/meaning.yawn
+      - interface/move.yawn
+      - interface/memory.yawn
+      - interface/projection-stack.yawn
+  filesystem:
+    target_files:
+      - 03-filesystem/cognitive-filesystem.ion
+      - 03-filesystem/coherence-container.ion
+      - 03-filesystem/recoherence.ion
+  product:
+    target_files:
+      - 06-product/v1-proof-strip.ion
+      - 06-product/dave-playable-proof.ion
+      - 06-product/docs-mirror-lens.ion
+  agent:
+    target_files:
+      - 04-agent/agent-orientation-charter.ion
+      - 04-agent/handoff-packet.ion
+      - 04-agent/agent-boundaries.ion
+      - agents/orientation.yawn
+      - templates/agent-handoff.yawn
+  scientific_references:
+    target_files:
+      - references/source-index.yawn
+      - references/ownership-and-license.yawn
+      - references/scientific-frame.yawn
+      - references/july-01-lock.yawn
+      - 08-research/july-01-2026-readme-yawn-lock.ion
+      - 08-research/july-01-2026-github-license-use-lock.ion
+  ownership_and_license:
+    target_files:
+      - LICENSE
+      - references/ownership-and-license.yawn
+      - readme.md
+      - readme.yawn
+      - yawn.yawn
+
+open_research_lacunae:
+  - what exact app routes currently exist, if any
+  - what parser or schema should eventually validate .ion files
+  - what proof receipts should be created first from real user movement
+  - how John should appear in the interface without becoming an authority figure
+  - how to distinguish personal research from canonical product language
+  - where any existing test-on-base or mathematical scoring code lives, if it exists outside this seed filesystem
+  - what GitHub surfaces and access records should be captured first
+  - when and how the remaining .ion bridge files should collapse into .yawn
+
+next_research_move:
+  Inspect any existing app, docs repository, GitHub project, or test-on-base
+  code when it appears, then wire those surfaces to read from this filesystem
+  and write material access records.
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+    - 08-research/june-30-2026-public-readme.ion
+    - 08-research/july-01-2026-material-record-reframe.ion
+    - 08-research/july-01-2026-readme-yawn-lock.ion
+    - 08-research/july-01-2026-folder-node-lock.ion
+    - 08-research/july-01-2026-github-license-use-lock.ion
+  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, and ownership/license files it supports.
+  proof_state: seed-backed

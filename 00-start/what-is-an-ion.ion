@@ -1,0 +1,51 @@
+ion:
+  id: 00-start/what-is-an-ion
+  title: what is an ion
+  type: format-definition
+  status: seed-canon
+  updated: 2026-06-30
+
+definition:
+  ION means Interface Orientation Node.
+
+plain_language:
+  A .ion file is a readable, editable, agent-addressable text container for a
+  piece of a lived frame.
+
+priority_order:
+  - human-readable first
+  - machine-addressable second
+  - proof-bound when promoted
+
+minimal_shape:
+  title:
+  current:
+  possible:
+  lacuna:
+  move:
+  proof:
+  boundary:
+  replay:
+
+expanded_shape:
+  movement:
+    stage: observe | orient | steer | move | replay
+    mode: observe | ask | hold | test | move
+  axis:
+    beliefs: []
+    habits: []
+    values: []
+    body: []
+    access: []
+    constraints: []
+    relationships: []
+
+promotion_rule:
+  Raw notes can enter an .ion loosely. A file becomes canonical only when its
+  claims, boundaries, and proof receipts are visible enough to inspect.
+
+proof:
+  source:
+    - 08-research/june-30-2026-alignment.ion
+  claim: The .ion format is the project unit for readable, movable, proof-bound frames.
+  proof_state: seed-backed

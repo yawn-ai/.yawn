@@ -1,0 +1,43 @@
+id: references/scientific-frame
+title: "scientific frame"
+kind: reference
+status: v0-seed
+updated: 2026-07-01
+
+publishable_claim: >
+  YAWN is an observer protocol for lived agency, implemented as an orientation
+  surface.
+
+strongest_frame: >
+  Humans do not access the world raw. They act through predictive, embodied,
+  tool-extended, socially coupled interfaces. Those interfaces can be designed
+  to improve orientation, bounded action, evidence tracking, and handoff between
+  humans and machine agents.
+
+research_anchors:
+  - active inference
+  - predictive processing
+  - embodied cognition
+  - extended cognition
+  - affordances
+  - human-ai mental models
+  - ai governance
+  - memory as reconstructive
+
+boundaries:
+  - do not claim physics proves manifestation
+  - do not claim consciousness directly rewrites reality
+  - do not treat body signal as oracle
+  - do not treat ai output as authority
+  - do not classify people as hidden-access objects
+  - distinguish observation, interpretation, and later reconstruction
+
+bottom_line: >
+  Human life is navigated through interfaces that shape perception, meaning,
+  and action. YAWN makes those interfaces inspectable, bounded, and replayable.
+
+proof:
+  source:
+    - "C:/Users/dave/Downloads/YAWN as an Observer Protocol for Lived Agency.md"
+    - 08-research/july-01-2026-readme-yawn-lock.ion
+  status: source-backed
