@@ -40,6 +40,16 @@ current_entries:
     output_or_evidence: "GitHub README now starts with the fundamental problem and Pages feedback form renders with five fields"
     risk_or_boundary: "did not submit feedback email; only verified rendering"
     linked_yawn: "feedback/form.yawn"
+  - id: "2026-07-01-agent-contributor-workflow"
+    timestamp: "2026-07-01"
+    actor: "agent"
+    access_type: "github"
+    surface: "https://github.com/yawn-ai/.yawn"
+    action: "inspect | update"
+    reason: "create open-source AI-agent contributor path and feedback triage automation"
+    output_or_evidence: "issue templates and labels are present; automation yawn-repo-feedback-triage exists"
+    risk_or_boundary: "GitHub issue creation requires sign-in; dedicated bot/GitHub App recommended later instead of hidden personal-account automation"
+    linked_yawn: "automation/github-feedback-triage.yawn"
 
 proof:
   source:

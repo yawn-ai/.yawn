@@ -42,6 +42,14 @@ current_entries:
     inference_made: "readme.md needed the first-hit awakening explanation, while readme.yawn stays canonical"
     next_move_effect: "expanded readme.md, added feedback intake/database contracts, enabled Pages, verified feedback form"
     boundary: "browser review read public pages only; no feedback email was sent"
+  - timestamp: "2026-07-01"
+    model_or_agent: "codex"
+    detected_surface: "GitHub open-source contribution flow and Codex app automation"
+    used_surface: "git, gh cli, GitHub issue-template files, Codex automation_update"
+    evidence_seen: "user requested AI-agent contributor workflow, easy feedback, and automation; GitHub issue chooser requires sign-in"
+    inference_made: "repo needs both public GitHub issue forms and a local automation that triages signals without taking hidden authority"
+    next_move_effect: "added contributing.md, issue forms, PR template, contributor-agent docs, automation files, labels, and hourly triage automation"
+    boundary: "automation is inspection/classification only; no autonomous commits, pushes, merges, comments, email sends, or database writes"
 
 proof:
   source:

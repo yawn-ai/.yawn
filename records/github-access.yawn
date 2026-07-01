@@ -38,6 +38,15 @@ current_entries:
     evidence: "expanded GitHub first-view README, added feedback intake files, enabled Pages, and verified https://yawn-ai.github.io/.yawn/feedback/ renders"
     next_move_effect: "new users now see the mirror/madlibs explanation first and can open a feedback email form"
     boundary: "verified form visually without submitting email"
+  - timestamp: "2026-07-01"
+    repository: "https://github.com/yawn-ai/.yawn"
+    surface: "repo | labels | issue-template | commit"
+    identifier: "main@50987007fa6ba5995271cdc4f6f083f9736fcf43"
+    actor: "codex"
+    action: "inspect | update | push"
+    evidence: "added GitHub issue templates, PR template, contributor guide, contributor-agent files, automation records, and labels feedback and agent-contributor"
+    next_move_effect: "GitHub users can now submit feedback or AI-agent architecture proposals in structured forms"
+    boundary: "issue chooser requires GitHub sign-in; automation must not alter external state without human authorization"
 
 proof:
   source:
