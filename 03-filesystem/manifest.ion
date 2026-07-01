@@ -16,7 +16,7 @@ files:
   - LICENSE
   - contributing.md
   - readme.yawn
-  - readme.md
+  - README.md
   - yawn.yawn
   - agents/node.yawn
   - agents/contributor-agent.yawn

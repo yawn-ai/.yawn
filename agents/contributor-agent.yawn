@@ -34,7 +34,7 @@ blocked_without_human_authorization:
   - treat AI output as truth
 
 first_read_order:
-  - readme.md
+  - README.md
   - readme.yawn
   - yawn.yawn
   - agents/orientation.yawn

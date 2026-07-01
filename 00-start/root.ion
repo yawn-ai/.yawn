@@ -16,7 +16,7 @@ syntax_lock:
   folders: lowercase
   files: lowercase
   working_format: .ion
-  markdown_exception: readme.md
+  markdown_exception: README.md
 
 north_star_loop:
   - see the frame

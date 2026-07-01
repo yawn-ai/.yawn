@@ -13,7 +13,7 @@ rules:
   - use lowercase file names
   - use hyphenated words for readability
   - keep canonical working files in .ion
-  - keep only readme.md as Markdown unless a later proof-backed exception is made
+  - keep only README.md as Markdown unless a later proof-backed exception is made
   - allow LICENSE as the uppercase GitHub license-detection exception
   - allow .github/ISSUE_TEMPLATE as the uppercase GitHub issue-template exception
   - do not create ontology folders before a movement need exists

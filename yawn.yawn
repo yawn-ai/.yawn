@@ -8,20 +8,23 @@ license: MIT
 copyright_holder: The Yawn Company
 
 canonical_root: readme.yawn
-compatibility_readme: readme.md
+compatibility_readme: README.md
 
 summary: >
-  .yawn is a tiny open filesystem for shared mental models, lived agency,
+  .yawn is a plain-text inference filesystem for shared agency, lived frames,
   material records, access history, and next-move rationale.
 
 canonical_sentence: >
-  .yawn is the simplest possible interface for structured movement.
+  .yawn is a plain-text format for recording what an agent is inferring before
+  it acts.
 
 root_loop:
-  - see the frame
-  - name the lacuna
-  - choose a bounded move
-  - gather proof
+  - notice
+  - infer
+  - name the gap
+  - protect the boundary
+  - choose one bounded move
+  - prove what changed
   - replay what changed
 
 file_priority:
@@ -144,13 +147,27 @@ reference_links:
   july_01_lock: references/july-01-lock.yawn
 
 usage_frame: >
-  YAWN is a mirror. Use it by filling out .yawn files like madlibs for your
-  life, projects, records, and next moves. Any AI can help you mirror and
-  organize, but the human remains the source of authorization.
+  YAWN is a mirror for inference before action. Use it by naming a signal,
+  recording what is being inferred, naming the missing bridge, choosing one
+  bounded move, protecting agency, gathering proof, and replaying what changed.
+  Any AI can help mirror and organize, but the human remains the source of
+  authorization.
 
 folder_node_rule: >
   Every folder is a knowledge node and mental-model node. Each folder should
   contain node.yawn as its local orientation card.
+
+learn_path:
+  root: readme.yawn
+  start: start/first-yawn.yawn
+  core: core/what-is-a-yawn.yawn
+  interface: interface/node.yawn
+  templates: templates/basic.yawn
+  examples: examples/stuck.yawn
+  observations: observations/lived-agency.yawn
+  records: records/node.yawn
+  agents: agents/yawn.bot.policy.yawn
+  feedback: feedback/form.yawn
 
 folder_node_links:
   github: .github/node.yawn
@@ -189,7 +206,7 @@ boundary:
 first_move:
   instruction: >
     Copy templates/basic.yawn into a new file. Name one thing that has
-    attention. Do not force the answer.
+    attention, record the inference, and do not force the answer.
   proof: "You can point to one clearer next question."
   replay: "What changed after naming it?"
 
@@ -200,7 +217,7 @@ material_record_rule: >
 
 source:
   - readme.yawn
-  - readme.md
+  - README.md
   - references/scientific-frame.yawn
   - references/july-01-lock.yawn
   - 08-research/june-30-2026-public-readme.ion

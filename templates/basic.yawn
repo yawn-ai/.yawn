@@ -1,11 +1,14 @@
 title: ""
 
+signal: ""
+inference: ""
+
 current: ""
 possible: ""
 lacuna: ""
 
-move: ""
 boundary: ""
+move: ""
 proof: ""
 replay: ""
 

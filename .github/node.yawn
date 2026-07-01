@@ -40,7 +40,7 @@ links:
 
 proof:
   source:
-    - readme.md
+    - README.md
     - contributing.md
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion

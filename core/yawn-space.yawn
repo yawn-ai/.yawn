@@ -10,7 +10,7 @@ definition: >
 
 minimal_shape:
   - readme.yawn
-  - readme.md
+  - README.md
   - yawn.yawn
   - start/
   - core/

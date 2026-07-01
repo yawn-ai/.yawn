@@ -6,6 +6,9 @@ updated: 2026-07-01
 
 title_field: "my first yawn"
 
+signal: "something has my attention"
+inference: "i may be missing a small next step"
+
 current: "something has my attention"
 possible: "i can see it more clearly"
 lacuna: "i do not yet know what is missing"

@@ -10,92 +10,326 @@ copyright: The Yawn Company
 
 # readme.yawn
 
-A tiny open file system for seeing the frame you are inside.
+A plain-text format for recording what an agent is inferring before it acts.
 
-## tl;dr
+Canonical source: readme.yawn
+GitHub mirror: README.md
 
-`.yawn` is a plain-text file format for shared mental models.
+## first screen
 
-It helps a human or agent pause, see the current frame, name what is missing,
-choose one bounded move, protect agency, gather proof, and replay what changed.
+You are noticing something.
 
-The whole system is this:
+A feeling.
+A pattern.
+A decision.
+A contradiction.
+A project that keeps pulling attention.
+A move you are not ready to force.
 
-```text
-see the frame
-name the lacuna
-choose a bounded move
-gather proof
-replay what changed
-```
-
-That is YAWN.
-
-## abstraction-1
-
-Your brain already has an interface. It is attention, memory, emotion, belief,
-habit, body signal, relationship, constraint, and action.
-
-The problem is that a human mind is bad at holding many moving parts at once.
-Five things is already a lot. Add an AI agent, a project, a relationship, a
-deadline, a memory, and a body signal, and the frame gets noisy.
-
-`.yawn` gives that inner interface somewhere simple to land.
-
-## what are we doing?
-
-We are building the simplest possible open-source interface for agency.
-
-Not another dashboard. Not another productivity system. Not another chatbot.
-Not another game.
-
-A `.yawn` is a small readable object that lets a human and an AI agent share the
-same frame without pretending the agent is the authority.
-
-The root file is called `readme.yawn` because this README is not only explaining
-the project. It is the first YAWN object.
-
-The public GitHub home is:
+A .yawn gives that signal somewhere to land.
 
 ```text
-https://github.com/yawn-ai/.yawn
+notice
+-> infer
+-> name the gap
+-> protect the boundary
+-> choose one bounded move
+-> prove what changed
+-> replay
 ```
 
-The repo is MIT licensed. The copyright holder is The Yawn Company.
+.yawn is for humans and AI agents who need to share the same frame without
+hidden authority.
 
-## how to use yawn
+It does not tell you what is true. It helps you write down what is being
+inferred, what is missing, what must not be assumed, and what would count as
+proof.
 
-YAWN is a mirror.
+## smallest possible yawn
 
-You use it by organizing your life, projects, relationships, records, and next
-moves into `.yawn` files.
+```yaml
+title: "I keep avoiding this"
 
-Each `.yawn` is like a madlibs frame:
+signal: "I feel pressure every time I open the project."
+
+inference: "I may be avoiding the project because the next step is unclear, not because I do not care."
+
+current: "I am circling the same task without moving."
+possible: "I can name the blocker and choose one small step."
+
+lacuna: "I do not know what the first safe move is."
+
+boundary: "Do not shame myself or force a big commitment."
+
+move: "Write the next step in one sentence."
+
+proof: "After writing it, I know whether the task feels smaller."
+
+replay: "What changed after naming the blocker?"
+```
+
+## why
+
+Brains are not good at holding many live tensions at once.
+
+A human may be carrying:
+
+- body signals
+- memories
+- beliefs
+- habits
+- values
+- relationships
+- constraints
+- possible actions
+- fears
+- hopes
+- AI suggestions
+- unfinished proof
+
+A .yawn externalizes the frame so the person does not have to carry all of it
+alone.
+
+It helps answer:
 
 ```text
-i am observing ___
-the current frame is ___
-the possible frame is ___
-what is missing is ___
-the smallest safe move is ___
-the boundary is ___
-proof would look like ___
-afterward, what changed was ___
+what is here?
+what am i inferring?
+what is missing?
+what move is actually authorized?
+what proof would matter?
 ```
 
-You can fill it out alone, with another person, or with any AI. The AI can help
-mirror, organize, ask clearer questions, find proof gaps, and suggest smaller
-moves.
+YAWN exists because agents act from inferences they often cannot see.
 
-The point is not to outsource your selfhood.
+A human feels a signal and infers meaning.
+An AI receives context and infers a next action.
+A bot sees repeated files and infers a repo improvement.
+An institution sees data and infers policy.
 
-The point is to interface better with yourself.
+When those inferences are hidden, alignment fails.
+
+.yawn makes inference visible before action.
+
+## what is a .yawn?
+
+A .yawn is a movement frame.
+
+It records:
+
+- the signal
+- the inference being made from that signal
+- what is known
+- what is assumed
+- what is missing
+- what boundary protects agency
+- what move is safe enough to try
+- what proof would matter
+- what changed after movement
+
+The rule:
+
+```text
+human-readable first
+machine-addressable second
+proof-bound when promoted
+```
+
+## compact schema
+
+```yaml
+title: ""
+
+signal: ""
+inference: ""
+
+current: ""
+possible: ""
+lacuna: ""
+
+boundary: ""
+move: ""
+proof: ""
+replay: ""
+
+coherence:
+  supports: []
+  conflicts_with: []
+  depends_on: []
+  proof_gaps: []
+```
+
+Use:
+
+```text
+templates/basic.yawn
+templates/full.yawn
+templates/agent-handoff.yawn
+templates/proof-receipt.yawn
+```
+
+## boundary
+
+.yawn is built to prevent false certainty.
+
+```text
+signal != instruction
+resonance != proof
+coincidence != command
+memory != objective record
+AI output != authority
+intensity != truth
+only proof updates the map
+```
+
+Everything can be observed.
+Some things can be interpreted.
+Fewer things should be acted on.
+Only proof updates the map.
+
+## duality mirror
+
+A .yawn holds the space between:
+
+```text
+observer
+<->
+embodied human
+```
+
+The observer can see the pattern.
+
+The embodied human has to live through it.
+
+The stance is:
+
+```text
+see the pattern without abandoning the body
+stay human without being trapped by the pattern
+```
+
+Observe from above. Move from within. Prove through the world. Replay with
+care.
+
+## the five handles
+
+A .yawn can be read through five simple handles:
+
+1. Mirror - what is here?
+2. Map - what is shaping it?
+3. Meaning - what is missing?
+4. Move - what is the smallest authorized step?
+5. Memory - what changed?
+
+Interface files:
+
+```text
+interface/mirror.yawn
+interface/map.yawn
+interface/meaning.yawn
+interface/move.yawn
+interface/memory.yawn
+```
+
+## folder shape
+
+The file tree is an interface. It should show what the frame is, where it
+lives, what depends on it, what is unresolved, what is proof-backed, and what
+can move next.
 
 Start with:
 
 ```text
-start/how-to-use-yawn.yawn
-templates/basic.yawn
+readme.yawn
+README.md
+yawn.yawn
+
+start/
+core/
+interface/
+templates/
+examples/
+agents/
+automation/
+records/
+references/
+```
+
+Each folder has a local node.yawn file. Open node.yawn first when entering a
+folder.
+
+## learn
+
+The repo is a holonic map. Every folder is a small whole with its own
+node.yawn, and every layer can be read without holding the entire system at
+once.
+
+Open the smallest layer you need:
+
+```text
+root:
+  readme.yawn
+  yawn.yawn
+
+start:
+  start/node.yawn
+  start/first-yawn.yawn
+  start/how-to-use-yawn.yawn
+
+core:
+  core/node.yawn
+  core/what-is-a-yawn.yawn
+  core/proof-and-boundary.yawn
+  core/movement-frame.yawn
+
+interface:
+  interface/node.yawn
+  interface/mirror.yawn
+  interface/map.yawn
+  interface/meaning.yawn
+  interface/move.yawn
+  interface/memory.yawn
+
+templates:
+  templates/node.yawn
+  templates/basic.yawn
+  templates/decision.yawn
+  templates/agent-handoff.yawn
+
+examples:
+  examples/node.yawn
+  examples/stuck.yawn
+  examples/signal.yawn
+  examples/decision.yawn
+
+observations:
+  observations/node.yawn
+  observations/lived-agency.yawn
+
+records:
+  records/node.yawn
+  records/material-time.yawn
+  records/next-move-ledger.yawn
+
+agents:
+  agents/node.yawn
+  agents/yawn.bot.yawn
+  agents/yawn.bot.policy.yawn
+
+feedback:
+  feedback/node.yawn
+  feedback/form.yawn
+  feedback/email-intake.yawn
+```
+
+The first path is:
+
+```text
+readme.yawn
+-> start/first-yawn.yawn
+-> templates/basic.yawn
+-> examples/stuck.yawn
+-> core/proof-and-boundary.yawn
 ```
 
 ## feedback
@@ -109,10 +343,15 @@ surprisingly helpful, send it to:
 yawn@yawn.ai
 ```
 
-The feedback node lives in:
+Public feedback form:
 
 ```text
-feedback/node.yawn
+https://yawn-ai.github.io/.yawn/feedback/
+```
+
+Feedback records:
+
+```text
 feedback/form.yawn
 feedback/email-intake.yawn
 feedback/codex-t4o-parser.yawn
@@ -120,323 +359,28 @@ records/feedback-log.yawn
 database/feedback-intake.yawn
 ```
 
-The near-term form is intentionally simple: it opens an email to
-`yawn@yawn.ai`. The intake contract says that feedback email should be logged,
-parsed by Codex/T4O, classified, and written to the correct database location.
+## yawn.bot
 
-Public feedback form:
+yawn.bot is a draft-PR observer for the .yawn repo.
 
-```text
-https://yawn-ai.github.io/.yawn/feedback/
-```
+It may:
 
-## the leading question
+- scan .yawn files
+- detect repeated inferences
+- surface lacuna and objections
+- open draft PR proposals
+- record proof and replay
 
-The leading question is:
+It must not:
 
-```text
-how does a human move from implicit pattern to explicit agency?
-```
+- merge
+- mark itself ready
+- leak private context
+- erase objections
+- treat one signal as canon
+- act without boundary
 
-Everything in this repository exists to help answer that question.
-
-A `.yawn` should help someone see:
-
-```text
-what is here?
-what is shaping it?
-what is missing?
-what can i safely try?
-what would prove movement?
-what changed?
-```
-
-## what are we observing?
-
-We are observing lived agency: the way a human or agent sees a frame, carries a
-model, chooses a move, meets reality, records proof, and updates memory.
-
-The named observation node is:
-
-```text
-observations/lived-agency.yawn
-```
-
-That file states the actual object of observation. It keeps the system from
-drifting into "everything." We are not observing the source code of the
-universe. We are observing the current interface between a person, a situation,
-tools, constraints, other agents, and proof.
-
-## why a file tree?
-
-Because the file tree is the first interface.
-
-A folder can show:
-
-```text
-this is the frame
-this is where it lives
-this is what it depends on
-this is unresolved
-this is proof-backed
-this can move next
-```
-
-First, make the frame readable in plain files. When that holds, an app, graph,
-world, or cockpit has something real to display.
-
-The root is:
-
-```text
-one folder
-one readme.yawn
-many readable .yawn files
-```
-
-## folders are nodes
-
-Every folder is a knowledge node and a mental-model node.
-
-That means a folder is not only a place where files are stored. It is a named
-part of the shared model. It should tell a human or agent what kind of thinking
-lives there, what it receives, what it produces, and what question it helps
-answer.
-
-Each folder has a local `node.yawn` file.
-
-Open `node.yawn` first when entering a folder. It is the folder's orientation
-card.
-
-The folder-node protocol lives in:
-
-```text
-core/folder-node.yawn
-```
-
-## five-command brain interface
-
-The public entry point is five cognition handles:
-
-```text
-/mirror
-/map
-/meaning
-/move
-/memory
-```
-
-These are not terminal commands yet. They are handles a person can remember.
-
-`/mirror` shows what is happening now. See `interface/mirror.yawn`.
-
-`/map` shows what this belongs to. See `interface/map.yawn`.
-
-`/meaning` names the gap between current and possible. See
-`interface/meaning.yawn`.
-
-`/move` chooses the smallest authorized step. See `interface/move.yawn`.
-
-`/memory` records proof and replays what changed. See `interface/memory.yawn`.
-
-## core ontology, gently
-
-YAWN has a deeper ontology, but nobody should need to learn it all at once.
-
-Start here:
-
-```text
-mirror
-map
-meaning
-move
-memory
-```
-
-Then the deeper terms become easier:
-
-```text
-frame
-signal
-lacuna
-axis
-agency
-boundary
-proof
-replay
-handoff
-record
-```
-
-The ontology is linked out rather than stuffed into one wall of text:
-
-```text
-start/what-is-a-yawn.yawn
-core/movement-frame.yawn
-core/lacuna.yawn
-core/agency.yawn
-core/proof-and-boundary.yawn
-core/observer-and-body.yawn
-interface/projection-stack.yawn
-records/material-time.yawn
-references/scientific-frame.yawn
-```
-
-## duality
-
-The core duality is:
-
-```text
-observer <-> embodied human
-```
-
-The observer can step back and notice patterns.
-
-The embodied human needs stability, food, sleep, money, safety, relationship,
-nervous-system regulation, and ordinary reality.
-
-YAWN is not about escaping the body. It is about seeing the pattern without
-abandoning the human.
-
-The lock:
-
-```text
-notice the pattern without becoming the pattern
-inhabit the body without being trapped by inherited identity
-imagine a possible frame without forcing it as truth
-choose a bounded move without abandoning stability
-use proof without crushing mystery
-```
-
-## what a .yawn file is
-
-A `.yawn` file is a movement frame.
-
-It can be loose prose, YAML-ish structure, or a mix. It should be readable by a
-human first and mappable by an agent second.
-
-The rule:
-
-```text
-human-readable first
-machine-addressable second
-proof-bound when promoted
-```
-
-A minimal `.yawn` looks like this:
-
-```yaml
-title: "a thing i am observing"
-
-current: "what is happening now"
-possible: "what could become possible"
-lacuna: "what is missing, unknown, blocked, or not yet bridged"
-
-move: "the smallest authorized next relation or action"
-boundary: "what must not be forced or assumed"
-proof: "what would show that something actually changed"
-replay: "what changed after observing or moving"
-```
-
-Use `templates/basic.yawn` for the smallest shape. Use `templates/full.yawn`
-when the frame needs axes, agent boundaries, proof state, and replay fields.
-
-## projection stack
-
-A `.yawn` observes the user's current interface with reality.
-
-Not the source code of the universe.
-
-The source code of this frame.
-
-That means:
-
-```text
-beliefs are code
-habits are code
-language is code
-body signals are code
-relationships are code
-constraints are code
-artifacts are code
-proof receipts are code
-agent packets are code
-```
-
-They are "code" because they shape what appears possible.
-
-## proof and boundary
-
-YAWN must not become a certainty machine.
-
-The safety rail:
-
-```text
-signal != instruction
-resonance != proof
-coincidence != command
-memory != objective record
-ai output != authority
-intensity != truth
-only proof updates the map
-```
-
-Everything can be observed. Some things can be interpreted. Fewer things should
-be acted on. Only proof updates the map.
-
-## material records
-
-`.yawn` also records material time.
-
-That means files, tool use, LLM-used context, GitHub access, backups, commits,
-external surfaces, decisions, costs, proof receipts, and next-move logic.
-
-Records live in:
-
-```text
-records/material-time.yawn
-records/access-log.yawn
-records/llm-access.yawn
-records/github-access.yawn
-records/backup-log.yawn
-records/next-move-ledger.yawn
-```
-
-This keeps the system from becoming only interpretation. If an agent used a
-file, a command, a GitHub surface, or a backup to decide the next move, the
-record layer should be able to say so.
-
-## agents
-
-A `.yawn` is also an agent handoff packet.
-
-It tells an AI agent:
-
-```text
-what the human sees
-what the frame is
-what is missing
-what move is invited
-what proof matters
-what boundary blocks hidden authority
-```
-
-An agent may mirror, clarify, map, summarize, question, propose, find proof
-gaps, surface conflicts, prepare bounded next steps, and record material
-accesses.
-
-An agent must not silently decide truth, rewrite identity, force action, mutate
-source files, publish externally, spend resources, hide uncertainty, or turn
-resonance into proof.
-
-Human authority stays visible.
-
-The named repo service role is:
-
-```text
-yawn.bot
-```
-
-Today, `yawn.bot` runs as a daily Codex automation:
+Service files:
 
 ```text
 agents/yawn.bot.yawn
@@ -444,42 +388,19 @@ agents/yawn.bot.policy.yawn
 automation/yawn.bot.daily.yawn
 automation/yawn.bot.feedback-loop.yawn
 automation/yawn.bot.private-pr-loop.yawn
+automation/yawn.bot.ai-writing-scan.yawn
 records/yawn.bot-log.yawn
 ```
 
-It is an architecture observer, not an autonomous maintainer. It can inspect,
-classify, recommend, maintain ledgers, and prepare private draft PR proposals.
-It does not secretly become a GitHub account, install an app, push to main,
-mark PRs ready, approve, merge, send email, write a database, or rewrite canon
-without current human authorization and proof.
-
-The feedback-to-commit gate is:
-
-```text
-feedback -> node -> thesis -> risk review -> proof -> bounded change -> commit readiness
-```
-
-Enough feedback is not only volume. It means a pattern can be stated as a
-clear thesis, the risks and dissent are visible, proof is named, and the
-authority state is explicit.
+yawn.bot is an architecture observer, not an autonomous maintainer. It can
+inspect, classify, recommend, maintain ledgers, and prepare private draft PR
+proposals. It does not secretly become a GitHub account, install an app, push
+to main, mark PRs ready, approve, merge, send email, write a database, or
+rewrite canon without current human authorization and proof.
 
 ## open-source agent contributors
 
 This repo should be easy for humans and AI-assisted contributors to improve.
-
-The contribution path lives in:
-
-```text
-contributing.md
-.github/ISSUE_TEMPLATE/ai-agent-contributor.yml
-agents/contributor-agent.yawn
-agents/contributor-architecture.yawn
-agents/yawn.bot.yawn
-agents/yawn.bot.policy.yawn
-automation/github-feedback-triage.yawn
-automation/yawn.bot.daily.yawn
-automation/yawn.bot.private-pr-loop.yawn
-```
 
 If someone has an AI workflow that can help YAWN, they should be able to show:
 
@@ -492,95 +413,28 @@ what proof keeps it honest
 what human approval it needs
 ```
 
-The durable automation identity should be clear. Use a GitHub App or dedicated
-bot/service account later, not a hidden personal account.
-
-## altruistic frame
-
-The larger hope is shared orientation.
-
-People, teams, governments, institutions, and AI systems often fail because
-they do not share the same frame. They argue from hidden assumptions, mismatched
-values, different proof standards, and incompatible maps of what is happening.
-
-`.yawn` gives people a way to say:
+Contribution files:
 
 ```text
-here is my current frame
-here is the possible world i am pointing toward
-here is what i think is missing
-here is what i am not allowed to assume
-here is what would count as proof
-here is what changed after we moved
+contributing.md
+.github/ISSUE_TEMPLATE/ai-agent-contributor.yml
+agents/contributor-agent.yawn
+agents/contributor-architecture.yawn
+automation/github-feedback-triage.yawn
 ```
+
+## larger purpose
+
+YAWN is an observer protocol for lived reality.
+
+It helps people and agents record what they are inferring, compare those
+inferences, protect agency, test movement with proof, and replay what changed.
 
 Not forcing agreement.
 
 Making disagreement legible.
 
 That is the altruistic bet.
-
-## detailed updated plan
-
-1. Make `readme.yawn` the canonical root orientation file.
-
-2. Keep `readme.md` as a small compatibility pointer for platforms that expect
-   Markdown.
-
-3. Name the object of observation in `observations/lived-agency.yawn`.
-
-4. Teach the ontology through five cognition handles in `interface/`.
-
-5. Keep templates small enough that a person can create a first yawn without
-   learning the whole system.
-
-6. Preserve the research basis in `references/` and `08-research/`.
-
-7. Use `records/` for material time: LLM access, GitHub access, backups, proof,
-   and next-move logic.
-
-8. Give every folder a `node.yawn` so folders are explicit knowledge nodes and
-   mental-model nodes.
-
-9. Keep the GitHub repo public at `https://github.com/yawn-ai/.yawn`, under the
-   MIT License, with The Yawn Company as copyright holder.
-
-10. Add a feedback path that sends email to `yawn@yawn.ai`, logs feedback as a
-    record, and defines how Codex/T4O should parse it into the database.
-
-11. Add GitHub-native contribution surfaces for feedback, PRs, and AI-agent
-    contributor architectures.
-
-12. Run the `yawn-repo-feedback-triage` automation hourly to inspect repo
-    feedback and contributor signals without changing external state.
-
-13. Run the `yawn-bot-daily-repo-contributor` automation daily as the named
-   `yawn.bot` service loop for repo contribution recommendations.
-
-14. Use `automation/yawn.bot.feedback-loop.yawn` to decide when feedback is
-   strong enough to become a thesis, a risk-reviewed move, and eventually a
-   commit-ready contribution.
-
-15. Run private yawn.bot staging and audit loops for draft PR handoff, rising
-   repo learning, README clarity, and license/reference risk.
-
-16. Treat apps, graphs, games, and agents as later surfaces over the file tree,
-   not the root.
-
-## first proof strip
-
-The first product proof is one complete loop:
-
-```text
-create a yawn
-seed the frame
-see the axis map
-choose a bounded move
-gather proof
-replay what changed
-```
-
-Everything else is secondary until that loop works.
 
 ## first move
 
@@ -595,12 +449,15 @@ Write:
 ```yaml
 title: "my first yawn"
 
+signal: "something has my attention"
+inference: "i may be missing a small next step"
+
 current: "something has my attention"
 possible: "i can see it more clearly"
 lacuna: "i do not yet know what is missing"
 
-move: "pause and name the signal"
 boundary: "do not force an answer"
+move: "pause and name the signal"
 proof: "i can name one clearer question"
 replay: "what changed after naming it?"
 ```
@@ -609,13 +466,13 @@ That is enough.
 
 ## final lock
 
-`.yawn` is the file format for structured movement through lived reality.
+.yawn is a plain-text inference filesystem for agency.
 
 It is how a human or agent can say:
 
 ```text
 i am observing this
-this is the frame
+this is the inference
 this is the missing bridge
 this is the bounded move
 this is the proof

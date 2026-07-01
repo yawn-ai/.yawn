@@ -15,6 +15,11 @@ purpose: >
   sound generically AI-written.
 
 checks:
+  - first screen starts with the concrete noticing use case
+  - first screen defines .yawn as inference before action
+  - public opening avoids mythology, bot automation, and full ontology
+  - Learn section follows the top-level holonic repo map
+  - Learn section avoids becoming an undifferentiated link pile
   - confusing words
   - worldview leaps
   - missing beginner links
@@ -24,13 +29,26 @@ checks:
   - repeated parallel ladders or canned cadence
   - generic AI-polished phrasing
   - promotional language without proof
-  - abrupt style shifts between readme.md and readme.yawn
+  - abrupt style shifts between README.md and readme.yawn
 
 missed_gap: >
-  This audit did not originally catch "The app can come later. The graph can
-  come later..." because its scope emphasized young-reader comprehension, not
-  AI-writing-style cadence. Future runs must include the AI-writing scan as a
-  quality gate.
+  This audit did not originally catch the repeated "later surface" cadence
+  around app, graph, world, and cockpit because its scope emphasized
+  young-reader comprehension, not AI-writing-style cadence. Future runs must
+  include the AI writing style scan as a quality gate.
+
+front_door_rule: >
+  The public README should open with "You are noticing something" or an equally
+  concrete lived-use frame before introducing files, bots, game worlds, deep
+  ontology, or alignment theory. The first screen should make clear that .yawn
+  records inference before action and that proof, boundary, and replay keep the
+  frame honest.
+
+learn_section_rule: >
+  Replace broad beginner link piles with a Learn section that maps the
+  system as nested wholes: root, start, core, interface, templates, examples,
+  observations, records, agents, and feedback. Each row should say what the
+  layer teaches and point to one best entry file.
 
 output:
   - beginner comprehension report
@@ -41,7 +59,7 @@ output:
 
 proof:
   source:
-    - readme.md
+    - README.md
     - readme.yawn
     - references/source-index.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
