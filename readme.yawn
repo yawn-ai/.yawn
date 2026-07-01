@@ -124,6 +124,12 @@ The near-term form is intentionally simple: it opens an email to
 `yawn@yawn.ai`. The intake contract says that feedback email should be logged,
 parsed by Codex/T4O, classified, and written to the correct database location.
 
+Public feedback form:
+
+```text
+https://yawn-ai.github.io/.yawn/feedback/
+```
+
 ## the leading question
 
 The leading question is:

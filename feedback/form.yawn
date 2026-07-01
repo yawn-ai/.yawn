@@ -9,6 +9,7 @@ purpose: >
   account, app, or database connection.
 
 destination_email: yawn@yawn.ai
+public_url: https://yawn-ai.github.io/.yawn/feedback/
 
 mailto_url: "mailto:yawn@yawn.ai?subject=YAWN%20feedback&body=What%20did%20you%20try%3F%0A%0AWhat%20was%20confusing%3F%0A%0AWhat%20felt%20useful%3F%0A%0AWhat%20should%20exist%20next%3F%0A%0ACan%20we%20follow%20up%3F%20yes%2Fno%0A"
 

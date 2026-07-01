@@ -140,7 +140,7 @@ counts:
   html: 1
   sql: 1
   license: 1
-  no_extension: 1
+  dotfile: 1
   total: 126
 
 proof:

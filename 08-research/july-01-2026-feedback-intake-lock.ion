@@ -14,6 +14,7 @@ primary_claims:
   - the GitHub first view needs to land for a normal new user
   - feedback should be easy to send by email
   - the destination email is yawn@yawn.ai
+  - GitHub Pages should expose the public feedback form
   - feedback should be logged as feedback
   - Codex/T4O should parse feedback into structured categories
   - parsed feedback should land in the correct database spot
@@ -21,7 +22,8 @@ primary_claims:
 implementation_decision:
   Expanded readme.md for the GitHub first view, added feedback/index.html,
   feedback .yawn contracts, a feedback log, a feedback template, and a database
-  schema/intake contract.
+  schema/intake contract. Enabled GitHub Pages from main root so the feedback
+  form can be served at https://yawn-ai.github.io/.yawn/feedback/.
 
 proof:
   source:

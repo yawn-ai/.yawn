@@ -47,7 +47,9 @@ The point is to interface better with yourself.
 - First-use guide: [start/how-to-use-yawn.yawn](start/how-to-use-yawn.yawn)
 - Basic template: [templates/basic.yawn](templates/basic.yawn)
 - What we are observing: [observations/lived-agency.yawn](observations/lived-agency.yawn)
-- Feedback: [feedback/form.yawn](feedback/form.yawn) or email [yawn@yawn.ai](mailto:yawn@yawn.ai?subject=YAWN%20feedback&body=What%20did%20you%20try%3F%0A%0AWhat%20was%20confusing%3F%0A%0AWhat%20should%20exist%20next%3F%0A%0ACan%20we%20follow%20up%3F%20yes%2Fno%0A)
+- Feedback form: [yawn-ai.github.io/.yawn/feedback/](https://yawn-ai.github.io/.yawn/feedback/)
+- Feedback contract: [feedback/form.yawn](feedback/form.yawn)
+- Feedback email: [yawn@yawn.ai](mailto:yawn@yawn.ai?subject=YAWN%20feedback&body=What%20did%20you%20try%3F%0A%0AWhat%20was%20confusing%3F%0A%0AWhat%20should%20exist%20next%3F%0A%0ACan%20we%20follow%20up%3F%20yes%2Fno%0A)
 
 ## The Loop
 

@@ -5,6 +5,7 @@ status: v0-seed
 updated: 2026-07-01
 
 repository: https://github.com/yawn-ai/.yawn
+github_pages: https://yawn-ai.github.io/.yawn/
 license: MIT
 license_file: LICENSE
 copyright_holder: The Yawn Company
