@@ -1,0 +1,41 @@
+id: .github/node
+title: "github node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold GitHub-native contribution surfaces that make the open-source repo
+  easier for humans and AI-assisted contributors to use.
+
+holds:
+  - issue templates
+  - pull request template
+  - contributor routing
+
+receives:
+  - public feedback
+  - AI-agent contributor proposals
+  - pull requests
+
+produces:
+  - structured issues
+  - proof-shaped pull requests
+  - easier contributor onboarding
+
+questions:
+  - how does a GitHub user contribute
+  - where does feedback go
+  - how should AI-agent help be disclosed
+
+links:
+  - .github/ISSUE_TEMPLATE/node.yawn
+  - .github/pull_request_template.md
+  - contributing.md
+
+proof:
+  source:
+    - readme.md
+    - contributing.md
+    - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+  status: seed-backed

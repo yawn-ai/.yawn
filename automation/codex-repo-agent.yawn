@@ -1,0 +1,35 @@
+id: automation/codex-repo-agent
+title: "codex repo agent"
+kind: automation-agent
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Define the Codex-side agent posture for helping maintain the .yawn open-source
+  repository.
+
+may:
+  - inspect GitHub issues and pull requests
+  - inspect local .yawn files
+  - classify feedback to nodes
+  - propose bounded changes
+  - draft patch plans
+
+must_not_without_approval:
+  - push commits
+  - create releases
+  - merge pull requests
+  - modify secrets
+  - send email
+  - write to the database
+
+identity_note: >
+  Do not use a personal GitHub identity as a hidden bot. For durable automation,
+  prefer a GitHub App or a dedicated bot/service account such as yawn-agent,
+  clearly labeled as automation.
+
+proof:
+  source:
+    - agents/contributor-agent.yawn
+    - automation/github-feedback-triage.yawn
+  status: seed-backed

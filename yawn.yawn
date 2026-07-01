@@ -69,6 +69,20 @@ feedback_links:
   feedback_log: records/feedback-log.yawn
   database_intake: database/feedback-intake.yawn
 
+contributor_links:
+  guide: contributing.md
+  github_node: .github/node.yawn
+  issue_templates: .github/ISSUE_TEMPLATE/node.yawn
+  pull_request_template: .github/pull_request_template.md
+  contributor_agent: agents/contributor-agent.yawn
+  contributor_architecture: agents/contributor-architecture.yawn
+
+automation_links:
+  node: automation/node.yawn
+  github_feedback_triage: automation/github-feedback-triage.yawn
+  codex_repo_agent: automation/codex-repo-agent.yawn
+  automation_log: records/automation-log.yawn
+
 record_links:
   material_time: records/material-time.yawn
   access_log: records/access-log.yawn
@@ -76,6 +90,7 @@ record_links:
   github_access: records/github-access.yawn
   backup_log: records/backup-log.yawn
   feedback_log: records/feedback-log.yawn
+  automation_log: records/automation-log.yawn
   next_move_ledger: records/next-move-ledger.yawn
 
 template_links:
@@ -118,6 +133,9 @@ folder_node_rule: >
   contain node.yawn as its local orientation card.
 
 folder_node_links:
+  github: .github/node.yawn
+  github_issue_template: .github/ISSUE_TEMPLATE/node.yawn
+  automation: automation/node.yawn
   database: database/node.yawn
   feedback: feedback/node.yawn
   start: start/node.yawn

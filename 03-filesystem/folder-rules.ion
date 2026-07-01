@@ -15,11 +15,13 @@ rules:
   - keep canonical working files in .ion
   - keep only readme.md as Markdown unless a later proof-backed exception is made
   - allow LICENSE as the uppercase GitHub license-detection exception
+  - allow .github/ISSUE_TEMPLATE as the uppercase GitHub issue-template exception
   - do not create ontology folders before a movement need exists
   - prefer small, inspectable files over one giant doctrine file
 
 uppercase_exceptions:
   - LICENSE
+  - .github/ISSUE_TEMPLATE
 
 numbered_folders:
   purpose: preserve reading order without hiding the plain-language name
@@ -35,5 +37,6 @@ proof:
     - 00-start/root.ion
     - 08-research/june-30-2026-alignment.ion
     - 08-research/july-01-2026-github-license-use-lock.ion
-  claim: Lowercase syntax is the committed filesystem convention, with LICENSE as the GitHub license-detection exception.
+    - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+  claim: Lowercase syntax is the committed filesystem convention, with LICENSE and .github/ISSUE_TEMPLATE as GitHub compatibility exceptions.
   proof_state: seed-backed

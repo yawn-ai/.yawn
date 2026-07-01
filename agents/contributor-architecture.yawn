@@ -1,0 +1,27 @@
+id: agents/contributor-architecture
+title: "contributor architecture disclosure"
+kind: agent-template
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Give AI-assisted contributors a simple way to show how their agent helps the
+  project.
+
+fields:
+  mission: "what should the agent help with"
+  model_or_tooling: "what AI, prompts, scripts, or services are used"
+  reads: "what files, issues, pages, or records it reads"
+  writes: "what it can change or propose"
+  proof: "how humans verify the output"
+  boundaries: "what it cannot do without approval"
+  replay: "what changed after using it"
+
+use:
+  Fill this out when proposing an AI-agent contributor workflow.
+
+proof:
+  source:
+    - agents/contributor-agent.yawn
+    - .github/ISSUE_TEMPLATE/ai-agent-contributor.yml
+  status: seed-backed

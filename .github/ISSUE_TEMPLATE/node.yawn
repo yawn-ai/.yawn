@@ -1,0 +1,39 @@
+id: .github/ISSUE_TEMPLATE/node
+title: "github issue templates node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold GitHub issue forms that turn public feedback and AI-agent contribution
+  ideas into structured records.
+
+holds:
+  - feedback issue form
+  - AI-agent contributor issue form
+  - contact links
+
+receives:
+  - public GitHub issues
+  - contributor architecture proposals
+
+produces:
+  - structured issue data
+  - triage categories
+  - automation input
+
+questions:
+  - what kind of feedback is this
+  - what node does it affect
+  - what architecture does the contributor use
+
+links:
+  - .github/ISSUE_TEMPLATE/feedback.yml
+  - .github/ISSUE_TEMPLATE/ai-agent-contributor.yml
+  - automation/github-feedback-triage.yawn
+
+proof:
+  source:
+    - feedback/node.yawn
+    - agents/contributor-agent.yawn
+  status: seed-backed

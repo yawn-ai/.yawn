@@ -1,0 +1,29 @@
+ion:
+  id: 08-research/july-01-2026-agent-contributor-automation-lock
+  title: july 01 2026 agent contributor automation lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user asked for an open-source AI agent contribution path for the GitHub
+  repository, a way to see contributor AI architecture, and an automation to
+  monitor feedback and repo contribution signals.
+
+primary_claims:
+  - open-source value comes from contributors
+  - AI-assisted contributors should be able to show their architecture
+  - the GitHub repo needs an easy contribution path
+  - feedback and agent-contributor signals should be triaged automatically
+  - a durable bot identity should not be hidden inside a personal account
+
+implementation_decision:
+  Added contributing.md, GitHub issue forms, a PR template, contributor-agent
+  files, an automation folder, an automation log, and created the Codex app
+  automation yawn-repo-feedback-triage.
+
+proof:
+  source:
+    - user-message
+  claim: This file captures the open-source AI contributor and automation request.
+  proof_state: source-summary

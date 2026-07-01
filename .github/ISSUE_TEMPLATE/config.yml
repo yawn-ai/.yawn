@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Send feedback by email
+    url: https://yawn-ai.github.io/.yawn/feedback/
+    about: Use the public feedback form. It opens an email to yawn@yawn.ai.
+  - name: Read the root YAWN object
+    url: https://github.com/yawn-ai/.yawn/blob/main/readme.yawn
+    about: Start here if the project still feels abstract.

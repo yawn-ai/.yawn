@@ -1,0 +1,56 @@
+name: AI agent contributor
+description: Show how your AI-assisted workflow can contribute to the .yawn repo.
+title: "[agent-contributor] "
+labels:
+  - agent-contributor
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to describe an AI-assisted contribution architecture. AI help is welcome. Hidden authority is not.
+  - type: textarea
+    id: mission
+    attributes:
+      label: What mission should your agent help with?
+      description: Example: improve onboarding, classify feedback, add examples, check proof gaps.
+    validations:
+      required: true
+  - type: textarea
+    id: architecture
+    attributes:
+      label: What is the architecture?
+      description: Tools, models, prompts, guardrails, data flow, and review steps.
+    validations:
+      required: true
+  - type: textarea
+    id: reads
+    attributes:
+      label: What files or surfaces does it read?
+      description: Name the .yawn nodes, GitHub surfaces, or external inputs.
+    validations:
+      required: true
+  - type: textarea
+    id: writes
+    attributes:
+      label: What can it write or propose?
+      description: Be clear about whether it writes files, opens PRs, comments, or only suggests.
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: What proof or review keeps it honest?
+      description: How do humans inspect, replay, or reject its output?
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Boundaries
+      options:
+        - label: The human remains the source of authorization.
+          required: true
+        - label: The agent will not push, merge, publish, or spend resources without explicit approval.
+          required: true
+        - label: The agent will disclose what it read and changed.
+          required: true

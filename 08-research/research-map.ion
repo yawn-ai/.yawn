@@ -17,6 +17,9 @@ research_threads:
   folder_nodes:
     target_files:
       - core/folder-node.yawn
+      - .github/node.yawn
+      - .github/ISSUE_TEMPLATE/node.yawn
+      - automation/node.yawn
       - database/node.yawn
       - feedback/node.yawn
       - 00-start/node.yawn
@@ -64,6 +67,7 @@ research_threads:
     target_files:
       - records/material-time.yawn
       - records/access-log.yawn
+      - records/automation-log.yawn
       - records/llm-access.yawn
       - records/github-access.yawn
       - records/backup-log.yawn
@@ -75,6 +79,7 @@ research_threads:
       - templates/next-move-record.yawn
   feedback_intake:
     target_files:
+      - .github/ISSUE_TEMPLATE/feedback.yml
       - feedback/node.yawn
       - feedback/form.yawn
       - feedback/index.html
@@ -86,6 +91,21 @@ research_threads:
       - database/feedback-intake.yawn
       - database/feedback-schema.sql
       - 08-research/july-01-2026-feedback-intake-lock.ion
+  contributor_automation:
+    target_files:
+      - contributing.md
+      - .github/node.yawn
+      - .github/ISSUE_TEMPLATE/node.yawn
+      - .github/ISSUE_TEMPLATE/ai-agent-contributor.yml
+      - .github/ISSUE_TEMPLATE/config.yml
+      - .github/pull_request_template.md
+      - agents/contributor-agent.yawn
+      - agents/contributor-architecture.yawn
+      - automation/node.yawn
+      - automation/github-feedback-triage.yawn
+      - automation/codex-repo-agent.yawn
+      - records/automation-log.yawn
+      - 08-research/july-01-2026-agent-contributor-automation-lock.ion
   next_move_logic:
     target_files:
       - core/next-move-logic.yawn
@@ -136,6 +156,8 @@ research_threads:
       - 04-agent/handoff-packet.ion
       - 04-agent/agent-boundaries.ion
       - agents/orientation.yawn
+      - agents/contributor-agent.yawn
+      - agents/contributor-architecture.yawn
       - templates/agent-handoff.yawn
   scientific_references:
     target_files:
@@ -182,5 +204,6 @@ proof:
     - 08-research/july-01-2026-folder-node-lock.ion
     - 08-research/july-01-2026-github-license-use-lock.ion
     - 08-research/july-01-2026-feedback-intake-lock.ion
-  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, database files, and ownership/license files it supports.
+    - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, contributor automation files, database files, and ownership/license files it supports.
   proof_state: seed-backed

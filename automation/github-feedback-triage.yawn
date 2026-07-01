@@ -1,0 +1,39 @@
+id: automation/github-feedback-triage
+title: "github feedback triage automation"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-repo-feedback-triage
+schedule: "hourly"
+workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
+
+purpose: >
+  Inspect the yawn-ai/.yawn GitHub repository and local .yawn workspace for new
+  feedback, issue-form submissions, pull requests, and AI-agent contributor
+  signals.
+
+classify_into:
+  - onboarding feedback
+  - ontology feedback
+  - safety or boundary feedback
+  - agent-contributor architecture
+  - database or intake work
+  - documentation work
+
+output:
+  - relevant node
+  - summary
+  - uncertainty
+  - next recommended bounded move
+  - whether human authorization is required
+
+hard_boundary: >
+  The automation must not commit, push, merge, comment, change permissions, or
+  alter external state without explicit human authorization.
+
+proof:
+  source:
+    - automation/node.yawn
+    - records/automation-log.yawn
+  status: seed-backed

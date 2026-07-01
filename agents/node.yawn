@@ -9,6 +9,8 @@ purpose: >
 
 holds:
   - agent orientation
+  - contributor agent
+  - contributor architecture disclosure
   - first read order
   - allowed help
   - blocked hidden authority
@@ -22,21 +24,26 @@ receives:
 
 produces:
   - safe agent behavior
+  - open-source contributor workflows
   - handoff discipline
   - access records
 
 questions:
   - what should an agent read first
+  - how can an AI-assisted contributor disclose architecture
   - what can an agent safely infer
   - what must remain human-authorized
 
 links:
   - agents/orientation.yawn
+  - agents/contributor-agent.yawn
+  - agents/contributor-architecture.yawn
   - templates/agent-handoff.yawn
   - records/llm-access.yawn
 
 proof:
   source:
     - agents/orientation.yawn
+    - agents/contributor-agent.yawn
     - readme.yawn
   status: seed-backed

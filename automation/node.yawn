@@ -1,0 +1,41 @@
+id: automation/node
+title: "automation node"
+kind: knowledge-node
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Hold automations that watch for feedback, contributor signals, and bounded
+  next moves without taking hidden authority.
+
+holds:
+  - GitHub feedback triage automation
+  - Codex repo agent contract
+
+receives:
+  - GitHub issues
+  - pull requests
+  - feedback records
+  - AI-agent contributor proposals
+
+produces:
+  - triage summaries
+  - node classifications
+  - recommended next moves
+  - human-review queues
+
+questions:
+  - what new feedback arrived
+  - what node does it affect
+  - what should move next
+  - does this require human authorization
+
+links:
+  - automation/github-feedback-triage.yawn
+  - automation/codex-repo-agent.yawn
+  - records/automation-log.yawn
+
+proof:
+  source:
+    - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+  status: seed-backed

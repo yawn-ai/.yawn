@@ -50,6 +50,8 @@ The point is to interface better with yourself.
 - Feedback form: [yawn-ai.github.io/.yawn/feedback/](https://yawn-ai.github.io/.yawn/feedback/)
 - Feedback contract: [feedback/form.yawn](feedback/form.yawn)
 - Feedback email: [yawn@yawn.ai](mailto:yawn@yawn.ai?subject=YAWN%20feedback&body=What%20did%20you%20try%3F%0A%0AWhat%20was%20confusing%3F%0A%0AWhat%20should%20exist%20next%3F%0A%0ACan%20we%20follow%20up%3F%20yes%2Fno%0A)
+- Contribute: [contributing.md](contributing.md)
+- AI agent contributor form: [new agent contributor issue](https://github.com/yawn-ai/.yawn/issues/new?template=ai-agent-contributor.yml)
 
 ## The Loop
 

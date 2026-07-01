@@ -430,6 +430,34 @@ resonance into proof.
 
 Human authority stays visible.
 
+## open-source agent contributors
+
+This repo should be easy for humans and AI-assisted contributors to improve.
+
+The contribution path lives in:
+
+```text
+contributing.md
+.github/ISSUE_TEMPLATE/ai-agent-contributor.yml
+agents/contributor-agent.yawn
+agents/contributor-architecture.yawn
+automation/github-feedback-triage.yawn
+```
+
+If someone has an AI workflow that can help YAWN, they should be able to show:
+
+```text
+what mission the agent helps with
+what architecture it uses
+what files or surfaces it reads
+what it can write or propose
+what proof keeps it honest
+what human approval it needs
+```
+
+The durable automation identity should be clear. Use a GitHub App or dedicated
+bot/service account later, not a hidden personal account.
+
 ## altruistic frame
 
 The larger hope is shared orientation.
@@ -483,7 +511,13 @@ That is the altruistic bet.
 10. Add a feedback path that sends email to `yawn@yawn.ai`, logs feedback as a
     record, and defines how Codex/T4O should parse it into the database.
 
-11. Treat apps, graphs, games, and agents as later surfaces over the file tree,
+11. Add GitHub-native contribution surfaces for feedback, PRs, and AI-agent
+    contributor architectures.
+
+12. Run the `yawn-repo-feedback-triage` automation hourly to inspect repo
+    feedback and contributor signals without changing external state.
+
+13. Treat apps, graphs, games, and agents as later surfaces over the file tree,
    not the root.
 
 ## first proof strip

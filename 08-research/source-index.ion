@@ -41,6 +41,11 @@ sources:
     kind: browser review and conversational requirement
     received_as: user message and browser inspection
     role: source for GitHub first-view improvements and email-to-database feedback intake
+  - id: july-01-2026-agent-contributor-automation-lock
+    file: 08-research/july-01-2026-agent-contributor-automation-lock.ion
+    kind: conversational requirement
+    received_as: user message
+    role: source for AI-agent contributor architecture, GitHub issue forms, and feedback triage automation
 
 source_rules:
   - preserve source claims separately from canonical files
@@ -57,5 +62,6 @@ proof:
     - 08-research/july-01-2026-folder-node-lock.ion
     - 08-research/july-01-2026-github-license-use-lock.ion
     - 08-research/july-01-2026-feedback-intake-lock.ion
-  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, and feedback intake.
+    - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, and contributor automation.
   proof_state: seed-backed

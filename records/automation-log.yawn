@@ -1,0 +1,25 @@
+id: records/automation-log
+title: "automation log"
+kind: record-log
+status: v0-seed
+updated: 2026-07-01
+
+purpose: >
+  Track automations created for the .yawn repository and what they are allowed
+  to do.
+
+current_entries:
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-repo-feedback-triage"
+    name: "YAWN repo feedback triage"
+    schedule: "hourly"
+    scope: "inspect GitHub repo issues, PRs, feedback, and AI-agent contributor signals"
+    allowed_effects: "summarize, classify, recommend next moves"
+    blocked_effects: "commit, push, merge, comment, change permissions, send email, write database"
+    proof: "created through Codex app automation_update"
+
+proof:
+  source:
+    - automation/github-feedback-triage.yawn
+    - records/access-log.yawn
+  status: seed-backed

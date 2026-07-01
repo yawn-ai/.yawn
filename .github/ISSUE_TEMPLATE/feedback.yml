@@ -1,0 +1,54 @@
+name: Feedback
+description: Tell us where the mirror helped, broke, confused you, or should go next.
+title: "[feedback] "
+labels:
+  - feedback
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks. This issue becomes part of the YAWN feedback stream.
+  - type: textarea
+    id: tried
+    attributes:
+      label: What did you try?
+      description: What page, file, template, or idea did you interact with?
+    validations:
+      required: true
+  - type: textarea
+    id: confusing
+    attributes:
+      label: What was confusing?
+      description: Name the part where the frame got noisy.
+    validations:
+      required: false
+  - type: textarea
+    id: useful
+    attributes:
+      label: What felt useful?
+      description: What landed or helped?
+    validations:
+      required: false
+  - type: textarea
+    id: next
+    attributes:
+      label: What should exist next?
+      description: Suggest one bounded next move.
+    validations:
+      required: false
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - onboarding
+        - template
+        - ontology
+        - feedback-form
+        - safety
+        - docs
+        - agent
+        - database
+        - other
+    validations:
+      required: true
