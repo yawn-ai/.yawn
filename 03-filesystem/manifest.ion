@@ -23,11 +23,16 @@ files:
   - agents/contributor-architecture.yawn
   - agents/orientation.yawn
   - agents/yawn.bot.yawn
+  - agents/yawn.bot.policy.yawn
   - automation/codex-repo-agent.yawn
   - automation/github-feedback-triage.yawn
   - automation/node.yawn
   - automation/yawn.bot.daily.yawn
   - automation/yawn.bot.feedback-loop.yawn
+  - automation/yawn.bot.private-pr-loop.yawn
+  - automation/yawn.bot.rising-radar.yawn
+  - automation/yawn.bot.readme-young-reader-audit.yawn
+  - automation/yawn.bot.license-reference-audit.yawn
   - core/agency.yawn
   - core/design-principles.yawn
   - core/folder-node.yawn
@@ -82,6 +87,10 @@ files:
   - records/node.yawn
   - records/yawn.bot-log.yawn
   - records/yawn.bot-verification-2026-07-01.yawn
+  - records/yawn.bot-pattern-ledger.yawn
+  - records/yawn.bot-private-pr-ledger.yawn
+  - records/yawn.bot-trending-ledger.yawn
+  - records/yawn.bot-license-risk-ledger.yawn
   - start/first-yawn.yawn
   - start/node.yawn
   - start/value-proposition.yawn
@@ -152,18 +161,19 @@ files:
   - 08-research/july-01-2026-agent-contributor-automation-lock.ion
   - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
   - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   - 08-research/research-map.ion
 
 counts:
   markdown: 3
-  ion: 46
-  yawn: 91
+  ion: 47
+  yawn: 100
   yml: 3
   html: 1
   sql: 1
   license: 1
   dotfile: 1
-  total: 147
+  total: 157
 
 proof:
   source:
@@ -177,5 +187,6 @@ proof:
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
-  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, automation, yawn.bot daily service automation, and the yawn.bot feedback-to-commit gate.
+    - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, automation, yawn.bot daily service automation, the yawn.bot feedback-to-commit gate, and yawn.bot architecture-observer policy.
   proof_state: seed-backed

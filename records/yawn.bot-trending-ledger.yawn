@@ -1,0 +1,35 @@
+id: records/yawn.bot-trending-ledger
+title: "yawn.bot trending ledger"
+kind: record-log
+status: active-seed
+updated: 2026-07-01
+
+purpose: >
+  Record daily GitHub rising-repo learning without copying or executing
+  untrusted repository content.
+
+entry_shape:
+  date: ""
+  source: "GitHub Trending | GitHub Search API fallback"
+  repos_seen: []
+  patterns: []
+  license_notes: []
+  relevance_to_yawn: ""
+  commit_readiness: "none | single_signal | pattern_forming | thesis_ready | commit_ready"
+  next_action: ""
+
+current_entries:
+  - date: "2026-07-01"
+    source: "automation created"
+    repos_seen: []
+    patterns: []
+    license_notes: []
+    relevance_to_yawn: "daily radar not yet run"
+    commit_readiness: "none"
+    next_action: "first scheduled yawn-bot-morning-rising-radar run"
+
+proof:
+  source:
+    - automation/yawn.bot.rising-radar.yawn
+    - agents/yawn.bot.policy.yawn
+  status: seed-backed

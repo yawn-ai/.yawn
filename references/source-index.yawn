@@ -23,11 +23,14 @@ sources:
     role: "yawn.bot service identity and daily Codex automation"
   - file: 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     role: "yawn.bot feedback-to-thesis-to-risk-to-commit gate"
+  - file: 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+    role: "yawn.bot architecture-observer policy, private draft PR staging, audits, and ledgers"
 
 proof:
   source:
     - readme.yawn
     - references/ownership-and-license.yawn
     - agents/yawn.bot.yawn
+    - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.feedback-loop.yawn
   status: seed-backed

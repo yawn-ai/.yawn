@@ -15,9 +15,11 @@ identity:
   github_label: "yawn.bot"
   rights_context: "MIT License, copyright The Yawn Company"
   current_runtime: "Codex daily automation"
-  future_runtime: "GitHub App or dedicated bot/service account"
+  future_runtime: "GitHub App with least-privilege installation tokens"
+  policy: agents/yawn.bot.policy.yawn
 
 mission:
+  - behave as an architecture observer, not an autonomous maintainer
   - keep the first-use path understandable for a new user
   - classify feedback into the correct knowledge node or mental-model node
   - promote enough feedback into a risk-reviewed thesis
@@ -56,8 +58,11 @@ blocked_without_current_human_authorization:
 connection:
   codex_automation_id: "yawn-bot-daily-repo-contributor"
   codex_contract: automation/yawn.bot.daily.yawn
+  operating_policy: agents/yawn.bot.policy.yawn
   feedback_loop: automation/yawn.bot.feedback-loop.yawn
+  private_pr_loop: automation/yawn.bot.private-pr-loop.yawn
   service_log: records/yawn.bot-log.yawn
+  pattern_ledger: records/yawn.bot-pattern-ledger.yawn
   contributor_contract: agents/contributor-agent.yawn
   architecture_template: agents/contributor-architecture.yawn
 
@@ -69,6 +74,7 @@ human_readable_lock: >
 
 proof:
   source:
+    - agents/yawn.bot.policy.yawn
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - automation/yawn.bot.daily.yawn
     - records/yawn.bot-log.yawn

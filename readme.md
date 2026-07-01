@@ -53,8 +53,11 @@ The point is to interface better with yourself.
 - Contribute: [contributing.md](contributing.md)
 - AI agent contributor form: [new agent contributor issue](https://github.com/yawn-ai/.yawn/issues/new?template=ai-agent-contributor.yml)
 - yawn.bot service: [agents/yawn.bot.yawn](agents/yawn.bot.yawn)
+- yawn.bot policy: [agents/yawn.bot.policy.yawn](agents/yawn.bot.policy.yawn)
 - Daily bot automation: [automation/yawn.bot.daily.yawn](automation/yawn.bot.daily.yawn)
 - yawn.bot feedback loop: [automation/yawn.bot.feedback-loop.yawn](automation/yawn.bot.feedback-loop.yawn)
+- README clarity audit: [automation/yawn.bot.readme-young-reader-audit.yawn](automation/yawn.bot.readme-young-reader-audit.yawn)
+- License/reference audit: [automation/yawn.bot.license-reference-audit.yawn](automation/yawn.bot.license-reference-audit.yawn)
 
 ## The Loop
 

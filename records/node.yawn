@@ -14,6 +14,10 @@ holds:
   - automation log
   - yawn.bot log
   - yawn.bot verification reports
+  - yawn.bot pattern ledger
+  - yawn.bot private PR ledger
+  - yawn.bot trending ledger
+  - yawn.bot license risk ledger
   - llm access
   - github access
   - backup log
@@ -37,6 +41,10 @@ produces:
   - automation records
   - bot service records
   - bot verification records
+  - bot pattern records
+  - private PR handoff records
+  - trending pattern records
+  - license-risk records
 
 questions:
   - what happened materially
@@ -47,6 +55,9 @@ questions:
   - what automation was created or ran
   - what did yawn.bot observe or propose
   - what suggestion did a verification run produce
+  - what private PR needs handoff
+  - what pattern is forming
+  - what license or privacy risk remains
 
 links:
   - records/material-time.yawn
@@ -54,6 +65,10 @@ links:
   - records/automation-log.yawn
   - records/yawn.bot-log.yawn
   - records/yawn.bot-verification-2026-07-01.yawn
+  - records/yawn.bot-pattern-ledger.yawn
+  - records/yawn.bot-private-pr-ledger.yawn
+  - records/yawn.bot-trending-ledger.yawn
+  - records/yawn.bot-license-risk-ledger.yawn
   - records/llm-access.yawn
   - records/github-access.yawn
   - records/backup-log.yawn
@@ -66,6 +81,7 @@ proof:
     - records/automation-log.yawn
     - records/yawn.bot-log.yawn
     - records/yawn.bot-verification-2026-07-01.yawn
+    - records/yawn.bot-pattern-ledger.yawn
     - records/feedback-log.yawn
     - readme.yawn
   status: seed-backed

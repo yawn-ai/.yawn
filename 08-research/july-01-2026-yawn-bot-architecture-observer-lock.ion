@@ -1,0 +1,31 @@
+ion:
+  id: 08-research/july-01-2026-yawn-bot-architecture-observer-lock
+  title: july 01 2026 yawn bot architecture observer lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user approved implementing yawn.bot as a governed architecture observer
+  with private draft PR staging, Codex automation loops, policy files, ledgers,
+  README clarity audit, license and legal-risk audit, and rising-repo learning.
+
+primary_claims:
+  - yawn.bot is an architecture observer, not autonomous maintainer
+  - private draft PR staging is the correct first contribution lane
+  - public .yawn changes should remain sanitized and MIT-facing
+  - automation should learn from feedback, core repos, private PR outcomes, and rising public repositories
+  - README clarity and license/legal-risk audits should run as separate loops
+
+implementation_decision:
+  Create a private staging repo, add yawn.bot labels and PR template, create
+  Codex automations, add the canonical policy, add automation contracts, add
+  ledgers, and wire the policy through the public .yawn filesystem.
+
+proof:
+  source:
+    - user-message
+    - attached-yawn-bot-plan
+    - implementation-plan
+  claim: This file captures the architecture-observer implementation request.
+  proof_state: source-summary

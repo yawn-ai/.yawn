@@ -75,6 +75,7 @@ contributor_links:
   issue_templates: .github/ISSUE_TEMPLATE/node.yawn
   pull_request_template: .github/pull_request_template.md
   yawn_bot: agents/yawn.bot.yawn
+  yawn_bot_policy: agents/yawn.bot.policy.yawn
   contributor_agent: agents/contributor-agent.yawn
   contributor_architecture: agents/contributor-architecture.yawn
 
@@ -84,6 +85,10 @@ automation_links:
   codex_repo_agent: automation/codex-repo-agent.yawn
   yawn_bot_daily: automation/yawn.bot.daily.yawn
   yawn_bot_feedback_loop: automation/yawn.bot.feedback-loop.yawn
+  yawn_bot_private_pr_loop: automation/yawn.bot.private-pr-loop.yawn
+  yawn_bot_rising_radar: automation/yawn.bot.rising-radar.yawn
+  yawn_bot_readme_audit: automation/yawn.bot.readme-young-reader-audit.yawn
+  yawn_bot_license_audit: automation/yawn.bot.license-reference-audit.yawn
   automation_log: records/automation-log.yawn
 
 record_links:
@@ -96,6 +101,10 @@ record_links:
   automation_log: records/automation-log.yawn
   yawn_bot_log: records/yawn.bot-log.yawn
   yawn_bot_verification: records/yawn.bot-verification-2026-07-01.yawn
+  yawn_bot_pattern_ledger: records/yawn.bot-pattern-ledger.yawn
+  yawn_bot_private_pr_ledger: records/yawn.bot-private-pr-ledger.yawn
+  yawn_bot_trending_ledger: records/yawn.bot-trending-ledger.yawn
+  yawn_bot_license_risk_ledger: records/yawn.bot-license-risk-ledger.yawn
   next_move_ledger: records/next-move-ledger.yawn
 
 template_links:
@@ -122,6 +131,7 @@ example_links:
 agent_links:
   orientation: agents/orientation.yawn
   yawn_bot: agents/yawn.bot.yawn
+  yawn_bot_policy: agents/yawn.bot.policy.yawn
 
 reference_links:
   source_index: references/source-index.yawn
@@ -193,3 +203,4 @@ source:
   - 08-research/june-30-2026-alignment.ion
   - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
   - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion

@@ -56,6 +56,11 @@ sources:
     kind: conversational requirement and manual verification
     received_as: user message and agent run
     role: source for yawn.bot feedback-to-thesis-to-risk-to-commit gate
+  - id: july-01-2026-yawn-bot-architecture-observer-lock
+    file: 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+    kind: user-approved implementation plan
+    received_as: user message and attachment
+    role: source for yawn.bot architecture-observer policy, private draft PR staging, audits, and ledgers
 
 source_rules:
   - preserve source claims separately from canonical files
@@ -75,5 +80,6 @@ proof:
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
-  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, yawn.bot daily service automation, and the yawn.bot feedback-to-commit gate.
+    - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, yawn.bot daily service automation, yawn.bot feedback-to-commit gate, and yawn.bot architecture-observer policy.
   proof_state: seed-backed

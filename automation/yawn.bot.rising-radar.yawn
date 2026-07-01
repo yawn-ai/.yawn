@@ -1,0 +1,43 @@
+id: automation/yawn.bot.rising-radar
+title: "yawn.bot morning rising radar"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-bot-morning-rising-radar
+schedule: "daily at 7:30 AM America/Denver"
+policy: agents/yawn.bot.policy.yawn
+
+purpose: >
+  Learn from the GitHub Trending top 10 each morning without cloning,
+  executing, or copying untrusted repository content.
+
+sources:
+  primary: "GitHub Trending top 10"
+  fallback: "GitHub Search API recent activity and stars"
+
+inspect:
+  - public README
+  - topics
+  - license
+  - language
+  - repository structure
+  - visible workflow patterns
+
+blocked:
+  - clone untrusted repositories
+  - execute untrusted code
+  - copy proprietary code
+  - treat trend popularity as proof
+
+output:
+  - sanitized pattern report
+  - relevance to YAWN axes
+  - license and privacy notes
+  - commit-readiness state
+
+proof:
+  source:
+    - agents/yawn.bot.policy.yawn
+    - records/yawn.bot-trending-ledger.yawn
+  status: seed-backed

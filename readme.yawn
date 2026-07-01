@@ -440,15 +440,18 @@ Today, `yawn.bot` runs as a daily Codex automation:
 
 ```text
 agents/yawn.bot.yawn
+agents/yawn.bot.policy.yawn
 automation/yawn.bot.daily.yawn
 automation/yawn.bot.feedback-loop.yawn
+automation/yawn.bot.private-pr-loop.yawn
 records/yawn.bot-log.yawn
 ```
 
-It can inspect, classify, and recommend. It can help prepare a contribution.
-It does not secretly become a GitHub account, install an app, commit, push,
-comment, merge, send email, or write a database without current human
-authorization.
+It is an architecture observer, not an autonomous maintainer. It can inspect,
+classify, recommend, maintain ledgers, and prepare private draft PR proposals.
+It does not secretly become a GitHub account, install an app, push to main,
+mark PRs ready, approve, merge, send email, write a database, or rewrite canon
+without current human authorization and proof.
 
 The feedback-to-commit gate is:
 
@@ -472,8 +475,10 @@ contributing.md
 agents/contributor-agent.yawn
 agents/contributor-architecture.yawn
 agents/yawn.bot.yawn
+agents/yawn.bot.policy.yawn
 automation/github-feedback-triage.yawn
 automation/yawn.bot.daily.yawn
+automation/yawn.bot.private-pr-loop.yawn
 ```
 
 If someone has an AI workflow that can help YAWN, they should be able to show:
@@ -556,7 +561,10 @@ That is the altruistic bet.
    strong enough to become a thesis, a risk-reviewed move, and eventually a
    commit-ready contribution.
 
-15. Treat apps, graphs, games, and agents as later surfaces over the file tree,
+15. Run private yawn.bot staging and audit loops for draft PR handoff, rising
+   repo learning, README clarity, and license/reference risk.
+
+16. Treat apps, graphs, games, and agents as later surfaces over the file tree,
    not the root.
 
 ## first proof strip

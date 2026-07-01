@@ -33,11 +33,47 @@ current_entries:
     allowed_effects: "report signal strength, thesis, risk review, proof check, rollback, and commit readiness"
     blocked_effects: "autonomous product commits from weak feedback or hidden authority"
     proof: "manual verification run recorded in records/yawn.bot-verification-2026-07-01.yawn"
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-bot-private-pr-handoff-loop"
+    name: "yawn.bot private PR handoff loop"
+    schedule: "every 4 hours"
+    scope: "watch private staging draft PRs labeled yawn.bot and report handoff state"
+    allowed_effects: "summarize PR state, checks, comments, privacy state, risks, rollback, and next action"
+    blocked_effects: "merge, mark ready, approve, push to main, change settings, expose private evidence"
+    proof: "created through Codex app automation_update"
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-bot-morning-rising-radar"
+    name: "yawn.bot morning rising radar"
+    schedule: "daily at 7:30 AM America/Denver"
+    scope: "inspect GitHub Trending top 10 and Search API fallback for architecture patterns"
+    allowed_effects: "produce sanitized pattern reports and commit-readiness recommendations"
+    blocked_effects: "clone untrusted repos, execute code, copy proprietary code, treat popularity as proof"
+    proof: "created through Codex app automation_update"
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-bot-readme-young-reader-audit"
+    name: "yawn.bot README young-reader audit"
+    schedule: "daily at 8:20 AM America/Denver"
+    scope: "read README as a curious 13-year-old and report clarity gaps"
+    allowed_effects: "suggest beginner-readable edits and MIT-compatible research links"
+    blocked_effects: "edit files or open PRs without authorization"
+    proof: "created through Codex app automation_update"
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-bot-license-reference-audit"
+    name: "yawn.bot license reference audit"
+    schedule: "daily at 8:40 AM America/Denver"
+    scope: "inspect license, references, copied-text risk, private leakage, and workflow risk"
+    allowed_effects: "produce license and reference risk report"
+    blocked_effects: "provide legal advice, mutate files, open PRs, alter settings"
+    proof: "created through Codex app automation_update"
 
 proof:
   source:
     - automation/github-feedback-triage.yawn
     - automation/yawn.bot.daily.yawn
     - automation/yawn.bot.feedback-loop.yawn
+    - automation/yawn.bot.private-pr-loop.yawn
+    - automation/yawn.bot.rising-radar.yawn
+    - automation/yawn.bot.readme-young-reader-audit.yawn
+    - automation/yawn.bot.license-reference-audit.yawn
     - records/access-log.yawn
   status: seed-backed

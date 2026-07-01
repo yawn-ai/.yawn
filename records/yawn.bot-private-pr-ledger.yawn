@@ -1,0 +1,41 @@
+id: records/yawn.bot-private-pr-ledger
+title: "yawn.bot private PR ledger"
+kind: record-log
+status: active-seed
+updated: 2026-07-01
+
+purpose: >
+  Track private yawn.bot draft PRs, handoff state, review state, and outcomes
+  before any sanitized public promotion.
+
+private_staging_repo: "yawn-ai/yawn-bot-staging"
+
+entry_shape:
+  pr_url: ""
+  branch: ""
+  axis: ""
+  thesis: ""
+  status: "draft | revised | waiting-review | blocked | closed | promoted"
+  checks: ""
+  unresolved_risks: []
+  privacy_state: ""
+  next_action: ""
+  authorization_state: ""
+
+current_entries:
+  - pr_url: ""
+    branch: ""
+    axis: "architecture observer"
+    thesis: "yawn.bot needs private draft PR staging before public sanitized promotion"
+    status: "policy-created"
+    checks: "private staging repo created with labels and PR template"
+    unresolved_risks: []
+    privacy_state: "public docs name the staging lane but do not include private evidence"
+    next_action: "wait for first commit_ready pattern"
+    authorization_state: "draft PRs only; no merge or mark-ready authority"
+
+proof:
+  source:
+    - automation/yawn.bot.private-pr-loop.yawn
+    - agents/yawn.bot.policy.yawn
+  status: seed-backed

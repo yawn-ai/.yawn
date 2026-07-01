@@ -65,6 +65,15 @@ current_entries:
     evidence: "open issues 0; open pull requests 0; feedback page HTTP 200; feedback-to-commit gate added"
     next_move_effect: "yawn.bot can now report signal strength, thesis, risk, proof, and commit readiness"
     boundary: "future bot commits should default to branch or draft PR unless main is explicitly authorized"
+  - timestamp: "2026-07-01"
+    repository: "yawn-ai/yawn-bot-staging and https://github.com/yawn-ai/.yawn"
+    surface: "repo | labels | pull-request-template | automation | commit"
+    identifier: "yawn.bot architecture observer implementation"
+    actor: "codex"
+    action: "inspect | create | update | push"
+    evidence: "created private staging repo, labels yawn.bot pattern-thesis private-staging, private PR template, and Codex automations"
+    next_move_effect: "future yawn.bot pattern proposals have a private draft PR lane before sanitized public promotion"
+    boundary: "staging PRs remain draft-only; public files must not include private evidence"
 
 proof:
   source:

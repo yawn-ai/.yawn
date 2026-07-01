@@ -66,6 +66,14 @@ current_entries:
     inference_made: "before yawn.bot can commit from feedback, the repo needs an explicit feedback-to-thesis-to-risk-to-commit gate"
     next_move_effect: "added automation/yawn.bot.feedback-loop.yawn and records/yawn.bot-verification-2026-07-01.yawn"
     boundary: "manual verification is not a scheduled run-now event; no external product feedback pattern exists yet"
+  - timestamp: "2026-07-01"
+    model_or_agent: "codex"
+    detected_surface: "user-approved architecture observer implementation plan"
+    used_surface: "local .yawn filesystem, gh cli, Codex automation_update, private staging repo"
+    evidence_seen: "user requested implementation of policy, private staging, automations, ledgers, README audit, license audit, and rising repo learning"
+    inference_made: "yawn.bot should be encoded as architecture observer with separate read-only observer and private draft PR proposer modes"
+    next_move_effect: "created policy, automation contracts, ledgers, private staging repo setup, and Codex automations"
+    boundary: "public .yawn remains sanitized; private PR lane does not grant merge or main-branch authority"
 
 proof:
   source:

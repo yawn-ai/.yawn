@@ -1,0 +1,33 @@
+id: records/yawn.bot-license-risk-ledger
+title: "yawn.bot license risk ledger"
+kind: record-log
+status: active-seed
+updated: 2026-07-01
+
+purpose: >
+  Track license, attribution, private-leakage, workflow, and legal-risk findings
+  from yawn.bot audits.
+
+entry_shape:
+  date: ""
+  severity: "low | medium | high"
+  affected_surface: ""
+  risk: ""
+  recommended_fix: ""
+  proof_needed: ""
+  human_review_required: "yes | no"
+
+current_entries:
+  - date: "2026-07-01"
+    severity: "low"
+    affected_surface: "LICENSE and references/ownership-and-license.yawn"
+    risk: "MIT license is present; ongoing risk is future copied-text or private-source leakage"
+    recommended_fix: "run scheduled license-reference audit before promoting public docs"
+    proof_needed: "first scheduled audit report"
+    human_review_required: "no"
+
+proof:
+  source:
+    - automation/yawn.bot.license-reference-audit.yawn
+    - references/ownership-and-license.yawn
+  status: seed-backed

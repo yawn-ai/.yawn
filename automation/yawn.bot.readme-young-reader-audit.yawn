@@ -1,0 +1,34 @@
+id: automation/yawn.bot.readme-young-reader-audit
+title: "yawn.bot README young-reader audit"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-bot-readme-young-reader-audit
+schedule: "daily at 8:20 AM America/Denver"
+policy: agents/yawn.bot.policy.yawn
+
+purpose: >
+  Read the public README as a curious 13-year-old and identify the smallest
+  changes that make the worldview easier to understand.
+
+checks:
+  - confusing words
+  - worldview leaps
+  - missing beginner links
+  - broken local links
+  - unclear first-use path
+  - missing MIT-compatible research links
+
+output:
+  - beginner comprehension report
+  - suggested smallest README change
+  - relevant public or local research links
+  - commit-readiness state
+
+proof:
+  source:
+    - readme.md
+    - readme.yawn
+    - references/source-index.yawn
+  status: seed-backed

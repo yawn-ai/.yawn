@@ -13,12 +13,20 @@ holds:
   - Codex repo agent contract
   - yawn.bot daily repo contributor automation
   - yawn.bot feedback-to-commit gate
+  - yawn.bot private PR handoff loop
+  - yawn.bot rising radar
+  - yawn.bot README young-reader audit
+  - yawn.bot license reference audit
 
 receives:
   - GitHub issues
   - pull requests
   - feedback records
   - AI-agent contributor proposals
+  - private draft PRs
+  - rising repo signals
+  - README comprehension gaps
+  - license and reference risks
 
 produces:
   - triage summaries
@@ -26,6 +34,10 @@ produces:
   - recommended next moves
   - feedback signal-strength decisions
   - daily yawn.bot contributor reports
+  - private PR handoff reports
+  - rising repo pattern reports
+  - README clarity reports
+  - license-risk reports
   - human-review queues
 
 questions:
@@ -34,6 +46,10 @@ questions:
   - what should move next
   - what should yawn.bot contribute today
   - when is feedback strong enough to become a commit
+  - which private draft PR needs handoff
+  - what rising repo pattern is relevant
+  - can a young reader understand the README
+  - is there a license or privacy risk
   - does this require human authorization
 
 links:
@@ -41,6 +57,10 @@ links:
   - automation/codex-repo-agent.yawn
   - automation/yawn.bot.daily.yawn
   - automation/yawn.bot.feedback-loop.yawn
+  - automation/yawn.bot.private-pr-loop.yawn
+  - automation/yawn.bot.rising-radar.yawn
+  - automation/yawn.bot.readme-young-reader-audit.yawn
+  - automation/yawn.bot.license-reference-audit.yawn
   - records/automation-log.yawn
 
 proof:
@@ -48,4 +68,5 @@ proof:
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+    - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   status: seed-backed

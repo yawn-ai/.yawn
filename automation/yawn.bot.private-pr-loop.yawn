@@ -1,0 +1,44 @@
+id: automation/yawn.bot.private-pr-loop
+title: "yawn.bot private PR handoff loop"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-bot-private-pr-handoff-loop
+schedule: "every 4 hours"
+workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
+private_staging_repo: "yawn-ai/yawn-bot-staging"
+policy: agents/yawn.bot.policy.yawn
+
+purpose: >
+  Watch private yawn.bot draft PRs and preserve handoff state without merging,
+  approving, marking ready, or changing repository settings.
+
+checks:
+  - open draft PRs labeled yawn.bot
+  - review comments
+  - check state
+  - privacy state
+  - unresolved risks
+  - rollback path
+  - next action
+
+blocked:
+  - merge
+  - mark ready for review
+  - approve
+  - push to main
+  - change branch protection
+  - change repo settings
+  - expose private evidence publicly
+
+output:
+  - private PR handoff report
+  - ledger update recommendation
+  - human decision needed
+
+proof:
+  source:
+    - agents/yawn.bot.policy.yawn
+    - records/yawn.bot-private-pr-ledger.yawn
+  status: seed-backed

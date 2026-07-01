@@ -39,11 +39,20 @@ current_entries:
     next_move_effect: "added feedback-to-thesis-to-risk-to-commit gate as the first meaningful suggestion"
     boundary: "no product thesis inferred from zero external feedback; commit pathway remains gated by proof and authority"
     linked_yawn: "records/yawn.bot-verification-2026-07-01.yawn"
+  - timestamp: "2026-07-01"
+    actor: "codex"
+    event: "implemented yawn.bot architecture observer policy and loops"
+    evidence: "private staging repo, labels, PR template, policy, four automations, and four ledgers exist"
+    next_move_effect: "yawn.bot now has a governed private draft PR lane and scheduled audit loops"
+    boundary: "architecture observer only; no autonomous maintainer authority"
+    linked_yawn: "agents/yawn.bot.policy.yawn"
 
 proof:
   source:
     - agents/yawn.bot.yawn
+    - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.daily.yawn
     - automation/yawn.bot.feedback-loop.yawn
+    - automation/yawn.bot.private-pr-loop.yawn
     - records/automation-log.yawn
   status: seed-backed

@@ -15,7 +15,8 @@ loop:
   - form a clear thesis
   - weigh risks and proof
   - choose the smallest bounded change
-  - commit only when the gate is satisfied and authority is present
+  - route commit-ready work to private draft PR staging
+  - preserve human review and replay outcome
 
 signal_strength:
   none: "no external issue, pull request, email, or feedback signal"
@@ -23,6 +24,12 @@ signal_strength:
   pattern_forming: "two or more related signals, or one high-severity proof-backed issue"
   thesis_ready: "a recurring lacuna can be stated as a clear, testable thesis"
   commit_ready: "the thesis, risk review, proof check, rollback path, and authority state are all explicit"
+  draft_pr_opened: "a private draft PR exists in the staging repository"
+  human_review: "a human is reviewing meaning, risk, and promotion"
+  accepted: "a human accepted the pattern or promoted a sanitized version"
+  revised: "the pattern needs another bounded pass"
+  rejected: "the pattern should not be promoted"
+  stale: "the pattern or PR no longer has current evidence"
 
 thesis_shape:
   claim: "what enough feedback appears to show"
@@ -49,6 +56,7 @@ commit_gate:
     - rollback path is named
     - human authorization or approved bot runtime policy is present
   default_commit_target: "branch or draft pull request, not direct main"
+  private_staging_target: "yawn-ai/yawn-bot-staging"
   main_branch_rule: "main branch updates require explicit human authorization until a future policy changes this"
 
 daily_output:

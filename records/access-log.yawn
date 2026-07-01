@@ -70,6 +70,16 @@ current_entries:
     output_or_evidence: "automation active; feedback page returned 200; open issues and PRs were zero; feedback-to-commit gate added"
     risk_or_boundary: "no product thesis inferred from zero external feedback; bot commit path remains gated by thesis, risk, proof, and authority"
     linked_yawn: "records/yawn.bot-verification-2026-07-01.yawn"
+  - id: "2026-07-01-yawn-bot-architecture-observer"
+    timestamp: "2026-07-01"
+    actor: "agent"
+    access_type: "github | app | file"
+    surface: "yawn-ai/.yawn, private staging repository, Codex automation"
+    action: "inspect | create | update"
+    reason: "implement yawn.bot as architecture observer with private draft PR staging and audit loops"
+    output_or_evidence: "private staging repo created; yawn.bot labels and PR template added; four Codex automations created; policy and ledgers added"
+    risk_or_boundary: "public .yawn files record policy only; yawn.bot remains draft-PR-only and cannot merge, approve, mark ready, or push to main"
+    linked_yawn: "agents/yawn.bot.policy.yawn"
 
 proof:
   source:

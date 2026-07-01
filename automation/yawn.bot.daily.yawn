@@ -9,7 +9,9 @@ schedule: "daily at 9:00 AM America/Denver"
 workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
 runtime: "Codex app cron automation"
 service_identity: agents/yawn.bot.yawn
+policy: agents/yawn.bot.policy.yawn
 feedback_loop: automation/yawn.bot.feedback-loop.yawn
+private_pr_loop: automation/yawn.bot.private-pr-loop.yawn
 
 purpose: >
   Run a daily yawn.bot loop that inspects the repository, feedback surfaces, and
@@ -24,6 +26,7 @@ input_surfaces:
   - feedback form path
   - AI-agent contributor proposals
   - records and node files
+  - private staging handoff records
 
 daily_report_fields:
   - observed signals
@@ -33,6 +36,8 @@ daily_report_fields:
   - suggested change
   - proof needed
   - risk or boundary
+  - privacy state
+  - staging recommendation
   - commit readiness
   - human authorization needed
 
@@ -48,6 +53,11 @@ feedback_to_commit_rule: >
   check, rollback path, and explicit authority state before yawn.bot treats a
   change as commit-ready.
 
+private_staging_rule: >
+  Commit-ready work routes to the private staging lane described in
+  automation/yawn.bot.private-pr-loop.yawn. Public .yawn promotion must be
+  sanitized and separately reviewed.
+
 default_boundary: >
   The daily automation may inspect, summarize, classify, and recommend. It must
   not commit, push, merge, comment, change permissions, send email, manage
@@ -56,8 +66,10 @@ default_boundary: >
 
 proof:
   source:
+    - agents/yawn.bot.policy.yawn
     - agents/yawn.bot.yawn
     - automation/yawn.bot.feedback-loop.yawn
+    - automation/yawn.bot.private-pr-loop.yawn
     - records/automation-log.yawn
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion

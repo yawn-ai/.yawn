@@ -1,0 +1,35 @@
+id: automation/yawn.bot.license-reference-audit
+title: "yawn.bot license reference audit"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-bot-license-reference-audit
+schedule: "daily at 8:40 AM America/Denver"
+policy: agents/yawn.bot.policy.yawn
+
+purpose: >
+  Detect license, attribution, privacy, and legal-risk issues before yawn.bot
+  or humans promote public-facing changes.
+
+checks:
+  - MIT license consistency
+  - The Yawn Company rights language
+  - copied-text risk
+  - attribution gaps
+  - private repository leakage
+  - dependency license risk
+  - dangerous workflow triggers
+  - broad workflow permissions
+  - misleading legal claims
+
+boundary: >
+  This automation reports risk and recommended bounded fixes. It is not legal
+  advice and does not replace human legal review.
+
+proof:
+  source:
+    - LICENSE
+    - references/ownership-and-license.yawn
+    - records/yawn.bot-license-risk-ledger.yawn
+  status: seed-backed

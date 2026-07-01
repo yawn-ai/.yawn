@@ -102,29 +102,44 @@ research_threads:
       - agents/contributor-agent.yawn
       - agents/contributor-architecture.yawn
       - agents/yawn.bot.yawn
+      - agents/yawn.bot.policy.yawn
       - automation/node.yawn
       - automation/github-feedback-triage.yawn
       - automation/codex-repo-agent.yawn
       - automation/yawn.bot.daily.yawn
       - automation/yawn.bot.feedback-loop.yawn
+      - automation/yawn.bot.private-pr-loop.yawn
+      - automation/yawn.bot.rising-radar.yawn
+      - automation/yawn.bot.readme-young-reader-audit.yawn
+      - automation/yawn.bot.license-reference-audit.yawn
       - records/automation-log.yawn
       - records/yawn.bot-log.yawn
       - records/yawn.bot-verification-2026-07-01.yawn
+      - records/yawn.bot-pattern-ledger.yawn
+      - records/yawn.bot-private-pr-ledger.yawn
+      - records/yawn.bot-trending-ledger.yawn
+      - records/yawn.bot-license-risk-ledger.yawn
       - 08-research/july-01-2026-agent-contributor-automation-lock.ion
       - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
       - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+      - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   yawn_bot_service:
     target_files:
       - agents/yawn.bot.yawn
+      - agents/yawn.bot.policy.yawn
       - automation/yawn.bot.daily.yawn
       - automation/yawn.bot.feedback-loop.yawn
+      - automation/yawn.bot.private-pr-loop.yawn
       - records/yawn.bot-log.yawn
       - records/yawn.bot-verification-2026-07-01.yawn
+      - records/yawn.bot-pattern-ledger.yawn
+      - records/yawn.bot-private-pr-ledger.yawn
       - records/automation-log.yawn
       - records/access-log.yawn
       - records/llm-access.yawn
       - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
       - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+      - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   yawn_bot_commit_gate:
     target_files:
       - automation/yawn.bot.feedback-loop.yawn
@@ -134,6 +149,18 @@ research_threads:
       - feedback/codex-t4o-parser.yawn
       - database/feedback-intake.yawn
       - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  yawn_bot_architecture_observer:
+    target_files:
+      - agents/yawn.bot.policy.yawn
+      - automation/yawn.bot.private-pr-loop.yawn
+      - automation/yawn.bot.rising-radar.yawn
+      - automation/yawn.bot.readme-young-reader-audit.yawn
+      - automation/yawn.bot.license-reference-audit.yawn
+      - records/yawn.bot-pattern-ledger.yawn
+      - records/yawn.bot-private-pr-ledger.yawn
+      - records/yawn.bot-trending-ledger.yawn
+      - records/yawn.bot-license-risk-ledger.yawn
+      - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   next_move_logic:
     target_files:
       - core/next-move-logic.yawn
@@ -217,6 +244,7 @@ open_research_lacunae:
   - where any existing test-on-base or mathematical scoring code lives, if it exists outside this seed filesystem
   - what GitHub surfaces and access records should be captured first
   - which GitHub App or dedicated service account should eventually carry yawn.bot publicly
+  - when to replace Codex-only loops with a least-privilege GitHub App
   - when and how the remaining .ion bridge files should collapse into .yawn
 
 next_research_move:
@@ -236,5 +264,6 @@ proof:
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
-  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, contributor automation files, yawn.bot service files, yawn.bot commit-gate files, database files, and ownership/license files it supports.
+    - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+  claim: Research is organized by the canonical files, public protocol files, readme.yawn root, folder nodes, interface handles, material record files, feedback intake files, contributor automation files, yawn.bot service files, yawn.bot commit-gate files, yawn.bot architecture-observer files, database files, and ownership/license files it supports.
   proof_state: seed-backed

@@ -1,0 +1,42 @@
+id: records/yawn.bot-pattern-ledger
+title: "yawn.bot pattern ledger"
+kind: record-log
+status: active-seed
+updated: 2026-07-01
+
+purpose: >
+  Record pattern theses observed by yawn.bot across feedback, core repos,
+  private staging PRs, and public rising repositories.
+
+entry_shape:
+  pattern_id: ""
+  axis: ""
+  source_repos: []
+  visibility_mix: "public_only | public_private_sanitized | private_only"
+  state: "single_signal | pattern_forming | thesis_ready | commit_ready | draft_pr_opened | human_review | accepted | revised | rejected | stale"
+  opened_pr: ""
+  outcome: ""
+  review_notes_summary: ""
+  false_positive_reason: ""
+  proof_after_merge: ""
+  next_rule_update: ""
+
+current_entries:
+  - pattern_id: "2026-07-01-yawn-bot-architecture-observer"
+    axis: "architecture observer"
+    source_repos:
+      - "yawn-ai/.yawn"
+    visibility_mix: "public_only"
+    state: "commit_ready"
+    opened_pr: ""
+    outcome: "implemented as policy and automation contracts"
+    review_notes_summary: "human approved implementation of yawn.bot as architecture observer"
+    false_positive_reason: ""
+    proof_after_merge: "pending commit verification"
+    next_rule_update: "use private staging PRs for future autonomous proposals"
+
+proof:
+  source:
+    - agents/yawn.bot.policy.yawn
+    - automation/yawn.bot.feedback-loop.yawn
+  status: seed-backed
