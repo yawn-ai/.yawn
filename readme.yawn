@@ -430,6 +430,25 @@ resonance into proof.
 
 Human authority stays visible.
 
+The named repo service role is:
+
+```text
+yawn.bot
+```
+
+Today, `yawn.bot` runs as a daily Codex automation:
+
+```text
+agents/yawn.bot.yawn
+automation/yawn.bot.daily.yawn
+records/yawn.bot-log.yawn
+```
+
+It can inspect, classify, and recommend. It can help prepare a contribution.
+It does not secretly become a GitHub account, install an app, commit, push,
+comment, merge, send email, or write a database without current human
+authorization.
+
 ## open-source agent contributors
 
 This repo should be easy for humans and AI-assisted contributors to improve.
@@ -441,7 +460,9 @@ contributing.md
 .github/ISSUE_TEMPLATE/ai-agent-contributor.yml
 agents/contributor-agent.yawn
 agents/contributor-architecture.yawn
+agents/yawn.bot.yawn
 automation/github-feedback-triage.yawn
+automation/yawn.bot.daily.yawn
 ```
 
 If someone has an AI workflow that can help YAWN, they should be able to show:
@@ -517,7 +538,10 @@ That is the altruistic bet.
 12. Run the `yawn-repo-feedback-triage` automation hourly to inspect repo
     feedback and contributor signals without changing external state.
 
-13. Treat apps, graphs, games, and agents as later surfaces over the file tree,
+13. Run the `yawn-bot-daily-repo-contributor` automation daily as the named
+   `yawn.bot` service loop for repo contribution recommendations.
+
+14. Treat apps, graphs, games, and agents as later surfaces over the file tree,
    not the root.
 
 ## first proof strip

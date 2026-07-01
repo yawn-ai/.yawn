@@ -17,9 +17,14 @@ sources:
     role: "public .yawn README seed"
   - file: 08-research/july-01-2026-material-record-reframe.ion
     role: "material time and access-record reframe"
+  - file: 08-research/july-01-2026-agent-contributor-automation-lock.ion
+    role: "AI-agent contributor path and feedback triage automation"
+  - file: 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+    role: "yawn.bot service identity and daily Codex automation"
 
 proof:
   source:
     - readme.yawn
     - references/ownership-and-license.yawn
+    - agents/yawn.bot.yawn
   status: seed-backed

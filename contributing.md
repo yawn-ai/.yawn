@@ -35,6 +35,16 @@ what still needs human review?
 
 AI help is welcome. Hidden authority is not.
 
+## yawn.bot
+
+`yawn.bot` is the named service role for daily repo contribution review. Today
+it runs through Codex as a daily automation and can inspect, classify, and
+recommend bounded improvements.
+
+It should not be confused with a hidden personal GitHub account. A future
+GitHub App or dedicated bot account can carry this role only after explicit
+human authorization.
+
 ## pull requests
 
 Keep PRs small and proof-shaped:

@@ -1,0 +1,31 @@
+ion:
+  id: 08-research/july-01-2026-yawn-bot-daily-automation-lock
+  title: july 01 2026 yawn bot daily automation lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-01
+
+source_context:
+  The user asked to create the bot/service that can contribute, name it
+  yawn.bot, and connect it to Codex as a daily automation.
+
+primary_claims:
+  - yawn.bot should be a named service role for the .yawn repo
+  - the service should help the open-source project receive AI-assisted contributions
+  - the daily Codex connection should inspect feedback, issues, pull requests, and repo clarity
+  - contribution authority should remain visible and not hidden inside a personal account
+  - a future GitHub App or dedicated bot/service account can carry the public identity
+
+implementation_decision:
+  Added agents/yawn.bot.yawn, automation/yawn.bot.daily.yawn,
+  records/yawn.bot-log.yawn, and the Codex automation
+  yawn-bot-daily-repo-contributor. The current Codex loop can inspect,
+  classify, and recommend. External writes remain approval-bound until a human
+  authorizes the exact action or installs a dedicated bot runtime.
+
+proof:
+  source:
+    - user-message
+    - codex-automation-update
+  claim: This file captures the yawn.bot service and daily automation request.
+  proof_state: source-summary

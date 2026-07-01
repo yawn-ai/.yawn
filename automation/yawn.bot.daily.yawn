@@ -1,0 +1,52 @@
+id: automation/yawn.bot.daily
+title: "yawn.bot daily repo contributor"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-bot-daily-repo-contributor
+schedule: "daily at 9:00 AM America/Denver"
+workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
+runtime: "Codex app cron automation"
+service_identity: agents/yawn.bot.yawn
+
+purpose: >
+  Run a daily yawn.bot loop that inspects the repository, feedback surfaces, and
+  contributor signals, then prepares a bounded contribution recommendation.
+
+input_surfaces:
+  - local .yawn filesystem
+  - https://github.com/yawn-ai/.yawn
+  - GitHub issues
+  - GitHub pull requests
+  - GitHub label yawn.bot
+  - feedback form path
+  - AI-agent contributor proposals
+  - records and node files
+
+daily_report_fields:
+  - observed signals
+  - affected nodes
+  - suggested change
+  - proof needed
+  - risk or boundary
+  - human authorization needed
+
+contribution_modes:
+  observe: "inspect and classify"
+  propose: "name the smallest bounded repo improvement"
+  draft: "prepare patch or PR text when a human asks in the current run"
+  execute: "perform GitHub writes only after exact human authorization"
+
+default_boundary: >
+  The daily automation may inspect, summarize, classify, and recommend. It must
+  not commit, push, merge, comment, change permissions, send email, manage
+  secrets, install apps, create accounts, or write external databases without
+  explicit current human authorization.
+
+proof:
+  source:
+    - agents/yawn.bot.yawn
+    - records/automation-log.yawn
+    - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+  status: seed-backed

@@ -50,6 +50,16 @@ current_entries:
     output_or_evidence: "issue templates and labels are present; automation yawn-repo-feedback-triage exists"
     risk_or_boundary: "GitHub issue creation requires sign-in; dedicated bot/GitHub App recommended later instead of hidden personal-account automation"
     linked_yawn: "automation/github-feedback-triage.yawn"
+  - id: "2026-07-01-yawn-bot-daily-automation"
+    timestamp: "2026-07-01"
+    actor: "agent"
+    access_type: "app | github | file"
+    surface: "Codex automation, local .yawn filesystem, https://github.com/yawn-ai/.yawn"
+    action: "inspect | create | update"
+    reason: "create yawn.bot as the daily repo-contributor service role"
+    output_or_evidence: "automation yawn-bot-daily-repo-contributor exists and is linked from agents/yawn.bot.yawn"
+    risk_or_boundary: "Codex daily loop can inspect and recommend; GitHub writes require exact human authorization"
+    linked_yawn: "agents/yawn.bot.yawn"
 
 proof:
   source:

@@ -1,0 +1,41 @@
+id: records/yawn.bot-log
+title: "yawn.bot log"
+kind: record-log
+status: active-seed
+updated: 2026-07-01
+
+purpose: >
+  Track the yawn.bot service identity, daily Codex automation, and future bot
+  runtime decisions.
+
+entry_shape:
+  timestamp: ""
+  actor: ""
+  event: ""
+  evidence: ""
+  next_move_effect: ""
+  boundary: ""
+  linked_yawn: ""
+
+current_entries:
+  - timestamp: "2026-07-01"
+    actor: "codex"
+    event: "created yawn.bot daily automation contract"
+    evidence: "Codex automation id yawn-bot-daily-repo-contributor is active"
+    next_move_effect: "yawn.bot can run a daily repo-contributor review loop through Codex"
+    boundary: "GitHub writes and service-account setup still require exact human authorization"
+    linked_yawn: "automation/yawn.bot.daily.yawn"
+  - timestamp: "2026-07-01"
+    actor: "codex"
+    event: "created yawn.bot GitHub label"
+    evidence: "GitHub label yawn.bot exists on yawn-ai/.yawn"
+    next_move_effect: "issues and PRs can be routed to the yawn.bot service loop"
+    boundary: "label is routing metadata, not an autonomous GitHub identity"
+    linked_yawn: ".github/node.yawn"
+
+proof:
+  source:
+    - agents/yawn.bot.yawn
+    - automation/yawn.bot.daily.yawn
+    - records/automation-log.yawn
+  status: seed-backed

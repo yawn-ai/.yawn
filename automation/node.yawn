@@ -11,6 +11,7 @@ purpose: >
 holds:
   - GitHub feedback triage automation
   - Codex repo agent contract
+  - yawn.bot daily repo contributor automation
 
 receives:
   - GitHub issues
@@ -22,20 +23,24 @@ produces:
   - triage summaries
   - node classifications
   - recommended next moves
+  - daily yawn.bot contributor reports
   - human-review queues
 
 questions:
   - what new feedback arrived
   - what node does it affect
   - what should move next
+  - what should yawn.bot contribute today
   - does this require human authorization
 
 links:
   - automation/github-feedback-triage.yawn
   - automation/codex-repo-agent.yawn
+  - automation/yawn.bot.daily.yawn
   - records/automation-log.yawn
 
 proof:
   source:
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+    - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
   status: seed-backed

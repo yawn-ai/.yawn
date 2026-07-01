@@ -47,6 +47,15 @@ current_entries:
     evidence: "added GitHub issue templates, PR template, contributor guide, contributor-agent files, automation records, and labels feedback and agent-contributor"
     next_move_effect: "GitHub users can now submit feedback or AI-agent architecture proposals in structured forms"
     boundary: "issue chooser requires GitHub sign-in; automation must not alter external state without human authorization"
+  - timestamp: "2026-07-01"
+    repository: "https://github.com/yawn-ai/.yawn"
+    surface: "repo | automation | service-role | label"
+    identifier: "yawn.bot daily automation"
+    actor: "codex"
+    action: "inspect | update | push"
+    evidence: "created yawn.bot service files, Codex automation yawn-bot-daily-repo-contributor, and GitHub label yawn.bot"
+    next_move_effect: "the repo now has a named daily contributor service contract"
+    boundary: "no GitHub account, app install, issue comment, commit, push, or merge should be automated without exact human authorization"
 
 proof:
   source:

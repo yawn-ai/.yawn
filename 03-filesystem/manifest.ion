@@ -22,9 +22,11 @@ files:
   - agents/contributor-agent.yawn
   - agents/contributor-architecture.yawn
   - agents/orientation.yawn
+  - agents/yawn.bot.yawn
   - automation/codex-repo-agent.yawn
   - automation/github-feedback-triage.yawn
   - automation/node.yawn
+  - automation/yawn.bot.daily.yawn
   - core/agency.yawn
   - core/design-principles.yawn
   - core/folder-node.yawn
@@ -77,6 +79,7 @@ files:
   - records/feedback-log.yawn
   - records/next-move-ledger.yawn
   - records/node.yawn
+  - records/yawn.bot-log.yawn
   - start/first-yawn.yawn
   - start/node.yawn
   - start/value-proposition.yawn
@@ -145,18 +148,19 @@ files:
   - 08-research/july-01-2026-github-license-use-lock.ion
   - 08-research/july-01-2026-feedback-intake-lock.ion
   - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+  - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
   - 08-research/research-map.ion
 
 counts:
   markdown: 3
-  ion: 44
-  yawn: 86
+  ion: 45
+  yawn: 89
   yml: 3
   html: 1
   sql: 1
   license: 1
   dotfile: 1
-  total: 140
+  total: 144
 
 proof:
   source:
@@ -168,5 +172,6 @@ proof:
     - 08-research/july-01-2026-github-license-use-lock.ion
     - 08-research/july-01-2026-feedback-intake-lock.ion
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
-  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, and automation.
+    - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, automation, and yawn.bot daily service automation.
   proof_state: seed-backed

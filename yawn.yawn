@@ -74,6 +74,7 @@ contributor_links:
   github_node: .github/node.yawn
   issue_templates: .github/ISSUE_TEMPLATE/node.yawn
   pull_request_template: .github/pull_request_template.md
+  yawn_bot: agents/yawn.bot.yawn
   contributor_agent: agents/contributor-agent.yawn
   contributor_architecture: agents/contributor-architecture.yawn
 
@@ -81,6 +82,7 @@ automation_links:
   node: automation/node.yawn
   github_feedback_triage: automation/github-feedback-triage.yawn
   codex_repo_agent: automation/codex-repo-agent.yawn
+  yawn_bot_daily: automation/yawn.bot.daily.yawn
   automation_log: records/automation-log.yawn
 
 record_links:
@@ -91,6 +93,7 @@ record_links:
   backup_log: records/backup-log.yawn
   feedback_log: records/feedback-log.yawn
   automation_log: records/automation-log.yawn
+  yawn_bot_log: records/yawn.bot-log.yawn
   next_move_ledger: records/next-move-ledger.yawn
 
 template_links:
@@ -116,6 +119,7 @@ example_links:
 
 agent_links:
   orientation: agents/orientation.yawn
+  yawn_bot: agents/yawn.bot.yawn
 
 reference_links:
   source_index: references/source-index.yawn
@@ -185,3 +189,4 @@ source:
   - references/july-01-lock.yawn
   - 08-research/june-30-2026-public-readme.ion
   - 08-research/june-30-2026-alignment.ion
+  - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion

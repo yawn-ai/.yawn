@@ -50,6 +50,14 @@ current_entries:
     inference_made: "repo needs both public GitHub issue forms and a local automation that triages signals without taking hidden authority"
     next_move_effect: "added contributing.md, issue forms, PR template, contributor-agent docs, automation files, labels, and hourly triage automation"
     boundary: "automation is inspection/classification only; no autonomous commits, pushes, merges, comments, email sends, or database writes"
+  - timestamp: "2026-07-01"
+    model_or_agent: "codex"
+    detected_surface: "user request for yawn.bot daily service automation"
+    used_surface: "local .yawn filesystem, Codex automation_update, GitHub repo context"
+    evidence_seen: "user asked to create the bot/service that can contribute, name it yawn.bot, and connect it via Codex as a daily automation"
+    inference_made: "yawn.bot should be represented as a service identity plus a conservative daily Codex automation contract"
+    next_move_effect: "created agents/yawn.bot.yawn, automation/yawn.bot.daily.yawn, records/yawn.bot-log.yawn, and daily Codex automation yawn-bot-daily-repo-contributor"
+    boundary: "service can inspect, classify, and recommend by default; external writes and GitHub account/app setup remain approval-bound"
 
 proof:
   source:

@@ -11,26 +11,31 @@ purpose: >
 holds:
   - issue templates
   - pull request template
+  - yawn.bot label
   - contributor routing
 
 receives:
   - public feedback
   - AI-agent contributor proposals
+  - yawn.bot service signals
   - pull requests
 
 produces:
   - structured issues
   - proof-shaped pull requests
+  - labeled yawn.bot work
   - easier contributor onboarding
 
 questions:
   - how does a GitHub user contribute
   - where does feedback go
   - how should AI-agent help be disclosed
+  - what should yawn.bot review or propose
 
 links:
   - .github/ISSUE_TEMPLATE/node.yawn
   - .github/pull_request_template.md
+  - agents/yawn.bot.yawn
   - contributing.md
 
 proof:
@@ -38,4 +43,5 @@ proof:
     - readme.md
     - contributing.md
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
+    - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
   status: seed-backed

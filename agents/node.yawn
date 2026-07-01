@@ -11,6 +11,7 @@ holds:
   - agent orientation
   - contributor agent
   - contributor architecture disclosure
+  - yawn.bot service identity
   - first read order
   - allowed help
   - blocked hidden authority
@@ -25,17 +26,20 @@ receives:
 produces:
   - safe agent behavior
   - open-source contributor workflows
+  - daily bot contribution posture
   - handoff discipline
   - access records
 
 questions:
   - what should an agent read first
   - how can an AI-assisted contributor disclose architecture
+  - what can yawn.bot do today
   - what can an agent safely infer
   - what must remain human-authorized
 
 links:
   - agents/orientation.yawn
+  - agents/yawn.bot.yawn
   - agents/contributor-agent.yawn
   - agents/contributor-architecture.yawn
   - templates/agent-handoff.yawn
@@ -44,6 +48,7 @@ links:
 proof:
   source:
     - agents/orientation.yawn
+    - agents/yawn.bot.yawn
     - agents/contributor-agent.yawn
     - readme.yawn
   status: seed-backed
