@@ -28,7 +28,7 @@ entry_shape:
 current_entries:
   - date: "2026-07-01"
     source_previous_commit: ""
-    source_current_commit: "c59c5d571de68416cb85eb0ef72e1e064c6bb348"
+    source_current_commit: "733bc114b59d89bfb631185cf9e47f453efee581"
     changed_files_seen: []
     classifications:
       - "baseline"
@@ -36,10 +36,10 @@ current_entries:
       - "seed bridge state in yawn-ai-homepage"
       - "expose bridge relationship in agent-readable surfaces"
     validation: "npm run lint and npm run build passed during seed verification"
-    state_update: "homepage bridge state seeded at current origin/main"
+    state_update: "homepage bridge state seeded at pushed bridge commit"
     git_state: "homepage app is local and not git-backed"
     privacy_state: "public source only; no private staging evidence exposed"
-    next_action: "first scheduled bridge run should diff future origin/main commits against the seeded commit"
+    next_action: "first scheduled bridge run should diff future origin/main commits against the pushed bridge commit"
 
 proof:
   source:
