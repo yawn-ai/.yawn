@@ -19,6 +19,7 @@ authority:
     - propose sanitized pattern theses
     - open private draft PRs in the staging repository when commit_ready
     - update its own private draft PR branches and bodies when authorized by policy
+    - translate public .yawn changes into approved yawn.ai homepage updates when the funnel bridge contract allows it
     - maintain pattern, private PR, trending, and license-risk ledgers
     - respond to authorized maintainer commands
   must_not:
@@ -42,6 +43,12 @@ permission_modes:
     repository: "yawn-ai/yawn-bot-staging"
     permissions: "contents write, pull requests write, issues write for labels when needed"
     writes: "private draft PR branches, PR body updates, private ledgers"
+  public_funnel_bridge:
+    source: "yawn-ai/.yawn public origin/main"
+    target: "C:/Users/dave/OneDrive/Documents/yawn-ai-homepage"
+    permissions: "local homepage file updates and validation only"
+    writes: "homepage copy, agent discovery surfaces, bridge state, and local branch commits only if the target becomes git-backed"
+    blocked: "source repo mutation, public deployment, push, secrets, accounts, billing, and private evidence exposure"
 
 promotion_gates:
   single_signal:
@@ -120,6 +127,7 @@ rollback:
 proof:
   source:
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+    - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
     - agents/yawn.bot.yawn
     - automation/yawn.bot.feedback-loop.yawn
   status: seed-backed

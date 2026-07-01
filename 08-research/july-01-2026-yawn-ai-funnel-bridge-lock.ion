@@ -1,0 +1,51 @@
+ion:
+  id: 08-research/july-01-2026-yawn-ai-funnel-bridge-lock
+  title: yawn.ai funnel bridge lock
+  type: research-lock
+  status: seed-canon
+  updated: 2026-07-01
+
+source:
+  kind: user requirement and local project inspection
+  received_as: user message and local filesystem state
+  summary: >
+    The user asked for an automation that bridges the open-source .yawn
+    repository and the yawn.ai homepage so that pushed main-branch changes can
+    be diffed and translated into a current teaching and monetization funnel
+    for Yawn agent intelligence.
+
+observed_projects:
+  source_repo:
+    path: C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN
+    remote: https://github.com/yawn-ai/.yawn
+    branch: main
+    baseline_commit: c59c5d571de68416cb85eb0ef72e1e064c6bb348
+  target_surface:
+    path: C:/Users/dave/OneDrive/Documents/yawn-ai-homepage
+    type: standalone Next.js homepage
+    git_state: not git-backed at lock time
+
+claims:
+  - yawn.ai should reflect public .yawn evolution as a downstream learning and funnel surface.
+  - The open-source repo remains the canonical protocol source.
+  - The homepage should translate only public, sanitized, source-backed changes.
+  - Automation may update the homepage app and bridge state after validation.
+  - Deployment, pushing, secrets, billing, accounts, and private evidence exposure remain blocked without explicit human authorization.
+
+target_files:
+  - automation/yawn.ai.funnel-bridge.yawn
+  - records/yawn.ai-funnel-bridge-ledger.yawn
+  - records/automation-log.yawn
+  - agents/yawn.bot.policy.yawn
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/.yawn-source-bridge.json
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/lib/site.ts
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/llms.txt/route.ts
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/api/agent-manifest/route.ts
+
+proof:
+  source:
+    - user request on 2026-07-01
+    - local git fetch of yawn-ai/.yawn origin/main
+    - local inspection of yawn-ai-homepage git state
+  claim: The bridge is seeded from the current .yawn main commit and targets the existing local homepage app.
+  proof_state: seed-backed

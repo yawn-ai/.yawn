@@ -17,6 +17,7 @@ holds:
   - yawn.bot rising radar
   - yawn.bot README young-reader audit
   - yawn.bot license reference audit
+  - yawn.ai open-source funnel bridge
 
 receives:
   - GitHub issues
@@ -27,6 +28,7 @@ receives:
   - rising repo signals
   - README comprehension gaps
   - license and reference risks
+  - public .yawn main-branch diffs for yawn.ai
 
 produces:
   - triage summaries
@@ -38,6 +40,7 @@ produces:
   - rising repo pattern reports
   - README clarity reports
   - license-risk reports
+  - yawn.ai homepage bridge reports
   - human-review queues
 
 questions:
@@ -50,6 +53,7 @@ questions:
   - what rising repo pattern is relevant
   - can a young reader understand the README
   - is there a license or privacy risk
+  - should this public .yawn change update the yawn.ai teaching funnel
   - does this require human authorization
 
 links:
@@ -61,6 +65,7 @@ links:
   - automation/yawn.bot.rising-radar.yawn
   - automation/yawn.bot.readme-young-reader-audit.yawn
   - automation/yawn.bot.license-reference-audit.yawn
+  - automation/yawn.ai.funnel-bridge.yawn
   - records/automation-log.yawn
 
 proof:
@@ -69,4 +74,5 @@ proof:
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+    - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
   status: seed-backed

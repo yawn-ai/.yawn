@@ -1,0 +1,88 @@
+id: automation/yawn.ai.funnel-bridge
+title: "yawn.ai open-source funnel bridge"
+kind: automation-contract
+status: active
+updated: 2026-07-01
+
+automation_id: yawn-ai-open-source-funnel-bridge
+schedule: "hourly"
+runtime: "Codex app cron automation"
+source_repo: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
+source_remote: "https://github.com/yawn-ai/.yawn"
+source_branch: "origin/main"
+target_surface: "C:/Users/dave/OneDrive/Documents/yawn-ai-homepage"
+target_state: "C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/.yawn-source-bridge.json"
+policy: agents/yawn.bot.policy.yawn
+ledger: records/yawn.ai-funnel-bridge-ledger.yawn
+
+purpose: >
+  Bridge the public open-source .yawn repository into the yawn.ai homepage so
+  the homepage stays a current, source-backed teaching and monetization funnel
+  for Yawn agent intelligence.
+
+loop:
+  - fetch yawn-ai/.yawn origin/main
+  - read target_state.lastProcessedSourceCommit
+  - diff lastProcessedSourceCommit..origin/main
+  - inspect changed public source files only
+  - classify changes as no_site_change, public_protocol, training, security_control, agent_discovery, proof_memory, or funnel_copy
+  - translate only source-backed, public, useful changes into the homepage app
+  - keep the homepage as a teaching funnel, not the canonical protocol
+  - run npm run lint and npm run build in the homepage app after edits
+  - update target_state only after validation passes
+  - report source commit, files seen, classifications, homepage edits, validation, and human follow-up
+
+allowed_target_files:
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/lib/site.ts
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/page.tsx
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/training/page.tsx
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/security/page.tsx
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/agent-discovery/page.tsx
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/llms.txt/route.ts
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/src/app/api/agent-manifest/route.ts
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/README.md
+  - C:/Users/dave/OneDrive/Documents/yawn-ai-homepage/.yawn-source-bridge.json
+
+translation_rules:
+  public_protocol: "surface plain-language .yawn concepts, handles, and proof rules"
+  training: "turn source-backed learning flows into cohort, workshop, or implementation copy"
+  security_control: "surface control posture only when the source names an actual boundary"
+  agent_discovery: "update llms.txt, manifest, and agent-discovery copy"
+  proof_memory: "explain evidence, replay, receipts, access logs, and bounded promotion"
+  funnel_copy: "clarify who should apply, what they bring, and what they leave with"
+  no_site_change: "record that the source changed but the homepage should stay still"
+
+git_behavior:
+  current_state: "homepage app is local and not git-backed"
+  if_target_is_not_git_backed: "leave validated homepage changes local and report them"
+  if_target_becomes_git_backed: "create or reuse branch codex/yawn-ai-funnel-bridge, commit validated homepage changes with the source commit in the message, and do not push or deploy without explicit current human authorization"
+  source_repo_rule: "do not commit, push, or otherwise mutate yawn-ai/.yawn from this bridge run"
+
+blocked:
+  - push to .yawn main
+  - mutate source repository files
+  - publish or deploy yawn.ai
+  - create accounts, domains, secrets, billing, or external databases
+  - expose private staging PR text or private evidence on the public homepage
+  - copy private snippets into public copy
+  - treat an isolated repo change as market proof
+  - overstate capabilities that are not source-backed
+  - overwrite unrelated human edits in the homepage app
+
+output:
+  - source previous commit
+  - source current commit
+  - changed files
+  - classification by file or theme
+  - homepage edits made or no-site-change reason
+  - validation results
+  - state update result
+  - git state of homepage app
+  - human follow-up needed
+
+proof:
+  source:
+    - agents/yawn.bot.policy.yawn
+    - records/yawn.ai-funnel-bridge-ledger.yawn
+    - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
+  status: seed-backed

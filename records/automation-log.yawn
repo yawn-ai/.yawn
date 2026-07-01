@@ -65,6 +65,14 @@ current_entries:
     allowed_effects: "produce license and reference risk report"
     blocked_effects: "provide legal advice, mutate files, open PRs, alter settings"
     proof: "created through Codex app automation_update"
+  - timestamp: "2026-07-01"
+    automation_id: "yawn-ai-open-source-funnel-bridge"
+    name: "yawn.ai open-source funnel bridge"
+    schedule: "hourly"
+    scope: "diff public yawn-ai/.yawn origin/main against the homepage bridge state and translate source-backed changes into the yawn.ai homepage"
+    allowed_effects: "update local homepage files, agent discovery surfaces, bridge state, and validation reports"
+    blocked_effects: "mutate .yawn source files, push, deploy, change domains, manage secrets, expose private evidence, or overstate unproven claims"
+    proof: "created through Codex app automation_update"
 
 proof:
   source:
@@ -75,5 +83,6 @@ proof:
     - automation/yawn.bot.rising-radar.yawn
     - automation/yawn.bot.readme-young-reader-audit.yawn
     - automation/yawn.bot.license-reference-audit.yawn
+    - automation/yawn.ai.funnel-bridge.yawn
     - records/access-log.yawn
   status: seed-backed

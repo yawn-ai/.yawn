@@ -1,0 +1,48 @@
+id: records/yawn.ai-funnel-bridge-ledger
+title: "yawn.ai funnel bridge ledger"
+kind: record-log
+status: active-seed
+updated: 2026-07-01
+
+purpose: >
+  Track how public .yawn source changes are translated into the yawn.ai
+  homepage as a training and monetization funnel.
+
+source_repo: "yawn-ai/.yawn"
+target_surface: "C:/Users/dave/OneDrive/Documents/yawn-ai-homepage"
+automation_id: yawn-ai-open-source-funnel-bridge
+
+entry_shape:
+  date: ""
+  source_previous_commit: ""
+  source_current_commit: ""
+  changed_files_seen: []
+  classifications: []
+  homepage_edits: []
+  validation: ""
+  state_update: ""
+  git_state: ""
+  privacy_state: ""
+  next_action: ""
+
+current_entries:
+  - date: "2026-07-01"
+    source_previous_commit: ""
+    source_current_commit: "c59c5d571de68416cb85eb0ef72e1e064c6bb348"
+    changed_files_seen: []
+    classifications:
+      - "baseline"
+    homepage_edits:
+      - "seed bridge state in yawn-ai-homepage"
+      - "expose bridge relationship in agent-readable surfaces"
+    validation: "npm run lint and npm run build passed during seed verification"
+    state_update: "homepage bridge state seeded at current origin/main"
+    git_state: "homepage app is local and not git-backed"
+    privacy_state: "public source only; no private staging evidence exposed"
+    next_action: "first scheduled bridge run should diff future origin/main commits against the seeded commit"
+
+proof:
+  source:
+    - automation/yawn.ai.funnel-bridge.yawn
+    - agents/yawn.bot.policy.yawn
+  status: seed-backed
