@@ -62,6 +62,29 @@ proof: "After writing it, I know whether the task feels smaller."
 replay: "What changed after naming the blocker?"
 ```
 
+## Start Here
+
+You can use `.yawn` at three depths:
+
+| Need | Start |
+| --- | --- |
+| Write the smallest useful frame | [templates/basic.yawn](templates/basic.yawn) |
+| Answer questions instead of reading schema | [question-packets/basic.yawn](question-packets/basic.yawn) |
+| Fill a complete orientation frame | [templates/full.yawn](templates/full.yawn) |
+| Hold a relationship conversation carefully | [question-packets/relationship.yawn](question-packets/relationship.yawn) |
+| See the repo dogfood its own spine | [examples/yawn-spine-dogfood.yawn](examples/yawn-spine-dogfood.yawn) |
+
+The short route:
+
+```text
+answer questions
+-> populate a .yawn
+-> name the boundary
+-> choose one reversible move
+-> check proof
+-> replay what changed
+```
+
 ## Why
 
 Brains are not good at holding many live tensions at once.
@@ -184,11 +207,55 @@ Open the smallest layer you need:
 | Core | The movement frame, lacuna, agency, boundary, and proof | [core/what-is-a-yawn.yawn](core/what-is-a-yawn.yawn) |
 | Interface | The five handles: mirror, map, meaning, move, memory | [interface/node.yawn](interface/node.yawn) |
 | Templates | Blank forms for decisions, proof, handoffs, and records | [templates/basic.yawn](templates/basic.yawn) |
-| Examples | Concrete `.yawn` objects you can copy from | [examples/stuck.yawn](examples/stuck.yawn) |
+| Question Packets | Plain-language intake contracts that fill templates | [question-packets/basic.yawn](question-packets/basic.yawn) |
+| Examples | Concrete `.yawn` objects you can copy from | [examples/stuck.yawn](examples/stuck.yawn), [spine dogfood](examples/yawn-spine-dogfood.yawn) |
 | Observations | What this repo is actually observing | [observations/lived-agency.yawn](observations/lived-agency.yawn) |
 | Records | Material memory: access, proof, logs, replay, next moves | [records/node.yawn](records/node.yawn) |
 | Agents | How AI agents and yawn.bot are bounded | [agents/yawn.bot.policy.yawn](agents/yawn.bot.policy.yawn) |
 | Feedback | How confusion, usefulness, and objections come back in | [feedback/form.yawn](feedback/form.yawn) |
+
+## Fill One From Questions
+
+You do not need to understand the full schema to create a `.yawn`.
+
+Answer a few questions:
+
+```text
+1. What has attention?
+2. What happened?
+3. What are you inferring?
+4. What is missing?
+5. What must not be assumed?
+6. What is one bounded move?
+7. What would prove change?
+```
+
+The answers can populate [templates/full.yawn](templates/full.yawn).
+
+For relationships, use [question-packets/relationship.yawn](question-packets/relationship.yawn)
+with [templates/relationship.yawn](templates/relationship.yawn). It keeps facts,
+quotes, inferences, desires, fears, unknowns, consent, and proof separate.
+
+## Dogfood: The Repo Spine
+
+This repo also uses `.yawn` to describe itself:
+
+```yaml
+title: "The .yawn repo explains its own spine"
+signal: "The repo is easier to trust if it uses its own loop to explain itself."
+inference: "A reader may understand YAWN faster if the repo shows its own movement frame."
+
+current: "The README has a compact example and the repo has richer templates."
+possible: "A reader can move from README -> question packets -> templates -> examples."
+lacuna: "The bridge from simple entry to full schema must stay visible."
+
+boundary: "Do not make the first screen carry the whole ontology."
+move: "Use question packets as the intake layer and examples as proof objects."
+proof: "A new reader can choose a path and create a first .yawn without reading everything."
+replay: "What became clearer after following the path?"
+```
+
+Full dogfood example: [examples/yawn-spine-dogfood.yawn](examples/yawn-spine-dogfood.yawn)
 
 The first path is:
 
@@ -196,6 +263,7 @@ The first path is:
 readme.yawn
 -> start/first-yawn.yawn
 -> templates/basic.yawn
+-> question-packets/basic.yawn
 -> examples/stuck.yawn
 -> core/proof-and-boundary.yawn
 ```

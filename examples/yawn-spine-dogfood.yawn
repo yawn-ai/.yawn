@@ -1,0 +1,229 @@
+id: examples/yawn-spine-dogfood
+title: "The .yawn repo explains its own spine"
+kind: yawn-spine-example
+status: example
+
+source:
+  template: templates/full.yawn
+  question_packet: question-packets/basic.yawn
+  origin: repo
+  raw_material: "The README, readme.yawn, yawn.yawn, templates, question packets, and examples form the public spine of the repo."
+  source_refs:
+    - readme.yawn
+    - README.md
+    - yawn.yawn
+    - question-packets/basic.yawn
+    - templates/full.yawn
+    - examples/relationship-commitment-conversation.yawn
+  quotes: []
+  privacy: public
+  consent:
+    recorded_with_consent: yes
+    shareable_with:
+      - public
+    do_not_share_with: []
+
+movement:
+  stage: orient
+  mode: hold
+  loop:
+    - notice
+    - infer
+    - name_gap
+    - protect_boundary
+    - choose_bounded_move
+    - prove_change
+    - replay
+
+observer:
+  name: ".yawn repo"
+  role: witness
+  position: "A public repository explaining a plain-text inference format."
+  attention: "The bridge from simple human entry to full machine-addressable frames."
+  body_state: ""
+  emotional_tone: "clear, restrained, inviting"
+  agency_level: medium
+
+field:
+  name: ".yawn public spine"
+  slice: "README -> question packets -> templates -> examples -> proof/replay"
+  context: "A reader is deciding whether the format is understandable and useful."
+  environment: "GitHub repository"
+  relationship_context: "Human and AI agents share the same frame without hidden authority."
+  time_horizon: "first read through first copied .yawn"
+  constraints:
+    - "The first screen must stay simple."
+    - "The full schema must remain discoverable."
+    - "AI authority must stay bounded."
+  available_resources:
+    - readme.yawn
+    - README.md
+    - question-packets/basic.yawn
+    - templates/full.yawn
+    - templates/relationship.yawn
+    - examples/stuck.yawn
+    - examples/relationship-commitment-conversation.yawn
+
+signal:
+  raw: "The repo is easier to trust if it uses its own loop to explain itself."
+  noticed: "README explains the concept, while question packets and templates show how to use it."
+  body_cues: []
+  emotions:
+    - "curiosity"
+    - "need for clarity"
+  repeated_pattern: "Readers need a short door, a visible path, and a deeper frame when ready."
+  why_it_has_attention: "The repo is both the documentation and the first proof object."
+
+frame:
+  current: "The repo has a compact public example and richer templates, but the path between them must stay visible."
+  possible: "A reader can move from one simple question packet into a full .yawn without reading the whole ontology."
+  possible_kind: desired
+  direction: "Readable first, machine-addressable second, proof-bound when promoted."
+  stakes: "If the ramp is too abstract, the format feels ceremonial instead of useful."
+  importance: "The repo's own structure should prove the shape it teaches."
+
+measurement:
+  known:
+    - "README.md is the GitHub-facing mirror."
+    - "readme.yawn is the canonical source."
+    - "yawn.yawn is the root index."
+    - "question-packets map simple answers into templates."
+  observed:
+    - "The README keeps the first example compact."
+    - "The repo links question packets, templates, examples, agents, and records."
+  inferred:
+    - "A clearer path will help readers understand YAWN faster."
+    - "Dogfooding the spine makes the protocol less abstract."
+  assumed: []
+  desired:
+    - "A reader can choose the right entry point without being overloaded."
+  feared:
+    - "The full schema could look like the required first step."
+  imagined: []
+  unproven:
+    - "That new readers can create a first .yawn quickly."
+  unknown:
+    - "Which path most readers will choose first."
+
+lacuna:
+  gap: "The bridge from compact README example to full template needs to be visible and copyable."
+  missing_bridge: "A dogfooding example that shows the repo itself as a .yawn spine."
+  open_questions:
+    - "Can a new reader follow the path without reading every folder?"
+    - "Does the question-packet layer make the full schema feel less heavy?"
+  what_would_make_this_clearer: "A README path table and this example linked from the examples node."
+
+projection_stack:
+  beliefs:
+    - "Documentation should demonstrate the thing it teaches."
+  habits:
+    - "Start small, then reveal deeper structure."
+  values:
+    - "human-readable first"
+    - "visible inference"
+    - "bounded agency"
+    - "proof before canon"
+  needs:
+    - "a simple first move"
+    - "a reliable deeper path"
+  desires:
+    - "a repo spine that feels alive but not overwhelming"
+  fears:
+    - "abstract language without a usable route"
+  body_patterns: []
+  relationship_patterns:
+    - "human and agent share one inspectable frame"
+  constraints:
+    - "Keep the first README screen compact."
+  access:
+    - "public GitHub repo"
+  identity_frames:
+    - "plain-text inference filesystem"
+  prior_commitments:
+    - "human-readable first"
+    - "machine-addressable second"
+    - "proof-bound when promoted"
+  hidden_loops: []
+
+move:
+  invited: "Use the repo's own spine as a readable .yawn example."
+  smallest_step: "Follow README -> question-packets/basic.yawn -> templates/full.yawn -> this example."
+  owner: "repo maintainer or contributor"
+  reversible: true
+  agency_cost: low
+  consent_required: []
+  blocked_until: []
+  alternatives:
+    - "Start with templates/basic.yawn if the full path feels too large."
+
+boundary:
+  must_not_assume:
+    - "That every reader wants the full schema first."
+    - "That an AI-filled .yawn is proof."
+  must_not_force:
+    - "Do not make the README first screen carry the whole ontology."
+  must_not_delegate:
+    - "Do not let an agent decide the human's frame."
+  must_not_publish: []
+  must_ask_first: []
+  blocked_effects:
+    persistence_authorized: false
+    external_effects_authorized: false
+    relationship_claim_authorized: false
+    agent_action_authorized: false
+    public_sharing_authorized: true
+  safety_notes:
+    - "This example describes the public repo, not a private person."
+  anti_false_certainty:
+    - "signal is not instruction"
+    - "resonance is not proof"
+    - "memory is not objective record"
+    - "AI output is not authority"
+    - "only proof updates the map"
+
+proof:
+  condition: "A reader can name one entry path, copy a template or question packet, and understand what proof would update the frame."
+  status: not_started
+  evidence: []
+  falsifier: "A reader cannot tell where to start or thinks the full schema is mandatory."
+  confidence: unknown
+  timestamp: ""
+  proof_receipts: []
+
+coherence:
+  parent_yawns:
+    - readme.yawn
+    - yawn.yawn
+  child_yawns:
+    - question-packets/basic.yawn
+    - templates/full.yawn
+  supports:
+    - templates/node.yawn
+    - examples/node.yawn
+  conflicts_with: []
+  depends_on:
+    - README.md
+    - readme.yawn
+  proof_gaps:
+    - "new-reader comprehension is not yet measured"
+  echoes:
+    - "human-readable first, machine-addressable second, proof-bound when promoted"
+  source_hashes: []
+  unresolved_tensions:
+    - "simple enough to enter, deep enough to hold real frames"
+  recoherence_suggestions:
+    - "Record reader feedback after first-use attempts."
+
+replay:
+  before: "The repo described YAWN but did not show its own spine as a .yawn example."
+  after: "The repo can point to a dogfooded .yawn that explains the public path."
+  changed:
+    - "Question packets, full templates, and examples are connected through a visible spine."
+  did_not_change:
+    - "The first README screen remains compact."
+  learned: []
+  still_open:
+    - "Whether readers can complete a first .yawn without help."
+  next_questions:
+    - "What confused the next first-time reader?"
+  next_yawn: ""

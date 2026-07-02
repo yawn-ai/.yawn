@@ -68,6 +68,39 @@ proof: "After writing it, I know whether the task feels smaller."
 replay: "What changed after naming the blocker?"
 ```
 
+## start here
+
+You can use .yawn at three depths:
+
+```text
+smallest useful frame:
+  templates/basic.yawn
+
+answer questions instead of reading schema:
+  question-packets/basic.yawn
+
+complete orientation frame:
+  templates/full.yawn
+
+relationship conversation:
+  question-packets/relationship.yawn
+  templates/relationship.yawn
+
+repo dogfood example:
+  examples/yawn-spine-dogfood.yawn
+```
+
+The short route:
+
+```text
+answer questions
+-> populate a .yawn
+-> name the boundary
+-> choose one reversible move
+-> check proof
+-> replay what changed
+```
+
 ## why
 
 Brains are not good at holding many live tensions at once.
@@ -215,6 +248,55 @@ templates/basic.yawn
 templates/full.yawn
 templates/agent-handoff.yawn
 templates/proof-receipt.yawn
+question-packets/basic.yawn
+question-packets/relationship.yawn
+```
+
+## fill one from questions
+
+You do not need to understand the full schema to create a .yawn.
+
+Answer a few questions:
+
+```text
+1. What has attention?
+2. What happened?
+3. What are you inferring?
+4. What is missing?
+5. What must not be assumed?
+6. What is one bounded move?
+7. What would prove change?
+```
+
+The answers can populate templates/full.yawn.
+
+For relationships, use question-packets/relationship.yawn with
+templates/relationship.yawn. It keeps facts, quotes, inferences, desires,
+fears, unknowns, consent, and proof separate.
+
+## dogfood: the repo spine
+
+This repo also uses .yawn to describe itself:
+
+```yaml
+title: "The .yawn repo explains its own spine"
+signal: "The repo is easier to trust if it uses its own loop to explain itself."
+inference: "A reader may understand YAWN faster if the repo shows its own movement frame."
+
+current: "The README has a compact example and the repo has richer templates."
+possible: "A reader can move from README -> question packets -> templates -> examples."
+lacuna: "The bridge from simple entry to full schema must stay visible."
+
+boundary: "Do not make the first screen carry the whole ontology."
+move: "Use question packets as the intake layer and examples as proof objects."
+proof: "A new reader can choose a path and create a first .yawn without reading everything."
+replay: "What became clearer after following the path?"
+```
+
+Full dogfood example:
+
+```text
+examples/yawn-spine-dogfood.yawn
 ```
 
 ## boundary
@@ -297,6 +379,7 @@ start/
 core/
 interface/
 templates/
+question-packets/
 examples/
 agents/
 automation/
@@ -341,14 +424,23 @@ interface:
 templates:
   templates/node.yawn
   templates/basic.yawn
+  templates/full.yawn
+  templates/relationship.yawn
   templates/decision.yawn
   templates/agent-handoff.yawn
+
+question-packets:
+  question-packets/node.yawn
+  question-packets/basic.yawn
+  question-packets/relationship.yawn
 
 examples:
   examples/node.yawn
   examples/stuck.yawn
+  examples/yawn-spine-dogfood.yawn
   examples/signal.yawn
   examples/decision.yawn
+  examples/relationship-commitment-conversation.yawn
 
 observations:
   observations/node.yawn
@@ -376,6 +468,7 @@ The first path is:
 readme.yawn
 -> start/first-yawn.yawn
 -> templates/basic.yawn
+-> question-packets/basic.yawn
 -> examples/stuck.yawn
 -> core/proof-and-boundary.yawn
 ```

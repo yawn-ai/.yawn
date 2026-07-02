@@ -10,7 +10,9 @@ purpose: >
 holds:
   - stuck example
   - decision example
+  - yawn spine dogfood example
   - relationship tension example
+  - relationship commitment conversation example
   - signal example
   - choice example
   - repair example
@@ -38,5 +40,7 @@ proof:
   source:
     - examples/stuck.yawn
     - examples/decision.yawn
+    - examples/yawn-spine-dogfood.yawn
     - examples/relationship-tension.yawn
+    - examples/relationship-commitment-conversation.yawn
   status: seed-backed

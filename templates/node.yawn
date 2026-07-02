@@ -25,26 +25,35 @@ receives:
   - repeated movement patterns
   - proof and boundary constraints
   - agent handoff needs
+  - question packet mappings
 
 produces:
   - copyable forms
   - consistent records
+  - intake-driven draft frames
   - lower cognitive load
 
 questions:
   - what shape should this yawn use
+  - which question packet can fill this template
   - what fields are required
   - what can be deleted
 
 links:
   - start/node.yawn
+  - question-packets/node.yawn
   - examples/node.yawn
   - records/node.yawn
+
+related_question_packets:
+  basic: question-packets/basic.yawn
+  relationship: question-packets/relationship.yawn
 
 proof:
   source:
     - templates/basic.yawn
     - templates/feedback.yawn
     - templates/full.yawn
+    - templates/relationship.yawn
     - templates/proof-receipt.yawn
   status: seed-backed

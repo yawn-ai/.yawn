@@ -1,0 +1,44 @@
+id: question-packets/node
+title: "question packets node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-02
+
+purpose: >
+  Hold simple intake contracts that let a person answer plain-language
+  questions while an agent maps the answers into fuller .yawn templates.
+
+holds:
+  - basic question packet
+  - relationship question packet
+
+receives:
+  - simple user answers
+  - skipped answers
+  - quotes, facts, inferences, desires, fears, and unknowns
+
+produces:
+  - draft-populated .yawn files
+  - visible lacuna entries for missing answers
+  - safer separation between observation, inference, boundary, move, and proof
+
+rules:
+  - "Question packets are fill protocols, not competing templates."
+  - "Skipped answers become lacuna.open_questions."
+  - "Facts stay separate from inferences."
+  - "Partner models stay hypothetical."
+  - "Only proof updates the map."
+
+links:
+  - question-packets/basic.yawn
+  - question-packets/relationship.yawn
+  - templates/full.yawn
+  - templates/relationship.yawn
+  - examples/relationship-commitment-conversation.yawn
+
+proof:
+  source:
+    - readme.yawn
+    - templates/full.yawn
+    - templates/relationship.yawn
+  status: seed-backed

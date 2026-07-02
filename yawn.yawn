@@ -114,6 +114,11 @@ record_links:
   yawn_bot_ai_writing_ledger: records/yawn.bot-ai-writing-ledger.yawn
   next_move_ledger: records/next-move-ledger.yawn
 
+question_packet_links:
+  node: question-packets/node.yawn
+  basic: question-packets/basic.yawn
+  relationship: question-packets/relationship.yawn
+
 template_links:
   basic: templates/basic.yawn
   feedback: templates/feedback.yawn
@@ -130,7 +135,9 @@ template_links:
 example_links:
   stuck: examples/stuck.yawn
   decision: examples/decision.yawn
+  yawn_spine_dogfood: examples/yawn-spine-dogfood.yawn
   relationship_tension: examples/relationship-tension.yawn
+  relationship_commitment_conversation: examples/relationship-commitment-conversation.yawn
   signal: examples/signal.yawn
   choice: examples/choice.yawn
   repair: examples/repair.yawn
@@ -153,6 +160,11 @@ usage_frame: >
   Any AI can help mirror and organize, but the human remains the source of
   authorization.
 
+question_packet_rule: >
+  A question packet is an intake contract, not a competing template. It asks
+  plain-language questions, maps answers into a target .yawn template, and
+  turns skipped answers into visible lacuna rather than invented content.
+
 folder_node_rule: >
   Every folder is a knowledge node and mental-model node. Each folder should
   contain node.yawn as its local orientation card.
@@ -163,6 +175,7 @@ shape_path:
   core: core/what-is-a-yawn.yawn
   interface: interface/node.yawn
   templates: templates/basic.yawn
+  question_packets: question-packets/node.yawn
   examples: examples/stuck.yawn
   observations: observations/lived-agency.yawn
   records: records/node.yawn
@@ -195,6 +208,7 @@ folder_node_links:
   observations: observations/node.yawn
   records: records/node.yawn
   templates: templates/node.yawn
+  question_packets: question-packets/node.yawn
   examples: examples/node.yawn
   references: references/node.yawn
   agents: agents/node.yawn

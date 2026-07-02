@@ -1,18 +1,187 @@
+id: ""
 title: ""
-kind: relationship-frame
 
-current: ""
-possible: ""
-lacuna: ""
+kind: relationship-yawn
+status: draft
+version: "0.1.0"
+created: ""
+updated: ""
 
-known_facts: []
-interpretations: []
-needs: []
-boundaries: []
-
-move: ""
-proof: ""
-replay: ""
+privacy: private
+partner_review_required: true
+relationship_impacting_moves_blocked: true
 
 source:
   template: templates/relationship.yawn
+  question_packet: question-packets/relationship.yawn
+  origin: "" # self-report | conversation | transcript | observation | agent
+  raw_material: ""
+  source_refs: []
+  privacy: private
+  consent:
+    recorded_with_consent: unknown
+    shareable_with: []
+    do_not_share_with: []
+
+relationship:
+  participants:
+    - name: ""
+      role: self
+    - name: ""
+      role: partner
+  kind: "" # marriage | partnership | friendship | family | work | community | other
+  shared_context: ""
+  shared_commitments: []
+  explicit_requests: []
+  implicit_expectations: []
+  tensions: []
+  repair_needed: []
+  must_not_collapse:
+    - "one person's inference into shared truth"
+    - "desire into entitlement"
+    - "fear into accusation"
+    - "commitment into control"
+    - "discomfort into rejection"
+    - "resonance into proof"
+
+conversation:
+  raw_summary: ""
+  important_quotes:
+    - speaker: ""
+      quote: ""
+      context: ""
+      type: actual_quote
+  shared_topic: ""
+  emotional_tone: ""
+
+measurement:
+  known: []
+  observed: []
+  inferred: []
+  assumed: []
+  desired: []
+  feared: []
+  imagined: []
+  unproven: []
+  unknown: []
+
+shared_field:
+  current: ""
+  possible: ""
+  desired_environment: ""
+  undesirable_states_to_minimize: []
+  commitments_needed: []
+  patterns_to_make_explicit: []
+
+self_observer:
+  what_i_noticed: ""
+  what_i_want: ""
+  what_i_fear: ""
+  what_i_need: ""
+  what_i_am_inferring: ""
+  what_i_do_not_know: ""
+
+partner_model:
+  what_they_said: ""
+  what_they_may_want: ""
+  what_they_may_fear: ""
+  what_they_may_need: ""
+  possible_perspective: ""
+  what_i_am_not_allowed_to_assume: ""
+
+lacuna:
+  gap: ""
+  missing_bridge: ""
+  open_questions:
+    - "What are we each committing to?"
+    - "What states are we trying to avoid recreating?"
+    - "What kind of relationship field are we navigating toward?"
+    - "What needs to become explicit before movement is safe?"
+    - "What would make fun, intimacy, and agency more available?"
+  what_would_make_this_clearer: ""
+
+projection_stack:
+  beliefs: []
+  habits: []
+  values: []
+  needs: []
+  desires: []
+  fears: []
+  body_patterns: []
+  sexual_desires: []
+  avoidance_patterns: []
+  commitment_patterns: []
+  repair_patterns: []
+  relationship_patterns: []
+  hidden_loops: []
+
+move:
+  smallest_step: ""
+  reversible: true
+  owner: ""
+  partner_review_required: true
+  relationship_impacting_moves_blocked: true
+  consent_required:
+    - "partner review"
+  blocked_until:
+    - "relationship-impacting move has consent or review"
+  alternatives: []
+
+boundary:
+  privacy: private
+  must_not_assume:
+    - "that my interpretation is their truth"
+    - "that desire equals entitlement"
+    - "that commitment means control"
+    - "that discomfort means rejection"
+  must_not_force: []
+  must_ask_first: []
+  must_not_publish: []
+  blocked_effects:
+    persistence_authorized: false
+    external_effects_authorized: false
+    relationship_claim_authorized: false
+    agent_action_authorized: false
+    public_sharing_authorized: false
+  anti_false_certainty:
+    - "signal is not instruction"
+    - "resonance is not proof"
+    - "coincidence is not command"
+    - "memory is not objective record"
+    - "AI output is not authority"
+    - "intensity is not truth"
+    - "only proof updates the map"
+  safety_notes: []
+
+proof:
+  condition: ""
+  status: not_started
+  evidence: []
+  falsifier: ""
+  confidence: unknown
+  possible_proof:
+    - "we can each name one commitment clearly"
+    - "we can each name one undesirable pattern we want to reduce"
+    - "we can choose one small experiment without pressure"
+    - "we can replay what changed after trying it"
+
+agent:
+  may:
+    - "mirror the frame"
+    - "separate fact, quote, inference, desire, fear, and unknown"
+    - "name open questions"
+    - "suggest bounded moves"
+  must_not:
+    - "decide what the relationship means"
+    - "treat partner-model guesses as known facts"
+    - "turn one person's desire into another person's obligation"
+    - "claim proof without evidence"
+    - "publish or persist private context without authorization"
+
+replay:
+  what_changed_between_us: ""
+  what_became_clearer: ""
+  what_still_needs_care: ""
+  changed: []
+  still_open: []
+  next_questions: []

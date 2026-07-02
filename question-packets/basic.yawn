@@ -1,0 +1,76 @@
+id: question-packets/basic
+title: "Basic Yawn Intake"
+kind: question-packet
+status: seed
+
+target_template: templates/full.yawn
+mode: draft_populate_only
+privacy_default: private
+
+rules:
+  - "Skipped answers become lacuna.open_questions."
+  - "Do not invent missing answers."
+  - "Facts write to measurement.observed or measurement.known."
+  - "Interpretations write to measurement.inferred."
+  - "Desires, fears, and needs stay labeled."
+  - "Boundaries write before moves are authorized."
+  - "Only proof updates the map."
+
+questions:
+  - id: q_attention
+    prompt: "What has your attention?"
+    writes_to:
+      - signal.raw
+      - observer.attention
+      - field.slice
+
+  - id: q_event_or_quote
+    prompt: "What happened, or what was said?"
+    writes_to:
+      - source.raw_material
+      - source.quotes
+      - measurement.observed
+
+  - id: q_inference
+    prompt: "What are you inferring?"
+    writes_to:
+      - measurement.inferred
+      - frame.current
+      - frame.possible
+
+  - id: q_want_fear_need
+    prompt: "What do you want, fear, or need?"
+    writes_to:
+      - measurement.desired
+      - measurement.feared
+      - projection_stack.needs
+      - projection_stack.desires
+      - projection_stack.fears
+
+  - id: q_missing
+    prompt: "What is missing or unclear?"
+    writes_to:
+      - lacuna.gap
+      - lacuna.missing_bridge
+      - lacuna.open_questions
+
+  - id: q_boundary
+    prompt: "What must not be assumed or forced?"
+    writes_to:
+      - boundary.must_not_assume
+      - boundary.must_not_force
+      - relationship.must_not_collapse
+
+  - id: q_move
+    prompt: "What is one small reversible move?"
+    writes_to:
+      - move.smallest_step
+      - move.reversible
+      - move.consent_required
+
+  - id: q_proof
+    prompt: "What would prove that something changed?"
+    writes_to:
+      - proof.condition
+      - proof.status
+      - replay.next_questions

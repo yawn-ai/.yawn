@@ -1,56 +1,223 @@
 id: ""
 title: ""
 
+kind: yawn
+status: seed
+version: "0.1.0"
+created: ""
+updated: ""
+
+source:
+  template: templates/full.yawn
+  origin: "" # self-report | conversation | transcript | repo | agent | artifact | observation
+  raw_material: ""
+  source_refs: []
+  quotes: []
+  privacy: private # private | shared | public
+  consent:
+    recorded_with_consent: unknown
+    shareable_with: []
+    do_not_share_with: []
+
 movement:
-  stage: "observe" # observe | orient | choose | move | replay
-  mode: "hold"     # observe | ask | hold | test | move
+  stage: observe # observe | orient | steer | move | replay
+  mode: hold # observe | ask | hold | test | move
+  loop:
+    - notice
+    - infer
+    - name_gap
+    - protect_boundary
+    - choose_bounded_move
+    - prove_change
+    - replay
 
 observer:
-  what_has_attention: ""
-  body_signal: ""
+  name: ""
+  role: self # self | partner | agent | witness | group | unknown
+  position: ""
+  attention: ""
+  body_state: ""
   emotional_tone: ""
+  agency_level: unknown # low | medium | high | unknown
+
+field:
+  name: ""
+  slice: ""
+  context: ""
+  environment: ""
+  relationship_context: ""
+  time_horizon: ""
+  constraints: []
+  available_resources: []
+
+signal:
+  raw: ""
+  noticed: ""
+  body_cues: []
+  emotions: []
+  repeated_pattern: ""
+  why_it_has_attention: ""
 
 frame:
   current: ""
   possible: ""
-  context: ""
+  possible_kind: desired # desired | feared | called | avoided | unknown | unproven
+  direction: ""
+  stakes: ""
+  importance: ""
+
+measurement:
+  known: []
+  observed: []
+  inferred: []
+  assumed: []
+  desired: []
+  feared: []
+  imagined: []
+  unproven: []
+  unknown: []
 
 lacuna:
   gap: ""
   missing_bridge: ""
   open_questions: []
+  what_would_make_this_clearer: ""
 
-axis:
+projection_stack:
   beliefs: []
   habits: []
   values: []
-  access: []
+  needs: []
+  desires: []
+  fears: []
+  body_patterns: []
+  relationship_patterns: []
   constraints: []
-  relationships: []
+  access: []
+  identity_frames: []
+  prior_commitments: []
+  hidden_loops: []
+
+axis:
+  clarity: unknown
+  agency: unknown
+  proofability: unknown
+  reversibility: unknown
+  risk: unknown
+  embodiment: unknown
+  coherence: unknown
+  novelty: unknown
+  permission_safety: unknown
+
+relationship:
+  applies: false
+  kind: "" # marriage | friendship | family | work | community | self | other
+  participants: []
+  shared_context: ""
+  shared_commitments: []
+  explicit_requests: []
+  implicit_expectations: []
+  tensions: []
+  repair_needed: []
+  intimacy_context:
+    applies: false
+    desires: []
+    boundaries: []
+    fears: []
+    open_questions: []
+    consent_notes: []
+  must_not_collapse:
+    - "one person's inference into shared truth"
+    - "desire into entitlement"
+    - "fear into accusation"
+    - "resonance into proof"
 
 move:
   invited: ""
   smallest_step: ""
+  owner: ""
   reversible: true
-  agency_cost: ""
+  agency_cost: unknown # low | medium | high | unknown
+  consent_required: []
+  blocked_until: []
+  alternatives: []
 
 boundary:
+  must_not_assume: []
   must_not_force: []
+  must_not_delegate: []
+  must_not_publish: []
+  must_ask_first: []
   blocked_effects:
-    external_action: true
-    silent_mutation: true
-    hidden_authority: true
+    persistence_authorized: false
+    external_effects_authorized: false
+    relationship_claim_authorized: false
+    agent_action_authorized: false
+    public_sharing_authorized: false
+  safety_notes: []
+  anti_false_certainty:
+    - "signal is not instruction"
+    - "resonance is not proof"
+    - "coincidence is not command"
+    - "memory is not objective record"
+    - "AI output is not authority"
+    - "intensity is not truth"
+    - "only proof updates the map"
 
 proof:
   condition: ""
+  status: not_started # not_started | gathering | passed | failed | mixed | abandoned
   evidence: []
-  status: "unproven"
+  falsifier: ""
+  confidence: unknown # low | medium | high | unknown
+  timestamp: ""
+  proof_receipts: []
+
+agent:
+  role: mirror # mirror | organizer | challenger | summarizer | planner | blocked
+  receives:
+    - source
+    - signal
+    - frame
+    - measurement
+    - lacuna
+    - projection_stack
+    - relationship
+    - move
+    - boundary
+    - proof
+  may:
+    - "mirror the frame"
+    - "separate observation from inference"
+    - "name open questions"
+    - "suggest bounded moves"
+    - "ask for missing data"
+  must_not:
+    - "decide for the human"
+    - "treat one person's inference as shared truth"
+    - "turn desire into command"
+    - "ignore consent"
+    - "claim proof without evidence"
+    - "silently mutate memory or canon"
+
+coherence:
+  parent_yawns: []
+  child_yawns: []
+  supports: []
+  conflicts_with: []
+  depends_on: []
+  proof_gaps: []
+  echoes: []
+  source_hashes: []
+  unresolved_tensions: []
+  recoherence_suggestions: []
 
 replay:
   before: ""
   after: ""
   changed: []
+  did_not_change: []
+  learned: []
   still_open: []
-
-source:
-  template: templates/full.yawn
+  next_questions: []
+  next_yawn: ""

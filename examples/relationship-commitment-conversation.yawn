@@ -1,0 +1,191 @@
+id: examples/relationship-commitment-conversation
+title: "Commitment conversation without collapsing truth"
+kind: relationship-yawn-example
+status: example
+
+privacy: private
+partner_review_required: true
+relationship_impacting_moves_blocked: true
+
+source:
+  template: templates/relationship.yawn
+  question_packet: question-packets/relationship.yawn
+  origin: conversation
+  raw_material: "A generic relationship conversation about commitment and repeated patterns."
+  source_refs: []
+  privacy: private
+  consent:
+    recorded_with_consent: unknown
+    shareable_with: []
+    do_not_share_with: []
+
+relationship:
+  participants:
+    - name: self
+      role: self
+    - name: partner
+      role: partner
+  kind: partnership
+  shared_context: "A relationship conversation happened and commitment was discussed."
+  shared_commitments: []
+  explicit_requests: []
+  implicit_expectations: []
+  tensions:
+    - "Commitment is important, but its meaning is not yet shared."
+  repair_needed: []
+  must_not_collapse:
+    - "one person's inference into shared truth"
+    - "desire into entitlement"
+    - "fear into accusation"
+    - "commitment into control"
+
+conversation:
+  raw_summary: "Commitment, repeated patterns, and the desired relationship field were discussed."
+  important_quotes:
+    - speaker: self
+      quote: "We both need to make commitments to the relationship."
+      context: "Commitment conversation"
+      type: actual_quote
+  shared_topic: "Commitment and repeated relationship states"
+  emotional_tone: "charged but oriented toward repair"
+
+measurement:
+  known:
+    - "A relationship conversation happened."
+    - "Commitment was discussed."
+  observed:
+    - "The conversation included a statement about both people making commitments."
+  inferred:
+    - "There may be implicit patterns creating states we do not want to keep living."
+  assumed: []
+  desired:
+    - "A relationship field with more agency, creativity, intimacy, and clarity."
+  feared:
+    - "Continuing to repeat unwanted states through unexamined patterns."
+  imagined: []
+  unproven:
+    - "That both people mean the same thing by commitment."
+  unknown:
+    - "What my partner believes commitment means."
+    - "What my partner wants to change."
+    - "What feels safe or unsafe for them."
+
+shared_field:
+  current: "Commitment is named, but its shared meaning is still incomplete."
+  possible: "Both people can name one commitment, one unwanted pattern, and one safe experiment."
+  desired_environment: "More agency, creativity, intimacy, and clarity."
+  undesirable_states_to_minimize:
+    - "Repeating unwanted states through unexamined patterns."
+  commitments_needed:
+    - "Each person names one commitment in their own words."
+  patterns_to_make_explicit:
+    - "One pattern each person wants to reduce."
+
+self_observer:
+  what_i_noticed: "Commitment has become an active topic."
+  what_i_want: "A clearer, more alive relationship field."
+  what_i_fear: "That hidden patterns will keep recreating unwanted states."
+  what_i_need: "Enough clarity to choose one small safe experiment."
+  what_i_am_inferring: "Commitment may need to become more explicit before movement is safe."
+  what_i_do_not_know: "What commitment means to my partner."
+
+partner_model:
+  what_they_said: ""
+  what_they_may_want: "They may want clarity, safety, freedom, repair, or something else."
+  what_they_may_fear: "They may fear pressure, control, disappointment, conflict, or something else."
+  what_they_may_need: ""
+  possible_perspective: "Unknown until they name it."
+  what_i_am_not_allowed_to_assume: "I cannot assume my model of commitment is their truth."
+
+lacuna:
+  gap: "Commitment has been named, but the shared meaning and safe next experiment are not yet clear."
+  missing_bridge: "Each person needs to name one commitment and one pattern they want to reduce."
+  open_questions:
+    - "What does commitment mean to each of us?"
+    - "What pattern do we each want to reduce?"
+    - "What small experiment would feel safe enough to try?"
+  what_would_make_this_clearer: "Partner review and one explicit commitment from each person."
+
+projection_stack:
+  beliefs: []
+  habits: []
+  values:
+    - "agency"
+    - "intimacy"
+    - "clarity"
+  needs: []
+  desires:
+    - "more agency, creativity, intimacy, and clarity"
+  fears:
+    - "repeating unwanted states"
+  body_patterns: []
+  sexual_desires: []
+  avoidance_patterns: []
+  commitment_patterns: []
+  repair_patterns: []
+  relationship_patterns:
+    - "implicit patterns may be shaping the shared field"
+  hidden_loops: []
+
+move:
+  smallest_step: "Ask each person to name one commitment and one pattern they want to reduce."
+  reversible: true
+  owner: "both, if both consent"
+  partner_review_required: true
+  relationship_impacting_moves_blocked: true
+  consent_required:
+    - "partner review"
+  blocked_until:
+    - "both people consent to the question or conversation"
+  alternatives:
+    - "Write the question privately and ask whether now is a good time."
+
+boundary:
+  privacy: private
+  must_not_assume:
+    - "My model of the relationship is the shared truth."
+    - "My desire is an obligation for my partner."
+    - "Commitment means control."
+    - "Discomfort means rejection."
+  must_not_force:
+    - "Do not force an answer or immediate agreement."
+  must_ask_first:
+    - "Ask whether partner review or conversation is welcome."
+  must_not_publish:
+    - "Do not share private relationship context publicly."
+  blocked_effects:
+    persistence_authorized: false
+    external_effects_authorized: false
+    relationship_claim_authorized: false
+    agent_action_authorized: false
+    public_sharing_authorized: false
+  anti_false_certainty:
+    - "signal is not instruction"
+    - "resonance is not proof"
+    - "memory is not objective record"
+    - "AI output is not authority"
+    - "only proof updates the map"
+
+proof:
+  condition: "Both people can name one commitment, one unwanted pattern, and one safe experiment without pressure."
+  status: not_started
+  evidence: []
+  falsifier: "One or both people feel pressured, misrepresented, or unable to consent."
+  confidence: unknown
+  possible_proof:
+    - "we can each name one commitment clearly"
+    - "we can each name one undesirable pattern we want to reduce"
+    - "we can choose one small experiment without pressure"
+    - "we can replay what changed after trying it"
+
+replay:
+  what_changed_between_us: ""
+  what_became_clearer: ""
+  what_still_needs_care: ""
+  changed: []
+  still_open:
+    - "What commitment means to each person."
+    - "Which experiment feels safe enough to try."
+  next_questions:
+    - "What did the conversation make clearer?"
+    - "What still feels pressured or unclear?"

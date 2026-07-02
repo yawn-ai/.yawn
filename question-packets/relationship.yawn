@@ -1,0 +1,122 @@
+id: question-packets/relationship
+title: "Relationship Yawn Intake"
+kind: question-packet
+status: seed
+
+target_template: templates/relationship.yawn
+mode: draft_populate_only
+privacy_default: private
+
+defaults:
+  status: draft
+  privacy: private
+  partner_review_required: true
+  relationship_impacting_moves_blocked: true
+
+rules:
+  - "Skipped answers become lacuna.open_questions."
+  - "Quotes write to conversation.important_quotes."
+  - "Facts write to measurement.observed or measurement.known."
+  - "Interpretations write to measurement.inferred."
+  - "Desires write to measurement.desired."
+  - "Fears write to measurement.feared."
+  - "Partner perspective writes to partner_model as possible, not known."
+  - "Partner inner states never write to measurement.known."
+  - "Relationship-impacting moves require partner review."
+  - "Only proof updates the map."
+
+questions:
+  - id: q_situation
+    prompt: "What conversation or situation are we recording?"
+    writes_to:
+      - source.raw_material
+      - conversation.raw_summary
+      - shared_field.current
+
+  - id: q_quotes
+    prompt: "What did each person actually say? Use quotes if possible."
+    writes_to:
+      - conversation.important_quotes
+      - measurement.observed
+
+  - id: q_known
+    prompt: "What do I know happened?"
+    writes_to:
+      - measurement.known
+      - measurement.observed
+
+  - id: q_inference
+    prompt: "What am I inferring or making it mean?"
+    writes_to:
+      - self_observer.what_i_am_inferring
+      - measurement.inferred
+
+  - id: q_desire
+    prompt: "What do I want?"
+    writes_to:
+      - self_observer.what_i_want
+      - measurement.desired
+      - projection_stack.desires
+
+  - id: q_fear
+    prompt: "What am I afraid might be true?"
+    writes_to:
+      - self_observer.what_i_fear
+      - measurement.feared
+      - projection_stack.fears
+
+  - id: q_partner_possible
+    prompt: "What might my partner want or fear?"
+    writes_to:
+      - partner_model.what_they_may_want
+      - partner_model.what_they_may_fear
+      - measurement.unknown
+
+  - id: q_forbidden_assumptions
+    prompt: "What am I not allowed to assume about them?"
+    writes_to:
+      - partner_model.what_i_am_not_allowed_to_assume
+      - boundary.must_not_assume
+      - relationship.must_not_collapse
+
+  - id: q_shared_field
+    prompt: "What shared relationship field are we trying to move toward?"
+    writes_to:
+      - shared_field.possible
+      - shared_field.desired_environment
+
+  - id: q_commitments
+    prompt: "What commitments or expectations need to become explicit?"
+    writes_to:
+      - relationship.shared_commitments
+      - relationship.implicit_expectations
+      - shared_field.commitments_needed
+
+  - id: q_consent_privacy
+    prompt: "What boundary, consent, or privacy constraint applies?"
+    writes_to:
+      - source.consent
+      - boundary.must_ask_first
+      - boundary.must_not_publish
+      - move.consent_required
+
+  - id: q_move
+    prompt: "What is one small reversible move?"
+    writes_to:
+      - move.smallest_step
+      - move.reversible
+      - move.consent_required
+
+  - id: q_proof
+    prompt: "What would show that the relationship field changed?"
+    writes_to:
+      - proof.condition
+      - proof.evidence
+      - replay.next_questions
+
+  - id: q_replay
+    prompt: "What should we replay later?"
+    writes_to:
+      - replay.what_changed_between_us
+      - replay.what_became_clearer
+      - replay.what_still_needs_care
