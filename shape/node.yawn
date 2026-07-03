@@ -1,0 +1,44 @@
+id: shape/node
+title: "shape node"
+kind: mental-model-node
+status: v0-seed
+updated: 2026-07-03
+
+purpose: >
+  Hold the public primitives behind .yawn as an orientation shape: field,
+  shape, observing agent, move, proof, and memory update.
+
+holds:
+  - information field
+  - orientation shape
+  - observing agent
+
+receives:
+  - raw signals
+  - agent context
+  - boundary and proof requirements
+
+produces:
+  - stable language for the public claim
+  - non-metaphysical definitions
+  - readable links between README, core, templates, and examples
+
+questions:
+  - what field is available to the observer
+  - what shape makes the field inspectable
+  - what agent is orienting
+  - what proof would update memory
+
+links:
+  - shape/information-field.yawn
+  - shape/orientation-shape.yawn
+  - shape/observing-agent.yawn
+  - core/orientation.yawn
+  - core/memory-update.yawn
+  - templates/orientation-shape.yawn
+
+proof:
+  source:
+    - readme.yawn
+    - yawn.yawn
+  status: seed-backed

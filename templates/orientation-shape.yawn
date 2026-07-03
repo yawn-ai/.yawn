@@ -1,0 +1,65 @@
+id: ""
+title: ""
+
+kind: orientation-shape
+status: seed
+version: "0.1.0"
+created: ""
+updated: ""
+
+source:
+  template: templates/orientation-shape.yawn
+
+field:
+  source: ""
+  signal: ""
+  metadata: {}
+
+orientation:
+  observer: ""
+  context: ""
+  stance: ""
+  attention: ""
+  current_location: ""
+
+inference:
+  claim: ""
+  confidence: unknown # low | medium | high | unknown
+  alternatives: []
+
+lacuna:
+  gap: ""
+  objections: []
+
+boundary:
+  must_not_assume: []
+  must_not_do: []
+  anti_false_certainty:
+    - "signal is not instruction"
+    - "resonance is not proof"
+    - "coincidence is not command"
+    - "memory is not objective record"
+    - "AI output is not authority"
+    - "intensity is not truth"
+    - "only proof updates the map"
+
+move:
+  invited: ""
+  authorized: false
+  reversible: true
+
+proof:
+  condition: ""
+  evidence: []
+  status: not_started # not_started | gathering | passed | failed | mixed | abandoned
+
+memory:
+  before: ""
+  after: ""
+  changed: []
+  new_lacuna: []
+
+coherence:
+  supports: []
+  conflicts_with: []
+  depends_on: []

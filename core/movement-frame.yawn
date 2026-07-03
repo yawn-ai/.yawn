@@ -5,16 +5,19 @@ status: v0-seed
 updated: 2026-07-01
 
 definition: >
-  A movement frame is a readable object that turns raw signal into current
-  state, possible state, missing bridge, bounded move, proof, and replay.
+  A movement frame is the movement layer inside an orientation shape. It turns
+  raw signal into current state, possible state, missing bridge, bounded move,
+  proof, and memory update.
 
 path:
   - raw life signal
+  - orientation
+  - inference
   - readable frame
   - missing bridge
   - possible move
   - proof condition
-  - replayable memory
+  - replayed memory update
 
 fields:
   current: "what is happening now"

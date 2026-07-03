@@ -1,0 +1,34 @@
+id: core/memory-update
+title: "memory update"
+kind: core
+status: v0-seed
+updated: 2026-07-03
+
+definition: >
+  A memory update is what changes in the map after a bounded move meets proof,
+  fails proof, or reveals a new lacuna.
+
+friendly_label: memory
+technical_mechanism: replay
+
+records:
+  before: "what the map held before movement"
+  after: "what the map can hold after proof"
+  changed: []
+  new_lacuna: []
+
+rule: >
+  Memory should update from proof and replay, not from intensity, resonance,
+  coincidence, or AI confidence.
+
+boundary:
+  - "Memory is not objective record."
+  - "Replay is not proof unless tied to evidence."
+  - "Only proof updates the map."
+
+proof:
+  source:
+    - interface/memory.yawn
+    - core/proof-and-boundary.yawn
+    - 05-proof/replay.ion
+  status: seed-backed

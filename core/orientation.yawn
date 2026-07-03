@@ -1,0 +1,35 @@
+id: core/orientation
+title: "orientation"
+kind: core
+status: v0-seed
+updated: 2026-07-03
+
+definition: >
+  Orientation is the step where an observing agent locates itself inside a
+  partial information field before treating any signal as a claim or action.
+
+orientation_records:
+  observer: "who or what is observing"
+  context: "where the signal is being read"
+  stance: "how the observer is positioned"
+  attention: "what has focus"
+  current_location: "where the agent thinks it is in the frame"
+
+stable_claims:
+  - "Agents receive information."
+  - "Agents orient within that information."
+  - "Agents infer meaning from signals."
+  - "Those inferences can be wrong."
+  - "Hidden inference creates risk."
+  - "Externalizing inference improves review."
+
+boundary:
+  - "Orientation is not proof."
+  - "Orientation should name uncertainty before movement."
+  - "A stronger orientation does not remove the need for consent or evidence."
+
+proof:
+  source:
+    - shape/orientation-shape.yawn
+    - core/proof-and-boundary.yawn
+  status: seed-backed

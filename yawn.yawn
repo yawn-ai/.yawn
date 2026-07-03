@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: protocol-root
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-03
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -11,21 +11,22 @@ canonical_root: readme.yawn
 compatibility_readme: README.md
 
 summary: >
-  .yawn is a plain-text inference filesystem for shared agency, lived frames,
-  material records, access history, and next-move rationale.
+  .yawn is a plain-text orientation shape for observing agents: humans, AI
+  systems, teams, tools, repos, organizations, and institutions that need to
+  make inference visible before action.
 
 canonical_sentence: >
-  .yawn is a plain-text format for recording what an agent is inferring before
-  it acts.
+  .yawn is a plain-text orientation shape for observing agents.
 
 root_loop:
   - notice
+  - orient
   - infer
   - name the gap
   - protect the boundary
   - choose one bounded move
   - prove what changed
-  - replay what changed
+  - update memory
 
 file_priority:
   - human-readable first
@@ -35,6 +36,8 @@ file_priority:
 core_links:
   root_orientation: readme.yawn
   what_is_a_yawn: core/what-is-a-yawn.yawn
+  orientation: core/orientation.yawn
+  memory_update: core/memory-update.yawn
   folder_node: core/folder-node.yawn
   movement_frame: core/movement-frame.yawn
   movement_loop: core/movement-loop.yawn
@@ -46,6 +49,12 @@ core_links:
   proof_and_boundary: core/proof-and-boundary.yawn
   human_use: core/human-use.yawn
   design_principles: core/design-principles.yawn
+
+shape_links:
+  node: shape/node.yawn
+  information_field: shape/information-field.yawn
+  orientation_shape: shape/orientation-shape.yawn
+  observing_agent: shape/observing-agent.yawn
 
 start_links:
   what_is_a_yawn: start/what-is-a-yawn.yawn
@@ -121,6 +130,7 @@ question_packet_links:
 
 template_links:
   basic: templates/basic.yawn
+  orientation_shape: templates/orientation-shape.yawn
   feedback: templates/feedback.yawn
   full: templates/full.yawn
   decision: templates/decision.yawn
@@ -154,11 +164,16 @@ reference_links:
   july_01_lock: references/july-01-lock.yawn
 
 usage_frame: >
-  YAWN is a mirror for inference before action. Use it by naming a signal,
-  recording what is being inferred, naming the missing bridge, choosing one
-  bounded move, protecting agency, gathering proof, and replaying what changed.
-  Any AI can help mirror and organize, but the human remains the source of
-  authorization.
+  YAWN is an orientation shape for inference before action. Use it by naming
+  the field, orienting the observer, recording what is being inferred, naming
+  the missing bridge, choosing one bounded move, protecting agency, gathering
+  proof, and updating memory through replay. Any AI can help mirror and
+  organize, but the human remains the source of authorization.
+
+stable_boundary: >
+  .yawn does not claim reality is literally code. It works with the practical
+  fact that humans and AI agents receive signals, make inferences, act from
+  models, and update memory through feedback.
 
 question_packet_rule: >
   A question packet is an intake contract, not a competing template. It asks
@@ -172,6 +187,7 @@ folder_node_rule: >
 shape_path:
   root: readme.yawn
   start: start/first-yawn.yawn
+  shape: shape/node.yawn
   core: core/what-is-a-yawn.yawn
   interface: interface/node.yawn
   templates: templates/basic.yawn
@@ -183,12 +199,13 @@ shape_path:
   feedback: feedback/form.yawn
 
 credibility_standard:
-  signal: "what was noticed"
-  inference: "what meaning is being made from it"
-  reference: "what influenced this frame"
+  field: "what information is available"
+  orientation: "who or what is observing, from where"
+  inference: "what meaning or claim is being made from the signal"
+  lacuna: "what is missing, unclear, or objected to"
   boundary: "what must not be assumed"
   proof: "what would show real change"
-  replay: "what changed after movement"
+  memory: "what changed after proof and replay"
 
 influence_frame: >
   YAWN may hold influence from philosophy, esoteric practice, metaphysics,
@@ -203,6 +220,7 @@ folder_node_links:
   database: database/node.yawn
   feedback: feedback/node.yawn
   start: start/node.yawn
+  shape: shape/node.yawn
   core: core/node.yawn
   interface: interface/node.yawn
   observations: observations/node.yawn
@@ -246,6 +264,10 @@ material_record_rule: >
 source:
   - readme.yawn
   - README.md
+  - shape/node.yawn
+  - shape/orientation-shape.yawn
+  - core/orientation.yawn
+  - core/memory-update.yawn
   - references/scientific-frame.yawn
   - references/july-01-lock.yawn
   - 08-research/june-30-2026-public-readme.ion

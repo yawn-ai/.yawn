@@ -5,9 +5,9 @@ status: v0-seed
 updated: 2026-06-30
 
 definition: >
-  A .yawn is a human-readable movement frame. It captures a moment of
-  orientation so a human or agent can move from implicit pattern to explicit
-  agency.
+  A .yawn is a human-readable orientation shape before action. It captures a
+  moment of attention so a human or agent can move from hidden inference to
+  explicit agency.
 
 not_just:
   - note
@@ -28,12 +28,13 @@ captures:
 
 movement_path:
   - signal
-  - frame
+  - orientation
+  - inference
   - lacuna
-  - movement
   - boundary
+  - move
   - proof
-  - replay
+  - memory
 
 format_rule: >
   A .yawn can look like Markdown, YAML, or simple structured prose. It should

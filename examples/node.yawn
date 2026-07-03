@@ -2,7 +2,7 @@ id: examples/node
 title: "examples node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-03
 
 purpose: >
   Hold small example yawns so a person can see the protocol in ordinary use.

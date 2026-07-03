@@ -2,7 +2,7 @@ id: templates/node
 title: "templates node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-03
 
 purpose: >
   Hold reusable .yawn shapes that people and agents can copy without learning
@@ -10,6 +10,7 @@ purpose: >
 
 holds:
   - basic template
+  - orientation shape template
   - feedback template
   - full template
   - decision template
@@ -52,6 +53,7 @@ related_question_packets:
 proof:
   source:
     - templates/basic.yawn
+    - templates/orientation-shape.yawn
     - templates/feedback.yawn
     - templates/full.yawn
     - templates/relationship.yawn

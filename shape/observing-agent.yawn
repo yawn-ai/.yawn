@@ -1,0 +1,47 @@
+id: shape/observing-agent
+title: "observing agent"
+kind: shape-primitive
+status: v0-seed
+updated: 2026-07-03
+
+definition: >
+  An observing agent is any human, AI system, team, tool, repo, organization,
+  robot, research project, business, or institution that receives information,
+  forms an orientation, and may act from an inference.
+
+can_be:
+  - human
+  - AI agent
+  - business
+  - organization
+  - research project
+  - repo
+  - robot
+  - institution
+
+agent_risk:
+  - hidden inference
+  - false certainty
+  - unbounded action
+  - memory drift
+  - proof claims without evidence
+
+agent_need:
+  - visible signal
+  - labeled inference
+  - named gap
+  - protected boundary
+  - bounded move
+  - proof condition
+  - memory update
+
+boundary:
+  - "The agent may orient, but orientation is not authority."
+  - "The agent may infer, but inference is not proof."
+  - "The agent may suggest a move, but authorization must stay explicit."
+
+proof:
+  source:
+    - agents/orientation.yawn
+    - core/proof-and-boundary.yawn
+  status: seed-backed

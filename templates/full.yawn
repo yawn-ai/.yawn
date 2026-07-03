@@ -24,12 +24,13 @@ movement:
   mode: hold # observe | ask | hold | test | move
   loop:
     - notice
+    - orient
     - infer
     - name_gap
     - protect_boundary
     - choose_bounded_move
     - prove_change
-    - replay
+    - update_memory
 
 observer:
   name: ""

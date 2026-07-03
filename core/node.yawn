@@ -2,13 +2,15 @@ id: core/node
 title: "core node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-03
 
 purpose: >
   Hold the public core concepts for understanding and using .yawn.
 
 holds:
   - what a yawn is
+  - orientation
+  - memory update
   - movement frame
   - movement loop
   - lacuna
@@ -19,6 +21,7 @@ holds:
 
 receives:
   - readme.yawn
+  - shape primitives
   - scientific frame
   - bridge-layer core files
 
@@ -34,11 +37,14 @@ questions:
 
 links:
   - readme.yawn
+  - shape/node.yawn
   - interface/node.yawn
   - observations/lived-agency.yawn
 
 proof:
   source:
     - readme.yawn
+    - core/orientation.yawn
+    - core/memory-update.yawn
     - core/folder-node.yawn
   status: seed-backed

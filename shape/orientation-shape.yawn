@@ -1,0 +1,40 @@
+id: shape/orientation-shape
+title: "orientation shape"
+kind: shape-primitive
+status: v0-seed
+updated: 2026-07-03
+
+definition: >
+  An orientation shape is the structured frame that makes part of an
+  information field inspectable before action.
+
+path:
+  - field
+  - orientation
+  - inference
+  - lacuna
+  - boundary
+  - move
+  - proof
+  - memory
+
+stable_claim: >
+  Any observing agent lives inside an information field it cannot fully hold.
+  .yawn gives that agent a shape for orienting: what was noticed, what was
+  inferred, what is missing, what is bounded, what can move, what proved
+  change, and what memory updates.
+
+why_shape: >
+  Shape is the readable capsule. A human can inspect it, an LLM can read it, a
+  repo can version it, a bot can compare it, and a proof receipt can update it.
+
+boundary:
+  - "Shape does not mean reality is literally code."
+  - "Shape means a structured frame for making partial information inspectable."
+  - "Only proof updates the map."
+
+proof:
+  source:
+    - readme.yawn
+    - templates/orientation-shape.yawn
+  status: seed-backed

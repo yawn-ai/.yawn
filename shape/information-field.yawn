@@ -1,0 +1,41 @@
+id: shape/information-field
+title: "information field"
+kind: shape-primitive
+status: v0-seed
+updated: 2026-07-03
+
+definition: >
+  The information field is the information available to an observing agent in
+  a given moment, context, repo, conversation, body state, tool surface, or
+  environment.
+
+not_claiming:
+  - reality is literally code
+  - all truth is reducible to data
+  - the observer has complete access
+
+does_claim:
+  - agents receive signals
+  - agents orient within partial information
+  - signals become risky when hidden inference is treated as truth
+  - a field can be made more inspectable through a stable shape
+
+examples:
+  - human conversation
+  - AI agent context window
+  - repository state
+  - business dashboard
+  - research notes
+  - robot sensor stream
+  - institution policy surface
+
+boundary:
+  - "The field is what is available to the observer, not all of reality."
+  - "A signal is not an instruction."
+  - "A field description is not proof."
+
+proof:
+  source:
+    - readme.yawn
+    - references/scientific-frame.yawn
+  status: seed-backed

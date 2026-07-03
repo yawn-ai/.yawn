@@ -1,6 +1,10 @@
 # .yawn
 
-**A plain-text format for recording what an agent is inferring before it acts.**
+**A plain-text orientation shape for observing agents.**
+
+A `.yawn` helps any observing agent - human, AI, team, tool, repo, or
+organization - hold part of an information field clearly enough to act without
+hidden authority.
 
 Canonical source: [readme.yawn](readme.yawn)
 
@@ -8,36 +12,48 @@ GitHub mirror: [README.md](README.md)
 
 You are noticing something.
 
+A signal.
+
 A feeling.
 
 A pattern.
+
+A memory.
 
 A decision.
 
 A contradiction.
 
+A file.
+
+A body cue.
+
+A piece of data.
+
 A project that keeps pulling attention.
 
 A move you are not ready to force.
 
-A `.yawn` gives that signal somewhere to land.
+A `.yawn` gives that signal a shape.
 
 ```text
 notice
+-> orient
 -> infer
 -> name the gap
 -> protect the boundary
 -> choose one bounded move
 -> prove what changed
--> replay
+-> update memory
 ```
 
 `.yawn` is for humans and AI agents who need to share the same frame without
 hidden authority.
 
-It does not tell you what is true. It helps you write down what is being
-inferred, what is missing, what must not be assumed, and what would count as
-proof.
+It does not tell you what is true.
+
+It helps you record what was observed, what was inferred, what is missing, what
+must not be assumed, what can move, what would count as proof, and what changed.
 
 ## The smallest possible `.yawn`
 
@@ -64,11 +80,12 @@ replay: "What changed after naming the blocker?"
 
 ## Start Here
 
-You can use `.yawn` at three depths:
+You can use `.yawn` at a few depths:
 
 | Need | Start |
 | --- | --- |
 | Write the smallest useful frame | [templates/basic.yawn](templates/basic.yawn) |
+| Understand the stable claim | [shape/orientation-shape.yawn](shape/orientation-shape.yawn) |
 | Answer questions instead of reading schema | [question-packets/basic.yawn](question-packets/basic.yawn) |
 | Fill a complete orientation frame | [templates/full.yawn](templates/full.yawn) |
 | Hold a relationship conversation carefully | [question-packets/relationship.yawn](question-packets/relationship.yawn) |
@@ -130,11 +147,12 @@ legible. It keeps this movement visible:
 
 ```text
 signal
+-> orientation
 -> inference
 -> boundary
 -> move
 -> proof
--> replay
+-> memory
 ```
 
 The edge YAWN is exploring is the information interface: the place where signal
@@ -144,19 +162,87 @@ Credibility in a `.yawn` comes from clear labels:
 
 | Handle | Credibility question |
 | --- | --- |
-| Signal | What was noticed? |
-| Inference | What meaning is being made from it? |
-| Reference | What influenced this frame? |
+| Field | What information is available? |
+| Orientation | Who or what is observing, and from where? |
+| Inference | What meaning or claim is being made from the signal? |
+| Lacuna | What is missing, unclear, or objected to? |
 | Boundary | What must not be assumed? |
+| Move | What bounded action or non-action is invited? |
 | Proof | What would show real change? |
-| Replay | What changed after movement? |
+| Memory | What changed after proof and replay? |
 
 ## What is a `.yawn`?
 
-A `.yawn` is a movement frame.
+A `.yawn` is an orientation shape before action.
 
-It records a signal, the inference being made from that signal, the missing
-bridge, the boundary, the possible move, the proof condition, and the replay.
+It records what an observing agent noticed, inferred, cannot yet prove, must
+not assume, may safely do next, and should remember after reality responds.
+
+## Core Shape
+
+```yaml
+title: ""
+
+field:
+  source: ""
+  signal: ""
+  metadata: {}
+
+orientation:
+  observer: ""
+  context: ""
+  stance: ""
+  attention: ""
+  current_location: ""
+
+inference:
+  claim: ""
+  confidence: ""
+  alternatives: []
+
+lacuna:
+  gap: ""
+  objections: []
+
+boundary:
+  must_not_assume: []
+  must_not_do: []
+
+move:
+  invited: ""
+  authorized: false
+  reversible: true
+
+proof:
+  condition: ""
+  evidence: []
+
+memory:
+  before: ""
+  after: ""
+  changed: []
+  new_lacuna: []
+
+coherence:
+  supports: []
+  conflicts_with: []
+  depends_on: []
+```
+
+`memory` is the friendly label. `replay` is the mechanism for checking what
+changed before memory updates.
+
+## Stable Boundary
+
+`.yawn` does not claim reality is literally code.
+
+It works with the practical fact that humans and AI agents receive signals,
+make inferences, act from models, and update memory through feedback.
+
+The field is the information available to an observing agent. The shape is the
+structured frame that makes part of that field inspectable. The move is a
+bounded action or non-action. The proof is what changed enough to update the
+map.
 
 ## Boundary
 
@@ -204,7 +290,8 @@ Open the smallest layer you need:
 | --- | --- | --- |
 | Root | The whole frame in one object | [readme.yawn](readme.yawn) |
 | Start | How to make a first `.yawn` | [start/first-yawn.yawn](start/first-yawn.yawn) |
-| Core | The movement frame, lacuna, agency, boundary, and proof | [core/what-is-a-yawn.yawn](core/what-is-a-yawn.yawn) |
+| Shape | The public primitives: field, shape, observing agent | [shape/node.yawn](shape/node.yawn) |
+| Core | Orientation, movement, lacuna, agency, boundary, and proof | [core/what-is-a-yawn.yawn](core/what-is-a-yawn.yawn) |
 | Interface | The five handles: mirror, map, meaning, move, memory | [interface/node.yawn](interface/node.yawn) |
 | Templates | Blank forms for decisions, proof, handoffs, and records | [templates/basic.yawn](templates/basic.yawn) |
 | Question Packets | Plain-language intake contracts that fill templates | [question-packets/basic.yawn](question-packets/basic.yawn) |
@@ -243,7 +330,7 @@ This repo also uses `.yawn` to describe itself:
 ```yaml
 title: "The .yawn repo explains its own spine"
 signal: "The repo is easier to trust if it uses its own loop to explain itself."
-inference: "A reader may understand YAWN faster if the repo shows its own movement frame."
+inference: "A reader may understand YAWN faster if the repo shows its own orientation shape."
 
 current: "The README has a compact example and the repo has richer templates."
 possible: "A reader can move from README -> question packets -> templates -> examples."
@@ -262,6 +349,7 @@ The first path is:
 ```text
 readme.yawn
 -> start/first-yawn.yawn
+-> shape/orientation-shape.yawn
 -> templates/basic.yawn
 -> question-packets/basic.yawn
 -> examples/stuck.yawn

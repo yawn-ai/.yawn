@@ -3,14 +3,14 @@ repo: yawn-ai/.yawn
 version: 0.1.0-seed
 status: draft
 kind: root-orientation
-updated: 2026-07-01
+updated: 2026-07-03
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright: The Yawn Company
 
 # readme.yawn
 
-A plain-text format for recording what an agent is inferring before it acts.
+A plain-text orientation shape for observing agents.
 
 Canonical source: readme.yawn
 GitHub mirror: README.md
@@ -19,31 +19,38 @@ GitHub mirror: README.md
 
 You are noticing something.
 
+A signal.
 A feeling.
 A pattern.
+A memory.
 A decision.
 A contradiction.
+A file.
+A body cue.
+A piece of data.
 A project that keeps pulling attention.
 A move you are not ready to force.
 
-A .yawn gives that signal somewhere to land.
+A .yawn gives that signal a shape.
 
 ```text
 notice
+-> orient
 -> infer
 -> name the gap
 -> protect the boundary
 -> choose one bounded move
 -> prove what changed
--> replay
+-> update memory
 ```
 
 .yawn is for humans and AI agents who need to share the same frame without
 hidden authority.
 
-It does not tell you what is true. It helps you write down what is being
-inferred, what is missing, what must not be assumed, and what would count as
-proof.
+It does not tell you what is true.
+
+It helps you record what was observed, what was inferred, what is missing, what
+must not be assumed, what can move, what would count as proof, and what changed.
 
 ## smallest possible yawn
 
@@ -70,11 +77,14 @@ replay: "What changed after naming the blocker?"
 
 ## start here
 
-You can use .yawn at three depths:
+You can use .yawn at a few depths:
 
 ```text
 smallest useful frame:
   templates/basic.yawn
+
+understand the stable claim:
+  shape/orientation-shape.yawn
 
 answer questions instead of reading schema:
   question-packets/basic.yawn
@@ -172,11 +182,12 @@ It keeps this movement visible:
 
 ```text
 signal
+-> orientation
 -> inference
 -> boundary
 -> move
 -> proof
--> replay
+-> memory
 ```
 
 The edge YAWN is exploring is the information interface: the place where signal
@@ -185,29 +196,32 @@ becomes inference, inference becomes bounded action, and proof changes memory.
 Credibility in a .yawn comes from clear labels:
 
 ```text
-signal: what was noticed
-inference: what meaning is being made from it
-reference: what influenced this frame
+field: what information is available
+orientation: who or what is observing, and from where
+inference: what meaning or claim is being made from the signal
+lacuna: what is missing, unclear, or objected to
 boundary: what must not be assumed
+move: what bounded action or non-action is invited
 proof: what would show real change
-replay: what changed after movement
+memory: what changed after proof and replay
 ```
 
 ## what is a .yawn?
 
-A .yawn is a movement frame.
+A .yawn is an orientation shape before action.
 
 It records:
 
-- the signal
-- the inference being made from that signal
+- the field
+- the observer's orientation
+- the inference being made from the signal
 - what is known
 - what is assumed
 - what is missing
 - what boundary protects agency
 - what move is safe enough to try
 - what proof would matter
-- what changed after movement
+- what memory updates after replay
 
 The rule:
 
@@ -217,40 +231,83 @@ machine-addressable second
 proof-bound when promoted
 ```
 
-## compact schema
+## core shape
 
 ```yaml
 title: ""
 
-signal: ""
-inference: ""
+field:
+  source: ""
+  signal: ""
+  metadata: {}
 
-current: ""
-possible: ""
-lacuna: ""
+orientation:
+  observer: ""
+  context: ""
+  stance: ""
+  attention: ""
+  current_location: ""
 
-boundary: ""
-move: ""
-proof: ""
-replay: ""
+inference:
+  claim: ""
+  confidence: ""
+  alternatives: []
+
+lacuna:
+  gap: ""
+  objections: []
+
+boundary:
+  must_not_assume: []
+  must_not_do: []
+
+move:
+  invited: ""
+  authorized: false
+  reversible: true
+
+proof:
+  condition: ""
+  evidence: []
+
+memory:
+  before: ""
+  after: ""
+  changed: []
+  new_lacuna: []
 
 coherence:
   supports: []
   conflicts_with: []
   depends_on: []
-  proof_gaps: []
 ```
+
+memory is the friendly label. replay is the mechanism for checking what
+changed before memory updates.
 
 Use:
 
 ```text
 templates/basic.yawn
+templates/orientation-shape.yawn
 templates/full.yawn
 templates/agent-handoff.yawn
 templates/proof-receipt.yawn
 question-packets/basic.yawn
 question-packets/relationship.yawn
 ```
+
+## stable boundary
+
+.yawn does not claim reality is literally code.
+
+It works with the practical fact that humans and AI agents receive signals,
+make inferences, act from models, and update memory through feedback.
+
+The field is the information available to an observing agent.
+The shape is the structured frame that makes part of that field inspectable.
+The move is a bounded action or non-action.
+The proof is what changed enough to update the map.
 
 ## fill one from questions
 
@@ -281,7 +338,7 @@ This repo also uses .yawn to describe itself:
 ```yaml
 title: "The .yawn repo explains its own spine"
 signal: "The repo is easier to trust if it uses its own loop to explain itself."
-inference: "A reader may understand YAWN faster if the repo shows its own movement frame."
+inference: "A reader may understand YAWN faster if the repo shows its own orientation shape."
 
 current: "The README has a compact example and the repo has richer templates."
 possible: "A reader can move from README -> question packets -> templates -> examples."
@@ -376,6 +433,7 @@ README.md
 yawn.yawn
 
 start/
+shape/
 core/
 interface/
 templates/
@@ -407,9 +465,17 @@ start:
   start/first-yawn.yawn
   start/how-to-use-yawn.yawn
 
+shape:
+  shape/node.yawn
+  shape/information-field.yawn
+  shape/orientation-shape.yawn
+  shape/observing-agent.yawn
+
 core:
   core/node.yawn
   core/what-is-a-yawn.yawn
+  core/orientation.yawn
+  core/memory-update.yawn
   core/proof-and-boundary.yawn
   core/movement-frame.yawn
 
@@ -424,6 +490,7 @@ interface:
 templates:
   templates/node.yawn
   templates/basic.yawn
+  templates/orientation-shape.yawn
   templates/full.yawn
   templates/relationship.yawn
   templates/decision.yawn
@@ -467,6 +534,7 @@ The first path is:
 ```text
 readme.yawn
 -> start/first-yawn.yawn
+-> shape/orientation-shape.yawn
 -> templates/basic.yawn
 -> question-packets/basic.yawn
 -> examples/stuck.yawn
@@ -607,7 +675,7 @@ That is enough.
 
 ## final lock
 
-.yawn is a plain-text inference filesystem for agency.
+.yawn is a plain-text orientation shape for agency.
 
 It is how a human or agent can say:
 
