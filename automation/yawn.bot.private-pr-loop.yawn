@@ -2,13 +2,20 @@ id: automation/yawn.bot.private-pr-loop
 title: "yawn.bot private PR handoff loop"
 kind: automation-contract
 status: active
-updated: 2026-07-01
+updated: 2026-07-04
 
 automation_id: yawn-bot-private-pr-handoff-loop
-schedule: "every 4 hours"
+schedule: "hourly"
 workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
 private_staging_repo: "yawn-ai/yawn-bot-staging"
 policy: agents/yawn.bot.policy.yawn
+core_loop: core-loop.yawn
+pr_notification: automation/yawn.bot.pr-notification.yawn
+
+canonical_memory:
+  root: "C:/Users/dave/.codex/automations/yawn-bot-private-pr-handoff-loop"
+  legacy_root: "C:/automations/yawn-bot-private-pr-handoff-loop"
+  rule: "Read legacy memory only for backfill; write new memory to the canonical root."
 
 purpose: >
   Watch private yawn.bot draft PRs and preserve handoff state without merging,
@@ -19,6 +26,7 @@ checks:
   - review comments
   - check state
   - privacy state
+  - notification ledger receipt for repo + pr_number + head_sha
   - unresolved risks
   - rollback path
   - next action
@@ -31,14 +39,20 @@ blocked:
   - change branch protection
   - change repo settings
   - expose private evidence publicly
+  - send duplicate notification email
 
 output:
   - private PR handoff report
+  - Dave notification sent, skipped, or blocked state
   - ledger update recommendation
   - human decision needed
 
 proof:
   source:
+    - core-loop.yawn
     - agents/yawn.bot.policy.yawn
+    - automation/yawn.bot.pr-notification.yawn
     - records/yawn.bot-private-pr-ledger.yawn
+    - records/yawn.bot-pr-notification-ledger.yawn
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

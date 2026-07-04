@@ -1,0 +1,35 @@
+id: records/yawn.bot-pr-notification-ledger
+title: "yawn.bot PR notification ledger"
+kind: record-log
+status: active-seed
+updated: 2026-07-04
+
+purpose: >
+  Track whether Dave has been notified about each yawn.bot private draft PR,
+  including duplicate suppression and sender blockers.
+
+recipient: "dave@yawn.ai"
+source_contract: automation/yawn.bot.pr-notification.yawn
+
+entry_shape:
+  notification_id: ""
+  repo: ""
+  pr_number: ""
+  pr_url: ""
+  head_sha: ""
+  dedupe_key: ""
+  status: "sent | skipped_duplicate | blocked_sender_unavailable | queued_for_manual_send"
+  sent_at: ""
+  sender: ""
+  subject: ""
+  blocker: ""
+  next_action: ""
+
+current_entries: []
+
+proof:
+  source:
+    - core-loop.yawn
+    - automation/yawn.bot.pr-notification.yawn
+    - automation/yawn.bot.private-pr-loop.yawn
+  status: seed-backed

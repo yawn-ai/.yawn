@@ -2,11 +2,17 @@ id: automation/github-feedback-triage
 title: "github feedback triage automation"
 kind: automation-contract
 status: active
-updated: 2026-07-01
+updated: 2026-07-04
 
 automation_id: yawn-repo-feedback-triage
 schedule: "hourly"
 workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
+core_loop: core-loop.yawn
+
+canonical_memory:
+  root: "C:/Users/dave/.codex/automations/yawn-repo-feedback-triage"
+  legacy_root: "C:/automations/yawn-repo-feedback-triage"
+  rule: "Read legacy memory only for backfill; write new memory to the canonical root."
 
 purpose: >
   Inspect the yawn-ai/.yawn GitHub repository and local .yawn workspace for new
@@ -26,14 +32,20 @@ output:
   - summary
   - uncertainty
   - next recommended bounded move
+  - core-loop candidate packet for yawn.bot daily contributor when relevant
   - whether human authorization is required
 
 hard_boundary: >
-  The automation must not commit, push, merge, comment, change permissions, or
-  alter external state without explicit human authorization.
+  The automation must not commit, push, merge, comment, send email, change
+  permissions, or alter external state. It may route thesis_ready or
+  commit_ready signals into the core-loop candidate packet for the daily
+  yawn.bot contributor.
 
 proof:
   source:
+    - core-loop.yawn
     - automation/node.yawn
+    - automation/yawn.bot.feedback-loop.yawn
     - records/automation-log.yawn
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

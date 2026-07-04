@@ -3,7 +3,7 @@ ion:
   title: manifest
   type: filesystem-index
   status: seed-canon
-  updated: 2026-07-01
+  updated: 2026-07-04
 
 files:
   - .github/node.yawn
@@ -18,6 +18,7 @@ files:
   - readme.yawn
   - README.md
   - yawn.yawn
+  - core-loop.yawn
   - agents/node.yawn
   - agents/contributor-agent.yawn
   - agents/contributor-architecture.yawn
@@ -30,6 +31,7 @@ files:
   - automation/yawn.bot.daily.yawn
   - automation/yawn.bot.feedback-loop.yawn
   - automation/yawn.bot.private-pr-loop.yawn
+  - automation/yawn.bot.pr-notification.yawn
   - automation/yawn.bot.rising-radar.yawn
   - automation/yawn.bot.readme-young-reader-audit.yawn
   - automation/yawn.bot.license-reference-audit.yawn
@@ -40,11 +42,13 @@ files:
   - core/folder-node.yawn
   - core/human-use.yawn
   - core/lacuna.yawn
+  - core/memory-update.yawn
   - core/movement-frame.yawn
   - core/movement-loop.yawn
   - core/next-move-logic.yawn
   - core/node.yawn
   - core/observer-and-body.yawn
+  - core/orientation.yawn
   - core/proof-and-boundary.yawn
   - core/what-is-a-yawn.yawn
   - core/yawn-space.yawn
@@ -55,9 +59,11 @@ files:
   - examples/decision.yawn
   - examples/node.yawn
   - examples/repair.yawn
+  - examples/relationship-commitment-conversation.yawn
   - examples/relationship-tension.yawn
   - examples/signal.yawn
   - examples/stuck.yawn
+  - examples/yawn-spine-dogfood.yawn
   - feedback/codex-t4o-parser.yawn
   - feedback/email-intake.yawn
   - feedback/form.yawn
@@ -72,11 +78,18 @@ files:
   - interface/projection-stack.yawn
   - observations/lived-agency.yawn
   - observations/node.yawn
+  - question-packets/basic.yawn
+  - question-packets/node.yawn
+  - question-packets/relationship.yawn
   - references/july-01-lock.yawn
   - references/node.yawn
   - references/ownership-and-license.yawn
   - references/scientific-frame.yawn
   - references/source-index.yawn
+  - shape/information-field.yawn
+  - shape/node.yawn
+  - shape/observing-agent.yawn
+  - shape/orientation-shape.yawn
   - start/how-to-use-yawn.yawn
   - records/access-log.yawn
   - records/automation-log.yawn
@@ -91,6 +104,7 @@ files:
   - records/yawn.bot-verification-2026-07-01.yawn
   - records/yawn.bot-pattern-ledger.yawn
   - records/yawn.bot-private-pr-ledger.yawn
+  - records/yawn.bot-pr-notification-ledger.yawn
   - records/yawn.bot-trending-ledger.yawn
   - records/yawn.bot-license-risk-ledger.yawn
   - records/yawn.ai-funnel-bridge-ledger.yawn
@@ -108,6 +122,7 @@ files:
   - templates/full.yawn
   - templates/next-move-record.yawn
   - templates/node.yawn
+  - templates/orientation-shape.yawn
   - templates/proof.yawn
   - templates/proof-receipt.yawn
   - templates/relationship.yawn
@@ -168,18 +183,19 @@ files:
   - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
   - 08-research/july-01-2026-ai-writing-scan-lock.ion
+  - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   - 08-research/research-map.ion
 
 counts:
   markdown: 3
-  ion: 49
-  yawn: 104
+  ion: 50
+  yawn: 119
   yml: 3
   html: 1
   sql: 1
   license: 1
   dotfile: 1
-  total: 163
+  total: 179
 
 proof:
   source:
@@ -196,5 +212,6 @@ proof:
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
     - 08-research/july-01-2026-ai-writing-scan-lock.ion
-  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, automation, yawn.bot daily service automation, the yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, the yawn.ai open-source funnel bridge, and the AI-writing scan.
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+  claim: This manifest indexes the current seed filesystem, including readme.yawn, the public .yawn layer, core-loop.yawn, the five-command interface, material records, folder knowledge nodes, MIT license, feedback intake, GitHub contribution forms, automation, yawn.bot daily service automation, the yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, the private draft PR and Dave notification loop, the yawn.ai open-source funnel bridge, and the AI-writing scan.
   proof_state: seed-backed

@@ -1,0 +1,69 @@
+id: automation/yawn.bot.pr-notification
+title: "yawn.bot PR notification"
+kind: automation-contract
+status: active-seed
+updated: 2026-07-04
+
+purpose: >
+  Notify Dave when yawn.bot creates or discovers a new private draft PR in the
+  staging repository, while avoiding duplicate emails and preserving the human
+  review boundary.
+
+recipient:
+  email: "dave@yawn.ai"
+  role: "human reviewer and authorization source"
+
+trigger:
+  primary: "a new draft PR labeled yawn.bot is created in yawn-ai/yawn-bot-staging"
+  recovery: "the private PR handoff loop finds a yawn.bot draft PR without a notification receipt"
+
+dedupe:
+  key: "repo + pr_number + head_sha"
+  ledger: records/yawn.bot-pr-notification-ledger.yawn
+  rule: >
+    Do not send another email for the same repo, PR number, and head SHA.
+    If the PR branch receives a new head SHA, send one update notification.
+
+email_body_contract:
+  subject_shape: "[yawn.bot PR] <PR title>"
+  required_fields:
+    - PR URL
+    - repository
+    - branch
+    - signal strength
+    - thesis
+    - affected node
+    - smallest bounded change
+    - proof or validation
+    - rollback path
+    - privacy state
+    - Dave decision needed
+  forbidden_fields:
+    - secrets
+    - private personal data
+    - raw private feedback snippets unless Dave explicitly requests them
+    - claims that the PR is approved, merged, public, or ready for review
+
+sender_rule: >
+  Send through an approved email sender only. If no sender is available in the
+  automation runtime, record blocked_sender_unavailable in the notification
+  ledger and produce a Dave-visible blocker. Do not invent an email path.
+
+allowed_effects:
+  - send one PR notification email to dave@yawn.ai per dedupe key
+  - record notification sent, skipped_duplicate, or blocked_sender_unavailable
+  - include the PR URL in the private handoff report
+
+blocked_effects:
+  - email anyone other than dave@yawn.ai
+  - send marketing, launch, or unrelated status email
+  - publish, merge, mark ready, approve, or deploy
+  - expose private evidence publicly
+
+proof:
+  source:
+    - core-loop.yawn
+    - agents/yawn.bot.policy.yawn
+    - automation/yawn.bot.private-pr-loop.yawn
+    - records/yawn.bot-pr-notification-ledger.yawn
+  status: seed-backed

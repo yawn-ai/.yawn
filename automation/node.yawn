@@ -2,18 +2,20 @@ id: automation/node
 title: "automation node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 purpose: >
   Hold automations that watch for feedback, contributor signals, and bounded
   next moves without taking hidden authority.
 
 holds:
+  - core loop visibility contract
   - GitHub feedback triage automation
   - Codex repo agent contract
   - yawn.bot daily repo contributor automation
   - yawn.bot feedback-to-commit gate
   - yawn.bot private PR handoff loop
+  - yawn.bot PR notification contract
   - yawn.bot rising radar
   - yawn.bot README young-reader audit
   - yawn.bot license reference audit
@@ -26,6 +28,7 @@ receives:
   - feedback records
   - AI-agent contributor proposals
   - private draft PRs
+  - private draft PR notification receipts
   - rising repo signals
   - README comprehension gaps
   - license and reference risks
@@ -39,6 +42,8 @@ produces:
   - feedback signal-strength decisions
   - daily yawn.bot contributor reports
   - private PR handoff reports
+  - PR notification emails to dave@yawn.ai
+  - notification ledger receipts
   - rising repo pattern reports
   - README clarity reports
   - license-risk reports
@@ -53,6 +58,8 @@ questions:
   - what should yawn.bot contribute today
   - when is feedback strong enough to become a commit
   - which private draft PR needs handoff
+  - has Dave been notified about this private draft PR
+  - was the notification sender blocked or duplicated
   - what rising repo pattern is relevant
   - can a young reader understand the README
   - is there a license or privacy risk
@@ -61,11 +68,13 @@ questions:
   - does this require human authorization
 
 links:
+  - core-loop.yawn
   - automation/github-feedback-triage.yawn
   - automation/codex-repo-agent.yawn
   - automation/yawn.bot.daily.yawn
   - automation/yawn.bot.feedback-loop.yawn
   - automation/yawn.bot.private-pr-loop.yawn
+  - automation/yawn.bot.pr-notification.yawn
   - automation/yawn.bot.rising-radar.yawn
   - automation/yawn.bot.readme-young-reader-audit.yawn
   - automation/yawn.bot.license-reference-audit.yawn
@@ -75,10 +84,12 @@ links:
 
 proof:
   source:
+    - core-loop.yawn
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
     - 08-research/july-01-2026-ai-writing-scan-lock.ion
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

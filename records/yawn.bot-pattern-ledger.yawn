@@ -2,7 +2,7 @@ id: records/yawn.bot-pattern-ledger
 title: "yawn.bot pattern ledger"
 kind: record-log
 status: active-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 purpose: >
   Record pattern theses observed by yawn.bot across feedback, core repos,
@@ -27,16 +27,18 @@ current_entries:
     source_repos:
       - "yawn-ai/.yawn"
     visibility_mix: "public_only"
-    state: "commit_ready"
+    state: "accepted"
     opened_pr: ""
     outcome: "implemented as policy and automation contracts"
     review_notes_summary: "human approved implementation of yawn.bot as architecture observer"
     false_positive_reason: ""
     proof_after_merge: "pending commit verification"
-    next_rule_update: "use private staging PRs for future autonomous proposals"
+    next_rule_update: "future commit_ready patterns use core-loop.yawn, private staging PRs, and Dave notification receipts"
 
 proof:
   source:
+    - core-loop.yawn
     - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.feedback-loop.yawn
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

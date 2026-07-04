@@ -2,17 +2,24 @@ id: automation/yawn.bot.daily
 title: "yawn.bot daily repo contributor"
 kind: automation-contract
 status: active
-updated: 2026-07-01
+updated: 2026-07-04
 
 automation_id: yawn-bot-daily-repo-contributor
 schedule: "daily at 9:00 AM America/Denver"
 workspace: "C:/Users/dave/OneDrive/Documents/MASTER-CONTROL.YAWN"
 runtime: "Codex app cron automation"
+core_loop: core-loop.yawn
 service_identity: agents/yawn.bot.yawn
 policy: agents/yawn.bot.policy.yawn
 feedback_loop: automation/yawn.bot.feedback-loop.yawn
 private_pr_loop: automation/yawn.bot.private-pr-loop.yawn
+pr_notification: automation/yawn.bot.pr-notification.yawn
 ai_writing_scan: automation/yawn.bot.ai-writing-scan.yawn
+
+canonical_memory:
+  root: "C:/Users/dave/.codex/automations/yawn-bot-daily-repo-contributor"
+  legacy_root: "C:/automations/yawn-bot-daily-repo-contributor"
+  rule: "Read legacy memory only for backfill; write new memory to the canonical root."
 
 purpose: >
   Run a daily yawn.bot loop that inspects the repository, feedback surfaces, and
@@ -49,7 +56,7 @@ contribution_modes:
   observe: "inspect and classify"
   propose: "name the smallest bounded repo improvement"
   draft: "prepare patch or PR text when a human asks in the current run"
-  execute: "perform GitHub writes only after exact human authorization"
+  execute: "perform private staging draft PR writes only when core-loop.yawn commit-ready gates are satisfied; all other GitHub writes still require exact current human authorization"
 
 feedback_to_commit_rule: >
   Use automation/yawn.bot.feedback-loop.yawn before recommending any commit.
@@ -62,6 +69,20 @@ private_staging_rule: >
   automation/yawn.bot.private-pr-loop.yawn. Public .yawn promotion must be
   sanitized and separately reviewed.
 
+pr_creation_rule: >
+  If a candidate reaches commit_ready under core-loop.yawn, create or reuse a
+  yawn.bot branch in yawn-ai/yawn-bot-staging, apply only the smallest
+  sanitized bounded diff, run the named deterministic validation, open a draft
+  PR labeled yawn.bot, private-staging, and pattern-thesis, and update
+  records/yawn.bot-private-pr-ledger.yawn. If any commit-ready field is absent,
+  do not create a branch or PR; write a blocker report instead.
+
+notification_rule: >
+  After opening a private draft PR, invoke automation/yawn.bot.pr-notification.yawn:
+  send one deduped notification to dave@yawn.ai when an approved sender is
+  available, or record blocked_sender_unavailable in
+  records/yawn.bot-pr-notification-ledger.yawn.
+
 voice_quality_rule: >
   Before recommending public text changes, apply automation/yawn.bot.ai-writing-scan.yawn.
   Flag canned rhythm, generic promotional polish, assistant residue, repeated
@@ -69,20 +90,25 @@ voice_quality_rule: >
   signs as signals, not proof of AI authorship.
 
 default_boundary: >
-  The daily automation may inspect, summarize, classify, and recommend. It must
-  not commit, push, merge, comment, change permissions, send email, manage
-  secrets, install apps, create accounts, or write external databases without
-  explicit current human authorization.
+  The daily automation may inspect, summarize, classify, recommend, and create
+  private staging draft PRs only through the core-loop commit-ready gate. It
+  must not mutate the public .yawn repo, push to main, merge, mark ready,
+  comment, change permissions, send email outside the approved Dave PR
+  notification, manage secrets, install apps, create accounts, or write
+  external databases without explicit current human authorization.
 
 proof:
   source:
+    - core-loop.yawn
     - agents/yawn.bot.policy.yawn
     - agents/yawn.bot.yawn
     - automation/yawn.bot.feedback-loop.yawn
     - automation/yawn.bot.private-pr-loop.yawn
+    - automation/yawn.bot.pr-notification.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
     - records/automation-log.yawn
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
     - 08-research/july-01-2026-ai-writing-scan-lock.ion
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

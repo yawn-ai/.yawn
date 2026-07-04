@@ -2,7 +2,7 @@ id: automation/yawn.bot.feedback-loop
 title: "yawn.bot feedback loop"
 kind: automation-gate
 status: active-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 purpose: >
   Define how yawn.bot turns feedback into a thesis, weighs risk, and decides
@@ -16,6 +16,7 @@ loop:
   - weigh risks and proof
   - choose the smallest bounded change
   - route commit-ready work to private draft PR staging
+  - notify Dave when a private draft PR exists
   - preserve human review and replay outcome
 
 signal_strength:
@@ -54,10 +55,19 @@ commit_gate:
     - proof check is named
     - risk review includes dissent or uncertainty
     - rollback path is named
-    - human authorization or approved bot runtime policy is present
+    - core-loop.yawn draft PR authorization or explicit current human authorization is present
   default_commit_target: "branch or draft pull request, not direct main"
   private_staging_target: "yawn-ai/yawn-bot-staging"
   main_branch_rule: "main branch updates require explicit human authorization until a future policy changes this"
+  notification_target: "dave@yawn.ai through automation/yawn.bot.pr-notification.yawn"
+
+blocked_before_private_pr:
+  - missing exact bounded diff
+  - missing deterministic validation
+  - missing rollback path
+  - missing privacy review
+  - missing rate budget
+  - public-only promotion request without Dave approval
 
 daily_output:
   - signal strength
@@ -68,6 +78,8 @@ daily_output:
   - risk review
   - commit readiness
   - authorization state
+  - private PR creation state
+  - Dave notification state
 
 first_meaningful_suggestion: >
   Because the repo currently has no open issues or pull requests, yawn.bot
@@ -77,8 +89,11 @@ first_meaningful_suggestion: >
 
 proof:
   source:
+    - core-loop.yawn
     - records/yawn.bot-verification-2026-07-01.yawn
     - agents/yawn.bot.yawn
     - automation/yawn.bot.daily.yawn
+    - automation/yawn.bot.pr-notification.yawn
     - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

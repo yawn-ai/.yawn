@@ -2,13 +2,14 @@ id: yawn
 title: ".yawn"
 kind: protocol-root
 status: v0-seed
-updated: 2026-07-03
+updated: 2026-07-04
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
 
 canonical_root: readme.yawn
 compatibility_readme: README.md
+core_loop: core-loop.yawn
 
 summary: >
   .yawn is a plain-text orientation shape for observing agents: humans, AI
@@ -34,6 +35,7 @@ file_priority:
   - proof-bound when promoted
 
 core_links:
+  core_loop: core-loop.yawn
   root_orientation: readme.yawn
   what_is_a_yawn: core/what-is-a-yawn.yawn
   orientation: core/orientation.yawn
@@ -93,11 +95,13 @@ contributor_links:
 
 automation_links:
   node: automation/node.yawn
+  core_loop: core-loop.yawn
   github_feedback_triage: automation/github-feedback-triage.yawn
   codex_repo_agent: automation/codex-repo-agent.yawn
   yawn_bot_daily: automation/yawn.bot.daily.yawn
   yawn_bot_feedback_loop: automation/yawn.bot.feedback-loop.yawn
   yawn_bot_private_pr_loop: automation/yawn.bot.private-pr-loop.yawn
+  yawn_bot_pr_notification: automation/yawn.bot.pr-notification.yawn
   yawn_bot_rising_radar: automation/yawn.bot.rising-radar.yawn
   yawn_bot_readme_audit: automation/yawn.bot.readme-young-reader-audit.yawn
   yawn_bot_license_audit: automation/yawn.bot.license-reference-audit.yawn
@@ -117,6 +121,7 @@ record_links:
   yawn_bot_verification: records/yawn.bot-verification-2026-07-01.yawn
   yawn_bot_pattern_ledger: records/yawn.bot-pattern-ledger.yawn
   yawn_bot_private_pr_ledger: records/yawn.bot-private-pr-ledger.yawn
+  yawn_bot_pr_notification_ledger: records/yawn.bot-pr-notification-ledger.yawn
   yawn_bot_trending_ledger: records/yawn.bot-trending-ledger.yawn
   yawn_bot_license_risk_ledger: records/yawn.bot-license-risk-ledger.yawn
   yawn_ai_funnel_bridge_ledger: records/yawn.ai-funnel-bridge-ledger.yawn
@@ -197,6 +202,7 @@ shape_path:
   records: records/node.yawn
   agents: agents/yawn.bot.policy.yawn
   feedback: feedback/form.yawn
+  core_loop: core-loop.yawn
 
 credibility_standard:
   field: "what information is available"
@@ -262,6 +268,7 @@ material_record_rule: >
   why it mattered, what changed, and what proof or risk remains.
 
 source:
+  - core-loop.yawn
   - readme.yawn
   - README.md
   - shape/node.yawn
@@ -277,3 +284,4 @@ source:
   - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
   - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
   - 08-research/july-01-2026-ai-writing-scan-lock.ion
+  - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion

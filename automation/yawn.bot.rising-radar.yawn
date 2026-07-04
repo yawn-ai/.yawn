@@ -2,11 +2,17 @@ id: automation/yawn.bot.rising-radar
 title: "yawn.bot morning rising radar"
 kind: automation-contract
 status: active
-updated: 2026-07-01
+updated: 2026-07-04
 
 automation_id: yawn-bot-morning-rising-radar
 schedule: "daily at 7:30 AM America/Denver"
+core_loop: core-loop.yawn
 policy: agents/yawn.bot.policy.yawn
+
+canonical_memory:
+  root: "C:/Users/dave/.codex/automations/yawn-bot-morning-rising-radar"
+  legacy_root: "C:/automations/yawn-bot-morning-rising-radar"
+  rule: "Read legacy memory only for backfill; write new memory to the canonical root."
 
 purpose: >
   Learn from the GitHub Trending top 10 each morning without cloning,
@@ -35,9 +41,18 @@ output:
   - relevance to YAWN axes
   - license and privacy notes
   - commit-readiness state
+  - core-loop candidate packet when thesis_ready or commit_ready
+
+pr_boundary: >
+  This radar may identify thesis_ready or commit_ready candidates, but it does
+  not open PRs. yawn-bot-daily-repo-contributor owns private draft PR creation
+  under core-loop.yawn.
 
 proof:
   source:
+    - core-loop.yawn
     - agents/yawn.bot.policy.yawn
+    - automation/yawn.bot.feedback-loop.yawn
     - records/yawn.bot-trending-ledger.yawn
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

@@ -2,7 +2,7 @@ id: references/source-index
 title: "source index"
 kind: reference-index
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 sources:
   - file: references/ownership-and-license.yawn
@@ -29,6 +29,8 @@ sources:
     role: "yawn.ai homepage bridge from public .yawn main changes into source-backed training funnel updates"
   - file: 08-research/july-01-2026-ai-writing-scan-lock.ion
     role: "AI-writing-style scan for public .yawn and yawn.ai text"
+  - file: 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+    role: "core-loop, private draft PR unblocking, canonical automation memory, and dave@yawn.ai PR notifications"
 
 proof:
   source:
@@ -37,6 +39,8 @@ proof:
     - agents/yawn.bot.yawn
     - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.feedback-loop.yawn
+    - core-loop.yawn
+    - automation/yawn.bot.pr-notification.yawn
     - automation/yawn.ai.funnel-bridge.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
   status: seed-backed

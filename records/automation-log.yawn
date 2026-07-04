@@ -2,13 +2,37 @@ id: records/automation-log
 title: "automation log"
 kind: record-log
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 purpose: >
   Track automations created for the .yawn repository and what they are allowed
   to do.
 
 current_entries:
+  - timestamp: "2026-07-04"
+    automation_id: "core-loop"
+    name: ".yawn core loop"
+    schedule: "index contract, not a cron job"
+    scope: "make signal ingestion, commit-ready gates, private draft PR creation, Dave notification, handoff, and human review visible"
+    allowed_effects: "govern private staging PR creation and one deduped PR notification to dave@yawn.ai when all gates pass"
+    blocked_effects: "public promotion, merge, mark ready, approve, publish, deploy, mutate main, expose private evidence, or send unrelated email"
+    proof: "created core-loop.yawn and PR notification contracts"
+  - timestamp: "2026-07-04"
+    automation_id: "yawn-bot-daily-repo-contributor"
+    name: "yawn.bot daily repo contributor"
+    schedule: "daily at 9:00 AM America/Denver"
+    scope: "create private staging draft PRs for commit_ready candidates under core-loop.yawn"
+    allowed_effects: "create yawn-ai/yawn-bot-staging branch, commit sanitized bounded diff, open draft PR, label PR, update ledgers, notify Dave"
+    blocked_effects: "public .yawn mutation, push to main, merge, mark ready, approve, comment externally, manage secrets, deploy, send unrelated email"
+    proof: "user requested unblocking and PR notification on 2026-07-04"
+  - timestamp: "2026-07-04"
+    automation_id: "yawn-bot-private-pr-handoff-loop"
+    name: "yawn.bot private PR handoff loop"
+    schedule: "hourly"
+    scope: "watch private staging draft PRs, recover missed Dave notifications, and report handoff state"
+    allowed_effects: "send or recover one deduped notification email to dave@yawn.ai when sender is available; update notification ledger"
+    blocked_effects: "duplicate notifications, merge, mark ready, approve, push to main, change settings, expose private evidence"
+    proof: "created automation/yawn.bot.pr-notification.yawn and records/yawn.bot-pr-notification-ledger.yawn"
   - timestamp: "2026-07-01"
     automation_id: "yawn-repo-feedback-triage"
     name: "YAWN repo feedback triage"
@@ -36,7 +60,7 @@ current_entries:
   - timestamp: "2026-07-01"
     automation_id: "yawn-bot-private-pr-handoff-loop"
     name: "yawn.bot private PR handoff loop"
-    schedule: "every 4 hours"
+    schedule: "historical: every 4 hours; superseded on 2026-07-04 by hourly core-loop handoff"
     scope: "watch private staging draft PRs labeled yawn.bot and report handoff state"
     allowed_effects: "summarize PR state, checks, comments, privacy state, risks, rollback, and next action"
     blocked_effects: "merge, mark ready, approve, push to main, change settings, expose private evidence"
@@ -84,14 +108,17 @@ current_entries:
 
 proof:
   source:
+    - core-loop.yawn
     - automation/github-feedback-triage.yawn
     - automation/yawn.bot.daily.yawn
     - automation/yawn.bot.feedback-loop.yawn
     - automation/yawn.bot.private-pr-loop.yawn
+    - automation/yawn.bot.pr-notification.yawn
     - automation/yawn.bot.rising-radar.yawn
     - automation/yawn.bot.readme-young-reader-audit.yawn
     - automation/yawn.bot.license-reference-audit.yawn
     - automation/yawn.ai.funnel-bridge.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
     - records/access-log.yawn
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
   status: seed-backed

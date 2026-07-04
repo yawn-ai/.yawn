@@ -2,7 +2,7 @@ id: records/node
 title: "records node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 purpose: >
   Hold material time: access logs, LLM-used context, GitHub surfaces, backups,
@@ -16,6 +16,7 @@ holds:
   - yawn.bot verification reports
   - yawn.bot pattern ledger
   - yawn.bot private PR ledger
+  - yawn.bot PR notification ledger
   - yawn.bot trending ledger
   - yawn.bot license risk ledger
   - yawn.ai funnel bridge ledger
@@ -45,6 +46,7 @@ produces:
   - bot verification records
   - bot pattern records
   - private PR handoff records
+  - PR notification receipts
   - trending pattern records
   - license-risk records
   - yawn.ai bridge records
@@ -60,6 +62,7 @@ questions:
   - what did yawn.bot observe or propose
   - what suggestion did a verification run produce
   - what private PR needs handoff
+  - has Dave been notified about this private draft PR
   - what pattern is forming
   - what license or privacy risk remains
   - what source-backed homepage update was made
@@ -73,6 +76,7 @@ links:
   - records/yawn.bot-verification-2026-07-01.yawn
   - records/yawn.bot-pattern-ledger.yawn
   - records/yawn.bot-private-pr-ledger.yawn
+  - records/yawn.bot-pr-notification-ledger.yawn
   - records/yawn.bot-trending-ledger.yawn
   - records/yawn.bot-license-risk-ledger.yawn
   - records/yawn.ai-funnel-bridge-ledger.yawn
@@ -85,11 +89,13 @@ links:
 
 proof:
   source:
+    - core-loop.yawn
     - records/material-time.yawn
     - records/automation-log.yawn
     - records/yawn.bot-log.yawn
     - records/yawn.bot-verification-2026-07-01.yawn
     - records/yawn.bot-pattern-ledger.yawn
+    - records/yawn.bot-pr-notification-ledger.yawn
     - records/yawn.ai-funnel-bridge-ledger.yawn
     - records/yawn.bot-ai-writing-ledger.yawn
     - records/feedback-log.yawn

@@ -2,7 +2,7 @@ id: records/yawn.bot-log
 title: "yawn.bot log"
 kind: record-log
 status: active-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 purpose: >
   Track the yawn.bot service identity, daily Codex automation, and future bot
@@ -18,6 +18,13 @@ entry_shape:
   linked_yawn: ""
 
 current_entries:
+  - timestamp: "2026-07-04"
+    actor: "codex"
+    event: "made yawn.bot private PR and Dave notification loop explicit"
+    evidence: "added core-loop.yawn, automation/yawn.bot.pr-notification.yawn, records/yawn.bot-pr-notification-ledger.yawn, and updated yawn.bot policy/contracts"
+    next_move_effect: "future commit_ready candidates can create private staging draft PRs and notify dave@yawn.ai through a deduped receipt"
+    boundary: "no public promotion, merge, mark-ready, approval, deployment, or unrelated email authority"
+    linked_yawn: "core-loop.yawn"
   - timestamp: "2026-07-01"
     actor: "codex"
     event: "created yawn.bot daily automation contract"
@@ -49,10 +56,13 @@ current_entries:
 
 proof:
   source:
+    - core-loop.yawn
     - agents/yawn.bot.yawn
     - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.daily.yawn
     - automation/yawn.bot.feedback-loop.yawn
     - automation/yawn.bot.private-pr-loop.yawn
+    - automation/yawn.bot.pr-notification.yawn
     - records/automation-log.yawn
+    - records/yawn.bot-pr-notification-ledger.yawn
   status: seed-backed

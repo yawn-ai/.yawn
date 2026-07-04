@@ -2,7 +2,7 @@ id: records/yawn.bot-private-pr-ledger
 title: "yawn.bot private PR ledger"
 kind: record-log
 status: active-seed
-updated: 2026-07-01
+updated: 2026-07-04
 
 purpose: >
   Track private yawn.bot draft PRs, handoff state, review state, and outcomes
@@ -19,6 +19,9 @@ entry_shape:
   checks: ""
   unresolved_risks: []
   privacy_state: ""
+  notification_dedupe_key: ""
+  notification_status: "not_required | sent | skipped_duplicate | blocked_sender_unavailable | queued_for_manual_send"
+  notification_sent_at: ""
   next_action: ""
   authorization_state: ""
 
@@ -31,11 +34,17 @@ current_entries:
     checks: "private staging repo created with labels and PR template"
     unresolved_risks: []
     privacy_state: "public docs name the staging lane but do not include private evidence"
-    next_action: "wait for first commit_ready pattern"
-    authorization_state: "draft PRs only; no merge or mark-ready authority"
+    notification_dedupe_key: ""
+    notification_status: "not_required"
+    notification_sent_at: ""
+    next_action: "wait for first new commit_ready pattern under core-loop.yawn"
+    authorization_state: "private draft PRs and Dave notification only; no merge, mark-ready, public promotion, or main authority"
 
 proof:
   source:
+    - core-loop.yawn
     - automation/yawn.bot.private-pr-loop.yawn
+    - automation/yawn.bot.pr-notification.yawn
     - agents/yawn.bot.policy.yawn
+    - records/yawn.bot-pr-notification-ledger.yawn
   status: seed-backed

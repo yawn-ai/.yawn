@@ -3,7 +3,7 @@ ion:
   title: source index
   type: research-index
   status: seed-canon
-  updated: 2026-07-01
+  updated: 2026-07-04
 
 sources:
   - id: june-30-2026-alignment
@@ -71,6 +71,11 @@ sources:
     kind: user correction and external style reference
     received_as: user message with Wikipedia reference
     role: source for the twice-daily AI-writing scan across .yawn and yawn.ai
+  - id: july-04-2026-yawn-bot-core-loop-pr-notification-lock
+    file: 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+    kind: user-approved architecture cleanup
+    received_as: user message
+    role: source for core-loop.yawn, private draft PR unblocking, canonical automation memory, and dave@yawn.ai PR notifications
 
 source_rules:
   - preserve source claims separately from canonical files
@@ -93,5 +98,6 @@ proof:
     - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
     - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
     - 08-research/july-01-2026-ai-writing-scan-lock.ion
-  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, yawn.bot daily service automation, yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, the yawn.ai open-source funnel bridge, and the AI-writing scan.
+    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+  claim: This index identifies the source material used to assemble the seed canon, public .yawn layer, material record layer, readme.yawn root, folder-node layer, GitHub/license usage lock, feedback intake, contributor automation, yawn.bot daily service automation, yawn.bot feedback-to-commit gate, yawn.bot architecture-observer policy, the yawn.bot core-loop/private-PR/Dave-notification path, the yawn.ai open-source funnel bridge, and the AI-writing scan.
   proof_state: seed-backed

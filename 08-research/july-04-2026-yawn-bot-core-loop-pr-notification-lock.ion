@@ -1,0 +1,33 @@
+ion:
+  id: 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock
+  title: july 04 2026 yawn bot core loop pr notification lock
+  type: source-summary
+  status: seed-canon
+  updated: 2026-07-04
+
+source_context:
+  Dave asked to unblock the yawn.bot PR creation loop, clean up the root cause
+  that made PR creation invisible, send PR notifications to dave@yawn.ai when
+  PRs come through, and add a structured core-loop.yawn with a Mermaid data-flow
+  diagram.
+
+primary_claims:
+  - the existing yawn.bot contracts allowed private draft PRs in principle but the scheduled prompts treated the bot as read-only unless current authorization was present
+  - the automation memory root drifted between C:/Users/dave/.codex/automations and C:/automations when CODEX_HOME was unset
+  - the loop needs a visible core contract that separates signal strength, commit readiness, private draft PR creation, notification, handoff, and human review
+  - dave@yawn.ai is the notification recipient for yawn.bot private draft PRs
+  - notification must be idempotent and must not become publication, approval, merge, or public promotion authority
+
+implementation_decision:
+  Add core-loop.yawn, a PR notification contract, a notification ledger, and
+  update the yawn.bot policy, daily contributor contract, private PR handoff
+  contract, automation index, records index, root index, and manifest so the
+  PR and notification loop is explicit and recoverable.
+
+proof:
+  source:
+    - user-message
+    - local automation memories
+    - yawn.bot policy and automation contracts
+  claim: This file captures the approval and design reason for unblocking the private draft PR plus Dave-notification loop.
+  proof_state: source-summary
