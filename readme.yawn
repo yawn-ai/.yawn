@@ -121,6 +121,49 @@ It does not tell you what is true.
 It helps you record what was observed, what was inferred, what is missing, what
 must not be assumed, what can move, what would count as proof, and what changed.
 
+## why
+
+Brains are not good at holding many live tensions at once.
+
+A human may be carrying:
+
+- body signals
+- memories
+- beliefs
+- habits
+- values
+- relationships
+- constraints
+- possible actions
+- fears
+- hopes
+- AI suggestions
+- unfinished proof
+
+A .yawn externalizes the frame so the person does not have to carry all of it
+alone.
+
+It helps answer:
+
+```text
+what is here?
+what am i inferring?
+what is missing?
+what move is actually authorized?
+what proof would matter?
+```
+
+YAWN exists because agents act from inferences they often cannot see.
+
+A human feels a signal and infers meaning.
+An AI receives context and infers a next action.
+A bot sees repeated files and infers a repo improvement.
+An institution sees data and infers policy.
+
+When those inferences are hidden, alignment fails.
+
+.yawn makes inference visible before action.
+
 ## smallest possible yawn
 
 ```yaml
@@ -179,49 +222,6 @@ answer questions
 -> check proof
 -> replay what changed
 ```
-
-## why
-
-Brains are not good at holding many live tensions at once.
-
-A human may be carrying:
-
-- body signals
-- memories
-- beliefs
-- habits
-- values
-- relationships
-- constraints
-- possible actions
-- fears
-- hopes
-- AI suggestions
-- unfinished proof
-
-A .yawn externalizes the frame so the person does not have to carry all of it
-alone.
-
-It helps answer:
-
-```text
-what is here?
-what am i inferring?
-what is missing?
-what move is actually authorized?
-what proof would matter?
-```
-
-YAWN exists because agents act from inferences they often cannot see.
-
-A human feels a signal and infers meaning.
-An AI receives context and infers a next action.
-A bot sees repeated files and infers a repo improvement.
-An institution sees data and infers policy.
-
-When those inferences are hidden, alignment fails.
-
-.yawn makes inference visible before action.
 
 ## influences and credibility
 

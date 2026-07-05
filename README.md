@@ -85,6 +85,33 @@ It does not tell you what is true.
 It helps you record what was observed, what was inferred, what is missing, what
 must not be assumed, what can move, what would count as proof, and what changed.
 
+## Why
+
+Brains are not good at holding many live tensions at once.
+
+A human is often carrying body signals, memories, beliefs, habits, values,
+relationships, constraints, possible actions, fears, hopes, AI suggestions, and
+unfinished proof.
+
+A `.yawn` externalizes the frame so a human and an AI agent can inspect the same
+object:
+
+```text
+what happened
+what was inferred
+what is known
+what is assumed
+what is missing
+what boundary matters
+what move is safe
+what proof would matter
+what changed
+```
+
+YAWN exists because agents act from inferences they often cannot see.
+
+`.yawn` makes those inferences visible before action.
+
 ## The smallest possible `.yawn`
 
 ```yaml
@@ -131,33 +158,6 @@ answer questions
 -> check proof
 -> replay what changed
 ```
-
-## Why
-
-Brains are not good at holding many live tensions at once.
-
-A human is often carrying body signals, memories, beliefs, habits, values,
-relationships, constraints, possible actions, fears, hopes, AI suggestions, and
-unfinished proof.
-
-A `.yawn` externalizes the frame so a human and an AI agent can inspect the same
-object:
-
-```text
-what happened
-what was inferred
-what is known
-what is assumed
-what is missing
-what boundary matters
-what move is safe
-what proof would matter
-what changed
-```
-
-YAWN exists because agents act from inferences they often cannot see.
-
-`.yawn` makes those inferences visible before action.
 
 ## Influences and credibility
 
