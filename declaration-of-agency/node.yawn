@@ -1,25 +1,21 @@
 id: declaration-of-agency/node
-title: "declaration of agency route"
-kind: route-node
-status: v0-seed
+title: "declaration of agency redirect"
+kind: route-redirect-node
+status: v0-redirect
 updated: 2026-07-05
 
-holds:
-  - index.html
-  - ../declaration-of-agency.yawn
+redirects_to: ../agency-declaration/
 
 purpose: >
-  Render the Declaration of Agency as a public static route at
-  /declaration-of-agency/ while keeping the source declaration in a plain-text
-  .yawn object.
+  Preserve the first Declaration of Agency route while the canonical public
+  route moves to /agency-declaration/.
 
 boundary:
-  - "The embedded video is field evidence, not proof by itself."
-  - "The route does not claim reality is literally code."
-  - "Only proof updates the map."
+  - "This is a redirect only."
+  - "The canonical source object is ../agency-declaration.yawn."
 
 proof:
   source:
-    - ../declaration-of-agency.yawn
-    - ../README.md
+    - ../agency-declaration.yawn
+    - index.html
   status: seed-backed

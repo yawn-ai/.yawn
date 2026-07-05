@@ -41,13 +41,19 @@ turning signal into command or intensity into truth.
 Route:
 
 ```text
-https://yawn-ai.github.io/.yawn/declaration-of-agency/
+https://yawn-ai.github.io/.yawn/agency-declaration/
+```
+
+GitHub folder after merge:
+
+```text
+https://github.com/yawn-ai/.yawn/tree/main/agency-declaration
 ```
 
 Source object:
 
 ```text
-declaration-of-agency.yawn
+agency-declaration.yawn
 ```
 
 GitHub README anchor:

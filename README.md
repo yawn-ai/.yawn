@@ -20,8 +20,9 @@ a declaration that any sufficiently intelligent observer should be free to study
 the code-like, field-like shape of available information without turning signal
 into command or intensity into truth.
 
-- Public route: [Declaration of Agency](https://yawn-ai.github.io/.yawn/declaration-of-agency/)
-- Source object: [declaration-of-agency.yawn](declaration-of-agency.yawn)
+- Public route after merge: [Declaration of Agency](https://yawn-ai.github.io/.yawn/agency-declaration/)
+- GitHub folder after merge: [github.com/yawn-ai/.yawn/tree/main/agency-declaration](https://github.com/yawn-ai/.yawn/tree/main/agency-declaration)
+- Source object: [agency-declaration.yawn](agency-declaration.yawn)
 - GitHub README anchor: [github.com/yawn-ai/.yawn#declaration-of-agency](https://github.com/yawn-ai/.yawn#declaration-of-agency)
 - Birthday frame: [National Archives](https://www.archives.gov/founding-docs/declaration/how-did-it-happen), [America250](https://america250.org/)
 

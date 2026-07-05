@@ -1,9 +1,10 @@
-id: declaration-of-agency
+id: agency-declaration
 title: "Declaration of Agency"
 kind: public-declaration
 status: v0-seed
 updated: 2026-07-05
-route: https://yawn-ai.github.io/.yawn/declaration-of-agency/
+route: https://yawn-ai.github.io/.yawn/agency-declaration/
+github_folder: https://github.com/yawn-ai/.yawn/tree/main/agency-declaration
 github_readme_anchor: https://github.com/yawn-ai/.yawn#declaration-of-agency
 source_video: https://www.youtube.com/live/6MgYQnkldTA?si=mOXv64-1d2tHM3Rq
 
@@ -77,6 +78,6 @@ proof:
   evidence:
     - README.md
     - readme.yawn
-    - declaration-of-agency/index.html
+    - agency-declaration/index.html
 
 replay: "What became clearer after holding the information field without forcing certainty?"
