@@ -38,13 +38,25 @@ It is a declaration that any sufficiently intelligent observer should be free
 to study the code-like, field-like shape of available information without
 turning signal into command or intensity into truth.
 
-Route:
+Standalone live route:
+
+```text
+https://agency-declaration.vercel.app/agency-declaration/
+```
+
+Standalone GitHub repo:
+
+```text
+https://github.com/yawn-ai/agency-declaration
+```
+
+.yawn mirror route after merge:
 
 ```text
 https://yawn-ai.github.io/.yawn/agency-declaration/
 ```
 
-GitHub folder after merge:
+.yawn GitHub folder after merge:
 
 ```text
 https://github.com/yawn-ai/.yawn/tree/main/agency-declaration

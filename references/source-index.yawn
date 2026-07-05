@@ -6,7 +6,7 @@ updated: 2026-07-05
 
 sources:
   - file: agency-declaration.yawn
-    role: "public Declaration of Agency source object, birthday frame, field recording, proof boundary, and /agency-declaration route"
+    role: "public Declaration of Agency source object, standalone GitHub/Vercel surface, birthday frame, field recording, proof boundary, and /agency-declaration route"
   - file: references/ownership-and-license.yawn
     role: "github address, MIT license, and The Yawn Company copyright holder"
   - file: references/scientific-frame.yawn

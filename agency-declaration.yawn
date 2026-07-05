@@ -3,6 +3,8 @@ title: "Declaration of Agency"
 kind: public-declaration
 status: v0-seed
 updated: 2026-07-05
+standalone_github: https://github.com/yawn-ai/agency-declaration
+standalone_live: https://agency-declaration.vercel.app/agency-declaration/
 route: https://yawn-ai.github.io/.yawn/agency-declaration/
 github_folder: https://github.com/yawn-ai/.yawn/tree/main/agency-declaration
 github_readme_anchor: https://github.com/yawn-ai/.yawn#declaration-of-agency
@@ -72,10 +74,13 @@ move:
 
 proof:
   condition: >
-    The README links to the declaration, the public route renders the source
-    video, the declaration names the birthday frame, and the boundary refuses
-    false certainty while preserving the freedom to observe.
+    The README links to the standalone repository, the live Vercel page, and
+    the .yawn mirror route; the public page renders the source video, names the
+    birthday frame, and refuses false certainty while preserving the freedom to
+    observe.
   evidence:
+    - https://github.com/yawn-ai/agency-declaration
+    - https://agency-declaration.vercel.app/agency-declaration/
     - README.md
     - readme.yawn
     - agency-declaration/index.html

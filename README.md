@@ -20,9 +20,11 @@ a declaration that any sufficiently intelligent observer should be free to study
 the code-like, field-like shape of available information without turning signal
 into command or intensity into truth.
 
-- Public route after merge: [Declaration of Agency](https://yawn-ai.github.io/.yawn/agency-declaration/)
-- GitHub folder after merge: [github.com/yawn-ai/.yawn/tree/main/agency-declaration](https://github.com/yawn-ai/.yawn/tree/main/agency-declaration)
-- Source object: [agency-declaration.yawn](agency-declaration.yawn)
+- Standalone live page: [agency-declaration.vercel.app/agency-declaration/](https://agency-declaration.vercel.app/agency-declaration/)
+- Standalone GitHub repo: [github.com/yawn-ai/agency-declaration](https://github.com/yawn-ai/agency-declaration)
+- `.yawn` mirror route after merge: [Declaration of Agency](https://yawn-ai.github.io/.yawn/agency-declaration/)
+- `.yawn` GitHub folder after merge: [github.com/yawn-ai/.yawn/tree/main/agency-declaration](https://github.com/yawn-ai/.yawn/tree/main/agency-declaration)
+- `.yawn` source object: [agency-declaration.yawn](agency-declaration.yawn)
 - GitHub README anchor: [github.com/yawn-ai/.yawn#declaration-of-agency](https://github.com/yawn-ai/.yawn#declaration-of-agency)
 - Birthday frame: [National Archives](https://www.archives.gov/founding-docs/declaration/how-did-it-happen), [America250](https://america250.org/)
 
