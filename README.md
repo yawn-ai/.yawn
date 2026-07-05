@@ -6,6 +6,36 @@ A `.yawn` helps any observing agent - human, AI, team, tool, repo, or
 organization - hold part of an information field clearly enough to act without
 hidden authority.
 
+## Declaration of Agency
+
+Happy 250th, America.
+
+On July 4, 2026, 250 years after the Declaration of Independence was adopted,
+`.yawn` marks the birthday by declaring agency as the next inspectable frontier
+of freedom: the capacity to observe, orient, choose, prove, and replay under
+real constraints.
+
+This is not a declaration that reality has been proven to be literal code. It is
+a declaration that any sufficiently intelligent observer should be free to study
+the code-like, field-like shape of available information without turning signal
+into command or intensity into truth.
+
+- Standalone live page: [agency-declaration.vercel.app/agency-declaration/](https://agency-declaration.vercel.app/agency-declaration/)
+- Standalone GitHub repo: [github.com/yawn-ai/agency-declaration](https://github.com/yawn-ai/agency-declaration)
+- `.yawn` mirror route after merge: [Declaration of Agency](https://yawn-ai.github.io/.yawn/agency-declaration/)
+- `.yawn` GitHub folder after merge: [github.com/yawn-ai/.yawn/tree/main/agency-declaration](https://github.com/yawn-ai/.yawn/tree/main/agency-declaration)
+- `.yawn` source object: [agency-declaration.yawn](agency-declaration.yawn)
+- GitHub README anchor: [github.com/yawn-ai/.yawn#declaration-of-agency](https://github.com/yawn-ai/.yawn#declaration-of-agency)
+- Birthday frame: [National Archives](https://www.archives.gov/founding-docs/declaration/how-did-it-happen), [America250](https://america250.org/)
+
+Field recording:
+
+[![Observer field recording for the Declaration of Agency](https://img.youtube.com/vi/6MgYQnkldTA/hqdefault.jpg)](https://www.youtube.com/live/6MgYQnkldTA?si=mOXv64-1d2tHM3Rq)
+
+The recording is included as a field object: partial, maybe blurry, and still
+available to inspect. It is data in the field, not proof by itself and not
+authority over the observer.
+
 Canonical source: [readme.yawn](readme.yawn)
 
 GitHub mirror: [README.md](README.md)

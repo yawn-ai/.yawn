@@ -1,0 +1,21 @@
+id: declaration-of-agency/node
+title: "declaration of agency redirect"
+kind: route-redirect-node
+status: v0-redirect
+updated: 2026-07-05
+
+redirects_to: ../agency-declaration/
+
+purpose: >
+  Preserve the first Declaration of Agency route while the canonical public
+  route moves to /agency-declaration/.
+
+boundary:
+  - "This is a redirect only."
+  - "The canonical source object is ../agency-declaration.yawn."
+
+proof:
+  source:
+    - ../agency-declaration.yawn
+    - index.html
+  status: seed-backed

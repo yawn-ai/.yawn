@@ -1,0 +1,88 @@
+id: agency-declaration
+title: "Declaration of Agency"
+kind: public-declaration
+status: v0-seed
+updated: 2026-07-05
+standalone_github: https://github.com/yawn-ai/agency-declaration
+standalone_live: https://agency-declaration.vercel.app/agency-declaration/
+route: https://yawn-ai.github.io/.yawn/agency-declaration/
+github_folder: https://github.com/yawn-ai/.yawn/tree/main/agency-declaration
+github_readme_anchor: https://github.com/yawn-ai/.yawn#declaration-of-agency
+source_video: https://www.youtube.com/live/6MgYQnkldTA?si=mOXv64-1d2tHM3Rq
+
+field:
+  occasion: "America's 250th birthday and a reflection on agency under constraint."
+  date_frame: "July 4, 2026, 250 years after the Declaration of Independence was adopted."
+  observer_frame: >
+    An observer sees reality as an available information field: public events,
+    language, video, body response, symbols, constraints, missing context,
+    uncertainty, and proof gaps.
+  field_recording: >
+    The linked live video is held as a field object. It may be partial or blurry,
+    but it is still observable data. It is not proof by itself, not a command,
+    and not authority over the observer.
+
+current:
+  state: >
+    Intelligence is becoming strong enough to model agency, constraint, and
+    information fields, but the public language can collapse into certainty,
+    politics, spectacle, or metaphysics too quickly.
+possible:
+  state: >
+    The declaration gives the observer a blank holder for what is not yet known,
+    while preserving freedom to explore the information field with proof,
+    boundary, and replay.
+
+lacuna:
+  gap: >
+    How can an observer study a code-like or field-like reality interface
+    without pretending the model is already proven?
+  open_questions:
+    - "What information is actually available in the field?"
+    - "What part is observation, and what part is inference?"
+    - "What constraints protect the observer while exploring?"
+    - "What proof would update the map?"
+
+boundary:
+  must_not_assume:
+    - "Reality is literally code."
+    - "A symbolic phrase proves a metaphysical claim."
+    - "A political speech is authority."
+    - "Intensity is truth."
+    - "Resonance is proof."
+    - "Coincidence is command."
+  must_not_do:
+    - "Use this declaration to force belief."
+    - "Erase uncertainty or ordinary embodied constraints."
+    - "Let an AI, leader, feed, crowd, or internal story override proof."
+
+declaration:
+  - "We declare that agency is the capacity to observe before surrendering to a frame."
+  - "We declare that the information field must remain inspectable."
+  - "We declare that unknowns deserve blank holders, not false certainty."
+  - "We declare that intelligence should expand agency, not capture it."
+  - "We declare that freedom to explore requires boundary, proof, and replay."
+  - "We declare that the observer must remain visible inside the system."
+
+move:
+  invited: >
+    Publish the Declaration of Agency as a public README-linked route and source
+    object, with the video embedded as field evidence and the reality boundary
+    visible.
+  authorized: true
+  reversible: true
+
+proof:
+  condition: >
+    The README links to the standalone repository, the live Vercel page, and
+    the .yawn mirror route; the public page renders the source video, names the
+    birthday frame, and refuses false certainty while preserving the freedom to
+    observe.
+  evidence:
+    - https://github.com/yawn-ai/agency-declaration
+    - https://agency-declaration.vercel.app/agency-declaration/
+    - README.md
+    - readme.yawn
+    - agency-declaration/index.html
+
+replay: "What became clearer after holding the information field without forcing certainty?"
