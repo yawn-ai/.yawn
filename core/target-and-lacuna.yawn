@@ -1,0 +1,65 @@
+id: core/target-and-lacuna
+title: "target condition and lacuna"
+kind: orientation-contract
+status: v1
+updated: 2026-07-21
+
+target_condition:
+  definition: >
+    A scoped condition proposed or ratified to govern what should change,
+    remain, recover, be prevented, be understood, be decided, be reconciled,
+    or be held open.
+  optional: true
+  modes:
+    - attain
+    - maintain
+    - restore
+    - prevent
+    - avoid
+    - understand
+    - decide
+    - reconcile
+    - hold_open
+  may_be_motivated_by:
+    - desire
+    - need
+    - value
+    - purpose
+    - promise
+    - obligation
+    - safety_requirement
+    - legitimate_claim
+    - unanswered_question
+  requires:
+    - proposed_by
+    - affected_principals
+    - ratification_status
+    - sufficient_when
+    - boundary_refs
+
+lacuna:
+  definition: >
+    A typed inadequacy or discrepancy between the current state model and a
+    relevant target, requirement, question, boundary, or proof condition.
+  kinds:
+    - missing_knowledge
+    - missing_evidence
+    - missing_permission
+    - missing_resource
+    - missing_skill
+    - unresolved_conflict
+    - unratified_target
+    - unselected_choice
+    - blocked_dependency
+    - threatened_boundary
+    - unverified_result
+
+invariants:
+  - "A possible condition is not automatically a target."
+  - "A desired condition may be infeasible or unratified."
+  - "A target may exist without desire and a desire may exist without a target."
+  - "A shared target requires every configured ratification right."
+
+proof:
+  condition: "Non-goal Yawns remain valid without an attain target."
+  status: contract-defined

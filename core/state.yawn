@@ -1,0 +1,45 @@
+id: core/state
+title: "state"
+kind: substrate-contract
+status: v1
+updated: 2026-07-21
+
+constitution: >
+  State is a substrate primitive. Every Yawn has a reproducible materialized
+  state at an event cursor. That state is what the system currently holds; it
+  is not the world itself, does not erase event history, and may be replaced by
+  replaying authorized events.
+
+terms:
+  materialized_state: "the canonical aggregate reduced from authorized events"
+  state_snapshot: "an attributed account of present conditions within a scope"
+  target_condition: "an optional proposed or ratified condition"
+  epistemic_status: "how a claim is known or contested"
+  lifecycle_status: "where an entity is in its lifespan"
+  loop_status: "where a loop is in its recurrence"
+  axis_resolution_status: "whether an axis is potential, observed, intended, gap, or resolved"
+  presentation_state: "temporary interface state that does not change semantics"
+
+substrate:
+  primitives:
+    - yawn_holon
+    - event
+    - state
+    - relation
+  reduction: "S(t) = Reduce(E(0)..E(t) where authority_status is authorized)"
+  deterministic: true
+  history_is_append_only: true
+
+invariants:
+  - "Every materialized state identifies its event cursor and state hash."
+  - "Replaying the same authorized events produces the same state hash."
+  - "A state snapshot remains attributed and may be corrected or disputed."
+  - "Unknown and disagreement remain representable."
+  - "A desire is not a state update, target ratification, or authorization."
+  - "Only suitable evidence or proof may upgrade an empirical claim."
+
+proof:
+  condition: >
+    Independent replay of the same ordered authorized events produces the same
+    materialized state and hash without altering the source events.
+  status: contract-defined

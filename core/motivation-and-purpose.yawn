@@ -1,0 +1,47 @@
+id: core/motivation-and-purpose
+title: "motivation and purpose"
+kind: semantic-contract
+status: v1
+updated: 2026-07-21
+
+desire:
+  definition: "A felt pull toward an experience, condition, object, relationship, or possibility."
+  first_class: true
+  not_equivalent_to:
+    - shared_target
+    - goal
+    - commitment
+    - entitlement
+    - authorization
+    - prediction
+    - proof
+
+progression:
+  - desire
+  - candidate_target
+  - purpose
+  - goal
+  - choice
+  - commitment
+  - authorization
+  - move
+  - proof
+  - state_update
+
+terms:
+  need: "a condition believed relevant to functioning"
+  value: "a quality treated as important"
+  purpose: "a scoped difference chosen to serve"
+  goal: "a selected target within a purpose"
+  choice: "the authored selection among alternatives"
+  commitment: "the accepted cost or constraint protecting a choice"
+  authorization: "permission to produce a declared effect"
+
+invariants:
+  - "Desire remains attributable to its principal."
+  - "One participant's desire never becomes shared agreement by inference."
+  - "Commitment and authorization remain explicit events."
+
+proof:
+  condition: "A captured desire can remain visible without becoming a target, task, or action."
+  status: contract-defined

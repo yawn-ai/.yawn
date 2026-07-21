@@ -1,22 +1,24 @@
 id: core/movement-loop
 title: "movement loop"
 kind: protocol
-status: v0-seed
-updated: 2026-06-30
+status: v1
+updated: 2026-07-21
 
 formal_loop:
-  - observe
+  - signal
   - orient
   - choose
   - move
-  - replay
+  - proof
+  - update
 
 human_loop:
-  - pause
-  - see
-  - steer
+  - notice the signal
+  - orient to state
+  - choose or hold
   - move
-  - learn
+  - check proof
+  - update the map
 
 north_star_loop:
   - see the frame
@@ -26,15 +28,20 @@ north_star_loop:
   - replay what changed
 
 stage_notes:
-  observe: "notice what has attention without forcing action"
-  orient: "name the current frame, possible frame, and lacuna"
+  signal: "capture what has attention without forcing action"
+  orient: "name attributed state, possibilities, desires, targets, and lacunae without collapsing them"
   choose: "select a bounded move that preserves stability"
-  move: "take the smallest meaningful step reality can answer"
-  replay: "compare expectation, action, proof, cost, and update"
+  move: "attempt the smallest authorized transition reality can answer"
+  proof: "compare expected delta with observed evidence; the move cannot judge itself"
+  update: "reduce authorized events and replay the materialized state"
 
 holding_rule: >
   Some yawns are not ready for action. Holding can be the correct movement
   stage when proof, boundary, or stability is missing.
+
+projection_rule: >
+  Longer loops may project this cycle with richer labels, but must preserve the
+  six canonical relations signal -> orientation -> choice -> move -> proof -> update.
 
 proof:
   source:

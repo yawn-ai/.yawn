@@ -1,0 +1,32 @@
+id: schemas/node
+title: "schema node"
+kind: contract-node
+status: v1
+updated: 2026-07-21
+
+purpose: "Hold machine-valid State/Desire/Target/Transition contracts."
+
+holds:
+  - statuses.v1.schema.json
+  - event.v1.schema.json
+  - materialized-state.v1.schema.json
+  - state-snapshot.v1.schema.json
+  - desire.v1.schema.json
+  - target-condition.v1.schema.json
+  - transition-intent.v1.schema.json
+  - transition-result.v1.schema.json
+  - state-update.v1.schema.json
+  - living-snapshot.v1.schema.json
+
+compatibility: >
+  Legacy current/possible/desired fields remain readable at system boundaries.
+  Canonical V1 records use attributed snapshots, optional targets, explicit
+  authority, and separate transition intent/result.
+
+status_rule: >
+  Modal, motivational, epistemic, lifecycle, authority, loop,
+  axis-resolution, and presentation statuses are independent dimensions.
+
+proof:
+  command: "npm test"
+  status: contract-defined

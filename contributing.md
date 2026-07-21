@@ -7,12 +7,19 @@ Thanks for wanting to help.
 ## the simple contribution loop
 
 ```text
-see the frame
-name what is missing
-choose one bounded change
-show proof
-replay what changed
+signal
+-> orientation
+-> choice
+-> move
+-> proof
+-> update
 ```
+
+State is the substrate. Desire is attributed directional evidence, not shared
+agreement or authority. Targets are optional, scoped, and ratified by the
+configured rights-holders. Keep possibility, desire, target, move, proof, and
+state update separate in new contracts; legacy `current` / `possible` fields
+may remain only at compatibility edges.
 
 ## ways to contribute
 
@@ -50,11 +57,13 @@ human authorization.
 Keep PRs small and proof-shaped:
 
 ```text
-current:
+state:
+desire:
+target: # optional
 lacuna:
-move:
+transition intent:
 proof:
-replay:
+state update:
 ```
 
 Human-readable first. Machine-addressable second. Proof-bound when promoted.

@@ -2,6 +2,11 @@ id: examples/yawn-spine-dogfood
 title: "The .yawn repo explains its own spine"
 kind: yawn-spine-example
 status: example
+schema_profile: legacy-v0-compatibility-example
+compatibility_note: >
+  This pre-V1 example intentionally retains frame.current, frame.possible,
+  possible_kind, and measurement to exercise edge normalization. New examples
+  use attributed state snapshots, first-class desires, and optional targets.
 
 source:
   template: templates/full.yawn
@@ -185,7 +190,8 @@ boundary:
     - "resonance is not proof"
     - "memory is not objective record"
     - "AI output is not authority"
-    - "only proof updates the map"
+    - "only authorized events update canonical materialized state"
+    - "only suitable evidence or proof upgrades empirical claims"
 
 proof:
   condition: "A reader can name one entry path, copy a template or question packet, and understand what proof would update the frame."

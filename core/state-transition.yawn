@@ -1,0 +1,49 @@
+id: core/state-transition
+title: "state transition"
+kind: agency-contract
+status: v1
+updated: 2026-07-21
+
+definition: >
+  A move is an authorized transition attempt. It does not directly create the
+  next state and cannot declare itself successful. World response, observation,
+  proof, and authorized result events determine what may be materialized next.
+
+transition_intent:
+  required:
+    - from_state_hash
+    - target_condition_refs
+    - expected_delta
+    - selected_by
+    - choice_ref
+    - move_ref
+    - reversibility
+    - stop_condition
+    - proof_contract_ref
+
+transition_result:
+  required:
+    - intent_ref
+    - action_event_refs
+    - observed_delta
+    - proof_refs
+    - outcome_status
+    - residual_lacuna_refs
+    - unintended_effects
+  outcome_statuses:
+    - not_observed
+    - partial
+    - proved
+    - failed
+    - mixed
+    - contested
+
+invariants:
+  - "Expected delta and observed delta remain separate."
+  - "A move cannot mark its own result proved."
+  - "Proof cannot erase the source, intent, or unintended effects."
+  - "Authorization is scoped to the declared effect and may be revoked."
+
+proof:
+  condition: "Replay preserves intent, attempt, evidence, result, and residual lacuna separately."
+  status: contract-defined
