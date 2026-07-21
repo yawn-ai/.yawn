@@ -3,7 +3,7 @@ title: ""
 
 kind: orientation-shape
 status: seed
-version: "0.1.0"
+version: "1.0.0"
 created: ""
 updated: ""
 
@@ -21,6 +21,17 @@ orientation:
   stance: ""
   attention: ""
   current_location: ""
+
+state_snapshot:
+  description: ""
+  attributed_to: ""
+  modal_role: actual
+  motivational_role: neutral
+  epistemic_status: reported
+  source_refs: []
+
+desires: []
+target_conditions: []
 
 inference:
   claim: ""
@@ -41,17 +52,23 @@ boundary:
     - "memory is not objective record"
     - "AI output is not authority"
     - "intensity is not truth"
-    - "only proof updates the map"
+    - "only authorized events update canonical materialized state"
+    - "only suitable evidence or proof upgrades empirical claims"
 
 move:
   invited: ""
   authorized: false
   reversible: true
+  may_declare_success: false
 
 proof:
   condition: ""
   evidence: []
   status: not_started # not_started | gathering | passed | failed | mixed | abandoned
+
+update:
+  authorized_event_refs: []
+  changed_paths: []
 
 memory:
   before: ""

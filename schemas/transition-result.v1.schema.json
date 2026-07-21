@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/transition-result.v1.schema.json",
+  "title": "YawnTransitionResultV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "resultId", "intentRef", "actionEventRefs", "observedDelta", "proofRefs", "outcomeStatus", "residualLacunaRefs", "unintendedEffects"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "resultId": { "type": "string", "minLength": 1 },
+    "intentRef": { "type": "string", "minLength": 1 },
+    "actionEventRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "observedDelta": { "type": "string" },
+    "proofRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "outcomeStatus": { "enum": ["not_observed", "partial", "proved", "failed", "mixed", "contested"] },
+    "residualLacunaRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "unintendedEffects": { "type": "array", "items": { "type": "string" } }
+  }
+}

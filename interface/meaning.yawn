@@ -1,10 +1,10 @@
 id: interface/meaning
 title: "/meaning"
 kind: cognition-handle
-status: v0-seed
-updated: 2026-07-01
+status: v1
+updated: 2026-07-21
 
-function: "name the gap between current and possible"
+function: "separate attributed state, possibility, desire, optional target, and typed lacuna"
 
 asks:
   - what does this mean to the observer
@@ -13,10 +13,19 @@ asks:
   - what is desired, feared, called, avoided, or unknown
 
 output:
-  current: ""
-  possible: ""
-  lacuna: ""
-  possible_kind: "desired | feared | called | avoided | unknown | unproven"
+  state_snapshots: []
+  possibilities: []
+  desires: []
+  target_conditions: []
+  lacunae: []
+  status_dimensions:
+    modal: "actual | possible | predicted | counterfactual"
+    motivational: "desired | feared | neutral"
+    epistemic: "reported | observed | inferred | assumed | supported | disputed | unknown | unproven"
+
+compatibility: >
+  possible_kind remains readable only at legacy edges. It must not mix modal,
+  motivational, or epistemic meaning in canonical records.
 
 proof:
   source:

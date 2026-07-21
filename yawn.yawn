@@ -1,8 +1,8 @@
 id: yawn
 title: ".yawn"
 kind: protocol-root
-status: v0-seed
-updated: 2026-07-04
+status: v1
+updated: 2026-07-21
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -20,14 +20,17 @@ canonical_sentence: >
   .yawn is a plain-text orientation shape for observing agents.
 
 root_loop:
-  - notice
-  - orient
-  - infer
-  - name the gap
-  - protect the boundary
-  - choose one bounded move
-  - prove what changed
-  - update memory
+  - signal
+  - orientation
+  - choice
+  - move
+  - proof
+  - update
+
+constitution: >
+  State is the substrate. Desire is attributed directional evidence. Targets
+  are optional and scoped. Moves attempt change; proof evaluates results; and
+  authorized events rematerialize state.
 
 file_priority:
   - human-readable first
@@ -51,6 +54,24 @@ core_links:
   proof_and_boundary: core/proof-and-boundary.yawn
   human_use: core/human-use.yawn
   design_principles: core/design-principles.yawn
+  state: core/state.yawn
+  event_reduction: core/event-reduction.yawn
+  target_and_lacuna: core/target-and-lacuna.yawn
+  state_transition: core/state-transition.yawn
+  motivation_and_purpose: core/motivation-and-purpose.yawn
+
+schema_links:
+  node: schemas/node.yawn
+  statuses_v1: schemas/statuses.v1.schema.json
+  event_v1: schemas/event.v1.schema.json
+  materialized_state_v1: schemas/materialized-state.v1.schema.json
+  state_snapshot_v1: schemas/state-snapshot.v1.schema.json
+  desire_v1: schemas/desire.v1.schema.json
+  target_condition_v1: schemas/target-condition.v1.schema.json
+  transition_intent_v1: schemas/transition-intent.v1.schema.json
+  transition_result_v1: schemas/transition-result.v1.schema.json
+  state_update_v1: schemas/state-update.v1.schema.json
+  living_snapshot_v1: schemas/living-snapshot.v1.schema.json
 
 shape_links:
   node: shape/node.yawn
@@ -156,6 +177,13 @@ example_links:
   signal: examples/signal.yawn
   choice: examples/choice.yawn
   repair: examples/repair.yawn
+  state_substrate_family: examples/state-substrate-family.yawn
+
+fixture_links:
+  node: fixtures/node.yawn
+  canonical_contracts_v1: fixtures/canonical-contracts.v1.json
+  optional_target_yawns_v1: fixtures/optional-target-yawns.v1.json
+  multi_principal_family_v1: fixtures/multi-principal-family.v1.json
 
 agent_links:
   orientation: agents/orientation.yawn
@@ -234,6 +262,7 @@ folder_node_links:
   templates: templates/node.yawn
   question_packets: question-packets/node.yawn
   examples: examples/node.yawn
+  fixtures: fixtures/node.yawn
   references: references/node.yawn
   agents: agents/node.yawn
   bridge_start: 00-start/node.yawn
@@ -253,7 +282,10 @@ boundary:
   - memory is not objective record
   - ai output is not authority
   - intensity is not truth
-  - only proof updates the map
+  - only authorized events update canonical materialized state
+  - only suitable evidence or proof upgrades empirical claims
+  - desire cannot authorize action
+  - a move cannot mark itself successful
 
 first_move:
   instruction: >

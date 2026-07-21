@@ -1,32 +1,39 @@
 id: core/movement-frame
 title: "movement frame"
 kind: core
-status: v0-seed
-updated: 2026-07-01
+status: v1
+updated: 2026-07-21
 
 definition: >
   A movement frame is the movement layer inside an orientation shape. It turns
-  raw signal into current state, possible state, missing bridge, bounded move,
-  proof, and memory update.
+  raw signal into an attributed state snapshot, scoped possibilities or
+  targets, a typed lacuna, bounded transition intent, proof, and an authorized
+  state update.
 
 path:
-  - raw life signal
+  - signal
   - orientation
-  - inference
-  - readable frame
-  - missing bridge
-  - possible move
-  - proof condition
-  - replayed memory update
+  - choice
+  - move
+  - proof
+  - update
 
 fields:
-  current: "what is happening now"
-  possible: "what could become possible"
-  lacuna: "what is missing or blocked"
-  move: "what relation or action is invited"
+  current: "an attributed snapshot of what is happening now"
+  possible: "a possibility, not automatically a target"
+  desire: "a principal's attributed directional evidence"
+  target: "an optional scoped condition with ratification rights"
+  lacuna: "a typed inadequacy relative to a target, requirement, question, boundary, or proof condition"
+  move: "an authorized transition attempt that cannot prove itself"
   boundary: "what must not be forced"
   proof: "what would update the map"
-  replay: "what changed"
+  update: "the authorized event reduction after proof and world response"
+  replay: "the deterministic reconstruction of state and what changed"
+
+compatibility:
+  frame.current: "read as an attributed state snapshot"
+  frame.possible: "read as a possibility or target candidate according to context"
+  possible_kind_desired: "read as a desire plus proposed attain-target, never a ratified goal"
 
 proof:
   source:

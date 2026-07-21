@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/living-snapshot.v1.schema.json",
+  "title": "YawnLivingSnapshotV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "livingSnapshotId", "rootId", "asOfEventCursor", "materializedStateRef", "sourceVersionRefs", "activeLoopRefs", "emergingPatternRefs", "pendingChoiceRefs", "unresolvedProofRefs", "projection"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "livingSnapshotId": { "type": "string", "minLength": 1 },
+    "rootId": { "type": "string", "minLength": 1 },
+    "asOfEventCursor": { "type": "integer", "minimum": 0 },
+    "materializedStateRef": { "type": "string", "minLength": 1 },
+    "sourceVersionRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "activeLoopRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "emergingPatternRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "pendingChoiceRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "unresolvedProofRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "focusLoopRef": { "type": "string" },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["view", "typeFilters", "format", "resolution", "presentationStatus", "confirmationMode"],
+      "properties": {
+        "view": { "type": "string" },
+        "typeFilters": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "format": { "type": "string" },
+        "resolution": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "timeframe": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "presentationStatus": { "enum": ["preview", "applied", "reverted"] },
+        "confirmationMode": { "enum": ["preview_then_apply", "apply_immediately"] }
+      }
+    }
+  }
+}

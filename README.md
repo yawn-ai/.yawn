@@ -6,6 +6,23 @@ A `.yawn` helps any observing agent - human, AI, team, tool, repo, or
 organization - hold part of an information field clearly enough to act without
 hidden authority.
 
+## State-substrate constitution
+
+> **State is the substrate. Desire is attributed directional evidence. Targets
+> are optional and scoped. Moves attempt change; proof evaluates results;
+> authorized events rematerialize state.**
+
+The canonical cycle is:
+
+```text
+signal -> orientation -> choice -> move -> proof -> update
+```
+
+Longer loops remain useful projections of this cycle. They must preserve the
+same authority boundary: desire is not a goal, agreement, authorization, or
+proof; a move cannot judge its own success; and presentation changes cannot
+alter semantic meaning. Versioned contracts live in [schemas](schemas/node.yawn).
+
 ## Declaration of Agency
 
 Happy 250th, America.
@@ -76,6 +93,9 @@ notice
 -> prove what changed
 -> update memory
 ```
+
+This longer public reading is a declared projection of the canonical six-stage
+cycle, not a competing state model.
 
 `.yawn` is for humans and AI agents who need to share the same frame without
 hidden authority.
@@ -285,11 +305,14 @@ coincidence != command
 memory != objective record
 AI output != authority
 intensity != truth
-only proof updates the map
+only authorized events update canonical materialized state
+only suitable evidence or proof upgrades empirical claims
 ```
 
 Everything can be observed. Some things can be interpreted. Fewer things should
-be acted on. Only proof updates the map.
+be acted on. Attributed corrections, desires, consent, choices, and permissions
+may be recorded as what they are; only suitable evidence or proof upgrades an
+empirical claim.
 
 ## The five handles
 

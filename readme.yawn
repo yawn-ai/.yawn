@@ -15,6 +15,20 @@ A plain-text orientation shape for observing agents.
 Canonical source: readme.yawn
 GitHub mirror: README.md
 
+## state-substrate constitution
+
+State is the substrate. Desire is attributed directional evidence. Targets are
+optional and scoped. Moves attempt change; proof evaluates results; authorized
+events rematerialize state.
+
+```text
+signal -> orientation -> choice -> move -> proof -> update
+```
+
+Longer loops are projections of this canonical cycle. Desire is not shared
+agreement, authorization, or proof. A move cannot mark itself successful.
+Presentation changes cannot alter semantic meaning.
+
 ## declaration of agency
 
 Happy 250th, America.
@@ -112,6 +126,9 @@ notice
 -> prove what changed
 -> update memory
 ```
+
+This first-screen loop is a human-readable projection of the canonical
+signal -> orientation -> choice -> move -> proof -> update cycle.
 
 .yawn is for humans and AI agents who need to share the same frame without
 hidden authority.
@@ -436,13 +453,16 @@ coincidence != command
 memory != objective record
 AI output != authority
 intensity != truth
-only proof updates the map
+only authorized events update canonical materialized state
+only suitable evidence or proof upgrades empirical claims
 ```
 
 Everything can be observed.
 Some things can be interpreted.
 Fewer things should be acted on.
-Only proof updates the map.
+Attributed corrections, desires, consent, choices, and permissions may be
+recorded as what they are. Only suitable evidence or proof upgrades an
+empirical claim.
 
 ## duality mirror
 

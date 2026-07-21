@@ -1,0 +1,13 @@
+{
+  "name": "@yawn-ai/dot-yawn-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run validate && node --test tests/*.test.mjs",
+    "validate": "node scripts/validate-state-target-v1.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0"
+  }
+}

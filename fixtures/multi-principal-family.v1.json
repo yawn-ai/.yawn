@@ -1,0 +1,21 @@
+{
+  "id": "fixture:family:weekend",
+  "principals": [
+    {"id":"principal:alex","visibility":"shared","desires":["desire:alex:rest"],"ratificationRights":["target:family:weekend"]},
+    {"id":"principal:sam","visibility":"private","desires":["desire:sam:connection"],"ratificationRights":["target:family:weekend"]},
+    {"id":"principal:child","visibility":"private","desires":[],"ratificationRights":[]}
+  ],
+  "desires": [
+    {"id":"desire:alex:rest","authoredBy":"principal:alex","description":"An unhurried afternoon.","visibility":"shared"},
+    {"id":"desire:sam:connection","authoredBy":"principal:sam","description":"Private source withheld from other principals.","visibility":"private"}
+  ],
+  "targets": [
+    {"id":"target:family:weekend","mode":"reconcile","ratificationStatus":"partially_ratified","requiredRatifiers":["principal:alex","principal:sam"],"ratifiedBy":["principal:alex"]}
+  ],
+  "recurringCommitments": [
+    {"id":"commitment:family:weekly-check-in","authorizedBy":["principal:alex","principal:sam"],"schedule":"weekly","revocable":true}
+  ],
+  "move": {"id":"move:family:share-options","authorityRef":"authority:family:share-options","mayDeclareSuccess":false},
+  "proof": {"id":"proof:family:mutual-selection","requiredFrom":["principal:alex","principal:sam"],"status":"waiting"},
+  "reconciliation": {"status":"open","residualLacuna":"Shared target is not ratified by every rights-holder."}
+}

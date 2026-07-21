@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/target-condition.v1.schema.json",
+  "title": "YawnTargetConditionV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "targetId", "mode", "description", "proposedBy", "sourceRefs", "affectedPrincipals", "ratificationStatus", "sufficientWhen", "boundaryRefs"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "targetId": { "type": "string", "minLength": 1 },
+    "mode": { "enum": ["attain", "maintain", "restore", "prevent", "avoid", "understand", "decide", "reconcile", "hold_open"] },
+    "description": { "type": "string", "minLength": 1 },
+    "proposedBy": { "type": "string", "minLength": 1 },
+    "sourceRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true },
+    "affectedPrincipals": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "ratificationStatus": { "enum": ["proposed", "partially_ratified", "ratified", "rejected", "revoked"] },
+    "horizon": { "type": "string" },
+    "sufficientWhen": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "boundaryRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "purposeRef": { "type": "string" },
+    "desireRef": { "type": "string" }
+  }
+}

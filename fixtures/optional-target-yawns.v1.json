@@ -1,0 +1,9 @@
+[
+  {"id":"fixture:source","kind":"source","state":"A source was captured exactly.","desires":[],"targets":[],"loopStatus":"orienting"},
+  {"id":"fixture:inquiry","kind":"inquiry","state":"A question is open.","desires":[],"targets":[],"loopStatus":"holding"},
+  {"id":"fixture:safety","kind":"safety","state":"A boundary is active.","desires":[],"targets":[{"mode":"prevent","description":"Prevent disclosure without consent."}],"loopStatus":"holding"},
+  {"id":"fixture:maintenance","kind":"maintenance","state":"The recurring check is current.","desires":[],"targets":[{"mode":"maintain","description":"Maintain the current safety check."}],"loopStatus":"dormant"},
+  {"id":"fixture:archive","kind":"archive","state":"This record is retained without active movement.","desires":[],"targets":[],"loopStatus":"closed"},
+  {"id":"fixture:relationship","kind":"relationship","state":"Two attributed reports coexist.","desires":["principal:a wants contact","principal:b wants space"],"targets":[],"loopStatus":"holding"},
+  {"id":"fixture:holding","kind":"holding","state":"No safe next action is yet authorized.","desires":[],"targets":[{"mode":"hold_open","description":"Keep the question open until consent is available."}],"loopStatus":"holding"}
+]

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/event.v1.schema.json",
+  "title": "YawnEventV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "eventId", "eventCursor", "eventType", "occurredAt", "actorRef", "authorityStatus", "sourceRefs", "payload"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "eventId": { "type": "string", "minLength": 1 },
+    "eventCursor": { "type": "integer", "minimum": 0 },
+    "eventType": { "type": "string", "minLength": 1 },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "actorRef": { "type": "string", "minLength": 1 },
+    "scopeRef": { "type": "string" },
+    "authorityStatus": { "enum": ["proposed", "authorized", "rejected", "revoked"] },
+    "sourceRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "evidenceRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "default": [] },
+    "payload": { "type": "object" }
+  }
+}

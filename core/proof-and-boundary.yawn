@@ -1,10 +1,12 @@
 id: core/proof-and-boundary
 title: "proof and boundary"
 kind: safety-protocol
-status: v0-seed
-updated: 2026-06-30
+status: v1
+updated: 2026-07-21
 
-contract: "only proof updates the map"
+contract:
+  state: "only authorized events update canonical materialized state"
+  empirical: "only suitable evidence or proof upgrades empirical claims"
 
 safety_rail:
   - signal is not instruction
@@ -21,6 +23,21 @@ labels:
   - desired
   - unproven
   - proved
+
+separate_status_dimensions:
+  - modal
+  - motivational
+  - epistemic
+  - lifecycle
+  - authority
+  - loop
+  - axis_resolution
+  - presentation
+
+transition_boundary:
+  - "Desire cannot authorize action."
+  - "A move cannot mark itself successful."
+  - "Proof evaluates results; it does not erase intent, cost, or unintended effects."
 
 allowed_material: >
   A .yawn may hold intuition, dreams, feelings, hypotheses, fears, hopes, and
