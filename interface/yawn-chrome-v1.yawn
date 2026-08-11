@@ -2,7 +2,7 @@ id: interface/yawn-chrome-v1
 title: "YAWN chrome contract v1"
 kind: interface-contract
 status: active
-updated: 2026-08-10
+updated: 2026-08-11
 
 types:
   lens:
@@ -25,8 +25,9 @@ types:
 
 member_header:
   left:
-    - square mark and YAWN wordmark
-    - sidebar toggle
+    - lens-specific mark and YAWN wordmark
+    - YAWN.bot robot mark is the sidebar toggle
+    - active intelligence badge is attached to the upper-right of the YAWN.bot mark
     - back and forward controls
   center:
     - coordinate route tab
@@ -55,12 +56,26 @@ orientation_surface:
     - why-this-disclosure
     - proof-or-change
 
+public_bot:
+  identity_control:
+    mark: pixel-robot
+    action: explicit-navigation-drawer-toggle
+    default_state: closed
+  feedback:
+    sequence:
+      - enter-target-selection
+      - highlight-registered-component
+      - select-component
+      - infer-bounded-change-suggestions
+      - hold-human-intent-in-local-thread
+    boundary: no feedback action executes or transmits by itself
+
 invariants:
   - lens changes never mutate semantic state
   - scroll zoom depth and bandwidth never create semantic events
   - play is not shown when the surface has no playable sound
   - source is never replaced by interpretation
-  - public acquisition remains sidebar-free
+  - public acquisition never opens a sidebar without an explicit identity-control action
+  - target feedback preserves selected component context and human-authored intent separately
 
 schema_version: yawn.chrome.v1
-
