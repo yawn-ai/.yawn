@@ -61,6 +61,25 @@ public_bot:
     mark: pixel-robot
     action: explicit-navigation-drawer-toggle
     default_state: closed
+  intelligence_workspace:
+    trigger: active-intelligence-badge
+    presentation: full-body
+    default_view: available-only
+    processing_controls:
+      - model
+      - effort
+      - speed
+      - advanced
+    provider_catalog:
+      lanes:
+        - local
+        - cloud
+      entry_action: add-intelligence
+    availability_rule: only genuinely usable models appear available or selectable
+    pending_rule: an added provider remains connection-required until securely connected
+    local_proof_boundary:
+      - no provider secret storage
+      - no live model request
   feedback:
     sequence:
       - enter-target-selection
@@ -76,6 +95,7 @@ invariants:
   - play is not shown when the surface has no playable sound
   - source is never replaced by interpretation
   - public acquisition never opens a sidebar without an explicit identity-control action
+  - provider discovery never represents setup-required intelligence as available
   - target feedback preserves selected component context and human-authored intent separately
 
 schema_version: yawn.chrome.v1
