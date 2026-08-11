@@ -11,6 +11,9 @@ definition: >
 
 opening:
   question: "What is pulling your attention?"
+  visible_heading: none
+  visible_helper_copy: none
+  question_presentation: accessible-composer-name
   supported_inputs:
     - free-form text
     - speech after an explicit user action
@@ -81,6 +84,11 @@ coordinator_default:
 
 runtime_0_1:
   route: /new
+  add_menu:
+    trigger: plain-plus
+    presentation: compact-context-menu
+    first_action: files-and-folders
+    first_action_status: working
   intelligence_control:
     mobile_label: Y1
     desktop_label: YAWN 1 · LOCAL
