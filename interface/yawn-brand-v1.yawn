@@ -1,0 +1,33 @@
+id: interface/yawn-brand-v1
+title: "YAWN brand contract v1"
+kind: interface-contract
+status: active
+updated: 2026-08-10
+
+purpose: >
+  Give every YAWN lens the same visual meaning without making every surface
+  visually identical.
+
+colors:
+  field: "#000000"
+  raised: "#181716"
+  text: "#ffffff"
+  logo_and_primary_action: "#e8ff03"
+  interaction_and_connection: "#2fe3f4"
+  unresolved_lacuna: "#fd49ac"
+  source_and_provenance: "#ff7300"
+  resolved_or_verified: "#64ff03"
+
+rules:
+  - color never carries state without a text or icon label
+  - headings use the pixel or mono face and body copy uses a readable sans face
+  - chrome uses one-pixel dividers, slim route tabs, and restrained corner radii
+  - public pages do not render the authenticated sidebar
+  - legacy asset paths may remain aliases but are not public product identity
+
+proof:
+  acceptance:
+    - host-specific title, icon, canonical URL, and wordmark
+    - no visible Nestheads product branding on new public surfaces
+    - keyboard focus is visible against every semantic color
+

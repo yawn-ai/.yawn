@@ -1,0 +1,66 @@
+id: interface/yawn-chrome-v1
+title: "YAWN chrome contract v1"
+kind: interface-contract
+status: active
+updated: 2026-08-10
+
+types:
+  lens:
+    - ai
+    - bot
+    - network
+    - city
+  shell_mode:
+    - public
+    - member
+  bandwidth:
+    - less
+    - context
+    - map
+  connection_state:
+    - local
+    - connected
+    - transmitting
+    - ready
+
+member_header:
+  left:
+    - square mark and YAWN wordmark
+    - sidebar toggle
+    - back and forward controls
+  center:
+    - coordinate route tab
+    - lens and intelligence selector
+  right:
+    - feedback
+    - new Yawn
+    - notifications
+    - account
+
+member_sidebar_default:
+  - new-yawn
+  - search
+  - sources
+  - actions
+  - pinned
+
+orientation_surface:
+  default_bandwidth: less
+  maximum_ranked_movements: 3
+  maximum_immediate_actions: 2
+  inspector_default: collapsed
+  required:
+    - you-are-here
+    - next-choice
+    - why-this-disclosure
+    - proof-or-change
+
+invariants:
+  - lens changes never mutate semantic state
+  - scroll zoom depth and bandwidth never create semantic events
+  - play is not shown when the surface has no playable sound
+  - source is never replaced by interpretation
+  - public acquisition remains sidebar-free
+
+schema_version: yawn.chrome.v1
+

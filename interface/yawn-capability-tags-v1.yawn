@@ -1,0 +1,34 @@
+id: interface/yawn-capability-tags-v1
+title: "YAWN capability tags v1"
+kind: interface-contract
+status: active
+updated: 2026-08-10
+
+purpose: >
+  Make every public capability tag a usable instruction or a real path into the
+  interface rather than decorative marketing copy.
+
+initial_tags:
+  - id: orient-this
+    label: ORIENT THIS
+    instruction: "Orient this source. Show where I am, what remains open, and one reversible next move."
+  - id: show-what-changed
+    label: SHOW WHAT CHANGED
+    instruction: "Compare this with the last trusted pulse and show only material changes."
+  - id: rank-next-moves
+    label: RANK NEXT MOVES
+    instruction: "Rank no more than three reversible movements and explain why the first outranks the others."
+  - id: explain-why
+    label: EXPLAIN WHY
+    instruction: "Explain the source, assumptions, uncertainty, and ranking reason without rewriting the observation."
+  - id: prepare-work-order
+    label: PREPARE A WORK ORDER
+    instruction: "Prepare a bounded draft work order. Do not authorize or execute it."
+
+rules:
+  - a tag copies its complete instruction
+  - the copied state is announced to assistive technology
+  - a tag may also open the relevant local composer or demonstration
+  - 1.1A performs no live model call or API-key persistence
+
+schema_version: yawn.capability_tags.v1

@@ -14,6 +14,8 @@ holds:
   - move
   - memory
   - projection stack
+  - shared YAWN chrome contract
+  - shared brand and capability semantics
 
 receives:
   - lived signals
@@ -39,6 +41,9 @@ links:
   - questions/node.yawn
   - observations/lived-agency.yawn
   - core/node.yawn
+  - interface/yawn-chrome-v1.yawn
+  - interface/yawn-brand-v1.yawn
+  - interface/yawn-capability-tags-v1.yawn
 
 proof:
   source:
