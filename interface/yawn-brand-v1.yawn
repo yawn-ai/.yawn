@@ -19,6 +19,9 @@ colors:
   resolved_or_verified: "#64ff03"
 
 rules:
+  - default surfaces foreground one state and one next action with the least visible copy that preserves comprehension
+  - rationale taxonomy and repeated status live behind explicit disclosure rather than beside self-explanatory controls
+  - icon-only controls keep accessible names
   - color never carries state without a text or icon label
   - headings use the pixel or mono face and body copy uses a readable sans face
   - chrome uses one-pixel dividers, slim route tabs, and restrained corner radii
@@ -30,4 +33,3 @@ proof:
     - host-specific title, icon, canonical URL, and wordmark
     - no visible Nestheads product branding on new public surfaces
     - keyboard focus is visible against every semantic color
-

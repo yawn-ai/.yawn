@@ -81,6 +81,10 @@ public_bot:
       - no provider secret storage
       - no live model request
   feedback:
+    active_header_state:
+      targeting_indicator: ellipsis
+      cancel_control: icon-x
+      floating_instruction_banner: prohibited
     sequence:
       - enter-target-selection
       - highlight-registered-component
@@ -90,6 +94,9 @@ public_bot:
     boundary: no feedback action executes or transmits by itself
 
 invariants:
+  - default chrome uses the least visible copy needed for one state and one next action
+  - explanatory copy and taxonomy follow explicit intent or disclosure instead of surrounding a self-explanatory control
+  - icon-only controls always keep an accessible name
   - lens changes never mutate semantic state
   - scroll zoom depth and bandwidth never create semantic events
   - play is not shown when the surface has no playable sound
