@@ -82,11 +82,20 @@ coordinator_default:
 runtime_0_1:
   route: /new
   storage: versioned-browser-local-draft
+  creation: automatic-on-first-nonempty-signal
+  autosave:
+    strategy: debounce-plus-page-hide-flush
+    persistence: browser-local
+    manual_buttons: none
   projection: explicit-local-langgraph-run
   typing_network_requests: none
   live_model_calls: none
   database_mutation: none
   external_effects_authorized: false
+  visual_field:
+    background: subtle-grid-only
+    visible_taxonomy_headers: none
+    circular_status_motifs: none
 
 invariants:
   - the Yawn is the holon and the Coordinator operates inside it
@@ -95,7 +104,7 @@ invariants:
   - confidence describes representational fit rather than absolute truth or importance
   - freshness and confidence remain separate
   - permissions never silently widen
-  - the user may save at any readiness state
+  - every readiness state is eligible for automatic browser-local saving
   - questions may reopen when evidence context participants or purpose changes
 
 schema_version: yawn.new.v0.1
