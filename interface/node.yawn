@@ -16,6 +16,7 @@ holds:
   - projection stack
   - shared YAWN chrome contract
   - shared brand and capability semantics
+  - source-preserving + Yawn creation contract
 
 receives:
   - lived signals
@@ -44,6 +45,7 @@ links:
   - interface/yawn-chrome-v1.yawn
   - interface/yawn-brand-v1.yawn
   - interface/yawn-capability-tags-v1.yawn
+  - interface/new-yawn-v0.1.yawn
 
 proof:
   source:

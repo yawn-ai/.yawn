@@ -1,0 +1,101 @@
+id: interface/new-yawn-v0.1
+title: "+ Yawn creation contract v0.1"
+kind: interface-contract
+status: active
+updated: 2026-08-11
+
+definition: >
+  + Yawn turns one source-preserved signal into a private draft holon. The
+  creation surface and the Yawn surface are the same object at different
+  resolutions; it is not a conventional onboarding form.
+
+opening:
+  question: "What is pulling your attention?"
+  supported_inputs:
+    - free-form text
+    - speech after an explicit user action
+    - local file reference
+    - pasted message
+    - explicitly selected existing object
+
+semantic_planes:
+  - world
+  - epistemic
+  - normative
+  - action
+
+canonical_questions:
+  - key: scope
+    question: "What is this Yawn about?"
+  - key: parent
+    question: "Where does it belong?"
+  - key: perspective
+    question: "Whose perspective is represented, and who is affected?"
+  - key: current-state
+    question: "What appears to be happening now?"
+  - key: intent
+    question: "What are you trying to make true, preserve, learn, avoid, or accept—and why does it matter?"
+  - key: lacuna
+    question: "What is unknown, disputed, blocked, or in tension?"
+  - key: boundary
+    question: "What must be protected, and who may decide or act?"
+  - key: movement
+    question: "What can move next?"
+  - key: proof
+    question: "What would reality have to show for this Yawn to update or close?"
+
+adaptive_surface:
+  maximum_foreground_questions: 3
+  all_questions_default: collapsed
+  priority:
+    - safety-or-authority-blocker
+    - movement-critical-missing-information
+    - high-consequence-low-confidence-claim
+    - contradiction-or-dispute
+    - stale-high-impact-information
+    - high-expected-information-value
+    - low-effort-material-orientation-gain
+
+creation_readiness:
+  - signal-captured
+  - yawn-created
+  - oriented
+  - ready-to-move
+  - ready-to-delegate
+  - ready-to-verify
+  - updated-or-closed
+
+coordinator_default:
+  may:
+    - observe
+    - ask
+    - propose
+  may_not:
+    - perform-external-actions
+    - message-people
+    - spend-money
+    - widen-permissions
+    - silently-share-parent-context
+    - convert-inference-to-user-endorsed-truth
+    - close-without-proof-or-explicit-human-closure
+
+runtime_0_1:
+  route: /new
+  storage: versioned-browser-local-draft
+  projection: explicit-local-langgraph-run
+  typing_network_requests: none
+  live_model_calls: none
+  database_mutation: none
+  external_effects_authorized: false
+
+invariants:
+  - the Yawn is the holon and the Coordinator operates inside it
+  - original source language is preserved
+  - a proposal is never presented as a confirmed answer
+  - confidence describes representational fit rather than absolute truth or importance
+  - freshness and confidence remain separate
+  - permissions never silently widen
+  - the user may save at any readiness state
+  - questions may reopen when evidence context participants or purpose changes
+
+schema_version: yawn.new.v0.1
