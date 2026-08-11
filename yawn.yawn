@@ -2,14 +2,22 @@ id: yawn
 title: ".yawn"
 kind: protocol-root
 status: v0-seed
-updated: 2026-07-04
+updated: 2026-07-11
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
 
 canonical_root: readme.yawn
 compatibility_readme: README.md
-core_loop: core-loop.yawn
+core_loop: core/co-orientation-loop.yawn
+
+official_runtime:
+  identity: YAWN.bot
+  repository: https://github.com/yawn-ai/web-game
+  status: official
+  promoted_by: Dave
+  promotion_receipt: records/yawn-bot-runtime-promotion-2026-07-11.yawn
+  repository_slug_status: current-address
 
 summary: >
   .yawn is a plain-text orientation shape for observing agents: humans, AI
@@ -35,7 +43,8 @@ file_priority:
   - proof-bound when promoted
 
 core_links:
-  core_loop: core-loop.yawn
+  core_loop: core/co-orientation-loop.yawn
+  legacy_automation_loop_alias: core-loop.yawn
   root_orientation: readme.yawn
   what_is_a_yawn: core/what-is-a-yawn.yawn
   orientation: core/orientation.yawn
@@ -72,6 +81,13 @@ interface_links:
   memory: interface/memory.yawn
   projection_stack: interface/projection-stack.yawn
 
+question_links:
+  doorway: questions/node.yawn
+  what_is_this: questions/what-is-this.yawn
+  where_am_i: questions/where-am-i.yawn
+  what_can_i_do_next: questions/what-can-i-do-next.yawn
+  open_questions: questions/open-questions.yawn
+
 observation_links:
   lived_agency: observations/lived-agency.yawn
 
@@ -88,14 +104,16 @@ contributor_links:
   github_node: .github/node.yawn
   issue_templates: .github/ISSUE_TEMPLATE/node.yawn
   pull_request_template: .github/pull_request_template.md
-  yawn_bot: agents/yawn.bot.yawn
-  yawn_bot_policy: agents/yawn.bot.policy.yawn
+  yawn_bot_runtime: agents/yawn.bot.yawn
+  repo_contributor_module: agents/repo-contributor.yawn
+  repo_contributor_policy: agents/yawn.bot.policy.yawn
   contributor_agent: agents/contributor-agent.yawn
   contributor_architecture: agents/contributor-architecture.yawn
 
 automation_links:
   node: automation/node.yawn
-  core_loop: core-loop.yawn
+  repo_contributor_loop: automation/yawn-bot-repo-contributor-loop.yawn
+  legacy_core_loop_alias: core-loop.yawn
   github_feedback_triage: automation/github-feedback-triage.yawn
   codex_repo_agent: automation/codex-repo-agent.yawn
   yawn_bot_daily: automation/yawn.bot.daily.yawn
@@ -127,6 +145,8 @@ record_links:
   yawn_ai_funnel_bridge_ledger: records/yawn.ai-funnel-bridge-ledger.yawn
   yawn_bot_ai_writing_ledger: records/yawn.bot-ai-writing-ledger.yawn
   next_move_ledger: records/next-move-ledger.yawn
+  yawn_bot_runtime_promotion: records/yawn-bot-runtime-promotion-2026-07-11.yawn
+  cold_start_proof: records/cold-start-proof-2026-07-11.yawn
 
 question_packet_links:
   node: question-packets/node.yawn
@@ -146,6 +166,7 @@ template_links:
   access_record: templates/access-record.yawn
   backup_record: templates/backup-record.yawn
   next_move_record: templates/next-move-record.yawn
+  open_question: templates/open-question.yawn
 
 example_links:
   stuck: examples/stuck.yawn
@@ -156,11 +177,13 @@ example_links:
   signal: examples/signal.yawn
   choice: examples/choice.yawn
   repair: examples/repair.yawn
+  cold_start_agent: examples/cold-start-agent.yawn
 
 agent_links:
   orientation: agents/orientation.yawn
   yawn_bot: agents/yawn.bot.yawn
-  yawn_bot_policy: agents/yawn.bot.policy.yawn
+  repo_contributor: agents/repo-contributor.yawn
+  repo_contributor_policy: agents/yawn.bot.policy.yawn
 
 reference_links:
   source_index: references/source-index.yawn
@@ -191,6 +214,7 @@ folder_node_rule: >
 
 shape_path:
   root: readme.yawn
+  questions: questions/node.yawn
   start: start/first-yawn.yawn
   shape: shape/node.yawn
   core: core/what-is-a-yawn.yawn
@@ -202,7 +226,7 @@ shape_path:
   records: records/node.yawn
   agents: agents/yawn.bot.policy.yawn
   feedback: feedback/form.yawn
-  core_loop: core-loop.yawn
+  core_loop: core/co-orientation-loop.yawn
 
 credibility_standard:
   field: "what information is available"
@@ -225,6 +249,7 @@ folder_node_links:
   automation: automation/node.yawn
   database: database/node.yawn
   feedback: feedback/node.yawn
+  questions: questions/node.yawn
   start: start/node.yawn
   shape: shape/node.yawn
   core: core/node.yawn
@@ -236,6 +261,7 @@ folder_node_links:
   examples: examples/node.yawn
   references: references/node.yawn
   agents: agents/node.yawn
+  scripts: scripts/node.yawn
   bridge_start: 00-start/node.yawn
   bridge_core: 01-core/node.yawn
   bridge_interface: 02-interface/node.yawn
@@ -268,7 +294,8 @@ material_record_rule: >
   why it mattered, what changed, and what proof or risk remains.
 
 source:
-  - core-loop.yawn
+  - core/co-orientation-loop.yawn
+  - records/yawn-bot-runtime-promotion-2026-07-11.yawn
   - readme.yawn
   - README.md
   - shape/node.yawn

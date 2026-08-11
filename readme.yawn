@@ -15,6 +15,83 @@ A plain-text orientation shape for observing agents.
 Canonical source: readme.yawn
 GitHub mirror: README.md
 
+## you are here
+
+This repository is a mirror before it is a manual.
+
+You do not need to understand the file tree or learn the ontology first. Start
+with the question that brought you here:
+
+```text
+what is this?
+  questions/what-is-this.yawn
+
+where am i?
+  questions/where-am-i.yawn
+
+what can i do next?
+  questions/what-can-i-do-next.yawn
+
+what is still unresolved?
+  questions/open-questions.yawn
+```
+
+If you do not know which path fits, open:
+
+```text
+questions/README.md
+```
+
+The shortest path is:
+
+```text
+notice something
+-> open a question
+-> make the inference visible
+-> protect the boundary
+-> choose or defer one move
+-> check what changed
+```
+
+.yawn is the portable orientation and memory shape. YAWN.bot is the official
+co-orientation runtime in the current yawn-ai/web-game codebase. YAWN.ai is the
+intelligence substrate behind those interfaces. None of them replaces the
+observer's agency or turns an inference into authority.
+
+This public repository contains portable protocol contracts, examples, and
+conformance evidence. It does not contain private memory, credentials, private
+runtime state, or proprietary implementation details.
+
+The numbered folders preserve the historical and architectural bridge. The
+named folders are the readable protocol. The questions folder is the human
+doorway into both.
+
+## q-space
+
+Q-Space is the human-facing projection of unresolved questions. It extends the
+question doorway instead of creating a competing ontology.
+
+```text
+question
+-> attributed answer
+-> ranked frontier candidates
+-> human-selected next question
+-> repeated Pattern candidate
+-> bounded probe and proof
+-> owner-confirmed resolution for a named purpose
+```
+
+Repeated answers may create a Pattern candidate. They never create a belief,
+fact, diagnosis, proof, or automatic closure. YAWN.bot is the first runtime,
+Supabase is the private account-owned event ledger, Q-Space is the projection,
+and YAWN.ai is an optional intelligence adapter that never becomes source of
+truth.
+
+```text
+q-space/node.yawn
+q-space/protocol-v1.yawn
+```
+
 ## declaration of agency
 
 Happy 250th, America.
@@ -637,44 +714,33 @@ records/feedback-log.yawn
 database/feedback-intake.yawn
 ```
 
-## yawn.bot
+## YAWN.bot
 
-yawn.bot is a draft-PR observer for the .yawn repo.
+YAWN.bot is the official co-orientation runtime implemented by the current
+yawn-ai/web-game codebase.
 
-It may:
+Its smallest wallet projection and larger browser surfaces load the same .yawn
+orientation state. Larger projections add resolution, not a different truth or
+greater authority.
 
-- scan .yawn files
-- detect repeated inferences
-- surface lacuna and objections
-- open draft PR proposals
-- record proof and replay
+Human expression and attributed machine inference meet in an editable shared
+working orientation. They remain visibly distinct. Specific claims may later
+be updated through evidence, proof, and replay.
 
-It must not:
-
-- merge
-- mark itself ready
-- leak private context
-- erase objections
-- treat one signal as canon
-- act without boundary
+Repository contribution is one bounded YAWN.bot module. It may inspect public
+files and prepare reviewable local proposals, but it is not the complete
+identity of YAWN.bot and it cannot commit, push, publish, merge, send, spend, or
+expose private context without current authorization.
 
 Service files:
 
 ```text
 agents/yawn.bot.yawn
-agents/yawn.bot.policy.yawn
-automation/yawn.bot.daily.yawn
-automation/yawn.bot.feedback-loop.yawn
-automation/yawn.bot.private-pr-loop.yawn
-automation/yawn.bot.ai-writing-scan.yawn
-records/yawn.bot-log.yawn
+core/co-orientation-loop.yawn
+agents/repo-contributor.yawn
+automation/yawn-bot-repo-contributor-loop.yawn
+records/yawn-bot-runtime-promotion-2026-07-11.yawn
 ```
-
-yawn.bot is an architecture observer, not an autonomous maintainer. It can
-inspect, classify, recommend, maintain ledgers, and prepare private draft PR
-proposals. It does not secretly become a GitHub account, install an app, push
-to main, mark PRs ready, approve, merge, send email, write a database, or
-rewrite canon without current human authorization and proof.
 
 ## open-source agent contributors
 

@@ -1,0 +1,40 @@
+id: automation/yawn-bot-repo-contributor-loop
+title: "YAWN.bot repo-contributor loop"
+kind: bounded-runtime-module
+status: active-module
+updated: 2026-07-11
+
+purpose: >
+  Preserve the former YAWN.bot draft-PR observer behavior as one bounded module
+  inside the official YAWN.bot runtime rather than treating it as the runtime's
+  complete identity.
+
+module_identity: agents/repo-contributor.yawn
+runtime_identity: agents/yawn.bot.yawn
+universal_loop: core/co-orientation-loop.yawn
+lineage_source: core-loop.yawn
+
+may:
+  - inspect public repository files and reviewable GitHub metadata
+  - classify feedback and repeated gaps
+  - prepare local patches, proof, and draft contribution proposals
+  - maintain attributed local ledgers
+
+blocked_without_current_authorization:
+  - commit
+  - push
+  - open or update a pull request
+  - merge
+  - publish
+  - send email
+  - mutate a database
+  - expose private context
+  - raise its own authority
+
+proof:
+  source:
+    - core-loop.yawn
+    - automation/yawn.bot.daily.yawn
+    - automation/yawn.bot.feedback-loop.yawn
+    - automation/yawn.bot.private-pr-loop.yawn
+  status: lineage-preserved

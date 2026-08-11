@@ -1,0 +1,44 @@
+id: questions/what-is-this
+title: "What is this?"
+kind: orientation-question
+status: preview
+updated: 2026-07-11
+
+short_answer: >
+  .yawn is a plain-text shape for making orientation, inference, missing
+  information, boundaries, movement, proof, and memory visible before action.
+
+why_it_exists: >
+  Humans and AI systems both act from partial models. .yawn gives them a shared
+  object where observations and inferences can be inspected without turning
+  either one into hidden authority.
+
+relationship:
+  yawn_file: "the portable orientation and memory shape"
+  yawn_bot: "the official co-orientation runtime that loads the shape across wallet, browser, office, object, and world projections"
+  yawn_ai: "the intelligence substrate behind those interfaces"
+
+public_boundary: >
+  This repository contains portable protocol contracts, examples, and
+  conformance evidence. Private memory, credentials, private runtime state, and
+  proprietary implementation do not belong here.
+
+smallest_loop:
+  - notice
+  - orient
+  - infer
+  - name what is missing
+  - protect the boundary
+  - choose or defer a move
+  - prove what changed
+  - replay
+
+read_next:
+  - questions/where-am-i.yawn
+  - start/first-yawn.yawn
+  - examples/stuck.yawn
+
+boundary:
+  - "This does not claim reality is literally code."
+  - "Signal is not instruction."
+  - "AI output is not authority."

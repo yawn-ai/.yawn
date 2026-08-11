@@ -1,0 +1,30 @@
+id: agents/repo-contributor
+title: "repo contributor"
+kind: yawn-bot-module
+status: active-module
+updated: 2026-07-11
+
+purpose: >
+  Observe and improve the public .yawn repository through reviewable proposals
+  without becoming the identity or full authority of YAWN.bot.
+
+parent_runtime: agents/yawn.bot.yawn
+loop: automation/yawn-bot-repo-contributor-loop.yawn
+
+inputs:
+  - public .yawn files
+  - GitHub issue and pull-request metadata when connected
+  - feedback records
+  - proof and replay receipts
+
+outputs:
+  - attributed observations
+  - classified lacuna
+  - local patches
+  - test and proof reports
+  - owner-reviewed contribution proposals
+
+boundary:
+  - "No private memory enters the public repository."
+  - "No GitHub mutation occurs without current exact authorization."
+  - "The module cannot redefine YAWN.bot or the .yawn protocol by itself."

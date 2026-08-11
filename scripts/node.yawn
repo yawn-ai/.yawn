@@ -1,0 +1,14 @@
+id: scripts/node
+title: "scripts"
+kind: verification-node
+status: active
+updated: 2026-07-11
+
+purpose: "Hold dependency-free checks that verify public .yawn contracts without becoming runtime authority."
+
+holds:
+  - scripts/verify-cold-start.ps1
+
+boundary:
+  - "Scripts inspect local repository state only."
+  - "A passing script is conformance evidence, not authorization to publish."

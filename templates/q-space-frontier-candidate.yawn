@@ -1,0 +1,21 @@
+schemaVersion: "1"
+id: ""
+rootYawnId: ""
+coordinate: ""
+attribution: { kind: system, id: "", label: "" }
+createdAt: ""
+updatedAt: ""
+protocolRevision: q-space.protocol.v1
+questionId: ""
+prompt: ""
+rationale: ""
+scoreInputs: {}
+score: 0
+rank: 0
+status: proposed
+isDuplicate: false
+permissionBlocked: false
+safe: true
+probeBounded: true
+excludedReasons: []
+clientRequestId: ""

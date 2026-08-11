@@ -1,8 +1,20 @@
 id: core-loop
-title: "core loop"
-kind: system-loop
-status: active-seed
-updated: 2026-07-04
+title: "legacy YAWN.bot repository automation loop"
+kind: compatibility-alias
+status: superseded
+updated: 2026-07-11
+
+canonical_protocol_loop: core/co-orientation-loop.yawn
+canonical_automation_module: automation/yawn-bot-repo-contributor-loop.yawn
+superseded_by:
+  - core/co-orientation-loop.yawn
+  - automation/yawn-bot-repo-contributor-loop.yawn
+
+supersession_reason: >
+  The prior root name implied universal protocol ownership, but this file
+  defines repository contribution, private draft-PR, and notification behavior.
+  Its detailed content remains below as lineage evidence and is not the
+  canonical .yawn co-orientation loop.
 
 purpose: >
   Make the engineered .yawn automation loop visible: where signals enter, how

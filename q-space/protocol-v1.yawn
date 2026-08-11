@@ -1,0 +1,58 @@
+id: q-space/protocol-v1
+title: "Q-Space protocol v1"
+kind: public-protocol
+status: owner-review-required
+updated: 2026-07-16
+schemaVersion: "1"
+protocolRevision: q-space.protocol.v1
+
+objects:
+  QSpaceDocumentV1: { contains: [responsibility_map, protocol_pin, projection] }
+  QuestionNodeV1: { contains: [prompt, parentQuestionId, state, purpose, displayPosition] }
+  AnswerEventV1: { append_only: true, contains: [questionId, body, normalizedFingerprint, meaningfulTokens, clientRequestId] }
+  FrontierCandidateV1: { contains: [questionId, prompt, rationale, scoreInputs, score, rank, status, excludedReasons] }
+  QuestionTransitionEventV1: { append_only: true, contains: [questionId, fromState, toState, eventKind, reason, purpose, ownerConfirmed, proofEventId] }
+  PatternCandidateV1: { contains: [questionId, answerEventIds, similarity, matchKind, state, summary] }
+  ProofEventV1: { append_only: true, contains: [questionId, kind, outcome, purpose, summary, probePlan, bounded, ownerConfirmedResolution] }
+  QSpaceProjectionV1: { derived: true, contains: [rootQuestionId, activeQuestionId, branchQuestionIds, siblingQuestionIds] }
+
+required_on_every_object:
+  - schemaVersion
+  - stable id
+  - Root Yawn id
+  - coordinate
+  - owner or source attribution
+  - timestamps
+  - protocol revision
+
+question_states: [proposed, active, held, contested, probe_ready, testing, resolved_for_purpose, retired]
+
+resolution:
+  all_required:
+    - "a ProofEvent outcome is supports or weakens"
+    - "a specific purpose or decision is named"
+    - "the account owner confirms resolution"
+  repetition_alone: forbidden
+  reopen: "append reopen transition and return to active"
+
+frontier_score: >
+  0.24 lacunaReduction + 0.20 decisionImpact + 0.16 proofPotential +
+  0.14 answerability + 0.10 agencyGain + 0.08 reversibility +
+  0.08 sourceCoverage - 0.14 permissionRisk - 0.10 costPressure -
+  0.08 dependencyRisk - 0.06 scopeRisk
+
+frontier_rules:
+  clamp: 0..1
+  exclude: [duplicate, permission_blocked, unsafe_or_unbounded_probe, missing_rationale]
+  tie_break: [lower_cost_pressure, normalized_prompt_text]
+  recommendation_threshold: 0.55
+
+pattern_rules:
+  trigger: second_distinct_answer
+  exact: normalized_fingerprint_match
+  approximate: { token_set_jaccard_gte: 0.82, minimum_meaningful_tokens_each: 6, require_no_negation_conflict: true }
+  semantic_embeddings: { default: off, requires: [user_consent, compute_approval] }
+  states: [proposed, accepted, dismissed, superseded]
+
+proof_kinds: [observation, source, behavioral_probe, reproducible_result, external_verification, counterexample]
+proof_outcomes: [supports, weakens, inconclusive, not_run]

@@ -1,0 +1,21 @@
+id: templates/open-question
+title: "open question template"
+kind: template
+status: active
+updated: 2026-07-11
+
+question: ""
+coordinate: ""
+why_it_matters: ""
+evidence_needed: []
+owner: ""
+status: open
+blocks_action: false
+review_after: ""
+answer: null
+proof_refs: []
+supersedes: []
+
+boundary:
+  - "A blank field is not an answer."
+  - "A provisional answer remains labeled provisional."

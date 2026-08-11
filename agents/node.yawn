@@ -2,7 +2,7 @@ id: agents/node
 title: "agents node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-07-11
 
 purpose: >
   Hold the public mental model for AI agents working inside a YAWN space.
@@ -12,7 +12,8 @@ holds:
   - contributor agent
   - contributor architecture disclosure
   - yawn.bot service identity
-  - yawn.bot operating policy
+  - repo-contributor module identity
+  - repo-contributor module policy
   - first read order
   - allowed help
   - blocked hidden authority
@@ -43,6 +44,7 @@ questions:
 links:
   - agents/orientation.yawn
   - agents/yawn.bot.yawn
+  - agents/repo-contributor.yawn
   - agents/yawn.bot.policy.yawn
   - agents/contributor-agent.yawn
   - agents/contributor-architecture.yawn
@@ -53,6 +55,7 @@ proof:
   source:
     - agents/orientation.yawn
     - agents/yawn.bot.yawn
+    - agents/repo-contributor.yawn
     - agents/yawn.bot.policy.yawn
     - agents/contributor-agent.yawn
     - readme.yawn

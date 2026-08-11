@@ -1,0 +1,16 @@
+schemaVersion: "1"
+id: ""
+rootYawnId: ""
+coordinate: ""
+attribution: { kind: system, id: qspace.pattern-detector, label: "Pattern detector" }
+createdAt: ""
+updatedAt: ""
+protocolRevision: q-space.protocol.v1
+questionId: ""
+answerEventIds: []
+normalizedFingerprint: ""
+similarity: 0
+matchKind: exact
+negationConflict: false
+state: proposed
+summary: "Candidate only; not belief, fact, diagnosis, or proof."

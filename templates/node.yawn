@@ -2,7 +2,7 @@ id: templates/node
 title: "templates node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-03
+updated: 2026-07-11
 
 purpose: >
   Hold reusable .yawn shapes that people and agents can copy without learning
@@ -21,6 +21,7 @@ holds:
   - access record template
   - backup record template
   - next-move record template
+  - open-question template
 
 receives:
   - repeated movement patterns
@@ -42,9 +43,11 @@ questions:
 
 links:
   - start/node.yawn
+  - questions/node.yawn
   - question-packets/node.yawn
   - examples/node.yawn
   - records/node.yawn
+  - templates/open-question.yawn
 
 related_question_packets:
   basic: question-packets/basic.yawn
@@ -58,4 +61,5 @@ proof:
     - templates/full.yawn
     - templates/relationship.yawn
     - templates/proof-receipt.yawn
+    - templates/open-question.yawn
   status: seed-backed
