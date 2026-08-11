@@ -81,6 +81,12 @@ coordinator_default:
 
 runtime_0_1:
   route: /new
+  intelligence_control:
+    mobile_label: Y1
+    desktop_label: YAWN 1 · LOCAL
+    action: open-shared-full-body-intelligence-workspace
+    scope_label: THIS YAWN
+    accessible_name_required: true
   storage: versioned-browser-local-draft
   creation: automatic-on-first-nonempty-signal
   autosave:

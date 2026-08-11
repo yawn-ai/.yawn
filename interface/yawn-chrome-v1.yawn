@@ -62,8 +62,11 @@ public_bot:
     action: explicit-navigation-drawer-toggle
     default_state: closed
   intelligence_workspace:
-    trigger: active-intelligence-badge
+    triggers:
+      - active-intelligence-badge
+      - current-yawn-composer-intelligence-control
     presentation: full-body
+    subject_scope_label: required-when-opened-from-a-yawn
     default_view: available-only
     processing_controls:
       - model
