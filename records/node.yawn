@@ -2,7 +2,7 @@ id: records/node
 title: "records node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-04
+updated: 2026-07-11
 
 purpose: >
   Hold material time: access logs, LLM-used context, GitHub surfaces, backups,
@@ -26,6 +26,8 @@ holds:
   - backup log
   - feedback log
   - next-move ledger
+  - YAWN.bot runtime promotion receipt
+  - cold-start orientation proof
 
 receives:
   - agent actions
@@ -69,6 +71,8 @@ questions:
   - what public text sounds too generically AI-written
 
 links:
+  - records/yawn-bot-runtime-promotion-2026-07-11.yawn
+  - records/cold-start-proof-2026-07-11.yawn
   - records/material-time.yawn
   - records/access-log.yawn
   - records/automation-log.yawn
@@ -89,6 +93,8 @@ links:
 
 proof:
   source:
+    - records/yawn-bot-runtime-promotion-2026-07-11.yawn
+    - records/cold-start-proof-2026-07-11.yawn
     - core-loop.yawn
     - records/material-time.yawn
     - records/automation-log.yawn

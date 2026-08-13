@@ -15,6 +15,7 @@ holds:
 
 receives:
   - readme.yawn
+  - questions/node.yawn
   - new user attention
   - first movement question
 
@@ -31,6 +32,7 @@ questions:
 
 links:
   - readme.yawn
+  - questions/node.yawn
   - templates/basic.yawn
   - examples/node.yawn
 

@@ -1,0 +1,13 @@
+schemaVersion: "1"
+id: ""
+rootYawnId: ""
+coordinate: ""
+attribution: { kind: owner, id: "", label: "" }
+createdAt: ""
+updatedAt: ""
+protocolRevision: q-space.protocol.v1
+questionId: ""
+body: ""
+normalizedFingerprint: ""
+meaningfulTokens: []
+clientRequestId: ""

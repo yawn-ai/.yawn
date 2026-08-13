@@ -6,6 +6,67 @@ A `.yawn` helps any observing agent - human, AI, team, tool, repo, or
 organization - hold part of an information field clearly enough to act without
 hidden authority.
 
+## You Are Here
+
+This repository is a mirror before it is a manual.
+
+You do not need to understand the file tree or learn the ontology first. Start
+with the question that brought you here:
+
+| Your question | Open |
+| --- | --- |
+| What is this? | [questions/what-is-this.yawn](questions/what-is-this.yawn) |
+| Where am I? | [questions/where-am-i.yawn](questions/where-am-i.yawn) |
+| What can I do next? | [questions/what-can-i-do-next.yawn](questions/what-can-i-do-next.yawn) |
+| What is still unresolved? | [questions/open-questions.yawn](questions/open-questions.yawn) |
+
+[Open the question doorway](questions/) if you are unsure which path fits.
+
+```text
+notice something
+-> open a question
+-> make the inference visible
+-> protect the boundary
+-> choose or defer one move
+-> check what changed
+```
+
+`.yawn` is the portable orientation and memory shape. YAWN.bot is the official
+co-orientation runtime in the current
+[`yawn-ai/web-game`](https://github.com/yawn-ai/web-game) codebase. YAWN.ai is
+the intelligence substrate behind those interfaces. None of them replaces the
+observer's agency or turns an inference into authority.
+
+This public repository contains portable protocol contracts, examples, and
+conformance evidence. It does not contain private memory, credentials, private
+runtime state, or proprietary implementation details.
+
+The numbered folders preserve the historical and architectural bridge. The
+named folders are the readable protocol. The `questions/` folder is the human
+doorway into both.
+
+## Q-Space
+
+[Q-Space](q-space/node.yawn) is the human-facing projection of unresolved
+questions. It extends the question doorway rather than creating a second
+ontology:
+
+```text
+question
+-> attributed answer
+-> ranked frontier candidates
+-> human-selected next question
+-> repeated Pattern candidate
+-> bounded probe and proof
+-> owner-confirmed resolution for a named purpose
+```
+
+Repeated answers may create a Pattern candidate, but never a belief, fact,
+diagnosis, proof, or automatic closure. YAWN.bot is the first runtime,
+Supabase is the private account-owned event ledger, Q-Space is the projection,
+and YAWN.ai is an optional intelligence adapter that never becomes source of
+truth. See [protocol v1](q-space/protocol-v1.yawn).
+
 ## Declaration of Agency
 
 Happy 250th, America.
@@ -319,6 +380,7 @@ Open the smallest layer you need:
 | Shape | What it holds | Start |
 | --- | --- | --- |
 | Root | The whole frame in one object | [readme.yawn](readme.yawn) |
+| Questions | Natural-language doors into the whole system | [questions/](questions/) |
 | Start | How to make a first `.yawn` | [start/first-yawn.yawn](start/first-yawn.yawn) |
 | Shape | The public primitives: field, shape, observing agent | [shape/node.yawn](shape/node.yawn) |
 | Core | Orientation, movement, lacuna, agency, boundary, and proof | [core/what-is-a-yawn.yawn](core/what-is-a-yawn.yawn) |
@@ -390,22 +452,29 @@ Feedback: [yawn-ai.github.io/.yawn/feedback/](https://yawn-ai.github.io/.yawn/fe
 
 Email: [yawn@yawn.ai](mailto:yawn@yawn.ai?subject=YAWN%20feedback&body=What%20did%20you%20try%3F%0A%0AWhat%20was%20confusing%3F%0A%0AWhat%20should%20exist%20next%3F%0A%0ACan%20we%20follow%20up%3F%20yes%2Fno%0A)
 
-## yawn.bot
+## YAWN.bot
 
-`yawn.bot` is a draft-PR observer for the `.yawn` repo.
+YAWN.bot is the official co-orientation runtime implemented by the current
+[`yawn-ai/web-game`](https://github.com/yawn-ai/web-game) codebase. Its smallest
+wallet projection and its larger browser surfaces load the same `.yawn`
+orientation state; larger projections add resolution, not a different truth or
+greater authority.
 
-It may scan `.yawn` files, detect repeated inferences, surface lacuna or
-objections, open draft PR proposals, and record proof and replay.
+Human expression and attributed machine inference meet in an editable shared
+working orientation. They remain visibly distinct. Specific claims may later
+be updated through evidence, proof, and replay.
 
-It must not merge, mark itself ready, leak private context, erase objections,
-treat one signal as canon, or act without boundary.
+Repository contribution is one bounded YAWN.bot module. It may inspect public
+files and prepare reviewable local proposals, but it is not the complete
+identity of YAWN.bot and it cannot commit, push, publish, merge, send, spend, or
+expose private context without current authorization.
 
 Start with:
 
-- [agents/yawn.bot.yawn](agents/yawn.bot.yawn)
-- [agents/yawn.bot.policy.yawn](agents/yawn.bot.policy.yawn)
-- [automation/yawn.bot.ai-writing-scan.yawn](automation/yawn.bot.ai-writing-scan.yawn)
-- [automation/yawn.bot.readme-young-reader-audit.yawn](automation/yawn.bot.readme-young-reader-audit.yawn)
+- [YAWN.bot runtime identity](agents/yawn.bot.yawn)
+- [Universal co-orientation loop](core/co-orientation-loop.yawn)
+- [Repository-contributor module](agents/repo-contributor.yawn)
+- [Runtime promotion receipt](records/yawn-bot-runtime-promotion-2026-07-11.yawn)
 
 ## Contribute
 

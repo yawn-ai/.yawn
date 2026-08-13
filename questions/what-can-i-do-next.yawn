@@ -1,0 +1,40 @@
+id: questions/what-can-i-do-next
+title: "What can I do next?"
+kind: movement-question
+status: preview
+updated: 2026-07-11
+
+orientation_before_action:
+  - "What outcome matters?"
+  - "What is the smallest missing bridge?"
+  - "What meaningful options remain open?"
+  - "What permission does each option require?"
+  - "What move is bounded and reversible?"
+  - "What would count as proof?"
+
+output:
+  desired: ""
+  lacuna: ""
+  options: []
+  selected_move: ""
+  authorized: false
+  reversible: true
+  proof: ""
+  exit_path: ""
+
+valid_moves:
+  - act
+  - ask one decision-changing question
+  - gather evidence
+  - preserve multiple options
+  - deliberately do nothing yet
+
+connects:
+  meaning: interface/meaning.yawn
+  move: interface/move.yawn
+  decision: templates/decision.yawn
+  next_move_logic: core/next-move-logic.yawn
+
+boundary:
+  - "The smallest move is a tool for orientation, not a rule against bold action."
+  - "Reversibility does not silently grant authorization."

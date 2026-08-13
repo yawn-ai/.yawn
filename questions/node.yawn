@@ -1,0 +1,44 @@
+id: questions/node
+title: "questions"
+kind: orientation-doorway
+status: preview
+updated: 2026-07-11
+
+first_answer: "You are here."
+
+purpose: >
+  Let a human or observing agent enter the .yawn protocol through a natural
+  question without first learning the repository structure or ontology.
+
+asks:
+  - what is this
+  - where am i
+  - what can i do next
+  - what is still unresolved
+
+routes:
+  what_is_this: questions/what-is-this.yawn
+  where_am_i: questions/where-am-i.yawn
+  what_can_i_do_next: questions/what-can-i-do-next.yawn
+  open_questions: questions/open-questions.yawn
+  q_space: q-space/node.yawn
+
+connects:
+  orientation: core/orientation.yawn
+  interface: interface/node.yawn
+  intake: question-packets/node.yawn
+  first_file: start/first-yawn.yawn
+  proof_and_boundary: core/proof-and-boundary.yawn
+
+rules:
+  - "A question may be answered, deferred, corrected, or left open."
+  - "Skipped answers become visible lacuna; they are not invented."
+  - "AI output is attributed inference, not authority."
+  - "Only proof updates the map."
+  - "Q-Space projects unresolved questions without turning repeated answers into truth."
+
+proof:
+  condition: >
+    A first-time reader can choose a question and reach a useful .yawn path
+    without understanding the entire repository.
+  status: preview-pending-review

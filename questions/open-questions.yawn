@@ -1,0 +1,89 @@
+id: questions/open-questions
+title: "What is still unresolved?"
+kind: lacuna-index
+status: preview
+updated: 2026-07-11
+
+purpose: >
+  Keep unanswered, disputed, deferred, and decision-changing questions visible
+  so the repository or observing agent does not manufacture closure.
+
+template: templates/open-question.yawn
+
+open_questions:
+  - question: "Should the official YAWN.bot GitHub repository slug change from web-game to yawn-bot?"
+    coordinate: "runtime/repository-identity"
+    why_it_matters: "The product identity is official, but renaming a repository changes external links and integrations."
+    evidence_needed:
+      - inbound link inventory
+      - Vercel and GitHub integration inventory
+      - redirect and rollback plan
+    owner: Dave
+    status: open
+    blocks_action: false
+    review_after: "before any repository rename"
+
+  - question: "Which exact .yawn protocol revision should govern the official YAWN.bot runtime?"
+    coordinate: "runtime/protocol-pin"
+    why_it_matters: "The runtime must not silently change behavior when the public protocol evolves."
+    evidence_needed:
+      - accepted public protocol commit
+      - compatibility result against the runtime
+    owner: Dave
+    status: open
+    blocks_action: true
+    review_after: "before canonical production reconciliation"
+
+  - question: "Which YAWN.bot contracts are public protocol and which remain private implementation?"
+    coordinate: "public-private-boundary"
+    why_it_matters: "The public repo should teach portable coherence without exposing private memory or proprietary implementation."
+    evidence_needed:
+      - secret and private-reference scan
+      - public contract inventory
+      - owner-reviewed promotion list
+    owner: Dave
+    status: open
+    blocks_action: true
+    review_after: "before public publication"
+
+  - question: "What is the first production projection-equivalence receipt?"
+    coordinate: "runtime/projection-proof"
+    why_it_matters: "Wallet, phone, desktop, and world surfaces must share one orientation revision and authority state."
+    evidence_needed:
+      - authenticated runtime fixture
+      - wallet and desktop screenshots
+      - orientation revision comparison
+      - console and runtime logs
+    owner: YAWN.bot
+    status: open
+    blocks_action: true
+    review_after: "before declaring production healthy"
+
+recently_resolved:
+  - question: "Which codebase is the official YAWN.bot runtime?"
+    answer: "The codebase at https://github.com/yawn-ai/web-game is the official YAWN.bot runtime."
+    status: answered-with-evidence
+    owner: Dave
+    proof_refs:
+      - records/yawn-bot-runtime-promotion-2026-07-11.yawn
+
+states:
+  - open
+  - answered-with-evidence
+  - answered-provisionally
+  - disputed
+  - deferred
+  - superseded
+
+rules:
+  - "An unanswered question remains visible."
+  - "A provisional answer is labeled provisional."
+  - "Corrections supersede interpretations without erasing source history."
+  - "Questions that do not change a decision need not block movement."
+
+connects:
+  lacuna: core/lacuna.yawn
+  question_packets: question-packets/node.yawn
+  feedback: feedback/form.yawn
+  next_moves: records/next-move-ledger.yawn
+  runtime_promotion: records/yawn-bot-runtime-promotion-2026-07-11.yawn

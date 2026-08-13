@@ -1,0 +1,63 @@
+id: questions/where-am-i
+title: "Where am I?"
+kind: orientation-question
+status: preview
+updated: 2026-07-11
+
+first_answer: "You are here."
+
+ask:
+  - "What has your attention right now?"
+  - "What context, place, project, relationship, or object are you inside?"
+  - "What do you know directly?"
+  - "What are you inferring?"
+  - "What access or permission do you actually have?"
+  - "What is missing from the frame?"
+
+output:
+  coordinate: ""
+  orientation_revision_id: ""
+  device_orientation:
+    runtime: ""
+    protocol_ref: ""
+    projection: ""
+    route: ""
+    capabilities: []
+    available_sources: []
+    permissions: []
+    blocked_effects: []
+  human_orientation:
+    raw_expression: ""
+    state: open
+    corrections: []
+    endorsed_meaning: null
+  system_orientation:
+    inference: ""
+    attribution:
+      actor: ""
+      model: ""
+      created_at: ""
+    confidence: null
+    alternatives: []
+    unknowns: []
+  shared_orientation:
+    state: uncommitted
+    working_frame: null
+    active_question: "What is this?"
+    agreement: null
+    disagreement: []
+    open_questions: []
+  proof_state: none
+  authority_state: read-only
+
+connects:
+  mirror: interface/mirror.yawn
+  map: interface/map.yawn
+  orientation: core/orientation.yawn
+  full_shape: templates/orientation-shape.yawn
+
+boundary:
+  - "Do not invent location, context, history, identity, or permission."
+  - "A coordinate describes a viewpoint; it does not grant authority."
+  - "Human expression, machine inference, and shared orientation remain distinct."
+  - "An entire orientation is not proved; specific claims may be verified or contested."

@@ -30,6 +30,7 @@ rules:
   - "Only proof updates the map."
 
 links:
+  - questions/node.yawn
   - question-packets/basic.yawn
   - question-packets/relationship.yawn
   - templates/full.yawn

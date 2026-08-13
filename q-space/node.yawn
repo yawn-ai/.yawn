@@ -1,0 +1,44 @@
+id: q-space/node
+title: "Q-Space"
+kind: unresolved-question-projection
+status: owner-review-required
+updated: 2026-07-16
+protocol_revision: q-space.protocol.v1
+
+governing_question: "What is Q-Space?"
+
+answer: >
+  Q-Space is the human-facing projection of unresolved questions. It preserves
+  attributed answers, candidate next questions, repeated Pattern candidates,
+  state transitions, bounded probes, and proof without turning repetition or
+  model output into truth.
+
+responsibility_map:
+  .yawn: portable public contracts
+  YAWN.bot: first runtime and account boundary
+  Supabase: private account-owned event ledger
+  Q-Space: navigable projection of that ledger
+  YAWN.ai: optional intelligence adapter, never source of truth
+
+routes:
+  protocol: q-space/protocol-v1.yawn
+  question_node: templates/q-space-question-node.yawn
+  answer_event: templates/q-space-answer-event.yawn
+  frontier_candidate: templates/q-space-frontier-candidate.yawn
+  pattern_candidate: templates/q-space-pattern-candidate.yawn
+  transition_event: templates/q-space-transition-event.yawn
+  proof_event: templates/q-space-proof-event.yawn
+  runtime: https://github.com/yawn-ai/web-game/tree/main/src/app/q-space
+
+rules:
+  - "Repeated answers may create a Pattern candidate; they never create truth or closure."
+  - "A model may propose; only a human acceptance creates a durable next question."
+  - "A question resolves only for a named purpose with proof and owner confirmation."
+  - "Reopening appends a reopen event and preserves the prior resolution."
+  - "Q-Space records bounded probe plans and results but executes no external action autonomously."
+
+boundary:
+  private_memory: excluded
+  credentials: excluded
+  production_runtime_state: excluded
+  publication: owner-approval-required

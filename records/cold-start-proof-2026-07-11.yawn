@@ -1,0 +1,32 @@
+id: records/cold-start-proof-2026-07-11
+title: "cold-start orientation proof"
+kind: proof-receipt
+status: passed
+created: 2026-07-11
+
+target: examples/cold-start-agent.yawn
+command: "powershell -ExecutionPolicy Bypass -File scripts/verify-cold-start.ps1"
+
+result:
+  repository: yawn-ai/.yawn
+  runtime: YAWN.bot
+  runtime_repository: yawn-ai/web-game
+  protocol_loop: core/co-orientation-loop.yawn
+  required_files: 10
+  assertions: 11
+  missing_files: 0
+  identity_conflicts: 0
+
+proves:
+  - "The protocol root no longer promotes repository automation as the universal loop."
+  - "YAWN.bot resolves to the official web-game runtime."
+  - "Repository contribution resolves as a bounded module."
+  - "The natural-language question doorway and live open-question ledger are discoverable."
+
+does_not_authorize:
+  - commit
+  - push
+  - publication
+  - deployment
+  - repository rename
+  - database mutation

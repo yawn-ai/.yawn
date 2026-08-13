@@ -1,0 +1,17 @@
+schemaVersion: "1"
+id: ""
+rootYawnId: ""
+coordinate: ""
+attribution: { kind: owner, id: "", label: "" }
+createdAt: ""
+updatedAt: ""
+protocolRevision: q-space.protocol.v1
+questionId: ""
+fromState: proposed
+toState: active
+eventKind: transition
+reason: ""
+purpose: null
+ownerConfirmed: false
+proofEventId: null
+clientRequestId: ""

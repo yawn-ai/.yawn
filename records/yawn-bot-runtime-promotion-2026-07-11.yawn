@@ -1,0 +1,37 @@
+id: records/yawn-bot-runtime-promotion-2026-07-11
+title: "YAWN.bot runtime promotion"
+kind: owner-decision-receipt
+status: accepted
+created: 2026-07-11
+
+decision:
+  owner: Dave
+  expression: "the web-game codebase is now yawn.bot"
+  received_at: 2026-07-11
+  authority: product-owner
+
+runtime:
+  identity: YAWN.bot
+  status_before: candidate
+  status_after: official
+  repository: https://github.com/yawn-ai/web-game
+  repository_slug_status: current-address
+  repository_rename_authorized: false
+
+supersedes:
+  - "YAWN.bot is only a draft-PR observer"
+  - "The web-game implementation is merely a candidate runtime"
+
+preserves:
+  - "Repository-contributor behavior remains a bounded YAWN.bot module."
+  - "The .yawn repository remains the public coherence protocol."
+  - "Private memory, credentials, and proprietary implementation remain outside this public repo."
+
+proof:
+  observed_remotes:
+    - https://github.com/yawn-ai/web-game.git
+  public_contracts:
+    - agents/yawn.bot.yawn
+    - core/co-orientation-loop.yawn
+    - automation/yawn-bot-repo-contributor-loop.yawn
+  external_mutation_performed: false

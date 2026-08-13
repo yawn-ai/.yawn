@@ -2,14 +2,14 @@ id: automation/node
 title: "automation node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-04
+updated: 2026-07-11
 
 purpose: >
   Hold automations that watch for feedback, contributor signals, and bounded
   next moves without taking hidden authority.
 
 holds:
-  - core loop visibility contract
+  - bounded YAWN.bot repo-contributor loop
   - GitHub feedback triage automation
   - Codex repo agent contract
   - yawn.bot daily repo contributor automation
@@ -68,6 +68,7 @@ questions:
   - does this require human authorization
 
 links:
+  - automation/yawn-bot-repo-contributor-loop.yawn
   - core-loop.yawn
   - automation/github-feedback-triage.yawn
   - automation/codex-repo-agent.yawn
@@ -84,6 +85,7 @@ links:
 
 proof:
   source:
+    - automation/yawn-bot-repo-contributor-loop.yawn
     - core-loop.yawn
     - 08-research/july-01-2026-agent-contributor-automation-lock.ion
     - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion

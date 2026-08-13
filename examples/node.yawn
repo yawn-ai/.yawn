@@ -2,7 +2,7 @@ id: examples/node
 title: "examples node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-03
+updated: 2026-07-11
 
 purpose: >
   Hold small example yawns so a person can see the protocol in ordinary use.
@@ -16,6 +16,7 @@ holds:
   - signal example
   - choice example
   - repair example
+  - context-free agent cold-start fixture
 
 receives:
   - templates
@@ -34,7 +35,9 @@ questions:
 
 links:
   - templates/node.yawn
+  - questions/node.yawn
   - start/first-yawn.yawn
+  - examples/cold-start-agent.yawn
 
 proof:
   source:
@@ -43,4 +46,5 @@ proof:
     - examples/yawn-spine-dogfood.yawn
     - examples/relationship-tension.yawn
     - examples/relationship-commitment-conversation.yawn
+    - examples/cold-start-agent.yawn
   status: seed-backed

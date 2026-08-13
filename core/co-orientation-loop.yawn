@@ -1,0 +1,105 @@
+id: core/co-orientation-loop
+title: "co-orientation loop"
+kind: protocol-loop
+status: active
+updated: 2026-07-11
+
+purpose: >
+  Define the universal .yawn loop where a system locates itself, a human or
+  observing agent expresses what is present, attributed inference remains
+  editable, and proof determines what may become durable.
+
+orientation_layers:
+  device:
+    knows:
+      - runtime
+      - protocol
+      - coordinate
+      - projection
+      - available sources
+      - permissions
+      - blocked effects
+  human:
+    owns:
+      - present expression
+      - meaning
+      - values
+      - consent
+      - consequential authorization
+  system:
+    contributes:
+      - attributed inference
+      - alternatives
+      - confidence
+      - unknowns
+      - questions
+  shared:
+    holds:
+      - editable working orientation
+      - agreement
+      - disagreement
+      - open questions
+      - active coordinate
+
+loop:
+  - locate the system
+  - receive human expression or another source signal
+  - separate observation from inference
+  - mirror attributed alternatives and uncertainty
+  - keep correction and disagreement visible
+  - ask, hold, test, move, or deliberately defer
+  - gather proof for specific claims
+  - replay what changed
+  - update durable memory only when authority and proof permit
+
+state_machines:
+  capture:
+    - locked
+    - armed
+    - recording
+    - review
+    - sending
+  orientation:
+    - open
+    - proposed
+    - corrected
+    - endorsed
+    - evidence-updated
+  action:
+    - none
+    - proposed
+    - authorized
+    - executing
+    - blocked
+    - proved
+    - failed
+  proof:
+    - none
+    - proposed
+    - observed
+    - verified
+    - contested
+    - superseded
+
+movement_rule: >
+  Choose the minimum sufficient commitment that can answer the governing
+  question. Preserve optionality while uncertainty is high. Bold action may be
+  coherent when evidence, authority, downside bounds, and recovery are strong.
+
+projection_rule: >
+  Smaller and larger projections share the same orientation revision,
+  authority state, and proof state. A projection may omit information but may
+  not create a conflicting truth.
+
+boundary:
+  - "Human expression and attributed machine inference remain distinguishable."
+  - "Shared orientation is a working model, not objective truth."
+  - "Non-mutation does not imply privacy or prohibit data egress."
+  - "External calls, persistence, publication, spending, and world action require separate authority."
+  - "Only proof updates empirical claims in the durable map."
+
+proof:
+  condition: >
+    A context-free observer can identify every orientation layer, authority
+    boundary, active question, proof state, and allowed transition.
+  status: contract-defined
