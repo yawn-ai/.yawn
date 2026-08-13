@@ -1,8 +1,8 @@
 id: examples/node
 title: "examples node"
 kind: mental-model-node
-status: v0-seed
-updated: 2026-07-11
+status: v1
+updated: 2026-08-13
 
 purpose: >
   Hold small example yawns so a person can see the protocol in ordinary use.
@@ -17,11 +17,13 @@ holds:
   - choice example
   - repair example
   - context-free agent cold-start fixture
+  - state-substrate family example
 
 receives:
   - templates
   - common lived situations
   - proof and boundary rules
+  - state, desire, optional target, authority, and event-reduction contracts
 
 produces:
   - concrete starting points
@@ -38,6 +40,8 @@ links:
   - questions/node.yawn
   - start/first-yawn.yawn
   - examples/cold-start-agent.yawn
+  - examples/state-substrate-family.yawn
+  - fixtures/node.yawn
 
 proof:
   source:
@@ -47,4 +51,5 @@ proof:
     - examples/relationship-tension.yawn
     - examples/relationship-commitment-conversation.yawn
     - examples/cold-start-agent.yawn
+    - examples/state-substrate-family.yawn
   status: seed-backed

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/state-snapshot.v1.schema.json",
+  "title": "YawnStateSnapshotV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "snapshotId", "scopeRef", "description", "attributedTo", "epistemicStatus", "sourceRefs"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "snapshotId": { "type": "string", "minLength": 1 },
+    "scopeRef": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "attributedTo": { "type": "string", "minLength": 1 },
+    "modalRole": { "enum": ["actual", "possible", "predicted", "counterfactual"] },
+    "motivationalRole": { "enum": ["desired", "feared", "neutral"] },
+    "epistemicStatus": { "enum": ["reported", "observed", "inferred", "assumed", "supported", "disputed", "unknown", "unproven"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "sourceRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true }
+  }
+}

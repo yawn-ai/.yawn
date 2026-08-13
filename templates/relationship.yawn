@@ -3,7 +3,7 @@ title: ""
 
 kind: relationship-yawn
 status: draft
-version: "0.1.0"
+version: "1.0.0"
 created: ""
 updated: ""
 
@@ -54,20 +54,34 @@ conversation:
   shared_topic: ""
   emotional_tone: ""
 
-measurement:
-  known: []
-  observed: []
-  inferred: []
-  assumed: []
-  desired: []
-  feared: []
-  imagined: []
-  unproven: []
-  unknown: []
+state_snapshots:
+  - id: ""
+    description: ""
+    attributed_to: ""
+    modal_role: actual
+    motivational_role: neutral
+    epistemic_status: reported
+    source_refs: []
+
+desires:
+  - id: ""
+    principal_ref: ""
+    description: ""
+    visibility: private
+    source_refs: []
+
+target_conditions: [] # optional; shared targets require every configured ratification right
+
+status_dimensions:
+  lifecycle: draft
+  authority: proposed
+  loop: holding
+  axis_resolution: potential
+  presentation: preview
 
 shared_field:
-  current: ""
-  possible: ""
+  state_snapshot_refs: []
+  possibilities: []
   desired_environment: ""
   undesirable_states_to_minimize: []
   commitments_needed: []
@@ -105,7 +119,7 @@ projection_stack:
   habits: []
   values: []
   needs: []
-  desires: []
+  desire_refs: []
   fears: []
   body_patterns: []
   sexual_desires: []
@@ -116,6 +130,10 @@ projection_stack:
   hidden_loops: []
 
 move:
+  intent_id: ""
+  from_state_hash: ""
+  target_condition_refs: []
+  expected_delta: ""
   smallest_step: ""
   reversible: true
   owner: ""
@@ -126,6 +144,8 @@ move:
   blocked_until:
     - "relationship-impacting move has consent or review"
   alternatives: []
+  stop_condition: ""
+  proof_contract_ref: ""
 
 boundary:
   privacy: private
@@ -150,7 +170,10 @@ boundary:
     - "memory is not objective record"
     - "AI output is not authority"
     - "intensity is not truth"
-    - "only proof updates the map"
+    - "only authorized events update canonical materialized state"
+    - "only suitable evidence or proof upgrades empirical claims"
+    - "desire cannot authorize action"
+    - "a move cannot mark itself successful"
   safety_notes: []
 
 proof:
@@ -164,6 +187,19 @@ proof:
     - "we can each name one undesirable pattern we want to reduce"
     - "we can choose one small experiment without pressure"
     - "we can replay what changed after trying it"
+
+transition_result:
+  intent_ref: ""
+  observed_delta: ""
+  outcome_status: not_observed
+  proof_refs: []
+  residual_lacuna_refs: []
+  unintended_effects: []
+
+update:
+  authorized_event_refs: []
+  changed_paths: []
+  reducer_version: yawn-state-reducer.v1
 
 agent:
   may:

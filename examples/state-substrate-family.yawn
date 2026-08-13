@@ -1,0 +1,68 @@
+id: examples/state-substrate-family
+title: "Family plans without collapsing desire into agreement"
+kind: relationship-orientation
+status: v1-example
+updated: 2026-07-21
+
+source:
+  versions:
+    - source:alex:self-report:v1
+    - source:sam:self-report:v1
+  visibility:
+    source:alex:self-report:v1: shared
+    source:sam:self-report:v1: private-to-sam
+
+state_snapshots:
+  - id: snapshot:family:now
+    description: "Alex and Sam have not selected a shared Saturday plan."
+    attributed_to: principal:facilitator
+    epistemic_status: reported
+    source_refs:
+      - source:alex:self-report:v1
+      - source:sam:self-report:v1
+
+desires:
+  - id: desire:alex:rest
+    principal_ref: principal:alex
+    description: "Alex wants an unhurried afternoon."
+    visibility: shared
+  - id: desire:sam:connection
+    principal_ref: principal:sam
+    description: "Sam's desire remains private."
+    visibility: private
+
+target_conditions:
+  - id: target:family:decide-saturday
+    mode: decide
+    description: "Select a mutually accepted Saturday plan."
+    ratification_status: partially_ratified
+    required_ratifiers:
+      - principal:alex
+      - principal:sam
+    ratified_by:
+      - principal:alex
+
+lacunae:
+  - id: lacuna:family:shared-choice
+    kind: unratified_target
+    description: "The shared target lacks Sam's ratification."
+
+choice:
+  status: awaiting_choice
+  authority: "Each principal may speak only for themself."
+
+move:
+  intent: "Offer two reversible options without revealing private source."
+  authorized_effect: "Share the options only."
+  may_declare_success: false
+
+proof:
+  condition: "Alex and Sam independently accept the same option."
+  status: waiting
+
+update:
+  rule: "Only authorized events rematerialize state; only proof upgrades the shared-choice claim."
+
+reconciliation:
+  status: open
+  residual_lacuna: "A shared choice is not yet proved."

@@ -1,0 +1,45 @@
+id: core/event-reduction
+title: "event reduction"
+kind: substrate-protocol
+status: v1
+updated: 2026-07-21
+
+definition: >
+  An event records something entered, reported, proposed, corrected, chosen,
+  authorized, attempted, observed, proved, disputed, or revoked. Events retain
+  authorship, source, authority, scope, and time. Authorized events may change
+  materialized state; evidence-bearing events may also change empirical claims.
+
+canonical_cycle:
+  - signal
+  - orientation
+  - choice
+  - move
+  - proof
+  - update
+
+authority_rule: "Only authorized events update canonical materialized state."
+empirical_rule: "Only appropriate evidence or proof updates what YAWN claims reality established."
+
+legitimate_non_empirical_updates:
+  - human correction of attributed inference
+  - desire or need recorded by its principal
+  - consent withdrawal
+  - presentation preference change
+  - owner choice
+  - authority revocation
+  - source attachment
+  - participant dispute
+
+ordering:
+  key: event_cursor
+  tie_breaker: event_id
+  replay_requires:
+    - stable schema version
+    - stable reducer version
+    - source references
+    - authority status
+
+proof:
+  condition: "The reducer excludes unauthorized events and preserves all event history."
+  status: contract-defined

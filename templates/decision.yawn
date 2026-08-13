@@ -1,10 +1,27 @@
 title: ""
 kind: decision-frame
+version: "1.0.0"
 
-current: ""
-possible: ""
-decision: ""
-lacuna: ""
+state_snapshot:
+  description: ""
+  attributed_to: ""
+  epistemic_status: reported
+  source_refs: []
+
+possibilities: []
+desires: []
+target_condition:
+  mode: decide
+  description: ""
+  proposed_by: ""
+  affected_principals: []
+  ratification_status: proposed
+  sufficient_when: []
+  boundary_refs: []
+
+lacuna:
+  kind: unselected_choice
+  description: ""
 
 options:
   - name: ""
@@ -13,10 +30,26 @@ options:
     reversibility: true
     proof_needed: ""
 
-move: ""
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+transition_intent:
+  from_state_hash: ""
+  expected_delta: ""
+  move: ""
+  stop_condition: ""
+  proof_contract_ref: ""
 boundary: ""
 proof: ""
-replay: ""
+transition_result:
+  observed_delta: ""
+  outcome_status: not_observed
+  residual_lacuna_refs: []
+update:
+  authorized_event_refs: []
+  changed_paths: []
 
 source:
   template: templates/decision.yawn

@@ -3,7 +3,7 @@ title: ""
 
 kind: yawn
 status: seed
-version: "0.1.0"
+version: "1.0.0"
 created: ""
 updated: ""
 
@@ -20,17 +20,15 @@ source:
     do_not_share_with: []
 
 movement:
-  stage: observe # observe | orient | steer | move | replay
+  loop_status: orienting # dormant | orienting | awaiting_choice | moving | awaiting_proof | updating | holding | closed
   mode: hold # observe | ask | hold | test | move
   loop:
-    - notice
-    - orient
-    - infer
-    - name_gap
-    - protect_boundary
-    - choose_bounded_move
-    - prove_change
-    - update_memory
+    - signal
+    - orientation
+    - choice
+    - move
+    - proof
+    - update
 
 observer:
   name: ""
@@ -59,24 +57,46 @@ signal:
   repeated_pattern: ""
   why_it_has_attention: ""
 
-frame:
-  current: ""
-  possible: ""
-  possible_kind: desired # desired | feared | called | avoided | unknown | unproven
-  direction: ""
-  stakes: ""
-  importance: ""
+state:
+  materialized:
+    event_cursor: 0
+    state_hash: ""
+    reducer_version: yawn-state-reducer.v1
+    lifecycle_status: draft
+  snapshots:
+    - id: ""
+      scope_ref: ""
+      description: ""
+      attributed_to: ""
+      modal_role: actual # actual | possible | predicted | counterfactual
+      motivational_role: neutral # desired | feared | neutral
+      epistemic_status: reported # reported | observed | inferred | assumed | supported | disputed | unknown | unproven
+      source_refs: []
+  possibilities: []
+  unknowns: []
 
-measurement:
-  known: []
-  observed: []
-  inferred: []
-  assumed: []
-  desired: []
-  feared: []
-  imagined: []
-  unproven: []
-  unknown: []
+desires:
+  - id: ""
+    principal_ref: ""
+    description: ""
+    source_refs: []
+    authority_status: self_reported # self_reported | inferred | endorsed | rejected
+    visibility: private # private | shared | public
+
+target_conditions: [] # optional; see core/target-and-lacuna.yawn
+
+status_dimensions:
+  lifecycle: draft
+  authority: proposed
+  loop: orienting
+  axis_resolution: potential
+  presentation: preview
+
+compatibility_aliases:
+  frame.current: "read as an attributed state snapshot"
+  frame.possible: "read as a possibility or target candidate according to context"
+  possible_kind.desired: "read as desire plus proposed attain-target; never ratified goal"
+  measurement.desired: "read as attributed desire candidates"
 
 lacuna:
   gap: ""
@@ -89,7 +109,7 @@ projection_stack:
   habits: []
   values: []
   needs: []
-  desires: []
+  desire_refs: []
   fears: []
   body_patterns: []
   relationship_patterns: []
@@ -134,7 +154,11 @@ relationship:
     - "resonance into proof"
 
 move:
+  intent_id: ""
+  from_state_hash: ""
+  target_condition_refs: []
   invited: ""
+  expected_delta: ""
   smallest_step: ""
   owner: ""
   reversible: true
@@ -142,6 +166,8 @@ move:
   consent_required: []
   blocked_until: []
   alternatives: []
+  stop_condition: ""
+  proof_contract_ref: ""
 
 boundary:
   must_not_assume: []
@@ -163,7 +189,10 @@ boundary:
     - "memory is not objective record"
     - "AI output is not authority"
     - "intensity is not truth"
-    - "only proof updates the map"
+    - "only authorized events update canonical materialized state"
+    - "only suitable evidence or proof upgrades empirical claims"
+    - "desire cannot authorize action"
+    - "a move cannot mark itself successful"
 
 proof:
   condition: ""
@@ -174,13 +203,30 @@ proof:
   timestamp: ""
   proof_receipts: []
 
+transition_result:
+  intent_ref: ""
+  action_event_refs: []
+  observed_delta: ""
+  outcome_status: not_observed # not_observed | partial | proved | failed | mixed | contested
+  residual_lacuna_refs: []
+  unintended_effects: []
+
+update:
+  authorized_event_refs: []
+  prior_state_hash: ""
+  next_state_hash: ""
+  changed_paths: []
+  empirical_claim_refs: []
+  reducer_version: yawn-state-reducer.v1
+
 agent:
   role: mirror # mirror | organizer | challenger | summarizer | planner | blocked
   receives:
     - source
     - signal
-    - frame
-    - measurement
+    - state
+    - desires
+    - target_conditions
     - lacuna
     - projection_stack
     - relationship

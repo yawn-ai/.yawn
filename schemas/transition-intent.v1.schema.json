@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/transition-intent.v1.schema.json",
+  "title": "YawnTransitionIntentV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "intentId", "fromStateHash", "targetConditionRefs", "expectedDelta", "selectedBy", "choiceRef", "moveRef", "reversibility", "stopCondition", "proofContractRef", "authorityRef"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "intentId": { "type": "string", "minLength": 1 },
+    "fromStateHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "targetConditionRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "expectedDelta": { "type": "string", "minLength": 1 },
+    "selectedBy": { "type": "string", "minLength": 1 },
+    "choiceRef": { "type": "string", "minLength": 1 },
+    "moveRef": { "type": "string", "minLength": 1 },
+    "reversibility": { "enum": ["reversible", "partially_reversible", "irreversible"] },
+    "stopCondition": { "type": "string", "minLength": 1 },
+    "proofContractRef": { "type": "string", "minLength": 1 },
+    "authorityRef": { "type": "string", "minLength": 1 }
+  }
+}

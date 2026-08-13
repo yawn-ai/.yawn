@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/state-update.v1.schema.json",
+  "title": "YawnStateUpdateV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "updateId", "authorizedEventRefs", "priorStateHash", "nextStateHash", "changedPaths", "empiricalClaimRefs", "reducerVersion"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "updateId": { "type": "string", "minLength": 1 },
+    "authorizedEventRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true },
+    "priorStateHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "nextStateHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "changedPaths": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "empiricalClaimRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "reducerVersion": { "type": "string", "minLength": 1 }
+  }
+}

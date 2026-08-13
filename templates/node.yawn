@@ -1,8 +1,8 @@
 id: templates/node
 title: "templates node"
 kind: mental-model-node
-status: v0-seed
-updated: 2026-07-11
+status: v1
+updated: 2026-08-13
 
 purpose: >
   Hold reusable .yawn shapes that people and agents can copy without learning
@@ -34,6 +34,12 @@ produces:
   - consistent records
   - intake-driven draft frames
   - lower cognitive load
+  - versioned state, desire, optional-target, transition, proof, and update shapes
+
+canonical_rule: >
+  New templates use attributed state snapshots, first-class desires, optional
+  scoped targets, and separate transition intent/result. Legacy current,
+  possible, possible_kind, and measurement fields are compatibility aliases.
 
 questions:
   - what shape should this yawn use
@@ -48,6 +54,7 @@ links:
   - examples/node.yawn
   - records/node.yawn
   - templates/open-question.yawn
+  - schemas/node.yawn
 
 related_question_packets:
   basic: question-packets/basic.yawn

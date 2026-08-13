@@ -1,12 +1,14 @@
 id: core/memory-update
 title: "memory update"
 kind: core
-status: v0-seed
-updated: 2026-07-03
+status: v1
+updated: 2026-07-21
 
 definition: >
-  A memory update is what changes in the map after a bounded move meets proof,
-  fails proof, or reveals a new lacuna.
+  A memory update is an authorized event reduction that changes the map after
+  a bounded move meets proof, fails proof, or reveals a new lacuna. Attributed
+  reports, corrections, desires, consent, choices, and permissions may also be
+  recorded without pretending they are empirical proof.
 
 friendly_label: memory
 technical_mechanism: replay
@@ -24,7 +26,9 @@ rule: >
 boundary:
   - "Memory is not objective record."
   - "Replay is not proof unless tied to evidence."
-  - "Only proof updates the map."
+  - "Only authorized events update canonical materialized state."
+  - "Only suitable evidence or proof upgrades empirical claims."
+  - "Presentation-only events never alter semantic meaning."
 
 proof:
   source:

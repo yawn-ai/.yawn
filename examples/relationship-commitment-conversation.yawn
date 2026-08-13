@@ -2,6 +2,10 @@ id: examples/relationship-commitment-conversation
 title: "Commitment conversation without collapsing truth"
 kind: relationship-yawn-example
 status: example
+schema_profile: legacy-v0-compatibility-example
+compatibility_note: >
+  The measurement and shared_field keys are retained as a migration fixture.
+  Each desire remains attributable; no shared target or commitment is inferred.
 
 privacy: private
 partner_review_required: true
@@ -164,7 +168,8 @@ boundary:
     - "resonance is not proof"
     - "memory is not objective record"
     - "AI output is not authority"
-    - "only proof updates the map"
+    - "only authorized events update canonical materialized state"
+    - "only suitable evidence or proof upgrades empirical claims"
 
 proof:
   condition: "Both people can name one commitment, one unwanted pattern, and one safe experiment without pressure."

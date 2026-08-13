@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/statuses.v1.schema.json",
+  "title": "YawnStatusesV1",
+  "description": "Independent status vocabularies. Consumers must not infer one status dimension from another.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["modalRole", "motivationalRole", "epistemicStatus", "lifecycleStatus", "authorityStatus", "loopStatus", "axisResolutionStatus", "presentationStatus"],
+  "properties": {
+    "modalRole": { "enum": ["actual", "possible", "predicted", "counterfactual"] },
+    "motivationalRole": { "enum": ["desired", "feared", "neutral"] },
+    "epistemicStatus": { "enum": ["reported", "observed", "inferred", "assumed", "supported", "disputed", "unknown", "unproven"] },
+    "lifecycleStatus": { "enum": ["draft", "active", "superseded", "archived", "deleted"] },
+    "authorityStatus": { "enum": ["proposed", "authorized", "rejected", "revoked"] },
+    "loopStatus": { "enum": ["dormant", "orienting", "awaiting_choice", "moving", "awaiting_proof", "updating", "holding", "closed"] },
+    "axisResolutionStatus": { "enum": ["potential", "observed", "intended", "gap", "resolved", "contested"] },
+    "presentationStatus": { "enum": ["preview", "applied", "reverted"] }
+  }
+}

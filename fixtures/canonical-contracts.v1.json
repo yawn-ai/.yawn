@@ -1,0 +1,145 @@
+{
+  "statuses": {
+    "modalRole": "actual",
+    "motivationalRole": "neutral",
+    "epistemicStatus": "reported",
+    "lifecycleStatus": "active",
+    "authorityStatus": "authorized",
+    "loopStatus": "awaiting_choice",
+    "axisResolutionStatus": "gap",
+    "presentationStatus": "applied"
+  },
+  "events": [
+    {
+      "schemaVersion": 1,
+      "eventId": "event:family:source-attached",
+      "eventCursor": 1,
+      "eventType": "source.attached",
+      "occurredAt": "2026-07-21T00:00:00Z",
+      "actorRef": "principal:alex",
+      "scopeRef": "yawn:family",
+      "authorityStatus": "authorized",
+      "sourceRefs": ["source:alex:self-report:v1"],
+      "evidenceRefs": [],
+      "payload": {"operation":"add_source","sourceRef":"source:alex:self-report:v1"}
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "event:family:target-proposed",
+      "eventCursor": 2,
+      "eventType": "target.proposed",
+      "occurredAt": "2026-07-21T00:01:00Z",
+      "actorRef": "principal:facilitator",
+      "scopeRef": "yawn:family",
+      "authorityStatus": "proposed",
+      "sourceRefs": ["source:conversation:v1"],
+      "evidenceRefs": [],
+      "payload": {"targetRef":"target:family:decide-saturday"}
+    }
+  ],
+  "stateSnapshot": {
+    "schemaVersion": 1,
+    "snapshotId": "snapshot:family:now",
+    "scopeRef": "yawn:family",
+    "description": "Two family members report different priorities for Saturday.",
+    "attributedTo": "principal:facilitator",
+    "modalRole": "actual",
+    "motivationalRole": "neutral",
+    "epistemicStatus": "reported",
+    "sourceRefs": ["source:conversation:v1"]
+  },
+  "desire": {
+    "schemaVersion": 1,
+    "desireId": "desire:alex:rest",
+    "principalRef": "principal:alex",
+    "description": "Alex wants an unhurried afternoon.",
+    "sourceRefs": ["source:alex:self-report:v1"],
+    "authorityStatus": "self_reported",
+    "visibility": "shared"
+  },
+  "targetCondition": {
+    "schemaVersion": 1,
+    "targetId": "target:family:decide-saturday",
+    "mode": "decide",
+    "description": "Choose a Saturday plan without treating either desire as shared agreement.",
+    "proposedBy": "principal:facilitator",
+    "sourceRefs": ["source:conversation:v1"],
+    "affectedPrincipals": ["principal:alex", "principal:sam"],
+    "ratificationStatus": "partially_ratified",
+    "sufficientWhen": ["Alex and Sam each record acceptance of the same plan."],
+    "boundaryRefs": ["boundary:family:mutual-consent"]
+  },
+  "transitionIntent": {
+    "schemaVersion": 1,
+    "intentId": "intent:family:compare-options",
+    "fromStateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "targetConditionRefs": ["target:family:decide-saturday"],
+    "expectedDelta": "Each principal can compare two bounded options.",
+    "selectedBy": "principal:alex",
+    "choiceRef": "choice:alex:compare",
+    "moveRef": "move:family:compare-options",
+    "reversibility": "reversible",
+    "stopCondition": "Stop if either principal withdraws consent.",
+    "proofContractRef": "proof-contract:family:mutual-selection",
+    "authorityRef": "authority:alex:self"
+  },
+  "transitionResult": {
+    "schemaVersion": 1,
+    "resultId": "result:family:compare-options",
+    "intentRef": "intent:family:compare-options",
+    "actionEventRefs": ["event:family:options-shared"],
+    "observedDelta": "Both principals viewed the options; no shared choice is recorded.",
+    "proofRefs": ["proof:family:options-viewed"],
+    "outcomeStatus": "partial",
+    "residualLacunaRefs": ["lacuna:family:shared-choice"],
+    "unintendedEffects": []
+  },
+  "materializedState": {
+    "schemaVersion": 1,
+    "materializedStateId": "yawn:family:materialized",
+    "rootId": "yawn:family",
+    "asOfEventCursor": 4,
+    "stateHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "lifecycleStatus": "active",
+    "loopStatus": "awaiting_choice",
+    "axisResolutionStatus": "gap",
+    "sourceCoverage": ["source:alex:self-report:v1", "source:conversation:v1"],
+    "currentSnapshotRefs": ["snapshot:family:now"],
+    "acceptedClaimRefs": ["claim:family:options-viewed"],
+    "commitmentRefs": [],
+    "permissionRefs": ["permission:alex:share-desire"],
+    "unknowns": ["Sam's private preference is not available."]
+  },
+  "stateUpdate": {
+    "schemaVersion": 1,
+    "updateId": "update:family:4",
+    "authorizedEventRefs": ["event:family:options-viewed"],
+    "priorStateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "nextStateHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "changedPaths": ["/acceptedClaimRefs", "/loopStatus"],
+    "empiricalClaimRefs": ["claim:family:options-viewed"],
+    "reducerVersion": "yawn-state-reducer.v1"
+  },
+  "livingSnapshot": {
+    "schemaVersion": 1,
+    "livingSnapshotId": "living:family:4",
+    "rootId": "yawn:family",
+    "asOfEventCursor": 4,
+    "materializedStateRef": "yawn:family:materialized",
+    "sourceVersionRefs": ["source:conversation:v1"],
+    "activeLoopRefs": ["loop:family:saturday"],
+    "emergingPatternRefs": [],
+    "pendingChoiceRefs": ["choice:family:saturday"],
+    "unresolvedProofRefs": [],
+    "focusLoopRef": "loop:family:saturday",
+    "projection": {
+      "view": "full",
+      "typeFilters": ["state", "desire", "choice"],
+      "format": "cards",
+      "resolution": 4,
+      "timeframe": 7,
+      "presentationStatus": "applied",
+      "confirmationMode": "preview_then_apply"
+    }
+  }
+}

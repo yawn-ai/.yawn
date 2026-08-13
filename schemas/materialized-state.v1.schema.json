@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/materialized-state.v1.schema.json",
+  "title": "YawnMaterializedStateV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "materializedStateId", "rootId", "asOfEventCursor", "stateHash", "lifecycleStatus", "loopStatus", "axisResolutionStatus", "sourceCoverage", "currentSnapshotRefs", "acceptedClaimRefs", "commitmentRefs", "permissionRefs", "unknowns"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "materializedStateId": { "type": "string", "minLength": 1 },
+    "rootId": { "type": "string", "minLength": 1 },
+    "asOfEventCursor": { "type": "integer", "minimum": 0 },
+    "stateHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "lifecycleStatus": { "enum": ["draft", "active", "superseded", "archived", "deleted"] },
+    "loopStatus": { "enum": ["dormant", "orienting", "awaiting_choice", "moving", "awaiting_proof", "updating", "holding", "closed"] },
+    "axisResolutionStatus": { "enum": ["potential", "observed", "intended", "gap", "resolved", "contested"] },
+    "sourceCoverage": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "currentSnapshotRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "acceptedClaimRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "commitmentRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "permissionRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "unknowns": { "type": "array", "items": { "type": "string" } }
+  }
+}

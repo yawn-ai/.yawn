@@ -1,8 +1,8 @@
 id: core/next-move-logic
 title: "next move logic"
 kind: decision-protocol
-status: v0-seed
-updated: 2026-07-01
+status: v1
+updated: 2026-07-21
 
 purpose: >
   Show why a next move is suggested. The logic is inspectable ranking, not
@@ -14,6 +14,8 @@ preconditions:
   - known accesses are visible
   - proof gap is explicit
   - move is bounded enough to replay
+  - desire has not been treated as authorization
+  - any affected target ratification rights are visible
 
 candidate_fields:
   candidate_move: ""
@@ -51,6 +53,12 @@ output:
     risk: ""
     reversibility: ""
   not_authority: true
+  transition_intent_only: true
+
+result_rule: >
+  The selected move remains an intent and attempt. It cannot mark its own
+  result successful; observed delta, proof, and residual lacuna are recorded
+  separately before any authorized state update.
 
 proof:
   source:

@@ -1,12 +1,14 @@
 id: core/lacuna
 title: "lacuna"
 kind: core
-status: v0-seed
-updated: 2026-07-01
+status: v1
+updated: 2026-07-21
 
 definition: >
-  A lacuna is the missing bridge between the current frame and a possible
-  movement.
+  A lacuna is a typed inadequacy or discrepancy between the current state
+  model and a relevant target, requirement, unanswered question, boundary, or
+  proof condition. A target is optional; a lacuna is not proof that a goal
+  should exist.
 
 not_the_same_as:
   - failure
@@ -14,6 +16,21 @@ not_the_same_as:
   - task
   - destiny
   - proof
+  - desire
+  - target
+
+kinds:
+  - missing_knowledge
+  - missing_evidence
+  - missing_permission
+  - missing_resource
+  - missing_skill
+  - unresolved_conflict
+  - unratified_target
+  - unselected_choice
+  - blocked_dependency
+  - threatened_boundary
+  - unverified_result
 
 questions:
   - what is missing
