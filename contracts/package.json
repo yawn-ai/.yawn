@@ -1,0 +1,19 @@
+{
+  "name": "@yawn/contracts",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "files": ["src", "schemas"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./schemas/yawn-contracts-v1.schema.json"
+  },
+  "scripts": {
+    "generate": "json2ts -i schemas/yawn-contracts-v1.schema.json -o src/generated.ts --unreachableDefinitions",
+    "check": "npm run generate && tsc --noEmit"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^15.0.4",
+    "typescript": "^5.9.3"
+  }
+}

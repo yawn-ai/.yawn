@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/contracts/yawn-contracts-v1.schema.json",
+  "title": "YAWN Contracts V1",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "Sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "Uuid": { "type": "string", "format": "uuid" },
+    "Timestamp": { "type": "string", "format": "date-time" },
+    "YawnConstitutionV1": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "canonicalLoop", "upperOntology", "aiOutputPolicy", "targetPolicy", "authorityPolicy", "proofPolicy"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.constitution.v1" },
+        "canonicalLoop": { "const": ["signal", "orientation", "choice", "move", "proof", "update"] },
+        "upperOntology": {
+          "const": ["actor_agent", "agent_space", "arena", "observation_claim", "lacuna", "intent_goal_value", "boundary_authority", "move_action", "evidence_outcome_proof", "update_revision"]
+        },
+        "aiOutputPolicy": { "const": "proposal_until_authenticated_human_approval" },
+        "targetPolicy": { "const": "optional" },
+        "authorityPolicy": { "const": "child_subset_of_parent_plus_explicit_grant" },
+        "proofPolicy": { "const": "preconditions_prediction_postconditions_verifier_falsifier" }
+      }
+    },
+    "AgentSpace": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "ownerPrincipalId", "slug", "title", "constitutionVersion", "revision"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "ownerPrincipalId": { "$ref": "#/$defs/Uuid" },
+        "slug": { "type": "string" }, "title": { "type": "string" }, "constitutionVersion": { "const": "yawn.constitution.v1" },
+        "revision": { "type": "integer", "minimum": 0 }, "stateSha256": { "anyOf": [{ "$ref": "#/$defs/Sha256" }, { "type": "null" }] }
+      }
+    },
+    "Arena": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "slug", "title", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "agentSpaceId": { "$ref": "#/$defs/Uuid" }, "slug": { "type": "string" }, "title": { "type": "string" },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] }
+      }
+    },
+    "YawnState": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "arenaId", "parentYawnId", "title", "lacuna", "target", "authority", "revision", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "agentSpaceId": { "$ref": "#/$defs/Uuid" },
+        "arenaId": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] }, "parentYawnId": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] },
+        "title": { "type": "string" }, "lacuna": { "type": "string" }, "target": { "type": ["object", "null"] },
+        "authority": { "type": "object" }, "revision": { "type": "integer", "minimum": 0 },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] }
+      }
+    },
+    "SourceRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "importId", "sourceKey", "sourceKind", "assertedBy", "authorRole", "sourceSha256", "localOnly", "metadata"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "importId": { "$ref": "#/$defs/Uuid" }, "sourceKey": { "type": "string" }, "sourceKind": { "type": "string" },
+        "assertedBy": { "type": "string" }, "authorRole": { "enum": ["human", "assistant", "system", "tool", "unknown"] },
+        "sourceSha256": { "$ref": "#/$defs/Sha256" }, "occurredAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "localOnly": { "type": "boolean" }, "metadata": { "type": "object", "not": { "required": ["raw_body"] } }
+      }
+    },
+    "SourceSpan": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sourceId", "conversationId", "messageId", "nodeId", "contentPart", "startCharacter", "endCharacter", "sourceSha256"],
+      "properties": {
+        "sourceId": { "type": "string" }, "conversationId": { "type": ["string", "null"] }, "messageId": { "type": ["string", "null"] },
+        "nodeId": { "type": ["string", "null"] }, "contentPart": { "type": ["integer", "null"], "minimum": 0 },
+        "startCharacter": { "type": "integer", "minimum": 0 }, "endCharacter": { "type": "integer", "minimum": 0 }, "sourceSha256": { "$ref": "#/$defs/Sha256" }
+      }
+    },
+    "OrientationAtom": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "arenaId", "yawnId", "epistemicKind", "text", "assertedBy", "sourceSpans", "confidence", "status", "inferenceRunId", "createdAt"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" }, "arenaId": { "type": ["string", "null"] }, "yawnId": { "type": ["string", "null"] },
+        "epistemicKind": { "enum": ["observation", "claim", "lacuna", "intent", "goal", "value", "boundary", "action", "evidence", "outcome", "revision"] },
+        "text": { "type": "string" }, "assertedBy": { "type": "string" }, "sourceSpans": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/SourceSpan" } },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }, "status": { "const": "proposed" },
+        "inferenceRunId": { "type": ["string", "null"] }, "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "YawnCandidate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "title", "arenaId", "proposedParentYawnId", "lacuna", "intent", "evidenceAtomIds", "promotionReasons", "confidence", "status"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" }, "title": { "type": "string" }, "arenaId": { "type": ["string", "null"] },
+        "proposedParentYawnId": { "type": ["string", "null"] }, "lacuna": { "type": "string" }, "intent": { "type": ["string", "null"] },
+        "evidenceAtomIds": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "promotionReasons": { "type": "array", "items": { "enum": ["persistent", "consequential_lacuna", "authority_boundary", "requires_proof", "cross_arena_recurrence", "explicit_human_request"] } },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }, "status": { "const": "proposed" }
+      }
+    },
+    "ChangeProposal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "proposalType", "targetId", "payload", "sourceAtomIds", "confidence", "status", "createdAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "agentSpaceId": { "$ref": "#/$defs/Uuid" },
+        "proposalType": { "enum": ["atom", "arena", "yawn", "link", "merge", "split", "promote", "demote", "revision"] },
+        "targetId": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] }, "payload": { "type": "object" },
+        "sourceAtomIds": { "type": "array", "items": { "$ref": "#/$defs/Uuid" } }, "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] }, "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "AuthorityGrant": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "parentAuthorityId", "principalId", "scope", "capabilities", "approvedBy", "approvedAt", "revokedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "parentAuthorityId": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] },
+        "principalId": { "type": "string" }, "scope": { "type": "object" }, "capabilities": { "type": "array", "items": { "type": "string" } },
+        "approvedBy": { "$ref": "#/$defs/Uuid" }, "approvedAt": { "$ref": "#/$defs/Timestamp" },
+        "revokedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] }
+      }
+    },
+    "ImportGrant": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "importId", "sourceSha256", "provider", "allowedModels", "allowedReasoningEfforts", "remoteSourceTransferApproved", "budgetId", "approvedBy", "approvedAt", "revokedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "importId": { "$ref": "#/$defs/Uuid" }, "sourceSha256": { "$ref": "#/$defs/Sha256" }, "provider": { "const": "openai" },
+        "allowedModels": { "type": "array", "items": { "type": "string" } }, "allowedReasoningEfforts": { "type": "array", "items": { "type": "string" } },
+        "remoteSourceTransferApproved": { "const": true }, "budgetId": { "$ref": "#/$defs/Uuid" }, "approvedBy": { "$ref": "#/$defs/Uuid" },
+        "approvedAt": { "$ref": "#/$defs/Timestamp" }, "revokedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] }
+      }
+    },
+    "PricingSnapshot": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "currency", "effectiveAt", "sourceUrl", "batchDiscountBasisPoints", "models"],
+      "properties": {
+        "id": { "type": "string" }, "currency": { "const": "USD" }, "effectiveAt": { "$ref": "#/$defs/Timestamp" }, "sourceUrl": { "type": "string", "format": "uri" },
+        "batchDiscountBasisPoints": { "type": "integer", "minimum": 0, "maximum": 10000 }, "models": { "type": "object", "additionalProperties": { "type": "object" } }
+      }
+    },
+    "RunBudget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "runId", "currency", "limitMicrousd", "softStopMicrousd", "actualMicrousd", "openReservationMicrousd", "pricingSnapshotId", "status", "authorizedBy", "authorizedAt", "supersedesBudgetId"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "runId": { "$ref": "#/$defs/Uuid" }, "currency": { "const": "USD" },
+        "limitMicrousd": { "type": "integer", "minimum": 0 }, "softStopMicrousd": { "type": "integer", "minimum": 0 },
+        "actualMicrousd": { "type": "integer", "minimum": 0 }, "openReservationMicrousd": { "type": "integer", "minimum": 0 },
+        "pricingSnapshotId": { "type": "string" }, "status": { "enum": ["active", "soft_stopped", "hard_stopped", "closed", "revoked"] },
+        "authorizedBy": { "$ref": "#/$defs/Uuid" }, "authorizedAt": { "$ref": "#/$defs/Timestamp" },
+        "supersedesBudgetId": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] }
+      }
+    },
+    "CostEstimate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pricingSnapshotId", "model", "batch", "inputTokens", "cachedInputTokens", "expectedOutputTokens", "maximumOutputTokens", "minimumMicrousd", "expectedMicrousd", "worstCaseMicrousd"],
+      "properties": {
+        "pricingSnapshotId": { "type": "string" }, "model": { "type": "string" }, "batch": { "type": "boolean" },
+        "inputTokens": { "type": "integer", "minimum": 0 }, "cachedInputTokens": { "type": "integer", "minimum": 0 },
+        "expectedOutputTokens": { "type": "integer", "minimum": 0 }, "maximumOutputTokens": { "type": "integer", "minimum": 0 },
+        "minimumMicrousd": { "type": "integer", "minimum": 0 }, "expectedMicrousd": { "type": "integer", "minimum": 0 }, "worstCaseMicrousd": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "CostReservation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "budgetId", "requestKey", "estimate", "reservedMicrousd", "actualMicrousd", "providerRequestId", "status", "createdAt", "reconciledAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "budgetId": { "$ref": "#/$defs/Uuid" }, "requestKey": { "type": "string" }, "estimate": { "$ref": "#/$defs/CostEstimate" },
+        "reservedMicrousd": { "type": "integer", "minimum": 0 }, "actualMicrousd": { "type": ["integer", "null"], "minimum": 0 },
+        "providerRequestId": { "type": ["string", "null"] }, "status": { "enum": ["open", "reconciled", "released", "failed_unknown_usage"] },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }, "reconciledAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] }
+      }
+    },
+    "UsageLedgerEntry": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "budgetId", "reservationId", "model", "inputTokens", "cachedInputTokens", "outputTokens", "reasoningTokens", "actualMicrousd", "providerRequestId", "recordedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "budgetId": { "$ref": "#/$defs/Uuid" }, "reservationId": { "$ref": "#/$defs/Uuid" }, "model": { "type": "string" },
+        "inputTokens": { "type": "integer", "minimum": 0 }, "cachedInputTokens": { "type": "integer", "minimum": 0 }, "outputTokens": { "type": "integer", "minimum": 0 },
+        "reasoningTokens": { "type": "integer", "minimum": 0 }, "actualMicrousd": { "type": "integer", "minimum": 0 }, "providerRequestId": { "type": "string" },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "ModelRunReceipt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "importId", "reservationId", "provider", "model", "reasoningEffort", "mode", "providerBatchId", "workflowRunId", "inputFileId", "outputFileId", "usage", "deletionReceiptIds", "status", "createdAt", "completedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "importId": { "$ref": "#/$defs/Uuid" }, "reservationId": { "$ref": "#/$defs/Uuid" }, "provider": { "const": "openai" },
+        "model": { "type": "string" }, "reasoningEffort": { "type": "string" }, "mode": { "enum": ["standard", "pro"] }, "providerBatchId": { "type": "string" },
+        "workflowRunId": { "type": "string" }, "inputFileId": { "type": "string" }, "outputFileId": { "type": ["string", "null"] },
+        "usage": { "anyOf": [{ "$ref": "#/$defs/UsageLedgerEntry" }, { "type": "null" }] }, "deletionReceiptIds": { "type": "array", "items": { "$ref": "#/$defs/Uuid" } },
+        "status": { "enum": ["submitted", "in_progress", "completed", "failed", "expired", "cancelled", "usage_unknown"] },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }, "completedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] }
+      }
+    },
+    "YawnEvent": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "yawnId", "streamKey", "revision", "eventType", "actorId", "proposalId", "payload", "previousStateSha256", "resultingStateSha256", "occurredAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "agentSpaceId": { "$ref": "#/$defs/Uuid" }, "yawnId": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] }, "streamKey": { "type": "string" },
+        "revision": { "type": "integer", "minimum": 1 }, "eventType": { "type": "string" }, "actorId": { "type": "string" },
+        "proposalId": { "anyOf": [{ "$ref": "#/$defs/Uuid" }, { "type": "null" }] }, "payload": { "type": "object" },
+        "previousStateSha256": { "anyOf": [{ "$ref": "#/$defs/Sha256" }, { "type": "null" }] }, "resultingStateSha256": { "$ref": "#/$defs/Sha256" },
+        "occurredAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "ProofReceipt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "yawnId", "preconditions", "prediction", "postconditions", "verifier", "falsifier", "sourceRefs", "status", "createdAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "yawnId": { "$ref": "#/$defs/Uuid" }, "preconditions": { "type": "object" }, "prediction": { "type": "string" },
+        "postconditions": { "type": "object" }, "verifier": { "type": "string" }, "falsifier": { "type": "string" }, "sourceRefs": { "type": "array", "items": { "$ref": "#/$defs/SourceSpan" } },
+        "status": { "enum": ["waiting", "passed", "failed", "blocked"] }, "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    }
+  },
+  "properties": {
+    "constitution": { "$ref": "#/$defs/YawnConstitutionV1" }
+  }
+}
