@@ -11,6 +11,8 @@ purpose: >
 holds:
   - feedback issue form
   - AI-agent contributor issue form
+  - bug and conformance issue form
+  - specification proposal form
   - contact links
 
 receives:
@@ -30,6 +32,8 @@ questions:
 links:
   - .github/ISSUE_TEMPLATE/feedback.yml
   - .github/ISSUE_TEMPLATE/ai-agent-contributor.yml
+  - .github/ISSUE_TEMPLATE/bug.yml
+  - .github/ISSUE_TEMPLATE/spec-proposal.yml
   - automation/github-feedback-triage.yawn
 
 proof:

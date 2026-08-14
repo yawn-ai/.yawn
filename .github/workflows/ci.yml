@@ -1,0 +1,54 @@
+name: Validate protocol
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: protocol-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  conformance:
+    name: Schemas, tests, generated types, and links
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@1e60f620b9541d0b03c8c3bee1b99b6872d5e1c8 # v4.0.3
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            contracts/package-lock.json
+
+      - name: Validate state and ontology modules
+        run: |
+          npm ci
+          npm test
+          node scripts/validate-hub-links.mjs
+
+      - name: Parse public YAML and static HTML safely
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps PyYAML==6.0.3
+          python scripts/validate-public-surfaces.py
+
+      - name: Validate contracts package and generated types
+        working-directory: contracts
+        run: |
+          npm ci
+          npm run check
+          npm pack --dry-run
+
+      - name: Verify generated contract types are current
+        run: git diff --exit-code -- contracts/src/generated.ts

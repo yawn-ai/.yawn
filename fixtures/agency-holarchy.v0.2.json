@@ -1,0 +1,789 @@
+{
+  "schemaVersion": "agency-holarchy.v0.2",
+  "documentId": "document:publish-ontology-hub",
+  "arenas": [
+    {
+      "arenaId": "arena:open-source-project",
+      "agentSpaceRef": "agent-space:yawn",
+      "parentArenaRef": null,
+      "title": "Evolve the public YAWN protocol",
+      "field": {
+        "observerRef": "principal:dave",
+        "availableStatements": [],
+        "horizon": ["Contributors and implementations may introduce evidence outside the current publication turn."],
+        "blindSpots": ["Independent implementation experience remains limited."],
+        "capturedAt": "2026-08-13T08:59:00Z",
+        "extensions": {}
+      },
+      "participants": ["principal:dave", "audience:open-source-contributors"],
+      "affordances": ["Propose and review protocol changes"],
+      "impediments": ["The integrated ontology has not yet earned stable compatibility"],
+      "constraints": ["Preserve human agency, privacy, provenance, and explicit authority"],
+      "resources": ["The public repository and its conformance evidence"],
+      "authorityRefs": ["authority:repository-maintainer"],
+      "boundary": {
+        "includes": ["Public protocol stewardship"],
+        "excludes": ["Private user memory and proprietary runtime state"],
+        "revisitWhen": ["Governance or protocol compatibility changes"],
+        "extensions": {}
+      },
+      "producedBy": {
+        "actorRef": "principal:dave",
+        "role": "human",
+        "producedAt": "2026-08-13T08:59:00Z",
+        "extensions": {}
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "adoption": {
+        "status": "proposed",
+        "receiptRefs": [],
+        "extensions": {}
+      },
+      "extensions": {}
+    },
+    {
+      "arenaId": "arena:repository-publication",
+      "agentSpaceRef": "agent-space:yawn",
+      "parentArenaRef": "arena:open-source-project",
+      "title": "Publish the public ontology hub",
+      "field": {
+        "observerRef": "principal:dave",
+        "availableStatements": [
+          {
+            "statementId": "statement:pages-built",
+            "kind": "observed",
+            "text": "GitHub Pages reports a successful build.",
+            "assertedBy": "agent:codex",
+            "sourceRefs": ["source:github-pages-api"],
+            "control": {
+              "privacy": {
+                "visibility": "public",
+                "ownerRefs": ["principal:dave"],
+                "audienceRefs": ["audience:public"],
+                "consentRefs": ["consent:publish-open-source-repository"],
+                "extensions": {}
+              },
+              "authority": {
+                "state": "proposed",
+                "grantRefs": [],
+                "authorizedBy": null,
+                "authorizedAt": null,
+                "extensions": {}
+              },
+              "extensions": {}
+            },
+            "extensions": {}
+          },
+          {
+            "statementId": "statement:main-may-change",
+            "kind": "predicted",
+            "text": "The main branch may advance while this change is prepared.",
+            "assertedBy": "agent:codex",
+            "sourceRefs": ["source:repository-audit"],
+            "control": {
+              "privacy": {
+                "visibility": "public",
+                "ownerRefs": ["principal:dave"],
+                "audienceRefs": ["audience:public"],
+                "consentRefs": ["consent:publish-open-source-repository"],
+                "extensions": {}
+              },
+              "authority": {
+                "state": "proposed",
+                "grantRefs": [],
+                "authorizedBy": null,
+                "authorizedAt": null,
+                "extensions": {}
+              },
+              "extensions": {}
+            },
+            "extensions": {}
+          }
+        ],
+        "horizon": [
+          "The repository can change outside this turn.",
+          "A successful build does not by itself prove that every public route works."
+        ],
+        "blindSpots": ["Anonymous browser behavior has not yet been observed."],
+        "capturedAt": "2026-08-13T09:00:00Z",
+        "extensions": {}
+      },
+      "participants": ["principal:dave", "agent:codex", "system:github-pages"],
+      "affordances": ["Create a review branch", "Run local conformance tests", "Publish through GitHub Pages"],
+      "impediments": ["Deployment is asynchronous"],
+      "constraints": ["Preserve stable V1 contracts", "Do not disclose private source material"],
+      "resources": ["The public repository", "The YAWN brand contract", "The GitHub Pages build"],
+      "authorityRefs": ["authority:repository-maintainer"],
+      "boundary": {
+        "includes": ["Ontology documentation, contracts, tests, and the public landing page"],
+        "excludes": ["Unrelated application deployments", "Private conversation contents"],
+        "revisitWhen": ["The publication target, repository owner, or privacy policy changes"],
+        "extensions": {}
+      },
+      "producedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:00:00Z",
+        "extensions": {}
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "adoption": {
+        "status": "proposed",
+        "receiptRefs": [],
+        "extensions": {}
+      },
+      "extensions": {
+        "ai.yawn.rendering/card": {
+          "accent": "interaction"
+        }
+      }
+    }
+  ],
+  "yawns": [
+    {
+      "yawnId": "yawn:ontology-hub",
+      "arenaRef": "arena:repository-publication",
+      "primaryParentYawnRef": null,
+      "title": "Make the repository a trustworthy ontology hub",
+      "lacuna": "The concepts, executable contracts, and public entry point are not yet coherent enough for a newcomer to orient safely.",
+      "target": {
+        "mode": "attain",
+        "description": "A tested, inspectable ontology hub is public from the canonical repository.",
+        "sufficientWhen": ["Conformance tests pass", "The branch is merged", "The live root route returns the new hub"],
+        "ratificationState": "ratified",
+        "control": {
+          "privacy": {
+            "visibility": "public",
+            "ownerRefs": ["principal:dave"],
+            "audienceRefs": ["audience:public"],
+            "consentRefs": ["consent:publish-open-source-repository"],
+            "extensions": {}
+          },
+          "authority": {
+            "state": "granted",
+            "grantRefs": ["authority:repository-maintainer"],
+            "authorizedBy": "principal:dave",
+            "authorizedAt": "2026-08-13T09:01:00Z",
+            "extensions": {}
+          },
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "orientationStatementRefs": ["statement:pages-built", "statement:main-may-change"],
+      "proofPolicyRef": "proof-policy:hub-publication",
+      "producedBy": {
+        "actorRef": "principal:dave",
+        "role": "human",
+        "producedAt": "2026-08-13T09:01:00Z",
+        "extensions": {}
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "granted",
+          "grantRefs": ["authority:repository-maintainer"],
+          "authorizedBy": "principal:dave",
+          "authorizedAt": "2026-08-13T09:01:00Z",
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "adoption": {
+        "status": "authorized",
+        "receiptRefs": ["receipt:create-yawn:ontology-hub"],
+        "extensions": {}
+      },
+      "revision": 1,
+      "extensions": {}
+    },
+    {
+      "yawnId": "yawn:verify-live-hub",
+      "arenaRef": "arena:repository-publication",
+      "primaryParentYawnRef": "yawn:ontology-hub",
+      "title": "Verify the asynchronous publication",
+      "lacuna": "The live route has not yet been observed after merge.",
+      "target": null,
+      "orientationStatementRefs": ["statement:pages-built"],
+      "proofPolicyRef": "proof-policy:live-route",
+      "producedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:02:00Z",
+        "extensions": {}
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "adoption": {
+        "status": "proposed",
+        "receiptRefs": [],
+        "extensions": {}
+      },
+      "revision": 0,
+      "extensions": {}
+    }
+  ],
+  "relations": [
+    {
+      "relationId": "relation:verification-depends-on-publication",
+      "fromYawnRef": "yawn:verify-live-hub",
+      "toYawnRef": "yawn:ontology-hub",
+      "relationType": "depends_on",
+      "rationale": "The public route can only be verified after the ontology hub has been published.",
+      "epistemicStatus": "inferred",
+      "confidence": 0.98,
+      "evidenceRefs": ["source:github-pages-api"],
+      "effectiveFrom": "2026-08-13T09:03:00Z",
+      "effectiveUntil": null,
+      "producedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:03:00Z",
+        "extensions": {}
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "adoption": {
+        "status": "proposed",
+        "receiptRefs": [],
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "turns": [
+    {
+      "turnId": "turn:publish",
+      "arenaRef": "arena:repository-publication",
+      "yawnRef": "yawn:ontology-hub",
+      "parentTurnRef": null,
+      "causedBy": [],
+      "status": "open",
+      "startedAt": "2026-08-13T09:04:00Z",
+      "endedAt": null,
+      "waitingConditions": [],
+      "moveRefs": ["move:merge-publication"],
+      "eventRefs": ["event:create-yawn:ontology-hub"],
+      "transitionRefs": ["transition:hub-public"],
+      "proofReceiptRefs": ["proof:hub-public"],
+      "producedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:04:00Z",
+        "extensions": {}
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    },
+    {
+      "turnId": "turn:check-build",
+      "arenaRef": "arena:repository-publication",
+      "yawnRef": "yawn:verify-live-hub",
+      "parentTurnRef": "turn:publish",
+      "causedBy": [
+        {
+          "ref": "turn:publish",
+          "kind": "turn",
+          "extensions": {}
+        },
+        {
+          "ref": "event:create-yawn:ontology-hub",
+          "kind": "event",
+          "extensions": {}
+        }
+      ],
+      "status": "open",
+      "startedAt": "2026-08-13T09:06:00Z",
+      "endedAt": null,
+      "waitingConditions": [],
+      "moveRefs": [],
+      "eventRefs": [],
+      "transitionRefs": [],
+      "proofReceiptRefs": [],
+      "producedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:06:00Z",
+        "extensions": {}
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "moves": [
+    {
+      "moveId": "move:merge-publication",
+      "turnRef": "turn:publish",
+      "yawnRef": "yawn:ontology-hub",
+      "kind": "act",
+      "intent": "Merge the reviewed ontology-hub branch into main.",
+      "expectedDelta": "The canonical branch contains the tested hub and starts a Pages build.",
+      "reversible": true,
+      "proposedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:04:00Z",
+        "extensions": {}
+      },
+      "authorizationState": "granted",
+      "authorityRef": "authority:repository-maintainer",
+      "authorizationReceiptRefs": ["authorization:merge-publication"],
+      "causedBy": [
+        {
+          "ref": "routing:ontology-hub-child",
+          "kind": "external",
+          "extensions": {}
+        }
+      ],
+      "requestedAt": "2026-08-13T09:04:00Z",
+      "executedAt": null,
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "granted",
+          "grantRefs": ["authority:repository-maintainer"],
+          "authorizedBy": "principal:dave",
+          "authorizedAt": "2026-08-13T09:04:00Z",
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "events": [
+    {
+      "eventId": "event:create-yawn:ontology-hub",
+      "streamRef": "stream:yawn:ontology-hub",
+      "sequence": 0,
+      "previousEventRef": null,
+      "eventType": "structure.yawn_created",
+      "occurredAt": "2026-08-13T09:05:00Z",
+      "recordedAt": "2026-08-13T09:05:00Z",
+      "actorRef": "principal:dave",
+      "authorityStatus": "authorized",
+      "sourceRefs": ["source:repository-audit"],
+      "causedBy": [
+        {
+          "ref": "routing:bootstrap-ontology-hub",
+          "kind": "external",
+          "extensions": {}
+        }
+      ],
+      "correctionOfEventRef": null,
+      "payload": {
+        "yawnRef": "yawn:ontology-hub",
+        "proposalRef": "routing:bootstrap-ontology-hub"
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "granted",
+          "grantRefs": ["authority:repository-maintainer"],
+          "authorizedBy": "principal:dave",
+          "authorizedAt": "2026-08-13T09:04:00Z",
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    },
+    {
+      "eventId": "event:review-requested",
+      "streamRef": "stream:yawn:ontology-hub",
+      "sequence": 1,
+      "previousEventRef": "event:create-yawn:ontology-hub",
+      "eventType": "review.requested",
+      "occurredAt": "2026-08-13T09:05:01Z",
+      "recordedAt": "2026-08-13T09:05:01Z",
+      "actorRef": "agent:codex",
+      "authorityStatus": "proposed",
+      "sourceRefs": ["source:local-conformance-run"],
+      "causedBy": [
+        {
+          "ref": "turn:publish",
+          "kind": "turn",
+          "extensions": {}
+        }
+      ],
+      "correctionOfEventRef": null,
+      "payload": {
+        "requestedReview": "Human review before merge and live verification"
+      },
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "transitions": [
+    {
+      "transitionId": "transition:hub-public",
+      "turnRef": "turn:publish",
+      "yawnRef": "yawn:ontology-hub",
+      "fromStateRef": "state:main-before-hub",
+      "toStateRef": null,
+      "expectedDelta": "The canonical public root changes from no hub to the tested ontology hub.",
+      "observedDelta": null,
+      "attemptedByMoveRefs": ["move:merge-publication"],
+      "eventRefs": [],
+      "proofReceiptRefs": ["proof:hub-public"],
+      "outcomeStatus": "pending",
+      "causedBy": [
+        {
+          "ref": "move:merge-publication",
+          "kind": "move",
+          "extensions": {}
+        }
+      ],
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "granted",
+          "grantRefs": ["authority:repository-maintainer"],
+          "authorizedBy": "principal:dave",
+          "authorizedAt": "2026-08-13T09:04:00Z",
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "proofReceipts": [
+    {
+      "proofReceiptId": "proof:hub-public",
+      "yawnRef": "yawn:ontology-hub",
+      "turnRef": "turn:publish",
+      "transitionRef": "transition:hub-public",
+      "preconditions": ["The reviewed branch is merged to main"],
+      "prediction": "The canonical Pages root will contain the ontology-hub release marker.",
+      "postconditions": ["The root route returns HTTP 200", "The response contains the release marker"],
+      "verifierRef": "verifier:anonymous-http-client",
+      "falsifier": "The root route remains unavailable, serves another revision, or omits the marker after the build completes.",
+      "evidenceRefs": [],
+      "sourceRefs": ["source:github-pages-api"],
+      "status": "waiting",
+      "issuedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:05:03Z",
+        "extensions": {}
+      },
+      "issuedAt": "2026-08-13T09:05:03Z",
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "routingProposals": [
+    {
+      "routingProposalId": "routing:bootstrap-ontology-hub",
+      "subjectRef": "signal:repository-ontology-gap",
+      "arenaCandidateRefs": ["arena:repository-publication"],
+      "yawnCandidateRefs": [],
+      "orientationCoverage": 0.86,
+      "claimConfidence": 0.92,
+      "routingConfidence": 0.88,
+      "gates": {
+        "authority": "passed",
+        "privacy": "passed",
+        "egress": "passed",
+        "goalBoundary": "passed",
+        "transitionBoundary": "passed",
+        "proofPreservation": "passed",
+        "provenancePreservation": "passed",
+        "inheritanceSafety": "passed",
+        "humanReview": "required",
+        "extensions": {}
+      },
+      "resolution": "create_root",
+      "candidateScores": [],
+      "rationale": "No existing Yawn honestly holds the cross-module ontology-hub contract, so a new explicit root is proposed inside the publication arena.",
+      "evidenceRefs": ["source:repository-audit"],
+      "proposedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:00:30Z",
+        "extensions": {}
+      },
+      "decisionStatus": "proposed",
+      "createdAt": "2026-08-13T09:00:30Z",
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    },
+    {
+      "routingProposalId": "routing:ontology-hub-child",
+      "subjectRef": "signal:verify-live-route",
+      "arenaCandidateRefs": ["arena:repository-publication"],
+      "yawnCandidateRefs": ["yawn:ontology-hub"],
+      "orientationCoverage": 0.72,
+      "claimConfidence": 0.8,
+      "routingConfidence": 0.91,
+      "gates": {
+        "authority": "passed",
+        "privacy": "passed",
+        "egress": "passed",
+        "goalBoundary": "passed",
+        "transitionBoundary": "passed",
+        "proofPreservation": "passed",
+        "provenancePreservation": "passed",
+        "inheritanceSafety": "passed",
+        "humanReview": "required",
+        "extensions": {}
+      },
+      "resolution": "create_child",
+      "candidateScores": [
+        {
+          "candidateYawnRef": "yawn:ontology-hub",
+          "goalEquivalence": 0.58,
+          "proofEquivalence": 0.94,
+          "arenaOverlap": 1,
+          "causalContinuity": 0.98,
+          "identityContinuity": 0.7,
+          "semanticSimilarity": 0.63,
+          "exceptionCost": 0.05,
+          "routingScore": 0.84,
+          "extensions": {}
+        }
+      ],
+      "rationale": "Live verification is independently closable, its proof advances the parent publication contract, and it stays within the same arena and authority boundary.",
+      "evidenceRefs": ["source:github-pages-api", "source:repository-audit"],
+      "proposedBy": {
+        "actorRef": "agent:codex",
+        "role": "ai",
+        "producedAt": "2026-08-13T09:02:00Z",
+        "extensions": {}
+      },
+      "decisionStatus": "proposed",
+      "createdAt": "2026-08-13T09:02:00Z",
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "proposed",
+          "grantRefs": [],
+          "authorizedBy": null,
+          "authorizedAt": null,
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "structuralChangeReceipts": [
+    {
+      "structuralChangeReceiptId": "receipt:create-yawn:ontology-hub",
+      "proposalRef": "routing:bootstrap-ontology-hub",
+      "operation": "create_yawn",
+      "authorizationStatus": "authorized",
+      "authorizedBy": "principal:dave",
+      "authorizedByRole": "human",
+      "authorityRef": "authority:repository-maintainer",
+      "authorizedAt": "2026-08-13T09:01:00Z",
+      "affectedArenaRefs": ["arena:repository-publication"],
+      "affectedYawnRefs": [],
+      "createdYawnRefs": ["yawn:ontology-hub"],
+      "retainedYawnRefs": [],
+      "supersededYawnRefs": [],
+      "aliasMap": {},
+      "provenanceRefs": ["source:repository-audit"],
+      "proofContinuityRefs": [],
+      "eventRefs": ["event:create-yawn:ontology-hub"],
+      "beforeStateRef": "state:holarchy:0",
+      "afterStateRef": "state:holarchy:1",
+      "control": {
+        "privacy": {
+          "visibility": "public",
+          "ownerRefs": ["principal:dave"],
+          "audienceRefs": ["audience:public"],
+          "consentRefs": ["consent:publish-open-source-repository"],
+          "extensions": {}
+        },
+        "authority": {
+          "state": "granted",
+          "grantRefs": ["authority:repository-maintainer"],
+          "authorizedBy": "principal:dave",
+          "authorizedAt": "2026-08-13T09:01:00Z",
+          "extensions": {}
+        },
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "extensions": {
+    "org.example.audit": {
+      "fixturePurpose": "Conformance and design review"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+name: Specification proposal
+description: Propose a definition, invariant, compatibility rule, or protocol change.
+title: "[spec] "
+labels:
+  - specification
+body:
+  - type: textarea
+    id: lacuna
+    attributes:
+      label: What is the current lacuna?
+      description: Name the ambiguity, contradiction, or missing behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What should the protocol say?
+      description: State the smallest testable change and its boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: counterexample
+    attributes:
+      label: Counterexample or alternative
+      description: Show where the proposal could be wrong or what else could work.
+    validations:
+      required: true
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Authority, privacy, proof, and compatibility effects
+      description: Explain who gains or loses capability and what would need migration.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and conformance plan
+      description: Link field examples, primary sources, schemas, fixtures, or tests.
+    validations:
+      required: true

@@ -1,0 +1,62 @@
+id: core/turn
+title: "turn and causal time"
+kind: temporal-contract
+status: draft-0.2
+updated: 2026-08-13
+
+definition: >
+  A turn is a bounded causally coherent episode opened against a state. An
+  agent may act, communicate, delegate, wait, or yield. The turn remains open
+  until an explicit outcome, handoff, abandonment, or supersession closes the
+  causal loop.
+
+distinctions:
+  choice: "an attributed selection among alternatives"
+  move: "an intended and bounded commitment or deliberate non-action"
+  event: "an attributed occurrence, including exogenous change"
+  transition: "the measured state or affordance delta; not the move itself"
+  proof_receipt: "evidence evaluated against a prior proof contract"
+  update: "state materialized from authorized events"
+
+lifecycle:
+  - open
+  - active
+  - waiting
+  - blocked
+  - delegated
+  - resumed
+  - closed
+  - abandoned
+  - superseded
+
+waiting_fields:
+  - waiting_on
+  - since
+  - resume_when
+  - deadline
+  - owner
+
+causality:
+  total_global_order_required: false
+  overlap_allowed: true
+  nesting_allowed: true
+  identifiers:
+    - parent_turn_id
+    - caused_by_event_ids
+    - correlation_id
+    - local_event_cursor
+
+invariants:
+  - "Reality is not claimed to literally alternate turns."
+  - "Waiting is a first-class state, not a missing trace."
+  - "A move cannot verify its own outcome."
+  - "An execution may suspend while the causal turn remains open."
+  - "Delegation narrows context and authority unless a rightful grant says otherwise."
+  - "Timeout alone does not imply failure."
+
+links:
+  - spec/turns.md
+  - core/state.yawn
+  - core/state-transition.yawn
+  - core/event-reduction.yawn
+  - templates/turn.yawn

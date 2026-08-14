@@ -1,8 +1,8 @@
 id: question-packets/node
 title: "question packets node"
 kind: mental-model-node
-status: v0-seed
-updated: 2026-07-02
+status: active
+updated: 2026-08-13
 
 purpose: >
   Hold simple intake contracts that let a person answer plain-language
@@ -11,6 +11,8 @@ purpose: >
 holds:
   - basic question packet
   - relationship question packet
+  - canonical nine-question orientation projection
+  - turn close and replay packet
 
 receives:
   - simple user answers
@@ -27,12 +29,16 @@ rules:
   - "Skipped answers become lacuna.open_questions."
   - "Facts stay separate from inferences."
   - "Partner models stay hypothetical."
-  - "Only proof updates the map."
+  - "Only authorized events update canonical materialized state."
+  - "Only suitable evidence or proof upgrades empirical claims."
+  - "Questions are projections over the ontology, not the ontology."
 
 links:
   - questions/node.yawn
   - question-packets/basic.yawn
   - question-packets/relationship.yawn
+  - question-packets/orientation-nine.yawn
+  - question-packets/turn-close.yawn
   - templates/full.yawn
   - templates/relationship.yawn
   - examples/relationship-commitment-conversation.yawn

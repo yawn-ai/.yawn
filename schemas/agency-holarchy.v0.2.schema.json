@@ -1,0 +1,1058 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/agency-holarchy.v0.2.schema.json",
+  "title": "YAWN Agency Holarchy Working Draft 0.2",
+  "description": "An additive, provider-neutral working-draft contract for arenas, Yawns, relations, turns, moves, events, transitions, proof, routing, and authorized structural change. It complements—without replacing—the YAWN V1 constitution and state-substrate schemas.",
+  "$comment": "Reality, or world, is the unbounded referent that can surprise or disconfirm this document. It is deliberately not serialized as an exhaustive object. This schema serializes bounded claims, agent-relative fields, provisional arenas, and receipts. JSON Schema checks shape; reducers and policy engines must also check referential integrity, authorization, event order, tree acyclicity, and privacy at runtime.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "documentId",
+    "arenas",
+    "yawns",
+    "relations",
+    "turns",
+    "moves",
+    "events",
+    "transitions",
+    "proofReceipts",
+    "routingProposals",
+    "structuralChangeReceipts",
+    "extensions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "agency-holarchy.v0.2",
+      "description": "The experimental protocol version. This does not change the stable YAWN V1 contract version."
+    },
+    "documentId": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "arenas": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Arena" }
+    },
+    "yawns": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Yawn" }
+    },
+    "relations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Relation" }
+    },
+    "turns": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Turn" }
+    },
+    "moves": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Move" }
+    },
+    "events": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Event" }
+    },
+    "transitions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Transition" }
+    },
+    "proofReceipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ProofReceipt" }
+    },
+    "routingProposals": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/RoutingProposal" }
+    },
+    "structuralChangeReceipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/StructuralChangeReceipt" }
+    },
+    "extensions": {
+      "$ref": "#/$defs/ExtensionBag"
+    }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A stable, locally unique or globally resolvable identifier. URI-like identifiers are recommended but not required.",
+      "examples": ["arena:publication", "urn:yawn:turn:42"]
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$",
+      "description": "An RFC 3339 date-time with an explicit UTC or numeric offset. The pattern provides baseline enforcement even when a JSON Schema runtime has no format plugin.",
+      "examples": ["2026-08-13T12:00:00Z"]
+    },
+    "NonEmptyText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ReferenceArray": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Identifier" },
+      "uniqueItems": true
+    },
+    "ExtensionBag": {
+      "type": "object",
+      "description": "The only open extension point. Keys must be namespaced so experimental or implementation-specific data cannot masquerade as core protocol fields.",
+      "$comment": "Use a reverse-DNS or similarly collision-resistant namespace, for example org.example.audit or ai.yawn.rendering/card. Extensions must not weaken core privacy, authority, proof, or append-only invariants.",
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)+(?:/[A-Za-z0-9._~-]+)?$"
+      },
+      "additionalProperties": true,
+      "examples": [
+        {
+          "org.example.audit": {
+            "traceId": "trace:123"
+          }
+        }
+      ]
+    },
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorRef", "role", "producedAt", "extensions"],
+      "properties": {
+        "actorRef": { "$ref": "#/$defs/Identifier" },
+        "role": {
+          "enum": ["human", "ai", "tool", "system"],
+          "description": "Provenance role, not a grant of authority. AI role never supplies human authorization by itself."
+        },
+        "producedAt": { "$ref": "#/$defs/Timestamp" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "PrivacyPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visibility", "ownerRefs", "audienceRefs", "consentRefs", "extensions"],
+      "properties": {
+        "visibility": {
+          "enum": ["private", "shared", "public"],
+          "description": "Disclosure state for this item only. Visibility does not automatically inherit across links, parents, children, turns, or evidence."
+        },
+        "ownerRefs": {
+          "allOf": [
+            { "$ref": "#/$defs/ReferenceArray" },
+            { "type": "array", "minItems": 1 }
+          ]
+        },
+        "audienceRefs": {
+          "$ref": "#/$defs/ReferenceArray",
+          "description": "Explicit recipients or audience groups. Empty means no audience beyond owners when visibility is private."
+        },
+        "consentRefs": {
+          "$ref": "#/$defs/ReferenceArray",
+          "description": "Receipts or grants supporting the declared disclosure."
+        },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "visibility": { "enum": ["shared", "public"] } },
+            "required": ["visibility"]
+          },
+          "then": {
+            "properties": {
+              "audienceRefs": { "type": "array", "minItems": 1 },
+              "consentRefs": { "type": "array", "minItems": 1 }
+            }
+          }
+        }
+      ]
+    },
+    "AuthorityGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "grantRefs", "authorizedBy", "authorizedAt", "extensions"],
+      "properties": {
+        "state": {
+          "enum": ["unassessed", "proposed", "granted", "denied", "revoked"],
+          "description": "An explicit authorization state. It is intentionally not represented as confidence."
+        },
+        "grantRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "authorizedBy": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "authorizedAt": {
+          "anyOf": [
+            { "$ref": "#/$defs/Timestamp" },
+            { "type": "null" }
+          ]
+        },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "state": { "const": "granted" } },
+            "required": ["state"]
+          },
+          "then": {
+            "properties": {
+              "grantRefs": { "type": "array", "minItems": 1 },
+              "authorizedBy": { "$ref": "#/$defs/Identifier" },
+              "authorizedAt": { "$ref": "#/$defs/Timestamp" }
+            }
+          }
+        }
+      ]
+    },
+    "ControlEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["privacy", "authority", "extensions"],
+      "properties": {
+        "privacy": { "$ref": "#/$defs/PrivacyPolicy" },
+        "authority": { "$ref": "#/$defs/AuthorityGate" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "EpistemicStatement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statementId", "kind", "text", "assertedBy", "sourceRefs", "control", "extensions"],
+      "properties": {
+        "statementId": { "$ref": "#/$defs/Identifier" },
+        "kind": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"],
+          "description": "Epistemic kinds stay distinct; one kind must not be silently promoted to another."
+        },
+        "text": { "$ref": "#/$defs/NonEmptyText" },
+        "assertedBy": { "$ref": "#/$defs/Identifier" },
+        "sourceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "control": {
+          "$ref": "#/$defs/ControlEnvelope",
+          "description": "Disclosure and decision rights attach to each statement; they are not inferred from a container or confidence score."
+        },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "FieldSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observerRef", "availableStatements", "horizon", "blindSpots", "capturedAt", "extensions"],
+      "properties": {
+        "observerRef": { "$ref": "#/$defs/Identifier" },
+        "availableStatements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/EpistemicStatement" }
+        },
+        "horizon": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NonEmptyText" },
+          "description": "Known edges beyond which the observer's current field should not be treated as complete."
+        },
+        "blindSpots": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NonEmptyText" }
+        },
+        "capturedAt": { "$ref": "#/$defs/Timestamp" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "AdoptionState": {
+      "type": "object",
+      "description": "Lifecycle acceptance of a representation into the canonical graph. Adoption is not permission to execute an effect or disclose content; those remain in the separate control envelope.",
+      "additionalProperties": false,
+      "required": ["status", "receiptRefs", "extensions"],
+      "properties": {
+        "status": { "enum": ["proposed", "authorized", "rejected", "superseded", "closed"] },
+        "receiptRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "const": "authorized" } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": { "receiptRefs": { "type": "array", "minItems": 1 } }
+          }
+        }
+      ]
+    },
+    "Arena": {
+      "title": "Arena",
+      "description": "A provisional, agent-relative, task-relevant slice of an observer's field. An arena is neither the world nor necessarily a game, and it must remain revisable when reality exceeds the frame.",
+      "$comment": "The world is not nested inside Arena. Arena records what currently matters for orientation: participants, affordances, impediments, constraints, resources, authority, and a declared horizon.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arenaId", "agentSpaceRef", "parentArenaRef", "title", "field", "participants", "affordances", "impediments", "constraints", "resources", "authorityRefs", "boundary", "producedBy", "control", "adoption", "extensions"],
+      "properties": {
+        "arenaId": { "$ref": "#/$defs/Identifier" },
+        "agentSpaceRef": { "$ref": "#/$defs/Identifier" },
+        "parentArenaRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ],
+          "description": "Optional containment for a narrower relevance boundary. Arena nesting does not imply Yawn parentage or authority inheritance."
+        },
+        "title": { "$ref": "#/$defs/NonEmptyText" },
+        "field": { "$ref": "#/$defs/FieldSnapshot" },
+        "participants": { "$ref": "#/$defs/ReferenceArray" },
+        "affordances": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NonEmptyText" }
+        },
+        "impediments": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NonEmptyText" }
+        },
+        "constraints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NonEmptyText" }
+        },
+        "resources": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NonEmptyText" }
+        },
+        "authorityRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["includes", "excludes", "revisitWhen", "extensions"],
+          "properties": {
+            "includes": { "type": "array", "items": { "$ref": "#/$defs/NonEmptyText" } },
+            "excludes": { "type": "array", "items": { "$ref": "#/$defs/NonEmptyText" } },
+            "revisitWhen": { "type": "array", "items": { "$ref": "#/$defs/NonEmptyText" } },
+            "extensions": { "$ref": "#/$defs/ExtensionBag" }
+          }
+        },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "adoption": { "$ref": "#/$defs/AdoptionState" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "Target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "description", "sufficientWhen", "ratificationState", "control", "extensions"],
+      "properties": {
+        "mode": { "enum": ["attain", "maintain", "restore", "prevent", "avoid", "understand", "decide", "reconcile", "hold_open"] },
+        "description": { "$ref": "#/$defs/NonEmptyText" },
+        "sufficientWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/NonEmptyText" } },
+        "ratificationState": { "enum": ["proposed", "partially_ratified", "ratified", "rejected", "revoked"] },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "ratificationState": { "const": "ratified" } },
+            "required": ["ratificationState"]
+          },
+          "then": {
+            "properties": {
+              "control": {
+                "type": "object",
+                "properties": {
+                  "authority": {
+                    "type": "object",
+                    "properties": { "state": { "const": "granted" } },
+                    "required": ["state"]
+                  }
+                },
+                "required": ["authority"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Yawn": {
+      "title": "Yawn",
+      "description": "A durable, versioned orientation contract around a lacuna, a possible transition, or a proof obligation inside an arena. A Yawn is not a topic and need not contain a fixed goal.",
+      "$comment": "primaryParentYawnRef supplies the one-parent tree backbone. Topical similarity alone must not create parenthood. A child should be independently closable, with proof that can advance the parent's contract.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["yawnId", "arenaRef", "primaryParentYawnRef", "title", "lacuna", "target", "orientationStatementRefs", "proofPolicyRef", "producedBy", "control", "adoption", "revision", "extensions"],
+      "properties": {
+        "yawnId": { "$ref": "#/$defs/Identifier" },
+        "arenaRef": { "$ref": "#/$defs/Identifier" },
+        "primaryParentYawnRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ],
+          "description": "At most one primary parent. Lateral relationships belong in Relation records."
+        },
+        "title": { "$ref": "#/$defs/NonEmptyText" },
+        "lacuna": { "$ref": "#/$defs/NonEmptyText" },
+        "target": {
+          "anyOf": [
+            { "$ref": "#/$defs/Target" },
+            { "type": "null" }
+          ],
+          "description": "Optional by constitution. Inquiry, safety, maintenance, archive, relationship, and holding Yawns can remain goal-free."
+        },
+        "orientationStatementRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "proofPolicyRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "adoption": { "$ref": "#/$defs/AdoptionState" },
+        "revision": { "type": "integer", "minimum": 0 },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "Relation": {
+      "title": "Typed lateral relation",
+      "description": "A non-parent edge between Yawns. same_as is reserved for defensible identity, not resemblance.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relationId", "fromYawnRef", "toYawnRef", "relationType", "rationale", "epistemicStatus", "confidence", "evidenceRefs", "effectiveFrom", "effectiveUntil", "producedBy", "control", "adoption", "extensions"],
+      "properties": {
+        "relationId": { "$ref": "#/$defs/Identifier" },
+        "fromYawnRef": { "$ref": "#/$defs/Identifier" },
+        "toYawnRef": { "$ref": "#/$defs/Identifier" },
+        "relationType": { "enum": ["overlaps", "depends_on", "supports", "conflicts_with", "coordinates_with", "derived_from", "supersedes", "same_as"] },
+        "rationale": { "$ref": "#/$defs/NonEmptyText" },
+        "epistemicStatus": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"],
+          "description": "How the relation claim is known. Adoption status separately records whether the graph accepts it."
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Representational confidence in the relation claim; never authority or permission."
+        },
+        "evidenceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "effectiveFrom": {
+          "anyOf": [
+            { "$ref": "#/$defs/Timestamp" },
+            { "type": "null" }
+          ]
+        },
+        "effectiveUntil": {
+          "anyOf": [
+            { "$ref": "#/$defs/Timestamp" },
+            { "type": "null" }
+          ]
+        },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "adoption": { "$ref": "#/$defs/AdoptionState" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "relationType": { "const": "same_as" } },
+            "required": ["relationType"]
+          },
+          "then": {
+            "properties": { "evidenceRefs": { "type": "array", "minItems": 1 } }
+          }
+        }
+      ]
+    },
+    "CausalReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "kind", "extensions"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/Identifier" },
+        "kind": { "enum": ["turn", "move", "event", "transition", "proof", "external"] },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "WaitingCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conditionId", "waitingOn", "resumeWhen", "timeoutAt", "fallback", "extensions"],
+      "properties": {
+        "conditionId": { "$ref": "#/$defs/Identifier" },
+        "waitingOn": { "$ref": "#/$defs/NonEmptyText" },
+        "resumeWhen": { "$ref": "#/$defs/NonEmptyText" },
+        "timeoutAt": {
+          "anyOf": [
+            { "$ref": "#/$defs/Timestamp" },
+            { "type": "null" }
+          ]
+        },
+        "fallback": {
+          "anyOf": [
+            { "$ref": "#/$defs/NonEmptyText" },
+            { "type": "null" }
+          ]
+        },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "Turn": {
+      "title": "Turn",
+      "description": "A causal episode held open against state. Turns may wait, resume, overlap in time, and nest without pretending the work is synchronous.",
+      "$comment": "Turn ordering is causal, not merely chat-message order. parentTurnRef expresses nesting; causedBy expresses causation. A waiting turn remains open until its declared resume condition, fallback, cancellation, or timeout event occurs.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["turnId", "arenaRef", "yawnRef", "parentTurnRef", "causedBy", "status", "startedAt", "endedAt", "waitingConditions", "moveRefs", "eventRefs", "transitionRefs", "proofReceiptRefs", "producedBy", "control", "extensions"],
+      "properties": {
+        "turnId": { "$ref": "#/$defs/Identifier" },
+        "arenaRef": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "parentTurnRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "causedBy": { "type": "array", "items": { "$ref": "#/$defs/CausalReference" } },
+        "status": { "enum": ["open", "active", "waiting", "blocked", "delegated", "resumed", "completed", "handed_off", "abandoned", "superseded", "cancelled", "failed"] },
+        "startedAt": { "$ref": "#/$defs/Timestamp" },
+        "endedAt": {
+          "anyOf": [
+            { "$ref": "#/$defs/Timestamp" },
+            { "type": "null" }
+          ]
+        },
+        "waitingConditions": { "type": "array", "items": { "$ref": "#/$defs/WaitingCondition" } },
+        "moveRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "eventRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "transitionRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "proofReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "const": "waiting" } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": { "waitingConditions": { "type": "array", "minItems": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "status": { "enum": ["completed", "handed_off", "abandoned", "superseded", "cancelled", "failed"] } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": { "endedAt": { "$ref": "#/$defs/Timestamp" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "status": { "enum": ["open", "active", "waiting", "blocked", "delegated", "resumed"] } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": { "endedAt": { "type": "null" } }
+          }
+        }
+      ]
+    },
+    "Move": {
+      "title": "Move",
+      "description": "An intended action, non-action, delegation, or communication. A move is an attempt; it is not the event, transition, or proof of success.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["moveId", "turnRef", "yawnRef", "kind", "intent", "expectedDelta", "reversible", "proposedBy", "authorizationState", "authorityRef", "authorizationReceiptRefs", "causedBy", "requestedAt", "executedAt", "control", "extensions"],
+      "properties": {
+        "moveId": { "$ref": "#/$defs/Identifier" },
+        "turnRef": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "kind": { "enum": ["act", "communicate", "delegate", "wait", "observe", "decline", "stop"] },
+        "intent": { "$ref": "#/$defs/NonEmptyText" },
+        "expectedDelta": { "$ref": "#/$defs/NonEmptyText" },
+        "reversible": { "type": "boolean" },
+        "proposedBy": { "$ref": "#/$defs/Producer" },
+        "authorizationState": { "enum": ["proposed", "granted", "denied", "revoked"] },
+        "authorityRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "authorizationReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "causedBy": { "type": "array", "items": { "$ref": "#/$defs/CausalReference" } },
+        "requestedAt": { "$ref": "#/$defs/Timestamp" },
+        "executedAt": {
+          "anyOf": [
+            { "$ref": "#/$defs/Timestamp" },
+            { "type": "null" }
+          ]
+        },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "authorizationState": { "const": "granted" } },
+            "required": ["authorizationState"]
+          },
+          "then": {
+            "properties": {
+              "authorityRef": { "$ref": "#/$defs/Identifier" },
+              "authorizationReceiptRefs": { "type": "array", "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "authorizationState": { "const": "granted" } },
+            "required": ["authorizationState"]
+          },
+          "then": {
+            "properties": {
+              "control": {
+                "type": "object",
+                "properties": {
+                  "authority": {
+                    "type": "object",
+                    "properties": { "state": { "const": "granted" } },
+                    "required": ["state"]
+                  }
+                },
+                "required": ["authority"]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "proposedBy": {
+                "type": "object",
+                "properties": { "role": { "const": "ai" } },
+                "required": ["role"]
+              },
+              "authorizationState": { "const": "granted" }
+            },
+            "required": ["proposedBy", "authorizationState"]
+          },
+          "then": {
+            "properties": { "authorizationReceiptRefs": { "type": "array", "minItems": 1 } }
+          }
+        }
+      ]
+    },
+    "Event": {
+      "title": "Append-only event",
+      "description": "A record of something that occurred or was recorded. Events are appended; corrections point to earlier events instead of mutating them.",
+      "$comment": "A reducer must enforce unique (streamRef, sequence), previousEventRef continuity, stable canonical serialization, and immutability after append. Only authorized events may update canonical materialized state.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eventId", "streamRef", "sequence", "previousEventRef", "eventType", "occurredAt", "recordedAt", "actorRef", "authorityStatus", "sourceRefs", "causedBy", "correctionOfEventRef", "payload", "control", "extensions"],
+      "properties": {
+        "eventId": { "$ref": "#/$defs/Identifier" },
+        "streamRef": { "$ref": "#/$defs/Identifier" },
+        "sequence": { "type": "integer", "minimum": 0 },
+        "previousEventRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "eventType": { "$ref": "#/$defs/NonEmptyText" },
+        "occurredAt": { "$ref": "#/$defs/Timestamp" },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" },
+        "actorRef": { "$ref": "#/$defs/Identifier" },
+        "authorityStatus": { "enum": ["proposed", "authorized", "rejected", "revoked"] },
+        "sourceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "causedBy": { "type": "array", "items": { "$ref": "#/$defs/CausalReference" } },
+        "correctionOfEventRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "payload": { "type": "object" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "authorityStatus": { "const": "authorized" } },
+            "required": ["authorityStatus"]
+          },
+          "then": {
+            "properties": {
+              "control": {
+                "type": "object",
+                "properties": {
+                  "authority": {
+                    "type": "object",
+                    "properties": { "state": { "const": "granted" } },
+                    "required": ["state"]
+                  }
+                },
+                "required": ["authority"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Transition": {
+      "title": "Transition",
+      "description": "A measured state or affordance delta. It is distinct from the move that attempted it and the events that report it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transitionId", "turnRef", "yawnRef", "fromStateRef", "toStateRef", "expectedDelta", "observedDelta", "attemptedByMoveRefs", "eventRefs", "proofReceiptRefs", "outcomeStatus", "causedBy", "control", "extensions"],
+      "properties": {
+        "transitionId": { "$ref": "#/$defs/Identifier" },
+        "turnRef": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "fromStateRef": { "$ref": "#/$defs/Identifier" },
+        "toStateRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "expectedDelta": { "$ref": "#/$defs/NonEmptyText" },
+        "observedDelta": {
+          "anyOf": [
+            { "$ref": "#/$defs/NonEmptyText" },
+            { "type": "null" }
+          ]
+        },
+        "attemptedByMoveRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "eventRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "proofReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "outcomeStatus": { "enum": ["pending", "observed", "partial", "verified", "failed", "mixed", "disputed"] },
+        "causedBy": { "type": "array", "items": { "$ref": "#/$defs/CausalReference" } },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ProofReceipt": {
+      "title": "Proof receipt",
+      "description": "An inspectable evaluation of a prediction or postcondition. A proof receipt records verifier and falsifier; it does not let a move declare its own success.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proofReceiptId", "yawnRef", "turnRef", "transitionRef", "preconditions", "prediction", "postconditions", "verifierRef", "falsifier", "evidenceRefs", "sourceRefs", "status", "issuedBy", "issuedAt", "control", "extensions"],
+      "properties": {
+        "proofReceiptId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "turnRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "transitionRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "preconditions": { "type": "array", "items": { "$ref": "#/$defs/NonEmptyText" } },
+        "prediction": { "$ref": "#/$defs/NonEmptyText" },
+        "postconditions": { "type": "array", "items": { "$ref": "#/$defs/NonEmptyText" } },
+        "verifierRef": { "$ref": "#/$defs/Identifier" },
+        "falsifier": { "$ref": "#/$defs/NonEmptyText" },
+        "evidenceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "sourceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "status": { "enum": ["waiting", "passed", "failed", "blocked", "disputed"] },
+        "issuedBy": { "$ref": "#/$defs/Producer" },
+        "issuedAt": { "$ref": "#/$defs/Timestamp" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "enum": ["passed", "failed", "disputed"] } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": { "evidenceRefs": { "type": "array", "minItems": 1 } }
+          }
+        }
+      ]
+    },
+    "GateAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "privacy", "egress", "goalBoundary", "transitionBoundary", "proofPreservation", "provenancePreservation", "inheritanceSafety", "humanReview", "extensions"],
+      "properties": {
+        "authority": { "enum": ["passed", "failed", "unknown"] },
+        "privacy": { "enum": ["passed", "failed", "unknown"] },
+        "egress": { "enum": ["passed", "failed", "unknown", "not_applicable"] },
+        "goalBoundary": { "enum": ["passed", "failed", "unknown", "not_applicable"] },
+        "transitionBoundary": { "enum": ["passed", "failed", "unknown", "not_applicable"] },
+        "proofPreservation": { "enum": ["passed", "failed", "unknown"] },
+        "provenancePreservation": { "enum": ["passed", "failed", "unknown"] },
+        "inheritanceSafety": { "enum": ["passed", "failed", "unknown", "not_applicable"] },
+        "humanReview": { "enum": ["required", "completed", "not_applicable"] },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "CandidateScore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidateYawnRef", "goalEquivalence", "proofEquivalence", "arenaOverlap", "causalContinuity", "identityContinuity", "semanticSimilarity", "exceptionCost", "routingScore", "extensions"],
+      "properties": {
+        "candidateYawnRef": { "$ref": "#/$defs/Identifier" },
+        "goalEquivalence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "proofEquivalence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "arenaOverlap": { "type": "number", "minimum": 0, "maximum": 1 },
+        "causalContinuity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "identityContinuity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "semanticSimilarity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "A weak retrieval feature. Embeddings may retrieve candidates but never decide identity or authorization."
+        },
+        "exceptionCost": { "type": "number", "minimum": 0, "maximum": 1 },
+        "routingScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "RoutingProposal": {
+      "title": "Routing proposal",
+      "description": "A reviewable proposal to attach, create, link, merge, split, or hold. It separates orientation coverage, claim confidence, and routing confidence.",
+      "$comment": "The agent's first job is to infer the smallest adequate arena in which one authorized, falsifiable move makes sense, then place or create the correct Yawn. Hard gates precede ranking. Scores inform review; they do not authorize structural change.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["routingProposalId", "subjectRef", "arenaCandidateRefs", "yawnCandidateRefs", "orientationCoverage", "claimConfidence", "routingConfidence", "gates", "resolution", "candidateScores", "rationale", "evidenceRefs", "proposedBy", "decisionStatus", "createdAt", "control", "extensions"],
+      "properties": {
+        "routingProposalId": { "$ref": "#/$defs/Identifier" },
+        "subjectRef": { "$ref": "#/$defs/Identifier" },
+        "arenaCandidateRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "yawnCandidateRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "orientationCoverage": { "type": "number", "minimum": 0, "maximum": 1 },
+        "claimConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "routingConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "gates": { "$ref": "#/$defs/GateAssessment" },
+        "resolution": { "enum": ["attach", "attach_existing", "create_child", "create_sibling", "create_parent", "create_root", "link", "link_overlap", "create_new", "merge_candidate", "merge", "split_candidate", "split", "hold"] },
+        "candidateScores": { "type": "array", "items": { "$ref": "#/$defs/CandidateScore" } },
+        "rationale": { "$ref": "#/$defs/NonEmptyText" },
+        "evidenceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "proposedBy": { "$ref": "#/$defs/Producer" },
+        "decisionStatus": {
+          "const": "proposed",
+          "description": "Routing is a proposal. Authorization is represented only by a separate StructuralChangeReceipt."
+        },
+        "createdAt": { "$ref": "#/$defs/Timestamp" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "authority": { "enum": ["failed", "unknown"] } },
+                    "required": ["authority"]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "privacy": { "enum": ["failed", "unknown"] } },
+                    "required": ["privacy"]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "proofPreservation": { "enum": ["failed", "unknown"] } },
+                    "required": ["proofPreservation"]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "provenancePreservation": { "enum": ["failed", "unknown"] } },
+                    "required": ["provenancePreservation"]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "inheritanceSafety": { "enum": ["failed", "unknown"] } },
+                    "required": ["inheritanceSafety"]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "goalBoundary": { "enum": ["failed", "unknown"] } },
+                    "required": ["goalBoundary"]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "egress": { "enum": ["failed", "unknown"] } },
+                    "required": ["egress"]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "gates": {
+                    "type": "object",
+                    "properties": { "transitionBoundary": { "enum": ["failed", "unknown"] } },
+                    "required": ["transitionBoundary"]
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "properties": {
+              "resolution": { "const": "hold" },
+              "candidateScores": { "type": "array", "maxItems": 0 }
+            }
+          }
+        }
+      ]
+    },
+    "StructuralChangeReceipt": {
+      "title": "Authorized structural-change receipt",
+      "description": "The human authorization and append-only record that may enact a routing proposal. Merge and split operations preserve provenance, aliases, and proof continuity.",
+      "$comment": "No RoutingProposal mutates the holarchy by itself. The implementation must verify proposalRef, authorityRef, affected-item privacy, eventRefs, and before/after state hashes before applying this receipt.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["structuralChangeReceiptId", "proposalRef", "operation", "authorizationStatus", "authorizedBy", "authorizedByRole", "authorityRef", "authorizedAt", "affectedArenaRefs", "affectedYawnRefs", "createdYawnRefs", "retainedYawnRefs", "supersededYawnRefs", "aliasMap", "provenanceRefs", "proofContinuityRefs", "eventRefs", "beforeStateRef", "afterStateRef", "control", "extensions"],
+      "properties": {
+        "structuralChangeReceiptId": { "$ref": "#/$defs/Identifier" },
+        "proposalRef": { "$ref": "#/$defs/Identifier" },
+        "operation": { "enum": ["create_arena", "create_yawn", "attach", "reparent", "link", "unlink", "merge", "split", "supersede"] },
+        "authorizationStatus": { "const": "authorized" },
+        "authorizedBy": { "$ref": "#/$defs/Identifier" },
+        "authorizedByRole": {
+          "const": "human",
+          "description": "This draft requires an authenticated human review for structural mutation. Delegation policy may be layered in a future version without weakening provenance."
+        },
+        "authorityRef": { "$ref": "#/$defs/Identifier" },
+        "authorizedAt": { "$ref": "#/$defs/Timestamp" },
+        "affectedArenaRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "affectedYawnRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "createdYawnRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "retainedYawnRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "supersededYawnRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "aliasMap": {
+          "type": "object",
+          "description": "Old identifier to retained identifier. Required for identity-preserving merge history; empty for operations that create no aliases.",
+          "additionalProperties": { "$ref": "#/$defs/Identifier" }
+        },
+        "provenanceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "proofContinuityRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "eventRefs": {
+          "allOf": [
+            { "$ref": "#/$defs/ReferenceArray" },
+            { "type": "array", "minItems": 1 }
+          ]
+        },
+        "beforeStateRef": { "$ref": "#/$defs/Identifier" },
+        "afterStateRef": { "$ref": "#/$defs/Identifier" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "properties": {
+            "control": {
+              "type": "object",
+              "properties": {
+                "authority": {
+                  "type": "object",
+                  "properties": { "state": { "const": "granted" } },
+                  "required": ["state"]
+                }
+              },
+              "required": ["authority"]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "operation": { "const": "merge" } },
+            "required": ["operation"]
+          },
+          "then": {
+            "properties": {
+              "retainedYawnRefs": { "type": "array", "minItems": 1 },
+              "supersededYawnRefs": { "type": "array", "minItems": 1 },
+              "aliasMap": { "type": "object", "minProperties": 1 },
+              "provenanceRefs": { "type": "array", "minItems": 1 },
+              "proofContinuityRefs": { "type": "array", "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "operation": { "const": "split" } },
+            "required": ["operation"]
+          },
+          "then": {
+            "properties": {
+              "createdYawnRefs": { "type": "array", "minItems": 2 },
+              "provenanceRefs": { "type": "array", "minItems": 1 },
+              "proofContinuityRefs": { "type": "array", "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "operation": { "const": "create_arena" } },
+            "required": ["operation"]
+          },
+          "then": {
+            "properties": { "affectedArenaRefs": { "type": "array", "minItems": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "operation": { "const": "create_yawn" } },
+            "required": ["operation"]
+          },
+          "then": {
+            "properties": { "createdYawnRefs": { "type": "array", "minItems": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "operation": { "enum": ["attach", "reparent", "link", "unlink", "supersede"] } },
+            "required": ["operation"]
+          },
+          "then": {
+            "properties": { "affectedYawnRefs": { "type": "array", "minItems": 1 } }
+          }
+        }
+      ]
+    }
+  }
+}

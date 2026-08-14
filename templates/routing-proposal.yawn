@@ -1,0 +1,54 @@
+# Routing Proposal Draft 0.2
+#
+# Candidate retrieval is allowed; automatic structural truth is not. Check the
+# hard gates before comparing similarity or compression.
+# This is a human authoring projection. Executable interchange uses camelCase
+# fields in schemas/agency-holarchy.v0.2.schema.json.
+
+spec_version: "0.2-draft"
+kind: routing_proposal
+id: "routing:"
+status: proposed # proposed | accepted | rejected | expired
+proposed_by: "agent:"
+proposed_at: null
+
+source_refs: []
+orientation_coverage: null # 0..1; not claim confidence.
+
+arena_resolution:
+  proposed_arena_id: null
+  purpose: ""
+  boundary_summary: ""
+  unresolved_fields: []
+
+operation: hold
+# attach | create_child | create_sibling | create_parent | create_root | link |
+# merge_candidate | split_candidate | hold
+
+recommended_target_id: null
+candidates:
+  - target_id: "yawn:"
+    routing_confidence: null
+    feature_scores:
+      purpose_equivalence: null
+      proof_equivalence: null
+      arena_overlap: null
+      causal_continuity: null
+      stable_identity: null
+      semantic_similarity: null # Retrieval aid; deliberately weakest evidence.
+    hard_gate_failures: []
+    exception_cost: null
+
+hard_gates:
+  authority_compatible: false
+  privacy_and_egress_compatible: false
+  provenance_preserved: false
+  proof_contract_preserved: false
+  inheritance_satisfiable: false
+  human_review_required: true
+
+alternatives: []
+information_gain_questions: []
+authority_ref: null
+decision_receipt_id: null
+extensions: {}

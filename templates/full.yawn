@@ -7,6 +7,19 @@ version: "1.0.0"
 created: ""
 updated: ""
 
+# Draft 0.2 structural context. These references connect this human-readable
+# document to the executable Agency Holarchy module without claiming that this
+# legacy full template is already the one complete .yawn serialization.
+protocol_context:
+  agent_space_ref: ""
+  arena_ref: "" # Arena bounds relevance; it is not the world or this Yawn.
+  primary_parent_yawn_ref: null # At most one; the primary-parent tree is acyclic.
+  lateral_relation_refs: [] # overlaps | depends_on | supports | conflicts_with | supersedes | same_as
+  active_turn_refs: [] # Turns may overlap, nest, wait, delegate, and resume.
+  routing_proposal_ref: null
+  structural_change_receipt_refs: []
+  extensions: {} # Namespaced experimental data; never implicit authority.
+
 source:
   template: templates/full.yawn
   origin: "" # self-report | conversation | transcript | repo | agent | artifact | observation
@@ -248,8 +261,8 @@ agent:
     - "silently mutate memory or canon"
 
 coherence:
-  parent_yawns: []
-  child_yawns: []
+  parent_yawns: [] # Legacy compatibility only; migrate the first to primary_parent_yawn_ref.
+  child_yawns: [] # Derived index in Draft 0.2, not canonical containment data.
   supports: []
   conflicts_with: []
   depends_on: []

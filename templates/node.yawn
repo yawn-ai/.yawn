@@ -1,7 +1,7 @@
 id: templates/node
 title: "templates node"
 kind: mental-model-node
-status: v1
+status: active-mixed
 updated: 2026-08-13
 
 purpose: >
@@ -22,6 +22,10 @@ holds:
   - backup record template
   - next-move record template
   - open-question template
+  - arena template
+  - asynchronous turn template
+  - structural routing proposal template
+  - structural change receipt template
 
 receives:
   - repeated movement patterns
@@ -40,6 +44,9 @@ canonical_rule: >
   New templates use attributed state snapshots, first-class desires, optional
   scoped targets, and separate transition intent/result. Legacy current,
   possible, possible_kind, and measurement fields are compatibility aliases.
+  Draft 0.2 templates keep arena, one primary parent, typed lateral relations,
+  asynchronous turns, routing proposals, and authorized structural receipts
+  distinct. No current human template is marketed as the complete .yawn schema.
 
 questions:
   - what shape should this yawn use
@@ -54,6 +61,10 @@ links:
   - examples/node.yawn
   - records/node.yawn
   - templates/open-question.yawn
+  - templates/arena.yawn
+  - templates/turn.yawn
+  - templates/routing-proposal.yawn
+  - templates/structural-change-receipt.yawn
   - schemas/node.yawn
 
 related_question_packets:
@@ -69,4 +80,8 @@ proof:
     - templates/relationship.yawn
     - templates/proof-receipt.yawn
     - templates/open-question.yawn
+    - templates/arena.yawn
+    - templates/turn.yawn
+    - templates/routing-proposal.yawn
+    - templates/structural-change-receipt.yawn
   status: seed-backed

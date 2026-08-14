@@ -1,7 +1,7 @@
 id: core/node
 title: "core node"
 kind: mental-model-node
-status: v1
+status: active-mixed
 updated: 2026-08-13
 
 purpose: >
@@ -23,6 +23,11 @@ holds:
   - optional target conditions and typed lacunae
   - state transition intent and result
   - motivation and purpose
+  - world, field, and arena boundaries
+  - Yawn holarchy and typed relations
+  - asynchronous turns and causal time
+  - arena discovery and structural routing
+  - projection and aperture boundaries
 
 receives:
   - readme.yawn
@@ -39,6 +44,8 @@ questions:
   - what is the smallest true concept here
   - how does movement stay bounded
   - what does proof protect
+  - what arena is the smallest adequate cut
+  - when should a signal attach, nest, link, merge, split, or remain held
 
 links:
   - readme.yawn
@@ -52,6 +59,11 @@ links:
   - core/target-and-lacuna.yawn
   - core/state-transition.yawn
   - core/motivation-and-purpose.yawn
+  - core/world-field-arena.yawn
+  - core/holarchy.yawn
+  - core/turn.yawn
+  - core/routing.yawn
+  - core/projection-and-aperture.yawn
 
 proof:
   source:
@@ -60,4 +72,5 @@ proof:
     - core/co-orientation-loop.yawn
     - core/memory-update.yawn
     - core/folder-node.yawn
+    - spec/README.md
   status: seed-backed

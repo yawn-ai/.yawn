@@ -1,846 +1,225 @@
-yawn: readme
-repo: yawn-ai/.yawn
-version: 0.1.0-seed
-status: draft
-kind: root-orientation
-updated: 2026-07-05
-github: https://github.com/yawn-ai/.yawn
-license: MIT
-copyright: The Yawn Company
-
-# readme.yawn
-
-A plain-text orientation shape for observing agents.
-
-Canonical source: readme.yawn
-GitHub mirror: README.md
-
-## you are here
-
-This repository is a mirror before it is a manual.
-
-You do not need to understand the file tree or learn the ontology first. Start
-with the question that brought you here:
-
-```text
-what is this?
-  questions/what-is-this.yawn
-
-where am i?
-  questions/where-am-i.yawn
-
-what can i do next?
-  questions/what-can-i-do-next.yawn
-
-what is still unresolved?
-  questions/open-questions.yawn
-```
-
-If you do not know which path fits, open:
-
-```text
-questions/README.md
-```
-
-The shortest path is:
-
-```text
-notice something
--> open a question
--> make the inference visible
--> protect the boundary
--> choose or defer one move
--> check what changed
-```
-
-.yawn is the portable orientation and memory shape. YAWN.bot is the official
-co-orientation runtime in the current yawn-ai/web-game codebase. YAWN.ai is the
-intelligence substrate behind those interfaces. None of them replaces the
-observer's agency or turns an inference into authority.
-
-This public repository contains portable protocol contracts, examples, and
-conformance evidence. It does not contain private memory, credentials, private
-runtime state, or proprietary implementation details.
-
-The numbered folders preserve the historical and architectural bridge. The
-named folders are the readable protocol. The questions folder is the human
-doorway into both.
-
-## q-space
-
-Q-Space is the human-facing projection of unresolved questions. It extends the
-question doorway instead of creating a competing ontology.
-
-```text
-question
--> attributed answer
--> ranked frontier candidates
--> human-selected next question
--> repeated Pattern candidate
--> bounded probe and proof
--> owner-confirmed resolution for a named purpose
-```
-
-Repeated answers may create a Pattern candidate. They never create a belief,
-fact, diagnosis, proof, or automatic closure. YAWN.bot is the first runtime,
-Supabase is the private account-owned event ledger, Q-Space is the projection,
-and YAWN.ai is an optional intelligence adapter that never becomes source of
-truth.
-
-```text
-q-space/node.yawn
-q-space/protocol-v1.yawn
-```
-
-## state-substrate constitution
-
-State is the substrate. Desire is attributed directional evidence. Targets are
-optional and scoped. Moves attempt change; proof evaluates results; authorized
-events rematerialize state.
-
-```text
-signal -> orientation -> choice -> move -> proof -> update
-```
-
-Longer loops are projections of this canonical cycle. Desire is not shared
-agreement, authorization, or proof. A move cannot mark itself successful.
-Presentation changes cannot alter semantic meaning.
-
-## declaration of agency
-
-Happy 250th, America.
-
-On July 4, 2026, 250 years after the Declaration of Independence was adopted,
-.yawn marks the birthday by declaring agency as the next inspectable frontier
-of freedom:
-
-```text
-observe
--> orient
--> choose
--> prove
--> replay
-under real constraints
-```
-
-This is not a declaration that reality has been proven to be literal code.
-
-It is a declaration that any sufficiently intelligent observer should be free
-to study the code-like, field-like shape of available information without
-turning signal into command or intensity into truth.
-
-Standalone live route:
-
-```text
-https://agency-declaration.vercel.app/agency-declaration/
-```
-
-Standalone GitHub repo:
-
-```text
-https://github.com/yawn-ai/agency-declaration
-```
-
-.yawn mirror route after merge:
-
-```text
-https://yawn-ai.github.io/.yawn/agency-declaration/
-```
-
-.yawn GitHub folder after merge:
-
-```text
-https://github.com/yawn-ai/.yawn/tree/main/agency-declaration
-```
-
-Source object:
-
-```text
-agency-declaration.yawn
-```
-
-GitHub README anchor:
-
-```text
-https://github.com/yawn-ai/.yawn#declaration-of-agency
-```
-
-Field recording:
-
-```text
-https://www.youtube.com/live/6MgYQnkldTA?si=mOXv64-1d2tHM3Rq
-```
-
-The recording is included as a field object: partial, maybe blurry, and still
-available to inspect. It is data in the field, not proof by itself and not
-authority over the observer.
-
-## first screen
-
-You are noticing something.
-
-A signal.
-A feeling.
-A pattern.
-A memory.
-A decision.
-A contradiction.
-A file.
-A body cue.
-A piece of data.
-A project that keeps pulling attention.
-A move you are not ready to force.
-
-A .yawn gives that signal a shape.
-
-```text
-notice
--> orient
--> infer
--> name the gap
--> protect the boundary
--> choose one bounded move
--> prove what changed
--> update memory
-```
-
-This first-screen loop is a human-readable projection of the canonical
-signal -> orientation -> choice -> move -> proof -> update cycle.
-
-.yawn is for humans and AI agents who need to share the same frame without
-hidden authority.
-
-It does not tell you what is true.
-
-It helps you record what was observed, what was inferred, what is missing, what
-must not be assumed, what can move, what would count as proof, and what changed.
-
-## why
-
-Brains are not good at holding many live tensions at once.
-
-A human may be carrying:
-
-- body signals
-- memories
-- beliefs
-- habits
-- values
-- relationships
-- constraints
-- possible actions
-- fears
-- hopes
-- AI suggestions
-- unfinished proof
-
-A .yawn externalizes the frame so the person does not have to carry all of it
-alone.
-
-It helps answer:
-
-```text
-what is here?
-what am i inferring?
-what is missing?
-what move is actually authorized?
-what proof would matter?
-```
-
-YAWN exists because agents act from inferences they often cannot see.
-
-A human feels a signal and infers meaning.
-An AI receives context and infers a next action.
-A bot sees repeated files and infers a repo improvement.
-An institution sees data and infers policy.
-
-When those inferences are hidden, alignment fails.
-
-.yawn makes inference visible before action.
-
-## smallest possible yawn
-
-```yaml
-title: "I keep avoiding this"
-
-signal: "I feel pressure every time I open the project."
-
-inference: "I may be avoiding the project because the next step is unclear, not because I do not care."
-
-current: "I am circling the same task without moving."
-possible: "I can name the blocker and choose one small step."
-
-lacuna: "I do not know what the first safe move is."
-
-boundary: "Do not shame myself or force a big commitment."
-
-move: "Write the next step in one sentence."
-
-proof: "After writing it, I know whether the task feels smaller."
-
-replay: "What changed after naming the blocker?"
-```
-
-## start here
-
-You can use .yawn at a few depths:
-
-```text
-smallest useful frame:
-  templates/basic.yawn
-
-understand the stable claim:
-  shape/orientation-shape.yawn
-
-answer questions instead of reading schema:
-  question-packets/basic.yawn
-
-complete orientation frame:
-  templates/full.yawn
-
-relationship conversation:
-  question-packets/relationship.yawn
-  templates/relationship.yawn
-
-repo dogfood example:
-  examples/yawn-spine-dogfood.yawn
-```
-
-The short route:
-
-```text
-answer questions
--> populate a .yawn
--> name the boundary
--> choose one reversible move
--> check proof
--> replay what changed
-```
-
-## influences and credibility
-
-YAWN comes from a practical observation: across many ways of studying human
-experience, the same pattern keeps appearing.
-
-People notice a signal, make meaning from it, test it against a boundary, move,
-and then learn from what actually changed.
-
-The influences are intentionally broad:
-
-- philosophy
-- esoteric practice
-- metaphysics
-- manifestation culture
-- systems theory
-- cybernetics
-- cognitive science
-- information theory
-- interface design
-- AI agent work
-
-In this repo they are references and pattern sources, not authority.
-
-The public claim is narrower: a .yawn is a shape for making inference legible.
-It keeps this movement visible:
-
-```text
-signal
--> orientation
--> inference
--> boundary
--> move
--> proof
--> memory
-```
-
-The edge YAWN is exploring is the information interface: the place where signal
-becomes inference, inference becomes bounded action, and proof changes memory.
-
-Credibility in a .yawn comes from clear labels:
-
-```text
-field: what information is available
-orientation: who or what is observing, and from where
-inference: what meaning or claim is being made from the signal
-lacuna: what is missing, unclear, or objected to
-boundary: what must not be assumed
-move: what bounded action or non-action is invited
-proof: what would show real change
-memory: what changed after proof and replay
-```
-
-## what is a .yawn?
-
-A .yawn is an orientation shape before action.
-
-It records:
-
-- the field
-- the observer's orientation
-- the inference being made from the signal
-- what is known
-- what is assumed
-- what is missing
-- what boundary protects agency
-- what move is safe enough to try
-- what proof would matter
-- what memory updates after replay
-
-The rule:
-
-```text
-human-readable first
-machine-addressable second
-proof-bound when promoted
-```
-
-## core shape
-
-```yaml
-title: ""
-
-field:
-  source: ""
-  signal: ""
-  metadata: {}
+# Root orientation record for the repository.
+# README.md is the human landing page; this file dogfoods the protocol.
+
+spec_version: "0.2-draft"
+id: yawn:repository:ontology-hub
+title: ".yawn ontology hub"
+kind: yawn
+status: active
+revision: 2
+updated: "2026-08-13"
+
+identity:
+  repository: "https://github.com/yawn-ai/.yawn"
+  live_hub: "https://yawn-ai.github.io/.yawn/"
+  license: MIT
+  copyright_holder: "The Yawn Company"
+  human_front_door: README.md
+  repository_manifest: yawn.yawn
+
+signal:
+  raw: >
+    The project has a strong orientation grammar, newly published v1 runtime and
+    state contracts, a filesystem seed of a holarchy, and a vivid Agent Arena
+    projection—but no single hub explains how those layers fit together.
+  epistemic_status: observed
+  source_refs:
+    - README.md@before-ontology-hub
+    - contracts/schemas/yawn-contracts-v1.schema.json
+    - schemas/node.yawn
+    - interface/new-yawn-v0.1.yawn
 
 orientation:
-  observer: ""
-  context: ""
-  stance: ""
-  attention: ""
-  current_location: ""
+  current_state:
+    - claim: "The contracts package and state substrate are parallel v1 modules."
+      epistemic_status: observed
+      source_refs:
+        - contracts/schemas/yawn-contracts-v1.schema.json
+        - schemas/state-snapshot.v1.schema.json
+    - claim: "The human full template is not validated by either v1 module."
+      epistemic_status: observed
+      source_refs:
+        - templates/full.yawn
+    - claim: "The numbered .ion generation remains as a historical bridge."
+      epistemic_status: observed
+      source_refs:
+        - 00-start/root.ion
+        - 08-research/source-index.ion
+    - claim: "Agent Arena is best treated as one projection over a neutral causal graph."
+      epistemic_status: inferred
+      source_refs:
+        - docs/projections/README.md
 
-inference:
-  claim: ""
-  confidence: ""
-  alternatives: []
+  governing_inference: >
+    The repository can serve as the ontology hub if it clearly separates stable
+    contracts, working drafts, human explanations, executable schemas,
+    projections, examples, research, governance, and historical provenance.
+  epistemic_status: inferred
+  alternatives:
+    - "Collapse every artifact into one schema immediately."
+    - "Leave the generations separate and rely on readers to infer the mapping."
+  rejected_alternatives:
+    - alternative: "Collapse every artifact into one schema immediately."
+      reason: "It would silently rewrite merged v1 compatibility surfaces."
+    - alternative: "Leave the mapping implicit."
+      reason: "It reproduces the hidden-inference problem YAWN is meant to expose."
+
+arena:
+  ref: arena:repository:ontology-hub
+  purpose: "Publish and evolve a coherent, inspectable agency protocol."
+  participants:
+    - agent: "agent:david-forman"
+      roles: [founding-maintainer, steward, affected]
+    - agent: "agent:open-source-contributor"
+      roles: [proposer, reviewer]
+    - agent: "agent:software-system"
+      roles: [operational-proposer]
+  inclusions:
+    - public protocol contracts
+    - source-attributed examples and fixtures
+    - public research and design rationale
+    - governance and conformance evidence
+  exclusions:
+    - private user memory
+    - credentials and proprietary runtime state
+    - claims that the schema exhausts reality
+  constraints:
+    - preserve merged v1 contracts
+    - preserve public history and provenance
+    - keep AI authority proposal-only
+    - require proof before stable claims
+  frame_limits:
+    - field calibration for merge and split thresholds remains incomplete
+    - independent implementations have not yet established interoperability
 
 lacuna:
-  gap: ""
-  objections: []
+  primary: >
+    The human document, runtime constitution, state modules, and projection
+    grammar do not yet share one unified versioned serialization.
+  open_questions:
+    - "What is the smallest compatible aggregate envelope?"
+    - "Which arena-routing thresholds survive real human review?"
+    - "How should privacy-preserving conversation import prove source coverage?"
+    - "Which parts of Draft 0.2 should enter the next stable contract?"
 
-boundary:
-  must_not_assume: []
-  must_not_do: []
+intent:
+  mode: coordinate
+  target_condition: >
+    A public visitor and an implementation agent can locate the relevant
+    definition, authority boundary, schema, example, and proof without treating
+    a projection or historical file as canonical state.
+  ratification_status: proposed
+
+boundaries:
+  must_not:
+    - turn desire into authorization
+    - turn confidence into permission
+    - let a move verify itself
+    - fabricate skipped orientation answers
+    - disclose private context through parent-child inheritance
+    - use embeddings or coordinates to decide identity
+    - call the working draft a complete stable protocol
+    - delete history to create the appearance of coherence
+  AI_default:
+    may: [observe, ask, summarize, propose, test-within-grant]
+    may_not: [self-authorize, silently-publish, widen-permissions, erase-provenance]
 
 move:
-  invited: ""
-  authorized: false
+  description: >
+    Maintain one concise human README, a live root landing page, an explicit
+    layered specification, additive Draft 0.2 schemas and tests, commented
+    templates, decisive examples, and an honest open-source governance surface.
   reversible: true
-
-proof:
-  condition: ""
-  evidence: []
-
-memory:
-  before: ""
-  after: ""
-  changed: []
-  new_lacuna: []
-
-coherence:
-  supports: []
-  conflicts_with: []
-  depends_on: []
-```
-
-memory is the friendly label. replay is the mechanism for checking what
-changed before memory updates.
-
-Use:
-
-```text
-templates/basic.yawn
-templates/orientation-shape.yawn
-templates/full.yawn
-templates/agent-handoff.yawn
-templates/proof-receipt.yawn
-question-packets/basic.yawn
-question-packets/relationship.yawn
-```
-
-## stable boundary
-
-.yawn does not claim reality is literally code.
-
-It works with the practical fact that humans and AI agents receive signals,
-make inferences, act from models, and update memory through feedback.
-
-The field is the information available to an observing agent.
-The shape is the structured frame that makes part of that field inspectable.
-The move is a bounded action or non-action.
-The proof is what changed enough to update the map.
-
-## fill one from questions
-
-You do not need to understand the full schema to create a .yawn.
-
-Answer a few questions:
-
-```text
-1. What has attention?
-2. What happened?
-3. What are you inferring?
-4. What is missing?
-5. What must not be assumed?
-6. What is one bounded move?
-7. What would prove change?
-```
-
-The answers can populate templates/full.yawn.
-
-For relationships, use question-packets/relationship.yawn with
-templates/relationship.yawn. It keeps facts, quotes, inferences, desires,
-fears, unknowns, consent, and proof separate.
-
-## dogfood: the repo spine
-
-This repo also uses .yawn to describe itself:
-
-```yaml
-title: "The .yawn repo explains its own spine"
-signal: "The repo is easier to trust if it uses its own loop to explain itself."
-inference: "A reader may understand YAWN faster if the repo shows its own orientation shape."
-
-current: "The README has a compact example and the repo has richer templates."
-possible: "A reader can move from README -> question packets -> templates -> examples."
-lacuna: "The bridge from simple entry to full schema must stay visible."
-
-boundary: "Do not make the first screen carry the whole ontology."
-move: "Use question packets as the intake layer and examples as proof objects."
-proof: "A new reader can choose a path and create a first .yawn without reading everything."
-replay: "What became clearer after following the path?"
-```
-
-Full dogfood example:
-
-```text
-examples/yawn-spine-dogfood.yawn
-```
-
-## boundary
-
-.yawn is built to prevent false certainty.
-
-```text
-signal != instruction
-resonance != proof
-coincidence != command
-memory != objective record
-AI output != authority
-intensity != truth
-only authorized events update canonical materialized state
-only suitable evidence or proof upgrades empirical claims
-```
-
-Everything can be observed.
-Some things can be interpreted.
-Fewer things should be acted on.
-Attributed corrections, desires, consent, choices, and permissions may be
-recorded as what they are. Only suitable evidence or proof upgrades an
-empirical claim.
-
-## duality mirror
-
-A .yawn holds the space between:
-
-```text
-observer
-<->
-embodied human
-```
-
-The observer can see the pattern.
-
-The embodied human has to live through it.
-
-The stance is:
-
-```text
-see the pattern without abandoning the body
-stay human without being trapped by the pattern
-```
-
-Observe from above. Move from within. Prove through the world. Replay with
-care.
-
-## the five handles
-
-A .yawn can be read through five simple handles:
-
-1. Mirror - what is here?
-2. Map - what is shaping it?
-3. Meaning - what is missing?
-4. Move - what is the smallest authorized step?
-5. Memory - what changed?
-
-Interface files:
-
-```text
-interface/mirror.yawn
-interface/map.yawn
-interface/meaning.yawn
-interface/move.yawn
-interface/memory.yawn
-```
-
-## folder shape
-
-The file tree is an interface. It should show what the frame is, where it
-lives, what depends on it, what is unresolved, what is proof-backed, and what
-can move next.
-
-Start with:
-
-```text
-readme.yawn
-README.md
-yawn.yawn
-
-start/
-shape/
-core/
-interface/
-templates/
-question-packets/
-examples/
-agents/
-automation/
-records/
-references/
-```
-
-Each folder has a local node.yawn file. Open node.yawn first when entering a
-folder.
-
-## shape
-
-The repo has shape. Every folder is a small whole with its own node.yawn, and
-every layer can be read without holding the entire system at once.
-
-Open the smallest layer you need:
-
-```text
-root:
-  readme.yawn
-  yawn.yawn
-
-start:
-  start/node.yawn
-  start/first-yawn.yawn
-  start/how-to-use-yawn.yawn
-
-shape:
-  shape/node.yawn
-  shape/information-field.yawn
-  shape/orientation-shape.yawn
-  shape/observing-agent.yawn
-
-core:
-  core/node.yawn
-  core/what-is-a-yawn.yawn
-  core/orientation.yawn
-  core/memory-update.yawn
-  core/proof-and-boundary.yawn
-  core/movement-frame.yawn
-
-interface:
-  interface/node.yawn
-  interface/mirror.yawn
-  interface/map.yawn
-  interface/meaning.yawn
-  interface/move.yawn
-  interface/memory.yawn
-
-templates:
-  templates/node.yawn
-  templates/basic.yawn
-  templates/orientation-shape.yawn
-  templates/full.yawn
-  templates/relationship.yawn
-  templates/decision.yawn
-  templates/agent-handoff.yawn
-
-question-packets:
-  question-packets/node.yawn
-  question-packets/basic.yawn
-  question-packets/relationship.yawn
-
-examples:
-  examples/node.yawn
-  examples/stuck.yawn
-  examples/yawn-spine-dogfood.yawn
-  examples/signal.yawn
-  examples/decision.yawn
-  examples/relationship-commitment-conversation.yawn
-
-observations:
-  observations/node.yawn
-  observations/lived-agency.yawn
-
-records:
-  records/node.yawn
-  records/material-time.yawn
-  records/next-move-ledger.yawn
-
-agents:
-  agents/node.yawn
-  agents/yawn.bot.yawn
-  agents/yawn.bot.policy.yawn
-
-feedback:
-  feedback/node.yawn
-  feedback/form.yawn
-  feedback/email-intake.yawn
-```
-
-The first path is:
-
-```text
-readme.yawn
--> start/first-yawn.yawn
--> shape/orientation-shape.yawn
--> templates/basic.yawn
--> question-packets/basic.yawn
--> examples/stuck.yawn
--> core/proof-and-boundary.yawn
-```
-
-## feedback
-
-Feedback should be easy.
-
-If something is confusing, useful, missing, too abstract, too intense, or
-surprisingly helpful, send it to:
-
-```text
-yawn@yawn.ai
-```
-
-Public feedback form:
-
-```text
-https://yawn-ai.github.io/.yawn/feedback/
-```
-
-Feedback records:
-
-```text
-feedback/form.yawn
-feedback/email-intake.yawn
-feedback/codex-t4o-parser.yawn
-records/feedback-log.yawn
-database/feedback-intake.yawn
-```
-
-## YAWN.bot
-
-YAWN.bot is the official co-orientation runtime implemented by the current
-yawn-ai/web-game codebase.
-
-Its smallest wallet projection and larger browser surfaces load the same .yawn
-orientation state. Larger projections add resolution, not a different truth or
-greater authority.
-
-Human expression and attributed machine inference meet in an editable shared
-working orientation. They remain visibly distinct. Specific claims may later
-be updated through evidence, proof, and replay.
-
-Repository contribution is one bounded YAWN.bot module. It may inspect public
-files and prepare reviewable local proposals, but it is not the complete
-identity of YAWN.bot and it cannot commit, push, publish, merge, send, spend, or
-expose private context without current authorization.
-
-Service files:
-
-```text
-agents/yawn.bot.yawn
-core/co-orientation-loop.yawn
-agents/repo-contributor.yawn
-automation/yawn-bot-repo-contributor-loop.yawn
-records/yawn-bot-runtime-promotion-2026-07-11.yawn
-```
-
-## open-source agent contributors
-
-This repo should be easy for humans and AI-assisted contributors to improve.
-
-If someone has an AI workflow that can help YAWN, they should be able to show:
-
-```text
-what mission the agent helps with
-what architecture it uses
-what files or surfaces it reads
-what it can write or propose
-what proof keeps it honest
-what human approval it needs
-```
-
-Contribution files:
-
-```text
-contributing.md
-.github/ISSUE_TEMPLATE/ai-agent-contributor.yml
-agents/contributor-agent.yawn
-agents/contributor-architecture.yawn
-automation/github-feedback-triage.yawn
-```
-
-## larger purpose
-
-YAWN is an observer protocol for lived reality.
-
-It helps people and agents record what they are inferring, compare those
-inferences, protect agency, test movement with proof, and replay what changed.
-
-Not forcing agreement.
-
-Making disagreement legible.
-
-That is the altruistic bet.
-
-## first move
-
-Create one file:
-
-```text
-first-yawn.yawn
-```
-
-Write:
-
-```yaml
-title: "my first yawn"
-
-signal: "something has my attention"
-inference: "i may be missing a small next step"
-
-current: "something has my attention"
-possible: "i can see it more clearly"
-lacuna: "i do not yet know what is missing"
-
-boundary: "do not force an answer"
-move: "pause and name the signal"
-proof: "i can name one clearer question"
-replay: "what changed after naming it?"
-```
-
-That is enough.
-
-## final lock
-
-.yawn is a plain-text orientation shape for agency.
-
-It is how a human or agent can say:
-
-```text
-i am observing this
-this is the inference
-this is the missing bridge
-this is the bounded move
-this is the proof
-this is what changed
-```
-
-That is what we are doing.
+  authority_status: proposed-until-maintainer-merge
+
+proof_contract:
+  preconditions:
+    - "Existing v1 fixtures and generated types pass unchanged."
+    - "The draft is labeled and does not claim stable compatibility."
+  acceptance:
+    - "Root npm test passes."
+    - "contracts npm run check and npm pack --dry-run pass."
+    - "Internal links on the public hub resolve."
+    - "The GitHub Pages root returns the new ontology hub after merge."
+    - "Feedback and Declaration routes remain live."
+  falsifiers:
+    - "An existing v1 fixture changes meaning or fails."
+    - "The hub implies world equals arena or arena equals Yawn."
+    - "A projection can mutate semantic state or permissions."
+    - "A structural change can erase source identity or bypass authority."
+
+protocol_layers:
+  stable_constitution:
+    path: contracts/
+    version: "1.0.0"
+  stable_state_substrate:
+    path: schemas/
+    version: "1"
+    kinds:
+      - state_snapshot
+      - event
+      - desire
+      - target_condition
+      - transition_intent
+      - transition_result
+      - state_update
+  agency_holarchy:
+    path: schemas/agency-holarchy.v0.2.schema.json
+    version: "0.2-draft"
+    stability: experimental
+  human_document:
+    paths: [templates/, examples/]
+    stability: mixed-and-explicitly-versioned
+  projections:
+    path: docs/projections/
+    canonical_state: false
+
+ontology_links:
+  specification: spec/README.md
+  ontology: spec/ontology.md
+  holarchy: spec/holarchy.md
+  turns: spec/turns.md
+  routing: spec/routing.md
+  questions: spec/questions.md
+  serialization: spec/serialization.md
+  world_field_arena: core/world-field-arena.yawn
+  holarchy_contract: core/holarchy.yawn
+  turn_contract: core/turn.yawn
+  routing_contract: core/routing.yawn
+  projection_boundary: core/projection-and-aperture.yawn
+
+practice_links:
+  quickstart: docs/quickstart.md
+  templates:
+    - templates/basic.yawn
+    - templates/full.yawn
+    - templates/arena.yawn
+    - templates/turn.yawn
+    - templates/routing-proposal.yawn
+    - templates/structural-change-receipt.yawn
+  examples:
+    - examples/nested-agent-arena.yawn
+    - examples/waiting-turn.yawn
+    - examples/conversation-import-routing.yawn
+    - examples/merge-split-routing.yawn
+
+project_links:
+  documentation: docs/README.md
+  status: docs/project-status.md
+  roadmap: ROADMAP.md
+  contributing: CONTRIBUTING.md
+  governance: GOVERNANCE.md
+  security: SECURITY.md
+  changelog: CHANGELOG.md
+  citation: CITATION.cff
+  declaration_of_agency: agency-declaration/index.html
+  q_space: q-space/node.yawn
+
+replay:
+  current_claim: >
+    README.md is the human front door, readme.yawn is the repository's own
+    orientation object, and yawn.yawn is the machine-addressable manifest.
+  next_review_when:
+    - Draft 0.2 has field routing evidence
+    - a unified document RFC is proposed
+    - an independent implementation reports a compatibility gap

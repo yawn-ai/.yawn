@@ -1,0 +1,81 @@
+# Research basis and limits
+
+Status: **Informative**
+
+YAWN is an engineering synthesis informed by cognitive science, philosophy,
+cybernetics, information systems, provenance standards, and lived use. These
+sources motivate design questions; they do not prove the whole ontology or make
+software agents equivalent to organisms.
+
+## Agent and arena
+
+Vervaeke's lecture series describes an arena as a situation organized relative
+to an agent's ability to act and calibrate performance, with agent and arena
+co-identifying through that relation. Jaeger, Riedl, Djedovic, Vervaeke, and
+Walsh later define the arena as the situated, task-relevant part of a larger
+experienced environment and describe iterative coupling among goals, actions,
+affordances, and changed conditions.
+
+YAWN's `arena` follows that bounded relevance sense. YAWN's first-class
+asynchronous `turn` is an engineering discretization of the loop, not a term or
+ontology attributed to Vervaeke. The source explicitly treats underlying
+processes as continuous and concurrent, so the protocol permits overlapping and
+nested turns.
+
+- John Vervaeke, *Awakening from the Meaning Crisis*, Episode 7:
+  <https://meaningcrisis.co/episode-7-aristotles-world-view-and-erich-fromm/>
+- Jaeger et al. (2024), “Naturalizing relevance realization” in *Frontiers in
+  Psychology*: <https://doi.org/10.3389/fpsyg.2024.1362658>
+
+## Event segmentation and replay
+
+Humans segment continuous activity into meaningful events, and event models
+help guide perception and memory. YAWN's turns and events use that practical
+fact while preserving causal overlap and uncertain temporal precision.
+
+- Zacks & Swallow (2007), “Event Segmentation,” *Current Directions in
+  Psychological Science*: <https://doi.org/10.1111/j.1467-8721.2007.00510.x>
+
+## External and extended cognition
+
+External representations can participate in reasoning by reducing memory load,
+stabilizing shared context, and changing available operations. A `.yawn` is
+designed as such a scaffold. It can record participatory experience but cannot
+reduce lived knowing to propositions or logs.
+
+- Clark & Chalmers (1998), “The Extended Mind”:
+  <https://doi.org/10.1093/analys/58.1.7>
+
+## Provenance and event sourcing
+
+Attributed entities, activities, agents, derivations, and revision histories
+are established concerns in data provenance. YAWN aligns with W3C PROV where
+possible while adding authority, lacuna, proof, and orientation semantics.
+
+- W3C PROV-O: <https://www.w3.org/TR/prov-o/>
+- JSON Schema Draft 2020-12: <https://json-schema.org/draft/2020-12>
+
+## Structural inference
+
+Minimum Description Length offers one way to compare candidate structures by
+balancing model complexity against unexplained exceptions. YAWN treats this as
+an informative guard for routing, never an authority that can override privacy,
+permissions, provenance, proof, or human judgment.
+
+- Grünwald (2000), “Model selection based on minimum description length”:
+  <https://pubmed.ncbi.nlm.nih.gov/11151565/>
+
+## Claim discipline
+
+When describing the project, use these labels:
+
+- **Observed**: directly recorded with an attributable source.
+- **Reported**: stated by another agent or source.
+- **Inferred**: an interpretation from available evidence.
+- **Experimental**: implemented to learn, without a stable guarantee.
+- **Unknown**: unresolved or outside current access.
+
+The project does not claim that relevance can be completely formalized, that a
+schema captures the world, that AI has human-like participatory agency, or that
+gamification is intrinsically beneficial. The lacuna is part of the design:
+every arena remains a provisional small-world cut that may need reframing.

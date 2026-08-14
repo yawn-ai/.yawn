@@ -1,0 +1,45 @@
+id: question-packets/turn-close
+title: "Turn close and replay packet"
+kind: question-packet
+status: draft-0.2
+updated: 2026-08-13
+
+purpose: >
+  Close or hand off a causal episode without collapsing the attempted move,
+  observed events, measured transition, proof evaluation, and state update.
+
+questions:
+  - key: events
+    prompt: "What happened, including anything outside the agent's move?"
+    maps_to: [events]
+  - key: delta
+    prompt: "What changed in state or available affordances?"
+    maps_to: [transition.observed-delta]
+  - key: discrepancy
+    prompt: "How did the observed result differ from the prediction?"
+    maps_to: [transition.discrepancy, lacunae]
+  - key: proof
+    prompt: "What evidence was checked, by whom or what, and what could falsify the result?"
+    maps_to: [proof-receipt]
+  - key: authority
+    prompt: "Which events are authorized to update canonical state?"
+    maps_to: [event.authority-status, state-update]
+  - key: learning
+    prompt: "What should be corrected, preserved, or reconsidered?"
+    maps_to: [revision, replay]
+  - key: continuation
+    prompt: "Does the turn close, hand off, remain waiting, or open a related turn?"
+    maps_to: [turn.status, handoff, causal-links]
+
+invariants:
+  - "A move cannot mark itself successful."
+  - "Observed and expected deltas remain separate."
+  - "Only authorized events update canonical materialized state."
+  - "Only suitable evidence or proof upgrades empirical claims."
+  - "Failure, mixed evidence, dispute, and residual lacuna remain representable."
+
+links:
+  - spec/turns.md
+  - core/turn.yawn
+  - templates/turn.yawn
+  - templates/proof-receipt.yawn

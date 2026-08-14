@@ -34,7 +34,7 @@ rules:
   - "A question may be answered, deferred, corrected, or left open."
   - "Skipped answers become visible lacuna; they are not invented."
   - "AI output is attributed inference, not authority."
-  - "Only proof updates the map."
+  - "Only authorized events update canonical state; suitable evidence or proof upgrades empirical claims."
   - "Q-Space projects unresolved questions without turning repeated answers into truth."
 
 proof:

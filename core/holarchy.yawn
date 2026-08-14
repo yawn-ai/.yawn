@@ -1,0 +1,65 @@
+id: core/holarchy
+title: "Yawn holarchy and relations"
+kind: ontology-contract
+status: draft-0.2
+updated: 2026-08-13
+
+definition: >
+  A Yawn is a durable whole that may also contribute as a part of a larger
+  orientation contract. Containment uses one acyclic primary-parent backbone;
+  non-containment meaning uses typed lateral relations.
+
+primary_tree:
+  maximum_primary_parents: 1
+  cycles_allowed: false
+  roots_allowed: true
+  child_rule: >
+    A child is independently inspectable and its proof, maintenance, inquiry,
+    safety, or holding outcome advances or protects the parent contract.
+  derived_index: child references are derived from primary-parent relations
+
+lateral_relations:
+  - overlaps
+  - depends_on
+  - supports
+  - conflicts_with
+  - coordinates_with
+  - derived_from
+  - supersedes
+  - same_as
+
+relation_requirements:
+  - attributed-asserting-agent
+  - source-or-evidence-refs
+  - epistemic-status
+  - confidence
+  - lifecycle-status
+  - effective-time
+
+inheritance:
+  authority: "may narrow automatically; widening requires an explicit rightful grant"
+  privacy: "inherits unless made stricter; never widens by nesting"
+  sources: "retain attribution"
+  targets: "do not automatically inherit"
+  confidence: "does not automatically inherit"
+  proof: "rolls up only through a declared parent condition"
+
+structural_change_rule: >
+  Create, attach, reparent, merge, and split begin as proposals. Accepted
+  changes append an authorized receipt with before and after identities,
+  hashes, provenance, preserved disputes, aliases, affected relations, and a
+  rollback or compensating path.
+
+invariants:
+  - "Topical similarity is not containment."
+  - "Spatial proximity is not containment."
+  - "same_as requires identity proof stronger than overlap."
+  - "Merge never erases source records or disagreement."
+  - "Split preserves derived-from lineage and shared evidence."
+  - "Every canonical Yawn is reachable from one explicit root or primary parent."
+
+links:
+  - spec/holarchy.md
+  - core/world-field-arena.yawn
+  - core/routing.yawn
+  - schemas/agency-holarchy.v0.2.schema.json

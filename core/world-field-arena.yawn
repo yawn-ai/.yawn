@@ -1,0 +1,57 @@
+id: core/world-field-arena
+title: "world, field, and arena"
+kind: ontology-contract
+status: draft-0.2
+updated: 2026-08-13
+
+purpose: >
+  Keep the unbounded world, an observer's available information, and the
+  provisional slice relevant to action distinct.
+
+definitions:
+  reality: >
+    Whatever constrains consequences and can disconfirm the current record. It
+    is referred to but never serialized as though the model exhausts it.
+  world_horizon: >
+    The open-ended environment exceeding every present agent, arena, and map.
+  field: >
+    Signals available to an attributed observer through sources, memory,
+    perception, tools, relationships, body, and environment at a time.
+  arena: >
+    A provisional agent-relative relevance boundary: purpose, participants,
+    affordances, impediments, resources, constraints, authority, stakes,
+    horizon, inclusions, exclusions, and open lacunae.
+  agent_space: >
+    An ownership, security, and event-stream namespace. It is not an arena.
+
+relation: "world horizon -> attributed field -> provisional arena"
+
+arena_minimum:
+  - purpose-or-question
+  - participant-and-affected-agent-refs
+  - affordances-and-impediments
+  - constraints-and-resources
+  - authority-privacy-and-egress-boundaries
+  - inclusion-and-exclusion-rules
+  - open-lacunae-and-frame-limits
+  - source-refs-and-as-of-time
+
+invariants:
+  - "World is not an alias for arena."
+  - "Arena is not an alias for Yawn."
+  - "An arena remains provisional and may be reframed."
+  - "A field is observer-relative and incomplete."
+  - "The model keeps excluded context and unknowns visible when consequential."
+  - "A software agent may be represented operationally without claiming human-like experience."
+
+counterexamples:
+  - "A world UI whose visible objects are treated as all of reality."
+  - "A folder called Work treated as one arena without participants or boundary."
+  - "A vector search result silently accepted as arena membership."
+
+links:
+  - spec/ontology.md
+  - spec/routing.md
+  - shape/information-field.yawn
+  - core/holarchy.yawn
+  - core/turn.yawn

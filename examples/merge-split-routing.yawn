@@ -1,0 +1,51 @@
+id: example/merge-split-routing
+title: "Link first, then prove merge or split"
+kind: example
+status: informative
+spec_version: "0.2-draft"
+updated: 2026-08-13
+
+case:
+  candidate_a:
+    id: yawn:release-docs
+    purpose: "Publish navigable protocol documentation."
+    owner: agent:docs-maintainer
+    proof: "Every stable contract has a reachable explanation."
+  candidate_b:
+    id: yawn:release-site
+    purpose: "Deploy the public ontology landing page."
+    owner: agent:site-maintainer
+    proof: "The Pages root loads and its routes pass verification."
+
+initial_proposal:
+  operation: link
+  relation_type: supports
+  reason: >
+    The records share a release arena, but have independently closable proof,
+    owners, and rollback paths. Semantic overlap is not identity.
+
+merge_counterexample:
+  operation: merge_candidate
+  rejected_because:
+    - "Proof conditions are not equivalent."
+    - "A successful docs change does not establish a successful deployment."
+    - "The rollback and authority scopes differ."
+
+split_example:
+  source_yawn:
+    id: yawn:release-everything
+    lacuna: "Docs, deployment, schema, and governance are mixed into one closure condition."
+  proposed_children:
+    - yawn:release-docs
+    - yawn:release-site
+    - yawn:release-schema
+    - yawn:release-governance
+  reason: >
+    Each child has an independent owner or proof obligation and can close
+    without claiming that the others succeeded.
+  preservation:
+    derived_from: yawn:release-everything
+    shared_source_refs: [source:release-plan]
+    old_id_status: superseded
+    old_id_remains_addressable: true
+    human_authorization_required: true

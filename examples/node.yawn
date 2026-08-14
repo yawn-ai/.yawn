@@ -1,7 +1,7 @@
 id: examples/node
 title: "examples node"
 kind: mental-model-node
-status: v1
+status: active-mixed
 updated: 2026-08-13
 
 purpose: >
@@ -18,6 +18,10 @@ holds:
   - repair example
   - context-free agent cold-start fixture
   - state-substrate family example
+  - nested agent-arena holarchy example
+  - asynchronous waiting and resume example
+  - conversation import routing example
+  - merge versus link versus split example
 
 receives:
   - templates
@@ -41,6 +45,10 @@ links:
   - start/first-yawn.yawn
   - examples/cold-start-agent.yawn
   - examples/state-substrate-family.yawn
+  - examples/nested-agent-arena.yawn
+  - examples/waiting-turn.yawn
+  - examples/conversation-import-routing.yawn
+  - examples/merge-split-routing.yawn
   - fixtures/node.yawn
 
 proof:
@@ -52,4 +60,8 @@ proof:
     - examples/relationship-commitment-conversation.yawn
     - examples/cold-start-agent.yawn
     - examples/state-substrate-family.yawn
+    - examples/nested-agent-arena.yawn
+    - examples/waiting-turn.yawn
+    - examples/conversation-import-routing.yawn
+    - examples/merge-split-routing.yawn
   status: seed-backed

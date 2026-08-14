@@ -1,0 +1,62 @@
+id: example/waiting-turn
+title: "Keeping an asynchronous turn open"
+kind: example
+status: informative
+spec_version: "0.2-draft"
+updated: 2026-08-13
+
+arena:
+  id: arena:deployment
+  purpose: "Apply and verify a database migration without claiming success early."
+  participants:
+    - agent_id: agent:human:owner
+      roles: [decider, verifier]
+    - agent_id: agent:codex
+      roles: [proposer, actor]
+    - agent_id: service:supabase
+      roles: [external-system]
+
+yawn:
+  id: yawn:migration
+  arena_id: arena:deployment
+  lacuna: "The submitted migration has not reached a verified terminal state."
+  proof_contract:
+    prediction: "The migration completes and the expected schema is queryable."
+    verifier: "Read migration status, then inspect the expected schema."
+    falsifier: "Terminal failure, unexpected schema, or authorization mismatch."
+
+turn:
+  id: turn:migration:42
+  yawn_id: yawn:migration
+  arena_id: arena:deployment
+  opened_by: agent:codex
+  opened_at: "2026-08-13T16:00:00Z"
+  opened_against_state:
+    state_ref: state:migration:before
+    state_hash: "sha256:example-before"
+  status: waiting
+  moves:
+    - id: move:submit-migration
+      status: completed
+      action: "Submit the authorized migration."
+      authority_ref: grant:migration:42
+  waiting:
+    waiting_on: "service:supabase/job:42"
+    since: "2026-08-13T16:00:08Z"
+    resume_when: "job:42 reaches a terminal state"
+    deadline: "2026-08-13T16:15:00Z"
+    owner: agent:codex
+  event_ids:
+    - event:migration:submitted
+    - event:migration:accepted
+  closure:
+    closed_at: null
+    reason: null
+    transition_id: null
+    proof_receipt_ids: []
+
+boundary:
+  - "Waiting does not authorize repeated unbounded polling."
+  - "The submitted move cannot mark the migration successful."
+  - "If the deadline passes, record timeout as an event; do not invent failure."
+  - "The execution process may sleep while turn:migration:42 stays causally open."
