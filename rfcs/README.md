@@ -32,3 +32,6 @@ in doubt, open an issue before assigning an RFC number.
 ## Current RFCs
 
 - [RFC 0001: Agency Holarchy Working Draft 0.2](0001-agency-holarchy-working-draft.md) — proposed
+- [RFC 0002: Recursive observation](0002-recursive-observation.md) — proposed
+- [RFC 0003: Stateful relationships](0003-stateful-relationships.md) — proposed
+- [RFC 0004: Public projection and interface contract](0004-public-projection-interface.md) — proposed

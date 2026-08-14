@@ -80,3 +80,11 @@ A turn closes through one of four explicit reasons:
 - `superseded`: a later turn replaced it while preserving causal history.
 
 Timeout alone does not imply failure, and a move never marks itself successful.
+
+## Human-facing orientation spiral
+
+Interfaces may render the protocol as the repeating sequence `observe → orient
+→ relate → intend → move → consequence/proof → observe again`. This is a
+projection of the canonical `signal → orientation → choice → move → proof →
+update` loop, not another event lifecycle. The active Yawn or lacuna remains the
+center; a YAWN.bot agent may observe the same turn without becoming its owner.

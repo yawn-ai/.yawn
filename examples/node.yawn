@@ -22,6 +22,8 @@ holds:
   - asynchronous waiting and resume example
   - conversation import routing example
   - merge versus link versus split example
+  - recursive observation example
+  - public Dave relationship offer example
 
 receives:
   - templates
@@ -49,6 +51,8 @@ links:
   - examples/waiting-turn.yawn
   - examples/conversation-import-routing.yawn
   - examples/merge-split-routing.yawn
+  - examples/recursive-observation.yawn
+  - examples/dave-relationship-offer.yawn
   - fixtures/node.yawn
 
 proof:
@@ -64,4 +68,6 @@ proof:
     - examples/waiting-turn.yawn
     - examples/conversation-import-routing.yawn
     - examples/merge-split-routing.yawn
+    - examples/recursive-observation.yawn
+    - examples/dave-relationship-offer.yawn
   status: seed-backed

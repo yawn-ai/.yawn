@@ -20,6 +20,7 @@ holds:
   - state-update.v1.schema.json
   - living-snapshot.v1.schema.json
   - agency-holarchy.v0.2.schema.json
+  - public-projection.v1.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
@@ -36,6 +37,11 @@ agency_holarchy_draft: >
   Draft 0.2 adds provider-neutral arena boundaries, one-parent holarchy,
   lateral relations, asynchronous turns, transitions, proof receipts, routing
   proposals, and structural-change receipts without redefining v1.
+
+public_projection_contract: >
+  Public Projection V1 is a deterministic, public-safe view contract. Its
+  snapshot hash covers semantic content, never layout, media, QR rendering, or
+  agent overlay state.
 
 status_rule: >
   Modal, motivational, epistemic, lifecycle, authority, loop,

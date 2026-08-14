@@ -168,6 +168,7 @@ marketed as the complete schema for every human-readable `.yawn` file.
 | See the holarchy in use | [Nested Agent Arena](examples/nested-agent-arena.yawn) |
 | Model an async dependency | [Waiting turn](examples/waiting-turn.yawn) |
 | Import a long conversation archive | [Conversation routing](examples/conversation-import-routing.yawn) |
+| Render a public-safe coordinate | [Public projection V1](schemas/public-projection.v1.schema.json) |
 | Understand merge vs. link vs. split | [Routing example](examples/merge-split-routing.yawn) |
 | Explore unresolved questions | [Q-Space](q-space/) |
 | Understand the evidence boundary | [Research basis](docs/research-basis.md) |

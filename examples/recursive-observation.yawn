@@ -1,0 +1,39 @@
+schema_version: "1.0.0"
+kind: recursive-observation-example
+status: proposed
+
+observations:
+  - id: observation:dave:being-40:present
+    observes:
+      kind: yawn
+      id: yawn:dave:being-40
+    observer_id: principal:dave
+    statement: Being 40 is held as a present orientation, not a finished identity.
+    epistemic_status: reported
+    confidence: 1
+    asserted_at: "2026-08-13T00:00:00Z"
+    source_refs:
+      - source:dave:being-40-public
+    visibility: public
+
+  - id: observation:yawn-bot:being-40:open-loop
+    observes:
+      kind: observation
+      id: observation:dave:being-40:present
+    observer_id: agent:yawn-bot
+    statement: The statement keeps an open loop by refusing to present identity as complete.
+    epistemic_status: inferred
+    confidence: 0.78
+    asserted_at: "2026-08-13T00:00:01Z"
+    source_refs:
+      - source:dave:being-40-public
+    visibility: public
+
+invariants:
+  - The second observation does not overwrite or canonize the first.
+  - The assistant remains distinct from Dave and labels its inference.
+  - Observation depth does not imply authority or consciousness.
+
+authority:
+  mutation_authorized: false
+  external_effects_authorized: false

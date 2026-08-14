@@ -26,6 +26,7 @@ holds:
   - asynchronous turn template
   - structural routing proposal template
   - structural change receipt template
+  - public projection page template
 
 receives:
   - repeated movement patterns
@@ -65,6 +66,7 @@ links:
   - templates/turn.yawn
   - templates/routing-proposal.yawn
   - templates/structural-change-receipt.yawn
+  - templates/public-page.yawn
   - schemas/node.yawn
 
 related_question_packets:
@@ -84,4 +86,5 @@ proof:
     - templates/turn.yawn
     - templates/routing-proposal.yawn
     - templates/structural-change-receipt.yawn
+    - templates/public-page.yawn
   status: seed-backed

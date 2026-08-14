@@ -17,6 +17,7 @@ identity, truth status, authority, privacy, proof, or event history.
 | Causal graph | event and transition dependencies | that correlation is causation |
 | Filesystem | durable containers and local navigation | that folders establish semantic identity |
 | World | high-aperture context across nested arenas | that the rendered map exhausts reality |
+| Orientation Spiral | a deterministic human-facing orientation cycle centered on the active Yawn or lacuna | that geometry, color, or an agent overlay creates canonical state |
 
 ## Agent Arena
 
@@ -70,3 +71,14 @@ A proposal for a new projection should declare:
 5. stable ID and source inspection behavior;
 6. interaction effects and required authorization; and
 7. proof that presentation changes cannot mutate semantic state.
+
+## Public projection contract
+
+Public YAWN.ai pages, YAWN.bot, downloadable `.yawn` records, QR-resolved
+routes, and spiral views may share `schemas/public-projection.v1.schema.json`.
+They report one semantic `snapshot_hash`; interface copy, QR rendering, media,
+overlay state, and node positions are deliberately outside that hash.
+
+Public source records contain metadata and hashes only. Relationship records are
+offers, never inferred active relationships. Renderers validate stable IDs,
+typed references, and the hash before displaying a projection.

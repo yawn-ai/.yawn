@@ -60,3 +60,11 @@ answer at once. Prioritize:
 The original source language remains available. A system-generated answer is a
 proposal, visibly attributed to the system, until an authorized person accepts
 or edits it.
+
+## Compact public wording
+
+A public projection may translate the nine questions into the human-facing
+spiral: observe, orient, relate, intend, move, inspect consequence or proof, and
+observe again. The compact labels do not erase the source questions or change
+their semantic fields. Public observations keep attribution and epistemic
+status; relationship language remains an offer until consent is recorded.

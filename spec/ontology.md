@@ -108,6 +108,21 @@ timeline, proof/replay, memory, causal graph, filesystem, and spatial world are
 projections. Aperture changes how much context is included or emphasized; it
 never changes permission or truth.
 
+### Observation and recursive observation
+
+An observation is an attributed claim about a typed target. Its observer,
+epistemic status, source, time, visibility, and exact target remain explicit.
+An observation may itself be observed, but recursion never promotes a claim to
+state, widens authority, or implies consciousness. Revisions append new records
+rather than overwriting the observed object.
+
+### Relationship offer and activation
+
+A public relationship is an offer, not an active edge. Activation requires
+explicit consent from every required human principal plus an authorized,
+append-only event. A view, download, QR scan, sign-in, inference, or elapsed time
+never counts as consent.
+
 ## Semantic planes
 
 YAWN separates four semantic planes:

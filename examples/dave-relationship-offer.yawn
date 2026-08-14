@@ -1,0 +1,30 @@
+schema_version: "1.0.0"
+kind: relationship-offer-example
+status: proposed
+
+id: relationship-offer:dave:public
+state: offered
+proposed_by: principal:dave
+participant_roles:
+  - Dave
+  - visitor
+purpose: Explore whether there is meaningful work, learning, or creation to do together.
+boundaries:
+  - This page is an invitation, not evidence that a relationship exists.
+  - A page view, QR scan, download, sign-in, or AI inference is not consent.
+  - Each person retains authority over their own participation and information.
+consent_action:
+  label: Orient with Dave
+  href: https://yawn.bot/new?with=dave
+  reason: Begin with an explicit question before either person commits to a relationship.
+
+promotion_requires:
+  - authenticated consent from every required human principal
+  - immutable terms hash
+  - explicit authority and privacy boundaries
+  - append-only activation event
+
+authority:
+  mutation_authorized: false
+  external_effects_authorized: false
+  acceptance_required_from: principal:dave

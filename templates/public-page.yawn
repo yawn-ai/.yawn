@@ -1,0 +1,83 @@
+schema_version: "1.0.0"
+kind: public-projection-proposal
+status: proposed
+
+projection_id: projection:replace-me
+canonical_ref: yawn:replace-me
+coordinate: /replace-me
+snapshot_hash: "sha256:replace-after-validation"
+as_of: "YYYY-MM-DDTHH:MM:SSZ"
+visibility: public
+
+observer:
+  id: principal:replace-me
+  kind: human
+  label: Replace me
+
+current_yawn:
+  id: yawn:replace-me
+  label: Replace me
+  lacuna: Name the consequential absence or uncertainty.
+  status: open
+  parent_id: null
+  source_refs:
+    - source:replace-me
+
+observations: []
+
+relationship_offer:
+  id: relationship-offer:replace-me
+  state: offered
+  proposed_by: principal:replace-me
+  participant_roles:
+    - proposer
+    - visitor
+  purpose: State what kind of relationship is being offered.
+  boundaries:
+    - A page view, download, sign-in, QR scan, or inference is not consent.
+  consent_action:
+    label: Respond to the offer
+    href: /replace-me/respond
+    reason: A relationship begins only through an explicit response.
+
+spiral:
+  layout: golden-angle-v1
+  center_id: spiral-node:replace-me
+  nodes:
+    - id: spiral-node:replace-me
+      canonical_ref: yawn:replace-me
+      label: Replace me
+      role: active
+      order: 0
+  edges: []
+
+interface:
+  purpose: State what this public coordinate helps a visitor understand.
+  primary_action:
+    label: Take the page-specific action
+    href: /replace-me/action
+    reason: Explain why this action belongs at this coordinate.
+  download_href: /api/yawn/export?coordinate=/replace-me
+  qr_href: /replace-me
+  github_href: https://github.com/yawn-ai/.yawn
+  bot_overlay:
+    enabled: true
+    agent_id: agent:yawn-bot
+    mode: reflective-overlay
+
+sources:
+  - id: source:replace-me
+    kind: public_statement
+    asserted_by: principal:replace-me
+    occurred_at: "YYYY-MM-DDTHH:MM:SSZ"
+    source_sha256: "sha256:replace-with-source-hash"
+
+redactions:
+  - id: redaction:replace-me
+    category: private_source_body
+    reason: Public projections carry source metadata, not private source bodies.
+
+authority:
+  mutation_authorized: false
+  external_effects_authorized: false
+  acceptance_required_from: principal:replace-me

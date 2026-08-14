@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/public-projection.v1.schema.json",
+  "title": "YAWN Public Projection V1",
+  "description": "A deterministic, public-safe projection of one canonical YAWN snapshot.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "projection_id",
+    "canonical_ref",
+    "coordinate",
+    "snapshot_hash",
+    "as_of",
+    "visibility",
+    "observer",
+    "current_yawn",
+    "observations",
+    "relationship_offer",
+    "spiral",
+    "interface",
+    "sources",
+    "redactions"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "projection_id": { "$ref": "#/$defs/id" },
+    "canonical_ref": { "$ref": "#/$defs/id" },
+    "coordinate": { "$ref": "#/$defs/coordinate" },
+    "snapshot_hash": { "$ref": "#/$defs/hash" },
+    "as_of": { "type": "string", "format": "date-time" },
+    "visibility": { "const": "public" },
+    "observer": { "$ref": "#/$defs/actor" },
+    "current_yawn": { "$ref": "#/$defs/currentYawn" },
+    "observations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/observation" }
+    },
+    "relationship_offer": { "$ref": "#/$defs/relationshipOffer" },
+    "spiral": { "$ref": "#/$defs/spiral" },
+    "interface": { "$ref": "#/$defs/interface" },
+    "media": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/media" },
+      "default": []
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "redactions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/redaction" }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 240,
+      "pattern": "^[a-z0-9][a-z0-9._:/-]*$"
+    },
+    "coordinate": {
+      "type": "string",
+      "pattern": "^/[a-z0-9][a-z0-9/_-]*$"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["human", "assistant", "tool", "collective", "institution"] },
+        "label": { "type": "string", "minLength": 1, "maxLength": 120 }
+      }
+    },
+    "typedRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": {
+          "enum": ["yawn", "observation", "relationship", "projection", "proof_receipt", "source"]
+        },
+        "id": { "$ref": "#/$defs/id" }
+      }
+    },
+    "currentYawn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "lacuna", "status", "source_refs"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "lacuna": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "status": { "enum": ["open", "waiting", "blocked", "closed"] },
+        "parent_id": { "anyOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "observes",
+        "observer_id",
+        "statement",
+        "epistemic_status",
+        "confidence",
+        "asserted_at",
+        "source_refs",
+        "visibility"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "observes": { "$ref": "#/$defs/typedRef" },
+        "observer_id": { "$ref": "#/$defs/id" },
+        "statement": { "type": "string", "minLength": 1, "maxLength": 1200 },
+        "epistemic_status": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "asserted_at": { "type": "string", "format": "date-time" },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "visibility": { "const": "public" }
+      }
+    },
+    "relationshipOffer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "state", "proposed_by", "participant_roles", "purpose", "boundaries", "consent_action"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "state": { "const": "offered" },
+        "proposed_by": { "$ref": "#/$defs/id" },
+        "participant_roles": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string", "minLength": 1, "maxLength": 120 }
+        },
+        "purpose": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "boundaries": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+        },
+        "consent_action": { "$ref": "#/$defs/action" }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "href", "reason"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "href": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 240 }
+      }
+    },
+    "spiralNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "canonical_ref", "label", "role", "order"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "canonical_ref": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "role": { "enum": ["active", "parent", "child", "related", "agent"] },
+        "order": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "spiralEdge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source", "target", "relation"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "source": { "$ref": "#/$defs/id" },
+        "target": { "$ref": "#/$defs/id" },
+        "relation": {
+          "enum": ["primary_parent", "overlaps", "depends_on", "supports", "conflicts_with", "supersedes", "same_as", "observes"]
+        }
+      }
+    },
+    "spiral": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layout", "center_id", "nodes", "edges"],
+      "properties": {
+        "layout": { "const": "golden-angle-v1" },
+        "center_id": { "$ref": "#/$defs/id" },
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/spiralNode" }
+        },
+        "edges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/spiralEdge" }
+        }
+      }
+    },
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["purpose", "primary_action", "download_href", "qr_href", "github_href", "bot_overlay"],
+      "properties": {
+        "purpose": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "primary_action": { "$ref": "#/$defs/action" },
+        "download_href": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "qr_href": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "github_href": { "type": "string", "format": "uri", "pattern": "^https://github\\.com/yawn-ai/\\.yawn(?:/.*)?$" },
+        "bot_overlay": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled", "agent_id", "mode"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "agent_id": { "$ref": "#/$defs/id" },
+            "mode": { "const": "reflective-overlay" }
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "src", "title", "captions_href", "transcript_href"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["video", "audio"] },
+        "src": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "captions_href": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "transcript_href": { "type": "string", "minLength": 1, "maxLength": 500 }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "asserted_by", "occurred_at", "source_sha256"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["conversation", "reflection", "artifact", "event", "proof_receipt", "public_statement"] },
+        "asserted_by": { "$ref": "#/$defs/id" },
+        "occurred_at": { "type": "string", "format": "date-time" },
+        "source_sha256": { "$ref": "#/$defs/hash" }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "category", "reason"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "category": { "enum": ["private_source_body", "private_coordinate", "private_relationship", "secret", "personal_data"] },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 300 }
+      }
+    }
+  }
+}
