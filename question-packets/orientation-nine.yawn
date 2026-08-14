@@ -1,0 +1,80 @@
+id: question-packets/orientation-nine
+title: "Nine-question orientation projection"
+kind: question-packet
+status: draft-0.2
+updated: 2026-08-13
+
+purpose: >
+  Project the shared ontology into nine human questions while preserving source,
+  epistemic status, authority, privacy, uncertainty, and skipped answers.
+
+projection_rule: >
+  These questions are not nine mandatory storage fields. An interface may ask
+  a relevant subset or map source material into proposed answers. Every answer
+  remains attributed; skipped answers become lacunae; AI answers remain
+  proposals until accepted.
+
+questions:
+  - number: 1
+    key: scope
+    prompt: "What is this Yawn about?"
+    maps_to: [subject, sources, scope]
+  - number: 2
+    key: placement
+    prompt: "Where does it belong?"
+    maps_to: [arena, primary-parent, lateral-relations, routing-proposal]
+  - number: 3
+    key: perspective
+    prompt: "Whose perspective is represented, and who is affected?"
+    maps_to: [agents, roles, attribution, affected-parties]
+  - number: 4
+    key: current-state
+    prompt: "What appears to be happening now?"
+    maps_to: [field, observations, reports, state-snapshots]
+  - number: 5
+    key: intent
+    prompt: "What are you trying to make true, preserve, learn, avoid, repair, coordinate, decide, or accept—and why?"
+    maps_to: [values, desire, optional-target, purpose]
+  - number: 6
+    key: lacuna
+    prompt: "What is unknown, disputed, constrained, dependent, or in tension?"
+    maps_to: [lacunae, disputes, constraints, dependencies]
+  - number: 7
+    key: boundary
+    prompt: "What must be protected, and who may decide or act?"
+    maps_to: [privacy, egress, boundary, authority, grants]
+  - number: 8
+    key: movement
+    prompt: "What can move next?"
+    maps_to: [affordances, choices, moves, waits, delegations]
+  - number: 9
+    key: proof
+    prompt: "What would reality have to show for this Yawn to update or close?"
+    maps_to: [prediction, verifier, falsifier, proof-policy, close-condition]
+
+per_answer_metadata:
+  - source_refs
+  - asserted_by
+  - epistemic_status
+  - confidence
+  - freshness
+  - visibility
+  - dispute_status
+
+separate_metrics:
+  orientation_coverage: "how much decision-relevant context is represented"
+  claim_confidence: "how well one answer fits its evidence"
+  routing_confidence: "how well a structural proposal fits the routing criteria"
+
+boundaries:
+  - "Nine of nine answered does not mean true."
+  - "Confidence does not authorize movement or disclosure."
+  - "Skipped answers are not inferred from silence."
+  - "A desire is not shared agreement."
+  - "What changed belongs to turn close and replay, not initial orientation."
+
+links:
+  - spec/questions.md
+  - interface/new-yawn-v0.1.yawn
+  - question-packets/turn-close.yawn
+  - templates/full.yawn

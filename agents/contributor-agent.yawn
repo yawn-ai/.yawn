@@ -44,6 +44,6 @@ first_read_order:
 proof:
   source:
     - agents/orientation.yawn
-    - contributing.md
+    - CONTRIBUTING.md
     - .github/ISSUE_TEMPLATE/ai-agent-contributor.yml
   status: seed-backed

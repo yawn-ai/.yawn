@@ -1,0 +1,47 @@
+name: Bug or conformance gap
+description: Report behavior that contradicts a schema, invariant, test, or documented result.
+title: "[bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Preserve the smallest reproducible record and remove private data, credentials, and unsafe payloads. Use the private security process when disclosure could cause harm.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Name the schema version, package version, or commit SHA.
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What happened?
+      description: Include the smallest safe input and observed result.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did the contract say should happen?
+      description: Link the schema, invariant, or documentation section.
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Reproduction and proof
+      description: Commands, errors, hashes, or screenshots that let another person verify the gap.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Disclosure check
+      options:
+        - label: This report contains no secrets or private personal records.
+          required: true
+        - label: This is not a vulnerability that should use the private security process.
+          required: true

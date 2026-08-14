@@ -23,7 +23,7 @@ rules:
   - "Partner perspective writes to partner_model as possible, not known."
   - "Partner inner states never write to measurement.known."
   - "Relationship-impacting moves require partner review."
-  - "Only proof updates the map."
+  - "Only authorized events update canonical state; suitable evidence or proof upgrades empirical claims."
 
 questions:
   - id: q_situation

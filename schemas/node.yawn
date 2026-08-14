@@ -1,10 +1,12 @@
 id: schemas/node
-title: "schema node"
-kind: contract-node
-status: v1
-updated: 2026-07-21
+title: "schema modules"
+kind: schema-index
+status: active
+updated: 2026-08-13
 
-purpose: "Hold machine-valid State/Desire/Target/Transition contracts."
+purpose: >
+  Hold machine-valid state-substrate modules and explicitly labeled protocol
+  drafts. Each schema is canonical only for its own version and kind.
 
 holds:
   - statuses.v1.schema.json
@@ -17,16 +19,28 @@ holds:
   - transition-result.v1.schema.json
   - state-update.v1.schema.json
   - living-snapshot.v1.schema.json
+  - agency-holarchy.v0.2.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
   Canonical V1 records use attributed snapshots, optional targets, explicit
   authority, and separate transition intent/result.
 
+module_boundary: >
+  The @yawn/contracts package is the stable v1 constitution/runtime bundle.
+  These root schemas are the parallel state-substrate v1 modules plus the
+  experimental Agency Holarchy 0.2 aggregate. Neither surface is described as
+  the complete schema for every human-readable .yawn file.
+
+agency_holarchy_draft: >
+  Draft 0.2 adds provider-neutral arena boundaries, one-parent holarchy,
+  lateral relations, asynchronous turns, transitions, proof receipts, routing
+  proposals, and structural-change receipts without redefining v1.
+
 status_rule: >
   Modal, motivational, epistemic, lifecycle, authority, loop,
   axis-resolution, and presentation statuses are independent dimensions.
 
 proof:
-  command: "npm test"
+  command: "npm ci && npm test"
   status: contract-defined

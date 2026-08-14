@@ -9,6 +9,12 @@ definition: >
   creation surface and the Yawn surface are the same object at different
   resolutions; it is not a conventional onboarding form.
 
+question_projection_rule: >
+  The nine questions are a canonical human orientation projection over the
+  ontology, not nine mandatory storage fields and not the ontology itself.
+  Interfaces may ask a smaller adaptive subset. Skipped answers remain visible
+  lacunae and are never fabricated.
+
 opening:
   question: "What is pulling your attention?"
   visible_heading: none
@@ -37,9 +43,9 @@ canonical_questions:
   - key: current-state
     question: "What appears to be happening now?"
   - key: intent
-    question: "What are you trying to make true, preserve, learn, avoid, or accept—and why does it matter?"
+    question: "What are you trying to make true, preserve, learn, avoid, repair, coordinate, decide, or accept—and why?"
   - key: lacuna
-    question: "What is unknown, disputed, blocked, or in tension?"
+    question: "What is unknown, disputed, constrained, dependent, or in tension?"
   - key: boundary
     question: "What must be protected, and who may decide or act?"
   - key: movement
@@ -120,5 +126,7 @@ invariants:
   - permissions never silently widen
   - every readiness state is eligible for automatic browser-local saving
   - questions may reopen when evidence context participants or purpose changes
+  - orientation coverage claim confidence and routing confidence remain separate
+  - high question coverage never implies truth or authorization
 
 schema_version: yawn.new.v0.1

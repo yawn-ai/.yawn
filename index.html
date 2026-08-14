@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>.yawn — inspectable orientation and agency</title>
+    <meta name="description" content="An open protocol for attributed orientation, bounded authority, agent arenas, causal turns, proof, and replayable state.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content=".yawn — inspectable orientation and agency">
+    <meta property="og:description" content="A shared protocol for what an agent noticed, inferred, was authorized to do, and learned from reality.">
+    <meta property="og:url" content="https://yawn-ai.github.io/.yawn/">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://yawn-ai.github.io/.yawn/">
+    <link rel="stylesheet" href="./assets/site.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": ".yawn",
+        "description": "An open protocol for inspectable orientation and agency.",
+        "codeRepository": "https://github.com/yawn-ai/.yawn",
+        "license": "https://opensource.org/license/mit",
+        "url": "https://yawn-ai.github.io/.yawn/",
+        "programmingLanguage": ["YAML", "JSON Schema", "JavaScript"]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the ontology</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label=".yawn home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>.yawn</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#ontology">Ontology</a>
+        <a href="#turns">Turns</a>
+        <a href="#projections">Lenses</a>
+        <a href="#start">Start</a>
+        <a class="nav-github" href="https://github.com/yawn-ai/.yawn">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>Working Draft 0.2</span> · Contracts v1</p>
+          <h1 id="hero-title">Make agency<br><em>inspectable.</em></h1>
+          <p class="hero-lede">
+            <code>.yawn</code> is an open protocol for showing what an agent
+            noticed, inferred, was authorized to do, what happened, and what
+            evidence changed the state.
+          </p>
+          <p class="anti-claim">
+            It does not contain reality. It holds a correctable orientation
+            toward part of a world no model fully contains.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/yawn-ai/.yawn/blob/main/docs/quickstart.md">Create one <span aria-hidden="true">→</span></a>
+            <a class="button" href="https://github.com/yawn-ai/.yawn/tree/main/spec">Read the spec</a>
+          </div>
+        </div>
+
+        <div class="hero-object" aria-label="A small Yawn example">
+          <div class="object-bar">
+            <span>yawn:release-boundary</span>
+            <span class="object-state">orienting</span>
+          </div>
+          <pre><code><span class="key">signal</span>: "I keep reopening the plan."
+
+<span class="key key-pink">lacuna</span>: "What must ship together?"
+
+<span class="key key-orange">boundary</span>:
+  - "Do not call a draft stable."
+
+<span class="key key-cyan">move</span>: "Name the smallest testable slice."
+
+<span class="key key-green">proof</span>: "Owner, test, and rollback exist."</code></pre>
+          <div class="object-foot">
+            <span>source preserved</span>
+            <span>authority: proposed</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="constitution" aria-label="Protocol constitution">
+        <p>signal</p><span>→</span><p>orientation</p><span>→</span><p>choice</p><span>→</span><p>move</p><span>→</span><p>proof</p><span>→</span><p>update</p>
+      </section>
+
+      <section class="section ontology-section" id="ontology" aria-labelledby="ontology-title">
+        <div class="section-heading">
+          <p class="section-index">01 / ORIENTATION</p>
+          <h2 id="ontology-title">The map knows<br>it is not the world.</h2>
+          <p>
+            Each layer answers a different question. Collapsing them turns
+            partial access into false certainty.
+          </p>
+        </div>
+
+        <div class="ontology-map" role="img" aria-label="Reality contains an open world horizon. An agent has access to a field, resolves an arena, opens a Yawn, and acts through turns and events that produce evidence-backed state updates.">
+          <div class="map-layer world-layer">
+            <span class="map-number">∞</span>
+            <strong>WORLD HORIZON</strong>
+            <small>open · inexhaustible</small>
+            <div class="map-layer field-layer">
+              <span class="map-number">F</span>
+              <strong>FIELD</strong>
+              <small>available signals</small>
+              <div class="map-layer arena-layer">
+                <span class="map-number">A</span>
+                <strong>ARENA</strong>
+                <small>relevance boundary</small>
+                <div class="map-layer yawn-layer">
+                  <span class="map-number">Y</span>
+                  <strong>YAWN</strong>
+                  <small>orientation contract</small>
+                  <div class="turn-core">
+                    <span>T</span>
+                    <strong>TURN</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-grid">
+          <article>
+            <span class="concept-code">WORLD</span>
+            <h3>More than the model</h3>
+            <p>The open environment that can surprise and disconfirm every current frame.</p>
+          </article>
+          <article>
+            <span class="concept-code orange">FIELD</span>
+            <h3>Available to whom?</h3>
+            <p>Attributed signals through sources, memory, tools, body, relationships, and place.</p>
+          </article>
+          <article>
+            <span class="concept-code pink">ARENA</span>
+            <h3>Relevant for what?</h3>
+            <p>A provisional slice: agents, affordances, constraints, authority, exclusions, horizon.</p>
+          </article>
+          <article>
+            <span class="concept-code cyan">YAWN</span>
+            <h3>What stays accountable?</h3>
+            <p>A durable contract holding one live lacuna, boundary, optional target, and proof.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section turn-section" id="turns" aria-labelledby="turns-title">
+        <div class="section-heading compact">
+          <p class="section-index">02 / CAUSAL TIME</p>
+          <h2 id="turns-title">Keep the turn open.</h2>
+          <p>
+            A turn is one causally coherent episode. It can act, wait, delegate,
+            resume, hand off, or close. Execution may sleep while the trace stays open.
+          </p>
+        </div>
+
+        <ol class="turn-track">
+          <li class="complete"><span>01</span><strong>OPEN</strong><small>state + authority</small></li>
+          <li class="complete"><span>02</span><strong>MOVE</strong><small>authorized attempt</small></li>
+          <li class="waiting"><span>03</span><strong>WAITING</strong><small>on service:supabase/job:42</small></li>
+          <li><span>04</span><strong>EVENTS</strong><small>attributed outcome</small></li>
+          <li><span>05</span><strong>PROOF</strong><small>evaluate prediction</small></li>
+          <li><span>06</span><strong>UPDATE</strong><small>replay state</small></li>
+        </ol>
+
+        <div class="turn-note">
+          <div>
+            <span class="pulse" aria-hidden="true"></span>
+            <p><strong>turn:migration:42</strong><br><span>status / waiting</span></p>
+          </div>
+          <dl>
+            <div><dt>waiting_on</dt><dd>external terminal state</dd></div>
+            <div><dt>resume_when</dt><dd>status is observable</dd></div>
+            <div><dt>authority</dt><dd>no silent widening</dd></div>
+          </dl>
+          <a href="https://github.com/yawn-ai/.yawn/blob/main/examples/waiting-turn.yawn">Inspect example →</a>
+        </div>
+      </section>
+
+      <section class="section holarchy-section" aria-labelledby="holarchy-title">
+        <div class="section-heading">
+          <p class="section-index">03 / HOLARCHY</p>
+          <h2 id="holarchy-title">Whole here.<br>Part there.</h2>
+          <p>
+            One primary-parent tree gives the structure a backbone. Typed links
+            keep relationship from masquerading as containment.
+          </p>
+        </div>
+
+        <div class="holarchy-demo" aria-label="A parent Yawn with three child contracts and lateral relations">
+          <div class="holon parent-holon">
+            <span>YAWN / PARENT</span>
+            <strong>Publish ontology hub</strong>
+            <small>coordinating proof contract</small>
+          </div>
+          <div class="branch-lines" aria-hidden="true"></div>
+          <div class="child-row">
+            <div class="holon"><span>CHILD 01</span><strong>Specification</strong><small>independent proof</small></div>
+            <div class="holon active"><span>CHILD 02</span><strong>Live site</strong><small>independent proof</small></div>
+            <div class="holon"><span>CHILD 03</span><strong>Conformance</strong><small>independent proof</small></div>
+          </div>
+          <p class="relation-caption"><span>supports</span> and <span>depends_on</span> are links · proximity is not identity</p>
+        </div>
+
+        <div class="routing-strip">
+          <p>ATTACH</p><p>CHILD</p><p>SIBLING</p><p>LINK</p><p>MERGE?</p><p>SPLIT?</p><p>HOLD</p>
+        </div>
+        <p class="routing-rule">
+          Privacy, authority, provenance, and proof are hard gates. Similarity
+          only retrieves candidates. Structural changes remain proposals until authorized.
+        </p>
+      </section>
+
+      <section class="section projection-section" id="projections" aria-labelledby="projection-title">
+        <div class="section-heading compact">
+          <p class="section-index">04 / APERTURE</p>
+          <h2 id="projection-title">Change the lens.<br>Keep the truth boundary.</h2>
+          <p>A projection changes what is visible—not identity, permission, history, or evidence.</p>
+        </div>
+
+        <div class="lens-grid">
+          <article class="lens-card arena-lens">
+            <span class="lens-icon" aria-hidden="true">◉</span>
+            <p class="lens-label">AGENT ARENA</p>
+            <h3>Make agency game-readable.</h3>
+            <p>Nested arenas, agents, affordances, open turns, and consequences—without fixed scores or forced combat.</p>
+          </article>
+          <article class="lens-card">
+            <span class="lens-icon" aria-hidden="true">↝</span>
+            <p class="lens-label">TIMELINE</p>
+            <h3>See causal overlap.</h3>
+            <p>Waiting, handoff, concurrency, and local event order. Timeline is a view, never a Yawn kind.</p>
+          </article>
+          <article class="lens-card">
+            <span class="lens-icon" aria-hidden="true">◇</span>
+            <p class="lens-label">PROOF / REPLAY</p>
+            <h3>Inspect what changed.</h3>
+            <p>Prediction, verifier, falsifier, evidence, state delta, discrepancy, and revision.</p>
+          </article>
+          <article class="lens-card">
+            <span class="lens-icon" aria-hidden="true">⌗</span>
+            <p class="lens-label">FILESYSTEM</p>
+            <h3>Hold durable context.</h3>
+            <p>Folders are coherence containers. Stable IDs and typed relations carry semantic identity.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section questions-section" aria-labelledby="questions-title">
+        <div class="questions-intro">
+          <p class="section-index">05 / THE HUMAN DOORWAY</p>
+          <h2 id="questions-title">Nine questions.<br>Not nine boxes.</h2>
+          <p>Questions project the ontology into language. Unknown answers remain lacunae.</p>
+          <a class="text-link" href="https://github.com/yawn-ai/.yawn/blob/main/spec/questions.md">See the traceability map →</a>
+        </div>
+        <ol class="question-list">
+          <li><span>01</span>What is this Yawn about?</li>
+          <li><span>02</span>Where does it belong?</li>
+          <li><span>03</span>Whose perspective is represented—and who is affected?</li>
+          <li><span>04</span>What appears to be happening now?</li>
+          <li><span>05</span>What are you trying to make true, preserve, learn, repair, coordinate, decide, avoid, or accept—and why?</li>
+          <li><span>06</span>What is unknown, disputed, constrained, dependent, or in tension?</li>
+          <li><span>07</span>What must be protected, and who may decide or act?</li>
+          <li><span>08</span>What can move next?</li>
+          <li><span>09</span>What would reality have to show for this Yawn to update or close?</li>
+        </ol>
+      </section>
+
+      <section class="section start-section" id="start" aria-labelledby="start-title">
+        <div class="section-heading compact">
+          <p class="section-index">06 / ENTER HERE</p>
+          <h2 id="start-title">Choose your aperture.</h2>
+          <p>You do not need the whole ontology to make one inference more visible.</p>
+        </div>
+        <div class="path-grid">
+          <a href="https://github.com/yawn-ai/.yawn/blob/main/docs/quickstart.md">
+            <span>HUMAN</span><strong>Write one Yawn</strong><small>Five minutes · no setup</small><b aria-hidden="true">→</b>
+          </a>
+          <a href="https://github.com/yawn-ai/.yawn/tree/main/spec">
+            <span>BUILDER</span><strong>Implement the protocol</strong><small>Schemas · fixtures · tests</small><b aria-hidden="true">→</b>
+          </a>
+          <a href="https://github.com/yawn-ai/.yawn/blob/main/docs/research-basis.md">
+            <span>RESEARCHER</span><strong>Inspect the basis</strong><small>Primary sources · bounded claims</small><b aria-hidden="true">→</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="status-section" aria-labelledby="status-title">
+        <div>
+          <p class="section-index">PROJECT STATUS</p>
+          <h2 id="status-title">Authority with<br>an honest edge.</h2>
+        </div>
+        <div class="status-copy">
+          <p>
+            The constitutional and state-substrate modules are v1. The integrated
+            arena, holarchy, turn, and routing grammar is a working draft.
+          </p>
+          <p>
+            We are publishing early because agent capability is growing faster
+            than action inspectability. The vocabulary should earn stability
+            through use, criticism, and conformance evidence.
+          </p>
+          <div class="status-links">
+            <a href="https://github.com/yawn-ai/.yawn/blob/main/docs/project-status.md">Known lacunae</a>
+            <a href="https://github.com/yawn-ai/.yawn/blob/main/ROADMAP.md">Roadmap</a>
+            <a href="https://github.com/yawn-ai/.yawn/blob/main/GOVERNANCE.md">Governance</a>
+            <a href="https://github.com/yawn-ai/.yawn/blob/main/CONTRIBUTING.md">Contribute</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing" aria-label="YAWN principle">
+        <p>Automate the burden.</p>
+        <p>Preserve the authorship.</p>
+        <p class="accent">Return the time.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <a class="wordmark" href="./"><span class="mark" aria-hidden="true"></span><span>.yawn</span></a>
+        <p>An open protocol for inspectable orientation and agency.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="https://github.com/yawn-ai/.yawn">GitHub</a>
+        <a href="./agency-declaration/">Declaration of Agency</a>
+        <a href="./feedback/">Feedback</a>
+        <a href="https://github.com/yawn-ai/.yawn/blob/main/SECURITY.md">Security</a>
+        <a href="https://github.com/yawn-ai/.yawn/blob/main/LICENSE">MIT License</a>
+      </nav>
+      <p class="footer-line">Intelligence should carry the mechanical. Humans should carry the meaningful.</p>
+    </footer>
+  </body>
+</html>

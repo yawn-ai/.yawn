@@ -1,0 +1,9 @@
+# Current maintainer-led ownership. Governance changes must update this file.
+* @NestheadsDave
+
+# Security and constitutional surfaces require steward review.
+/SECURITY.md @NestheadsDave
+/GOVERNANCE.md @NestheadsDave
+/contracts/ @NestheadsDave
+/schemas/ @NestheadsDave
+/spec/ @NestheadsDave

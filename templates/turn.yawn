@@ -1,0 +1,59 @@
+# Turn Draft 0.2
+#
+# A turn is a causal episode. It may remain open while execution sleeps, while
+# another agent works, or while an external event has not happened yet.
+# This is a human authoring projection. Executable interchange uses camelCase
+# fields in schemas/agency-holarchy.v0.2.schema.json.
+
+spec_version: "0.2-draft"
+kind: turn
+id: "turn:"
+yawn_id: "yawn:"
+arena_id: "arena:"
+parent_turn_id: null
+caused_by_event_ids: []
+correlation_id: null
+
+opened_by: "agent:"
+opened_at: null
+opened_against_state:
+  state_ref: "state:"
+  state_hash: ""
+
+status: open # open | active | waiting | blocked | delegated | closed | abandoned | superseded
+intention: "" # Optional; inquiry and holding turns need not target attainment.
+governing_lacuna_ids: []
+authority_refs: []
+privacy_constraints: []
+
+prediction:
+  expected_delta: null
+  falsifier: null
+
+moves:
+  - id: "move:"
+    proposed_by: "agent:"
+    status: proposed # proposed | authorized | started | completed | stopped | revoked
+    action: ""
+    reversible: null
+    authority_ref: null
+
+waiting: null
+# waiting:
+#   waiting_on: "job:42"
+#   since: "2026-08-13T16:00:00Z"
+#   resume_when: "job:42 reaches a terminal state"
+#   deadline: null
+#   owner: "agent:codex"
+
+event_ids: [] # Append-only attributed occurrences; moves do not prove outcomes.
+
+closure:
+  closed_at: null
+  reason: null # completed | handed_off | abandoned | superseded
+  transition_id: null
+  proof_receipt_ids: []
+  handoff_turn_id: null
+  residual_lacuna_ids: []
+
+extensions: {}

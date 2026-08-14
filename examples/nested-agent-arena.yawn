@@ -1,0 +1,106 @@
+id: example/nested-agent-arena
+title: "A team as agent outside and arena inside"
+kind: example
+status: informative
+spec_version: "0.2-draft"
+updated: 2026-08-13
+
+lesson: >
+  One holon can act outward as an agent in a larger arena and open inward as an
+  arena containing people and software roles. The identities are related but
+  not collapsed. Arena nesting and Yawn parentage are explicit relations, not
+  consequences of where a card is drawn.
+
+agents:
+  - id: agent:team:protocol
+    title: "Protocol team"
+    capabilities:
+      - propose-protocol-changes
+      - maintain-repository
+    decision_rights:
+      - "May propose a release to the project steward."
+    internal_arena_id: arena:team:protocol
+
+  - id: agent:dave
+    title: "Dave"
+    roles:
+      - founding-maintainer
+      - project-steward
+
+  - id: agent:codex
+    title: "Codex contributor role"
+    roles:
+      - proposer
+      - implementer-within-grant
+    boundary: "AI output and structural routing remain proposals until accepted."
+
+arenas:
+  - id: arena:project
+    title: ".yawn open-source project"
+    purpose: "Evolve and publish an inspectable agency protocol."
+    participants:
+      - agent_id: agent:team:protocol
+        roles: [contributor]
+      - agent_id: agent:dave
+        roles: [decider, affected]
+    exclusions:
+      - "Private user Yawns and credentials are outside the public arena."
+
+  - id: arena:team:protocol
+    parent_arena_id: arena:project
+    title: "Protocol team working arena"
+    purpose: "Prepare one coherent ontology-hub release proposal."
+    participants:
+      - agent_id: agent:dave
+        roles: [decider, verifier]
+      - agent_id: agent:codex
+        roles: [proposer, actor]
+    constraints:
+      - "Preserve existing v1 contracts."
+      - "Do not publish private records."
+      - "Tests must pass before merge."
+
+yawns:
+  - id: yawn:ontology-hub
+    arena_id: arena:team:protocol
+    title: "Make the repository a coherent ontology hub"
+    primary_parent_id: null
+    lacuna: "The human document and runtime contracts imply competing canonical shapes."
+    target: "An honest, navigable hub with explicit layers and conformance evidence."
+    proof:
+      - "Both v1 modules remain compatible."
+      - "Draft arena/turn/holarchy semantics validate against their own labeled schema."
+      - "The root Pages route is verified live after merge and links remain inspectable."
+
+  - id: yawn:hub:site
+    arena_id: arena:team:protocol
+    title: "Publish the root ontology landing page"
+    primary_parent_id: yawn:ontology-hub
+    lacuna: "GitHub Pages builds, but the repository has no root index."
+    proof:
+      - "The deployed root returns the ontology-hub title and accessible navigation."
+
+  - id: yawn:hub:schema
+    arena_id: arena:team:protocol
+    title: "Make holarchy and turns executable"
+    primary_parent_id: yawn:ontology-hub
+    lacuna: "Arena exists in v1, but turn and structural invariants are not executable."
+    proof:
+      - "Valid nested and waiting records pass."
+      - "Parent cycles and unauthorized structural receipts fail."
+
+relations:
+  - id: relation:site-supports-hub
+    from_yawn_id: yawn:hub:site
+    to_yawn_id: yawn:ontology-hub
+    type: supports
+    status: accepted
+  - id: relation:schema-supports-hub
+    from_yawn_id: yawn:hub:schema
+    to_yawn_id: yawn:ontology-hub
+    type: supports
+    status: accepted
+
+projection_note: >
+  A 3D Agent Arena may render the project, team, and Yawns as nested rooms or
+  rings. That view reads these IDs and relations; it does not create them.

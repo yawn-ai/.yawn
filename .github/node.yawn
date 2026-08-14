@@ -35,8 +35,10 @@ questions:
 links:
   - .github/ISSUE_TEMPLATE/node.yawn
   - .github/pull_request_template.md
+  - .github/workflows/ci.yml
+  - .github/CODEOWNERS
   - agents/yawn.bot.yawn
-  - contributing.md
+  - CONTRIBUTING.md
 
 proof:
   source:

@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If .yawn informs your work, cite the protocol and the version or commit you used."
+title: ".yawn: an open protocol for inspectable orientation and agency"
+type: software
+authors:
+  - family-names: "Forman"
+    given-names: "David"
+    alias: "NestheadsDave"
+repository-code: "https://github.com/yawn-ai/.yawn"
+url: "https://yawn-ai.github.io/.yawn/"
+license: MIT
+version: "0.2.0-draft"
+date-released: 2026-08-13
+keywords:
+  - agency
+  - agents
+  - orientation
+  - provenance
+  - event-sourcing
+  - human-ai interaction
+abstract: >-
+  .yawn is an open, inspectable protocol for representing attributed
+  orientation, bounded authority, agent-arena context, causal turns, evidence,
+  and replayable state updates.

@@ -1,0 +1,55 @@
+# Structural Change Receipt Draft 0.2
+#
+# Create, attach, reparent, merge, and split remain proposals until a rightful
+# authority accepts them. The receipt does not delete the before-state.
+# This is a human authoring projection. Executable interchange uses camelCase
+# fields in schemas/agency-holarchy.v0.2.schema.json.
+
+spec_version: "0.2-draft"
+kind: structural_change_receipt_draft
+id: "receipt:structure:"
+operation: null # create_arena | create_yawn | attach | reparent | merge | split | link | unlink | supersede
+status: not_authorized # not_authorized | authorized | rejected | reversed
+
+proposal_id: "routing:"
+authorized_by: null
+authority_ref: null
+authorized_at: null
+rationale: ""
+evidence_refs: []
+
+before:
+  state_hash: ""
+  yawn_ids: []
+  parent_relations: []
+  lateral_relation_ids: []
+
+after:
+  state_hash: ""
+  canonical_yawn_ids: []
+  primary_parent_assignments: []
+  lateral_relation_ids: []
+
+preservation:
+  source_refs_preserved: []
+  disputed_claim_refs_preserved: []
+  proof_contract_refs_preserved: []
+  aliases: []
+  tombstones: [] # Addressable status records; never silent deletion.
+  derived_from_relations: []
+
+checks:
+  no_parent_cycle: false
+  authority_not_widened: false
+  privacy_not_widened: false
+  provenance_preserved: false
+  independently_closable_contracts_preserved: false
+
+events_appended: []
+rollback_or_compensation: ""
+unresolved_conflicts: []
+extensions: {}
+
+# Promotion rule: do not change kind/status to an authorized receipt until every
+# required authority, preservation, event, and before/after field is populated
+# and independently verified. An empty template never authorizes a change.

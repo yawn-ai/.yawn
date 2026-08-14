@@ -1,0 +1,49 @@
+id: core/routing
+title: "arena discovery and Yawn routing"
+kind: governance-contract
+status: draft-0.2
+updated: 2026-08-13
+
+primary_orientation: >
+  Infer the smallest adequate arena in which one authorized, falsifiable move
+  makes sense, then propose the correct Yawn placement in the holarchy.
+
+operations:
+  attach: "same governing contract; add source, atom, event, or turn"
+  create_child: "independently inspectable sub-contract that advances a parent"
+  create_sibling: "shared parent; different owner, purpose, permission, or proof"
+  create_parent: "a genuine coordinating contract is missing"
+  create_root: "no honest parent exists"
+  link: "related without identity or containment"
+  merge_candidate: "apparently duplicate contract; review required"
+  split_candidate: "independently closable contracts or permission scopes"
+  hold: "insufficient structural evidence or authority"
+
+hard_gates_before_ranking:
+  - authority-compatibility
+  - privacy-visibility-and-egress
+  - source-and-dispute-preservation
+  - proof-and-falsifier-compatibility
+  - satisfiable-inheritance
+  - independently-meaningful-transition-boundaries
+  - required-human-review
+
+confidence_dimensions:
+  orientation_coverage: "how much decision-relevant context is represented"
+  claim_confidence: "how well a proposition fits its attributed evidence"
+  routing_confidence: "how well a structural proposal fits the routing criteria"
+
+retrieval_rule: >
+  Embeddings, text similarity, filenames, and spatial coordinates may retrieve
+  candidates. They never determine identity, containment, merge, or disclosure.
+
+authorization_rule: >
+  AI and automation produce routing proposals. An accepted structural change
+  requires a rightful authority and emits an append-only receipt.
+
+links:
+  - spec/routing.md
+  - spec/questions.md
+  - core/world-field-arena.yawn
+  - core/holarchy.yawn
+  - templates/structural-change-receipt.yawn

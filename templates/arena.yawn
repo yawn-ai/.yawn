@@ -1,0 +1,52 @@
+# Arena Draft 0.2
+#
+# An arena is a provisional relevance boundary, not the whole world and not a
+# Yawn. Preserve what this frame excludes so it can be challenged later.
+# This is a human authoring projection. Executable interchange uses camelCase
+# fields in schemas/agency-holarchy.v0.2.schema.json.
+
+spec_version: "0.2-draft"
+kind: arena
+id: "arena:"
+agent_space_id: "space:"
+parent_arena_id: null # Optional. Arena nesting does not determine Yawn parentage.
+
+title: ""
+purpose: "" # What makes this slice relevant now?
+status: proposed # proposed | active | reframing | closed | superseded
+
+boundary:
+  admission_rule: "" # What belongs in this arena?
+  inclusion_notes: []
+  exclusion_notes: [] # Consequential context deliberately outside this frame.
+  frame_limits: [] # Where this small-world model is likely incomplete.
+  time_horizon: ""
+
+participants:
+  - agent_id: "agent:"
+    roles: [] # observer | affected | proposer | decider | actor | verifier
+    perspective_status: reported # observed | reported | inferred | assumed | disputed | unknown
+    authority_refs: []
+    privacy_scope: private # private | restricted | shared | public
+
+affordances: [] # Actions that appear available to a named agent.
+impediments: [] # What blocks or makes an affordance costly.
+constraints: [] # Physical, social, legal, technical, ethical, and temporal limits.
+resources: []
+stakes: []
+
+horizon:
+  available_next: [] # Adjacent possibilities, not promises.
+  unknowns: []
+  reframe_when: [] # Evidence that should cause a new arena proposal.
+
+open_yawn_ids: []
+open_turn_ids: []
+source_refs: []
+
+epistemic:
+  status: inferred
+  boundary_confidence: null # 0..1 representational fit; never permission.
+  as_of: null
+
+extensions: {} # Use namespaced keys; extensions cannot widen core authority.

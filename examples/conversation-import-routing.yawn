@@ -1,0 +1,69 @@
+id: example/conversation-import-routing
+title: "Route a long conversation archive without making every message a Yawn"
+kind: example
+status: informative
+spec_version: "0.2-draft"
+updated: 2026-08-13
+
+source:
+  id: source:conversation-archive:synthetic
+  media_type: application/json
+  data_status: synthetic-scale-example
+  scale:
+    conversations: 2000-plus
+    message_records: 40000-plus
+    bytes: "hundreds-of-megabytes"
+  privacy: private
+  egress: denied-by-default
+  note: >
+    Rounded synthetic values illustrate scale; no private archive data or exact
+    source identifiers are published. Scale is not proof of quality or meaning.
+
+pipeline:
+  - step: source_record
+    rule: "Preserve conversation, author, time, and source-span identity."
+  - step: orientation_atoms
+    rule: >
+      Extract attributed observations, reports, inferences, decisions, lacunae,
+      boundaries, moves, outcomes, and corrections. Automated atoms remain
+      proposals and link back to exact source spans.
+  - step: candidate_retrieval
+    rule: >
+      Retrieve related existing arenas and Yawns locally where possible.
+      Semantic similarity may find candidates but cannot decide identity.
+  - step: structural_proposal
+    rule: >
+      Propose attach, child, sibling, root, link, merge, split, or hold after
+      authority, privacy, proof, and provenance gates.
+  - step: human_review
+    rule: "Accept, edit, reject, or defer the proposal."
+  - step: authorized_events
+    rule: "Append accepted placement events and materialize state by replay."
+
+sample_candidate:
+  source_spans:
+    - "synthetic-conversation:A/message-range:1"
+    - "synthetic-conversation:B/message-range:2"
+  proposed_arena:
+    purpose: "Design the agent-arena and Yawn holarchy protocol."
+    boundary_confidence: 0.78
+    excluded_context:
+      - "Unrelated personal conversation content"
+  proposed_yawn:
+    lacuna: "The repository lacks a first-class causal turn and structural routing grammar."
+    target: "A documented and executable draft with reviewed examples."
+    proof: "Schema, fixtures, tests, and live docs agree on the distinctions."
+  routing:
+    operation: attach
+    target_id: yawn:ontology-hub
+    routing_confidence: 0.74
+    human_review_required: true
+    unresolved:
+      - "Whether the two source spans encode one contract or linked historical episodes"
+
+do_not_do:
+  - "Do not create one Yawn per message merely because every message has an ID."
+  - "Do not publish private source text in an embedding or public graph."
+  - "Do not treat repetition as proof, diagnosis, or endorsement."
+  - "Do not erase contradictions during summarization or merge."
+  - "Do not let a model silently authorize its own extraction or placement."

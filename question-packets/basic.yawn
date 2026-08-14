@@ -14,7 +14,7 @@ rules:
   - "Interpretations write to measurement.inferred."
   - "Desires, fears, and needs stay labeled."
   - "Boundaries write before moves are authorized."
-  - "Only proof updates the map."
+  - "Only authorized events update canonical state; suitable evidence or proof upgrades empirical claims."
 
 questions:
   - id: q_attention

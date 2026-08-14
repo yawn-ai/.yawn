@@ -1,8 +1,8 @@
 id: fixtures/node
 title: "state-substrate fixtures"
 kind: contract-node
-status: v1
-updated: 2026-07-21
+status: active-mixed
+updated: 2026-08-13
 
 purpose: "Hold executable examples for schema, reducer, optional-target, and multi-principal invariants."
 
@@ -10,6 +10,7 @@ holds:
   - canonical-contracts.v1.json
   - optional-target-yawns.v1.json
   - multi-principal-family.v1.json
+  - agency-holarchy.v0.2.json
 
 coverage:
   - versioned canonical interfaces
@@ -19,6 +20,9 @@ coverage:
   - maintain, prevent, and hold-open target modes
   - separately authored desires and privacy
   - ratification, recurring commitment, authorization, proof, and reconciliation
+  - nested Yawns with one primary parent and typed relations
+  - asynchronous waiting, resume conditions, causal events, and transitions
+  - routing hard gates and authorized structural-change receipts
 
 proof:
   command: "npm test"

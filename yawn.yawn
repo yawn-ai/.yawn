@@ -1,14 +1,15 @@
 id: yawn
 title: ".yawn"
-kind: protocol-root
-status: v1
+kind: repository-manifest
+status: active
 updated: 2026-08-13
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
 
-canonical_root: readme.yawn
-compatibility_readme: README.md
+human_front_door: README.md
+repository_orientation: readme.yawn
+specification_root: spec/README.md
 core_loop: core/co-orientation-loop.yawn
 
 official_runtime:
@@ -20,12 +21,19 @@ official_runtime:
   repository_slug_status: current-address
 
 summary: >
-  .yawn is a plain-text orientation shape for observing agents: humans, AI
-  systems, teams, tools, repos, organizations, and institutions that need to
-  make inference visible before action.
+  .yawn is an open protocol for inspectable orientation and agency: attributed
+  fields, provisional arenas, durable Yawns, causal turns, bounded authority,
+  proof, and replayable state.
 
 canonical_sentence: >
-  .yawn is a plain-text orientation shape for observing agents.
+  .yawn does not contain reality. It makes an agent's orientation toward part
+  of reality inspectable, correctable, and replayable.
+
+protocol_status:
+  contracts_v1: stable
+  state_substrate_v1: stable
+  agency_holarchy_0_2: working-draft
+  unified_human_document: not-yet-specified
 
 root_loop:
   - signal
@@ -68,6 +76,11 @@ core_links:
   target_and_lacuna: core/target-and-lacuna.yawn
   state_transition: core/state-transition.yawn
   motivation_and_purpose: core/motivation-and-purpose.yawn
+  world_field_arena: core/world-field-arena.yawn
+  holarchy: core/holarchy.yawn
+  turn: core/turn.yawn
+  routing: core/routing.yawn
+  projection_and_aperture: core/projection-and-aperture.yawn
 
 schema_links:
   node: schemas/node.yawn
@@ -81,6 +94,25 @@ schema_links:
   transition_result_v1: schemas/transition-result.v1.schema.json
   state_update_v1: schemas/state-update.v1.schema.json
   living_snapshot_v1: schemas/living-snapshot.v1.schema.json
+  agency_holarchy_draft_0_2: schemas/agency-holarchy.v0.2.schema.json
+  contracts_v1: contracts/schemas/yawn-contracts-v1.schema.json
+
+spec_links:
+  root: spec/README.md
+  ontology: spec/ontology.md
+  holarchy: spec/holarchy.md
+  turns: spec/turns.md
+  routing: spec/routing.md
+  questions: spec/questions.md
+  serialization: spec/serialization.md
+
+documentation_links:
+  root: docs/README.md
+  quickstart: docs/quickstart.md
+  project_status: docs/project-status.md
+  repository_map: docs/repository-map.md
+  projections: docs/projections/README.md
+  research_basis: docs/research-basis.md
 
 shape_links:
   node: shape/node.yawn
@@ -121,7 +153,7 @@ feedback_links:
   database_intake: database/feedback-intake.yawn
 
 contributor_links:
-  guide: contributing.md
+  guide: CONTRIBUTING.md
   github_node: .github/node.yawn
   issue_templates: .github/ISSUE_TEMPLATE/node.yawn
   pull_request_template: .github/pull_request_template.md
@@ -173,6 +205,8 @@ question_packet_links:
   node: question-packets/node.yawn
   basic: question-packets/basic.yawn
   relationship: question-packets/relationship.yawn
+  orientation_nine: question-packets/orientation-nine.yawn
+  turn_close: question-packets/turn-close.yawn
 
 template_links:
   basic: templates/basic.yawn
@@ -188,6 +222,10 @@ template_links:
   backup_record: templates/backup-record.yawn
   next_move_record: templates/next-move-record.yawn
   open_question: templates/open-question.yawn
+  arena: templates/arena.yawn
+  turn: templates/turn.yawn
+  routing_proposal: templates/routing-proposal.yawn
+  structural_change_receipt: templates/structural-change-receipt.yawn
 
 example_links:
   stuck: examples/stuck.yawn
@@ -200,12 +238,31 @@ example_links:
   repair: examples/repair.yawn
   cold_start_agent: examples/cold-start-agent.yawn
   state_substrate_family: examples/state-substrate-family.yawn
+  nested_agent_arena: examples/nested-agent-arena.yawn
+  waiting_turn: examples/waiting-turn.yawn
+  conversation_import_routing: examples/conversation-import-routing.yawn
+  merge_split_routing: examples/merge-split-routing.yawn
 
 fixture_links:
   node: fixtures/node.yawn
   canonical_contracts_v1: fixtures/canonical-contracts.v1.json
   optional_target_yawns_v1: fixtures/optional-target-yawns.v1.json
   multi_principal_family_v1: fixtures/multi-principal-family.v1.json
+  agency_holarchy_draft_0_2: fixtures/agency-holarchy.v0.2.json
+
+governance_links:
+  governance: GOVERNANCE.md
+  maintainers: MAINTAINERS.md
+  contributing: CONTRIBUTING.md
+  security: SECURITY.md
+  conduct: CODE_OF_CONDUCT.md
+  support: SUPPORT.md
+  roadmap: ROADMAP.md
+  changelog: CHANGELOG.md
+  citation: CITATION.cff
+  rfcs: rfcs/README.md
+  agency_holarchy_rfc: rfcs/0001-agency-holarchy-working-draft.md
+  decisions: adr/README.md
 
 agent_links:
   orientation: agents/orientation.yawn
@@ -227,14 +284,15 @@ usage_frame: >
   organize, but the human remains the source of authorization.
 
 stable_boundary: >
-  .yawn does not claim reality is literally code. It works with the practical
-  fact that humans and AI agents receive signals, make inferences, act from
-  models, and update memory through feedback.
+  .yawn does not claim reality is literally code or that a stored arena is the
+  world. It works with the practical fact that humans and software agents
+  receive partial signals, make inferences, act from models, and update memory
+  through attributed feedback.
 
 question_packet_rule: >
-  A question packet is an intake contract, not a competing template. It asks
-  plain-language questions, maps answers into a target .yawn template, and
-  turns skipped answers into visible lacuna rather than invented content.
+  Questions are projections over the ontology, not the ontology. A question
+  packet maps plain-language answers into attributed semantic records and turns
+  skipped answers into visible lacunae rather than invented content.
 
 folder_node_rule: >
   Every folder is a knowledge node and mental-model node. Each folder should
