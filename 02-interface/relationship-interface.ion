@@ -21,7 +21,7 @@ relationship_entry:
   proof_needed:
 
 uses:
-  - separate fact from projection
+  - separate attributed statement from interpretation
   - see dependence and support clearly
   - name social costs
   - protect consent and boundaries
@@ -34,6 +34,6 @@ boundary:
 proof:
   source:
     - 01-core/reality-boundary.ion
-    - 02-interface/projection-stack.ion
+    - 02-interface/orientation-stack.ion
   claim: Relationships are part of the interface and require special boundary care.
   proof_state: seed-backed

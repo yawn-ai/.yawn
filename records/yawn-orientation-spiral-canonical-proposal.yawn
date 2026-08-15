@@ -6,6 +6,7 @@ metadata:
   status: proposed
   canonicality: non_mutating_reviewable_proposal
   created_at: '2026-08-13T20:59:00-06:00'
+  updated_at: '2026-08-14'
   owner: actor:dave
   source_session: conversation://chatgpt/current/orientation-spiral-discovery
 source:
@@ -45,34 +46,53 @@ observer:
   - observation_is_not_objective_truth
   - AI_inference_is_not_Dave_statement
   - capability_is_not_authority
-  - projection_is_not_canonical_state
+  - view_is_not_canonical_state
+  - intention_is_not_projection
+  - projection_is_not_consequence
 current_state:
-  summary: YAWN has an open protocol, canonical operational substrate, semantic projection, public orientation language,
+  summary: YAWN has an open protocol, canonical operational substrate, semantic View, public orientation language,
     and multiple graph interfaces, but the public experience does not yet render one recursive observation-orientation-relationship
     spiral from one shared snapshot.
   evidence:
   - The .yawn repository defines signal -> orientation -> choice -> move -> proof -> update.
-  - YAWN.ai merged an orientation front door and authenticated Dave semantic projection.
+  - YAWN.ai merged an orientation front door and authenticated Dave semantic View.
   - YAWN.bot built the canonical Dave homebase and global QR-capable chrome.
-  - The two applications do not yet share a permanent public interface/export contract or deterministic spiral projection.
+  - The two applications do not yet share a permanent public interface/export contract or deterministic spiral View.
 observations:
 - id: observation://dave/recursive-exposure
-  observer: actor:dave
-  target: interaction://assistant/interpretation-pattern
-  statement: An observer can expose the process by which another intelligence is observing and interpreting, causing
-    the next response to adapt.
-  epistemic_status: user_reported_and_interaction_observed
+  acquired_by: actor:dave
+  arena: arena://chatgpt/current/orientation-spiral-discovery
+  acquired_refs:
+  - statement://dave/recursive-exposure
+  conditions: direct participation in the conversation
+  limits: the other intelligence's internal state is not directly available
 - id: observation://system/spiral
-  observer: agent:chatgpt-current
-  target: pattern://observe-orient-relate
-  statement: Observation, orientation, and relationship recur as product-facing lenses, while intention, movement,
-    consequence, proof, and update are required for closure.
+  acquired_by: agent:chatgpt-current
+  arena: arena://chatgpt/current/orientation-spiral-discovery
+  acquired_refs:
+  - statement://system/spiral
+  conditions: source-bundle and repository review
+  limits: synthesis remains proposal-only pending owner review
+- id: observation://system/lacuna-center
+  acquired_by: agent:chatgpt-current
+  arena: arena://repository/public-interface
+  acquired_refs:
+  - statement://system/lacuna-center
+  conditions: interface-contract audit
+  limits: design proposal, not canonical product state
+statements:
+- id: statement://dave/recursive-exposure
+  asserted_by: actor:dave
+  body: An observer can expose the process by which another intelligence is observing and interpreting, causing the next response to adapt.
+  epistemic_status: user_reported_and_interaction_observed
+- id: statement://system/spiral
+  asserted_by: agent:chatgpt-current
+  body: Observation, orientation, and relationship recur as product-facing lenses, while Intention, Projection, Move, Consequence, Proof, and Update are required for closure.
   epistemic_status: inferred
   requires_owner_review: true
-- id: observation://system/lacuna-center
-  observer: agent:chatgpt-current
-  target: interface://spiral-center
-  statement: The active Yawn or consequential lacuna should be central; YAWN.bot should be a participant/overlay.
+- id: statement://system/lacuna-center
+  asserted_by: agent:chatgpt-current
+  body: The active Yawn or consequential lacuna should be central; YAWN.bot should be a participant and overlay.
   epistemic_status: research_supported_design_proposal
   requires_owner_review: true
 proposed_model:
@@ -84,17 +104,17 @@ proposed_model:
   closure:
   - intention
   - authority_boundary
-  - move
-  - consequence_evidence
+  - projection
+  - move_when_selected
+  - consequence
   - proof
   - update
   - observation_again
-  expression: observe -> orient -> relate -> intend -> move -> consequence/proof -> observe again
-  relation_to_canonical_loop: projection_and_extension_not_fourth_loop
+  expression: observe -> orient -> relate -> intend -> project -> move when selected -> consequence/proof -> observe again
+  relation_to_canonical_loop: derived_human_view_not_fourth_canonical_loop
 ontology_extensions:
   recursive_observation:
-    rule: Observation may target event, claim, inference, action, projection, relationship state, policy, or another
-      observation.
+    rule: Observation is an attributed acquisition event and may acquire a statement, event, prior Observation, Projection, Consequence, relationship state, policy, or proof.
     recursion_depth: derived_from_observes_edges
     consciousness_claim: none
   relationship:
@@ -107,8 +127,11 @@ ontology_extensions:
     - commitments_or_tensions
     - history
     - proof_update_loop
-  intention: attributed normative direction with endorsement state
-  projection: non-authoritative view/export carrying canonical ref and snapshot hash
+  intention: selected or endorsed direction that may never be projected
+  projection: what an Agent actually expresses, represents, proposes, commits, or attempts back into an Arena
+  move: the action-bearing subset of Projection; every Move is a Projection, not every Projection is a Move
+  consequence: what the Arena and reality return, distinct from intention, prediction, and Projection
+  view: non-authoritative rendering or export carrying canonical ref and snapshot hash
   arena: bounded task-relevant participant/context slice; not identical to mental model
   agent: participant capable of sensing/acting; consciousness not implied
 interface:
@@ -145,18 +168,18 @@ routes:
 - path: /dave
   purpose: public Dave relationship offer
 - path: /2026/dave/being-40
-  purpose: situated proof-backed personal projection
+  purpose: situated proof-backed personal View
 - path: /2026/dave/kindergarten
   purpose: candidate relational spiral demonstration
 - path: /2026/dave/yawn-explainer
-  purpose: canonical explainer media projection
+  purpose: canonical explainer media View
 - path: /dave/wording
   purpose: canonical wording child Yawn; resolve from state, do not fabricate
 decisions:
 - id: decision://use-existing-protocol
   status: proposed
   statement: Extend yawn-ai/.yawn; do not create a competing ontology.
-- id: decision://one-state-many-projections
+- id: decision://one-state-many-views
   status: proposed
   statement: YAWN.ai, YAWN.bot, download, QR, and media derive from one canonical snapshot.
 - id: decision://public-dave-first
@@ -191,7 +214,15 @@ boundaries:
 - No package removal without usage and build proof.
 - No final 64-bit art direction before reference review.
 - No action authorized by capability alone.
-selected_move:
+- No Intention treated as an actual Projection.
+- No Projection treated as its received meaning or Consequence.
+proposal_projection:
+  id: projection://public-dave-spiral-vertical
+  kind: proposal
+  intention: intention://make-public-orientation-inspectable
+  proposes_move: move://public-dave-spiral-vertical
+  status: produced
+proposed_move:
   id: move://public-dave-spiral-vertical
   title: Ship one public-safe Dave relationship and Orientation Spiral vertical slice
   outputs:

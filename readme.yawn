@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 2
-updated: "2026-08-13"
+revision: 3
+updated: "2026-08-14"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -17,63 +17,52 @@ identity:
   human_front_door: README.md
   repository_manifest: yawn.yawn
 
+system_roles:
+  dot_yawn:
+    role: portable holonic record and open protocol
+    canonical_state: accepted append-only events plus replayable materialized state
+  yawn_bot:
+    role: holonic interface and action agent
+    authority: bounded by explicit grants
+  yawn_ai:
+    role: intelligence and orientation compiler
+    authority: observes, processes, and proposes; never self-ratifies
+
+constitution:
+  full_passage: >
+    An Agent observes an Arena, orients within it, selects an Intention, and
+    projects an expression or attempt back into that same Arena. The resulting
+    consequences become new Observations. A .yawn preserves the sources,
+    distinctions, authority, and revisions across that passage.
+  compact_replay_loop: "signal -> orientation -> choice -> move -> proof -> update"
+  full_orientation_passage: >
+    Arena -> Observation -> Agent -> Orientation -> Value / Goal / Lacuna ->
+    Choice -> Intention -> Projection -> Arena -> Consequence -> Observation'
+
 signal:
   raw: >
-    The project has a strong orientation grammar, newly published v1 runtime and
-    state contracts, a filesystem seed of a holarchy, and a vivid Agent Arena
-    projection—but no single hub explains how those layers fit together.
+    YAWN needs one inspectable public hub whose language, executable contracts,
+    Views, and runtime roles preserve the difference between what an Agent
+    observed, meant, expressed, attempted, and encountered.
   epistemic_status: observed
   source_refs:
-    - README.md@before-ontology-hub
-    - contracts/schemas/yawn-contracts-v1.schema.json
-    - schemas/node.yawn
-    - interface/new-yawn-v0.1.yawn
-
-orientation:
-  current_state:
-    - claim: "The contracts package and state substrate are parallel v1 modules."
-      epistemic_status: observed
-      source_refs:
-        - contracts/schemas/yawn-contracts-v1.schema.json
-        - schemas/state-snapshot.v1.schema.json
-    - claim: "The human full template is not validated by either v1 module."
-      epistemic_status: observed
-      source_refs:
-        - templates/full.yawn
-    - claim: "The numbered .ion generation remains as a historical bridge."
-      epistemic_status: observed
-      source_refs:
-        - 00-start/root.ion
-        - 08-research/source-index.ion
-    - claim: "Agent Arena is best treated as one projection over a neutral causal graph."
-      epistemic_status: inferred
-      source_refs:
-        - docs/projections/README.md
-
-  governing_inference: >
-    The repository can serve as the ontology hub if it clearly separates stable
-    contracts, working drafts, human explanations, executable schemas,
-    projections, examples, research, governance, and historical provenance.
-  epistemic_status: inferred
-  alternatives:
-    - "Collapse every artifact into one schema immediately."
-    - "Leave the generations separate and rely on readers to infer the mapping."
-  rejected_alternatives:
-    - alternative: "Collapse every artifact into one schema immediately."
-      reason: "It would silently rewrite merged v1 compatibility surfaces."
-    - alternative: "Leave the mapping implicit."
-      reason: "It reproduces the hidden-inference problem YAWN is meant to expose."
+    - README.md
+    - orientation-framework-v1.yawn
+    - spec/ontology.md
+    - schemas/orientation-passage.v1.schema.json
 
 arena:
   ref: arena:repository:ontology-hub
-  purpose: "Publish and evolve a coherent, inspectable agency protocol."
+  purpose_statement:
+    asserted_by: agent:david-forman
+    statement: "Publish and evolve a coherent, inspectable agency protocol."
   participants:
-    - agent: "agent:david-forman"
+    - agent: agent:david-forman
       roles: [founding-maintainer, steward, affected]
-    - agent: "agent:open-source-contributor"
+    - agent: agent:open-source-contributor
       roles: [proposer, reviewer]
-    - agent: "agent:software-system"
-      roles: [operational-proposer]
+    - agent: agent:software-system
+      roles: [observer, processor, proposer]
   inclusions:
     - public protocol contracts
     - source-attributed examples and fixtures
@@ -82,33 +71,80 @@ arena:
   exclusions:
     - private user memory
     - credentials and proprietary runtime state
-    - claims that the schema exhausts reality
-  constraints:
-    - preserve merged v1 contracts
-    - preserve public history and provenance
-    - keep AI authority proposal-only
-    - require proof before stable claims
+    - claims that a stored model exhausts reality
   frame_limits:
     - field calibration for merge and split thresholds remains incomplete
     - independent implementations have not yet established interoperability
 
+orientation:
+  current_state:
+    - statement: "The contracts package and state substrate are parallel v1 modules."
+      asserted_by: agent:repository-audit
+      epistemic_status: observed
+      source_refs:
+        - contracts/schemas/yawn-contracts-v1.schema.json
+        - schemas/state-snapshot.v1.schema.json
+    - statement: "Orientation Passage V1 now makes the receive-orient-express-return passage executable."
+      asserted_by: agent:repository-audit
+      epistemic_status: observed
+      source_refs:
+        - schemas/orientation-passage.v1.schema.json
+        - lib/orientation-passage-v1.mjs
+        - tests/orientation-passage-v1.test.mjs
+  distinctions:
+    observation: situated acquisition by an attributed Agent
+    statement: attributed representation that may be acquired by an Observation
+    intention: selected or endorsed direction
+    projection: actual expression or attempt put into an Arena
+    move: action-bearing subset of Projection
+    consequence: what the Arena and reality return
+    view: rebuildable rendering of canonical state
+  governing_inference: >
+    The repository can serve as the ontology hub when stable contracts, working
+    drafts, executable schemas, human explanations, Views, evidence, and
+    historical provenance remain distinguishable but navigable.
+  asserted_by: agent:codex-current
+  epistemic_status: proposed-inference
+
 lacuna:
   primary: >
-    The human document, runtime constitution, state modules, and projection
-    grammar do not yet share one unified versioned serialization.
+    The human document, runtime constitution, state modules, and full
+    orientation-passage contract do not yet share one stable aggregate envelope.
   open_questions:
     - "What is the smallest compatible aggregate envelope?"
-    - "Which arena-routing thresholds survive real human review?"
+    - "Which Arena-routing thresholds survive real human review?"
     - "How should privacy-preserving conversation import prove source coverage?"
     - "Which parts of Draft 0.2 should enter the next stable contract?"
 
-intent:
+choice:
+  selected: preserve_distinctions_and_add_executable_contracts
+  alternatives_rejected:
+    - option: collapse_all_artifacts_into_one_schema_now
+      reason: would silently rewrite merged v1 compatibility surfaces
+    - option: leave_the_mapping_implicit
+      reason: would reproduce the hidden-inference problem YAWN exposes
+
+intention:
   mode: coordinate
-  target_condition: >
-    A public visitor and an implementation agent can locate the relevant
-    definition, authority boundary, schema, example, and proof without treating
-    a projection or historical file as canonical state.
+  endorsed_direction: >
+    Let a human or implementation Agent locate the relevant definition,
+    authority boundary, schema, example, source, and proof without mistaking a
+    View, inference, or capability for canonical state or permission.
   ratification_status: proposed
+
+possible_projections:
+  - publish a concise human README
+  - propose versioned schema and RFC changes
+  - express the model through public-safe Views
+  - offer a bounded implementation Move for owner review
+
+selected_move:
+  description: >
+    Maintain the human front door, constitutional record, layered specification,
+    additive schemas, deterministic fixtures, semantic validators, and proof.
+  projection_kind: move
+  reversible: true
+  authority_status: proposed-until-maintainer-merge
 
 boundaries:
   must_not:
@@ -116,67 +152,63 @@ boundaries:
     - turn confidence into permission
     - let a move verify itself
     - fabricate skipped orientation answers
-    - disclose private context through parent-child inheritance
-    - use embeddings or coordinates to decide identity
-    - call the working draft a complete stable protocol
+    - disclose private context through inheritance
+    - use similarity or coordinates to decide identity
+    - collapse Intention into Projection or Projection into Consequence
     - delete history to create the appearance of coherence
   AI_default:
     may: [observe, ask, summarize, propose, test-within-grant]
     may_not: [self-authorize, silently-publish, widen-permissions, erase-provenance]
 
-move:
-  description: >
-    Maintain one concise human README, a live root landing page, an explicit
-    layered specification, additive Draft 0.2 schemas and tests, commented
-    templates, decisive examples, and an honest open-source governance surface.
-  reversible: true
-  authority_status: proposed-until-maintainer-merge
-
 proof_contract:
   preconditions:
     - "Existing v1 fixtures and generated types pass unchanged."
-    - "The draft is labeled and does not claim stable compatibility."
+    - "Draft contracts remain labeled and do not claim stable compatibility."
+  prediction: >
+    The public explanation, machine contracts, fixtures, and validators report
+    the same semantic boundaries.
   acceptance:
     - "Root npm test passes."
     - "contracts npm run check and npm pack --dry-run pass."
     - "Internal links on the public hub resolve."
-    - "The GitHub Pages root returns the new ontology hub after merge."
-    - "Feedback and Declaration routes remain live."
+    - "A non-Move Projection is valid."
+    - "A Move without its Projection or authority is rejected."
+    - "Model inference remains attributed to the model Agent."
   falsifiers:
     - "An existing v1 fixture changes meaning or fails."
-    - "The hub implies world equals arena or arena equals Yawn."
-    - "A projection can mutate semantic state or permissions."
+    - "The hub implies World equals Arena or Arena equals Yawn."
+    - "A View can mutate semantic state or permissions."
+    - "Intention, Projection, reception, and Consequence are collapsed."
     - "A structural change can erase source identity or bypass authority."
 
 protocol_layers:
+  constitutional_orientation:
+    path: orientation-framework-v1.yawn
+    version: "1-working-draft"
   stable_constitution:
     path: contracts/
-    version: "1.0.0"
+    version: "1.1.0"
   stable_state_substrate:
     path: schemas/
     version: "1"
-    kinds:
-      - state_snapshot
-      - event
-      - desire
-      - target_condition
-      - transition_intent
-      - transition_result
-      - state_update
+  orientation_passage:
+    path: schemas/orientation-passage.v1.schema.json
+    version: "1.0.0-draft"
   agency_holarchy:
     path: schemas/agency-holarchy.v0.2.schema.json
     version: "0.2-draft"
-    stability: experimental
-  human_document:
+  public_views:
+    path: docs/views/
+    canonical_state: false
+  human_documents:
     paths: [templates/, examples/]
     stability: mixed-and-explicitly-versioned
-  projections:
-    path: docs/projections/
-    canonical_state: false
 
 ontology_links:
   specification: spec/README.md
   ontology: spec/ontology.md
+  competency_questions: spec/competency-questions.md
+  term_admission: spec/term-admission.md
   holarchy: spec/holarchy.md
   turns: spec/turns.md
   routing: spec/routing.md
@@ -186,7 +218,8 @@ ontology_links:
   holarchy_contract: core/holarchy.yawn
   turn_contract: core/turn.yawn
   routing_contract: core/routing.yawn
-  projection_boundary: core/projection-and-aperture.yawn
+  view_boundary: core/view-and-aperture.yawn
+  passage_rfc: rfcs/0005-observation-intention-projection-consequence.md
 
 practice_links:
   quickstart: docs/quickstart.md
@@ -198,6 +231,7 @@ practice_links:
     - templates/routing-proposal.yawn
     - templates/structural-change-receipt.yawn
   examples:
+    - examples/recursive-observation.yawn
     - examples/nested-agent-arena.yawn
     - examples/waiting-turn.yawn
     - examples/conversation-import-routing.yawn
@@ -218,8 +252,8 @@ project_links:
 replay:
   current_claim: >
     README.md is the human front door, readme.yawn is the repository's own
-    orientation object, and yawn.yawn is the machine-addressable manifest.
+    orientation record, and yawn.yawn is the machine-addressable manifest.
   next_review_when:
-    - Draft 0.2 has field routing evidence
+    - Draft 0.2 has field-routing evidence
     - a unified document RFC is proposed
     - an independent implementation reports a compatibility gap

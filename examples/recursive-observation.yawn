@@ -3,35 +3,70 @@ kind: recursive-observation-example
 status: proposed
 
 observations:
-  - id: observation:dave:being-40:present
-    observes:
-      kind: yawn
-      id: yawn:dave:being-40
+  - id: observation:dave:being-40:source
     observer_id: principal:dave
+    arena_id: arena:dave:public-orientation
+    acquired_at: "2026-08-13T00:00:00Z"
+    acquisition_method: memory_recall
+    observes:
+      - kind: yawn
+        id: yawn:dave:being-40
+    source_refs:
+      - source:dave:being-40-public
+    conditions:
+      - Dave selected a public-safe reflection.
+    limits:
+      - Private source bodies are excluded.
+    visibility: public
+
+  - id: observation:yawn-bot:being-40:statement
+    observer_id: agent:yawn-bot
+    arena_id: arena:dave:public-orientation
+    acquired_at: "2026-08-13T00:00:01Z"
+    acquisition_method: file_read
+    observes:
+      - kind: statement
+        id: statement:dave:being-40:present
+    source_refs:
+      - source:dave:being-40-public
+    conditions:
+      - The public-safe statement was available to the overlay.
+    limits:
+      - The overlay cannot infer Dave's complete private state.
+    visibility: public
+
+statements:
+  - id: statement:dave:being-40:present
+    about:
+      - kind: yawn
+        id: yawn:dave:being-40
+    asserted_by: principal:dave
     statement: Being 40 is held as a present orientation, not a finished identity.
     epistemic_status: reported
     confidence: 1
-    asserted_at: "2026-08-13T00:00:00Z"
+    grounded_in_observation_refs:
+      - observation:dave:being-40:source
     source_refs:
       - source:dave:being-40-public
     visibility: public
 
-  - id: observation:yawn-bot:being-40:open-loop
-    observes:
-      kind: observation
-      id: observation:dave:being-40:present
-    observer_id: agent:yawn-bot
+  - id: statement:yawn-bot:being-40:open-loop
+    about:
+      - kind: statement
+        id: statement:dave:being-40:present
+    asserted_by: agent:yawn-bot
     statement: The statement keeps an open loop by refusing to present identity as complete.
     epistemic_status: inferred
     confidence: 0.78
-    asserted_at: "2026-08-13T00:00:01Z"
+    grounded_in_observation_refs:
+      - observation:yawn-bot:being-40:statement
     source_refs:
       - source:dave:being-40-public
     visibility: public
 
 invariants:
-  - The second observation does not overwrite or canonize the first.
-  - The assistant remains distinct from Dave and labels its inference.
+  - Acquisition and statement interpretation remain different records.
+  - The assistant remains distinct from Dave and owns its inference.
   - Observation depth does not imply authority or consciousness.
 
 authority:

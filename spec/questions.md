@@ -2,7 +2,7 @@
 
 Status: **Working Draft 0.2**
 
-Questions are projections over the ontology, not the ontology itself. A human
+Questions are Views over the ontology, not the ontology itself. A human
 may answer them in any order, an interface may ask only the next three that
 matter, and a machine import may populate the same semantic fields without
 asking them verbatim.
@@ -27,12 +27,12 @@ asking them verbatim.
 | 1 | World | scope, subject, source | signal is bounded enough to hold |
 | 2 | World / Governance | arena, primary parent, lateral relations | a routing proposal can be made |
 | 3 | World / Provenance | agents, roles, perspectives, affected parties | attribution is visible |
-| 4 | World / Epistemic | field, observations, reports, current state | current claims have statuses and sources |
-| 5 | Normative / Action | values, optional target, purpose, motivation | desire is separate from agreement and authority |
+| 4 | World / Epistemic | Observation acquisition, statements, reports, current state | acquisition and interpretation have separate attribution |
+| 5 | Normative / Directional | values, optional target, purpose, Choice, Intention | desire and Intention stay separate from agreement and authority |
 | 6 | Epistemic | lacunae, disputes, constraints, dependencies | missing structure is explicit |
 | 7 | Normative / Governance | boundaries, privacy, decision rights, grants | unsafe moves can be excluded |
-| 8 | Action | affordances, candidate moves, waits, delegations | an authorized next turn may be proposed |
-| 9 | Epistemic / Temporal | prediction, verifier, falsifier, proof, close rule | consequences can update the map |
+| 8 | Expressive / Action | possible Projections, candidate Moves, waits, delegations | outward expression and authorized action remain distinguishable |
+| 9 | World / Epistemic / Temporal | Consequence, prediction, verifier, falsifier, proof, close rule | reality's return can be evaluated without becoming the prediction |
 
 ## Coverage is not truth
 
@@ -63,8 +63,9 @@ or edits it.
 
 ## Compact public wording
 
-A public projection may translate the nine questions into the human-facing
-spiral: observe, orient, relate, intend, move, inspect consequence or proof, and
-observe again. The compact labels do not erase the source questions or change
-their semantic fields. Public observations keep attribution and epistemic
-status; relationship language remains an offer until consent is recorded.
+A public View may translate the nine questions into the human-facing spiral:
+observe, orient, relate, intend, project, select a Move when appropriate,
+inspect Consequence or Proof, and observe again. The compact labels do not
+erase the source questions or change their semantic fields. Public Observation
+acquisition and statement interpretation remain separate; relationship
+language remains an offer until consent is recorded.

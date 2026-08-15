@@ -2,7 +2,7 @@ id: questions/open-questions
 title: "What is still unresolved?"
 kind: lacuna-index
 status: preview
-updated: 2026-07-11
+updated: 2026-08-14
 
 purpose: >
   Keep unanswered, disputed, deferred, and decision-changing questions visible
@@ -46,8 +46,8 @@ open_questions:
     blocks_action: true
     review_after: "before public publication"
 
-  - question: "What is the first production projection-equivalence receipt?"
-    coordinate: "runtime/projection-proof"
+  - question: "What is the first production View-equivalence receipt?"
+    coordinate: "runtime/view-proof"
     why_it_matters: "Wallet, phone, desktop, and world surfaces must share one orientation revision and authority state."
     evidence_needed:
       - authenticated runtime fixture

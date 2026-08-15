@@ -2,7 +2,7 @@
 #
 # A turn is a causal episode. It may remain open while execution sleeps, while
 # another agent works, or while an external event has not happened yet.
-# This is a human authoring projection. Executable interchange uses camelCase
+# This is a human authoring View. Executable interchange uses camelCase
 # fields in schemas/agency-holarchy.v0.2.schema.json.
 
 spec_version: "0.2-draft"

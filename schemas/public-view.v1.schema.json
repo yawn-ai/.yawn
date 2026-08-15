@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://yawn.ai/schemas/public-projection.v1.schema.json",
-  "title": "YAWN Public Projection V1",
-  "description": "A deterministic, public-safe projection of one canonical YAWN snapshot.",
+  "$id": "https://yawn.ai/schemas/public-view.v1.schema.json",
+  "title": "YAWN Public View V1",
+  "description": "A deterministic, public-safe View of one canonical YAWN snapshot. View is rendering; Projection is an Agent's outward expression or attempt.",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "schema_version",
-    "projection_id",
+    "view_id",
     "canonical_ref",
     "coordinate",
     "snapshot_hash",
@@ -16,6 +16,10 @@
     "observer",
     "current_yawn",
     "observations",
+    "statements",
+    "intentions",
+    "projections",
+    "consequences",
     "relationship_offer",
     "spiral",
     "interface",
@@ -24,7 +28,7 @@
   ],
   "properties": {
     "schema_version": { "const": "1.0.0" },
-    "projection_id": { "$ref": "#/$defs/id" },
+    "view_id": { "$ref": "#/$defs/id" },
     "canonical_ref": { "$ref": "#/$defs/id" },
     "coordinate": { "$ref": "#/$defs/coordinate" },
     "snapshot_hash": { "$ref": "#/$defs/hash" },
@@ -35,6 +39,22 @@
     "observations": {
       "type": "array",
       "items": { "$ref": "#/$defs/observation" }
+    },
+    "statements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/statement" }
+    },
+    "intentions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/intention" }
+    },
+    "projections": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/projection" }
+    },
+    "consequences": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/consequence" }
     },
     "relationship_offer": { "$ref": "#/$defs/relationshipOffer" },
     "spiral": { "$ref": "#/$defs/spiral" },
@@ -88,7 +108,7 @@
       "required": ["kind", "id"],
       "properties": {
         "kind": {
-          "enum": ["yawn", "observation", "relationship", "projection", "proof_receipt", "source"]
+          "enum": ["yawn", "observation", "statement", "relationship", "intention", "projection", "consequence", "view", "proof_receipt", "source"]
         },
         "id": { "$ref": "#/$defs/id" }
       }
@@ -116,31 +136,117 @@
       "additionalProperties": false,
       "required": [
         "id",
-        "observes",
         "observer_id",
-        "statement",
-        "epistemic_status",
-        "confidence",
-        "asserted_at",
+        "arena_id",
+        "acquired_at",
+        "acquisition_method",
+        "observes",
         "source_refs",
+        "conditions",
+        "limits",
         "visibility"
       ],
       "properties": {
         "id": { "$ref": "#/$defs/id" },
-        "observes": { "$ref": "#/$defs/typedRef" },
         "observer_id": { "$ref": "#/$defs/id" },
-        "statement": { "type": "string", "minLength": 1, "maxLength": 1200 },
-        "epistemic_status": {
-          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"]
+        "arena_id": { "$ref": "#/$defs/id" },
+        "acquired_at": { "type": "string", "format": "date-time" },
+        "acquisition_method": { "enum": ["report_received", "message_received", "file_read", "tool_result", "memory_recall", "event_witness", "import", "other"] },
+        "observes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/typedRef" }
         },
-        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-        "asserted_at": { "type": "string", "format": "date-time" },
         "source_refs": {
           "type": "array",
           "minItems": 1,
           "items": { "$ref": "#/$defs/id" },
           "uniqueItems": true
         },
+        "conditions": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 300 } },
+        "limits": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 300 } },
+        "visibility": { "const": "public" }
+      }
+    },
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "about", "asserted_by", "statement", "epistemic_status", "confidence", "grounded_in_observation_refs", "source_refs", "visibility"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "about": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/typedRef" } },
+        "asserted_by": { "$ref": "#/$defs/id" },
+        "statement": { "type": "string", "minLength": 1, "maxLength": 1200 },
+        "epistemic_status": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "grounded_in_observation_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "visibility": { "const": "public" }
+      }
+    },
+    "intention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "held_by", "direction", "status", "statement_refs", "visibility"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "held_by": { "$ref": "#/$defs/id" },
+        "direction": { "type": "string", "minLength": 1, "maxLength": 800 },
+        "status": { "enum": ["proposed", "endorsed", "withdrawn", "superseded", "fulfilled"] },
+        "statement_refs": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "visibility": { "const": "public" }
+      }
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "projected_by", "arena_id", "intention_id", "kind", "produced_at", "statement_refs", "source_refs", "move_id", "authority_state", "visibility"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "projected_by": { "$ref": "#/$defs/id" },
+        "arena_id": { "$ref": "#/$defs/id" },
+        "intention_id": { "anyOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] },
+        "kind": { "enum": ["expression", "claim", "model", "question", "communication", "proposal", "commitment", "move"] },
+        "produced_at": { "type": "string", "format": "date-time" },
+        "statement_refs": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "source_refs": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "move_id": { "anyOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] },
+        "authority_state": { "enum": ["unassessed", "proposed", "granted", "denied", "revoked"] },
+        "visibility": { "const": "public" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "move" } }, "required": ["kind"] },
+          "then": { "properties": { "move_id": { "$ref": "#/$defs/id" } } },
+          "else": { "properties": { "move_id": { "type": "null" } } }
+        }
+      ]
+    },
+    "consequence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "arena_id", "projection_ids", "recorded_by", "occurred_at", "status", "summary", "statement_refs", "visibility"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "arena_id": { "$ref": "#/$defs/id" },
+        "projection_ids": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "recorded_by": { "$ref": "#/$defs/id" },
+        "occurred_at": { "type": ["string", "null"], "format": "date-time" },
+        "status": { "enum": ["expected", "unexpected", "mixed", "unknown", "disputed"] },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 800 },
+        "statement_refs": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
         "visibility": { "const": "public" }
       }
     },

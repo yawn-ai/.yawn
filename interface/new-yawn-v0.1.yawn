@@ -2,15 +2,15 @@ id: interface/new-yawn-v0.1
 title: "+ Yawn creation contract v0.1"
 kind: interface-contract
 status: active
-updated: 2026-08-11
+updated: 2026-08-14
 
 definition: >
   + Yawn turns one source-preserved signal into a private draft holon. The
   creation surface and the Yawn surface are the same object at different
   resolutions; it is not a conventional onboarding form.
 
-question_projection_rule: >
-  The nine questions are a canonical human orientation projection over the
+question_view_rule: >
+  The nine questions are a canonical human orientation View over the
   ontology, not nine mandatory storage fields and not the ontology itself.
   Interfaces may ask a smaller adaptive subset. Skipped answers remain visible
   lacunae and are never fabricated.
@@ -107,7 +107,7 @@ runtime_0_1:
     strategy: debounce-plus-page-hide-flush
     persistence: browser-local
     manual_buttons: none
-  projection: explicit-local-langgraph-run
+  intelligence_execution: explicit-local-langgraph-run
   typing_network_requests: none
   live_model_calls: none
   database_mutation: none

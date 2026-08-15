@@ -21,7 +21,7 @@ absent -> offered -> accepted | declined | withdrawn
 accepted -> active -> paused | ended
 ```
 
-`offered` is the only state permitted in an anonymous public projection. An
+`offered` is the only state permitted in an anonymous public View. An
 offer names its proposer, intended participant roles, purpose, boundaries, and
 the action through which consent may be expressed. Acceptance records each
 required principal and the exact terms accepted.
@@ -48,10 +48,10 @@ recorded on that relationship.
 Existing relationship-like copy remains descriptive testimony unless evidence
 of consent exists. It MUST NOT be migrated to `active` by inference. A declined
 or withdrawn offer remains in provenance but is omitted from ordinary public
-projection unless disclosure is explicitly authorized.
+View unless disclosure is explicitly authorized.
 
 ## Conformance and decision
 
-The public projection schema fixes public `relationship_offer.state` to
+The public View schema fixes public `relationship_offer.state` to
 `offered`. Acceptance requires authenticated Dave approval and a separate
 implementation receipt.

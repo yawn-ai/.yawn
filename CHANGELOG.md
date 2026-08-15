@@ -9,10 +9,15 @@ labels and do not imply compatibility.
 ### Added
 
 - Unified documentation hub and deployable GitHub Pages landing page
-- Working Draft 0.2 ontology for world, field, arena, Yawn, turn, transition,
-  projection, and replay
+- Working Draft 0.2 ontology for World, Field, Arena, Yawn, Turn, transition,
+  View, and replay
+- Orientation Passage V1 draft contract, fixture, semantic validator, and tests
+  separating Observation, statement, Intention, Projection, Move, Consequence,
+  authority, and Proof
+- Public View V1 with deterministic snapshot identity and public-safe semantic
+  validation
 - Executable Agency Holarchy draft schema, fixture, and conformance tests
-- Holarchy, routing, nine-question, serialization, and projection specifications
+- Holarchy, routing, nine-question, serialization, and View specifications
 - Nested agent-arena, open-turn, and structural-change templates and examples
 - Governance, security, conduct, support, citation, roadmap, RFC, ADR, and
   maintainer surfaces
@@ -27,6 +32,8 @@ labels and do not imply compatibility.
   modules while their future unification remains explicit work
 - Clarified that authorized events update canonical state and that proof changes
   what a system may claim about outcomes
+- Reserved `Projection` for what an Agent actually expresses or attempts in an
+  Arena; rendering surfaces are now called `View`
 
 ### Preserved
 

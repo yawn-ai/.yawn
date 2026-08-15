@@ -71,7 +71,125 @@
         "startCharacter": { "type": "integer", "minimum": 0 }, "endCharacter": { "type": "integer", "minimum": 0 }, "sourceSha256": { "$ref": "#/$defs/Sha256" }
       }
     },
+    "TypedReferenceV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "enum": ["actor", "agent_space", "arena", "source", "yawn", "observation", "statement", "orientation", "choice", "value", "goal", "target", "lacuna", "intention", "projection", "move", "event", "consequence", "authority_grant", "proof_receipt", "relationship", "view"] },
+        "id": { "type": "string" }
+      }
+    },
+    "ActorDescriptorV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "kind", "label", "capabilities", "limitations", "createdAt"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" },
+        "kind": { "enum": ["human", "assistant_model", "tool", "service", "collective", "institution"] },
+        "label": { "type": "string" }, "capabilities": { "type": "array", "items": { "type": "string" } },
+        "limitations": { "type": "array", "items": { "type": "string" } }, "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "ObservationRecordV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "arenaId", "observerId", "acquisitionKind", "acquiredAt", "sourceSpans", "observedRefs", "conditions", "limitations", "status"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" },
+        "arenaId": { "type": ["string", "null"] }, "observerId": { "type": "string" },
+        "acquisitionKind": { "enum": ["perception", "report_received", "message_received", "file_read", "tool_result", "memory_recall", "event_witness", "import", "other"] },
+        "acquiredAt": { "$ref": "#/$defs/Timestamp" },
+        "sourceSpans": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/SourceSpan" } },
+        "observedRefs": { "type": "array", "items": { "$ref": "#/$defs/TypedReferenceV1" } },
+        "conditions": { "type": "array", "items": { "type": "string" } },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] }
+      }
+    },
+    "EpistemicStatementV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "arenaId", "yawnId", "semanticKind", "epistemicStatus", "text", "aboutRefs", "assertedBy", "groundedObservationIds", "sourceSpans", "confidence", "inferenceRunId", "status", "createdAt"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" },
+        "arenaId": { "type": ["string", "null"] }, "yawnId": { "type": ["string", "null"] },
+        "semanticKind": { "enum": ["claim", "lacuna", "value", "goal", "target", "boundary", "evidence", "outcome", "revision", "other"] },
+        "epistemicStatus": { "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"] },
+        "text": { "type": "string" },
+        "aboutRefs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/TypedReferenceV1" } },
+        "assertedBy": { "type": "string" },
+        "groundedObservationIds": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "sourceSpans": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/SourceSpan" } },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "inferenceRunId": { "type": ["string", "null"] },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "IntentionRecordV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "arenaId", "yawnId", "heldBy", "direction", "intentionKinds", "selectedByChoiceId", "sourceStatementIds", "status", "createdAt"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" },
+        "arenaId": { "type": ["string", "null"] }, "yawnId": { "type": ["string", "null"] },
+        "heldBy": { "type": "string" }, "direction": { "type": "string" },
+        "intentionKinds": { "type": "array", "minItems": 1, "items": { "enum": ["understand", "communicate", "preserve", "test", "repair", "change", "act", "hold_open"] } },
+        "selectedByChoiceId": { "type": ["string", "null"] },
+        "sourceStatementIds": { "type": "array", "items": { "type": "string" } },
+        "status": { "enum": ["proposed", "endorsed", "withdrawn", "superseded", "fulfilled"] },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "ProjectionRecordV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "arenaId", "yawnId", "projectedBy", "intentionId", "projectionKind", "contentStatementIds", "sourceSpans", "moveId", "authorityGrantId", "status", "projectedAt"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" }, "arenaId": { "type": "string" },
+        "yawnId": { "type": ["string", "null"] }, "projectedBy": { "type": "string" },
+        "intentionId": { "type": ["string", "null"] },
+        "projectionKind": { "enum": ["expression", "claim", "model", "question", "communication", "proposal", "commitment", "move"] },
+        "contentStatementIds": { "type": "array", "items": { "type": "string" } },
+        "sourceSpans": { "type": "array", "items": { "$ref": "#/$defs/SourceSpan" } },
+        "moveId": { "type": ["string", "null"] }, "authorityGrantId": { "type": ["string", "null"] },
+        "status": { "enum": ["produced", "withdrawn", "superseded"] },
+        "projectedAt": { "$ref": "#/$defs/Timestamp" }
+      },
+      "allOf": [{
+        "if": { "properties": { "projectionKind": { "const": "move" } }, "required": ["projectionKind"] },
+        "then": { "properties": { "moveId": { "type": "string" } } },
+        "else": { "properties": { "moveId": { "type": "null" } } }
+      }]
+    },
+    "ConsequenceRecordV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "arenaId", "yawnId", "projectionIds", "recordedBy", "description", "consequenceStatus", "statementIds", "eventIds", "occurredAt", "status", "createdAt"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" }, "arenaId": { "type": "string" },
+        "yawnId": { "type": ["string", "null"] },
+        "projectionIds": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "recordedBy": { "type": "string" }, "description": { "type": "string" },
+        "consequenceStatus": { "enum": ["expected", "unexpected", "mixed", "unknown", "disputed"] },
+        "statementIds": { "type": "array", "items": { "type": "string" } },
+        "eventIds": { "type": "array", "items": { "type": "string" } },
+        "occurredAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "TypedRelationV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "agentSpaceId", "from", "to", "relationType", "assertedBy", "epistemicStatus", "confidence", "sourceSpans", "status", "createdAt"],
+      "properties": {
+        "id": { "type": "string" }, "agentSpaceId": { "type": "string" },
+        "from": { "$ref": "#/$defs/TypedReferenceV1" }, "to": { "$ref": "#/$defs/TypedReferenceV1" },
+        "relationType": { "type": "string" }, "assertedBy": { "type": "string" },
+        "epistemicStatus": { "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceSpans": { "type": "array", "items": { "$ref": "#/$defs/SourceSpan" } },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
     "OrientationAtom": {
+      "description": "Deprecated compatibility shape. It mixes semantic kind with epistemic status; new code should use ObservationRecordV1 plus EpistemicStatementV1 and the directional/action records.",
+      "deprecated": true,
       "type": "object", "additionalProperties": false,
       "required": ["id", "agentSpaceId", "arenaId", "yawnId", "epistemicKind", "text", "assertedBy", "sourceSpans", "confidence", "status", "inferenceRunId", "createdAt"],
       "properties": {

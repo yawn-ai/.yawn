@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: repository-manifest
 status: active
-updated: 2026-08-13
+updated: 2026-08-14
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -21,18 +21,23 @@ official_runtime:
   repository_slug_status: current-address
 
 summary: >
-  .yawn is an open protocol for inspectable orientation and agency: attributed
-  fields, provisional arenas, durable Yawns, causal turns, bounded authority,
-  proof, and replayable state.
+  .yawn is the portable holonic record and open protocol. YAWN.bot is its
+  holonic interface and authority-bounded action agent. YAWN.ai is the
+  intelligence that observes, processes, and proposes. Together they preserve
+  attributed orientation, action, consequence, proof, and replayable state.
 
 canonical_sentence: >
-  .yawn does not contain reality. It makes an agent's orientation toward part
-  of reality inspectable, correctable, and replayable.
+  An Agent observes an Arena, orients within it, selects an Intention, and
+  projects an expression or attempt back into that same Arena. The resulting
+  consequences become new Observations. A .yawn preserves the sources,
+  distinctions, authority, and revisions across that passage.
 
 protocol_status:
   contracts_v1: stable
   state_substrate_v1: stable
   agency_holarchy_0_2: working-draft
+  orientation_passage_v1: proposed
+  public_view_v1: proposed
   unified_human_document: not-yet-specified
 
 root_loop:
@@ -45,8 +50,11 @@ root_loop:
 
 constitution: >
   State is the substrate. Desire is attributed directional evidence. Targets
-  are optional and scoped. Moves attempt change; proof evaluates results; and
-  authorized events rematerialize state.
+  are optional and scoped. Intention is not Projection. Every Move is a
+  Projection, but not every Projection is a Move. Consequence is not intent or
+  prediction. Proof evaluates results; authorized events rematerialize state.
+
+constitutional_orientation: orientation-framework-v1.yawn
 
 file_priority:
   - human-readable first
@@ -80,7 +88,7 @@ core_links:
   holarchy: core/holarchy.yawn
   turn: core/turn.yawn
   routing: core/routing.yawn
-  projection_and_aperture: core/projection-and-aperture.yawn
+  view_and_aperture: core/view-and-aperture.yawn
 
 schema_links:
   node: schemas/node.yawn
@@ -95,6 +103,8 @@ schema_links:
   state_update_v1: schemas/state-update.v1.schema.json
   living_snapshot_v1: schemas/living-snapshot.v1.schema.json
   agency_holarchy_draft_0_2: schemas/agency-holarchy.v0.2.schema.json
+  orientation_passage_v1: schemas/orientation-passage.v1.schema.json
+  public_view_v1: schemas/public-view.v1.schema.json
   contracts_v1: contracts/schemas/yawn-contracts-v1.schema.json
 
 spec_links:
@@ -104,6 +114,8 @@ spec_links:
   turns: spec/turns.md
   routing: spec/routing.md
   questions: spec/questions.md
+  competency_questions: spec/competency-questions.md
+  term_admission: spec/term-admission.md
   serialization: spec/serialization.md
 
 documentation_links:
@@ -111,7 +123,7 @@ documentation_links:
   quickstart: docs/quickstart.md
   project_status: docs/project-status.md
   repository_map: docs/repository-map.md
-  projections: docs/projections/README.md
+  views: docs/views/README.md
   research_basis: docs/research-basis.md
 
 shape_links:
@@ -132,7 +144,7 @@ interface_links:
   meaning: interface/meaning.yawn
   move: interface/move.yawn
   memory: interface/memory.yawn
-  projection_stack: interface/projection-stack.yawn
+  orientation_stack: interface/orientation-stack.yawn
 
 question_links:
   doorway: questions/node.yawn
@@ -290,7 +302,7 @@ stable_boundary: >
   through attributed feedback.
 
 question_packet_rule: >
-  Questions are projections over the ontology, not the ontology. A question
+  Questions are Views over the ontology, not the ontology. A question
   packet maps plain-language answers into attributed semantic records and turns
   skipped answers into visible lacunae rather than invented content.
 

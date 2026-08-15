@@ -117,7 +117,7 @@ lacuna:
   open_questions: []
   what_would_make_this_clearer: ""
 
-projection_stack:
+orientation_stack:
   beliefs: []
   habits: []
   values: []
@@ -241,7 +241,7 @@ agent:
     - desires
     - target_conditions
     - lacuna
-    - projection_stack
+    - orientation_stack
     - relationship
     - move
     - boundary

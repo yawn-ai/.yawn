@@ -2,7 +2,7 @@ id: core/movement-loop
 title: "movement loop"
 kind: protocol
 status: v1
-updated: 2026-07-21
+updated: 2026-08-14
 
 formal_loop:
   - signal
@@ -39,8 +39,8 @@ holding_rule: >
   Some yawns are not ready for action. Holding can be the correct movement
   stage when proof, boundary, or stability is missing.
 
-projection_rule: >
-  Longer loops may project this cycle with richer labels, but must preserve the
+view_rule: >
+  Longer loops may render this cycle with richer labels, but must preserve the
   six canonical relations signal -> orientation -> choice -> move -> proof -> update.
 
 proof:

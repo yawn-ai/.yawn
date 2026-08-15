@@ -2,7 +2,7 @@
 #
 # Create, attach, reparent, merge, and split remain proposals until a rightful
 # authority accepts them. The receipt does not delete the before-state.
-# This is a human authoring projection. Executable interchange uses camelCase
+# This is a human authoring View. Executable interchange uses camelCase
 # fields in schemas/agency-holarchy.v0.2.schema.json.
 
 spec_version: "0.2-draft"

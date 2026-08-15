@@ -82,11 +82,11 @@ A merge chooses a canonical survivor and preserves aliases, provenance, and
 disagreement. A split records a partition rationale, shared evidence, and the
 new proof boundary of each child. Neither operation erases the source records.
 
-## Projection positions do not create structure
+## View positions do not create structure
 
 Spiral radius, angle, color, overlay position, and animation are presentation
 fields. They MUST NOT create parentage, relationship activation, authority, or
-identity. A deterministic projection preserves canonical node IDs and typed
+identity. A deterministic View preserves canonical node IDs and typed
 edges; canonical structure continues to come from accepted graph events.
 
 ## No orphans

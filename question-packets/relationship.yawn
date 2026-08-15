@@ -56,14 +56,14 @@ questions:
     writes_to:
       - self_observer.what_i_want
       - measurement.desired
-      - projection_stack.desires
+      - orientation_stack.desires
 
   - id: q_fear
     prompt: "What am I afraid might be true?"
     writes_to:
       - self_observer.what_i_fear
       - measurement.feared
-      - projection_stack.fears
+      - orientation_stack.fears
 
   - id: q_partner_possible
     prompt: "What might my partner want or fear?"

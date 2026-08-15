@@ -124,7 +124,7 @@ lacuna:
     - "Does the question-packet layer make the full schema feel less heavy?"
   what_would_make_this_clearer: "A README path table and this example linked from the examples node."
 
-projection_stack:
+orientation_stack:
   beliefs:
     - "Documentation should demonstrate the thing it teaches."
   habits:

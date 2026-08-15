@@ -1,7 +1,7 @@
 # YAWN specification
 
 Status: **Working Draft 0.2**
-Last updated: 2026-08-13
+Last updated: 2026-08-14
 
 This directory is the human-readable specification for `.yawn`: an open
 protocol for inspectable orientation and agency.
@@ -19,7 +19,8 @@ It does not claim that the record is the world.
 | State substrate | State, evidence, target, transition, and event records | [`schemas/*.v1.schema.json`](../schemas/) |
 | Agency holarchy | Arena, Yawn, relation, turn, routing, and structural change | [Draft 0.2 schema](../schemas/agency-holarchy.v0.2.schema.json) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
-| Projection | Arena, timeline, filesystem, memory, and proof/replay views | Informative only |
+| Orientation passage | Observation, statement, Intention, Projection, Consequence, and proof | [`orientation-passage.v1`](../schemas/orientation-passage.v1.schema.json) |
+| View | Arena, timeline, filesystem, memory, spiral, and proof/replay renderings | Informative only |
 
 The v1 contracts are not silently redefined by this draft. Draft 0.2 is an
 additive candidate for a future unified protocol. Where prose and an executable
@@ -44,7 +45,7 @@ can be tested.
    ranked.
 7. A Yawn MUST preserve source attribution, uncertainty, authority, and proof
    through replay and structural change.
-8. A projection MAY change inclusion, layout, or salience. It MUST NOT change
+8. A View MAY change inclusion, layout, or salience. It MUST NOT change
    truth status, permission, identity, or canonical history.
 9. Every merge, split, or reparent operation MUST begin as a proposal and, when
    accepted, produce an authorized receipt that preserves provenance.
@@ -56,14 +57,16 @@ can be tested.
 - [Holarchy](holarchy.md): containment, lateral relations, and inheritance
 - [Turns](turns.md): causal episodes, waiting, handoff, and replay
 - [Routing](routing.md): attach, create, link, merge, split, and hold
-- [Nine questions](questions.md): the human orientation projection
+- [Nine questions](questions.md): the human orientation View
+- [Competency questions](competency-questions.md): what implementations must answer
+- [Term-admission gate](term-admission.md): how ontology terms earn core status
 - [Serialization](serialization.md): identifiers, extensions, time, and hashes
 
 ## Maturity labels
 
 - **Stable**: compatibility is declared and changes require migration guidance.
 - **Draft**: usable for experiments; names and shapes may change through an RFC.
-- **Informative**: explains or projects the protocol but is not canonical state.
+- **Informative**: explains or renders the protocol but is not canonical state.
 - **Historical**: preserved for provenance and may use earlier language.
 
 The project is maintainer-led and open to evidence-backed revision. Clear

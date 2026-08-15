@@ -1,11 +1,11 @@
-id: interface/projection-stack
-title: "projection stack"
+id: interface/orientation-stack
+title: "orientation stack"
 kind: interface-map
 status: v0-seed
 updated: 2026-07-01
 
 definition: >
-  The projection stack is the set of forces shaping what appears possible in a
+  The orientation stack is the set of forces shaping what appears possible in a
   frame.
 
 asks:
@@ -19,11 +19,11 @@ asks:
   - what boundary pressure exists
 
 rule: >
-  The projection stack is not proof of truth. It is a map of what is currently
+  The orientation stack is not proof of truth. It is a map of what is currently
   shaping the interface.
 
 proof:
   source:
     - readme.yawn
-    - 02-interface/projection-stack.ion
+    - 02-interface/orientation-stack.ion
   status: seed-backed

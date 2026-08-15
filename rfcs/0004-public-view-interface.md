@@ -1,10 +1,10 @@
-# RFC 0004: Public projection and interface contract
+# RFC 0004: Public View and interface contract
 
 Status: **Proposed**
 
 ## Summary
 
-Define one deterministic, public-safe projection contract shared by YAWN.ai,
+Define one deterministic, public-safe View contract shared by YAWN.ai,
 YAWN.bot, downloadable `.yawn` records, QR-resolved routes, and the Orientation
 Spiral. These surfaces are views of one canonical snapshot, never additional
 state stores.
@@ -15,7 +15,8 @@ The public snapshot hash is SHA-256 over canonical JSON containing only:
 
 - canonical reference, coordinate, and visibility;
 - current Yawn;
-- attributed observations;
+- situated Observations and attributed statements;
+- public Intentions, Projections, and Consequences;
 - relationship offer;
 - public source metadata; and
 - redaction receipts.
@@ -30,7 +31,7 @@ The QR resolves to a canonical public route, not an opaque second record.
 
 ## Permanent interface contract
 
-Every public projection exposes:
+Every public View exposes:
 
 1. current coordinate;
 2. one contextual primary action;
@@ -48,11 +49,12 @@ second graph.
 
 ## Orientation Spiral
 
-The human-facing loop is a projection of the canonical protocol:
+The human-facing spiral is a View of the canonical protocol and fuller semantic
+passage:
 
 ```text
-observe -> orient -> relate -> intend -> move
-  -> consequence / proof -> observe again
+observe -> orient -> relate -> intend -> project
+  -> Move when selected -> consequence / proof -> observe again
 ```
 
 The active Yawn or lacuna is the center. Parent and child nodes preserve their
@@ -73,5 +75,7 @@ Legacy routes may redirect to a canonical coordinate. A compatible renderer
 validates the schema, recomputes the hash, resolves graph references, and proves
 that node IDs and relationship states satisfy the semantic rules.
 
-This RFC ships as a proposal with schema, fixture, template, examples, validator,
-and tests. It does not accept itself or authorize publication.
+`View` is deliberately not `Projection`. Projection names what an Agent puts
+into an Arena; View names the rebuildable rendering. This RFC ships as a
+proposal with schema, fixture, template, examples, validator, and tests. It
+does not accept itself or authorize publication.

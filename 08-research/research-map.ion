@@ -62,7 +62,7 @@ research_threads:
       - interface/meaning.yawn
       - interface/move.yawn
       - interface/memory.yawn
-      - interface/projection-stack.yawn
+      - interface/orientation-stack.yawn
   material_records:
     target_files:
       - records/material-time.yawn
@@ -214,14 +214,14 @@ research_threads:
   interface:
     target_files:
       - 02-interface/interface.ion
-      - 02-interface/projection-stack.ion
+      - 02-interface/orientation-stack.ion
       - 02-interface/axis-map.ion
       - interface/mirror.yawn
       - interface/map.yawn
       - interface/meaning.yawn
       - interface/move.yawn
       - interface/memory.yawn
-      - interface/projection-stack.yawn
+      - interface/orientation-stack.yawn
   filesystem:
     target_files:
       - 03-filesystem/cognitive-filesystem.ion

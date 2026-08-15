@@ -1,8 +1,8 @@
 schema_version: "1.0.0"
-kind: public-projection-proposal
+kind: public-view-proposal
 status: proposed
 
-projection_id: projection:replace-me
+view_id: view:replace-me
 canonical_ref: yawn:replace-me
 coordinate: /replace-me
 snapshot_hash: "sha256:replace-after-validation"
@@ -24,6 +24,10 @@ current_yawn:
     - source:replace-me
 
 observations: []
+statements: []
+intentions: []
+projections: []
+consequences: []
 
 relationship_offer:
   id: relationship-offer:replace-me
@@ -75,7 +79,7 @@ sources:
 redactions:
   - id: redaction:replace-me
     category: private_source_body
-    reason: Public projections carry source metadata, not private source bodies.
+    reason: Public Views carry source metadata, not private source bodies.
 
 authority:
   mutation_authorized: false

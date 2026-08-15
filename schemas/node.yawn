@@ -2,7 +2,7 @@ id: schemas/node
 title: "schema modules"
 kind: schema-index
 status: active
-updated: 2026-08-13
+updated: 2026-08-14
 
 purpose: >
   Hold machine-valid state-substrate modules and explicitly labeled protocol
@@ -20,7 +20,8 @@ holds:
   - state-update.v1.schema.json
   - living-snapshot.v1.schema.json
   - agency-holarchy.v0.2.schema.json
-  - public-projection.v1.schema.json
+  - orientation-passage.v1.schema.json
+  - public-view.v1.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
@@ -38,8 +39,13 @@ agency_holarchy_draft: >
   lateral relations, asynchronous turns, transitions, proof receipts, routing
   proposals, and structural-change receipts without redefining v1.
 
-public_projection_contract: >
-  Public Projection V1 is a deterministic, public-safe view contract. Its
+orientation_passage_contract: >
+  Orientation Passage V1 keeps acquisition, statement, Orientation, Choice,
+  Intention, outward Projection, Move, Consequence, authority, and Proof
+  separately addressable.
+
+public_view_contract: >
+  Public View V1 is a deterministic, public-safe rendering contract. Its
   snapshot hash covers semantic content, never layout, media, QR rendering, or
   agent overlay state.
 

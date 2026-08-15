@@ -6,7 +6,9 @@ may change as real use reveals a better arena.
 ## Now — make the ontology inspectable
 
 - [x] Publish the constitutional and state-substrate v1 modules
-- [x] Separate world, field, arena, Yawn, turn, event, transition, and projection
+- [x] Separate World, Field, Arena, Yawn, Turn, event, transition, and View
+- [x] Separate Observation, statement, Intention, outward Projection, Move, and
+  Consequence in an executable draft contract
 - [x] Make waiting and asynchronous causal turns first-class
 - [x] Specify a one-parent holarchy with typed lateral links
 - [ ] Publish and independently verify the live, navigable ontology hub and
@@ -31,7 +33,7 @@ may change as real use reveals a better arena.
 
 ## Later — render without distorting
 
-- [ ] Reference projections for arena, timeline, filesystem, memory, causal
+- [ ] Reference Views for Arena, timeline, filesystem, memory, causal
   graph, and proof/replay
 - [ ] Bidirectional inspection from every rendered object to source and receipt
 - [ ] Import tooling for long conversation histories with local-first redaction

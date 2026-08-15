@@ -5,11 +5,11 @@ status: v0-seed
 updated: 2026-07-01
 
 purpose: >
-  Hold the original interface maps that explain projection, tension, axes,
+  Hold the original interface maps that explain orientation, tension, axes,
   mental models, and relationships.
 
 holds:
-  - projection stack
+  - orientation stack
   - tension field
   - axis map
   - mental-model interface
@@ -37,7 +37,7 @@ links:
 
 proof:
   source:
-    - 02-interface/projection-stack.ion
+    - 02-interface/orientation-stack.ion
     - 02-interface/axis-map.ion
     - 02-interface/relationship-interface.ion
   status: seed-backed

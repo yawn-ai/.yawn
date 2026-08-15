@@ -139,13 +139,13 @@
   .concept-grid { grid-area: concepts; }
 
   .turn-section,
-  .projection-section,
+  .view-section,
   .start-section {
     display: block;
   }
 
   .turn-section .section-heading,
-  .projection-section .section-heading,
+  .view-section .section-heading,
   .start-section .section-heading { margin-bottom: clamp(60px, 9vw, 110px); }
 
   .holarchy-section {
