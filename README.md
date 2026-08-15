@@ -81,6 +81,17 @@ that arena. A turn traces how that contract acts—or waits—through causal tim
 
 [Definitions and semantic planes →](spec/ontology.md)
 
+## Interface contracts
+
+YAWN.ai and YAWN.bot share one semantic palette and one compact public-header
+grammar while keeping their roles distinct. Public roots stay quiet; richer
+View tools appear only through explicit disclosure when the route has a real
+canonical object to inspect.
+
+[Brand contract →](interface/yawn-brand-v1.yawn) ·
+[Chrome contract →](interface/yawn-chrome-v1.yawn) ·
+[Observation View contract →](interface/yawn-observation-view-v1.yawn)
+
 ## Nested agency without hidden authority
 
 Yawns form a holarchy: one acyclic primary-parent backbone plus typed lateral
