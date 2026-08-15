@@ -2,7 +2,7 @@ id: interface/node
 title: "interface node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-08-14
+updated: 2026-08-15
 
 purpose: >
   Hold the five-command brain interface and projection stack.
@@ -18,6 +18,7 @@ holds:
   - shared brand and capability semantics
   - quiet public-root and progressively disclosed public-View shells
   - source-preserving + Yawn creation contract
+  - local observation-art generation contract
 
 receives:
   - lived signals
@@ -47,6 +48,7 @@ links:
   - interface/yawn-brand-v1.yawn
   - interface/yawn-capability-tags-v1.yawn
   - interface/new-yawn-v0.1.yawn
+  - interface/local-observation-art-v0.1.yawn
 
 proof:
   source:
