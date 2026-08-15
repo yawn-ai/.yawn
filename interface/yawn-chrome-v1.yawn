@@ -2,7 +2,7 @@ id: interface/yawn-chrome-v1
 title: "YAWN chrome contract v1"
 kind: interface-contract
 status: active
-updated: 2026-08-11
+updated: 2026-08-14
 
 types:
   lens:
@@ -22,6 +22,51 @@ types:
     - connected
     - transmitting
     - ready
+
+surface_classes:
+  public_root:
+    purpose: quiet host entry
+    required:
+      - host-specific brand link
+      - current coordinate
+      - github protocol link
+      - sign-in or account boundary when relevant
+    prohibited:
+      - authenticated sidebar
+      - interface lens
+      - type taxonomy
+      - repository status
+      - qr action
+      - download action
+      - contextual action rail
+      - explanatory header copy
+    body_rule: one centered governing question or one concise host-role statement
+  public_view:
+    purpose: public-safe rendering of a canonical coordinate
+    header: same geometry and base slots as public_root
+    observation_contract: interface/yawn-observation-view-v1
+    disclosure_rule: >
+      Route-specific action, reason, download, QR, snapshot hash, and bot tools
+      appear in the body or one explicit inspection disclosure only when the
+      route has valid public projection data for them.
+    semantic_boundary:
+      - a View is a rebuildable rendering, not an ontological Projection
+      - a primary action is an affordance or proposal, not authority or a Move
+  member:
+    purpose: authenticated orientation and action workspace
+    contract: member_header
+
+public_header_geometry:
+  desktop_height: 56px
+  mobile_height: 52px
+  desktop_inline_padding: 20px
+  mobile_inline_padding: 12px
+  control_size: 40px
+  control_radius: 6px
+  divider: "1px solid #343434"
+  background: "#181716"
+  focus: "#2fe3f4"
+  invariant: one row without horizontal overflow
 
 member_header:
   left:
@@ -107,5 +152,8 @@ invariants:
   - public acquisition never opens a sidebar without an explicit identity-control action
   - provider discovery never represents setup-required intelligence as available
   - target feedback preserves selected component context and human-authored intent separately
+  - yawn.ai and yawn.bot public roots use the same header geometry and canonical brand tokens
+  - host identity and coordinate may change between applications; interaction grammar does not
+  - public-root simplicity supersedes universal expanded Public View header requirements
 
 schema_version: yawn.chrome.v1

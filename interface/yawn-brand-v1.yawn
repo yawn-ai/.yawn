@@ -2,7 +2,7 @@ id: interface/yawn-brand-v1
 title: "YAWN brand contract v1"
 kind: interface-contract
 status: active
-updated: 2026-08-10
+updated: 2026-08-14
 
 purpose: >
   Give every YAWN lens the same visual meaning without making every surface
@@ -18,6 +18,27 @@ colors:
   source_and_provenance: "#ff7300"
   resolved_or_verified: "#64ff03"
 
+css_variables:
+  --yawn-field: "#000000"
+  --yawn-raised: "#181716"
+  --yawn-text: "#ffffff"
+  --yawn-lime: "#e8ff03"
+  --yawn-cyan: "#2fe3f4"
+  --yawn-pink: "#fd49ac"
+  --yawn-orange: "#ff7300"
+  --yawn-green: "#64ff03"
+
+semantic_roles:
+  signal_and_source: --yawn-orange
+  observation_and_connection: --yawn-cyan
+  proposed_interpretation: --yawn-pink
+  open_or_unresolved: --yawn-lime
+  correction_or_verified: --yawn-green
+  note: >
+    These aliases make the observation passage legible without changing the
+    stable palette. Product marks and a page's one primary action may also use
+    lime, but color never changes epistemic kind or authority.
+
 rules:
   - default surfaces foreground one state and one next action with the least visible copy that preserves comprehension
   - rationale taxonomy and repeated status live behind explicit disclosure rather than beside self-explanatory controls
@@ -26,6 +47,9 @@ rules:
   - headings use the pixel or mono face and body copy uses a readable sans face
   - chrome uses one-pixel dividers, slim route tabs, and restrained corner radii
   - public pages do not render the authenticated sidebar
+  - both public hosts consume these exact values rather than near-match literals
+  - a route skin may add visual roles but cannot remap canonical semantic roles
+  - the proposed yawn-64 spiral skin remains view-scoped and non-canonical until its reference is approved
   - legacy asset paths may remain aliases but are not public product identity
 
 proof:

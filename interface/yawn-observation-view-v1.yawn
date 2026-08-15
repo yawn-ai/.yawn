@@ -1,0 +1,74 @@
+id: interface/yawn-observation-view-v1
+title: "YAWN observation View contract v1"
+kind: interface-contract
+status: active
+updated: 2026-08-15
+
+purpose: >
+  Render one portable observation knowledge note as a holon whose source,
+  epistemic distinctions, parentage, preference inheritance, proof, and
+  authority boundary remain inspectable.
+
+object:
+  file_kind: .yawn
+  holon_kind: knowledge_note
+  promotion_level: L0
+  required_coordinates:
+    - coordinate
+    - parent_coordinate
+    - source_coordinate
+  portable: true
+  canonical_state: false
+
+view:
+  class: public_view
+  render_projection: true
+  ontological_projection_record: false
+  default: local_model
+  primary_object_count: 1
+  required_nodes:
+    - source
+    - observation
+    - inference
+    - lacuna
+    - proof
+  forbidden:
+    - marketing_section_stack
+    - private_profile_read
+    - automatic_persistence
+    - automatic_model_call
+    - automatic_promotion
+
+preference_inheritance:
+  order:
+    - system_defaults
+    - principal_public_preferences
+    - local_yawn_override
+  provenance_required: true
+  private_values_on_public_route: forbidden
+  local_override_changes_semantic_truth: false
+
+epistemic_roles:
+  source: source_and_provenance
+  observation: observation_and_connection
+  inference: proposed_interpretation
+  lacuna: open_or_unresolved
+  proof: correction_or_verified
+  invariant: color never replaces the text label or epistemic state
+
+authority:
+  mutationAuthorized: false
+  persistenceAuthorized: false
+  modelCallAuthorized: false
+  externalEffectsAuthorized: false
+
+proof:
+  acceptance:
+    - one selected .yawn holon is the primary interface object
+    - source remains visible and unchanged by inference
+    - every preference layer names its source coordinate
+    - the public route does not imply access to private principal state
+    - selecting a node changes only the local View
+    - desktop and mobile render without overflow or runtime errors
+
+schema_version: yawn.observation-view.v1

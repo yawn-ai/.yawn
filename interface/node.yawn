@@ -2,7 +2,7 @@ id: interface/node
 title: "interface node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-14
 
 purpose: >
   Hold the five-command brain interface and projection stack.
@@ -16,6 +16,7 @@ holds:
   - projection stack
   - shared YAWN chrome contract
   - shared brand and capability semantics
+  - quiet public-root and progressively disclosed public-View shells
   - source-preserving + Yawn creation contract
 
 receives:
