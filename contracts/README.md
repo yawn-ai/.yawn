@@ -12,6 +12,27 @@ source atoms, change proposals, grants, budgets, events, and proof receipts used
 by current runtimes. Canonical events remain attributable and replayable. Model
 output remains a proposal until an authenticated authority grant accepts it.
 
+Version 1.1 adds additive, generated types for the normalized passage:
+
+- `ActorDescriptorV1`
+- `ObservationRecordV1`
+- `EpistemicStatementV1`
+- `IntentionRecordV1`
+- `ProjectionRecordV1`
+- `ConsequenceRecordV1`
+- `TypedRelationV1`
+
+`ObservationRecordV1` is situated acquisition. `EpistemicStatementV1` is an
+attributed representation grounded in one or more Observations.
+`ProjectionRecordV1` is what an Agent actually expresses or attempts in an
+Arena; it is not a rendering View. `OrientationAtom` remains readable but is
+deprecated because its `epistemicKind` mixes semantic kinds with epistemic
+status.
+
+A possible Projection is an affordance or candidate, not yet a
+`ProjectionRecordV1`. A proposal becomes a Projection record only when that
+proposal is actually expressed into an Arena.
+
 ## Scope boundary
 
 This v1 schema is **not** the complete schema for every human-readable `.yawn`

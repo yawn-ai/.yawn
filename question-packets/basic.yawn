@@ -43,9 +43,9 @@ questions:
     writes_to:
       - measurement.desired
       - measurement.feared
-      - projection_stack.needs
-      - projection_stack.desires
-      - projection_stack.fears
+      - orientation_stack.needs
+      - orientation_stack.desires
+      - orientation_stack.fears
 
   - id: q_missing
     prompt: "What is missing or unclear?"

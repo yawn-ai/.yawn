@@ -1,14 +1,14 @@
 id: question-packets/orientation-nine
-title: "Nine-question orientation projection"
+title: "Nine-question orientation View"
 kind: question-packet
 status: draft-0.2
-updated: 2026-08-13
+updated: 2026-08-14
 
 purpose: >
   Project the shared ontology into nine human questions while preserving source,
   epistemic status, authority, privacy, uncertainty, and skipped answers.
 
-projection_rule: >
+view_rule: >
   These questions are not nine mandatory storage fields. An interface may ask
   a relevant subset or map source material into proposed answers. Every answer
   remains attributed; skipped answers become lacunae; AI answers remain

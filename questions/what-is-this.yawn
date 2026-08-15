@@ -2,7 +2,7 @@ id: questions/what-is-this
 title: "What is this?"
 kind: orientation-question
 status: preview
-updated: 2026-07-11
+updated: 2026-08-14
 
 short_answer: >
   .yawn is a plain-text shape for making orientation, inference, missing
@@ -14,9 +14,9 @@ why_it_exists: >
   either one into hidden authority.
 
 relationship:
-  yawn_file: "the portable orientation and memory shape"
-  yawn_bot: "the official co-orientation runtime that loads the shape across wallet, browser, office, object, and world projections"
-  yawn_ai: "the intelligence substrate behind those interfaces"
+  yawn_file: "the portable holonic record and open protocol"
+  yawn_bot: "the holonic interface and action agent, bounded by explicit authority"
+  yawn_ai: "the intelligence that observes, processes, and proposes without becoming the source of truth"
 
 public_boundary: >
   This repository contains portable protocol contracts, examples, and

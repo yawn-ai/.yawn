@@ -1,6 +1,6 @@
 # Project status
 
-Last verified: 2026-08-13
+Last verified: 2026-08-14
 
 YAWN is public, MIT licensed, maintainer-led, and under active development.
 Parts of the protocol are stable enough to build against; the integrated
@@ -25,7 +25,9 @@ packages. Security or correctness fixes may still require additive changes.
 - the exact portable `.yawn` document envelope
 - cross-module canonical hashing and reference resolution
 - merge/split thresholds and conformance profiles
-- public projection APIs for arena, timeline, filesystem, memory, and replay
+- public View APIs for arena, timeline, filesystem, memory, and replay
+- Orientation Passage V1 and Public View V1, both proposed until maintainer
+  acceptance
 
 Draft artifacts are useful for experiments but may change after RFC review.
 
@@ -54,7 +56,7 @@ For a named stable version:
 3. accepted RFC or ADR;
 4. human-readable spec;
 5. conformance fixture and test;
-6. template, guide, or projection.
+6. template, guide, or View.
 
 This is not permission to ignore a contradiction. A contradiction is a
 repository lacuna and should be reported. Until resolved, use the narrower

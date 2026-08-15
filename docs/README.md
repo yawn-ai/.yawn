@@ -19,15 +19,17 @@ and historical material so each can be read with the right level of trust.
 1. Start with the [specification status and invariants](../spec/README.md).
 2. Learn the [ontology](../spec/ontology.md) and [state substrate](../core/state.yawn).
 3. Validate the [v1 contracts](../contracts/) and [state schemas](../schemas/).
-4. Experiment with the [Agency Holarchy Draft 0.2](../schemas/agency-holarchy.v0.2.schema.json).
-5. Read [serialization and compatibility](../spec/serialization.md).
+4. Inspect [Orientation Passage V1](../schemas/orientation-passage.v1.schema.json)
+   and [Public View V1](../schemas/public-view.v1.schema.json).
+5. Experiment with the [Agency Holarchy Draft 0.2](../schemas/agency-holarchy.v0.2.schema.json).
+6. Read [serialization and compatibility](../spec/serialization.md).
 
 ### I want to understand the theory
 
 1. Read [World → Field → Arena → Yawn](../spec/ontology.md).
 2. Read the [holarchy](../spec/holarchy.md), [turn](../spec/turns.md), and
    [routing](../spec/routing.md) specifications.
-3. See how [projections](projections/README.md) render one canonical graph.
+3. See how [Views](views/README.md) render one canonical graph.
 4. Review the [research basis and limits](research-basis.md).
 
 ### I want to contribute
@@ -50,7 +52,7 @@ and historical material so each can be read with the right level of trust.
 | [`templates/`](../templates/) | Commented authoring surfaces |
 | [`examples/`](../examples/) | Informative, inspectable use cases |
 | [`interface/`](../interface/) | Presentation and interaction contracts |
-| [`q-space/`](../q-space/) | Question-oriented projection |
+| [`q-space/`](../q-space/) | Question-oriented View |
 | [`research/`](../08-research/) and [`references/`](../references/) | Evidence, influences, and historical locks |
 | Numbered `00-`…`08-` folders | Historical `.ion` bridge; preserved, not current source of truth |
 

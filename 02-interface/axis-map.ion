@@ -36,6 +36,6 @@ reading_rule:
 proof:
   source:
     - 00-start/what-is-an-ion.ion
-    - 02-interface/projection-stack.ion
+    - 02-interface/orientation-stack.ion
   claim: Axes make the lived frame addressable without overclaiming certainty.
   proof_state: seed-backed

@@ -20,6 +20,13 @@ export type Uuid = string;
  * via the `definition` "Timestamp".
  */
 export type Timestamp = string;
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ProjectionRecordV1".
+ */
+export type ProjectionRecordV1 = {
+  [k: string]: unknown;
+};
 
 export interface YAWNContractsV1 {
   constitution?: YawnConstitutionV1;
@@ -125,6 +132,174 @@ export interface SourceSpan {
   sourceSha256: Sha256;
 }
 /**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "TypedReferenceV1".
+ */
+export interface TypedReferenceV1 {
+  kind:
+    | "actor"
+    | "agent_space"
+    | "arena"
+    | "source"
+    | "yawn"
+    | "observation"
+    | "statement"
+    | "orientation"
+    | "choice"
+    | "value"
+    | "goal"
+    | "target"
+    | "lacuna"
+    | "intention"
+    | "projection"
+    | "move"
+    | "event"
+    | "consequence"
+    | "authority_grant"
+    | "proof_receipt"
+    | "relationship"
+    | "view";
+  id: string;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ActorDescriptorV1".
+ */
+export interface ActorDescriptorV1 {
+  id: string;
+  agentSpaceId: string;
+  kind: "human" | "assistant_model" | "tool" | "service" | "collective" | "institution";
+  label: string;
+  capabilities: string[];
+  limitations: string[];
+  createdAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ObservationRecordV1".
+ */
+export interface ObservationRecordV1 {
+  id: string;
+  agentSpaceId: string;
+  arenaId: string | null;
+  observerId: string;
+  acquisitionKind:
+    | "perception"
+    | "report_received"
+    | "message_received"
+    | "file_read"
+    | "tool_result"
+    | "memory_recall"
+    | "event_witness"
+    | "import"
+    | "other";
+  acquiredAt: Timestamp;
+  /**
+   * @minItems 1
+   */
+  sourceSpans: [SourceSpan, ...SourceSpan[]];
+  observedRefs: TypedReferenceV1[];
+  conditions: string[];
+  limitations: string[];
+  status: "proposed" | "accepted" | "rejected" | "superseded";
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "EpistemicStatementV1".
+ */
+export interface EpistemicStatementV1 {
+  id: string;
+  agentSpaceId: string;
+  arenaId: string | null;
+  yawnId: string | null;
+  semanticKind:
+    "claim" | "lacuna" | "value" | "goal" | "target" | "boundary" | "evidence" | "outcome" | "revision" | "other";
+  epistemicStatus: "observed" | "reported" | "inferred" | "assumed" | "predicted" | "disputed" | "unknown";
+  text: string;
+  /**
+   * @minItems 1
+   */
+  aboutRefs: [TypedReferenceV1, ...TypedReferenceV1[]];
+  assertedBy: string;
+  /**
+   * @minItems 1
+   */
+  groundedObservationIds: [string, ...string[]];
+  /**
+   * @minItems 1
+   */
+  sourceSpans: [SourceSpan, ...SourceSpan[]];
+  confidence: number;
+  inferenceRunId: string | null;
+  status: "proposed" | "accepted" | "rejected" | "superseded";
+  createdAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "IntentionRecordV1".
+ */
+export interface IntentionRecordV1 {
+  id: string;
+  agentSpaceId: string;
+  arenaId: string | null;
+  yawnId: string | null;
+  heldBy: string;
+  direction: string;
+  /**
+   * @minItems 1
+   */
+  intentionKinds: [
+    "understand" | "communicate" | "preserve" | "test" | "repair" | "change" | "act" | "hold_open",
+    ...("understand" | "communicate" | "preserve" | "test" | "repair" | "change" | "act" | "hold_open")[]
+  ];
+  selectedByChoiceId: string | null;
+  sourceStatementIds: string[];
+  status: "proposed" | "endorsed" | "withdrawn" | "superseded" | "fulfilled";
+  createdAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ConsequenceRecordV1".
+ */
+export interface ConsequenceRecordV1 {
+  id: string;
+  agentSpaceId: string;
+  arenaId: string;
+  yawnId: string | null;
+  /**
+   * @minItems 1
+   */
+  projectionIds: [string, ...string[]];
+  recordedBy: string;
+  description: string;
+  consequenceStatus: "expected" | "unexpected" | "mixed" | "unknown" | "disputed";
+  statementIds: string[];
+  eventIds: string[];
+  occurredAt: Timestamp | null;
+  status: "proposed" | "accepted" | "rejected" | "superseded";
+  createdAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "TypedRelationV1".
+ */
+export interface TypedRelationV1 {
+  id: string;
+  agentSpaceId: string;
+  from: TypedReferenceV1;
+  to: TypedReferenceV1;
+  relationType: string;
+  assertedBy: string;
+  epistemicStatus: "observed" | "reported" | "inferred" | "assumed" | "predicted" | "disputed" | "unknown";
+  confidence: number;
+  sourceSpans: SourceSpan[];
+  status: "proposed" | "accepted" | "rejected" | "superseded";
+  createdAt: Timestamp;
+}
+/**
+ * @deprecated
+ * Deprecated compatibility shape. It mixes semantic kind with epistemic status; new code should use ObservationRecordV1 plus EpistemicStatementV1 and the directional/action records.
+ *
  * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
  * via the `definition` "OrientationAtom".
  */

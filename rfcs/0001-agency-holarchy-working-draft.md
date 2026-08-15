@@ -8,7 +8,7 @@
 ## Summary
 
 Publish an additive, experimental vocabulary and schema for the layer missing
-between YAWN's state substrate and its Agent Arena projection: world horizon,
+between YAWN's state substrate and its Agent Arena View: world horizon,
 field, arena, Yawn holarchy, causal turn, move, event, transition, proof receipt,
 routing proposal, and authorized structural-change receipt.
 
@@ -57,7 +57,7 @@ Routing and structural mutation obey these boundaries:
 - accepted merge/split/reparent operations require a human-authorized receipt;
 - source identity, aliases, disagreement, and proof continuity survive change;
 - canonical events are append-only; and
-- projections do not alter truth, permission, or state.
+- Views do not alter truth, permission, or state.
 
 ## Alternatives
 
@@ -66,7 +66,7 @@ Routing and structural mutation obey these boundaries:
 2. **Arena equals Yawn.** Rejected because one situation can hold several
    independently closable orientation contracts.
 3. **Folders establish the holarchy.** Rejected because physical placement is a
-   useful projection but cannot prove semantic identity or containment.
+   useful View but cannot prove semantic identity or containment.
 4. **One global turn sequence.** Rejected because real agent work is concurrent,
    asynchronous, nested, and partly ordered.
 5. **Merge by embedding similarity.** Rejected because similarity cannot protect
@@ -88,7 +88,7 @@ embedded commands or YAML constructors.
 
 This is a new `agency-holarchy.v0.2` aggregate in the existing root `schemas/`
 module. It does not change stable v1 JSON. Human authoring templates remain
-informative projections and label their snake_case-to-camelCase boundary.
+informative Views and label their snake_case-to-camelCase boundary.
 
 Legacy migration guidance:
 

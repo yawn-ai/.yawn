@@ -18,6 +18,7 @@
     "unresolvedProofRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "focusLoopRef": { "type": "string" },
     "projection": {
+      "description": "Deprecated v1 compatibility name for presentation settings. New contracts call this a View; this field does not mean an Agent Projection.",
       "type": "object",
       "additionalProperties": false,
       "required": ["view", "typeFilters", "format", "resolution", "presentationStatus", "confirmationMode"],

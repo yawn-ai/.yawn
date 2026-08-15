@@ -27,7 +27,7 @@ holds:
   - Yawn holarchy and typed relations
   - asynchronous turns and causal time
   - arena discovery and structural routing
-  - projection and aperture boundaries
+  - View and aperture boundaries
 
 receives:
   - readme.yawn
@@ -63,7 +63,7 @@ links:
   - core/holarchy.yawn
   - core/turn.yawn
   - core/routing.yawn
-  - core/projection-and-aperture.yawn
+  - core/view-and-aperture.yawn
 
 proof:
   source:

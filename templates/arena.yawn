@@ -2,7 +2,7 @@
 #
 # An arena is a provisional relevance boundary, not the whole world and not a
 # Yawn. Preserve what this frame excludes so it can be challenged later.
-# This is a human authoring projection. Executable interchange uses camelCase
+# This is a human authoring View. Executable interchange uses camelCase
 # fields in schemas/agency-holarchy.v0.2.schema.json.
 
 spec_version: "0.2-draft"

@@ -13,8 +13,8 @@ schemas/                   state modules and labeled protocol drafts
 core/                      concept records
 templates/                 authoring surfaces
 examples/ + fixtures/      explanatory and executable evidence
-docs/                      guides, status, projections, research boundary
-interface/ + q-space/      presentation contracts and projections
+docs/                      guides, status, Views, research boundary
+interface/ + q-space/      interface contracts and views
 rfcs/ + adr/               proposed and accepted change rationale
 ```
 
@@ -41,7 +41,7 @@ runtime configuration.
 - `yawn.yawn` is the machine-addressable repository manifest.
 - Executable schemas are canonical only for the version and kind named in their
   `$id`; there is not yet one schema for every `.yawn` file.
-- A projection is never canonical state.
+- A View is never canonical state.
 
 This replaces the earlier “canonical source / mirror” wording, which implied a
 generation guarantee that did not exist.
@@ -55,7 +55,7 @@ spec/ normative intent
   -> schemas/ executable serialization
     -> generated reference and types
       -> templates/examples conformance evidence
-        -> projections and products
+        -> Views and products
 ```
 
 The convergence will happen through compatible RFCs and migration receipts,

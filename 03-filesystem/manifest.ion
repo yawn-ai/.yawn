@@ -75,7 +75,7 @@ files:
   - interface/mirror.yawn
   - interface/move.yawn
   - interface/node.yawn
-  - interface/projection-stack.yawn
+  - interface/orientation-stack.yawn
   - observations/lived-agency.yawn
   - observations/node.yawn
   - question-packets/basic.yawn
@@ -139,7 +139,7 @@ files:
   - 01-core/reality-boundary.ion
   - 02-interface/node.yawn
   - 02-interface/interface.ion
-  - 02-interface/projection-stack.ion
+  - 02-interface/orientation-stack.ion
   - 02-interface/tension-field.ion
   - 02-interface/axis-map.ion
   - 02-interface/mental-model-interface.ion

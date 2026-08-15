@@ -31,6 +31,6 @@ interface_question:
 proof:
   source:
     - 00-start/root.ion
-    - 02-interface/projection-stack.ion
+    - 02-interface/orientation-stack.ion
   claim: John is the observer-interface layer for making the current frame inspectable.
   proof_state: seed-backed

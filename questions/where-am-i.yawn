@@ -2,7 +2,7 @@ id: questions/where-am-i
 title: "Where am I?"
 kind: orientation-question
 status: preview
-updated: 2026-07-11
+updated: 2026-08-14
 
 first_answer: "You are here."
 
@@ -20,7 +20,7 @@ output:
   device_orientation:
     runtime: ""
     protocol_ref: ""
-    projection: ""
+    view: ""
     route: ""
     capabilities: []
     available_sources: []

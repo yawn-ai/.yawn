@@ -2,7 +2,7 @@
 #
 # Candidate retrieval is allowed; automatic structural truth is not. Check the
 # hard gates before comparing similarity or compression.
-# This is a human authoring projection. Executable interchange uses camelCase
+# This is a human authoring View. Executable interchange uses camelCase
 # fields in schemas/agency-holarchy.v0.2.schema.json.
 
 spec_version: "0.2-draft"

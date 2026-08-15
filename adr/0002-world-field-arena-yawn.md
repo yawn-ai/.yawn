@@ -18,7 +18,7 @@ information. Arena is a provisional relevance boundary. Yawn is a durable
 orientation contract inside an arena. Turn is a causal episode through which
 the contract may move or wait.
 
-World views, arena views, timelines, and filesystems are projections over
+World Views, Arena Views, timelines, and filesystems are derived over
 canonical IDs and events. They cannot determine truth, permission, or identity.
 
 ## Consequences

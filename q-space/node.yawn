@@ -1,14 +1,14 @@
 id: q-space/node
 title: "Q-Space"
-kind: unresolved-question-projection
+kind: unresolved-question-view
 status: owner-review-required
-updated: 2026-07-16
+updated: 2026-08-14
 protocol_revision: q-space.protocol.v1
 
 governing_question: "What is Q-Space?"
 
 answer: >
-  Q-Space is the human-facing projection of unresolved questions. It preserves
+  Q-Space is the human-facing View of unresolved questions. It preserves
   attributed answers, candidate next questions, repeated Pattern candidates,
   state transitions, bounded probes, and proof without turning repetition or
   model output into truth.
@@ -17,7 +17,7 @@ responsibility_map:
   .yawn: portable public contracts
   YAWN.bot: first runtime and account boundary
   Supabase: private account-owned event ledger
-  Q-Space: navigable projection of that ledger
+  Q-Space: navigable View of that ledger
   YAWN.ai: optional intelligence adapter, never source of truth
 
 routes:

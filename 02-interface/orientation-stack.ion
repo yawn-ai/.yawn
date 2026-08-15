@@ -1,12 +1,12 @@
 ion:
-  id: 02-interface/projection-stack
-  title: projection stack
+  id: 02-interface/orientation-stack
+  title: orientation stack
   type: interface-map
   status: seed-canon
   updated: 2026-06-30
 
 definition:
-  The projection stack is the layered set of forces shaping what the human
+  The orientation stack is the layered set of forces shaping what the human
   experiences as possible, impossible, obvious, taboo, available, or invisible.
 
 layers:
@@ -37,5 +37,5 @@ translation:
 proof:
   source:
     - 08-research/june-30-2026-alignment.ion
-  claim: The projection stack exposes the components shaping possible action.
+  claim: The orientation stack exposes the components shaping possible action.
   proof_state: seed-backed

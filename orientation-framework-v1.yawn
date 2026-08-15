@@ -1,0 +1,119 @@
+id: yawn:protocol:orientation-framework-v1
+kind: yawn.constitution
+version: 1.0.0
+status: working-draft
+title: "YAWN Orientation Framework V1"
+
+purpose: >
+  Define the smallest public protocol needed to preserve how an attributed
+  Agent receives from and acts into an Arena without collapsing observation,
+  interpretation, intention, expression, consequence, proof, or authority.
+
+constitutional_sentence: >
+  An Agent observes an Arena, orients within it, selects an Intention, and
+  projects an expression or attempt back into that same Arena. The resulting
+  consequences become new Observations. A .yawn preserves the sources,
+  distinctions, authority, and revisions across that passage.
+
+compact_loop:
+  - signal
+  - orientation
+  - choice
+  - move
+  - proof
+  - update
+
+semantic_passage:
+  - observation
+  - orientation
+  - value_goal_or_lacuna
+  - choice
+  - intention
+  - projection
+  - consequence
+  - observation_prime
+  - proof_and_replay
+  - update
+
+definitions:
+  agent: >
+    An attributed human, collective, institution, software system, model, or
+    tool represented with explicit capabilities, limits, and authority.
+  agent_space: >
+    The root context in which an Agent's records, membership, authority, and
+    privacy are resolved.
+  arena: >
+    A provisional, purpose-framed slice of the world in which observations,
+    intentions, projections, and consequences can be related.
+  observation: >
+    What became available to an attributed Agent from within an Arena, under
+    particular conditions and limits. An Observation is an acquisition event;
+    it is not the same object as a statement describing or interpreting it.
+  orientation: >
+    The Agent's revisable working model of what is happening, what matters,
+    what is missing, and which possibilities remain open.
+  intention: >
+    The Agent's presently selected or endorsed direction: what it means to
+    understand, communicate, preserve, test, repair, change, or do.
+  projection: >
+    What the Agent actually expresses, represents, proposes, commits, or
+    attempts back into an Arena.
+  move: >
+    A Projection selected as an attempt to change or preserve a condition.
+  consequence: >
+    What the Arena and reality return, whether or not it matches the Agent's
+    Intention, Projection, or prediction.
+  proof: >
+    An explicit method and receipt for checking a prediction, condition, or
+    claimed consequence against evidence and a falsifier.
+  view: >
+    A rebuildable rendering of canonical records for a purpose. A View can
+    change inclusion, layout, aggregation, or salience; it cannot change
+    identity, epistemic status, authority, privacy, proof, or event history.
+
+projection_kinds:
+  - expression
+  - claim
+  - model
+  - question
+  - communication
+  - proposal
+  - commitment
+  - move
+
+invariants:
+  - "The same Arena can be observed and acted into."
+  - "Intention is not Projection."
+  - "Projection is not Consequence."
+  - "Every Move is a Projection; not every Projection is a Move."
+  - "Observation acquisition is distinct from attributed statement representation."
+  - "A Yawn may have no endorsed Intention, Projection, Target, or Move."
+  - "An AI inference remains attributed to the inference-producing Agent or run."
+  - "Targets are optional and separately ratified."
+  - "A Move cannot prove itself."
+  - "No proposal becomes canonical without rightful approval."
+  - "Child authority is a subset of parent authority plus an explicit grant."
+  - "Views never mutate canonical state or widen authority."
+  - "Reality is not serialized exhaustively and may disconfirm every model."
+
+system_roles:
+  dot_yawn: "portable holonic record and open protocol"
+  yawn_bot: "holonic interface and authority-bounded action agent"
+  yawn_ai: "intelligence and orientation compiler that produces attributed proposals"
+
+proof:
+  requires:
+    - "Observation, Intention, Projection, and Consequence remain separately addressable."
+    - "Every outward action resolves to an Authority Grant or remains proposed."
+    - "Every accepted update can replay to the same materialized-state hash."
+    - "Every public View omits private source bodies and preserves redaction receipts."
+  falsifiers:
+    - "An implementation treats intended meaning as the actual projection."
+    - "An implementation treats a projection as its consequence."
+    - "A renderer becomes a second state store."
+    - "AI testimony is attributed to the cited human rather than the inference run."
+
+authority:
+  mutation_authorized: false
+  external_effects_authorized: false
+  adoption_requires: "authenticated authorized decision plus append-only receipt"

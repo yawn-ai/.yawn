@@ -2,19 +2,19 @@ id: q-space/protocol-v1
 title: "Q-Space protocol v1"
 kind: public-protocol
 status: owner-review-required
-updated: 2026-07-16
+updated: 2026-08-14
 schemaVersion: "1"
 protocolRevision: q-space.protocol.v1
 
 objects:
-  QSpaceDocumentV1: { contains: [responsibility_map, protocol_pin, projection] }
+  QSpaceDocumentV1: { contains: [responsibility_map, protocol_pin, view] }
   QuestionNodeV1: { contains: [prompt, parentQuestionId, state, purpose, displayPosition] }
   AnswerEventV1: { append_only: true, contains: [questionId, body, normalizedFingerprint, meaningfulTokens, clientRequestId] }
   FrontierCandidateV1: { contains: [questionId, prompt, rationale, scoreInputs, score, rank, status, excludedReasons] }
   QuestionTransitionEventV1: { append_only: true, contains: [questionId, fromState, toState, eventKind, reason, purpose, ownerConfirmed, proofEventId] }
   PatternCandidateV1: { contains: [questionId, answerEventIds, similarity, matchKind, state, summary] }
   ProofEventV1: { append_only: true, contains: [questionId, kind, outcome, purpose, summary, probePlan, bounded, ownerConfirmedResolution] }
-  QSpaceProjectionV1: { derived: true, contains: [rootQuestionId, activeQuestionId, branchQuestionIds, siblingQuestionIds] }
+  QSpaceViewV1: { derived: true, contains: [rootQuestionId, activeQuestionId, branchQuestionIds, siblingQuestionIds] }
 
 required_on_every_object:
   - schemaVersion

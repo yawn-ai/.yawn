@@ -1,0 +1,374 @@
+{
+  "schemaVersion": "orientation-passage.v1",
+  "documentId": "document:relationship-misalignment-fixture",
+  "agentSpaceRef": "agent-space:dave",
+  "actors": [
+    {
+      "actorId": "actor:dave",
+      "kind": "human",
+      "label": "Dave",
+      "capabilities": ["report his own intention", "send a message"],
+      "limitations": ["cannot directly know another person's interpretation"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "actorId": "actor:alex",
+      "kind": "human",
+      "label": "Alex",
+      "capabilities": ["report their own experience"],
+      "limitations": ["fixture identity; not a claim about a real person"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "actorId": "agent:yawn-ai:run-001",
+      "kind": "ai_model",
+      "label": "YAWN.ai inference run 001",
+      "capabilities": ["compare attributed records", "propose a divergence statement"],
+      "limitations": ["cannot know private inner states", "cannot approve its own inference"],
+      "control": { "visibility": "private", "authorityState": "denied", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "arenas": [
+    {
+      "arenaId": "arena:friendship-repair",
+      "agentSpaceRef": "agent-space:dave",
+      "title": "A friendship repair conversation",
+      "framedByRefs": ["actor:dave", "actor:alex"],
+      "purpose": "Inspect a communication mismatch without assigning hidden intention or blame.",
+      "includes": ["the stated intention", "the sent message", "the reported reception", "the observed distance"],
+      "excludes": ["claims about either person's complete inner state"],
+      "revisitWhen": ["either participant corrects the record"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "source:dave:repair-reflection",
+      "sourceKind": "reflection",
+      "assertedBy": "actor:dave",
+      "sourceSha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "occurredAt": "2026-08-14T16:00:00Z",
+      "localOnly": true,
+      "metadata": { "fixture": true },
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "sourceId": "source:dave:outbound-message",
+      "sourceKind": "message",
+      "assertedBy": "actor:dave",
+      "sourceSha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "occurredAt": "2026-08-14T16:05:00Z",
+      "localOnly": true,
+      "metadata": { "fixture": true },
+      "control": { "visibility": "private", "authorityState": "granted", "authorityGrantRefs": ["grant:dave:communicate"], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "sourceId": "source:alex:reported-reception",
+      "sourceKind": "message",
+      "assertedBy": "actor:alex",
+      "sourceSha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "occurredAt": "2026-08-14T16:10:00Z",
+      "localOnly": true,
+      "metadata": { "fixture": true },
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "yawns": [
+    {
+      "yawnId": "yawn:friendship-repair-misalignment",
+      "arenaRef": "arena:friendship-repair",
+      "title": "Intention, projection, reception, and consequence diverged",
+      "status": "open",
+      "targetRefs": [],
+      "observationRefs": ["observation:dave:reflection", "observation:alex:message-received"],
+      "statementRefs": ["statement:dave:repair-intention", "statement:dave:defensive-message", "statement:alex:felt-attacked", "statement:yawn-ai:divergence"],
+      "orientationRefs": ["orientation:dave:repair"],
+      "choiceRefs": ["choice:dave:repair"],
+      "intentionRefs": ["intention:dave:repair"],
+      "projectionRefs": ["projection:dave:defensive-message"],
+      "moveRefs": [],
+      "consequenceRefs": ["consequence:more-distance"],
+      "proofReceiptRefs": ["proof:repair-effect"],
+      "extensions": {}
+    }
+  ],
+  "observations": [
+    {
+      "observationId": "observation:dave:reflection",
+      "observerRef": "actor:dave",
+      "arenaRef": "arena:friendship-repair",
+      "acquiredAt": "2026-08-14T16:00:00Z",
+      "acquisitionMethod": "memory_recall",
+      "sourceSpans": [
+        {
+          "sourceRef": "source:dave:repair-reflection",
+          "conversationId": null,
+          "messageId": "reflection-1",
+          "nodeId": null,
+          "contentPart": 0,
+          "startCharacter": 0,
+          "endCharacter": 34,
+          "sourceSha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "observedRefs": [{ "kind": "yawn", "id": "yawn:friendship-repair-misalignment" }],
+      "conditions": ["Dave was reflecting after the exchange"],
+      "limits": ["This does not expose Alex's private inner state"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "observationId": "observation:alex:message-received",
+      "observerRef": "actor:alex",
+      "arenaRef": "arena:friendship-repair",
+      "acquiredAt": "2026-08-14T16:05:00Z",
+      "acquisitionMethod": "message_received",
+      "sourceSpans": [
+        {
+          "sourceRef": "source:dave:outbound-message",
+          "conversationId": "fixture-conversation",
+          "messageId": "outbound-1",
+          "nodeId": "node-outbound-1",
+          "contentPart": 0,
+          "startCharacter": 0,
+          "endCharacter": 42,
+          "sourceSha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ],
+      "observedRefs": [{ "kind": "projection", "id": "projection:dave:defensive-message" }],
+      "conditions": ["Alex received the outbound message"],
+      "limits": ["Receipt alone does not determine interpretation"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "statements": [
+    {
+      "statementId": "statement:dave:repair-intention",
+      "aboutRefs": [{ "kind": "intention", "id": "intention:dave:repair" }],
+      "text": "I want to repair this friendship.",
+      "assertedBy": "actor:dave",
+      "epistemicStatus": "reported",
+      "confidence": 1,
+      "sourceSpans": [
+        {
+          "sourceRef": "source:dave:repair-reflection",
+          "conversationId": null,
+          "messageId": "reflection-1",
+          "nodeId": null,
+          "contentPart": 0,
+          "startCharacter": 0,
+          "endCharacter": 34,
+          "sourceSha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "groundedInObservationRefs": ["observation:dave:reflection"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "statementId": "statement:dave:defensive-message",
+      "aboutRefs": [{ "kind": "projection", "id": "projection:dave:defensive-message" }],
+      "text": "The message used defensive language.",
+      "assertedBy": "actor:dave",
+      "epistemicStatus": "reported",
+      "confidence": 0.9,
+      "sourceSpans": [
+        {
+          "sourceRef": "source:dave:outbound-message",
+          "conversationId": "fixture-conversation",
+          "messageId": "outbound-1",
+          "nodeId": "node-outbound-1",
+          "contentPart": 0,
+          "startCharacter": 0,
+          "endCharacter": 42,
+          "sourceSha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ],
+      "groundedInObservationRefs": ["observation:dave:reflection"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "statementId": "statement:alex:felt-attacked",
+      "aboutRefs": [{ "kind": "projection", "id": "projection:dave:defensive-message" }],
+      "text": "I experienced the message as attacking my beliefs.",
+      "assertedBy": "actor:alex",
+      "epistemicStatus": "reported",
+      "confidence": 1,
+      "sourceSpans": [
+        {
+          "sourceRef": "source:alex:reported-reception",
+          "conversationId": "fixture-conversation",
+          "messageId": "inbound-1",
+          "nodeId": "node-inbound-1",
+          "contentPart": 0,
+          "startCharacter": 0,
+          "endCharacter": 49,
+          "sourceSha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      ],
+      "groundedInObservationRefs": ["observation:alex:message-received"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    },
+    {
+      "statementId": "statement:yawn-ai:divergence",
+      "aboutRefs": [
+        { "kind": "intention", "id": "intention:dave:repair" },
+        { "kind": "projection", "id": "projection:dave:defensive-message" },
+        { "kind": "consequence", "id": "consequence:more-distance" }
+      ],
+      "text": "The reported intention, actual communication, reported reception, and consequence diverged.",
+      "assertedBy": "agent:yawn-ai:run-001",
+      "epistemicStatus": "inferred",
+      "confidence": 0.78,
+      "sourceSpans": [
+        {
+          "sourceRef": "source:dave:repair-reflection",
+          "conversationId": null,
+          "messageId": "reflection-1",
+          "nodeId": null,
+          "contentPart": 0,
+          "startCharacter": 0,
+          "endCharacter": 34,
+          "sourceSha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        {
+          "sourceRef": "source:alex:reported-reception",
+          "conversationId": "fixture-conversation",
+          "messageId": "inbound-1",
+          "nodeId": "node-inbound-1",
+          "contentPart": 0,
+          "startCharacter": 0,
+          "endCharacter": 49,
+          "sourceSha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      ],
+      "groundedInObservationRefs": ["observation:dave:reflection", "observation:alex:message-received"],
+      "control": { "visibility": "private", "authorityState": "proposed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "orientations": [
+    {
+      "orientationId": "orientation:dave:repair",
+      "yawnRef": "yawn:friendship-repair-misalignment",
+      "heldBy": "actor:dave",
+      "revision": 1,
+      "summary": "The relationship needs repair, but the meaning of the prior message is disputed.",
+      "statementRefs": ["statement:dave:repair-intention", "statement:alex:felt-attacked"],
+      "lacuna": "What could express care without defending the prior message?",
+      "valueRefs": [],
+      "goalRefs": [],
+      "targetRefs": [],
+      "status": "held",
+      "producedAt": "2026-08-14T16:15:00Z",
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "choices": [
+    {
+      "choiceId": "choice:dave:repair",
+      "yawnRef": "yawn:friendship-repair-misalignment",
+      "selectedBy": "actor:dave",
+      "orientationRef": "orientation:dave:repair",
+      "selectedIntentionRefs": ["intention:dave:repair"],
+      "alternativesHeldOpen": ["pause", "ask a clarifying question"],
+      "decidedAt": "2026-08-14T16:16:00Z",
+      "status": "selected",
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "intentions": [
+    {
+      "intentionId": "intention:dave:repair",
+      "yawnRef": "yawn:friendship-repair-misalignment",
+      "heldBy": "actor:dave",
+      "direction": "Repair the friendship without erasing either person's experience.",
+      "intentionKinds": ["repair", "communicate"],
+      "status": "endorsed",
+      "selectedByChoiceRef": "choice:dave:repair",
+      "sourceStatementRefs": ["statement:dave:repair-intention"],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "projections": [
+    {
+      "projectionId": "projection:dave:defensive-message",
+      "yawnRef": "yawn:friendship-repair-misalignment",
+      "projectedBy": "actor:dave",
+      "arenaRef": "arena:friendship-repair",
+      "intentionRef": "intention:dave:repair",
+      "kind": "communication",
+      "producedAt": "2026-08-14T16:05:00Z",
+      "contentStatementRefs": ["statement:dave:defensive-message"],
+      "contentSourceRefs": ["source:dave:outbound-message"],
+      "moveRef": null,
+      "control": { "visibility": "private", "authorityState": "granted", "authorityGrantRefs": ["grant:dave:communicate"], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "moves": [],
+  "consequences": [
+    {
+      "consequenceId": "consequence:more-distance",
+      "yawnRef": "yawn:friendship-repair-misalignment",
+      "arenaRef": "arena:friendship-repair",
+      "projectionRefs": ["projection:dave:defensive-message"],
+      "recordedBy": "actor:dave",
+      "occurredAt": "2026-08-14T16:20:00Z",
+      "status": "unexpected",
+      "description": "The exchange produced more distance rather than the repair Dave intended.",
+      "statementRefs": ["statement:alex:felt-attacked", "statement:yawn-ai:divergence"],
+      "eventRefs": [],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "authorityGrants": [
+    {
+      "grantId": "grant:dave:communicate",
+      "principalRef": "actor:dave",
+      "arenaRef": "arena:friendship-repair",
+      "yawnRef": "yawn:friendship-repair-misalignment",
+      "capabilities": ["send a personal message"],
+      "constraints": ["does not authorize claims about Alex's private inner state"],
+      "status": "granted",
+      "grantedBy": "actor:dave",
+      "grantedAt": "2026-08-14T16:04:00Z",
+      "revokedAt": null,
+      "extensions": {}
+    }
+  ],
+  "proofReceipts": [
+    {
+      "receiptId": "proof:repair-effect",
+      "yawnRef": "yawn:friendship-repair-misalignment",
+      "evaluatesMoveRefs": [],
+      "evaluatesConsequenceRefs": ["consequence:more-distance"],
+      "preconditions": ["Both attributed message records are available"],
+      "prediction": "A repair-aligned communication reduces rather than increases relationship distance.",
+      "postconditions": [],
+      "verifier": "Both participants separately report increased clarity or reduced tension.",
+      "falsifier": "Either participant reports increased threat, confusion, or distance.",
+      "status": "waiting",
+      "verifiedBy": "actor:dave",
+      "verifiedAt": null,
+      "sourceSpans": [],
+      "control": { "visibility": "private", "authorityState": "unassessed", "authorityGrantRefs": [], "extensions": {} },
+      "extensions": {}
+    }
+  ],
+  "extensions": {}
+}

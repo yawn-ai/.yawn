@@ -50,6 +50,13 @@ test("legacy possible that is not desired remains possibility, not target", () =
   assert.equal(normalized.snapshots[1].motivationalRole, "feared");
 });
 
+test("orientation_stack is preferred while legacy projection_stack remains readable", () => {
+  const current = normalizeLegacyYawn({ orientation_stack: { desires: ["Preserve the distinction."] } });
+  const legacy = normalizeLegacyYawn({ projection_stack: { desires: ["Preserve the distinction."] } });
+  assert.equal(current.desires[0].description, "Preserve the distinction.");
+  assert.equal(legacy.desires[0].description, "Preserve the distinction.");
+});
+
 test("optional-target fixtures cover non-goal Yawns", async () => {
   const fixtures = await loadFixture("optional-target-yawns.v1.json");
   assert.deepEqual(fixtures.map((fixture) => fixture.kind), ["source", "inquiry", "safety", "maintenance", "archive", "relationship", "holding"]);

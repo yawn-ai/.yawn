@@ -33,6 +33,6 @@ use:
 proof:
   source:
     - 01-core/movement-loop.ion
-    - 02-interface/projection-stack.ion
+    - 02-interface/orientation-stack.ion
   claim: Tension is useful when it becomes a visible field and a bounded move.
   proof_state: seed-backed

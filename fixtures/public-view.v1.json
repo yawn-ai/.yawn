@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0.0",
+  "view_id": "view:dave:being-40:public:v1",
+  "canonical_ref": "yawn:dave:being-40",
+  "coordinate": "/2026/dave/being-40",
+  "snapshot_hash": "sha256:cc895d2e9d7def4f72dc63eba25ea97c4d73d38fa4310cad0e3b33f962064703",
+  "as_of": "2026-08-13T00:00:00Z",
+  "visibility": "public",
+  "observer": {
+    "id": "principal:dave",
+    "kind": "human",
+    "label": "Dave"
+  },
+  "current_yawn": {
+    "id": "yawn:dave:being-40",
+    "label": "Being 40 in 2026",
+    "lacuna": "How can a life remain open to revision while becoming more coherent?",
+    "status": "open",
+    "parent_id": "yawn:dave:public-orientation",
+    "source_refs": ["source:dave:being-40-public"]
+  },
+  "observations": [
+    {
+      "id": "observation:dave:being-40:source",
+      "observer_id": "principal:dave",
+      "arena_id": "arena:dave:public-orientation",
+      "acquired_at": "2026-08-13T00:00:00Z",
+      "acquisition_method": "memory_recall",
+      "observes": [
+        { "kind": "yawn", "id": "yawn:dave:being-40" }
+      ],
+      "source_refs": ["source:dave:being-40-public"],
+      "conditions": ["Dave chose a public-safe reflection for this coordinate"],
+      "limits": ["Private source bodies and private Arenas are excluded"],
+      "visibility": "public"
+    },
+    {
+      "id": "observation:yawn-bot:being-40:statement",
+      "observer_id": "agent:yawn-bot",
+      "arena_id": "arena:dave:public-orientation",
+      "acquired_at": "2026-08-13T00:00:01Z",
+      "acquisition_method": "file_read",
+      "observes": [
+        { "kind": "statement", "id": "statement:dave:being-40:present" }
+      ],
+      "source_refs": ["source:dave:being-40-public"],
+      "conditions": ["The public-safe statement was available to the overlay"],
+      "limits": ["The overlay cannot infer Dave's complete private state"],
+      "visibility": "public"
+    }
+  ],
+  "statements": [
+    {
+      "id": "statement:dave:being-40:present",
+      "about": [
+        { "kind": "yawn", "id": "yawn:dave:being-40" }
+      ],
+      "asserted_by": "principal:dave",
+      "statement": "Being 40 is held as a present orientation, not a finished identity.",
+      "epistemic_status": "reported",
+      "confidence": 1,
+      "grounded_in_observation_refs": ["observation:dave:being-40:source"],
+      "source_refs": ["source:dave:being-40-public"],
+      "visibility": "public"
+    },
+    {
+      "id": "statement:yawn-bot:being-40:open-loop",
+      "about": [
+        { "kind": "statement", "id": "statement:dave:being-40:present" }
+      ],
+      "asserted_by": "agent:yawn-bot",
+      "statement": "The statement keeps an open loop by refusing to present identity as complete.",
+      "epistemic_status": "inferred",
+      "confidence": 0.78,
+      "grounded_in_observation_refs": ["observation:yawn-bot:being-40:statement"],
+      "source_refs": ["source:dave:being-40-public"],
+      "visibility": "public"
+    }
+  ],
+  "intentions": [
+    {
+      "id": "intention:dave:being-40:open-revision",
+      "held_by": "principal:dave",
+      "direction": "Express a life orientation that remains open to evidence and revision.",
+      "status": "endorsed",
+      "statement_refs": ["statement:dave:being-40:present"],
+      "visibility": "public"
+    }
+  ],
+  "projections": [
+    {
+      "id": "projection:dave:being-40:public-expression",
+      "projected_by": "principal:dave",
+      "arena_id": "arena:dave:public-orientation",
+      "intention_id": "intention:dave:being-40:open-revision",
+      "kind": "expression",
+      "produced_at": "2026-08-13T00:00:00Z",
+      "statement_refs": ["statement:dave:being-40:present"],
+      "source_refs": ["source:dave:being-40-public"],
+      "move_id": null,
+      "authority_state": "granted",
+      "visibility": "public"
+    }
+  ],
+  "consequences": [],
+  "relationship_offer": {
+    "id": "relationship-offer:dave:public",
+    "state": "offered",
+    "proposed_by": "principal:dave",
+    "participant_roles": ["Dave", "visitor"],
+    "purpose": "Explore whether there is meaningful work, learning, or creation to do together.",
+    "boundaries": [
+      "This page is an invitation, not evidence that a relationship exists.",
+      "Each person retains authority over their own participation and information."
+    ],
+    "consent_action": {
+      "label": "Orient with Dave",
+      "href": "https://yawn.bot/new?with=dave",
+      "reason": "Begin with an explicit question before either person commits to a relationship."
+    }
+  },
+  "spiral": {
+    "layout": "golden-angle-v1",
+    "center_id": "spiral-node:dave:being-40",
+    "nodes": [
+      {
+        "id": "spiral-node:dave:being-40",
+        "canonical_ref": "yawn:dave:being-40",
+        "label": "Being 40 in 2026",
+        "role": "active",
+        "order": 0
+      },
+      {
+        "id": "spiral-node:dave:public-orientation",
+        "canonical_ref": "yawn:dave:public-orientation",
+        "label": "Dave's public orientation",
+        "role": "parent",
+        "order": 1
+      },
+      {
+        "id": "spiral-node:dave:relationship-offer",
+        "canonical_ref": "relationship-offer:dave:public",
+        "label": "Relate by explicit offer",
+        "role": "child",
+        "order": 2
+      },
+      {
+        "id": "spiral-node:yawn-bot",
+        "canonical_ref": "agent:yawn-bot",
+        "label": "YAWN.bot",
+        "role": "agent",
+        "order": 3
+      }
+    ],
+    "edges": [
+      {
+        "id": "spiral-edge:being-40:parent",
+        "source": "spiral-node:dave:public-orientation",
+        "target": "spiral-node:dave:being-40",
+        "relation": "primary_parent"
+      },
+      {
+        "id": "spiral-edge:being-40:relationship-offer",
+        "source": "spiral-node:dave:being-40",
+        "target": "spiral-node:dave:relationship-offer",
+        "relation": "supports"
+      },
+      {
+        "id": "spiral-edge:yawn-bot:observes-being-40",
+        "source": "spiral-node:yawn-bot",
+        "target": "spiral-node:dave:being-40",
+        "relation": "observes"
+      }
+    ]
+  },
+  "interface": {
+    "purpose": "See one public orientation in its attributed context.",
+    "primary_action": {
+      "label": "Orient with Dave",
+      "href": "https://yawn.bot/new?with=dave",
+      "reason": "This page offers a relationship; the next honest step is an explicit question."
+    },
+    "download_href": "/api/yawn/export?coordinate=/2026/dave/being-40",
+    "qr_href": "/2026/dave/being-40",
+    "github_href": "https://github.com/yawn-ai/.yawn",
+    "bot_overlay": {
+      "enabled": true,
+      "agent_id": "agent:yawn-bot",
+      "mode": "reflective-overlay"
+    }
+  },
+  "media": [],
+  "sources": [
+    {
+      "id": "source:dave:being-40-public",
+      "kind": "public_statement",
+      "asserted_by": "principal:dave",
+      "occurred_at": "2026-08-13T00:00:00Z",
+      "source_sha256": "sha256:7b6991dacb6f152e95148b539028284e79b21817d78d78c73029f4538ccb25b5"
+    }
+  ],
+  "redactions": [
+    {
+      "id": "redaction:dave:being-40:private-source-body",
+      "category": "private_source_body",
+      "reason": "The public View carries source metadata rather than private source text."
+    }
+  ]
+}

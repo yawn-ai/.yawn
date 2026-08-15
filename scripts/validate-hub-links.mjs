@@ -18,7 +18,7 @@ const markdownFiles = [
   "docs/quickstart.md",
   "docs/project-status.md",
   "docs/repository-map.md",
-  "docs/projections/README.md",
+  "docs/views/README.md",
   "docs/research-basis.md",
   "spec/README.md",
   "spec/ontology.md",

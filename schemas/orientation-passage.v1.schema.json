@@ -1,0 +1,457 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/orientation-passage.v1.schema.json",
+  "title": "YAWN Orientation Passage V1",
+  "description": "An additive executable contract that keeps situated Observation, attributed statement, Orientation, Choice, Intention, outward Projection, Move, Consequence, Proof, and authority distinct.",
+  "$comment": "Reality is not serialized exhaustively. This document records situated, attributed cuts through an Arena. JSON Schema validates shape; the semantic validator checks references, move/projection subset, and authority gates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "documentId",
+    "agentSpaceRef",
+    "actors",
+    "arenas",
+    "sources",
+    "yawns",
+    "observations",
+    "statements",
+    "orientations",
+    "choices",
+    "intentions",
+    "projections",
+    "moves",
+    "consequences",
+    "authorityGrants",
+    "proofReceipts",
+    "extensions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "orientation-passage.v1" },
+    "documentId": { "$ref": "#/$defs/Identifier" },
+    "agentSpaceRef": { "$ref": "#/$defs/Identifier" },
+    "actors": { "type": "array", "items": { "$ref": "#/$defs/ActorDescriptor" } },
+    "arenas": { "type": "array", "items": { "$ref": "#/$defs/ArenaDescriptor" } },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/SourceRecord" } },
+    "yawns": { "type": "array", "items": { "$ref": "#/$defs/YawnPassage" } },
+    "observations": { "type": "array", "items": { "$ref": "#/$defs/ObservationRecord" } },
+    "statements": { "type": "array", "items": { "$ref": "#/$defs/EpistemicStatement" } },
+    "orientations": { "type": "array", "items": { "$ref": "#/$defs/OrientationRecord" } },
+    "choices": { "type": "array", "items": { "$ref": "#/$defs/ChoiceRecord" } },
+    "intentions": { "type": "array", "items": { "$ref": "#/$defs/IntentionRecord" } },
+    "projections": { "type": "array", "items": { "$ref": "#/$defs/ProjectionRecord" } },
+    "moves": { "type": "array", "items": { "$ref": "#/$defs/MoveRecord" } },
+    "consequences": { "type": "array", "items": { "$ref": "#/$defs/ConsequenceRecord" } },
+    "authorityGrants": { "type": "array", "items": { "$ref": "#/$defs/AuthorityGrant" } },
+    "proofReceipts": { "type": "array", "items": { "$ref": "#/$defs/ProofReceipt" } },
+    "extensions": { "$ref": "#/$defs/ExtensionBag" }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "NonEmptyText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$"
+    },
+    "Sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "IdentifierArray": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Identifier" },
+      "uniqueItems": true
+    },
+    "TextArray": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/NonEmptyText" }
+    },
+    "ExtensionBag": {
+      "type": "object",
+      "description": "Namespaced extension point. Extensions cannot weaken attribution, privacy, authority, proof, or replay invariants.",
+      "propertyNames": { "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)+(?:/[A-Za-z0-9._~-]+)?$" },
+      "additionalProperties": true
+    },
+    "ControlEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visibility", "authorityState", "authorityGrantRefs", "extensions"],
+      "properties": {
+        "visibility": { "enum": ["private", "shared", "public"] },
+        "authorityState": { "enum": ["unassessed", "proposed", "granted", "denied", "revoked"] },
+        "authorityGrantRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "authorityState": { "const": "granted" } }, "required": ["authorityState"] },
+          "then": { "properties": { "authorityGrantRefs": { "type": "array", "minItems": 1 } } }
+        }
+      ]
+    },
+    "TypedRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "actor",
+            "agent_space",
+            "arena",
+            "source",
+            "yawn",
+            "observation",
+            "statement",
+            "orientation",
+            "choice",
+            "value",
+            "goal",
+            "target",
+            "lacuna",
+            "intention",
+            "projection",
+            "move",
+            "event",
+            "consequence",
+            "authority_grant",
+            "proof_receipt",
+            "relationship",
+            "view"
+          ]
+        },
+        "id": { "$ref": "#/$defs/Identifier" }
+      }
+    },
+    "TypedRefArray": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/TypedRef" }
+    },
+    "SourceSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceRef",
+        "conversationId",
+        "messageId",
+        "nodeId",
+        "contentPart",
+        "startCharacter",
+        "endCharacter",
+        "sourceSha256"
+      ],
+      "properties": {
+        "sourceRef": { "$ref": "#/$defs/Identifier" },
+        "conversationId": { "type": ["string", "null"] },
+        "messageId": { "type": ["string", "null"] },
+        "nodeId": { "type": ["string", "null"] },
+        "contentPart": { "type": ["integer", "null"], "minimum": 0 },
+        "startCharacter": { "type": "integer", "minimum": 0 },
+        "endCharacter": { "type": "integer", "minimum": 0 },
+        "sourceSha256": { "$ref": "#/$defs/Sha256" }
+      }
+    },
+    "SourceSpanArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/SourceSpan" }
+    },
+    "ActorDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorId", "kind", "label", "capabilities", "limitations", "control", "extensions"],
+      "properties": {
+        "actorId": { "$ref": "#/$defs/Identifier" },
+        "kind": { "enum": ["human", "collective", "institution", "ai_model", "tool", "service"] },
+        "label": { "$ref": "#/$defs/NonEmptyText" },
+        "capabilities": { "$ref": "#/$defs/TextArray" },
+        "limitations": { "$ref": "#/$defs/TextArray" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ArenaDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arenaId", "agentSpaceRef", "title", "framedByRefs", "purpose", "includes", "excludes", "revisitWhen", "control", "extensions"],
+      "properties": {
+        "arenaId": { "$ref": "#/$defs/Identifier" },
+        "agentSpaceRef": { "$ref": "#/$defs/Identifier" },
+        "title": { "$ref": "#/$defs/NonEmptyText" },
+        "framedByRefs": { "allOf": [{ "$ref": "#/$defs/IdentifierArray" }, { "type": "array", "minItems": 1 }] },
+        "purpose": { "$ref": "#/$defs/NonEmptyText" },
+        "includes": { "$ref": "#/$defs/TextArray" },
+        "excludes": { "$ref": "#/$defs/TextArray" },
+        "revisitWhen": { "$ref": "#/$defs/TextArray" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "SourceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "sourceKind", "assertedBy", "sourceSha256", "occurredAt", "localOnly", "metadata", "control", "extensions"],
+      "properties": {
+        "sourceId": { "$ref": "#/$defs/Identifier" },
+        "sourceKind": { "enum": ["conversation", "message", "reflection", "file", "tool_result", "event", "proof", "other"] },
+        "assertedBy": { "$ref": "#/$defs/Identifier" },
+        "sourceSha256": { "$ref": "#/$defs/Sha256" },
+        "occurredAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "localOnly": { "type": "boolean" },
+        "metadata": { "type": "object", "additionalProperties": true },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "YawnPassage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "yawnId",
+        "arenaRef",
+        "title",
+        "status",
+        "targetRefs",
+        "observationRefs",
+        "statementRefs",
+        "orientationRefs",
+        "choiceRefs",
+        "intentionRefs",
+        "projectionRefs",
+        "moveRefs",
+        "consequenceRefs",
+        "proofReceiptRefs",
+        "extensions"
+      ],
+      "properties": {
+        "yawnId": { "$ref": "#/$defs/Identifier" },
+        "arenaRef": { "$ref": "#/$defs/Identifier" },
+        "title": { "$ref": "#/$defs/NonEmptyText" },
+        "status": { "enum": ["open", "waiting", "blocked", "closed"] },
+        "targetRefs": { "$ref": "#/$defs/TypedRefArray" },
+        "observationRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "statementRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "orientationRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "choiceRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "intentionRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "projectionRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "moveRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "consequenceRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "proofReceiptRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ObservationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observationId", "observerRef", "arenaRef", "acquiredAt", "acquisitionMethod", "sourceSpans", "observedRefs", "conditions", "limits", "control", "extensions"],
+      "properties": {
+        "observationId": { "$ref": "#/$defs/Identifier" },
+        "observerRef": { "$ref": "#/$defs/Identifier" },
+        "arenaRef": { "$ref": "#/$defs/Identifier" },
+        "acquiredAt": { "$ref": "#/$defs/Timestamp" },
+        "acquisitionMethod": { "enum": ["perception", "report_received", "message_received", "file_read", "tool_result", "memory_recall", "event_witness", "import", "other"] },
+        "sourceSpans": { "$ref": "#/$defs/SourceSpanArray" },
+        "observedRefs": { "$ref": "#/$defs/TypedRefArray" },
+        "conditions": { "$ref": "#/$defs/TextArray" },
+        "limits": { "$ref": "#/$defs/TextArray" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "EpistemicStatement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statementId", "aboutRefs", "text", "assertedBy", "epistemicStatus", "confidence", "sourceSpans", "groundedInObservationRefs", "control", "extensions"],
+      "properties": {
+        "statementId": { "$ref": "#/$defs/Identifier" },
+        "aboutRefs": { "allOf": [{ "$ref": "#/$defs/TypedRefArray" }, { "type": "array", "minItems": 1 }] },
+        "text": { "$ref": "#/$defs/NonEmptyText" },
+        "assertedBy": { "$ref": "#/$defs/Identifier" },
+        "epistemicStatus": { "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceSpans": { "$ref": "#/$defs/SourceSpanArray" },
+        "groundedInObservationRefs": { "allOf": [{ "$ref": "#/$defs/IdentifierArray" }, { "type": "array", "minItems": 1 }] },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "OrientationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["orientationId", "yawnRef", "heldBy", "revision", "summary", "statementRefs", "lacuna", "valueRefs", "goalRefs", "targetRefs", "status", "producedAt", "control", "extensions"],
+      "properties": {
+        "orientationId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "heldBy": { "$ref": "#/$defs/Identifier" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "summary": { "$ref": "#/$defs/NonEmptyText" },
+        "statementRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "lacuna": { "type": ["string", "null"] },
+        "valueRefs": { "$ref": "#/$defs/TypedRefArray" },
+        "goalRefs": { "$ref": "#/$defs/TypedRefArray" },
+        "targetRefs": { "$ref": "#/$defs/TypedRefArray" },
+        "status": { "enum": ["proposed", "held", "superseded", "closed"] },
+        "producedAt": { "$ref": "#/$defs/Timestamp" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ChoiceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["choiceId", "yawnRef", "selectedBy", "orientationRef", "selectedIntentionRefs", "alternativesHeldOpen", "decidedAt", "status", "control", "extensions"],
+      "properties": {
+        "choiceId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "selectedBy": { "$ref": "#/$defs/Identifier" },
+        "orientationRef": { "$ref": "#/$defs/Identifier" },
+        "selectedIntentionRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "alternativesHeldOpen": { "$ref": "#/$defs/TextArray" },
+        "decidedAt": { "$ref": "#/$defs/Timestamp" },
+        "status": { "enum": ["proposed", "selected", "withdrawn", "superseded"] },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "IntentionRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intentionId", "yawnRef", "heldBy", "direction", "intentionKinds", "status", "selectedByChoiceRef", "sourceStatementRefs", "control", "extensions"],
+      "properties": {
+        "intentionId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "heldBy": { "$ref": "#/$defs/Identifier" },
+        "direction": { "$ref": "#/$defs/NonEmptyText" },
+        "intentionKinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["understand", "communicate", "preserve", "test", "repair", "change", "act", "hold_open"] }
+        },
+        "status": { "enum": ["proposed", "endorsed", "withdrawn", "superseded", "fulfilled"] },
+        "selectedByChoiceRef": { "anyOf": [{ "$ref": "#/$defs/Identifier" }, { "type": "null" }] },
+        "sourceStatementRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ProjectionRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projectionId", "yawnRef", "projectedBy", "arenaRef", "intentionRef", "kind", "producedAt", "contentStatementRefs", "contentSourceRefs", "moveRef", "control", "extensions"],
+      "properties": {
+        "projectionId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "projectedBy": { "$ref": "#/$defs/Identifier" },
+        "arenaRef": { "$ref": "#/$defs/Identifier" },
+        "intentionRef": { "anyOf": [{ "$ref": "#/$defs/Identifier" }, { "type": "null" }] },
+        "kind": { "enum": ["expression", "claim", "model", "question", "communication", "proposal", "commitment", "move"] },
+        "producedAt": { "$ref": "#/$defs/Timestamp" },
+        "contentStatementRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "contentSourceRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "moveRef": { "anyOf": [{ "$ref": "#/$defs/Identifier" }, { "type": "null" }] },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "move" } }, "required": ["kind"] },
+          "then": { "properties": { "moveRef": { "$ref": "#/$defs/Identifier" } } },
+          "else": { "properties": { "moveRef": { "type": "null" } } }
+        }
+      ]
+    },
+    "MoveRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["moveId", "yawnRef", "projectionRef", "attemptedBy", "description", "authorityGrantRef", "status", "attemptedAt", "proofPolicyRefs", "control", "extensions"],
+      "properties": {
+        "moveId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "projectionRef": { "$ref": "#/$defs/Identifier" },
+        "attemptedBy": { "$ref": "#/$defs/Identifier" },
+        "description": { "$ref": "#/$defs/NonEmptyText" },
+        "authorityGrantRef": { "anyOf": [{ "$ref": "#/$defs/Identifier" }, { "type": "null" }] },
+        "status": { "enum": ["proposed", "authorized", "attempted", "withdrawn", "completed"] },
+        "attemptedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "proofPolicyRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ConsequenceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["consequenceId", "yawnRef", "arenaRef", "projectionRefs", "recordedBy", "occurredAt", "status", "description", "statementRefs", "eventRefs", "control", "extensions"],
+      "properties": {
+        "consequenceId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "arenaRef": { "$ref": "#/$defs/Identifier" },
+        "projectionRefs": { "allOf": [{ "$ref": "#/$defs/IdentifierArray" }, { "type": "array", "minItems": 1 }] },
+        "recordedBy": { "$ref": "#/$defs/Identifier" },
+        "occurredAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "status": { "enum": ["expected", "unexpected", "mixed", "unknown", "disputed"] },
+        "description": { "$ref": "#/$defs/NonEmptyText" },
+        "statementRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "eventRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "AuthorityGrant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grantId", "principalRef", "arenaRef", "yawnRef", "capabilities", "constraints", "status", "grantedBy", "grantedAt", "revokedAt", "extensions"],
+      "properties": {
+        "grantId": { "$ref": "#/$defs/Identifier" },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "arenaRef": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "capabilities": { "$ref": "#/$defs/TextArray" },
+        "constraints": { "$ref": "#/$defs/TextArray" },
+        "status": { "enum": ["proposed", "granted", "denied", "revoked", "expired"] },
+        "grantedBy": { "$ref": "#/$defs/Identifier" },
+        "grantedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "revokedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "granted" } }, "required": ["status"] },
+          "then": { "properties": { "grantedAt": { "$ref": "#/$defs/Timestamp" } } }
+        }
+      ]
+    },
+    "ProofReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receiptId", "yawnRef", "evaluatesMoveRefs", "evaluatesConsequenceRefs", "preconditions", "prediction", "postconditions", "verifier", "falsifier", "status", "verifiedBy", "verifiedAt", "sourceSpans", "control", "extensions"],
+      "properties": {
+        "receiptId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "evaluatesMoveRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "evaluatesConsequenceRefs": { "$ref": "#/$defs/IdentifierArray" },
+        "preconditions": { "$ref": "#/$defs/TextArray" },
+        "prediction": { "$ref": "#/$defs/NonEmptyText" },
+        "postconditions": { "$ref": "#/$defs/TextArray" },
+        "verifier": { "$ref": "#/$defs/NonEmptyText" },
+        "falsifier": { "$ref": "#/$defs/NonEmptyText" },
+        "status": { "enum": ["waiting", "passed", "failed", "blocked", "disputed"] },
+        "verifiedBy": { "$ref": "#/$defs/Identifier" },
+        "verifiedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "sourceSpans": { "type": "array", "items": { "$ref": "#/$defs/SourceSpan" } },
+        "control": { "$ref": "#/$defs/ControlEnvelope" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    }
+  }
+}
