@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/record-proof-receipt.v1.schema.json",
+  "title": "YAWN Record Proof Receipt V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "receiptId", "subjectRef", "preconditions", "prediction", "postconditions", "verifier", "falsifier", "sourceRefs", "status", "recordedAt"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.record-proof-receipt.v1" },
+    "receiptId": { "type": "string", "minLength": 1 },
+    "subjectRef": { "$ref": "record-ref.v1.schema.json" },
+    "preconditions": { "type": "object" },
+    "prediction": { "type": "string", "minLength": 1 },
+    "postconditions": { "type": "object" },
+    "verifier": { "type": "string", "minLength": 1 },
+    "falsifier": { "type": "string", "minLength": 1 },
+    "sourceRefs": { "type": "array", "items": { "$ref": "record-ref.v1.schema.json" } },
+    "status": { "enum": ["waiting", "passed", "failed", "blocked", "runner_unavailable"] },
+    "recordedAt": { "type": "string", "format": "date-time" }
+  }
+}

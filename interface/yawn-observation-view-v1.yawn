@@ -11,7 +11,7 @@ purpose: >
 
 object:
   file_kind: .yawn
-  holon_kind: knowledge_note
+  holon_kind: observation_record
   promotion_level: L0
   required_coordinates:
     - coordinate
@@ -19,6 +19,20 @@ object:
     - source_coordinate
   portable: true
   canonical_state: false
+  may_render_canonical_observation_state: true
+  canonical_record_schema: yawn.observation-state.v1
+
+record_boundary:
+  observation_valid_without_yawn: true
+  target_required: false
+  intention_required: false
+  projection_required: false
+  move_required: false
+  observed_yawn_refs_are_evidence_about_links: true
+  attachment_retypes_observation: false
+  promotion_creates_distinct_yawn: true
+  promotion_requires_authenticated_human_decision: true
+  serialization_is_view_not_ontological_projection: true
 
 view:
   class: public_view
@@ -42,11 +56,24 @@ view:
 preference_inheritance:
   order:
     - system_defaults
-    - principal_public_preferences
-    - local_yawn_override
+    - principal_preferences
+    - agent_space_preferences
+    - arena_preferences
+    - yawn_ancestry_preferences
+    - observation_or_view_override
   provenance_required: true
+  revision_required: true
+  resolved_preference_hash_required: true
+  absence_distinct_from_explicit_reset: true
   private_values_on_public_route: forbidden
   local_override_changes_semantic_truth: false
+  forbidden_preference_fields:
+    - semantic_truth
+    - source_and_provenance
+    - privacy
+    - authority
+    - boundary
+    - proof
 
 epistemic_roles:
   source: source_and_provenance

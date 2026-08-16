@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 2
-updated: "2026-08-13"
+revision: 3
+updated: "2026-08-15"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -19,9 +19,10 @@ identity:
 
 signal:
   raw: >
-    The project has a strong orientation grammar, newly published v1 runtime and
-    state contracts, a filesystem seed of a holarchy, and a vivid Agent Arena
-    projection—but no single hub explains how those layers fit together.
+    The repository now has a coherent ontology hub, but Observation still needs
+    one executable identity, event stream, proof subject, serializer, and
+    preference boundary before YAWN.bot and YAWN.ai can express the protocol
+    inward and outward without collapsing source into inference or UI state.
   epistemic_status: observed
   source_refs:
     - README.md@before-ontology-hub
@@ -45,15 +46,25 @@ orientation:
       source_refs:
         - 00-start/root.ion
         - 08-research/source-index.ion
-    - claim: "Agent Arena is best treated as one projection over a neutral causal graph."
+    - claim: "Agent Arena is best treated as one View over a neutral causal graph."
       epistemic_status: inferred
       source_refs:
         - docs/projections/README.md
+    - claim: "Observation is a first-class record and does not require Yawn promotion."
+      epistemic_status: observed
+      source_refs:
+        - schemas/observation.v1.schema.json
+        - fixtures/observation.v1.json
+        - lib/observation-state-v1.mjs
+    - claim: ".yawn, YAWN.bot, and YAWN.ai have record, interface/agent, and intelligence roles around one grammar."
+      epistemic_status: reported
+      source_refs:
+        - README.md
 
   governing_inference: >
-    The repository can serve as the ontology hub if it clearly separates stable
-    contracts, working drafts, human explanations, executable schemas,
-    projections, examples, research, governance, and historical provenance.
+    The repository serves as the ontology hub when it starts with Observation,
+    separates source from inference, makes accepted records replayable, and
+    keeps Views, authority, preference, and optional Yawn promotion explicit.
   epistemic_status: inferred
   alternatives:
     - "Collapse every artifact into one schema immediately."
@@ -128,7 +139,8 @@ move:
   description: >
     Maintain one concise human README, a live root landing page, an explicit
     layered specification, additive Draft 0.2 schemas and tests, commented
-    templates, decisive examples, and an honest open-source governance surface.
+    templates, decisive examples, a first-class Observation record, and an
+    honest open-source governance surface.
   reversible: true
   authority_status: proposed-until-maintainer-merge
 
@@ -139,6 +151,7 @@ proof_contract:
   acceptance:
     - "Root npm test passes."
     - "contracts npm run check and npm pack --dry-run pass."
+    - "Observation fixture, event replay, serializer, and golden hash agree."
     - "Internal links on the public hub resolve."
     - "The GitHub Pages root returns the new ontology hub after merge."
     - "Feedback and Declaration routes remain live."
@@ -173,6 +186,11 @@ protocol_layers:
   projections:
     path: docs/projections/
     canonical_state: false
+  observation_record:
+    schema: schemas/observation.v1.schema.json
+    reducer: lib/observation-state-v1.mjs
+    template: templates/observation.yawn
+    valid_without_yawn_promotion: true
 
 ontology_links:
   specification: spec/README.md
@@ -187,6 +205,9 @@ ontology_links:
   turn_contract: core/turn.yawn
   routing_contract: core/routing.yawn
   projection_boundary: core/projection-and-aperture.yawn
+  observation_contract: schemas/observation.v1.schema.json
+  record_reference: schemas/record-ref.v1.schema.json
+  projection_preference: schemas/projection-preference.v1.schema.json
 
 practice_links:
   quickstart: docs/quickstart.md
@@ -218,7 +239,8 @@ project_links:
 replay:
   current_claim: >
     README.md is the human front door, readme.yawn is the repository's own
-    orientation object, and yawn.yawn is the machine-addressable manifest.
+    orientation object, yawn.yawn is the machine-addressable manifest, and
+    Observation is the first executable entry into the ontology.
   next_review_when:
     - Draft 0.2 has field routing evidence
     - a unified document RFC is proposed

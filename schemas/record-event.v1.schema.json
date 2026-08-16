@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/record-event.v1.schema.json",
+  "title": "YAWN Record Event V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "eventId", "subjectRef", "revision", "eventType", "actorRef", "authorityStatus", "payload", "previousStateSha256", "resultingStateSha256", "occurredAt"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.record-event.v1" },
+    "eventId": { "type": "string", "minLength": 1 },
+    "subjectRef": { "$ref": "record-ref.v1.schema.json" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "eventType": { "type": "string", "minLength": 1 },
+    "actorRef": { "type": "string", "minLength": 1 },
+    "authorityStatus": { "enum": ["proposed", "authorized", "rejected"] },
+    "payload": { "type": "object" },
+    "previousStateSha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" },
+    "resultingStateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "occurredAt": { "type": "string", "format": "date-time" }
+  }
+}

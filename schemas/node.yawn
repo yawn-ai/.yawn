@@ -19,6 +19,11 @@ holds:
   - transition-result.v1.schema.json
   - state-update.v1.schema.json
   - living-snapshot.v1.schema.json
+  - record-ref.v1.schema.json
+  - record-event.v1.schema.json
+  - record-proof-receipt.v1.schema.json
+  - observation.v1.schema.json
+  - projection-preference.v1.schema.json
   - agency-holarchy.v0.2.schema.json
 
 compatibility: >
@@ -31,6 +36,13 @@ module_boundary: >
   These root schemas are the parallel state-substrate v1 modules plus the
   experimental Agency Holarchy 0.2 aggregate. Neither surface is described as
   the complete schema for every human-readable .yawn file.
+
+observation_boundary: >
+  Observation V1 is an accepted source-backed record that remains valid
+  without a Target, Move, or Yawn. Record references let events and proof
+  address observations and Git commits without adding ontology-specific
+  foreign keys. Projection preferences affect Views only and preserve
+  field-level provenance.
 
 agency_holarchy_draft: >
   Draft 0.2 adds provider-neutral arena boundaries, one-parent holarchy,

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/projection-preference.v1.schema.json",
+  "title": "YAWN Projection Preference V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "preferenceId", "principalRef", "scopeRef", "viewKind", "fieldPath", "operation", "value", "status", "revision", "sourceEventRef", "createdAt", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.projection-preference.v1" },
+    "preferenceId": { "type": "string", "minLength": 1 },
+    "principalRef": { "type": "string", "minLength": 1 },
+    "scopeRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "enum": ["principal", "agent_space", "arena", "yawn", "observation", "view"] },
+        "id": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "revision": { "type": ["integer", "null"], "minimum": 0 },
+        "stateSha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "viewKind": { "type": "string", "minLength": 1 },
+    "fieldPath": { "type": "string", "pattern": "^/[A-Za-z0-9_.~/-]+$" },
+    "operation": { "enum": ["set", "reset"] },
+    "value": {},
+    "status": { "const": "accepted" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "sourceEventRef": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    { "if": { "properties": { "operation": { "const": "reset" } } }, "then": { "properties": { "value": { "type": "null" } } } }
+  ]
+}

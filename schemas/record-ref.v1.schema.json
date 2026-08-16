@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/record-ref.v1.schema.json",
+  "title": "YAWN Record Reference V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "id"],
+  "properties": {
+    "kind": {
+      "enum": ["actor", "principal", "agent_space", "arena", "observation", "yawn", "source", "proof", "view", "git_commit"]
+    },
+    "id": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "revision": { "type": ["integer", "null"], "minimum": 0 },
+    "stateSha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" }
+  }
+}

@@ -8,6 +8,12 @@ labels and do not imply compatibility.
 
 ### Added
 
+- First-class `yawn.observation-state.v1`, generic RecordRef/RecordEvent/proof
+  subject contracts, deterministic replay and `observation.yawn` export
+- Projection preference contracts with explicit reset, ordered inheritance,
+  field provenance, and protected semantic/authority/privacy/proof boundaries
+- Observation-first README entry and the Observation / Intention / Projection /
+  Consequence distinction in the ontology
 - Unified documentation hub and deployable GitHub Pages landing page
 - Working Draft 0.2 ontology for world, field, arena, Yawn, turn, transition,
   projection, and replay
@@ -21,6 +27,10 @@ labels and do not imply compatibility.
 
 ### Changed
 
+- Distinguished rendered Views from an Agent's ontological Projection and made
+  Yawn promotion a separate human-approved lifecycle from Observation
+- Made repository-owned local checks the primary proof path and GitHub Actions a
+  secondary witness
 - Made `README.md` the concise human front door and `readme.yawn` the repository
   orientation record, removing the unsupported canonical/mirror claim
 - Declared the existing contracts package and state substrate as parallel v1

@@ -17,9 +17,10 @@ It does not claim that the record is the world.
 | --- | --- | --- |
 | Constitution | Stable agency and state invariants | [`@yawn/contracts` v1](../contracts/) |
 | State substrate | State, evidence, target, transition, and event records | [`schemas/*.v1.schema.json`](../schemas/) |
+| Observation record | Accepted source-backed Observation, generic event/proof subject, and View preference | [`observation.v1`](../schemas/observation.v1.schema.json) |
 | Agency holarchy | Arena, Yawn, relation, turn, routing, and structural change | [Draft 0.2 schema](../schemas/agency-holarchy.v0.2.schema.json) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
-| Projection | Arena, timeline, filesystem, memory, and proof/replay views | Informative only |
+| View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
 
 The v1 contracts are not silently redefined by this draft. Draft 0.2 is an
 additive candidate for a future unified protocol. Where prose and an executable
@@ -44,7 +45,7 @@ can be tested.
    ranked.
 7. A Yawn MUST preserve source attribution, uncertainty, authority, and proof
    through replay and structural change.
-8. A projection MAY change inclusion, layout, or salience. It MUST NOT change
+8. A View MAY change inclusion, layout, or salience. It MUST NOT change
    truth status, permission, identity, or canonical history.
 9. Every merge, split, or reparent operation MUST begin as a proposal and, when
    accepted, produce an authorized receipt that preserves provenance.
@@ -58,6 +59,7 @@ can be tested.
 - [Routing](routing.md): attach, create, link, merge, split, and hold
 - [Nine questions](questions.md): the human orientation projection
 - [Serialization](serialization.md): identifiers, extensions, time, and hashes
+- [Observation schema](../schemas/observation.v1.schema.json): source-backed state valid before Yawn promotion
 
 ## Maturity labels
 
