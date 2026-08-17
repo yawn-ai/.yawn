@@ -8,6 +8,15 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Relationship-first Agent Arena constitutional source and its attributed
+  Vervaeke/enactive/affordance/active-inference/extended-cognition research
+  braid
+- A fail-closed collaboration-message schema and fixture for stable
+  `@dave`, `@codex`, and `@claude` attribution, relationship-loop state,
+  epistemic status, and explicit effect authority
+- Desktop Homebase and append-only collaboration-history contracts separating
+  the shared web projection from isolated local capabilities and private source
+  history
 - Canonical YAWN naming contract, context-gated speech-to-text normalization,
   raw/normalized correction provenance, fail-closed extension validation, and
   a source-preserving migration receipt for the retired numbered generation

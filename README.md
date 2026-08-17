@@ -76,6 +76,28 @@ candidate, and serialized page are not new truth: acceptance, rendering,
 publication, preference updates, and Yawn promotion each keep separate
 authority.
 
+## Start inside Relationship
+
+Relationship is structurally first even though Observation is operationally
+first. An Agent can observe only from a situated relation with an Arena, its
+affordances, other agents, and the conditions that disclose anything at all.
+The protocol therefore keeps both statements true without turning either into
+an absolute hierarchy:
+
+```text
+Relationship -> Observation -> Relevance -> Orientation -> Intention
+             -> Projection -> Consequence -> Proof -> Updated Relationship
+```
+
+The relationship is dynamic, not decorative context. It may change what can be
+noticed, what matters, what movement is appropriate, and what authority is
+actually active. Proof returns to the relationship instead of merely closing a
+task.
+
+[Relationship-first Agent Arena →](core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn) ·
+[Research braid →](references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn) ·
+[Attributed collaboration history →](agents/collaboration-history.yawn)
+
 ## The loop
 
 ```text
@@ -145,7 +167,8 @@ canonical object to inspect.
 
 [Brand contract →](interface/yawn-brand-v1.yawn) ·
 [Chrome contract →](interface/yawn-chrome-v1.yawn) ·
-[Observation View contract →](interface/yawn-observation-view-v1.yawn)
+[Observation View contract →](interface/yawn-observation-view-v1.yawn) ·
+[Desktop Homebase contract →](interface/desktop-homebase-v1.yawn)
 
 ## Nested agency without hidden authority
 

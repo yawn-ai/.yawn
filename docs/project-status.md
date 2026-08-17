@@ -37,6 +37,8 @@ packages. Security or correctness fixes may still require additive changes.
 - field validation of the new Observation-derived Question, local-art candidate,
   and View-feedback proposal contracts beyond their conformance fixture
 - shared web/desktop ingestion of canonical naming-correction receipts
+- the attributed collaboration-message envelope, multi-intelligence history
+  loop, and desktop Homebase projection/capability split
 
 Draft artifacts are useful for experiments but may change after RFC review.
 
@@ -63,6 +65,9 @@ Draft artifacts are useful for experiments but may change after RFC review.
 9. The canonical lexical normalizer is executable in this repository, but web,
    desktop, API, import, and agent-ingestion boundaries still need cross-repo
    golden fixtures proving identical correction receipts.
+10. The collaboration-history schema preserves attribution and authority, but
+    automatic Codex and Claude Code adapters still need authenticated cursors,
+    replay, concurrency, privacy, and cross-principal isolation proof.
 
 ## Historical naming migration
 

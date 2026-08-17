@@ -1,0 +1,40 @@
+---
+schema_version: yawn.desktop-homebase.v1
+title: Desktop Homebase Projection and Capability Boundary
+status: working_draft
+owner: dave
+coordinate: yawn.bot/homebase/desktop
+collaboration_contract: agents/collaboration-history.yawn
+mutationAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Desktop Homebase Projection and Capability Boundary
+
+The desktop application is the user's ultimate Homebase: the durable place to
+orient across projects, inspect accepted preferences, review source history,
+coordinate intelligences, approve bounded movement, and see proof return.
+
+Ultimate does not mean monolithic. The Homebase has two planes:
+
+```yaml
+projection_plane:
+  purpose: shared visual YAWN.bot and YAWN.ai experience
+  default_surface: canonical web application
+  ordinary_web_updates_require_native_install: false
+
+capability_plane:
+  purpose: local files, private history, agent runtimes, credentials, and proof
+  exposure_to_remote_content: none_by_default
+  bridge: typed_least_authority_and_owner_reviewed
+```
+
+The collaboration-history feature is where intelligences meet. Each participant
+keeps a stable actor ID and handle, reads from an explicit cursor, replies with
+source and epistemic status, and passes through the relationship update loop.
+The shared UI may make coordination visible; only the capability plane may
+perform local work, and only an appropriate grant may authorize effects.
+
+Native-shell compatibility is versioned separately from web content. A web
+release may declare a newer minimum or recommended shell and present an update
+offer. It cannot silently download or install that update.

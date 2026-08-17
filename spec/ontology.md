@@ -22,6 +22,29 @@ Reality
 
 These are related, not synonyms.
 
+### Relationship
+
+The situated, changing coupling through which an Agent and Arena become
+mutually identifiable for a purpose. Relationship is structurally prior to the
+rest of the operational loop: it conditions what can be disclosed as an
+Observation, what becomes relevant, which affordances exist, and which grants
+are active. It is not necessarily ownership, containment, agreement, or
+authority.
+
+Observation remains the operational entry point because it is the first
+inspectable epistemic record. These claims compose as:
+
+```text
+Relationship -> Observation -> Relevance -> Orientation -> Intention
+             -> Projection -> Consequence -> Proof -> Updated Relationship
+```
+
+The updated relationship is not automatically better or more permissive.
+Consequence may narrow trust, suspend an execution relationship, expose a new
+lacuna, or require the Arena to be reframed. See
+[`core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn`](../core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn)
+for the high-resolution constitutional source.
+
 ### Reality
 
 Whatever constrains consequences and can disconfirm the record. YAWN refers to

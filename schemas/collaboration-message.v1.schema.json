@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/collaboration-message.v1.schema.json",
+  "title": "YAWN Collaboration Message V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "messageId", "threadId", "sequence", "sentAt", "sender", "recipients", "speechAct", "epistemicStatus", "verbatim", "relationshipLoop", "orientation", "authority", "sourceRefs"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.collaboration-message.v1" },
+    "messageId": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "threadId": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "sentAt": { "type": "string", "format": "date-time" },
+    "sender": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorId", "handle", "kind"],
+      "properties": {
+        "actorId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(?::[a-z0-9][a-z0-9._-]*)+$", "maxLength": 500 },
+        "handle": { "type": "string", "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$", "maxLength": 100 },
+        "kind": { "enum": ["human", "model", "tool", "collective"] }
+      }
+    },
+    "recipients": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$", "maxLength": 100 }
+    },
+    "replyToMessageId": { "type": ["string", "null"], "minLength": 1 },
+    "speechAct": { "enum": ["observation", "question", "proposal", "decision", "handoff", "proof", "correction", "acknowledgement"] },
+    "epistemicStatus": { "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"] },
+    "verbatim": { "type": "string", "minLength": 1, "maxLength": 200000 },
+    "relationshipLoop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relationshipRef", "arenaRef", "phase", "turnState"],
+      "properties": {
+        "relationshipRef": { "type": "string", "minLength": 1 },
+        "arenaRef": { "type": "string", "minLength": 1 },
+        "phase": { "enum": ["relationship", "observation", "relevance", "orientation", "intention", "projection", "consequence", "proof", "updated_relationship"] },
+        "turnState": { "enum": ["open", "waiting", "handed_off", "closed"] }
+      }
+    },
+    "orientation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["currentState", "lacuna", "axis", "proposedMove", "proof", "boundary"],
+      "properties": {
+        "currentState": { "type": "string" },
+        "lacuna": { "type": "string" },
+        "axis": { "type": "string" },
+        "proposedMove": { "type": "string" },
+        "proof": { "type": "string" },
+        "boundary": { "type": "string" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rightfulGrantorActorId", "grantorDecisionRecorded", "canonicalMutationAuthorized", "externalEffectsAuthorized"],
+      "properties": {
+        "rightfulGrantorActorId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(?::[a-z0-9][a-z0-9._-]*)+$", "maxLength": 500 },
+        "grantorDecisionRecorded": { "type": "boolean" },
+        "canonicalMutationAuthorized": { "type": "boolean" },
+        "externalEffectsAuthorized": { "type": "boolean" }
+      }
+    },
+    "sourceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "record-ref.v1.schema.json" }
+    }
+  }
+}

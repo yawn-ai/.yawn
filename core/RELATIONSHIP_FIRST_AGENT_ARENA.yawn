@@ -1,0 +1,1151 @@
+---
+schema_version: 3.0.0
+title: Relationship-First Agent-Arena Ontology
+type: constitutional_working_model
+domain: architecture
+status: active
+criticality: constitutional
+version: 1.0.0
+owner: dave
+created_at: 2026-08-16
+updated_at: 2026-08-16
+coordinate: yawn.ai/architecture/relationship-first-agent-arena
+parent_coordinate: yawn.ai/architecture/multi-actor-coherence-field
+public_routes:
+  - https://yawn.ai/relationship
+  - https://yawn.ai/agent
+  - https://yawn.ai/arena
+  - https://yawn.bot/relationship
+  - https://yawn.bot/agent
+  - https://yawn.bot/arena
+ontological_status: canonical_working_model
+epistemic_status: falsifiable_design_hypothesis
+inspired_in_part_by:
+  - authors: John Vervaeke; Christopher Mastropietro; Filip Miscevic
+    work: Zombies in Western Culture
+    year: 2017
+    doi: 10.11647/OBP.0113
+  - authors: Johannes Jaeger; Anna Riedl; Alex Djedovic; John Vervaeke; Denis Walsh
+    work: Naturalizing relevance realization
+    year: 2024
+    doi: 10.3389/fpsyg.2024.1362658
+mutationAuthorized: false
+persistenceAuthorized: false
+modelCallAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+
+> **Relationship is structurally first. Observation is operationally first.**
+
+This document records the moment YAWN’s agent–arena ontology became coherent enough to serve as a stable spine for the interface, the `.yawn` grammar, and future human–AI coordination.
+
+It is intentionally detailed. Compression is a View. The source should preserve enough resolution that future agents can reconstruct what was meant rather than inherit a slogan stripped of its distinctions.
+
+---
+
+## 0. The timing claim
+
+Timing is not everything in the trivial sense that a good idea succeeds merely because it arrives at the right moment.
+
+Timing matters because a system becomes possible only when several trajectories intersect:
+
+- the conceptual language is mature enough;
+- the implementation substrate exists;
+- the interface can make the language usable;
+- the surrounding technological environment creates the need;
+- and the people involved can recognize the opening.
+
+YAWN’s timing claim is therefore relational:
+
+> A possibility becomes actionable when an agent, an arena, and a historical moment acquire sufficient fit.
+
+The work did not begin with this formulation. It emerged through years of repeatedly encountering the same unresolved pattern: agents cannot act intelligently from data alone. They must know where they are, what matters, what can be done, what authority they possess, what might happen next, and what evidence could revise the map.
+
+The arrival of increasingly capable AI systems makes that requirement more urgent. Cheap action increases the cost of poor orientation. More intelligence does not remove the need for relationship; it amplifies the consequences of misrelating.
+
+---
+
+## 1. Canonical thesis
+
+```yaml
+canonical_thesis:
+  relationship: structurally_first
+  observation: operationally_first
+  agent: distinguishable_but_relationally_specified
+  arena: distinguishable_but_relationally_disclosed
+  affordance: belongs_to_the_relation
+  relevance: context_sensitive_and_transjective
+  action: changes_the_relationship
+  proof: constrains_the_interpretation
+  update: rematerializes_the_next_relationship
+```
+
+### 1.1 What “relationship comes first” means
+
+Relationship is **structurally first** because the terms `agent`, `arena`, `relevance`, `affordance`, `fit`, `friction`, and `agency` are not fully intelligible in isolation.
+
+An entity becomes *this agent* by taking up a particular configuration of state, concern, capability, role, authority, and possible action.
+
+A portion of the world becomes *this arena* by becoming task-relevant, consequential, observable, navigable, and normatively weighted from one or more standpoints.
+
+The relationship is not merely an edge drawn after two complete nodes already exist. It is the active field through which the nodes become operationally specified.
+
+### 1.2 What it does not mean
+
+Relationship-first does **not** mean:
+
+- relationship is the first event in chronological time;
+- agents and environments have no independent physical existence;
+- every distinction is arbitrary or socially constructed;
+- reality is whatever an observer believes;
+- one relationship exhausts the identity of an agent or arena;
+- a relational model proves a final metaphysics;
+- boundaries, individuals, objects, or causal mechanisms can be ignored;
+- every interaction is healthy, reciprocal, consensual, or equal.
+
+The YAWN claim is narrower and more operational:
+
+> For orientation and action, model the coupling before treating agent or arena attributes as context-free facts.
+
+### 1.3 Why observation remains first in use
+
+A relationship is already active before a deliberate interface turn begins. Attention has been shaped; roles have been assigned; expectations are present; constraints are operating; history is exerting pressure.
+
+The first deliberate move is therefore observation:
+
+> What difference became available, from what standpoint, through what access, and with what uncertainty?
+
+Observation is operationally first because it is how an agent begins making the existing relationship inspectable.
+
+---
+
+## 2. The primitive distinction
+
+YAWN uses three irreducible but mutually specifying objects:
+
+```text
+AGENT  ←────────── RELATIONSHIP ──────────→  ARENA
+  │                   │                       │
+capacity          coupling / fit          situated field
+  │                   │                       │
+state             relevance               constraints
+concern           affordance               resources
+capability        salience                 roles
+authority         feedback                 consequences
+```
+
+These are not a sequence.
+
+They are three lenses on one situated event.
+
+### 2.1 Agent
+
+The organized capacity to sense, orient, value, model, choose, regulate, and act with some degree of continuity and authority.
+
+### 2.2 Arena
+
+The bounded, situated, task-relevant, and consequential portion of a larger world available to one or more agents.
+
+### 2.3 Relationship
+
+The recursively changing field of mutual constraint through which agent and arena disclose relevance, affordance, fit, friction, power, and possible movement.
+
+---
+
+## 3. Formal working model
+
+Let:
+
+- \(G_t\) = agent state at time \(t\);
+- \(N_t\) = arena state at time \(t\);
+- \(R_t\) = active relationship at time \(t\);
+- \(O_t\) = observation registered through the relationship;
+- \(M_t\) = proposed movement or projection;
+- \(C_t\) = consequence returned through the arena;
+- \(P_t\) = evaluated proof;
+- \(U_t\) = authorized update.
+
+Then:
+
+\[
+R_t = \mathcal{C}(G_t, N_t, H_t, B_t)
+\]
+
+where:
+
+- \(\mathcal{C}\) is the current coupling;
+- \(H_t\) is inherited history and path dependence;
+- \(B_t\) is the active boundary and authority structure.
+
+Observation is not a readout from the arena alone:
+
+\[
+O_t = \mathcal{O}(R_t, access_t, attention_t, uncertainty_t)
+\]
+
+Affordance is not an object property alone:
+
+\[
+F_t = \mathcal{F}(capability(G_t), condition(N_t), concern_t, authority_t, time_t)
+\]
+
+Action changes more than the arena:
+
+\[
+(G_{t+1}^{*}, N_{t+1}^{*}, R_{t+1}^{*}) =
+\mathcal{A}(G_t, N_t, R_t, M_t)
+\]
+
+The starred states are candidates inferred after action. They do not become canonical merely because the action occurred.
+
+Only evaluated and authorized proof rematerializes the next accepted state:
+
+\[
+(G_{t+1}, N_{t+1}, R_{t+1}) =
+\mathcal{U}(G_t, N_t, R_t, C_t, P_t, authority_t)
+\]
+
+This preserves a central YAWN invariant:
+
+> A move cannot prove itself.
+
+---
+
+## 4. World, environment, umwelt, and arena
+
+The word `arena` must remain smaller than `world`.
+
+```text
+WORLD
+└── environment available in principle
+    └── experienced / sensed environment
+        └── task-relevant arena
+            └── local affordance field
+```
+
+### World
+
+The larger reality that exceeds any one agent’s access, model, horizon, or purpose.
+
+### Environment
+
+The portion of the world with which an agent could materially or informationally interact.
+
+### Experienced environment / umwelt
+
+The portion the agent can currently sense, discriminate, remember, and respond to given its embodiment, tools, training, language, and position.
+
+### Arena
+
+The currently organized field of relevance in which actions have intelligible roles and consequences.
+
+An arena is therefore:
+
+- real enough to resist the agent;
+- situated enough to differ across agents;
+- structured enough to constrain action;
+- dynamic enough to change;
+- partial enough to remain revisable.
+
+---
+
+## 5. Agent primitives
+
+An agent is not defined merely by having an output.
+
+For YAWN, the minimum high-resolution agent model contains:
+
+| Primitive | Operational question | Failure if omitted |
+|---|---|---|
+| Boundary | What is counted as this agent? | Responsibility and state leak across entities |
+| Continuity | What persists across change? | Every turn becomes an unrelated actor |
+| Current state | What is true of the agent now? | Capability and readiness are hallucinated |
+| Viability / need | What conditions exert pressure? | Stakes disappear |
+| Concern | What matters in this situation? | Relevance becomes arbitrary |
+| Value | What outcomes are ranked as better or worse? | Choice has no inspectable norm |
+| Goal | What state is represented as worth reaching? | Direction becomes implicit |
+| Intention | What direction has the agent committed to privilege? | Desire is mistaken for action |
+| Sensory access | What differences can the agent detect? | Observation claims exceed access |
+| Standpoint | From where—physically, socially, cognitively—is it detecting them? | Perspective becomes a view from nowhere |
+| Capability | What transformations can the agent actually participate in? | Affordances are invented |
+| Action repertoire | What moves are available now? | Abstract possibility is confused with usable agency |
+| Model | What does the agent believe or predict? | Expectation and evidence cannot be compared |
+| Memory | What history shapes the current encounter? | Recurrence and learning disappear |
+| Identity / role | What configuration is the agent assuming here? | Norms and permitted actions remain hidden |
+| Regulation | How are competing impulses, goals, and policies selected? | Behavior is treated as a single intention |
+| Authority | What may the agent decide, approve, spend, expose, or mutate? | Capability becomes permission |
+| Adaptivity | What can update after surprise or error? | The agent cannot learn |
+| Goal source | Intrinsic, assigned, negotiated, learned, inherited, or inferred? | Natural and artificial agency are silently equated |
+
+### 5.1 Human and machine agents
+
+YAWN may use one relational grammar across humans, AI systems, teams, organizations, tools, and processes, but it must preserve attribution.
+
+For an AI system, explicitly record:
+
+```yaml
+artificial_agent:
+  goal_source:
+  instruction_source:
+  model_owner:
+  memory_boundary:
+  embodiment:
+  tool_access:
+  authority:
+  continuity:
+  identity_claim_status:
+  self_maintenance_status:
+  human_decision_rights:
+```
+
+Do not infer intrinsic concern, felt experience, autonomous personhood, or self-originated goals from fluent behavior.
+
+---
+
+## 6. Arena primitives
+
+An arena is not merely a place. It is a field of consequential interaction.
+
+| Primitive | Operational question | Failure if omitted |
+|---|---|---|
+| Horizon | What is inside and outside the current view? | The situation appears total |
+| Scale | At what nested level is the arena modeled? | Conversation, team, market, and culture collapse together |
+| Phase | What stage or temporal condition is active? | The same action is assumed appropriate at all times |
+| Entities | What people, objects, systems, symbols, and resources are present? | The field has no participants |
+| Agents | Which entities can observe, orient, choose, or act? | Agency is assigned indiscriminately |
+| Roles | What positions can participants occupy? | Expectations and permissions remain implicit |
+| Relations | How are entities connected? | Dependency, support, ownership, and conflict disappear |
+| Topology | What paths, distances, bottlenecks, and clusters structure movement? | Navigation becomes a flat list |
+| Rules | What is formally permitted or prohibited? | Legality and procedure vanish |
+| Norms | What is socially expected, rewarded, or punished? | Informal constraint is ignored |
+| Resources | What can be used, consumed, shared, depleted, or accumulated? | Possibility is detached from means |
+| Costs | What must be spent or risked? | Affordances become free |
+| Constraints | What is impossible, difficult, slow, or bounded? | Reality contact weakens |
+| Dynamics | What changes without intervention? | The arena is frozen |
+| Observability | What can be seen, measured, inferred, hidden, or manipulated? | Evidence quality is misread |
+| Uncertainty | What state remains unresolved? | Confidence becomes theatrical |
+| Stakes | What can be gained, harmed, lost, or made irreversible? | Consequence loses weight |
+| History | How did this state become possible? | Path dependence disappears |
+| Consequence channels | How do actions return effects and evidence? | Learning cannot close |
+| Exit conditions | How can an agent leave, pause, hand off, or refuse? | Participation is treated as compulsory |
+
+### 6.1 Nested arenas
+
+A family dinner can simultaneously be:
+
+- a physical arena;
+- an attachment arena;
+- a status arena;
+- a resource-allocation arena;
+- a cultural-norm arena;
+- a developmental arena;
+- a memory-triggering arena.
+
+YAWN does not force one of these to be *the* arena.
+
+It records the active arena projection, its evidence, and its relationship to parent, child, adjacent, supporting, and conflicting arenas.
+
+---
+
+## 7. Relationship primitives
+
+The relationship object is first-class. It is not only:
+
+```yaml
+relationship:
+  agent_id:
+  arena_id:
+```
+
+It must be capable of carrying the changing structure between them.
+
+| Primitive | Meaning |
+|---|---|
+| Coupling | How agent and arena currently affect one another |
+| Concern | What gives the relationship stakes |
+| Salience | What stands out within the field |
+| Relevance | What deserves allocation of limited attention or action |
+| Affordance | What action is possible for this agent here |
+| Impediment | What appears available but is blocked, costly, prohibited, or mismatched |
+| Fit / grip | How effectively the agent is positioned to respond |
+| Friction | Where capability, expectation, constraint, or role do not align |
+| Attunement | How sensitively the agent tracks meaningful variation in the arena |
+| Power | Who can alter the field, define roles, impose costs, or control information |
+| Authority | Who may decide, approve, mutate, or bind others |
+| Trust | What reliance is justified by history and proof |
+| Reciprocity | Whether effects and adjustments flow in both directions |
+| Boundary | What information, action, identity, or obligation may cross |
+| Coordination | How multiple agents align roles and moves |
+| Conflict | Where goals, models, values, or constraints oppose |
+| Feedback | How consequences become available |
+| History | What prior encounters shape current meaning |
+| Trajectory | What the relationship is becoming if unchanged |
+| Repair | What move could restore fit, truth contact, consent, or coordination |
+| Exit | How the relationship can be ended or re-bounded |
+
+---
+
+## 8. Time as a field primitive
+
+YAWN should not treat time as a timestamp attached after meaning has been resolved.
+
+Time changes what an affordance is.
+
+A door that can be opened next week is not the same affordance as a door that must be opened in ten seconds. A promise made yesterday and a promise repeated for three years create different arenas. A result that appears immediately and one delayed by months require different proof contracts.
+
+The time field includes:
+
+```yaml
+time:
+  sequence:
+  cadence:
+  recurrence:
+  duration:
+  lag:
+  deadline:
+  temporal_proximity:
+  decay:
+  accumulation:
+  phase:
+  window:
+  path_dependence:
+  replay:
+  counterfactual_branch:
+  trajectory_if_unchanged:
+```
+
+### 8.1 Five interface horizons
+
+1. **Moment** — what is changing now.
+2. **Episode** — one causal passage from signal through consequence.
+3. **Pattern** — what repeats across episodes.
+4. **Season** — a sustained phase with changing constraints and priorities.
+5. **History** — lineage, inherited structure, path dependence, and replay.
+
+The same `.yawn` should be inspectable at all five horizons without creating five unrelated records.
+
+---
+
+## 9. Gravity as a salience-and-action primitive
+
+`Gravity` is YAWN interface language.
+
+It does **not** claim literal manipulation of physical gravity.
+
+It names the directional pull that some unresolved differences exert on attention, interpretation, and action.
+
+Potential contributors include:
+
+- care;
+- need;
+- value;
+- threat;
+- promise;
+- novelty;
+- recurrence;
+- unresolvedness;
+- contradiction;
+- missing proof;
+- social obligation;
+- identity relevance;
+- temporal proximity;
+- irreversibility;
+- uncertainty;
+- expected effort;
+- available agency.
+
+A provisional interface heuristic may be represented as:
+
+\[
+gravity_i =
+w_c care_i +
+w_n need_i +
+w_r risk_i +
+w_v novelty_i +
+w_u unresolved_i +
+w_s social_i +
+w_t proximity_i +
+w_p recurrence_i
+-
+w_e effort_i
+-
+w_b boundaryCost_i
+\]
+
+This is not an objective law and must not be rendered as one.
+
+The weights are:
+
+- attributed;
+- lens-dependent;
+- agent-dependent;
+- time-dependent;
+- revisable;
+- never self-authorizing.
+
+### 9.1 Why gravity belongs in the interface
+
+A flat list hides lived priority.
+
+A gravity field allows the interface to show:
+
+- what keeps returning;
+- what is emotionally or practically heavy;
+- what is near a deadline;
+- what affects many other nodes;
+- what is pulling action despite low proof;
+- what is important but currently low-agency;
+- what is loud but not actually important;
+- what becomes lighter after proof or repair.
+
+The purpose is not to tell the agent what must matter.
+
+It is to make the current weighting inspectable.
+
+---
+
+## 10. The recursive loop
+
+The canonical relationship update loop is:
+
+```text
+RELATIONSHIP
+    ↓
+OBSERVATION
+    ↓
+RELEVANCE / SALIENCE
+    ↓
+ORIENTATION
+    ↓
+INTENTION
+    ↓
+PROJECTION / ACTION
+    ↓
+CONSEQUENCE
+    ↓
+PROOF / UPDATE
+    ↓
+RELATIONSHIP
+```
+
+### Relationship
+
+The already-active coupling and its inherited conditions.
+
+### Observation
+
+The registered difference, source, standpoint, and uncertainty.
+
+### Relevance / salience
+
+The dynamic weighting of what deserves limited cognitive or behavioral resources.
+
+### Orientation
+
+Where the agent is, what arena is active, what matters, what is possible, and how the agent is positioned.
+
+### Intention
+
+A revisable commitment to privilege one direction.
+
+### Projection / action
+
+What the agent expresses into the arena: model, signal, request, move, intervention, refusal, handoff, or wait.
+
+### Consequence
+
+What changes—including delayed, distributed, unintended, or hidden effects.
+
+### Proof / update
+
+What evidence supports, refutes, complicates, or leaves the prior model unresolved; what authorized revision follows.
+
+### Updated relationship
+
+The next coupling, with changed state, possibility, trust, history, and trajectory.
+
+---
+
+## 11. Reciprocal opening and reciprocal narrowing
+
+Relationships can alter the future affordance field.
+
+### Reciprocal opening
+
+The agent becomes more capable of detecting and using relevant affordances while the arena becomes more navigable, trustworthy, expressive, or generative.
+
+Potential indicators:
+
+- increased optionality;
+- improved mutual predictability;
+- more accurate models;
+- higher consent clarity;
+- lower coordination friction;
+- better error correction;
+- expanded perspective;
+- increased proof readiness;
+- more reversible exploration.
+
+### Reciprocal narrowing
+
+The agent and arena become progressively less capable of adaptive engagement.
+
+Potential indicators:
+
+- fixation;
+- addiction;
+- adversarial escalation;
+- coercion;
+- hidden state;
+- rigid role assignment;
+- repeated uncorrected prediction error;
+- shrinking optionality;
+- rising exit cost;
+- loss of reality contact.
+
+YAWN should show the direction without moralizing every narrowing as bad. Narrowing can be appropriate when committing, focusing, protecting, or completing. The question is whether it is chosen, bounded, reversible where possible, and reality-calibrated.
+
+---
+
+## 12. Multiple agents and shared arenas
+
+Most consequential arenas contain more than one agent.
+
+A relationship-first model must therefore support:
+
+```yaml
+multi_actor_field:
+  agents:
+  shared_arena:
+  per_agent_standpoints:
+  per_agent_private_state:
+  shared_observations:
+  contested_observations:
+  role_assignments:
+  power_distribution:
+  authority_distribution:
+  consent:
+  shared_affordances:
+  asymmetric_affordances:
+  coordination_protocol:
+  conflict:
+  proof_rights:
+  update_rights:
+  exit_rights:
+```
+
+The field should not silently average participants into one voice.
+
+YAWN preserves:
+
+- distinct observers;
+- distinct claims;
+- distinct authorities;
+- shared objects;
+- explicit overlap;
+- visible contradiction;
+- negotiated movement;
+- proof that can be inspected by affected agents.
+
+---
+
+## 13. Holonic recursion
+
+Every agent can also be an arena.
+
+Every arena can contain agents that are themselves multi-agent systems.
+
+Examples:
+
+- a human is an agent in a family arena and an arena for biological, cognitive, and social processes;
+- a team is an agent in a market and an arena for its members;
+- a company is an agent in a legal and economic arena and an arena for teams, processes, agents, and tools;
+- a `.yawn` is an agent-like coordination object when it can hold state and route work, and an arena when participants enter it to observe, deliberate, and act.
+
+This is why the model is holonic rather than a single hierarchy.
+
+```text
+agent ↔ arena
+  └── each side may contain nested agent ↔ arena relationships
+        └── each relationship may become a new inspectable .yawn
+```
+
+Create a child `.yawn` when:
+
+- a relationship has distinct authority;
+- the arena develops its own persistent state;
+- the question can no longer be resolved without separate proof;
+- multiple movements need independent replay;
+- or compression into the parent would distort responsibility.
+
+Link rather than merge by default.
+
+---
+
+## 14. The `.yawn` data shape
+
+A high-resolution relationship object should be representable as:
+
+```yaml
+relationship:
+  id:
+  coordinate:
+  status:
+  epistemic_status:
+  parent_relationship:
+  child_relationships:
+  related_relationships:
+
+  agents:
+    - id:
+      role:
+      boundary:
+      continuity:
+      current_state:
+      standpoint:
+      sensory_access:
+      needs:
+      concerns:
+      values:
+      goals:
+      intentions:
+      capabilities:
+      action_repertoire:
+      models:
+      memory:
+      authority:
+      goal_source:
+      adaptivity:
+
+  arena:
+    id:
+    world_reference:
+    horizon:
+    scale:
+    phase:
+    entities:
+    roles:
+    relations:
+    topology:
+    rules:
+    norms:
+    resources:
+    costs:
+    constraints:
+    dynamics:
+    observability:
+    uncertainties:
+    stakes:
+    history:
+    consequence_channels:
+    exit_conditions:
+
+  coupling:
+    active_concern:
+    salience:
+    relevance:
+    affordances:
+    impediments:
+    fit:
+    friction:
+    attunement:
+    power:
+    authority:
+    trust:
+    reciprocity:
+    coordination:
+    conflict:
+    boundaries:
+    trajectory_if_unchanged:
+
+  time:
+    horizon:
+    sequence:
+    cadence:
+    recurrence:
+    duration:
+    lag:
+    deadline:
+    decay:
+    path_dependence:
+    replay:
+
+  gravity:
+    mode:
+    contributors:
+      care:
+      need:
+      risk:
+      novelty:
+      unresolvedness:
+      social:
+      temporal_proximity:
+      recurrence:
+      effort:
+      boundary_cost:
+    weights:
+    provenance:
+    interpretation_boundary: interface_weight_not_objective_truth
+
+  loop:
+    observations:
+    relevance_updates:
+    orientations:
+    intentions:
+    projections:
+    consequences:
+    proof:
+    authorized_updates:
+
+  governance:
+    human_decision_rights:
+    consent:
+    mutation_authority:
+    persistence_authority:
+    spend_authority:
+    publication_authority:
+    external_effect_authority:
+    proof_authority:
+    update_authority:
+```
+
+---
+
+## 15. Front-end expression
+
+The interface must embody the ontology rather than explain it only in prose.
+
+### 15.1 One field, three lenses
+
+The canonical public surface uses one object with three routes:
+
+- `/relationship` — the coupling is focal;
+- `/agent` — the agent capacity is focal;
+- `/arena` — the situated field is focal.
+
+The routes do not create three sources of truth.
+
+They are three Views of one relationship object.
+
+### 15.2 Visual grammar
+
+The center field should show:
+
+```text
+AGENT  ←────── RELATIONSHIP ──────→  ARENA
+                    │
+               AFFORDANCES
+                    │
+ observation → orientation → intention → projection
+                    ↓
+             consequence → proof
+                    ↓
+           updated relationship
+```
+
+Time changes the horizon of the same field.
+
+Gravity changes which nodes visually pull attention.
+
+Neither control changes canonical truth.
+
+### 15.3 Resolution model
+
+The interface should be simple at entry and deep on demand.
+
+**Level 0 — thesis**
+
+> Relationship comes first.
+
+**Level 1 — triad**
+
+> Agent ↔ Relationship ↔ Arena
+
+**Level 2 — loop**
+
+> Observation → Orientation → Intention → Projection → Consequence → Proof
+
+**Level 3 — primitives**
+
+> Boundary, concern, capability, role, rule, resource, constraint, power, trust, affordance, time, gravity.
+
+**Level 4 — provenance and replay**
+
+> Sources, attribution, history, model changes, proof, authority, and alternative interpretations.
+
+Detail is not clutter when it is progressively disclosed and retains a compression spine.
+
+### 15.4 YAWN.ai and YAWN.bot split
+
+```yaml
+yawn_ai:
+  role: inspect_explain_render
+  relationship_page: high_resolution_local_model
+  agent_page: same_model_agent_lens
+  arena_page: same_model_arena_lens
+
+yawn_bot:
+  role: receive_reflect_orient
+  relationship_page:
+    prompt: What are you in relationship with?
+  agent_page:
+    prompt: Who or what can act here?
+  arena_page:
+    prompt: What situation are you in?
+```
+
+YAWN.bot receives a signal.
+
+YAWN.ai exposes the structure and lineage of the model used to orient it.
+
+Both preserve the human authority boundary.
+
+---
+
+## 16. Research lineage and YAWN’s extension
+
+### 16.1 Agent–arena framework
+
+The agent–arena language is inspired in part by the work of John Vervaeke, Christopher Mastropietro, and Filip Miscevic, including their account of co-identification, meaningful roles, and fitting action.
+
+YAWN should attribute the lineage accurately.
+
+Do not imply:
+
+- that Vervaeke alone authored every part of the framework;
+- that his work endorses every YAWN extension;
+- or that relationship-first as used here is a direct quotation or settled scientific conclusion.
+
+### 16.2 Relevance realization
+
+The 2024 natural-agency work by Jaeger, Riedl, Djedovic, Vervaeke, and Walsh supports several load-bearing distinctions:
+
+- relevance is radically context-sensitive;
+- an arena is the situated, task-relevant portion of the experienced environment;
+- affordance and relevance arise through agent–world interaction;
+- full natural agency requires organizational and ecological dimensions;
+- constitutive and interactive autonomy should not be collapsed.
+
+### 16.3 Ecological and enactive inheritance
+
+YAWN also inherits from broader ecological and enactive traditions:
+
+- affordance is relational;
+- cognition is embodied, embedded, enacted, and often extended;
+- agents actively delimit workable problem fields;
+- meaningful action depends on fit between capability and situation;
+- the world constrains interpretation.
+
+### 16.4 YAWN’s original synthesis
+
+YAWN adds an inspectable engineering grammar for:
+
+- relationship as a first-class portable object;
+- observation as a source-preserving entry;
+- time as trajectory and replay;
+- gravity as attributed salience and action pull;
+- authority as separate from capability;
+- movement as separate from proof;
+- human–AI coordination with explicit goal source;
+- holonic recursion across people, teams, agents, projects, and institutions;
+- public interface resolution from one sentence to full provenance.
+
+This extension is a design hypothesis.
+
+Its value must be shown by improved orientation, coordination, error correction, agency preservation, and proof—not by conceptual elegance alone.
+
+---
+
+## 17. Scientific and ethical boundaries
+
+YAWN must not claim:
+
+- to manipulate physical gravity;
+- to model consciousness completely;
+- to detect hidden truth or intention;
+- to establish that all reality is relational;
+- to turn emotional intensity into evidence;
+- to infer consent from participation;
+- to make AI agents equivalent to living organisms;
+- to convert fluent output into autonomous authority;
+- to diagnose mental illness;
+- to replace therapy, medicine, law, or professional judgment;
+- to know what a person must value;
+- to make a movement successful merely by recording it.
+
+The interface may visualize:
+
+- salience;
+- pull;
+- concern;
+- risk;
+- recurrence;
+- constraint;
+- trajectory;
+- affordance;
+- uncertainty;
+- proof readiness.
+
+It must label these as attributed model features, not reality itself.
+
+---
+
+## 18. Failure tests
+
+The ontology should be revised if it repeatedly causes any of the following:
+
+1. **Relationship inflation**
+   Every ordinary property must be stored as a relationship, making the model unusable.
+
+2. **Boundary erasure**
+   Individual responsibility, consent, ownership, or physical constraint becomes difficult to express.
+
+3. **Arena solipsism**
+   The arena becomes only the agent’s interpretation and loses resistance from reality.
+
+4. **Agent mystification**
+   Any output-producing system is treated as an agent with intrinsic concern.
+
+5. **Gravity theater**
+   Attractive animations imply objective priority without attributable inputs.
+
+6. **Time decoration**
+   Sliders change appearance but do not reveal recurrence, lag, path dependence, or trajectory.
+
+7. **Proof collapse**
+   Action, consequence, evidence, interpretation, and update are treated as one event.
+
+8. **Ontology before utility**
+   Users must learn vocabulary before receiving orientation value.
+
+9. **Totalizing hierarchy**
+   One holarchy is presented as the only correct decomposition.
+
+10. **Resolution without compression**
+    Detail becomes a wall rather than inspectable depth.
+
+11. **Compression without recoverability**
+    Simple language removes the provenance needed to reconstruct meaning.
+
+12. **Human-authority leakage**
+    AI recommendations silently become goals, permissions, or canonical state.
+
+---
+
+## 19. Non-negotiable interface invariants
+
+```yaml
+invariants:
+  - relationship_is_first_class
+  - relationship_structurally_first_observation_operationally_first
+  - agent_and_arena_remain_distinguishable
+  - affordance_is_relational
+  - gravity_is_interface_weight_not_physical_claim
+  - time_changes_affordance_and_proof
+  - source_precedes_inference
+  - intention_does_not_equal_permission
+  - movement_does_not_equal_success
+  - consequence_does_not_equal_proof
+  - proof_requires_evaluation
+  - canonical_update_requires_authority
+  - human_decision_rights_remain_visible
+  - natural_and_artificial_agency_are_attributed
+  - multiple_agents_are_not_silently_merged
+  - related_yawns_link_before_merge
+  - depth_is_progressively_disclosed
+```
+
+---
+
+## 20. Completion conditions
+
+### Canonical source
+
+- [x] Relationship-first thesis is recorded in a portable `.yawn`.
+- [x] Structural-first and operational-first are distinguished.
+- [x] Agent, arena, and relationship primitives are defined.
+- [x] Time and gravity are operationalized with explicit boundaries.
+- [x] Human and artificial agency are not silently equated.
+- [x] Research lineage and YAWN extension are separated.
+
+### YAWN.ai interface
+
+- [ ] `/relationship`, `/agent`, and `/arena` render one shared source object.
+- [ ] The active lens changes emphasis, not source truth.
+- [ ] The arena page visibly attributes inspiration in part to Dr. John Vervaeke’s agent–arena work.
+- [ ] Observation links into the relationship substrate.
+- [ ] Time horizon and gravity emphasis are local presentation controls only.
+- [ ] All public authority-denial attributes remain false.
+- [ ] Desktop and mobile have no runtime error, console error, overlay, or horizontal overflow.
+
+### YAWN.bot mirror
+
+- [ ] `/relationship` asks what the person or agent is in relationship with.
+- [ ] `/agent` asks who or what can orient and act.
+- [ ] `/arena` asks what situation is active.
+- [ ] Each route links to the corresponding YAWN.ai lens.
+- [ ] No public route persists, calls a model, mutates canon, or creates an external effect.
+- [ ] The existing observation and root contracts remain intact.
+
+### Proof
+
+- [ ] Focused domain tests pass.
+- [ ] Focused component tests pass.
+- [ ] Changed-file lint passes.
+- [ ] Production build passes.
+- [ ] Browser proof covers desktop and phone.
+- [ ] Exact deployed commit is recorded before closure.
+
+---
+
+## 21. Historical note
+
+The important emergence was not the phrase “agent–arena.”
+
+It was recognizing that YAWN had been circling the same deeper object through many names:
+
+- observer;
+- world model;
+- affordance field;
+- meaning vector field;
+- projection stack;
+- joint judgment space;
+- lacuna field;
+- holarchy;
+- agent space;
+- orientation;
+- proof loop.
+
+Those were not wasted branches.
+
+They were partial Views of a relationship object that had not yet become explicit enough to organize them.
+
+The compression spine is now:
+
+> **Relationship is the field. Observation makes the field inspectable. Orientation locates agency within it. Intention selects a direction. Projection changes it. Consequence returns. Proof revises the map. Time gives the change a trajectory. Gravity makes the current pull visible.**
+
+The system should now be able to inform its own meaning without pretending to be alive in a biological or metaphysical sense.
+
+It acquires “a life of its own” in the legitimate systems sense:
+
+- its primitives constrain later design;
+- its records reveal implications not manually enumerated;
+- its loops create new observations;
+- its proof history changes future affordances;
+- its nested relationships generate new questions;
+- and its interface lets humans and machines inspect that emergence together.
+
+That is the historical claim worth preserving.
+
+---
+
+## Evolution log
+
+| Date | Change | Insight |
+|---|---|---|
+| 2026-08-16 | Declared relationship structurally first and observation operationally first. | The ontology needed two meanings of “first” to preserve both depth and usability. |
+| 2026-08-16 | Elevated time and gravity to field primitives. | Trajectory and pull make the living topology visible without turning metaphor into physics. |
+| 2026-08-16 | Separated research inheritance from YAWN’s extension. | Attribution strengthens originality; it does not diminish it. |
+| 2026-08-16 | Defined one source object with Relationship, Agent, and Arena Views. | High resolution becomes navigable when depth is recoverable from a stable compression spine. |

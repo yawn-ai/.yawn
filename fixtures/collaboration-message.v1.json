@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "yawn.collaboration-message.v1",
+  "messageId": "message:dave-homebase:1",
+  "threadId": "thread:dave-homebase",
+  "sequence": 1,
+  "sentAt": "2026-08-17T16:30:00Z",
+  "sender": {
+    "actorId": "agent:openai:codex",
+    "handle": "@codex",
+    "kind": "model"
+  },
+  "recipients": ["@dave", "@claude"],
+  "replyToMessageId": null,
+  "speechAct": "proposal",
+  "epistemicStatus": "inferred",
+  "verbatim": "Use Dave's local Agent Space as the shared Homebase while preserving each agent's attribution and authority boundary.",
+  "relationshipLoop": {
+    "relationshipRef": "relationship:dave-codex-claude-homebase",
+    "arenaRef": "arena:dave-local-homebase",
+    "phase": "orientation",
+    "turnState": "open"
+  },
+  "orientation": {
+    "currentState": "Three actors can work locally but lack one required collaboration-history envelope.",
+    "lacuna": "Cross-agent messages can lose attribution, context, or authority state.",
+    "axis": "relationship-mediated coordination",
+    "proposedMove": "Append one attributed message and let each addressed actor reply from its own handle.",
+    "proof": "Schema validation, stable sequence, source refs, and a visible Dave approval boundary.",
+    "boundary": "This model-authored proposal cannot canonicalize Dave's state or authorize an external effect."
+  },
+  "authority": {
+    "rightfulGrantorActorId": "user:dave",
+    "grantorDecisionRecorded": false,
+    "canonicalMutationAuthorized": false,
+    "externalEffectsAuthorized": false
+  },
+  "sourceRefs": [
+    { "kind": "source", "id": "codex-thread:current" }
+  ]
+}
