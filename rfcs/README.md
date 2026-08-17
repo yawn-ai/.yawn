@@ -32,3 +32,4 @@ in doubt, open an issue before assigning an RFC number.
 ## Current RFCs
 
 - [RFC 0001: Agency Holarchy Working Draft 0.2](0001-agency-holarchy-working-draft.md) — proposed
+- [RFC 0002: Inquiry Aperture — One Question Face](0002-inquiry-aperture-one-question-face.md) — proposed / owner review required

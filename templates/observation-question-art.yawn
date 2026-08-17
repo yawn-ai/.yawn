@@ -1,0 +1,36 @@
+id: templates/observation-question-art
+title: "Observation to Question to Art authoring guide"
+kind: authoring-guide
+status: draft
+updated: 2026-08-16
+
+purpose: >
+  Point authors to complete executable templates without pretending a wrapper
+  object is itself one of the advertised contracts.
+
+templates:
+  question_proposal: templates/question-proposal.v1.yawn
+  art_brief: templates/art-brief.v1.yawn
+
+rules:
+  - "The Observation remains a distinct canonical record."
+  - "The Question and Art Brief are attributed proposals."
+  - "sourceSpanIndexes remains empty unless the open-question field has exact raw-source coordinates; V1 requires an empty array."
+  - "The question remains semantic live text; image pixels never replace it."
+  - "A candidate requires verified renderer output and remains non-canonical."
+  - "Page composition and serialization are rebuildable Views."
+  - "An Agent expression into an Arena is a Projection; a layout is not."
+
+decision_boundary:
+  question_acceptance: separate_authenticated_event
+  render_grant: exact_brief_and_workflow_grant
+  candidate_acceptance: separate_authenticated_event
+  publication: separate_authenticated_event
+  yawn_promotion: separate_authenticated_event
+
+links:
+  - schemas/question-proposal.v1.schema.json
+  - schemas/art-brief.v1.schema.json
+  - templates/question-proposal.v1.yawn
+  - templates/art-brief.v1.yawn
+  - interface/local-observation-art-v0.1.yawn

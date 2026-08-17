@@ -1,0 +1,101 @@
+id: records/inquiry-aperture-one-question-face
+title: "Inquiry Aperture: one question face"
+kind: product-proposal-record
+status: owner-review-required
+updated: 2026-08-16
+coordinate: yawn.bot/inquiry-aperture/one-question-face
+epistemic_status: proposed_interpretation
+
+source:
+  kind: attributed-private-handoff
+  asserted_by: principal:dave
+  exact_text_in_public_repo: false
+
+orientation:
+  current: "Outward surfaces can expose the intelligence's paperwork before the situated question."
+  possible: "YAWN.bot presents one Question; the .yawn holarchy remains one disclosure beneath it."
+  lacuna: "No resolver yet selects and replays one Question from Arena, Observation, Lacuna, proof, permission, risk, cost, and friction."
+  governing_question: "Given this Arena and what has been observed, what question would most increase agency, clarity, and provable movement now?"
+
+responsibility:
+  person:
+    role: sovereign-agent
+    owns: [lived-observation, meaning, values, correction, consequential-authority]
+  dot_yawn:
+    role: portable-orientation-record
+    preserves: [coordinates, holarchy, provenance, boundaries, proof, revision]
+  yawn_ai:
+    role: attributed-question-forming-intelligence
+    may: [propose-interpretations, propose-candidates, rank-candidates]
+    never_owns: [truth, closure, human-authority]
+  yawn_bot:
+    role: holonic-interface-and-bounded-action-agent
+    presents: [one-selected-question, correction, authorized-next-move]
+  q_space: { role: question-answer-branch-history-view }
+  nestheads: { role: optional-personal-symbolic-spatial-view, source_of_truth: false }
+  j_space: { role: optional-model-interpretability-lens, required_for_v1: false, source_of_truth: false }
+
+human_bot_metaphor_boundary:
+  accepted_product_metaphor: personalized-co-orientation-agent
+  literal_human_machine_equivalence_claimed: false
+  consciousness_claimed: false
+  hidden_truth_claimed: false
+  principle: "Software externalizes memory, ontology, question formation, and proof; it does not replace the person's authorship, experience, or authority."
+
+inquiry_passage:
+  - select-or-hold-one-question
+  - preserve-question-rank-receipt
+  - receive-exact-human-answer-source
+  - append-attributed-human-projection
+  - create-attributed-observation
+  - link-observation-observed_from-projection
+  - preserve-inference-separately
+  - reorient-arena
+  - recompute-question-frontier
+  - present-next-question-or-hold
+
+answer_is_not_automatically: [truth, proof, accepted-preference, canonical-yawn, authorized-move]
+
+view_projection_boundary:
+  agent_question_and_answer: Projection
+  renderer_layout_color_image_navigation: View
+  art_on_critical_path: false
+  view_is_state_store: false
+
+authority:
+  standing_policy_allows_without_repeat_prompt:
+    - read-only-inspection
+    - deterministic-local-parsing-ranking-and-Views
+    - local-tests-and-proof-receipts
+    - effects-already-named-in-an-approved-work-order
+  reusable_capability_grant:
+    permitted: true
+    constrained_by: [scope, principal, budget, expiry, revocation, proof]
+    confidence_expands_authority: false
+  new_grant_required_for: [unbudgeted-paid-run, destructive-effect, external-effect, canonical-or-live-data-mutation, merge, deployment, publication]
+  paid_run_budget_rule_superseded: false
+
+proof:
+  required:
+    - one-Question-or-explicit-hold-per-supported-coordinate
+    - exact-Arena-Observation-Lacuna-proof-and-boundary-refs
+    - deterministic-rank-receipt-and-tie-break
+    - semantic-tokens-work-without-color
+    - answer-retry-creates-one-Source-one-human-Projection-one-Observation
+    - replay-returns-the-same-next-Question
+    - alternatives-remain-one-disclosure-below-the-face
+  human_review_required: [whether-the-question-mattered, whether-the-aperture-felt-clear]
+
+boundary:
+  canonicalMutationAuthorized: false
+  paidModelAuthorized: false
+  deploymentAuthorized: false
+  publicationAuthorized: false
+  externalEffectsAuthorized: false
+
+links:
+  - rfcs/0002-inquiry-aperture-one-question-face.md
+  - core/projection-and-aperture.yawn
+  - core/world-field-arena.yawn
+  - spec/questions.md
+  - interface/local-observation-art-v0.1.yawn

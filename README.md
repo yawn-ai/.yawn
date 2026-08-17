@@ -43,7 +43,19 @@ never be collapsed.
 
 [Observation schema](schemas/observation.v1.schema.json) ·
 [Observation template](templates/observation.yawn) ·
-[Observation View contract](interface/yawn-observation-view-v1.yawn)
+[Observation View contract](interface/yawn-observation-view-v1.yawn) ·
+[Question and local-art chain](interface/local-observation-art-v0.1.yawn)
+
+The proposed [one-question inquiry aperture](rfcs/0002-inquiry-aperture-one-question-face.md)
+keeps this record network behind one situated Question instead of exposing an
+ontology dashboard as the primary experience.
+
+An open question may be organized from `remainsOpen` without rewriting its
+verbatim source. A visual brief and local image can then be proposed around
+that question while the question stays accessible live text. The brief,
+candidate, and serialized page are not new truth: acceptance, rendering,
+publication, preference updates, and Yawn promotion each keep separate
+authority.
 
 ## The loop
 
@@ -208,6 +220,7 @@ test failure and cannot replace a commit-bound local result.
 | See the holarchy in use | [Nested Agent Arena](examples/nested-agent-arena.yawn) |
 | Model an async dependency | [Waiting turn](examples/waiting-turn.yawn) |
 | Import a long conversation archive | [Conversation routing](examples/conversation-import-routing.yawn) |
+| Generate observation art locally | [Local observation-art contract](interface/local-observation-art-v0.1.yawn) |
 | Understand merge vs. link vs. split | [Routing example](examples/merge-split-routing.yawn) |
 | Explore unresolved questions | [Q-Space](q-space/) |
 | Understand the evidence boundary | [Research basis](docs/research-basis.md) |
