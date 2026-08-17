@@ -2,7 +2,7 @@ id: .github/node
 title: "github node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 purpose: >
   Hold GitHub-native contribution surfaces that make the open-source repo
@@ -43,7 +43,8 @@ links:
 proof:
   source:
     - README.md
-    - contributing.md
-    - 08-research/july-01-2026-agent-contributor-automation-lock.ion
-    - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
+    - CONTRIBUTING.md
+    - automation/yawn-bot-repo-contributor-loop.yawn
+    - automation/yawn.bot.daily.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

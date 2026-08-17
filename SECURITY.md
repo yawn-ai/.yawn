@@ -12,7 +12,7 @@ publication of personal records or credentials.
 | `@yawn/contracts` v1 | Security and critical correctness fixes |
 | Root state-substrate v1 schemas and reducer | Security and critical correctness fixes |
 | Agency Holarchy 0.2 | Experimental; reports welcome, compatibility may change |
-| Historical `.ion` records and examples | Preserved, not supported as executable input |
+| Retired numbered pre-canonical records | Preserved in Git and the migration receipt; not supported as executable input |
 
 ## Report privately
 

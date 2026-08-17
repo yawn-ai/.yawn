@@ -2,7 +2,7 @@ id: records/yawn.bot-ai-writing-ledger
 title: "yawn.bot AI-writing ledger"
 kind: record-log
 status: active-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 purpose: >
   Track AI-writing-style risks, false-positive notes, and human-voice rewrites
@@ -42,5 +42,5 @@ current_entries:
 proof:
   source:
     - automation/yawn.bot.ai-writing-scan.yawn
-    - 08-research/july-01-2026-ai-writing-scan-lock.ion
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

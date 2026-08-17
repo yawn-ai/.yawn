@@ -21,6 +21,7 @@ and historical material so each can be read with the right level of trust.
 3. Validate the [v1 contracts](../contracts/) and [state schemas](../schemas/).
 4. Experiment with the [Agency Holarchy Draft 0.2](../schemas/agency-holarchy.v0.2.schema.json).
 5. Read [serialization and compatibility](../spec/serialization.md).
+6. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
 
 ### I want to understand the theory
 
@@ -46,13 +47,19 @@ and historical material so each can be read with the right level of trust.
 | [`contracts/`](../contracts/) | Stable v1 constitutional and runtime contracts |
 | [`schemas/`](../schemas/) | Executable state modules and explicitly labeled drafts |
 | [`spec/`](../spec/) | Human-readable normative and draft specification |
-| [`core/`](../core/) | Concept explanations and compatibility vocabulary |
+| [`core/`](../core/) | Concept explanations, compatibility vocabulary, and lexical invariants |
 | [`templates/`](../templates/) | Commented authoring surfaces |
 | [`examples/`](../examples/) | Informative, inspectable use cases |
 | [`interface/`](../interface/) | Presentation and interaction contracts |
 | [`q-space/`](../q-space/) | Question-oriented projection |
-| [`research/`](../08-research/) and [`references/`](../references/) | Evidence, influences, and historical locks |
-| Numbered `00-`…`08-` folders | Historical `.ion` bridge; preserved, not current source of truth |
+| [`references/`](../references/) and [research basis](research-basis.md) | Evidence, influences, and scientific boundaries |
+| [`migrations/`](../migrations/) | Source-preserving structural receipts and canonical target maps |
+
+The numbered pre-canonical generation is no longer part of the active tree. Its
+immutable source commit and path-by-path absorption map are preserved in the
+[canonical-extension migration receipt](../migrations/2026-08-17-canonical-extension.yawn).
+Historical wording is attributable evidence, not current canon merely under a
+new filename.
 
 For the current compatibility boundary and known gaps, see
 [Project status](project-status.md) and [Repository map](repository-map.md).

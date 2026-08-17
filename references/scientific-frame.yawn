@@ -2,7 +2,7 @@ id: references/scientific-frame
 title: "scientific frame"
 kind: reference
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 publishable_claim: >
   YAWN is an observer protocol for lived agency, implemented as an orientation
@@ -68,5 +68,7 @@ bottom_line: >
 proof:
   source:
     - "C:/Users/dave/Downloads/YAWN as an Observer Protocol for Lived Agency.md"
-    - 08-research/july-01-2026-readme-yawn-lock.ion
+    - readme.yawn
+    - docs/research-basis.md
+    - migrations/2026-08-17-canonical-extension.yawn
   status: source-backed

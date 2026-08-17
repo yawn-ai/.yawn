@@ -2,7 +2,7 @@ id: core/folder-node
 title: "folder node protocol"
 kind: node-protocol
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 definition: >
   A folder node is a knowledge node and mental-model node. It explains what a
@@ -29,5 +29,7 @@ proof:
   source:
     - readme.yawn
     - core/yawn-space.yawn
-    - 03-filesystem/cognitive-filesystem.ion
+    - spec/holarchy.md
+    - spec/routing.md
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

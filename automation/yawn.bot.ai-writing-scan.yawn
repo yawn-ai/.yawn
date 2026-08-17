@@ -2,7 +2,7 @@ id: automation/yawn.bot.ai-writing-scan
 title: "yawn.bot AI-writing scan"
 kind: automation-contract
 status: active
-updated: 2026-07-01
+updated: 2026-08-17
 
 automation_id: yawn-bot-ai-writing-scan
 schedule: "twice daily at 10:30 AM and 4:30 PM America/Denver"
@@ -30,7 +30,6 @@ scan_scope:
   source_repo:
     include:
       - "*.yawn"
-      - "*.ion"
       - "*.md"
       - "*.html"
       - "*.yml"
@@ -95,7 +94,7 @@ blocked:
 
 proof:
   source:
-    - 08-research/july-01-2026-ai-writing-scan-lock.ion
     - records/yawn.bot-ai-writing-ledger.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
     - https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
   status: seed-backed

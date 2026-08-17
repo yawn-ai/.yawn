@@ -2,7 +2,7 @@ id: interface/map
 title: "/map"
 kind: cognition-handle
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 function: "show what this belongs to"
 
@@ -23,5 +23,8 @@ output:
 proof:
   source:
     - readme.yawn
-    - 03-filesystem/cognitive-filesystem.ion
+    - core/yawn-space.yawn
+    - spec/holarchy.md
+    - spec/routing.md
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

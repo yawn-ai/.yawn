@@ -2,7 +2,7 @@ id: core/memory-update
 title: "memory update"
 kind: core
 status: v1
-updated: 2026-07-21
+updated: 2026-08-17
 
 definition: >
   A memory update is an authorized event reduction that changes the map after
@@ -34,5 +34,6 @@ proof:
   source:
     - interface/memory.yawn
     - core/proof-and-boundary.yawn
-    - 05-proof/replay.ion
+    - core/state-transition.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

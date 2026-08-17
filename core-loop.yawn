@@ -2,7 +2,7 @@ id: core-loop
 title: "legacy YAWN.bot repository automation loop"
 kind: compatibility-alias
 status: superseded
-updated: 2026-07-11
+updated: 2026-08-17
 
 canonical_protocol_loop: core/co-orientation-loop.yawn
 canonical_automation_module: automation/yawn-bot-repo-contributor-loop.yawn
@@ -163,10 +163,10 @@ failure_modes:
 
 proof:
   source:
-    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
     - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.daily.yawn
     - automation/yawn.bot.private-pr-loop.yawn
     - automation/yawn.bot.pr-notification.yawn
     - records/yawn.bot-pr-notification-ledger.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

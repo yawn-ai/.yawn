@@ -2,7 +2,7 @@ id: core/next-move-logic
 title: "next move logic"
 kind: decision-protocol
 status: v1
-updated: 2026-07-21
+updated: 2026-08-17
 
 purpose: >
   Show why a next move is suggested. The logic is inspectable ranking, not
@@ -64,6 +64,7 @@ proof:
   source:
     - yawn.yawn
     - records/next-move-ledger.yawn
-    - 01-core/agency-currency.ion
-    - 05-proof/proof-contract.ion
+    - core/agency.yawn
+    - core/proof-and-boundary.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

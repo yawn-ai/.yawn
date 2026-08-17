@@ -2,7 +2,7 @@ id: database/node
 title: "database node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 purpose: >
   Hold database placement rules and schemas for turning material records into
@@ -37,5 +37,7 @@ links:
 proof:
   source:
     - feedback/codex-t4o-parser.yawn
-    - 08-research/july-01-2026-feedback-intake-lock.ion
+    - database/feedback-intake.yawn
+    - feedback/form.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed
