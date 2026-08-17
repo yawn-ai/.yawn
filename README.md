@@ -30,6 +30,24 @@ silently change its meaning or authority.
 [Write your first Yawn](docs/quickstart.md) ·
 [See nested Agent Arena](examples/nested-agent-arena.yawn)
 
+## One name, one extension
+
+<!-- yawn-invalid-alias-guard:start -->
+The product is **YAWN** and the only YAWN record extension is **`.yawn`**.
+`.ion` and `.yon` are invalid aliases commonly introduced by speech-to-text or
+model transcription. They are not alternate formats, schemas, products, or
+compatibility layers.
+<!-- yawn-invalid-alias-guard:end -->
+
+In an already-established YAWN context, implementations normalize those
+substitutions **before** creating a path, ID, schema, or record. When the
+referent could genuinely be something else—such as a chemical term or a
+person's name—the system preserves the raw words and asks or flags the
+ambiguity. A correction never changes semantic identity or grants authority.
+
+[Canonical naming contract →](core/canonical-extension.yawn) ·
+[Migration receipt →](migrations/2026-08-17-canonical-extension.yawn)
+
 ## Start with Observation
 
 Observation is the cleanest entry into the ontology: what became available to

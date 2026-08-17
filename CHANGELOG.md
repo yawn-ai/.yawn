@@ -8,6 +8,9 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Canonical YAWN naming contract, context-gated speech-to-text normalization,
+  raw/normalized correction provenance, fail-closed extension validation, and
+  a source-preserving migration receipt for the retired numbered generation
 - Revocable execution-delegate relationships, exact action signatures,
   reusable-policy proposals, owner-decided reconciliation batches, and
   consequence receipts
@@ -36,6 +39,9 @@ labels and do not imply compatibility.
 
 ### Changed
 
+- Retired the numbered pre-canonical generation from the active tree after
+  mapping all 50 invalid-extension sources to current canonical targets; the
+  immutable source commit remains the provenance witness
 - Distinguished rendered Views from an Agent's ontological Projection and made
   Yawn promotion a separate human-approved lifecycle from Observation
 - Made repository-owned local checks the primary proof path and GitHub Actions a
@@ -51,8 +57,9 @@ labels and do not imply compatibility.
 
 - `@yawn/contracts` v1 and the state-substrate v1 schemas introduced in the
   2026-08-13 canonical-contract and state-substrate integrations
-- Historical `.ion` bridge, research locks, records, feedback route, and
-  Declaration of Agency
+- Historical numbered-generation content, research locks, records, feedback
+  route, and Declaration of Agency through Git history and explicit migration
+  provenance rather than a second active schema layer
 
 ## 2026-08-13 — State substrate v1
 
@@ -65,5 +72,5 @@ labels and do not imply compatibility.
 - Published the constitutional runtime contract, generated TypeScript types,
   source atoms, authority grants, proof receipts, and import receipts.
 
-Earlier repository history is preserved in Git and the numbered research
-bridge. A backfilled release chronology is a [roadmap](ROADMAP.md) item.
+Earlier repository history is preserved in Git and migration receipts. A
+backfilled release chronology is a [roadmap](ROADMAP.md) item.

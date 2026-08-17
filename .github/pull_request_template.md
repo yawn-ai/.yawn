@@ -15,6 +15,7 @@ What bounded change does this PR make?
 - Which stable or draft contract does this affect?
 - Does it change authority, privacy, egress, identity, proof, or replay?
 - What migration or rollback path exists?
+- Does transcript or model normalization change a path, ID, or source reference?
 
 ## proof
 
@@ -45,4 +46,7 @@ propose or change, and what did a human verify?
 - [ ] I did not include credentials, private records, or data I cannot publish.
 - [ ] Normative changes include examples, counterexamples, and conformance or a
       clear reason those cannot yet exist.
+- [ ] Every new YAWN record uses the canonical `.yawn` extension.
+- [ ] Any speech-to-text naming correction preserves raw input and uses the
+      context/ambiguity rules in `core/canonical-extension.yawn`.
 - [ ] I ran the relevant checks in `CONTRIBUTING.md`.

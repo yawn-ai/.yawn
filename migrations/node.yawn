@@ -1,0 +1,23 @@
+id: migrations
+title: "protocol migrations"
+kind: folder-node
+status: active
+updated: 2026-08-17
+
+purpose: >
+  Preserve the source, decision, compatibility boundary, authority, proof, and
+  replay of structural protocol changes without rewriting history.
+
+entries:
+  - migrations/2026-08-17-canonical-extension.yawn
+
+rules:
+  - migration receipts are .yawn records
+  - old source remains attributable through immutable commits or hashes
+  - a migration does not promote every historical claim
+  - rollback must preserve current naming, authority, privacy, and proof invariants
+
+proof:
+  source:
+    - core/canonical-extension.yawn
+    - spec/serialization.md

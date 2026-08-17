@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: repository-manifest
 status: active
-updated: 2026-08-13
+updated: 2026-08-17
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -11,6 +11,8 @@ human_front_door: README.md
 repository_orientation: readme.yawn
 specification_root: spec/README.md
 core_loop: core/co-orientation-loop.yawn
+canonical_extension_contract: core/canonical-extension.yawn
+canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
 
 official_runtime:
   identity: YAWN.bot
@@ -28,6 +30,13 @@ summary: >
 canonical_sentence: >
   .yawn does not contain reality. It makes an agent's orientation toward part
   of reality inspectable, correctable, and replayable.
+
+lexical_invariant:
+  product_name: YAWN
+  file_extension: .yawn
+  contract: core/canonical-extension.yawn
+  ingestion_rule: normalize-established-yawn-context-before-creation
+  raw_transcript_rule: preserve-when-correction-affects-provenance
 
 protocol_status:
   contracts_v1: stable
@@ -58,6 +67,7 @@ core_links:
   legacy_automation_loop_alias: core-loop.yawn
   root_orientation: readme.yawn
   what_is_a_yawn: core/what-is-a-yawn.yawn
+  canonical_extension: core/canonical-extension.yawn
   orientation: core/orientation.yawn
   memory_update: core/memory-update.yawn
   folder_node: core/folder-node.yawn
@@ -276,6 +286,9 @@ reference_links:
   scientific_frame: references/scientific-frame.yawn
   july_01_lock: references/july-01-lock.yawn
 
+migration_links:
+  canonical_extension_2026_08_17: migrations/2026-08-17-canonical-extension.yawn
+
 usage_frame: >
   YAWN is an orientation shape for inference before action. Use it by naming
   the field, orienting the observer, recording what is being inferred, naming
@@ -295,8 +308,8 @@ question_packet_rule: >
   skipped answers into visible lacunae rather than invented content.
 
 folder_node_rule: >
-  Every folder is a knowledge node and mental-model node. Each folder should
-  contain node.yawn as its local orientation card.
+  Every active folder is a knowledge node and mental-model node. Each active
+  folder should contain node.yawn as its local orientation card.
 
 shape_path:
   root: readme.yawn
@@ -313,6 +326,7 @@ shape_path:
   agents: agents/yawn.bot.policy.yawn
   feedback: feedback/form.yawn
   core_loop: core/co-orientation-loop.yawn
+  migrations: migrations/2026-08-17-canonical-extension.yawn
 
 credibility_standard:
   field: "what information is available"
@@ -349,15 +363,6 @@ folder_node_links:
   references: references/node.yawn
   agents: agents/node.yawn
   scripts: scripts/node.yawn
-  bridge_start: 00-start/node.yawn
-  bridge_core: 01-core/node.yawn
-  bridge_interface: 02-interface/node.yawn
-  bridge_filesystem: 03-filesystem/node.yawn
-  bridge_agent: 04-agent/node.yawn
-  bridge_proof: 05-proof/node.yawn
-  bridge_product: 06-product/node.yawn
-  bridge_templates: 07-templates/node.yawn
-  bridge_research: 08-research/node.yawn
 
 boundary:
   - signal is not instruction
@@ -370,6 +375,7 @@ boundary:
   - only suitable evidence or proof upgrades empirical claims
   - desire cannot authorize action
   - a move cannot mark itself successful
+  - transcript normalization cannot change semantic identity or authority
 
 first_move:
   instruction: >
@@ -385,6 +391,8 @@ material_record_rule: >
 
 source:
   - core/co-orientation-loop.yawn
+  - core/canonical-extension.yawn
+  - migrations/2026-08-17-canonical-extension.yawn
   - records/yawn-bot-runtime-promotion-2026-07-11.yawn
   - readme.yawn
   - README.md
@@ -394,11 +402,3 @@ source:
   - core/memory-update.yawn
   - references/scientific-frame.yawn
   - references/july-01-lock.yawn
-  - 08-research/june-30-2026-public-readme.ion
-  - 08-research/june-30-2026-alignment.ion
-  - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
-  - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
-  - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
-  - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
-  - 08-research/july-01-2026-ai-writing-scan-lock.ion
-  - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion

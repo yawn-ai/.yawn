@@ -15,6 +15,23 @@ between what was observed, inferred, authorized, attempted, and proved.
 - Protocol changes: open an [RFC](rfcs/README.md)
 - Small documentation, fixture, or test improvements: open a pull request
 
+## Canonical naming
+
+The product name is **YAWN** and the only human-readable record extension is
+**`.yawn`**.
+
+<!-- yawn-invalid-alias-guard:start -->
+`.ion` and `.yon` are invalid schema aliases and common speech-to-text/model
+transcription errors. Do not create files, schemas, compatibility layers, or
+product variants under either spelling.
+<!-- yawn-invalid-alias-guard:end -->
+
+In established YAWN context, normalize a clear substitution before creating an
+artifact and preserve the raw/normalized pair when it matters to provenance.
+Outside that context, do not silently rewrite ordinary language. Read
+[`core/canonical-extension.yawn`](core/canonical-extension.yawn) before changing
+ingestion, naming, paths, or schema selection.
+
 ## Local setup
 
 Requirements: Node.js 22 or a current Node.js LTS release and npm.
@@ -56,7 +73,9 @@ Explain:
 
 Normative changes need examples, counterexamples, executable schema changes
 where applicable, valid and invalid fixtures, and migration impact. Avoid mass
-renames or historical cleanup in the same change as a semantic protocol change.
+renames or historical cleanup in the same change as an unrelated semantic
+protocol change. A bounded naming migration with its own receipt, validator, and
+rollback/provenance path is acceptable.
 
 ## AI-assisted contributions
 
@@ -71,6 +90,10 @@ AI assistance is welcome. Disclose material use in the pull request:
 AI output remains a proposal until the contributor accepts responsibility for
 it. Never include private prompts, credentials, personal `.yawn` records, or
 third-party data without the right to publish them.
+
+AI-assisted speech or transcript ingestion must preserve naming corrections as
+attributed transformations when the correction changes a path, ID, schema
+selection, or source reference.
 
 ## Specification language
 
