@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/action-signature.v1.schema.json",
+  "title": "YAWN Action Signature V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "repository", "pullRequestNumber", "headSha", "action", "baseBranch", "riskClass", "maxCostMicrousd", "proofKinds"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.action-signature.v1" },
+    "repository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+    "pullRequestNumber": { "type": ["integer", "null"], "minimum": 1 },
+    "headSha": { "type": ["string", "null"], "pattern": "^[a-f0-9]{40}$" },
+    "action": { "enum": ["inspect", "ready", "merge", "comment", "close", "comment_then_close", "reconcile_then_merge", "deploy"] },
+    "baseBranch": { "type": ["string", "null"], "minLength": 1, "maxLength": 255 },
+    "riskClass": { "enum": ["read", "reversible", "external_mutation", "release"] },
+    "maxCostMicrousd": { "type": "integer", "minimum": 0 },
+    "proofKinds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["head_sha", "required_checks", "schema_validation", "unit_tests", "browser_projection", "deployment", "yawn_receipt"] }
+    }
+  }
+}

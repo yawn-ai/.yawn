@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/reconciliation-batch.v1.schema.json",
+  "title": "YAWN Reconciliation Batch V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchId", "revision", "relationshipRef", "title", "status", "workOrderRef", "headsetSha256", "entries", "decidedByRef", "decidedAt", "sourceRefs", "createdAt", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.reconciliation-batch.v1" },
+    "batchId": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "relationshipRef": { "$ref": "record-ref.v1.schema.json" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "status": { "enum": ["draft", "pending", "approved", "executing", "partial", "completed", "declined", "held"] },
+    "workOrderRef": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "headsetSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["entryId", "repository", "pullRequestNumber", "title", "expectedHeadSha", "decision", "status", "rationale", "proofRefs"],
+        "properties": {
+          "entryId": { "type": "string", "minLength": 1 },
+          "repository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+          "pullRequestNumber": { "type": "integer", "minimum": 1 },
+          "title": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "expectedHeadSha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+          "decision": { "enum": ["accept", "accept_after_dependency", "replace_then_accept", "decline_absorbed", "decline_after_extraction", "decline_superseded", "decline_defer_v2", "decline_security_reproposal", "hold"] },
+          "status": { "enum": ["pending", "ready", "executing", "merged", "closed", "held", "blocked", "stale"] },
+          "rationale": { "type": "string", "minLength": 1 },
+          "proofRefs": { "type": "array", "uniqueItems": true, "items": { "$ref": "record-ref.v1.schema.json" } }
+        }
+      }
+    },
+    "decidedByRef": { "anyOf": [{ "$ref": "record-ref.v1.schema.json" }, { "type": "null" }] },
+    "decidedAt": { "type": ["string", "null"], "format": "date-time" },
+    "sourceRefs": { "type": "array", "minItems": 1, "items": { "$ref": "record-ref.v1.schema.json" } },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

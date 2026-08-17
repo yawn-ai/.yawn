@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/local-art-candidate.v1.schema.json",
+  "title": "YAWN Local Art Candidate V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "candidateId", "revision", "briefRef", "questionProposalRef", "producedBy",
+    "renderer", "output", "accessibleDescription", "validation",
+    "textInspection", "evidenceStatus", "boundary", "status", "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.local-art-candidate.v1" },
+    "candidateId": { "type": "string", "minLength": 1 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "briefRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "required": ["revision", "stateSha256"],
+          "properties": {
+            "kind": { "const": "art_brief" },
+            "revision": { "type": "integer", "minimum": 1 },
+            "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      ]
+    },
+    "questionProposalRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "required": ["revision", "stateSha256"],
+          "properties": {
+            "kind": { "const": "question_proposal" },
+            "revision": { "type": "integer", "minimum": 1 },
+            "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      ]
+    },
+    "producedBy": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        { "properties": { "kind": { "enum": ["actor", "principal"] } } }
+      ]
+    },
+    "renderer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider", "grantId", "workflowProfileSha256", "workflowSha256",
+        "modelOrCheckpointSha256", "promptId", "seed"
+      ],
+      "properties": {
+        "provider": { "const": "comfyui_local" },
+        "grantId": { "type": "string", "minLength": 1 },
+        "workflowProfileSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "workflowSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "modelOrCheckpointSha256": {
+          "type": ["string", "null"],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "promptId": { "type": "string", "minLength": 1 },
+        "seed": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "mediaType", "width", "height", "proxyPath"],
+      "properties": {
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "mediaType": { "enum": ["image/png", "image/jpeg", "image/webp"] },
+        "width": { "type": "integer", "minimum": 1, "maximum": 4096 },
+        "height": { "type": "integer", "minimum": 1, "maximum": 4096 },
+        "proxyPath": { "type": "string", "pattern": "^/api/local-art/" }
+      }
+    },
+    "accessibleDescription": { "type": "string", "minLength": 1 },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["descriptorValidated", "bytesValidated", "dimensionsValidated", "sha256Validated"],
+      "properties": {
+        "descriptorValidated": { "const": true },
+        "bytesValidated": { "const": true },
+        "dimensionsValidated": { "const": true },
+        "sha256Validated": { "const": true }
+      }
+    },
+    "textInspection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "detectedText"],
+      "properties": {
+        "status": { "enum": ["pending", "passed", "failed"] },
+        "detectedText": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "evidenceStatus": { "const": "verified_local_output" },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalMutationAuthorized", "publicationAuthorized", "promotionAuthorized"],
+      "properties": {
+        "canonicalMutationAuthorized": { "const": false },
+        "publicationAuthorized": { "const": false },
+        "promotionAuthorized": { "const": false }
+      }
+    },
+    "status": { "const": "candidate" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

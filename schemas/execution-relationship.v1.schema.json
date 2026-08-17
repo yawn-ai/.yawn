@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/execution-relationship.v1.schema.json",
+  "title": "YAWN Execution Relationship V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "relationshipId", "revision", "kind", "principalSpaceRef", "grantorRef", "delegateRef", "delegateHandles", "status", "authority", "revocableByRef", "updateLoop", "sourceRefs", "createdAt", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.execution-relationship.v1" },
+    "relationshipId": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "kind": { "const": "execution_delegate" },
+    "principalSpaceRef": { "$ref": "record-ref.v1.schema.json" },
+    "grantorRef": { "$ref": "record-ref.v1.schema.json" },
+    "delegateRef": { "$ref": "record-ref.v1.schema.json" },
+    "delegateHandles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "status": { "enum": ["active", "paused", "revoked"] },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["activeWorkOrderRefs", "reusablePolicyRefs", "exactEffectSignaturesRequired", "selfAuthorizationAllowed", "autonomousPaidCostMicrousd", "graduationThreshold", "proofRequired"],
+      "properties": {
+        "activeWorkOrderRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "reusablePolicyRefs": { "type": "array", "uniqueItems": true, "items": { "$ref": "record-ref.v1.schema.json" } },
+        "exactEffectSignaturesRequired": { "const": true },
+        "selfAuthorizationAllowed": { "const": false },
+        "autonomousPaidCostMicrousd": { "type": "integer", "minimum": 0 },
+        "graduationThreshold": { "type": "integer", "minimum": 1 },
+        "proofRequired": { "const": true }
+      }
+    },
+    "revocableByRef": { "$ref": "record-ref.v1.schema.json" },
+    "updateLoop": {
+      "const": ["relationship", "observation", "relevance", "orientation", "intention", "projection", "consequence", "proof", "updated_relationship"]
+    },
+    "sourceRefs": { "type": "array", "minItems": 1, "items": { "$ref": "record-ref.v1.schema.json" } },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    { "properties": { "principalSpaceRef": { "properties": { "kind": { "const": "agent_space" } } } } },
+    { "properties": { "grantorRef": { "properties": { "kind": { "const": "principal" } } } } },
+    { "properties": { "delegateRef": { "properties": { "kind": { "enum": ["principal", "actor"] } } } } },
+    { "properties": { "revocableByRef": { "properties": { "kind": { "const": "principal" } } } } }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/action-policy.v1.schema.json",
+  "title": "YAWN Action Policy V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "policyId", "revision", "relationshipRef", "label", "status", "effectSignature", "cleanReceiptCount", "graduationThreshold", "proposedByRef", "approvedByRef", "approvedAt", "suspendedAt", "revokedAt", "sourceRefs", "createdAt", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.action-policy.v1" },
+    "policyId": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "relationshipRef": { "$ref": "record-ref.v1.schema.json" },
+    "label": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "status": { "enum": ["proposed", "active", "suspended", "revoked"] },
+    "effectSignature": { "$ref": "action-signature.v1.schema.json" },
+    "cleanReceiptCount": { "type": "integer", "minimum": 0 },
+    "graduationThreshold": { "type": "integer", "minimum": 1 },
+    "proposedByRef": { "$ref": "record-ref.v1.schema.json" },
+    "approvedByRef": { "anyOf": [{ "$ref": "record-ref.v1.schema.json" }, { "type": "null" }] },
+    "approvedAt": { "type": ["string", "null"], "format": "date-time" },
+    "suspendedAt": { "type": ["string", "null"], "format": "date-time" },
+    "revokedAt": { "type": ["string", "null"], "format": "date-time" },
+    "sourceRefs": { "type": "array", "minItems": 1, "items": { "$ref": "record-ref.v1.schema.json" } },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "active" } }, "required": ["status"] },
+      "then": {
+        "properties": {
+          "approvedByRef": { "$ref": "record-ref.v1.schema.json" },
+          "approvedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  ]
+}

@@ -18,6 +18,8 @@ It does not claim that the record is the world.
 | Constitution | Stable agency and state invariants | [`@yawn/contracts` v1](../contracts/) |
 | State substrate | State, evidence, target, transition, and event records | [`schemas/*.v1.schema.json`](../schemas/) |
 | Observation record | Accepted source-backed Observation, generic event/proof subject, and View preference | [`observation.v1`](../schemas/observation.v1.schema.json) |
+| Observation proposals | Source-bound open Question, Art Brief, local candidate, and attributed Projection feedback | [`question-proposal.v1`](../schemas/question-proposal.v1.schema.json) and related v1 schemas |
+| Delegated execution | Owner/delegate relationship, exact effect signatures, reusable policy proposals, reconciliation batches, and consequence receipts | [`execution-relationship.v1`](../schemas/execution-relationship.v1.schema.json) and related v1 schemas |
 | Agency holarchy | Arena, Yawn, relation, turn, routing, and structural change | [Draft 0.2 schema](../schemas/agency-holarchy.v0.2.schema.json) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
 | View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
@@ -60,6 +62,8 @@ can be tested.
 - [Nine questions](questions.md): the human orientation projection
 - [Serialization](serialization.md): identifiers, extensions, time, and hashes
 - [Observation schema](../schemas/observation.v1.schema.json): source-backed state valid before Yawn promotion
+- [Delegated execution](../schemas/execution-relationship.v1.schema.json): revocable owner authority that cannot be self-granted by an agent or model output
+- [Question/art template](../templates/observation-question-art.yawn): proposal-only chain with explicit render and publication boundaries
 
 ## Maturity labels
 

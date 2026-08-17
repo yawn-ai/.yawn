@@ -8,12 +8,21 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Revocable execution-delegate relationships, exact action signatures,
+  reusable-policy proposals, owner-decided reconciliation batches, and
+  consequence receipts
+- Fail-closed action gates for inactive relationships, missing owner approval,
+  stale heads, missing proof, policy drift, and cost widening
+- Clean-receipt graduation that proposes but never self-activates future policy
 - First-class `yawn.observation-state.v1`, generic RecordRef/RecordEvent/proof
   subject contracts, deterministic replay and `observation.yawn` export
 - Projection preference contracts with explicit reset, ordered inheritance,
   field provenance, and protected semantic/authority/privacy/proof boundaries
 - Observation-first README entry and the Observation / Intention / Projection /
   Consequence distinction in the ontology
+- Source-bound Question, zero-paid-cost local Art Brief, hash-bound candidate,
+  and attributed View-feedback proposal contracts with deterministic View
+  materialization and a sanitized conformance fixture
 - Unified documentation hub and deployable GitHub Pages landing page
 - Working Draft 0.2 ontology for world, field, arena, Yawn, turn, transition,
   projection, and replay
