@@ -35,8 +35,13 @@ test("normalizes bare extension nouns without consuming separators", () => {
   );
   // yawn-invalid-alias-guard:end
 
+  const replacementCount = result.corrections.reduce(
+    (total, correction) => total + correction.replacements,
+    0,
+  );
+
   assert.equal(result.normalizedInput, "Import the .yawn file, then create a .yawn schema.");
-  assert.equal(result.corrections.length, 2);
+  assert.equal(replacementCount, 2);
 });
 
 test("normalizes product hosts and product nouns", () => {
