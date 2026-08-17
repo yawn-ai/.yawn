@@ -111,3 +111,14 @@ Propose a split when at least one of these is independently closable:
 Accepted operations produce a [structural change receipt](holarchy.md), aliases
 or redirects, and replayable events. Rejected proposals remain part of the
 decision history.
+
+## Import drafts
+
+A long conversation archive is imported as **one draft per conversation**, never one Yawn per message. A draft
+binds an Observation record, a routing proposal, and an arena candidate
+([`templates/conversation-import-draft.yawn`](../templates/conversation-import-draft.yawn)); it stays
+`lifecycle: draft_pending_review` with `arenaRef: null` until a human accepts the routing, and every draft carries the
+conversation's content hash as its source span. Only the principal's own messages inform inference; assistant text is
+counted, never believed. Sensitive arenas may withhold verbatim openings. The pipeline and its do-not-do rules are in
+[`examples/conversation-import-routing.yawn`](../examples/conversation-import-routing.yawn); the first field run
+(2,150 conversations, 2026-08-17) recorded what worked and what did not in the principal's private Agent Space.

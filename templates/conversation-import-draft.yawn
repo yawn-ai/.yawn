@@ -1,0 +1,78 @@
+# Conversation Import Draft 0.1 (proposed)
+#
+# One draft per imported conversation (ChatGPT/Claude/Codex/etc.). A draft binds three protocol shapes:
+# an Observation record (observation-state.v1), a routing proposal (0.2-draft), and an arena candidate.
+# It is a *proposal*: nothing is placed in the holarchy until a human accepts the routing.
+# Rules carried from examples/conversation-import-routing.yawn:
+#   - Do not create one Yawn per message merely because every message has an ID.
+#   - Do not publish private source text; drafts carry no assistant text and at most a short verbatim opening.
+#   - Repetition is not proof; contradictions are preserved, not summarized away.
+#   - Only the principal's own messages inform inference; assistant text is counted, never believed.
+#   - A model never authorizes its own extraction or placement.
+
+specVersion: "1"
+kind: conversation-import-draft
+draftSchema: yawn.conversation-import-draft.v0
+importId: "import:"
+lifecycle: draft_pending_review          # draft_pending_review | accepted | rejected | deferred
+proposedName: ""                          # <YYYY-MM-DD>-<slug>; renamed on acceptance
+proposedCoordinate: ""                    # <principal>/imports/<provider>/<arena>/<name>
+
+observation:                              # observation-state.v1 shape
+  schemaVersion: yawn.observation-state.v1
+  observationId: "observation:<provider>:<conversation-id>"
+  observerRef: "agent:"                   # the importing agent
+  agentSpaceRef: "agent-space:"
+  arenaRef: null                          # set only when routing is accepted
+  observedYawnRefs: []
+  sourceSpans:
+    - sourceRef: "source:<provider>-export:<import-id>/<shard>#<conversation-id>"
+      sourceSha256: "<sha256 of the conversation's canonical JSON>"
+      startCharacter: 0
+      endCharacter: 0
+      coordinate: { unit: unicode_code_point, canonicalization: json-sorted-keys }
+  whatBecameAvailable: "<title> — N messages (M from the principal) between <first> and <last>."
+  observerAdded:
+    - { text: "Principal opened with: <verbatim ≤240 chars, withheld for sensitive arenas>", assertedBy: "principal:", epistemicStatus: reported, confidence: 1, sourceSpanIndexes: [0] }
+  inferences:
+    - { text: "Belongs to arena <a> (evidence …)", assertedBy: "agent:", epistemicStatus: inferred, confidence: 0.0, sourceSpanIndexes: [0] }
+    - { text: "Proposed name <name>", assertedBy: "agent:", epistemicStatus: inferred, confidence: 0.0, sourceSpanIndexes: [0] }
+  conditions: []                          # how this run was bounded (lexicon, sampled reading, budget)
+  limits: []                              # automated vs human-read; confidence is fit, never permission
+  remainsOpen: ["Confirm arena", "Confirm name and coordinate", "Confirm placement operation"]
+  proofRefs: []
+  epistemicStatus: inferred
+  confidence: 0.0
+  revision: 1
+  observedAt: null
+  recordedAt: ""
+  updatedAt: ""
+  previousStateSha256: null
+  extensions: {}
+
+routing:                                  # routing-proposal 0.2 shape
+  spec_version: "0.2-draft"
+  kind: routing_proposal
+  id: "routing:<provider>:<conversation-id>"
+  status: proposed
+  proposed_by: "agent:"
+  proposed_at: ""
+  operation: hold                         # attach | create_child | create_sibling | link | merge_candidate | split_candidate | hold
+  recommended_target_id: "arena:"
+  routing_confidence: 0.0
+  hard_gates: { authority_compatible: false, privacy_and_egress_compatible: false, provenance_preserved: false, proof_contract_preserved: false, inheritance_satisfiable: false, human_review_required: true }
+  alternatives: []
+
+timeline:
+  conversationCreatedAt: null
+  conversationUpdatedAt: null
+  firstMessageAt: null
+  lastMessageAt: null
+  messages: 0
+  principalMessages: 0
+  assistantMessages: 0
+  principalCharacters: 0
+  models: []
+
+history:                                  # append-only; acceptance, edits, and rejections append here
+  - { at: "", actor: "agent:", event: drafted_by_import, note: "" }
