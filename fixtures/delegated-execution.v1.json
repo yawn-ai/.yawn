@@ -1,0 +1,121 @@
+{
+  "fixtureVersion": "yawn.delegated-execution-fixture.v1",
+  "purpose": "Conformance example only; it grants no live authority and performs no external effect.",
+  "relationship": {
+    "schemaVersion": "yawn.execution-relationship.v1",
+    "relationshipId": "relationship:dave-yawn-execution-delegate",
+    "revision": 1,
+    "kind": "execution_delegate",
+    "principalSpaceRef": { "kind": "agent_space", "id": "agent-space:dave" },
+    "grantorRef": { "kind": "principal", "id": "user:dave" },
+    "delegateRef": { "kind": "principal", "id": "service:yawn" },
+    "delegateHandles": ["@yawn", "yawn.bot/yawn"],
+    "status": "active",
+    "authority": {
+      "activeWorkOrderRefs": ["work-order:fixture-pr-reconciliation"],
+      "reusablePolicyRefs": [],
+      "exactEffectSignaturesRequired": true,
+      "selfAuthorizationAllowed": false,
+      "autonomousPaidCostMicrousd": 0,
+      "graduationThreshold": 5,
+      "proofRequired": true
+    },
+    "revocableByRef": { "kind": "principal", "id": "user:dave" },
+    "updateLoop": ["relationship", "observation", "relevance", "orientation", "intention", "projection", "consequence", "proof", "updated_relationship"],
+    "sourceRefs": [{ "kind": "source", "id": "fixture://owner-work-order" }],
+    "createdAt": "2026-08-17T14:51:20Z",
+    "updatedAt": "2026-08-17T14:51:20Z"
+  },
+  "policyProposal": {
+    "schemaVersion": "yawn.action-policy.v1",
+    "policyId": "action-policy:proposed-clean-pr-merge",
+    "revision": 1,
+    "relationshipRef": { "kind": "relationship", "id": "relationship:dave-yawn-execution-delegate" },
+    "label": "Proposed exact clean PR merge",
+    "status": "proposed",
+    "effectSignature": {
+      "schemaVersion": "yawn.action-signature.v1",
+      "repository": "yawn-ai/example",
+      "pullRequestNumber": 8,
+      "headSha": "201bf4e9448e0c2df4f2f79a67418de9b698ce16",
+      "action": "merge",
+      "baseBranch": "main",
+      "riskClass": "external_mutation",
+      "maxCostMicrousd": 0,
+      "proofKinds": ["head_sha", "required_checks", "yawn_receipt"]
+    },
+    "cleanReceiptCount": 5,
+    "graduationThreshold": 5,
+    "proposedByRef": { "kind": "principal", "id": "service:yawn" },
+    "approvedByRef": null,
+    "approvedAt": null,
+    "suspendedAt": null,
+    "revokedAt": null,
+    "sourceRefs": [{ "kind": "proof", "id": "proof:five-clean-receipts" }],
+    "createdAt": "2026-08-17T15:00:00Z",
+    "updatedAt": "2026-08-17T15:00:00Z"
+  },
+  "batch": {
+    "schemaVersion": "yawn.reconciliation-batch.v1",
+    "batchId": "reconciliation-batch:fixture",
+    "revision": 1,
+    "relationshipRef": { "kind": "relationship", "id": "relationship:dave-yawn-execution-delegate" },
+    "title": "One exact pull request",
+    "status": "approved",
+    "workOrderRef": "work-order:fixture-pr-reconciliation",
+    "headsetSha256": "06a92ed6cf4bd4fe86747a2bca27b40762bb96307433188c06a99fa6ef57f603",
+    "entries": [{
+      "entryId": "entry:example-8",
+      "repository": "yawn-ai/example",
+      "pullRequestNumber": 8,
+      "title": "Fixture pull request",
+      "expectedHeadSha": "201bf4e9448e0c2df4f2f79a67418de9b698ce16",
+      "decision": "accept",
+      "status": "merged",
+      "rationale": "Fixture proves the typed consequence loop.",
+      "proofRefs": [{ "kind": "action_receipt", "id": "action-receipt:example-8" }]
+    }],
+    "decidedByRef": { "kind": "principal", "id": "user:dave" },
+    "decidedAt": "2026-08-17T14:51:20Z",
+    "sourceRefs": [{ "kind": "source", "id": "fixture://owner-work-order" }],
+    "createdAt": "2026-08-17T14:51:20Z",
+    "updatedAt": "2026-08-17T15:00:00Z"
+  },
+  "receipt": {
+    "schemaVersion": "yawn.action-receipt.v1",
+    "receiptId": "action-receipt:example-8",
+    "relationshipRef": { "kind": "relationship", "id": "relationship:dave-yawn-execution-delegate" },
+    "requestRef": { "kind": "action_request", "id": "action-request:example-8" },
+    "batchEntryRef": { "kind": "reconciliation_batch", "id": "reconciliation-batch:fixture#entry:example-8" },
+    "effectSignature": {
+      "schemaVersion": "yawn.action-signature.v1",
+      "repository": "yawn-ai/example",
+      "pullRequestNumber": 8,
+      "headSha": "201bf4e9448e0c2df4f2f79a67418de9b698ce16",
+      "action": "merge",
+      "baseBranch": "main",
+      "riskClass": "external_mutation",
+      "maxCostMicrousd": 0,
+      "proofKinds": ["head_sha", "required_checks", "yawn_receipt"]
+    },
+    "actorRef": { "kind": "principal", "id": "service:yawn" },
+    "approvalBasis": "work-order:fixture-pr-reconciliation",
+    "observedHeadSha": "201bf4e9448e0c2df4f2f79a67418de9b698ce16",
+    "outcome": "succeeded",
+    "proof": {
+      "preconditions": ["Owner work order is active", "Head SHA matches"],
+      "prediction": "The exact pull request merges without changing its approved head.",
+      "postconditions": ["Pull request reports merged", "Merge commit is addressable"],
+      "verifier": "Read the pull request and merge commit from the host API.",
+      "falsifier": "The pull request remains open, the SHA drifts, or the host rejects the merge.",
+      "checks": [
+        { "kind": "head_sha", "status": "passed", "evidence": "Expected and observed SHA match." },
+        { "kind": "required_checks", "status": "passed", "evidence": "All required checks passed." },
+        { "kind": "yawn_receipt", "status": "passed", "evidence": "This fixture receipt is schema-valid." }
+      ]
+    },
+    "sourceRefs": [{ "kind": "git_commit", "id": "8964da1db52f67459c80944fba5f369d96574247" }],
+    "startedAt": "2026-08-17T14:58:00Z",
+    "occurredAt": "2026-08-17T15:00:00Z"
+  }
+}

@@ -150,6 +150,22 @@ Views. Aperture changes how much context is included or emphasized; it never
 changes permission or truth. Materializing or serializing a View is not an
 ontological Projection unless an Agent actually expresses it into an Arena.
 
+### Execution-delegate relationship and consequence loop
+
+An execution delegate is an active, revocable relationship between a rightful
+grantor and a capability-bound worker. The relationship is the starting state
+of delegated action, not a decorative label around an isolated task. Each
+external effect resolves through an active work order or owner-accepted reusable
+policy, an exact typed effect signature, current preconditions, a Projection
+into the external Arena, its observed Consequence, and a proof receipt that can
+update the relationship.
+
+Repeated clean receipts can justify a reusable-policy proposal. They cannot
+activate that proposal, widen scope, add cost, or erase a SHA/proof boundary.
+Those changes require a new event from the rightful grantor. Stale input or a
+failed check suspends the matching action rather than turning uncertainty into
+permission.
+
 ## Semantic planes
 
 YAWN separates four semantic planes:

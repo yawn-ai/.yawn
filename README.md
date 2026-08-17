@@ -42,6 +42,7 @@ human-approved lifecycle. What was observed and what an Agent inferred must
 never be collapsed.
 
 [Observation schema](schemas/observation.v1.schema.json) ·
+[Delegated execution](schemas/execution-relationship.v1.schema.json) ·
 [Observation template](templates/observation.yawn) ·
 [Observation View contract](interface/yawn-observation-view-v1.yawn) ·
 [Question and local-art chain](interface/local-observation-art-v0.1.yawn)

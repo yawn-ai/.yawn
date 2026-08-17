@@ -28,6 +28,11 @@ holds:
   - art-brief.v1.schema.json
   - local-art-candidate.v1.schema.json
   - view-feedback.v1.schema.json
+  - action-signature.v1.schema.json
+  - execution-relationship.v1.schema.json
+  - action-policy.v1.schema.json
+  - reconciliation-batch.v1.schema.json
+  - action-receipt.v1.schema.json
   - agency-holarchy.v0.2.schema.json
 
 compatibility: >
@@ -54,6 +59,13 @@ observation_proposal_boundary: >
   accept themselves, apply preferences, publish, promote, or mutate canonical
   state. The tracked feedback fixture is synthetic; private exact text remains
   in a local receipt.
+
+delegated_execution_boundary: >
+  Execution Relationship V1 begins with an attributed owner/delegate edge,
+  constrains every external effect with an exact Action Signature, records
+  owner-decided reconciliation batches, and returns each consequence as an
+  Action Receipt. Repeated clean receipts may create a policy proposal; only a
+  rightful grantor can activate or widen reusable authority.
 
 agency_holarchy_draft: >
   Draft 0.2 adds provider-neutral arena boundaries, one-parent holarchy,

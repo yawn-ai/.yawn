@@ -7,7 +7,7 @@
   "required": ["kind", "id"],
   "properties": {
     "kind": {
-      "enum": ["actor", "principal", "agent_space", "arena", "observation", "yawn", "source", "proof", "view", "git_commit", "question_proposal", "art_brief", "art_candidate", "view_feedback"]
+      "enum": ["actor", "principal", "agent_space", "arena", "observation", "yawn", "source", "proof", "view", "git_commit", "question_proposal", "art_brief", "art_candidate", "view_feedback", "relationship", "action_policy", "reconciliation_batch", "action_request", "action_receipt"]
     },
     "id": { "type": "string", "minLength": 1, "maxLength": 500 },
     "revision": { "type": ["integer", "null"], "minimum": 0 },
