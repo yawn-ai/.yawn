@@ -1,6 +1,5 @@
 # .yawn
 
-[![Protocol validation](https://github.com/yawn-ai/.yawn/actions/workflows/ci.yml/badge.svg)](https://github.com/yawn-ai/.yawn/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-e8ff03.svg)](LICENSE)
 [![Status: working draft](https://img.shields.io/badge/ontology-working%20draft-fd49ac.svg)](docs/project-status.md)
 
@@ -14,12 +13,37 @@ It is not a truth machine, a theory that reality is code, or permission for an
 agent to act. It is an accountable orientation toward part of a world no model
 fully contains.
 
+| Part | Role |
+| --- | --- |
+| [`.yawn`](https://github.com/yawn-ai/.yawn) | The holonic record: portable source, state, authority, proof, and revision contracts. |
+| [YAWN.bot](https://yawn.bot) | The holonic interface and action agent: where a person observes, chooses, approves, and coordinates moves. |
+| [YAWN.ai](https://yawn.ai) | The intelligence: it observes and processes records, preserves inference as proposal, and helps the system orient. |
+
+They are three roles around one record grammar, not three competing stores.
+The record can exist without either website; neither website may
+silently change its meaning or authority.
+
 > **Automate the burden. Preserve the authorship. Return the time.**
 
 [Explore the ontology hub](https://yawn-ai.github.io/.yawn/) ·
 [Read the specification](spec/) ·
 [Write your first Yawn](docs/quickstart.md) ·
 [See nested Agent Arena](examples/nested-agent-arena.yawn)
+
+## Start with Observation
+
+Observation is the cleanest entry into the ontology: what became available to
+an attributed Agent from an Arena, under stated conditions and limits. It is
+valid before a Target, Intention, Projection, Move, or Yawn exists.
+
+An accepted Observation remains its own record. Attaching it to a Yawn does not
+make it a child Yawn, and promotion creates a distinct Yawn through a separate
+human-approved lifecycle. What was observed and what an Agent inferred must
+never be collapsed.
+
+[Observation schema](schemas/observation.v1.schema.json) ·
+[Observation template](templates/observation.yawn) ·
+[Observation View contract](interface/yawn-observation-view-v1.yawn)
 
 ## The loop
 
@@ -166,6 +190,10 @@ Agency Holarchy 0.2 is an additive working draft covering arenas, Yawns,
 relations, turns, routing, and structural receipts. Neither v1 module is
 marketed as the complete schema for every human-readable `.yawn` file.
 
+These local commands are the primary proof path. GitHub Actions may run the
+same checks as a secondary witness; runner or billing unavailability is not a
+test failure and cannot replace a commit-bound local result.
+
 [Protocol layers →](spec/README.md) · [Project status →](docs/project-status.md) ·
 [Serialization →](spec/serialization.md)
 
@@ -173,6 +201,7 @@ marketed as the complete schema for every human-readable `.yawn` file.
 
 | If you want to… | Start here |
 | --- | --- |
+| Record what became available before interpreting it | [Observation template](templates/observation.yawn) |
 | Write one useful record | [Five-minute quickstart](docs/quickstart.md) |
 | Copy a human template | [Basic](templates/basic.yawn), [Arena](templates/arena.yawn), [Turn](templates/turn.yawn) |
 | Build an implementation | [Specification](spec/), [schemas](schemas/), [fixtures](fixtures/) |

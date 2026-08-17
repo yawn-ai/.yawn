@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "yawn.observation-state.v1",
+  "observationId": "observation:release-choice-before-source",
+  "observerRef": "principal:dave",
+  "agentSpaceRef": "agent-space:dave",
+  "arenaRef": "arena:yawn-product",
+  "observedYawnRefs": ["yawn:public-release"],
+  "sourceSpans": [
+    {
+      "sourceRef": "source:manual:release-choice-before-source:v1",
+      "sourceSha256": "82f163be642ea8c91aacdfc0e20551776bd4e94b6f330383a7dbd0e8e0a1ecd3",
+      "startCharacter": 0,
+      "endCharacter": 71,
+      "coordinate": { "kind": "manual_capture", "contentPart": 0, "unit": "unicode_code_point" }
+    }
+  ],
+  "whatBecameAvailable": "The release page keeps asking me to choose before I can see the source.",
+  "observerAdded": [],
+  "inferences": [
+    {
+      "text": "The interface may be projecting a choice too early.",
+      "assertedBy": "assistant:model-run-example",
+      "epistemicStatus": "inferred",
+      "confidence": 0.62,
+      "sourceSpanIndexes": [0]
+    }
+  ],
+  "conditions": ["Observed while signed in on a desktop viewport."],
+  "limits": ["No mobile or signed-out comparison was made."],
+  "remainsOpen": ["Does the same sequence occur on mobile?"],
+  "proofRefs": [],
+  "epistemicStatus": "reported",
+  "confidence": 1,
+  "status": "accepted",
+  "revision": 1,
+  "observedAt": "2026-08-15T20:00:00Z",
+  "recordedAt": "2026-08-15T20:01:00Z",
+  "updatedAt": "2026-08-15T20:01:00Z",
+  "previousStateSha256": null,
+  "extensions": {}
+}

@@ -57,6 +57,39 @@ Every arena records its frame limits: what is admitted, excluded, unknown, and
 subject to reframing. This protects against treating a useful small-world model
 as the whole world.
 
+### Observation
+
+What became available to an attributed Agent from within an Arena, under
+particular conditions and limits. Observation is the primary epistemic entry,
+not the structural parent of the ontology. Sources, senses, timestamps, and
+input adapters preserve how it became available.
+
+An Observation remains valid with no Target, Intention, Projection, Move, or
+Yawn. What the observer added and what another Agent inferred are separately
+attributed. Attaching an Observation to a Yawn does not retype it; optional
+promotion creates a distinct Yawn and an inspectable relation.
+
+### Intention
+
+The Agent's presently selected or endorsed direction: what it means to
+understand, communicate, preserve, test, repair, change, or do. An Intention
+may never be expressed or attempted.
+
+### Projection
+
+What the Agent actually expresses, represents, proposes, commits, or attempts
+back into the Arena. A Projection may express an Intention poorly or may be
+habitual, accidental, coerced, automated, or misunderstood.
+
+Every Move is a Projection; not every Projection is a Move. Consequence is what
+the Arena and reality return, and may differ from both Intention and Projection.
+
+```text
+Arena -> Observation -> Agent -> Orientation -> Choice -> Intention
+Arena <- Projection  <- Agent
+                    consequence -> Observation'
+```
+
 ### Yawn
 
 A durable, versioned orientation contract inside an arena. It holds enough of
@@ -101,12 +134,13 @@ State is a materialized view reduced from authorized events. Replay is the
 deterministic reconstruction of that view plus an inspectable account of what
 changed. Presentation changes do not change semantic state.
 
-### Projection and aperture
+### View and aperture
 
-A projection renders part of the canonical graph for a purpose. Arena,
-timeline, proof/replay, memory, causal graph, filesystem, and spatial world are
-projections. Aperture changes how much context is included or emphasized; it
-never changes permission or truth.
+A View renders part of the canonical graph for a purpose. Arena, timeline,
+proof/replay, memory, causal graph, filesystem, and spatial world interfaces are
+Views. Aperture changes how much context is included or emphasized; it never
+changes permission or truth. Materializing or serializing a View is not an
+ontological Projection unless an Agent actually expresses it into an Arena.
 
 ## Semantic planes
 

@@ -10,6 +10,7 @@ purpose: >
 
 holds:
   - basic template
+  - observation template
   - orientation shape template
   - feedback template
   - full template
@@ -61,6 +62,7 @@ links:
   - examples/node.yawn
   - records/node.yawn
   - templates/open-question.yawn
+  - templates/observation.yawn
   - templates/arena.yawn
   - templates/turn.yawn
   - templates/routing-proposal.yawn
@@ -80,6 +82,7 @@ proof:
     - templates/relationship.yawn
     - templates/proof-receipt.yawn
     - templates/open-question.yawn
+    - templates/observation.yawn
     - templates/arena.yawn
     - templates/turn.yawn
     - templates/routing-proposal.yawn

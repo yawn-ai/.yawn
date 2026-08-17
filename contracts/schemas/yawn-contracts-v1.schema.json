@@ -186,6 +186,120 @@
         "createdAt": { "$ref": "#/$defs/Timestamp" }, "completedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] }
       }
     },
+    "RecordRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "enum": ["actor", "principal", "agent_space", "arena", "observation", "yawn", "source", "proof", "view", "git_commit"] },
+        "id": { "type": "string", "minLength": 1 },
+        "revision": { "type": ["integer", "null"], "minimum": 0 },
+        "stateSha256": { "anyOf": [{ "$ref": "#/$defs/Sha256" }, { "type": "null" }] }
+      }
+    },
+    "ManualSourceRecordV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "sourceKey", "sourceKind", "assertedBy", "authorRole", "sourceSha256", "localOnly", "metadata"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Uuid" }, "sourceKey": { "type": "string", "minLength": 1 },
+        "sourceKind": { "const": "manual_observation" }, "assertedBy": { "type": "string", "minLength": 1 },
+        "authorRole": { "const": "human" }, "sourceSha256": { "$ref": "#/$defs/Sha256" },
+        "occurredAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "localOnly": { "type": "boolean" }, "metadata": { "type": "object", "not": { "required": ["raw_body"] } }
+      }
+    },
+    "ObservationSourceSpanV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sourceRef", "sourceSha256", "startCharacter", "endCharacter", "coordinate"],
+      "properties": {
+        "sourceRef": { "type": "string", "minLength": 1 }, "sourceSha256": { "$ref": "#/$defs/Sha256" },
+        "startCharacter": { "type": "integer", "minimum": 0 }, "endCharacter": { "type": "integer", "minimum": 0 },
+        "coordinate": { "type": "object" }
+      }
+    },
+    "ObservationStateV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "observationId", "observerRef", "agentSpaceRef", "arenaRef", "observedYawnRefs", "sourceSpans", "whatBecameAvailable", "observerAdded", "inferences", "conditions", "limits", "remainsOpen", "proofRefs", "epistemicStatus", "confidence", "status", "revision", "observedAt", "recordedAt", "updatedAt", "previousStateSha256", "extensions"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.observation-state.v1" }, "observationId": { "type": "string", "minLength": 1 },
+        "observerRef": { "type": "string", "minLength": 1 }, "agentSpaceRef": { "type": "string", "minLength": 1 },
+        "arenaRef": { "type": ["string", "null"] }, "observedYawnRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "sourceSpans": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/ObservationSourceSpanV1" } },
+        "whatBecameAvailable": { "type": "string", "minLength": 1, "maxLength": 64000, "pattern": "\\S" },
+        "observerAdded": { "type": "array", "items": { "$ref": "#/$defs/SourceStatementV1" } },
+        "inferences": { "type": "array", "items": { "$ref": "#/$defs/InferenceStatementV1" } },
+        "conditions": { "type": "array", "items": { "type": "string" } }, "limits": { "type": "array", "items": { "type": "string" } },
+        "remainsOpen": { "type": "array", "items": { "type": "string" } }, "proofRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "epistemicStatus": { "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }, "status": { "enum": ["accepted", "superseded"] },
+        "revision": { "type": "integer", "minimum": 1 }, "observedAt": { "anyOf": [{ "$ref": "#/$defs/Timestamp" }, { "type": "null" }] },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" }, "updatedAt": { "$ref": "#/$defs/Timestamp" },
+        "previousStateSha256": { "anyOf": [{ "$ref": "#/$defs/Sha256" }, { "type": "null" }] },
+        "extensions": { "type": "object", "propertyNames": { "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,199}$" } }
+      }
+    },
+    "SourceStatementV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["text", "assertedBy", "epistemicStatus", "confidence", "sourceSpanIndexes"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 }, "assertedBy": { "type": "string", "minLength": 1 },
+        "epistemicStatus": { "enum": ["observed", "reported", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceSpanIndexes": { "type": "array", "uniqueItems": true, "items": { "type": "integer", "minimum": 0 } }
+      }
+    },
+    "InferenceStatementV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["text", "assertedBy", "epistemicStatus", "confidence", "sourceSpanIndexes"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 }, "assertedBy": { "type": "string", "minLength": 1 },
+        "epistemicStatus": { "enum": ["inferred", "assumed", "predicted", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceSpanIndexes": { "type": "array", "uniqueItems": true, "items": { "type": "integer", "minimum": 0 } }
+      }
+    },
+    "RecordEventV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "eventId", "subjectRef", "revision", "eventType", "actorRef", "authorityStatus", "payload", "previousStateSha256", "resultingStateSha256", "occurredAt"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.record-event.v1" }, "eventId": { "type": "string", "minLength": 1 },
+        "subjectRef": { "$ref": "#/$defs/RecordRef" }, "revision": { "type": "integer", "minimum": 1 }, "eventType": { "type": "string", "minLength": 1 },
+        "actorRef": { "type": "string", "minLength": 1 }, "authorityStatus": { "enum": ["proposed", "authorized", "rejected"] },
+        "payload": { "type": "object" }, "previousStateSha256": { "anyOf": [{ "$ref": "#/$defs/Sha256" }, { "type": "null" }] },
+        "resultingStateSha256": { "$ref": "#/$defs/Sha256" }, "occurredAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "RecordProofReceiptV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "receiptId", "subjectRef", "preconditions", "prediction", "postconditions", "verifier", "falsifier", "sourceRefs", "status", "recordedAt"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.record-proof-receipt.v1" }, "receiptId": { "type": "string", "minLength": 1 },
+        "subjectRef": { "$ref": "#/$defs/RecordRef" }, "preconditions": { "type": "object" }, "prediction": { "type": "string" },
+        "postconditions": { "type": "object" }, "verifier": { "type": "string" }, "falsifier": { "type": "string" },
+        "sourceRefs": { "type": "array", "items": { "$ref": "#/$defs/RecordRef" } },
+        "status": { "enum": ["waiting", "passed", "failed", "blocked", "runner_unavailable"] }, "recordedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "ProjectionPreferenceV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "preferenceId", "principalRef", "scopeRef", "viewKind", "fieldPath", "operation", "value", "status", "revision", "sourceEventRef", "createdAt", "updatedAt"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.projection-preference.v1" }, "preferenceId": { "type": "string", "minLength": 1 },
+        "principalRef": { "type": "string", "minLength": 1 },
+        "scopeRef": {
+          "type": "object", "additionalProperties": false, "required": ["kind", "id"],
+          "properties": {
+            "kind": { "enum": ["principal", "agent_space", "arena", "yawn", "observation", "view"] },
+            "id": { "type": "string", "minLength": 1, "maxLength": 500 },
+            "revision": { "type": ["integer", "null"], "minimum": 0 },
+            "stateSha256": { "anyOf": [{ "$ref": "#/$defs/Sha256" }, { "type": "null" }] }
+          }
+        },
+        "viewKind": { "type": "string", "minLength": 1 }, "fieldPath": { "type": "string", "pattern": "^/[A-Za-z0-9_.~/-]+$" },
+        "operation": { "enum": ["set", "reset"] }, "value": {}, "status": { "const": "accepted" },
+        "revision": { "type": "integer", "minimum": 1 }, "sourceEventRef": { "type": "string", "minLength": 1 },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }, "updatedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
     "YawnEvent": {
       "type": "object", "additionalProperties": false,
       "required": ["id", "agentSpaceId", "yawnId", "streamKey", "revision", "eventType", "actorId", "proposalId", "payload", "previousStateSha256", "resultingStateSha256", "occurredAt"],

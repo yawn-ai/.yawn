@@ -1,0 +1,39 @@
+specVersion: "1"
+kind: "observation"
+schemaVersion: "yawn.observation-state.v1"
+
+observationId: "observation:replace-with-stable-id"
+observerRef: "principal:replace-with-attributed-observer"
+agentSpaceRef: "agent-space:replace-with-private-or-shared-space"
+arenaRef: null
+
+# Optional evidence-about links. These do not turn this record into a Yawn.
+observedYawnRefs: []
+
+sourceSpans:
+  - sourceRef: "source:replace-with-stable-source-id"
+    sourceSha256: "replace-with-sha256"
+    startCharacter: 0
+    endCharacter: 0
+    coordinate:
+      unit: "unicode_code_point"
+
+whatBecameAvailable: "Describe what became available before deciding what it means."
+observerAdded: []
+inferences: []
+conditions: []
+limits: []
+remainsOpen: []
+proofRefs: []
+
+epistemicStatus: "reported"
+confidence: 1
+status: "accepted"
+revision: 1
+observedAt: null
+recordedAt: "replace-with-rfc3339-timestamp"
+updatedAt: "replace-with-rfc3339-timestamp"
+previousStateSha256: null # lowercase 64-character SHA-256 when revising
+extensions: {}
+
+# Valid without Target, Intention, Projection, Move, or Yawn promotion.

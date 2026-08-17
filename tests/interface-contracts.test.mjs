@@ -37,11 +37,17 @@ test("the public interface contracts preserve one canonical palette and quiet ro
 test("the observation View keeps one portable holon and attributed preference inheritance", async () => {
   const observation = await readFile(observationPath, "utf8");
 
-  assert.match(observation, /holon_kind: knowledge_note/);
+  assert.match(observation, /holon_kind: observation_record/);
+  assert.match(observation, /observation_valid_without_yawn: true/);
+  assert.match(observation, /promotion_creates_distinct_yawn: true/);
   assert.match(observation, /primary_object_count: 1/);
   assert.match(observation, /system_defaults/);
-  assert.match(observation, /principal_public_preferences/);
-  assert.match(observation, /local_yawn_override/);
+  assert.match(observation, /principal_preferences/);
+  assert.match(observation, /agent_space_preferences/);
+  assert.match(observation, /arena_preferences/);
+  assert.match(observation, /yawn_ancestry_preferences/);
+  assert.match(observation, /observation_or_view_override/);
+  assert.match(observation, /absence_distinct_from_explicit_reset: true/);
   assert.match(observation, /private_values_on_public_route: forbidden/);
 
   for (const node of ["source", "observation", "inference", "lacuna", "proof"]) {

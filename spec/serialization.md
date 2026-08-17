@@ -65,6 +65,17 @@ repository's deterministic canonical JSON procedure before hashing. Hash
 algorithms are recorded alongside the digest. Presentation order and comments
 do not affect semantic hashes; ordered event arrays do.
 
+`yawn.observation-state.v1` uses deterministic canonical JSON as its executable
+interchange bytes. JSON is a YAML 1.2 subset, so those bytes may be stored as
+`observation.yawn` without a second parser-specific representation. Human YAML
+templates remain available for authoring. A deterministic export embeds the
+semantic state hash and may embed a separate resolved preference hash; the
+preference hash never changes the semantic Observation hash.
+
+Serializing or downloading a record is a materialized View. It is not the
+ontology's Agent-to-Arena Projection unless an Agent actually expresses or
+attempts that record into an Arena.
+
 ## Events and unknown fields
 
 Canonical event streams are append-only. Corrections append a superseding or

@@ -340,6 +340,176 @@ export interface ModelRunReceipt {
 }
 /**
  * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "RecordRef".
+ */
+export interface RecordRef {
+  kind:
+    | "actor"
+    | "principal"
+    | "agent_space"
+    | "arena"
+    | "observation"
+    | "yawn"
+    | "source"
+    | "proof"
+    | "view"
+    | "git_commit";
+  id: string;
+  revision?: number | null;
+  stateSha256?: Sha256 | null;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ManualSourceRecordV1".
+ */
+export interface ManualSourceRecordV1 {
+  id: Uuid;
+  sourceKey: string;
+  sourceKind: "manual_observation";
+  assertedBy: string;
+  authorRole: "human";
+  sourceSha256: Sha256;
+  occurredAt?: Timestamp | null;
+  localOnly: boolean;
+  metadata: {
+    [k: string]: unknown;
+  };
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ObservationSourceSpanV1".
+ */
+export interface ObservationSourceSpanV1 {
+  sourceRef: string;
+  sourceSha256: Sha256;
+  startCharacter: number;
+  endCharacter: number;
+  coordinate: {
+    [k: string]: unknown;
+  };
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ObservationStateV1".
+ */
+export interface ObservationStateV1 {
+  schemaVersion: "yawn.observation-state.v1";
+  observationId: string;
+  observerRef: string;
+  agentSpaceRef: string;
+  arenaRef: string | null;
+  observedYawnRefs: string[];
+  /**
+   * @minItems 1
+   */
+  sourceSpans: [ObservationSourceSpanV1, ...ObservationSourceSpanV1[]];
+  whatBecameAvailable: string;
+  observerAdded: SourceStatementV1[];
+  inferences: InferenceStatementV1[];
+  conditions: string[];
+  limits: string[];
+  remainsOpen: string[];
+  proofRefs: string[];
+  epistemicStatus: "observed" | "reported" | "inferred" | "assumed" | "predicted" | "disputed" | "unknown";
+  confidence: number;
+  status: "accepted" | "superseded";
+  revision: number;
+  observedAt: Timestamp | null;
+  recordedAt: Timestamp;
+  updatedAt: Timestamp;
+  previousStateSha256: Sha256 | null;
+  extensions: {
+    [k: string]: unknown;
+  };
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "SourceStatementV1".
+ */
+export interface SourceStatementV1 {
+  text: string;
+  assertedBy: string;
+  epistemicStatus: "observed" | "reported" | "disputed" | "unknown";
+  confidence: number;
+  sourceSpanIndexes: number[];
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "InferenceStatementV1".
+ */
+export interface InferenceStatementV1 {
+  text: string;
+  assertedBy: string;
+  epistemicStatus: "inferred" | "assumed" | "predicted" | "disputed" | "unknown";
+  confidence: number;
+  sourceSpanIndexes: number[];
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "RecordEventV1".
+ */
+export interface RecordEventV1 {
+  schemaVersion: "yawn.record-event.v1";
+  eventId: string;
+  subjectRef: RecordRef;
+  revision: number;
+  eventType: string;
+  actorRef: string;
+  authorityStatus: "proposed" | "authorized" | "rejected";
+  payload: {
+    [k: string]: unknown;
+  };
+  previousStateSha256: Sha256 | null;
+  resultingStateSha256: Sha256;
+  occurredAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "RecordProofReceiptV1".
+ */
+export interface RecordProofReceiptV1 {
+  schemaVersion: "yawn.record-proof-receipt.v1";
+  receiptId: string;
+  subjectRef: RecordRef;
+  preconditions: {
+    [k: string]: unknown;
+  };
+  prediction: string;
+  postconditions: {
+    [k: string]: unknown;
+  };
+  verifier: string;
+  falsifier: string;
+  sourceRefs: RecordRef[];
+  status: "waiting" | "passed" | "failed" | "blocked" | "runner_unavailable";
+  recordedAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ProjectionPreferenceV1".
+ */
+export interface ProjectionPreferenceV1 {
+  schemaVersion: "yawn.projection-preference.v1";
+  preferenceId: string;
+  principalRef: string;
+  scopeRef: {
+    kind: "principal" | "agent_space" | "arena" | "yawn" | "observation" | "view";
+    id: string;
+    revision?: number | null;
+    stateSha256?: Sha256 | null;
+  };
+  viewKind: string;
+  fieldPath: string;
+  operation: "set" | "reset";
+  value: unknown;
+  status: "accepted";
+  revision: number;
+  sourceEventRef: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
  * via the `definition` "YawnEvent".
  */
 export interface YawnEvent {

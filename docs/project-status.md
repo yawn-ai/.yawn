@@ -1,6 +1,6 @@
 # Project status
 
-Last verified: 2026-08-13
+Last verified: 2026-08-15
 
 YAWN is public, MIT licensed, maintainer-led, and under active development.
 Parts of the protocol are stable enough to build against; the integrated
@@ -14,6 +14,9 @@ ontology and document format are still a working draft.
 - the rule that only authorized events update canonical state
 - the separation of desire, target, permission, move, outcome, and proof
 - source attribution and proposal-before-approval boundaries
+- first-class `yawn.observation-state.v1` records, generic record events and
+  proof subjects, deterministic Observation replay/export, and source/view
+  preference separation at the protocol-contract layer
 
 Compatibility promises apply to these v1 artifacts as documented in their
 packages. Security or correctness fixes may still require additive changes.
@@ -23,7 +26,8 @@ packages. Security or correctness fixes may still require additive changes.
 - Agency Holarchy 0.2: arena, Yawn, relation, turn, routing, and structural
   change records
 - the exact portable `.yawn` document envelope
-- cross-module canonical hashing and reference resolution
+- cross-module canonical hashing and reference resolution beyond the new
+  Observation/record-subject slice
 - merge/split thresholds and conformance profiles
 - public projection APIs for arena, timeline, filesystem, memory, and replay
 
@@ -36,14 +40,19 @@ Draft artifacts are useful for experiments but may change after RFC review.
 2. The contracts package and root state schemas were developed as parallel v1
    modules. A future unified package must preserve both rather than silently
    selecting one.
-3. YAML-safe parsing, schema resolution, and whole-repository conformance need a
-   shared reference implementation.
+3. JSON-compatible YAML Observation exports now have a reference implementation;
+   human-authored YAML parsing, broader schema resolution, and whole-repository
+   conformance still need a shared implementation.
 4. Privacy/egress and multi-principal authority require more executable tests.
 5. Merge, split, and reparent operations need field evidence before thresholds
    become normative.
 6. Several pre-hub automation and reference records still contain
    environment-specific local paths. They are compatibility/provenance inputs,
    not portable defaults; active runtimes should inject configured paths.
+7. The YAWN.bot database migration remains unapplied and still needs executable
+   Postgres concurrency, RLS, replay, and cross-owner isolation proof.
+8. Projection-preference schemas and deterministic resolution exist, but an
+   accepted write path and shared YAWN.ai/YAWN.bot consumer are not yet shipped.
 
 ## Source-of-truth order
 
