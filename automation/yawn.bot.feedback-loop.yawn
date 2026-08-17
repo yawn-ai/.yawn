@@ -2,7 +2,7 @@ id: automation/yawn.bot.feedback-loop
 title: "yawn.bot feedback loop"
 kind: automation-gate
 status: active-seed
-updated: 2026-07-04
+updated: 2026-08-17
 
 purpose: >
   Define how yawn.bot turns feedback into a thesis, weighs risk, and decides
@@ -94,6 +94,5 @@ proof:
     - agents/yawn.bot.yawn
     - automation/yawn.bot.daily.yawn
     - automation/yawn.bot.pr-notification.yawn
-    - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
-    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

@@ -2,7 +2,7 @@ id: core/proof-and-boundary
 title: "proof and boundary"
 kind: safety-protocol
 status: v1
-updated: 2026-07-21
+updated: 2026-08-17
 
 contract:
   state: "only authorized events update canonical materialized state"
@@ -56,6 +56,7 @@ proof_can_be:
 proof:
   source:
     - yawn.yawn
-    - 01-core/reality-boundary.ion
-    - 05-proof/proof-contract.ion
+    - references/scientific-frame.yawn
+    - templates/proof.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

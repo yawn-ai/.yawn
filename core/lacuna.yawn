@@ -2,7 +2,7 @@ id: core/lacuna
 title: "lacuna"
 kind: core
 status: v1
-updated: 2026-07-21
+updated: 2026-08-17
 
 definition: >
   A lacuna is a typed inadequacy or discrepancy between the current state
@@ -46,5 +46,7 @@ use: >
 proof:
   source:
     - readme.yawn
-    - 01-core/movement-loop.ion
+    - core/movement-loop.yawn
+    - core/co-orientation-loop.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

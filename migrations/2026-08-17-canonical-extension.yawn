@@ -1,0 +1,338 @@
+# yawn-invalid-alias-guard:start
+spec_version: "0.2-draft"
+id: "yawn:migration:canonical-extension:2026-08-17"
+title: "Canonicalize YAWN naming and retire invalid extension aliases"
+kind: "migration-receipt"
+status: "proposed"
+revision: 1
+updated: "2026-08-17"
+
+decision:
+  canonical_product_name: "YAWN"
+  canonical_extension: ".yawn"
+  invalid_schema_aliases: [".ion", ".yon"]
+  invalid_product_aliases: ["ION", "Yon"]
+  reason: >-
+    The invalid aliases repeatedly arise from speech-to-text and model
+    transcription. The repository also retained a numbered legacy .ion
+    generation, which taught the same mistake to later agents. YAWN now
+    maintains one product name and one portable record extension.
+
+scope:
+  source_commit: "8964da1db52f67459c80944fba5f369d96574247"
+  source_tree: "e38c9364ebb5479783e437872ecbd1d5b7efdae3"
+  source_repository: "https://github.com/yawn-ai/.yawn"
+  invalid_extension_files_removed: 50
+  legacy_roots_retired:
+    - "00-start"
+    - "01-core"
+    - "02-interface"
+    - "03-filesystem"
+    - "04-agent"
+    - "05-proof"
+    - "06-product"
+    - "07-templates"
+    - "08-research"
+
+migration_method:
+  strategy: "semantic-absorption"
+  rules:
+    - >-
+      Do not mechanically rename a historical file and thereby make stale
+      terminology appear canonical.
+    - >-
+      Preserve every removed source at the immutable source commit and map its
+      surviving claims to one or more current .yawn/spec/schema records.
+    - >-
+      If a historical detail is not represented by a current target, it remains
+      historical evidence until a maintainer deliberately restates and proves it.
+    - >-
+      No invalid-extension source is accepted as active schema, authority, or proof.
+
+history_preservation:
+  git_history_preserved: true
+  source_paths_preserved_in_this_receipt: true
+  raw_claims_promoted_automatically: false
+  rollback: >-
+    Read the named path at the immutable source commit. Restoration requires a
+    new .yawn migration proposal; the invalid extension must not be restored.
+
+speech_to_text_boundary:
+  contract: "core/canonical-extension.yawn"
+  raw_transcript_preserved: true
+  context_required: true
+  ambiguity_behavior: "hold creation and surface one naming question"
+  explicit_non_yawn_examples:
+    - "a chemical ion"
+    - "a person genuinely named Yon"
+
+absorption_map:
+  - legacy_path: "00-start/root.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "readme.yawn"
+      - "yawn.yawn"
+  - legacy_path: "00-start/value-proposition.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "start/value-proposition.yawn"
+  - legacy_path: "00-start/what-is-an-ion.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "start/what-is-a-yawn.yawn"
+      - "core/what-is-a-yawn.yawn"
+  - legacy_path: "01-core/agency-currency.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/agency.yawn"
+      - "core/human-use.yawn"
+      - "core/next-move-logic.yawn"
+  - legacy_path: "01-core/duality.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/observer-and-body.yawn"
+      - "core/projection-and-aperture.yawn"
+  - legacy_path: "01-core/movement-loop.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/movement-loop.yawn"
+      - "core/co-orientation-loop.yawn"
+  - legacy_path: "01-core/observer-body-stability.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/observer-and-body.yawn"
+  - legacy_path: "01-core/reality-boundary.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/proof-and-boundary.yawn"
+      - "references/scientific-frame.yawn"
+  - legacy_path: "01-core/self-authorization.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/agency.yawn"
+      - "core/proof-and-boundary.yawn"
+  - legacy_path: "02-interface/axis-map.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "spec/ontology.md"
+      - "templates/full.yawn"
+  - legacy_path: "02-interface/interface.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "interface/node.yawn"
+      - "interface/yawn-chrome-v1.yawn"
+  - legacy_path: "02-interface/mental-model-interface.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "interface/mirror.yawn"
+      - "interface/meaning.yawn"
+  - legacy_path: "02-interface/projection-stack.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "interface/projection-stack.yawn"
+      - "core/projection-and-aperture.yawn"
+  - legacy_path: "02-interface/relationship-interface.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "templates/relationship.yawn"
+      - "question-packets/relationship.yawn"
+  - legacy_path: "02-interface/tension-field.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/lacuna.yawn"
+      - "templates/relationship.yawn"
+  - legacy_path: "03-filesystem/cognitive-filesystem.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "README.md"
+      - "spec/holarchy.md"
+      - "spec/routing.md"
+  - legacy_path: "03-filesystem/coherence-container.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/yawn-space.yawn"
+      - "core/state.yawn"
+  - legacy_path: "03-filesystem/folder-rules.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/folder-node.yawn"
+      - "spec/holarchy.md"
+  - legacy_path: "03-filesystem/manifest.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "yawn.yawn"
+      - "docs/repository-map.md"
+  - legacy_path: "03-filesystem/recoherence.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/memory-update.yawn"
+      - "core/routing.yawn"
+  - legacy_path: "04-agent/agent-boundaries.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/agency.yawn"
+      - "agents/node.yawn"
+  - legacy_path: "04-agent/agent-orientation-charter.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "agents/orientation.yawn"
+  - legacy_path: "04-agent/handoff-packet.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "templates/agent-handoff.yawn"
+      - "agents/repo-contributor.yawn"
+  - legacy_path: "05-proof/proof-contract.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/proof-and-boundary.yawn"
+      - "templates/proof.yawn"
+  - legacy_path: "05-proof/proof-receipt.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "templates/proof-receipt.yawn"
+      - "schemas/record-proof-receipt.v1.schema.json"
+  - legacy_path: "05-proof/replay.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/memory-update.yawn"
+      - "core/state-transition.yawn"
+  - legacy_path: "06-product/dave-playable-proof.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "examples/yawn-spine-dogfood.yawn"
+  - legacy_path: "06-product/docs-mirror-lens.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "docs/projections/README.md"
+      - "interface/mirror.yawn"
+  - legacy_path: "06-product/v1-proof-strip.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "docs/project-status.md"
+      - "records/yawn.bot-verification-2026-07-01.yawn"
+  - legacy_path: "07-templates/template.agent-handoff.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "templates/agent-handoff.yawn"
+  - legacy_path: "07-templates/template.basic.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "templates/basic.yawn"
+  - legacy_path: "07-templates/template.interface.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "interface/new-yawn-v0.1.yawn"
+      - "templates/full.yawn"
+  - legacy_path: "07-templates/template.proof.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "templates/proof.yawn"
+  - legacy_path: "07-templates/template.relationship.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "templates/relationship.yawn"
+  - legacy_path: "08-research/july-01-2026-agent-contributor-automation-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "automation/yawn-bot-repo-contributor-loop.yawn"
+      - "agents/repo-contributor.yawn"
+  - legacy_path: "08-research/july-01-2026-ai-writing-scan-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "automation/yawn.bot.ai-writing-scan.yawn"
+      - "records/yawn.bot-ai-writing-ledger.yawn"
+  - legacy_path: "08-research/july-01-2026-feedback-intake-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "database/feedback-intake.yawn"
+      - "feedback/form.yawn"
+  - legacy_path: "08-research/july-01-2026-folder-node-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/folder-node.yawn"
+  - legacy_path: "08-research/july-01-2026-github-license-use-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "references/ownership-and-license.yawn"
+      - "automation/yawn.bot.license-reference-audit.yawn"
+  - legacy_path: "08-research/july-01-2026-material-record-reframe.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "core/state.yawn"
+      - "core/event-reduction.yawn"
+      - "records/material-time.yawn"
+  - legacy_path: "08-research/july-01-2026-readme-yawn-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "README.md"
+      - "readme.yawn"
+  - legacy_path: "08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "automation/yawn.ai.funnel-bridge.yawn"
+      - "records/yawn.ai-funnel-bridge-ledger.yawn"
+  - legacy_path: "08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "agents/yawn.bot.policy.yawn"
+      - "agents/yawn.bot.yawn"
+  - legacy_path: "08-research/july-01-2026-yawn-bot-daily-automation-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "automation/yawn.bot.daily.yawn"
+  - legacy_path: "08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "automation/yawn.bot.feedback-loop.yawn"
+  - legacy_path: "08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "automation/yawn.bot.pr-notification.yawn"
+      - "records/yawn.bot-pr-notification-ledger.yawn"
+  - legacy_path: "08-research/june-30-2026-alignment.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "references/july-01-lock.yawn"
+      - "core/design-principles.yawn"
+  - legacy_path: "08-research/june-30-2026-public-readme.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "README.md"
+      - "readme.yawn"
+  - legacy_path: "08-research/research-map.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "docs/research-basis.md"
+  - legacy_path: "08-research/source-index.ion"
+    disposition: "absorbed-or-superseded"
+    canonical_targets:
+      - "references/source-index.yawn"
+
+proof_contract:
+  validator: "scripts/validate-canonical-extension.mjs"
+  normalizer: "lib/canonical-extension-v1.mjs"
+  tests: "tests/canonical-extension-v1.test.mjs"
+  acceptance:
+    - "No tracked path ends with .ion or .yon."
+    - "No active source defines ION or Yon as a YAWN schema or product."
+    - "All 50 removed paths appear exactly once in this receipt."
+    - "Common speech substitutions normalize only after YAWN context is established."
+    - "Raw transcript and correction provenance remain inspectable."
+  falsifiers:
+    - "A new invalid-extension artifact can enter the tracked tree without CI failure."
+    - "Normalization changes an unrelated chemical or personal-name use."
+    - "The migration silently promotes an old claim not present in a current target."
+
+authority:
+  proposed_by: "OpenAI agent acting under Dave's explicit instruction"
+  merge_authority: "Dave / repository maintainer"
+  production_effect: false
+
+replay:
+  before: >-
+    The repository publicly described .yawn as canonical while retaining 50
+    active tracked .ion files and source references to them.
+  after: >-
+    The active tree has one extension, one lexical contract, one migration
+    receipt, deterministic speech normalization, and a fail-closed validator.
+# yawn-invalid-alias-guard:end

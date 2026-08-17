@@ -1,6 +1,6 @@
 # Project status
 
-Last verified: 2026-08-15
+Last verified: 2026-08-17
 
 YAWN is public, MIT licensed, maintainer-led, and under active development.
 Parts of the protocol are stable enough to build against; the integrated
@@ -17,6 +17,10 @@ ontology and document format are still a working draft.
 - first-class `yawn.observation-state.v1` records, generic record events and
   proof subjects, deterministic Observation replay/export, and source/view
   preference separation at the protocol-contract layer
+- YAWN as the single product name and `.yawn` as the single human-readable
+  record extension, enforced by a tracked-path/content validator
+- context-gated normalization of common speech-to-text substitutions with raw
+  transcript preservation and an ambiguity hold
 
 Compatibility promises apply to these v1 artifacts as documented in their
 packages. Security or correctness fixes may still require additive changes.
@@ -32,6 +36,9 @@ packages. Security or correctness fixes may still require additive changes.
 - public projection APIs for arena, timeline, filesystem, memory, and replay
 - field validation of the new Observation-derived Question, local-art candidate,
   and View-feedback proposal contracts beyond their conformance fixture
+- shared web/desktop ingestion of canonical naming-correction receipts
+- the attributed collaboration-message envelope, multi-intelligence history
+  loop, and desktop Homebase projection/capability split
 
 Draft artifacts are useful for experiments but may change after RFC review.
 
@@ -55,6 +62,21 @@ Draft artifacts are useful for experiments but may change after RFC review.
    Postgres concurrency, RLS, replay, and cross-owner isolation proof.
 8. Projection-preference schemas and deterministic resolution exist, but an
    accepted write path and shared YAWN.ai/YAWN.bot consumer are not yet shipped.
+9. The canonical lexical normalizer is executable in this repository, but web,
+   desktop, API, import, and agent-ingestion boundaries still need cross-repo
+   golden fixtures proving identical correction receipts.
+10. The collaboration-history schema preserves attribution and authority, but
+    automatic Codex and Claude Code adapters still need authenticated cursors,
+    replay, concurrency, privacy, and cross-principal isolation proof.
+
+## Historical naming migration
+
+The numbered pre-canonical generation was removed from the active tree after
+all 50 invalid-extension paths were mapped to current canonical targets. The
+immutable source commit remains available through
+[`migrations/2026-08-17-canonical-extension.yawn`](../migrations/2026-08-17-canonical-extension.yawn).
+This is semantic absorption: old wording is evidence from its time, not current
+canon merely under a new suffix.
 
 ## Source-of-truth order
 

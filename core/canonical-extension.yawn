@@ -1,0 +1,111 @@
+# Canonical naming and speech-normalization contract.
+# This record is normative for YAWN product/schema naming.
+
+spec_version: "0.2-draft"
+id: "yawn:core:canonical-extension"
+title: "Canonical YAWN name and .yawn extension"
+kind: "lexical-invariant"
+status: "active"
+revision: 1
+updated: "2026-08-17"
+
+canonical:
+  product_name: "YAWN"
+  file_extension: ".yawn"
+  media_role: "human-readable protocol record"
+  case:
+    product: "uppercase"
+    extension: "lowercase"
+
+# yawn-invalid-alias-guard:start
+invalid_schema_aliases:
+  - ".ion"
+  - ".yon"
+invalid_product_aliases:
+  - "ION"
+  - "Yon"
+common_speech_to_text_substitutions:
+  - "dot ion"
+  - "dot yon"
+  - "ion file"
+  - "yon file"
+  - "ion schema"
+  - "yon schema"
+  - "ion record"
+  - "yon record"
+  - "ion protocol"
+  - "yon protocol"
+  - "ion.ai"
+  - "yon.ai"
+  - "ion.bot"
+  - "yon.bot"
+# yawn-invalid-alias-guard:end
+
+invariant:
+  - "No active YAWN schema, template, record, source path, or generated artifact may use an invalid alias."
+  - "A speech or model transcript is normalized before any path, identifier, schema, or record is created."
+  - "The raw transcript is preserved alongside the normalized term when provenance matters."
+  - "Normalization never grants authority, changes semantic state, or proves the speaker's intended meaning."
+
+normalization:
+  context_gate: >-
+    Normalize only when the surrounding interaction has already established
+    YAWN-the-product, its protocol, its repositories, or its record format as
+    the referent.
+  deterministic_rules:
+    - raw_pattern: "dotted invalid extension"
+      normalized: ".yawn"
+    - raw_pattern: "spoken 'dot' plus invalid extension name"
+      normalized: ".yawn"
+    - raw_pattern: "invalid product name followed by file, schema, record, format, protocol, app, AI, or bot"
+      normalized: "YAWN or .yawn according to grammatical role"
+    - raw_pattern: "invalid product host"
+      normalized: "YAWN.ai or YAWN.bot"
+  ambiguity_rule: >-
+    If YAWN context is not established, do not silently rewrite ordinary uses
+    such as a chemical ion or a person named Yon. Preserve the raw term and ask
+    or flag the ambiguity before creating a protocol artifact.
+  provenance_shape:
+    raw_input:
+    normalized_input:
+    rule_id:
+    context_basis:
+    confidence:
+    reviewed_by:
+    reviewed_at:
+
+creation_gate:
+  before_create:
+    - "normalize the proposed product/schema token"
+    - "reject a path ending in an invalid schema alias"
+    - "record a correction when the raw input differs from the canonical term"
+  on_ambiguity: "hold creation and surface one naming question"
+  on_clear_context: "normalize deterministically and continue"
+
+relationship_to_identity:
+  claim: >-
+    The filename extension identifies the portable record grammar. It does not
+    determine the record's semantic identity, ownership, perspective, or place
+    in a relationship topology.
+  consequence: >-
+    Paths may locate Views, but stable IDs and typed relations carry semantic
+    identity. Correcting the extension must not silently merge or relocate
+    records.
+
+migration:
+  receipt: "migrations/2026-08-17-canonical-extension.yawn"
+  source_commit: "8964da1db52f67459c80944fba5f369d96574247"
+  policy: >-
+    Legacy invalid-extension material is preserved in Git history, mapped to
+    current canonical records, and excluded from the active tree. Historical
+    wording is not mechanically promoted into current canon.
+
+proof:
+  validator: "scripts/validate-canonical-extension.mjs"
+  normalizer: "lib/canonical-extension-v1.mjs"
+  tests: "tests/canonical-extension-v1.test.mjs"
+  acceptance:
+    - "No tracked path ends with an invalid schema alias."
+    - "No active source contains an invalid schema claim outside explicit migration, guard, validator, or test evidence."
+    - "Context-gated normalization corrects common speech-to-text substitutions."
+    - "Non-YAWN uses of similar words remain unchanged."

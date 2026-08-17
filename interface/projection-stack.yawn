@@ -2,7 +2,7 @@ id: interface/projection-stack
 title: "projection stack"
 kind: interface-map
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 definition: >
   The projection stack is the set of forces shaping what appears possible in a
@@ -25,5 +25,7 @@ rule: >
 proof:
   source:
     - readme.yawn
-    - 02-interface/projection-stack.ion
+    - core/projection-and-aperture.yawn
+    - interface/meaning.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

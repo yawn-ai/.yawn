@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 4
-updated: "2026-08-16"
+revision: 5
+updated: "2026-08-17"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -16,19 +16,24 @@ identity:
   copyright_holder: "The Yawn Company"
   human_front_door: README.md
   repository_manifest: yawn.yawn
+  canonical_extension_contract: core/canonical-extension.yawn
+  canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
 
 signal:
   raw: >
-    Observation now has an executable identity, replay, proof subject,
-    serializer, and View-preference boundary. The next gap is preserving exact
-    lineage when an open question is organized, expressed through local art,
-    evaluated as a projection, and returned as actionable feedback.
+    Observation has an executable identity, replay, proof subject, serializer,
+    and View-preference boundary. Its open Question, local Art Brief, candidate,
+    and feedback chain now preserve exact lineage. The repository also needed
+    one fail-closed naming invariant so speech-to-text substitutions could not
+    create competing product names, schemas, paths, or relationship records.
   epistemic_status: observed
   source_refs:
-    - README.md@before-ontology-hub
+    - README.md
     - contracts/schemas/yawn-contracts-v1.schema.json
-    - schemas/node.yawn
-    - interface/new-yawn-v0.1.yawn
+    - schemas/observation.v1.schema.json
+    - interface/local-observation-art-v0.1.yawn
+    - core/canonical-extension.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
 
 orientation:
   current_state:
@@ -41,11 +46,10 @@ orientation:
       epistemic_status: observed
       source_refs:
         - templates/full.yawn
-    - claim: "The numbered .ion generation remains as a historical bridge."
+    - claim: "The numbered pre-canonical generation was semantically absorbed into the active .yawn tree and preserved by an immutable migration receipt."
       epistemic_status: observed
       source_refs:
-        - 00-start/root.ion
-        - 08-research/source-index.ion
+        - migrations/2026-08-17-canonical-extension.yawn
     - claim: "Agent Arena is best treated as one View over a neutral causal graph."
       epistemic_status: inferred
       source_refs:
@@ -60,7 +64,7 @@ orientation:
       epistemic_status: reported
       source_refs:
         - README.md
-    - claim: "An Observation-derived Question, Art Brief, local candidate, and Projection feedback remain separately attributable proposals."
+    - claim: "An Observation-derived Question, Art Brief, local candidate, and View feedback remain separately attributable proposals."
       epistemic_status: observed
       source_refs:
         - schemas/question-proposal.v1.schema.json
@@ -68,15 +72,22 @@ orientation:
         - schemas/local-art-candidate.v1.schema.json
         - schemas/view-feedback.v1.schema.json
         - fixtures/observation-question-art.v1.json
+    - claim: "YAWN has one product name and one canonical human-readable extension."
+      epistemic_status: observed
+      source_refs:
+        - core/canonical-extension.yawn
+        - scripts/validate-canonical-extension.mjs
 
   governing_inference: >
     The repository serves as the ontology hub when it starts with Observation,
-    separates source from inference, makes accepted records replayable, and
-    keeps Views, authority, preference, and optional Yawn promotion explicit.
+    separates source from inference, makes accepted records replayable, keeps
+    Views, authority, preference, optional Yawn promotion, and delegated
+    execution explicit, and normalizes product/schema terminology before a path
+    or record can be created.
   epistemic_status: inferred
   alternatives:
     - "Collapse every artifact into one schema immediately."
-    - "Leave the generations separate and rely on readers to infer the mapping."
+    - "Leave generations and naming aliases separate and rely on readers to infer the mapping."
   rejected_alternatives:
     - alternative: "Collapse every artifact into one schema immediately."
       reason: "It would silently rewrite merged v1 compatibility surfaces."
@@ -107,6 +118,7 @@ arena:
     - preserve public history and provenance
     - keep AI authority proposal-only
     - require proof before stable claims
+    - normalize YAWN naming before creating files, IDs, or records
   frame_limits:
     - field calibration for merge and split thresholds remains incomplete
     - independent implementations have not yet established interoperability
@@ -120,13 +132,15 @@ lacuna:
     - "Which arena-routing thresholds survive real human review?"
     - "How should privacy-preserving conversation import prove source coverage?"
     - "Which parts of Draft 0.2 should enter the next stable contract?"
+    - "How should web and desktop ingestion share one normalization receipt?"
 
 intent:
   mode: coordinate
   target_condition: >
     A public visitor and an implementation agent can locate the relevant
-    definition, authority boundary, schema, example, and proof without treating
-    a projection or historical file as canonical state.
+    definition, authority boundary, schema, example, naming invariant, and proof
+    without treating a projection, transcript error, or historical file as
+    canonical state.
   ratification_status: proposed
 
 boundaries:
@@ -138,18 +152,19 @@ boundaries:
     - disclose private context through parent-child inheritance
     - use embeddings or coordinates to decide identity
     - call the working draft a complete stable protocol
-    - delete history to create the appearance of coherence
+    - delete Git history to create the appearance of coherence
+    - create a record from an unnormalized ambiguous schema token
   AI_default:
-    may: [observe, ask, summarize, propose, test-within-grant]
-    may_not: [self-authorize, silently-publish, widen-permissions, erase-provenance]
+    may: [observe, ask, summarize, propose, normalize-clear-yawn-aliases, test-within-grant]
+    may_not: [self-authorize, silently-publish, widen-permissions, erase-provenance, invent-schema-aliases]
 
 move:
   description: >
     Maintain one concise human README, a live root landing page, an explicit
     layered specification, additive Draft 0.2 schemas and tests, commented
-    templates, decisive examples, a first-class Observation record, and an
-    Observation-to-question-to-art proposal chain with an honest open-source
-    governance surface.
+    templates, decisive examples, a first-class Observation record, an
+    Observation-to-question-to-art proposal chain, one canonical naming
+    contract, and an honest open-source governance surface.
   reversible: true
   authority_status: proposed-until-maintainer-merge
 
@@ -159,6 +174,7 @@ proof_contract:
     - "The draft is labeled and does not claim stable compatibility."
   acceptance:
     - "Root npm test passes."
+    - "Canonical-extension validation reports no invalid tracked path or active schema claim."
     - "contracts npm run check and npm pack --dry-run pass."
     - "Observation fixture, event replay, serializer, and golden hash agree."
     - "Question and Art Brief hashes bind to the exact Observation and source wording."
@@ -171,6 +187,7 @@ proof_contract:
     - "The hub implies world equals arena or arena equals Yawn."
     - "A projection can mutate semantic state or permissions."
     - "A structural change can erase source identity or bypass authority."
+    - "A speech-to-text alias can create a competing schema or path without failure."
 
 protocol_layers:
   stable_constitution:
@@ -210,6 +227,11 @@ protocol_layers:
     interface_contract: interface/local-observation-art-v0.1.yawn
     canonical_state: false
     automatic_acceptance_publish_or_promotion: false
+  lexical_normalization:
+    contract: core/canonical-extension.yawn
+    normalizer: lib/canonical-extension-v1.mjs
+    validator: scripts/validate-canonical-extension.mjs
+    migration_receipt: migrations/2026-08-17-canonical-extension.yawn
 
 ontology_links:
   specification: spec/README.md
@@ -228,6 +250,7 @@ ontology_links:
   record_reference: schemas/record-ref.v1.schema.json
   projection_preference: schemas/projection-preference.v1.schema.json
   observation_question_art: interface/local-observation-art-v0.1.yawn
+  canonical_extension: core/canonical-extension.yawn
 
 practice_links:
   quickstart: docs/quickstart.md
@@ -256,15 +279,18 @@ project_links:
   citation: CITATION.cff
   declaration_of_agency: agency-declaration/index.html
   q_space: q-space/node.yawn
+  canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
 
 replay:
   current_claim: >
     README.md is the human front door, readme.yawn is the repository's own
-    orientation object, yawn.yawn is the machine-addressable manifest, and
-    Observation is the first executable entry into the ontology. Open Question,
-    Art Brief, candidate, and feedback records preserve its source while
-    remaining proposal-only around it.
+    orientation object, yawn.yawn is the machine-addressable manifest,
+    Observation is the first executable entry into the ontology, Question and
+    local-art records preserve its exact lineage as proposals, and all
+    product/schema naming is normalized through one canonical extension
+    contract before creation.
   next_review_when:
     - Draft 0.2 has field routing evidence
     - a unified document RFC is proposed
     - an independent implementation reports a compatibility gap
+    - a speech-to-text correction produces a false positive or missed alias

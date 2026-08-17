@@ -2,7 +2,7 @@ id: automation/yawn.bot.daily
 title: "yawn.bot daily repo contributor"
 kind: automation-contract
 status: active
-updated: 2026-07-04
+updated: 2026-08-17
 
 automation_id: yawn-bot-daily-repo-contributor
 schedule: "daily at 9:00 AM America/Denver"
@@ -107,8 +107,5 @@ proof:
     - automation/yawn.bot.pr-notification.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
     - records/automation-log.yawn
-    - 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
-    - 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
-    - 08-research/july-01-2026-ai-writing-scan-lock.ion
-    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

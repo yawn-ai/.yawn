@@ -8,6 +8,33 @@ still being specified; implementations MUST NOT describe either the legacy
 `templates/full.yawn` shape or `yawn-contracts-v1.schema.json` as the one
 complete `.yawn` schema.
 
+## Canonical name and extension
+
+The product name is **YAWN** and the human-readable record extension is
+**`.yawn`**.
+
+<!-- yawn-invalid-alias-guard:start -->
+`.ion` and `.yon` are invalid YAWN schema aliases. They frequently appear as
+speech-to-text or model-transcription substitutions, but implementations MUST
+NOT accept them as alternate extensions, compatibility formats, or distinct
+ontologies.
+<!-- yawn-invalid-alias-guard:end -->
+
+When the surrounding interaction has already established YAWN as the referent,
+an ingestion boundary SHOULD normalize the known substitutions before creating
+a filename, stable ID, schema selection, or record. The boundary SHOULD preserve
+the raw input, normalized value, applied rule, context basis, and reviewer when
+the correction affects provenance.
+
+Normalization MUST be context-gated. Similar ordinary language—such as a
+chemical term or a genuine personal name—MUST NOT be silently rewritten merely
+because its spelling resembles a known substitution. If the referent is
+ambiguous, creation pauses and the ambiguity remains visible.
+
+The executable reference behavior is defined in
+[`core/canonical-extension.yawn`](../core/canonical-extension.yawn) and
+[`lib/canonical-extension-v1.mjs`](../lib/canonical-extension-v1.mjs).
+
 ## Safe YAML profile
 
 Portable `.yawn` documents SHOULD use a conservative YAML 1.2 subset:
@@ -47,6 +74,10 @@ References use stable IDs for semantic identity. Relative paths MAY locate
 portable files but do not establish identity on their own. External references
 record URI, media type, retrieval time when relevant, attribution, and an
 optional integrity hash.
+
+A normalization correction changes neither the stable ID nor any typed
+relationship. If a transcription error also affected identity or topology, that
+is a separate proposed structural change with its own source and authority.
 
 ## Extensions
 
@@ -101,3 +132,8 @@ Every breaking schema change requires:
 Legacy `current`, `possible`, and `desired` fields remain readable at system
 boundaries. Canonical v1 state keeps attributed snapshots, desire, target,
 transition intent, transition result, proof, and update separate.
+
+The 2026-08-17 canonical-extension migration is narrower than a schema-version
+migration: it retires invalid lexical aliases and a historical repository layer
+without changing accepted v1 semantic identity. Its receipt preserves the old
+source commit and maps each retired path to current canonical targets.

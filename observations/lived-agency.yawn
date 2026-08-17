@@ -2,7 +2,7 @@ id: observations/lived-agency
 title: "lived agency"
 kind: observation-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 observing: >
   The way a human or agent moves from implicit pattern to explicit agency
@@ -40,5 +40,7 @@ proof:
   source:
     - readme.yawn
     - references/scientific-frame.yawn
-    - 01-core/duality.ion
+    - core/observer-and-body.yawn
+    - core/projection-and-aperture.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

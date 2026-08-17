@@ -2,7 +2,7 @@ id: start/value-proposition
 title: "value proposition"
 kind: start
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 for_humans: >
   See the loop you are inside, name what is missing, choose one safe move, and
@@ -23,5 +23,7 @@ for_builders: >
 proof:
   source:
     - readme.yawn
-    - 00-start/value-proposition.ion
+    - README.md
+    - core/what-is-a-yawn.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

@@ -2,7 +2,7 @@ id: core/observer-and-body
 title: "observer and body"
 kind: safety-protocol
 status: v0-seed
-updated: 2026-06-30
+updated: 2026-08-17
 
 stance:
   observer: "can step back and see patterns"
@@ -28,6 +28,6 @@ stability_check:
 proof:
   source:
     - yawn.yawn
-    - 01-core/duality.ion
-    - 01-core/observer-body-stability.ion
+    - core/projection-and-aperture.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

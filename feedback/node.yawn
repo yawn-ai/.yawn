@@ -2,7 +2,7 @@ id: feedback/node
 title: "feedback node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 purpose: >
   Hold the public feedback path: a simple email surface for humans and a
@@ -42,5 +42,6 @@ links:
 proof:
   source:
     - readme.yawn
-    - 08-research/july-01-2026-feedback-intake-lock.ion
+    - database/feedback-intake.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

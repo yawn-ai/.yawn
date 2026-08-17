@@ -22,6 +22,13 @@ ontology attributed to Vervaeke. The source explicitly treats underlying
 processes as continuous and concurrent, so the protocol permits overlapping and
 nested turns.
 
+The protocol's relationship-first formulation is a YAWN synthesis, not a quote
+or settled scientific taxonomy. Its full provenance braid separates direct
+source support from engineering inference and links Vervaeke's agent-arena
+reciprocity with participatory sense-making, affordance, active-inference,
+enactive, and extended-cognition research. See
+[`references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn`](../references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn).
+
 - John Vervaeke, *Awakening from the Meaning Crisis*, Episode 7:
   <https://meaningcrisis.co/episode-7-aristotles-world-view-and-erich-fromm/>
 - Jaeger et al. (2024), “Naturalizing relevance realization” in *Frontiers in

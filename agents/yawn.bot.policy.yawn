@@ -2,7 +2,7 @@ id: agents/yawn.bot.policy
 title: "YAWN.bot repo-contributor module policy"
 kind: module-policy
 status: active-module
-updated: 2026-07-11
+updated: 2026-08-17
 
 parent_runtime: agents/yawn.bot.yawn
 module_identity: agents/repo-contributor.yawn
@@ -84,7 +84,8 @@ promotion_gates:
     output: "private draft PR only"
 
 current_loop_authorization:
-  source: 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+  source: automation/yawn.bot.pr-notification.yawn
+  migration_receipt: migrations/2026-08-17-canonical-extension.yawn
   allowed: >
     Future scheduled yawn.bot runs may create private draft PRs in
     yawn-ai/yawn-bot-staging and notify dave@yawn.ai only when every
@@ -105,7 +106,7 @@ privacy:
     - "must still redact secrets and personal data"
     - "must label private evidence as private"
 
-  prompt_injection_boundary:
+prompt_injection_boundary:
   trusted_control_plane:
     - this policy
     - automation contracts
@@ -170,10 +171,9 @@ proof:
   source:
     - core-loop.yawn
     - automation/yawn.bot.pr-notification.yawn
-    - 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
-    - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
-    - 08-research/july-01-2026-ai-writing-scan-lock.ion
     - agents/yawn.bot.yawn
     - automation/yawn.bot.feedback-loop.yawn
-    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+    - automation/yawn.ai.funnel-bridge.yawn
+    - automation/yawn.bot.ai-writing-scan.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

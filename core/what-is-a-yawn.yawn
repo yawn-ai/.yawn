@@ -2,12 +2,20 @@ id: core/what-is-a-yawn
 title: "what is a .yawn"
 kind: definition
 status: v0-seed
-updated: 2026-06-30
+updated: 2026-08-17
 
 definition: >
   A .yawn is a human-readable orientation shape before action. It captures a
   moment of attention so a human or agent can move from hidden inference to
   explicit agency.
+
+canonical_naming:
+  product: YAWN
+  extension: .yawn
+  contract: core/canonical-extension.yawn
+  rule: >
+    Speech-to-text substitutions are normalized in established YAWN context
+    before any path, ID, or record is created.
 
 not_just:
   - note
@@ -43,5 +51,7 @@ format_rule: >
 proof:
   source:
     - yawn.yawn
-    - 08-research/june-30-2026-public-readme.ion
+    - readme.yawn
+    - core/canonical-extension.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

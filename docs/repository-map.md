@@ -1,7 +1,9 @@
 # Repository map
 
-The repository contains multiple generations because the project records its
-own evolution. This page says which layer to use without deleting that history.
+The repository records its own evolution, but the active tree now uses one
+product name and one human-readable record extension. Historical source remains
+available through immutable Git commits and explicit migration receipts rather
+than through a second live schema layer.
 
 ## Active protocol surface
 
@@ -10,21 +12,44 @@ README.md / index.html     public doors
 spec/                      human-readable specification
 contracts/                 stable v1 constitution/runtime package
 schemas/                   state modules and labeled protocol drafts
-core/                      concept records
+core/                      concept records and lexical invariants
 templates/                 authoring surfaces
 examples/ + fixtures/      explanatory and executable evidence
 docs/                      guides, status, projections, research boundary
 interface/ + q-space/      presentation contracts and projections
 rfcs/ + adr/               proposed and accepted change rationale
+migrations/                source-preserving structural receipts
 ```
 
-## Historical bridge
+## Retired numbered generation
 
-The numbered `00-start` through `08-research` directories preserve the `.ion`
-generation and the evidence locks that preceded the named `.yawn` tree. They
-are historical inputs, not a second current specification. Links may remain for
-provenance. New normative work goes into `spec/`, versioned schemas, RFCs, and
-tests.
+The former numbered `00-start` through `08-research` directories were a
+pre-canonical generation. They were removed from the active tree on
+2026-08-17 after their surviving claims had already been restated across the
+named `.yawn`, specification, schema, record, and automation layers.
+
+The removal is **semantic absorption**, not history erasure:
+
+- the immutable source commit remains readable;
+- every retired path is listed in
+  [`migrations/2026-08-17-canonical-extension.yawn`](../migrations/2026-08-17-canonical-extension.yawn);
+- each path maps to its current canonical target or targets;
+- no historical claim becomes current merely because its filename changes; and
+- a missing historical detail must be deliberately restated and proved in a
+  current `.yawn` record before reuse.
+
+# yawn-invalid-alias-guard:start
+The product is **YAWN** and the only YAWN record extension is **`.yawn`**.
+`.ion` and `.yon` are invalid schema aliases and common speech-to-text/model
+transcription errors. They are not compatibility formats or alternate
+ontologies.
+# yawn-invalid-alias-guard:end
+
+The context-gated normalization and ambiguity rules live in
+[`core/canonical-extension.yawn`](../core/canonical-extension.yawn). The raw
+transcript is preserved when correction provenance matters. Similar ordinary
+language—such as a chemical term or an actual personal name—is not rewritten
+without established YAWN context.
 
 `records/` preserves operational receipts and ledgers. Historical records may
 contain environment-specific paths or old terminology. Do not copy those paths
@@ -39,12 +64,16 @@ runtime configuration.
 - `readme.yawn` is the root orientation record, not a source from which the
   Markdown README is mechanically generated.
 - `yawn.yawn` is the machine-addressable repository manifest.
+- `core/canonical-extension.yawn` is the naming and speech-normalization
+  invariant.
 - Executable schemas are canonical only for the version and kind named in their
   `$id`; there is not yet one schema for every `.yawn` file.
 - A projection is never canonical state.
+- A path locates a portable file or View; stable IDs and typed relations carry
+  semantic identity.
 
-This replaces the earlier “canonical source / mirror” wording, which implied a
-generation guarantee that did not exist.
+This replaces both the earlier “canonical source / mirror” wording and the
+numbered historical bridge as a live repository layer.
 
 ## Planned convergence
 
@@ -58,5 +87,5 @@ spec/ normative intent
         -> projections and products
 ```
 
-The convergence will happen through compatible RFCs and migration receipts,
-not a mass rename or history deletion.
+The convergence happens through compatible RFCs and migration receipts, not
+through silent rewriting or deletion of provenance.

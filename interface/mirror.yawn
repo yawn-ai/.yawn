@@ -2,7 +2,7 @@ id: interface/mirror
 title: "/mirror"
 kind: cognition-handle
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 function: "pause and show what is here"
 
@@ -22,5 +22,8 @@ output:
 proof:
   source:
     - readme.yawn
-    - 02-interface/interface.ion
+    - interface/node.yawn
+    - interface/meaning.yawn
+    - core/projection-and-aperture.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

@@ -2,7 +2,7 @@ id: records/next-move-ledger
 title: "next move ledger"
 kind: decision-log
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 purpose: >
   Store suggested moves with the record-based logic that produced them.
@@ -34,5 +34,7 @@ current_entries: []
 proof:
   source:
     - core/next-move-logic.yawn
-    - 05-proof/replay.ion
+    - core/memory-update.yawn
+    - core/state-transition.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

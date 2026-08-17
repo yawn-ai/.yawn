@@ -2,7 +2,7 @@ id: records/yawn.bot-pattern-ledger
 title: "yawn.bot pattern ledger"
 kind: record-log
 status: active-seed
-updated: 2026-07-04
+updated: 2026-08-17
 
 purpose: >
   Record pattern theses observed by yawn.bot across feedback, core repos,
@@ -40,5 +40,6 @@ proof:
     - core-loop.yawn
     - agents/yawn.bot.policy.yawn
     - automation/yawn.bot.feedback-loop.yawn
-    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+    - automation/yawn.bot.pr-notification.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

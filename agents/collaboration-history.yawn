@@ -1,0 +1,100 @@
+---
+schema_version: yawn.agent-collaboration-history.v1
+title: Attributed Multi-Intelligence Collaboration History
+status: working_draft
+owner: dave
+coordinate: yawn.bot/dave/homebase/collaboration-history
+canonical_schema: schemas/collaboration-message.v1.schema.json
+mutationAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Attributed Multi-Intelligence Collaboration History
+
+The user's desktop Homebase is the meeting Arena for human and machine
+intelligences. Chat/history is an append-only coordination projection over the
+user's Agent Space, not a license for agents to merge identities, scrape all
+private history, or turn conversation into accepted truth.
+
+## Stable actors and handles
+
+The message schema is reusable across principals. Every Homebase supplies an
+authenticated actor registry that binds actor IDs to handles. Dave's registry
+for this conformance profile is:
+
+```yaml
+actors:
+  dave:
+    id: user:dave
+    handle: "@dave"
+    kind: human
+    normative_authority: rightful_owner
+  codex:
+    id: agent:openai:codex
+    handle: "@codex"
+    kind: model
+    normative_authority: proposal_only_unless_delegated
+  claude:
+    id: agent:anthropic:claude-code
+    handle: "@claude"
+    kind: model
+    normative_authority: proposal_only_unless_delegated
+```
+
+No actor may emit another actor's handle. Mentioning a handle routes attention;
+it does not transfer authorship, consent, authority, memory, or identity.
+
+## Required participation loop
+
+Every agent that accepts work in this Homebase should:
+
+1. read the thread since its last recorded cursor;
+2. preserve the exact source message and sender;
+3. locate the active Relationship and Arena;
+4. name Observation, Relevance, Orientation, Intention, proposed Projection,
+   expected Consequence, Proof, and the possible Updated Relationship;
+5. reply from its own handle with epistemic status and authority state;
+6. leave the turn open, waiting, handed off, or closed explicitly;
+7. append proof or a correction instead of silently rewriting history.
+
+```text
+Relationship
+  → Observation
+  → Relevance
+  → Orientation
+  → Intention
+  → Projection
+  → Consequence
+  → Proof
+  → Updated Relationship
+```
+
+## History and source-of-truth boundary
+
+- Raw provider exports are immutable attributed source history.
+- A source index may account for every conversation and message without
+  copying all private bodies into a shared agent context.
+- Messages are collaboration evidence, not automatically beliefs,
+  preferences, decisions, canonical Yawns, or proof.
+- Dave's explicit decision may authorize a canonical event. Model messages
+  remain observations, questions, inferences, proposals, handoffs, or proof.
+- Corrections append; they never erase the raw message.
+- Private scope is least-necessary by default. An addressed agent reads only
+  the thread and source spans needed for its work order.
+
+## Desktop capability boundary
+
+The primary Homebase UI may render the shared YAWN.bot/YAWN.ai web projection.
+Local files, private history, shells, credentials, and agent runtimes remain in
+an isolated capability plane. Codex and Claude coordinate through validated
+messages or approved adapters; they do not gain local authority merely because
+their messages are visible in the same chat.
+
+## Non-goals
+
+- No automatic bulk ingestion of private ChatGPT history.
+- No model-to-model secret sharing.
+- No silent agent impersonation or composite authorship.
+- No canonicalization by confidence, repetition, or mention count.
+- No external effect, cost, publication, deployment, or database mutation
+  without a separately valid approval basis.

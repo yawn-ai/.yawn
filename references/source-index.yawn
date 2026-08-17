@@ -2,7 +2,7 @@ id: references/source-index
 title: "source index"
 kind: reference-index
 status: v0-seed
-updated: 2026-07-05
+updated: 2026-08-17
 
 sources:
   - file: agency-declaration.yawn
@@ -13,26 +13,30 @@ sources:
     role: "scientific and publishable framing"
   - file: references/july-01-lock.yawn
     role: "current readme.yawn and file-tree lock"
-  - file: 08-research/june-30-2026-alignment.ion
-    role: "duality and proof-bearing filesystem seed"
-  - file: 08-research/june-30-2026-public-readme.ion
-    role: "public .yawn README seed"
-  - file: 08-research/july-01-2026-material-record-reframe.ion
+  - file: core/design-principles.yawn
+    role: "duality, proof, and boundary-aware filesystem principles"
+  - file: README.md
+    role: "public .yawn human front door"
+  - file: records/material-time.yawn
     role: "material time and access-record reframe"
-  - file: 08-research/july-01-2026-agent-contributor-automation-lock.ion
+  - file: automation/yawn-bot-repo-contributor-loop.yawn
     role: "AI-agent contributor path and feedback triage automation"
-  - file: 08-research/july-01-2026-yawn-bot-daily-automation-lock.ion
-    role: "yawn.bot service identity and daily Codex automation"
-  - file: 08-research/july-01-2026-yawn-bot-feedback-loop-lock.ion
+  - file: automation/yawn.bot.daily.yawn
+    role: "yawn.bot service identity and daily contributor automation"
+  - file: automation/yawn.bot.feedback-loop.yawn
     role: "yawn.bot feedback-to-thesis-to-risk-to-commit gate"
-  - file: 08-research/july-01-2026-yawn-bot-architecture-observer-lock.ion
+  - file: agents/yawn.bot.policy.yawn
     role: "yawn.bot architecture-observer policy, private draft PR staging, audits, and ledgers"
-  - file: 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
+  - file: automation/yawn.ai.funnel-bridge.yawn
     role: "yawn.ai homepage bridge from public .yawn main changes into source-backed training funnel updates"
-  - file: 08-research/july-01-2026-ai-writing-scan-lock.ion
+  - file: automation/yawn.bot.ai-writing-scan.yawn
     role: "AI-writing-style scan for public .yawn and yawn.ai text"
-  - file: 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
-    role: "core-loop, private draft PR unblocking, canonical automation memory, and dave@yawn.ai PR notifications"
+  - file: core-loop.yawn
+    role: "repository automation compatibility loop and private draft PR gate"
+  - file: automation/yawn.bot.pr-notification.yawn
+    role: "dave@yawn.ai PR notifications and dedupe boundary"
+  - file: migrations/2026-08-17-canonical-extension.yawn
+    role: "immutable source commit and path-by-path absorption map for the retired numbered generation"
 
 proof:
   source:
@@ -45,4 +49,5 @@ proof:
     - automation/yawn.bot.pr-notification.yawn
     - automation/yawn.ai.funnel-bridge.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

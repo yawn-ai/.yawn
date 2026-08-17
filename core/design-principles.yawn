@@ -2,7 +2,7 @@ id: core/design-principles
 title: "design principles"
 kind: principles
 status: v0-seed
-updated: 2026-06-30
+updated: 2026-08-17
 
 principles:
   - human-readable first
@@ -34,5 +34,7 @@ not_this:
 proof:
   source:
     - yawn.yawn
-    - 08-research/june-30-2026-public-readme.ion
+    - readme.yawn
+    - README.md
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

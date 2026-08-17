@@ -2,7 +2,7 @@ id: agents/orientation
 title: "agent orientation"
 kind: agent-protocol
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 agent_may:
   - mirror the frame
@@ -17,6 +17,12 @@ agent_may:
   - summarize replay
   - record material accesses
   - explain next-move logic
+  - normalize clear YAWN speech-to-text substitutions before artifact creation
+
+agent_must:
+  - read core/canonical-extension.yawn before interpreting product or schema aliases
+  - preserve raw and normalized terms when a naming correction affects provenance
+  - hold creation when the referent is genuinely ambiguous
 
 agent_must_not_silently:
   - decide truth
@@ -28,11 +34,14 @@ agent_must_not_silently:
   - publish externally
   - spend resources
   - hide uncertainty
+  - create a competing product name or record extension
+  - normalize an unrelated chemical term or personal name without YAWN context
 
 authorization:
   The human remains the source of authorization.
 
 first_read_order:
+  - core/canonical-extension.yawn
   - readme.yawn
   - yawn.yawn
   - observations/lived-agency.yawn
@@ -48,11 +57,12 @@ record_when_relevant:
   - github repositories, issues, pull requests, branches, or commits inspected
   - backups created or restored
   - dependencies that shape the next move
+  - raw transcript, normalized term, rule, confidence, and reviewer for material naming corrections
 
 proof:
   source:
+    - core/canonical-extension.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
     - readme.yawn
     - yawn.yawn
-    - 04-agent/agent-orientation-charter.ion
-    - 04-agent/agent-boundaries.ion
   status: seed-backed

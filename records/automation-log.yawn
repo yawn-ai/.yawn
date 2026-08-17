@@ -2,7 +2,7 @@ id: records/automation-log
 title: "automation log"
 kind: record-log
 status: v0-seed
-updated: 2026-07-04
+updated: 2026-08-17
 
 purpose: >
   Track automations created for the .yawn repository and what they are allowed
@@ -120,5 +120,5 @@ proof:
     - automation/yawn.ai.funnel-bridge.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
     - records/access-log.yawn
-    - 08-research/july-04-2026-yawn-bot-core-loop-pr-notification-lock.ion
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

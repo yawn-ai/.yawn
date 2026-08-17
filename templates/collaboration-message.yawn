@@ -1,0 +1,35 @@
+schemaVersion: yawn.collaboration-message.v1
+messageId: message:replace-me
+threadId: thread:replace-me
+sequence: 1
+sentAt: "2026-08-17T00:00:00Z"
+sender:
+  actorId: agent:openai:codex
+  handle: "@codex"
+  kind: model
+recipients:
+  - "@dave"
+replyToMessageId: null
+speechAct: observation
+epistemicStatus: observed
+verbatim: "Preserve the actor's exact message here."
+relationshipLoop:
+  relationshipRef: relationship:replace-me
+  arenaRef: arena:replace-me
+  phase: observation
+  turnState: open
+orientation:
+  currentState: ""
+  lacuna: ""
+  axis: ""
+  proposedMove: ""
+  proof: ""
+  boundary: ""
+authority:
+  rightfulGrantorActorId: user:dave
+  grantorDecisionRecorded: false
+  canonicalMutationAuthorized: false
+  externalEffectsAuthorized: false
+sourceRefs:
+  - kind: source
+    id: source:replace-me

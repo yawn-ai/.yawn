@@ -1,0 +1,906 @@
+---
+schema_version: 3.0.0
+title: Relationship-First Research Braid
+type: supporting_research_map
+domain: architecture
+status: active
+criticality: foundational
+version: 1.0.0
+owner: dave
+created_at: 2026-08-16
+updated_at: 2026-08-16
+coordinate: yawn.ai/architecture/relationship-first-research-braid
+parent_coordinate: yawn.ai/architecture/relationship-first-agent-arena
+governing_source: core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+ontological_status: supporting_not_governing
+epistemic_status: attributed_multilineage_synthesis
+research_lineage:
+  - authors: John Vervaeke; Timothy P. Lillicrap; Blake A. Richards
+    work: Relevance Realization and the Emerging Framework in Cognitive Science
+    year: 2012
+    doi: 10.1093/logcom/exp067
+  - authors: John Vervaeke; Christopher Mastropietro; Filip Miscevic
+    work: Zombies in Western Culture
+    year: 2017
+    doi: 10.11647/OBP.0113
+  - authors: Johannes Jaeger; Anna Riedl; Alex Djedovic; John Vervaeke; Denis Walsh
+    work: Naturalizing relevance realization
+    year: 2024
+    doi: 10.3389/fpsyg.2024.1362658
+  - authors: Anthony Chemero
+    work: An Outline of a Theory of Affordances
+    year: 2003
+    doi: 10.1207/S15326969ECO1502_5
+  - authors: Hanne De Jaegher; Ezequiel Di Paolo
+    work: Participatory Sense-Making
+    year: 2007
+    doi: 10.1007/s11097-007-9076-9
+  - authors: Walter Mischel; Yuichi Shoda
+    work: A Cognitive-Affective System Theory of Personality
+    year: 1995
+    doi: 10.1037/0033-295X.102.2.246
+  - authors: Susan M. Andersen; Serena Chen
+    work: The Relational Self
+    year: 2002
+    doi: 10.1037/0033-295X.109.4.619
+  - authors: Mardi J. Horowitz; Bram Fridhandler; Charles Stinson
+    work: Person Schemas and Emotion
+    year: 1991
+    doi: 10.1177/000306519103901s01
+  - authors: Edwin Hutchins
+    work: Cognition in the Wild
+    year: 1995
+    doi: 10.7551/mitpress/1881.001.0001
+  - authors: Andy Clark; David Chalmers
+    work: The Extended Mind
+    year: 1998
+    doi: 10.1111/1467-8284.00096
+  - authors: W. Ross Ashby
+    work: An Introduction to Cybernetics
+    year: 1956
+    archive: https://ashby.info
+attribution_boundary: none_of_the_named_authors_or_traditions_endorse_yawn
+mutationAuthorized: false
+persistenceAuthorized: false
+modelCallAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn
+
+> **No single discipline owns the relationship. Each discipline resolves a different failure mode.**
+
+This supporting source protects the constitutional relationship-first ontology from two opposite errors:
+
+1. reducing the work to one researcher, one school, or one slogan; and
+2. accumulating references without specifying what each lineage actually contributes.
+
+The governing source remains `RELATIONSHIP_FIRST_AGENT_ARENA.yawn`.
+
+This file is a research braid: a recoverable map of compatible insights, unresolved tensions, translation rules, and falsifiable implications. It expands resolution without creating a second constitution.
+
+---
+
+## 0. Synthesis contract
+
+YAWN may combine lineages only when it preserves their differences.
+
+```yaml
+synthesis_contract:
+  attribution_precedes_extension: true
+  compatibility_is_not_identity: true
+  metaphor_is_not_mechanism: true
+  mechanism_is_not_metaphysics: true
+  clinical_construct_is_not_diagnosis: true
+  capability_is_not_authority: true
+  interaction_is_not_automatically_an_agent: true
+  distributed_cognition_does_not_erase_responsibility: true
+  explanatory_breadth_requires_falsifiable_boundaries: true
+```
+
+A useful synthesis should make more distinctions inspectable, not blur them into a vocabulary cloud.
+
+---
+
+## 1. The research braid
+
+| Lineage | Contribution to YAWN | What YAWN must not claim |
+|---|---|---|
+| Agent–arena and participatory knowing | Agent and arena can become mutually fitted through meaningful participation | That all YAWN extensions are Vervaeke’s claims |
+| Relevance realization | Relevance is context-sensitive, dynamically selected, and recursively regulated | That one scalar score objectively captures relevance |
+| Natural agency | Agency includes organizational, ecological, and adaptive dimensions | That fluent software is therefore a living or intrinsically concerned agent |
+| Ecological affordance | Affordance is relational: ability and environmental feature jointly matter | That an affordance belongs wholly to an object or to a belief |
+| Enactive participatory sense-making | Interaction can generate meaning and temporary dynamics not reducible to either participant alone | That a relationship is a person, conscious subject, or morally authorized agent |
+| Cognitive-affective personality systems | Stable people can express situation-sensitive if–then patterns through interacting beliefs, affects, goals, and competencies | That behavior can be inferred from a trait or situation label alone |
+| Relational-self theory | Significant-other representations can activate distinct self-patterns in relationship | That every present interaction is merely repetition of the past |
+| Cognitive psychodynamics | Wishes, fears, schemas, affect, conflict, and regulation can shape construal and action outside immediate awareness | That YAWN detects hidden motives or diagnoses unconscious truth |
+| Distributed cognition | Cognitive work can be organized across people, tools, symbols, and procedures | That distributed work dissolves individual decision rights or accountability |
+| Extended cognition | Stable two-way tool couplings may participate in cognitive processes | That every used tool literally becomes part of a mind |
+| Cybernetics | Regulation requires feedback, model adequacy, and sufficient response variety | That control quality alone establishes values, legitimacy, or ethics |
+| Phenomenology and orientation | Standpoint, horizon, embodiment, and lived significance condition what can show up | That first-person experience is infallible evidence about external causes |
+| Systems and holonic thinking | Systems can be nested, mutually constraining, and agent-like at one scale while arena-like at another | That there is one final hierarchy or decomposition of reality |
+
+The braid is strongest where different traditions independently force the same operational distinctions:
+
+- no observation without access and standpoint;
+- no affordance without capability and condition;
+- no agency without stakes, regulation, and possible action;
+- no learning without feedback and update;
+- no shared field without power, boundaries, and coordination;
+- no interpretation without uncertainty and alternatives.
+
+---
+
+## 2. Vocabulary resolution
+
+Relationship-first becomes vague unless adjacent terms are separated.
+
+### Relation
+
+Any describable dependency, contrast, mapping, or connection.
+
+A relation can be momentary, abstract, causal, semantic, spatial, statistical, legal, social, or imagined.
+
+### Relationship
+
+A relation with enough persistence, history, stakes, identity, expectation, or consequence to warrant its own state and trajectory.
+
+A relationship may exist without immediate interaction.
+
+### Interaction
+
+An event in which two or more processes alter one another’s unfolding.
+
+Interactions occur within relationships but do not exhaust them.
+
+### Coupling
+
+The mechanism or recurring pathway through which changes in one process influence another.
+
+Coupling can be:
+
+- one-way or reciprocal;
+- weak or strong;
+- direct or mediated;
+- continuous or intermittent;
+- stabilizing or destabilizing;
+- symmetrical or asymmetrical.
+
+### Participation
+
+Enacted involvement through which an agent’s capabilities, identity, or sense-making may change together with the field.
+
+Participation is deeper than contact. It includes investment and susceptibility to transformation.
+
+### Mediation
+
+The tool, language, protocol, institution, interface, role, or representation through which a relationship is enacted.
+
+YAWN itself is a mediator. It should therefore make its own influence inspectable.
+
+### Channel
+
+The pathway through which signals, actions, resources, obligations, or consequences travel.
+
+### Protocol
+
+The explicit or implicit rules by which a channel is used and interpreted.
+
+### Interface
+
+A designed boundary that selectively exposes state and affords action between otherwise distinct systems.
+
+An interface never presents the whole agent or arena. It creates a consequential projection.
+
+---
+
+## 3. Why relationship can be structurally first without erasing agents
+
+Relationship-first is not relationship-only.
+
+The strongest formulation is triadic:
+
+```text
+AGENT  ↔  RELATIONSHIP  ↔  ARENA
+```
+
+The relationship operationally specifies:
+
+- which capacities of the agent matter here;
+- which features of the arena matter now;
+- what can pass between them;
+- what is blocked;
+- what is at stake;
+- what action is possible;
+- what consequence can return.
+
+The agent and arena retain excess beyond the current relationship.
+
+```yaml
+non_reduction:
+  agent_exceeds_current_role: true
+  arena_exceeds_current_horizon: true
+  relationship_exceeds_current_interaction: true
+  world_exceeds_current_arena: true
+  experience_exceeds_current_description: true
+```
+
+This prevents both individualism and relational totalization.
+
+---
+
+## 4. Participatory interaction and emergent relational dynamics
+
+De Jaegher and Di Paolo’s participatory sense-making adds a decisive refinement:
+
+> The interaction process can develop temporary organization that shapes the participants while still depending on them.
+
+YAWN should represent this as **interaction-process autonomy**, not automatic agenthood.
+
+Examples:
+
+- a conversation acquires a rhythm neither participant intended;
+- a conflict escalates through reciprocal responses despite both agents preferring de-escalation;
+- a game creates roles and possibilities unavailable before play;
+- a team routine preserves knowledge no individual fully contains;
+- a digital interface makes some moves obvious and others effectively invisible.
+
+```yaml
+interaction_process:
+  participants:
+  onset:
+  coordination_pattern:
+  self_reinforcing_dynamics:
+  breakdown_conditions:
+  participant_dependence:
+  generated_meaning:
+  generated_affordances:
+  generated_constraints:
+  temporary_autonomy_status:
+  authority_status: none_unless_explicitly_granted
+```
+
+### Boundary
+
+A self-sustaining interaction pattern may be causally real without being:
+
+- conscious;
+- a legal person;
+- an ethical subject;
+- intrinsically valued;
+- authorized to bind its participants.
+
+This distinction is essential for human–AI systems, institutions, markets, movements, and recursive agent networks.
+
+---
+
+## 5. Schemas, affect, and cognitive psychodynamics
+
+An agent does not encounter a neutral arena and then add interpretation afterward.
+
+Prior organization shapes what becomes salient, threatening, desirable, familiar, or even visible.
+
+Mischel and Shoda’s cognitive-affective system suggests a useful internal field:
+
+```yaml
+cognitive_affective_units:
+  encodings_and_construals:
+  expectancies_and_beliefs:
+  affects:
+  goals_and_values:
+  competencies:
+  self_regulatory_plans:
+```
+
+The operative pattern is not simply:
+
+```text
+person + situation → behavior
+```
+
+It is closer to:
+
+```text
+situation feature
+  → schema activation
+  → affect and expectancy
+  → salience weighting
+  → policy selection
+  → action
+  → consequence
+  → schema reinforcement or revision
+```
+
+Horowitz’s person-schema and state models add wishes, fears, conflicts, roles, defenses, and changes in state of mind.
+
+YAWN should therefore distinguish:
+
+| Primitive | Operational meaning |
+|---|---|
+| Schema | Organized expectation about entities, roles, relations, and likely sequences |
+| Frame | The currently privileged interpretation boundary |
+| Script | Expected temporal sequence of interaction |
+| Affect | Valenced bodily-cognitive weighting that changes readiness and salience |
+| Interoception | Access to internal bodily differences relevant to orientation |
+| Wish / need | Desired or required condition exerting pressure |
+| Fear | Anticipated harmful state or loss |
+| Conflict | Simultaneously active incompatible goals, values, roles, or policies |
+| Defense | Regulation that avoids, suppresses, displaces, or reinterprets threatening material |
+| Habit / policy | Recurrently selected response under familiar conditions |
+| Metacognitive access | Capacity to inspect the active frame, confidence, or policy |
+
+### Boundary
+
+These are attributed working models.
+
+The system must never present a proposed schema, defense, motive, or unconscious process as directly observed fact.
+
+```yaml
+psychodynamic_claim:
+  observation:
+  interpretation:
+  alternatives:
+  confidence:
+  source:
+  disconfirming_evidence:
+  person_authority_to_accept_or_reject: true
+```
+
+---
+
+## 6. Actual capability, perceived capability, and usable agency
+
+Affordance requires more than a listed capability.
+
+YAWN should separate:
+
+```yaml
+capability:
+  actual:
+  perceived_by_agent:
+  perceived_by_others:
+  available_under_current_state:
+  authorized:
+  resourced:
+  practiced:
+  reliable:
+  reversible:
+```
+
+A person may possess a skill but lack energy, permission, equipment, confidence, safety, or time to use it.
+
+An AI system may possess a technical capability but lack delegated authority, valid context, or a legitimate goal source.
+
+Usable agency is therefore approximately:
+
+\[
+usable\ agency =
+capability
+\cap access
+\cap resources
+\cap authority
+\cap temporal\ window
+\cap acceptable\ risk
+\cap sufficient\ orientation
+\]
+
+This is a set intersection, not a scalar score or universal law.
+
+---
+
+## 7. Distributed and extended cognition
+
+Hutchins shows that cognitive accomplishments can belong to organized activity systems spanning people, artifacts, procedures, and cultural practices.
+
+Clark and Chalmers argue that stable, reciprocal external couplings can sometimes participate in cognition rather than merely support it.
+
+YAWN’s operational inheritance is:
+
+```yaml
+distributed_cognitive_system:
+  human_agents:
+  artificial_agents:
+  tools:
+  external_memory:
+  representations:
+  roles:
+  handoffs:
+  synchronization:
+  error_correction:
+  authority_distribution:
+  failure_localization:
+  accountability_map:
+```
+
+### The key engineering consequence
+
+Do not ask only:
+
+> What does the agent know?
+
+Also ask:
+
+> Where is the knowing accomplished, preserved, transformed, and made actionable?
+
+A checklist, cockpit, map, `.yawn`, code repository, meeting ritual, or model context can carry indispensable cognitive structure.
+
+### Boundary
+
+Distributed cognition must not become distributed responsibility laundering.
+
+For every consequential action preserve:
+
+- who supplied the goal;
+- who selected the move;
+- who had authority;
+- what tool transformed the signal;
+- where state persisted;
+- who could inspect the proof;
+- who could stop or reverse the process.
+
+---
+
+## 8. Mediation, information topology, and interface effects
+
+The arena is not available without mediation.
+
+A mediator changes:
+
+- what is observable;
+- what is omitted;
+- what is comparable;
+- what is easy to act on;
+- what feels urgent;
+- what receives proof;
+- who can participate.
+
+The relationship field therefore needs:
+
+```yaml
+mediation:
+  interface:
+  channel:
+  protocol:
+  encoding:
+  translation:
+  bandwidth:
+  latency:
+  noise:
+  loss:
+  ambiguity:
+  asymmetry:
+  access_control:
+  persistence:
+  ranking_logic:
+  defaults:
+  incentives:
+  auditability:
+```
+
+### YAWN reflexivity requirement
+
+Because YAWN visualizes time, gravity, relevance, and possible movement, it participates in the salience landscape it displays.
+
+The interface must be able to answer:
+
+- Why is this visible?
+- Why is this larger, nearer, brighter, or higher-ranked?
+- Which inputs produced this pull?
+- What was filtered out?
+- What changes if the lens changes?
+- Is this weighting local, inferred, user-set, or canonical?
+
+A mirror that cannot reveal how it bends the image is not yet a sufficiently inspectable mirror.
+
+---
+
+## 9. Observer as a relational role
+
+The observer should not be modeled as an unlocated witness outside the field.
+
+Observation is an operation enacted from a standpoint through a channel within a relationship.
+
+### First-order observation
+
+What difference is registered?
+
+```yaml
+first_order_observation:
+  report:
+  source:
+  access:
+  time:
+  standpoint:
+  uncertainty:
+```
+
+### Second-order observation
+
+How was the observation produced?
+
+```yaml
+second_order_observation:
+  active_frame:
+  attention_selection:
+  instrumentation:
+  omitted_field:
+  affective_weighting:
+  incentives:
+  observer_effect:
+  alternative_observers:
+```
+
+### Third-order coordination
+
+How can multiple observation systems compare, disagree, and revise without being silently merged?
+
+```yaml
+coordinated_observation:
+  observers:
+  shared_referent:
+  per_observer_reports:
+  overlap:
+  contradiction:
+  access_asymmetry:
+  adjudication_protocol:
+  proof_rights:
+  update_rights:
+```
+
+This makes the mirror recursive without pretending to escape perspective.
+
+---
+
+## 10. Four ways of knowing as an interface completeness test
+
+The four-way distinction associated with Vervaeke and Mastropietro can be used as a design audit rather than a claim that all knowing has been finally classified.
+
+| Way | YAWN question | Failure if absent |
+|---|---|---|
+| Propositional | What can be stated and evaluated as a claim? | The model cannot explain itself |
+| Procedural | What can the agent actually do here? | Knowledge remains inert |
+| Perspectival | What is salient from this state and standpoint? | Orientation becomes a view from nowhere |
+| Participatory | How does engagement change who the agent is and what the arena affords? | Relationship becomes external description only |
+
+A `.yawn` should therefore preserve more than propositions.
+
+```yaml
+knowing_completeness:
+  propositional_claims:
+  procedural_capabilities:
+  perspectival_orientation:
+  participatory_transformation:
+```
+
+### Boundary
+
+Participatory knowing should not be used to immunize a belief from evidence.
+
+Transformation can be real while the interpretation of that transformation remains mistaken.
+
+---
+
+## 11. Meta-regulatory tensions
+
+Relevance cannot be selected by a fixed rule without creating a new relevance problem.
+
+An adaptive agent continually negotiates opponent pressures.
+
+| Tension | One pole protects | Other pole protects |
+|---|---|---|
+| Explore ↔ Exploit | Discovery and novelty | Use of proven value |
+| Focus ↔ Diversify | Depth and completion | Optionality and error recovery |
+| Generalize ↔ Specialize | Transfer across contexts | Fit to this case |
+| Efficiency ↔ Resilience | Resource conservation | Survival under surprise |
+| Stability ↔ Plasticity | Continuity and identity | Learning and adaptation |
+| Openness ↔ Closure | New information | Commitment and bounded action |
+| Speed ↔ Verification | Timely movement | Error control |
+| Autonomy ↔ Coordination | Local agency | Shared coherence |
+| Compression ↔ Resolution | Cognitive usability | Recoverable meaning |
+| Persistence ↔ Exit | Continuity and repair | Safety, refusal, and re-bounding |
+
+YAWN should not permanently solve these tensions.
+
+It should make the current weighting, reason, cost, and reversibility inspectable.
+
+```yaml
+regulatory_balance:
+  tension:
+  current_weighting:
+  reason:
+  evidence:
+  expected_cost:
+  review_trigger:
+  reversible:
+```
+
+---
+
+## 12. Agency ladder
+
+The word `agent` spans systems with radically different capacities.
+
+YAWN should record an attributed agency profile rather than silently treating agency as binary.
+
+```yaml
+agency_profile:
+  responsive: can_change_output_with_input
+  adaptive: can_update_policy_from_feedback
+  anticipatory: can_model_possible_consequences
+  deliberative: can_compare_reasons_and_options
+  reflective: can_inspect_or_revise_its_own_frame
+  coordinative: can_negotiate_roles_and_shared_moves
+  authorized: has_legitimate_decision_or_effect_rights
+  constitutively_autonomous: maintains_the_organization_that_makes_it_this_system
+  experientially_attributed: felt_experience_claim_status
+```
+
+### Boundary
+
+This is not a moral ranking and does not establish consciousness, personhood, rights, or intrinsic value.
+
+Most contemporary software systems may exhibit responsive, adaptive, anticipatory, or deliberative-like functions while remaining externally constituted, externally goal-supplied, and non-authorized unless humans explicitly delegate authority.
+
+---
+
+## 13. Expanded primitive registry
+
+### 13.1 Agent additions
+
+```yaml
+agent_extensions:
+  affect:
+  interoception:
+  schema:
+  frame:
+  script:
+  expectancy:
+  perceived_capability:
+  actual_capability:
+  habit_or_policy:
+  conflict:
+  defense_or_avoidance:
+  metacognitive_access:
+  uncertainty_tolerance:
+  regulation_strategy:
+```
+
+### 13.2 Arena additions
+
+```yaml
+arena_extensions:
+  mediators:
+  interfaces:
+  channels:
+  protocols:
+  information_topology:
+  latency:
+  noise:
+  access_asymmetry:
+  institutional_structure:
+  cultural_practice:
+  distributed_memory:
+  coordination_infrastructure:
+```
+
+An arena need not be spatially contiguous.
+
+A market, family system, repository, legal regime, online community, game, scientific field, or memory-mediated relationship can form a distributed arena if it has enough stable roles, constraints, channels, and consequences.
+
+### 13.3 Relationship additions
+
+```yaml
+relationship_extensions:
+  interaction_process:
+  participation_depth:
+  mediation:
+  channel:
+  protocol:
+  signal_quality:
+  noise:
+  latency:
+  translation:
+  interpretive_alignment:
+  access_asymmetry:
+  rupture:
+  repair_attempt:
+  interaction_autonomy:
+  observer_effect:
+```
+
+---
+
+## 14. Front-end translation
+
+The root interface should never require a user to know this ontology before receiving value.
+
+Progressive disclosure should translate primitives into direct questions.
+
+| Ontology | Human-facing question |
+|---|---|
+| Relationship | What are you in relationship with? |
+| Agent | Who or what can notice, choose, or act here? |
+| Arena | What situation are you actually in? |
+| Observation | What happened or became noticeable? |
+| Standpoint | From where are you seeing it? |
+| Schema | What pattern does this resemble to you? |
+| Affect | What feels heavy, urgent, attractive, or threatening? |
+| Mediation | Through what interface, person, tool, or story are you encountering it? |
+| Affordance | What becomes possible for this agent here? |
+| Impediment | What looks possible but is blocked? |
+| Authority | What may you actually decide or change? |
+| Time | Is this a moment, episode, pattern, season, or inherited history? |
+| Gravity | What keeps pulling attention or action, and why? |
+| Regulation | What tradeoff are you currently making? |
+| Projection | What are you adding to the situation? |
+| Consequence | What changed after the move? |
+| Proof | What evidence should revise the map? |
+
+The interface should let an agent move among these questions without forcing one universal sequence.
+
+The canonical loop remains a compression spine, not a rigid wizard.
+
+---
+
+## 15. Empirical program
+
+Relationship-first should earn its place through comparative performance.
+
+### 15.1 Testable hypotheses
+
+Compared with an agent-only task model or a flat goal/task list, a relationship-first interface should improve some combination of:
+
+- identification of relevant constraints;
+- distinction between capability and authority;
+- detection of hidden stakeholders and power asymmetries;
+- quality and specificity of affordances;
+- calibration of confidence;
+- recognition of recurring patterns across time;
+- preservation of disagreement among observers;
+- reversibility of early moves;
+- ability to specify valid proof;
+- user-reported agency after interaction;
+- correction after prediction error;
+- transfer of orientation across human and AI participants.
+
+### 15.2 Candidate measures
+
+```yaml
+evaluation:
+  time_to_useful_orientation:
+  premature_action_rate:
+  constraint_detection_rate:
+  authority_error_rate:
+  prediction_calibration:
+  proof_specificity:
+  update_accuracy:
+  conflict_visibility:
+  participant_agency_change:
+  optionality_change:
+  repair_success:
+  replay_completeness:
+```
+
+### 15.3 Comparative conditions
+
+```yaml
+comparators:
+  - flat_chat_response
+  - task_list_only
+  - agent_profile_only
+  - environment_analysis_only
+  - relationship_first_without_time
+  - relationship_first_without_gravity
+  - relationship_first_with_full_provenance
+```
+
+Conceptual elegance is not validation.
+
+---
+
+## 16. Failure tests added by the braid
+
+1. **Relational mysticism**
+   Relationship language is used to sound profound while causal mechanisms, boundaries, or evidence disappear.
+
+2. **Interaction reification**
+   A recurring interaction pattern is treated as a conscious or authorized agent without criteria.
+
+3. **Schema determinism**
+   Past patterns are used to predetermine the present rather than generate revisable hypotheses.
+
+4. **Psychodynamic certainty**
+   The system claims access to hidden motives, defenses, or unconscious truth.
+
+5. **Affect-as-proof**
+   Emotional intensity is converted into evidence about external reality.
+
+6. **Tool blindness**
+   The interface ignores how channels, defaults, rankings, and representations shape the arena.
+
+7. **Distributed responsibility laundering**
+   A team, model, workflow, or system is blamed or credited in ways that hide human authority and decision rights.
+
+8. **Participation romanticism**
+   Co-creation is assumed to be reciprocal, consensual, healthy, or equal.
+
+9. **Knowing collapse**
+   Propositional description is treated as equivalent to skill, orientation, or participation.
+
+10. **Regulatory absolutism**
+    One side of an adaptive tension is declared universally correct.
+
+11. **Agency inflation**
+    Responsiveness or optimization is treated as full autonomy, personhood, or legitimate authority.
+
+12. **Research collage**
+    Names and theories accumulate without changing primitives, tests, or interface behavior.
+
+---
+
+## 17. What the braid changes—and what it does not
+
+### It changes
+
+- the primitive registry becomes more complete;
+- mediation and interface effects become first-class;
+- cognitive-affective schemas become explicit but revisable;
+- observer reflexivity becomes operational;
+- distributed cognition gains an accountability map;
+- interaction-process autonomy gains a precise boundary;
+- ways of knowing become a completeness test;
+- adaptive tensions become inspectable rather than silently optimized;
+- the ontology gains a comparative empirical program.
+
+### It does not change
+
+- the constitutional distinction between structural and operational firstness;
+- the Agent ↔ Relationship ↔ Arena triad;
+- Observation as the source-preserving entry;
+- human decision rights;
+- proof-gated canonical updates;
+- gravity as attributed interface pull;
+- time as trajectory, recurrence, lag, and replay;
+- the rule that no movement proves itself.
+
+---
+
+## 18. Compression spine
+
+The full braid compresses to:
+
+> **A relationship is not merely a link. It is a historically mediated field in which agents and arenas become relevant to one another through capabilities, concerns, schemas, channels, power, time, and possible action. Observation makes that field inspectable. Participation can change both sides and sometimes generate dynamics of its own. Orientation must therefore locate not only who and where, but through what mediation, under which frame, with what authority, against which constraints, and toward what proof.**
+
+And the public interface compresses further:
+
+> **What are you in relationship with—and what does that relationship make possible now?**
+
+---
+
+## 19. Completion conditions
+
+- [x] The governing constitutional source remains singular.
+- [x] Research inheritance is separated from YAWN’s extension.
+- [x] Relation, relationship, interaction, coupling, participation, mediation, channel, protocol, and interface are distinguished.
+- [x] Participatory sense-making is integrated without granting interaction automatic personhood or authority.
+- [x] Cognitive-affective and psychodynamic primitives are included with epistemic boundaries.
+- [x] Distributed cognition is included without dissolving accountability.
+- [x] Observer reflexivity is operationalized.
+- [x] Four ways of knowing are used as a completeness test rather than a totalizing taxonomy.
+- [x] Meta-regulatory tensions are represented as dynamic balances.
+- [x] Agency is profiled rather than silently treated as binary.
+- [x] An empirical comparison program is specified.
+- [ ] The expanded primitive registry is projected into future machine-readable `.yawn` schemas.
+- [ ] Mediation and observer-effect controls are prototyped in the interface.
+- [ ] Comparative user studies test whether relationship-first improves orientation and agency.
+
+---
+
+## Evolution log
+
+| Date | Change | Insight |
+|---|---|---|
+| 2026-08-16 | Created a supporting multi-lineage research braid. | Breadth becomes useful when every source resolves a named failure mode. |
+| 2026-08-16 | Distinguished relationship from interaction, coupling, participation, mediation, channel, protocol, and interface. | Relationship-first requires vocabulary resolution to avoid mysticism. |
+| 2026-08-16 | Added schemas, affect, psychodynamics, distributed cognition, and observer reflexivity. | The field is shaped by prior organization and by the media through which it becomes visible. |
+| 2026-08-16 | Added regulatory tensions, an agency profile, and empirical comparators. | A historical ontology should be capable of being wrong, measured, and improved. |

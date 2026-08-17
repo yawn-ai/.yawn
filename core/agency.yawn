@@ -2,7 +2,7 @@ id: core/agency
 title: "agency"
 kind: core
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-17
 
 definition: >
   Agency is the capacity to choose a relation or move under real constraints.
@@ -28,5 +28,7 @@ boundary: >
 proof:
   source:
     - readme.yawn
-    - 01-core/agency-currency.ion
+    - core/human-use.yawn
+    - core/next-move-logic.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

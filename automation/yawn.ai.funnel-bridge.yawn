@@ -2,7 +2,7 @@ id: automation/yawn.ai.funnel-bridge
 title: "yawn.ai open-source funnel bridge"
 kind: automation-contract
 status: active
-updated: 2026-07-01
+updated: 2026-08-17
 
 automation_id: yawn-ai-open-source-funnel-bridge
 schedule: "hourly"
@@ -93,6 +93,6 @@ proof:
   source:
     - agents/yawn.bot.policy.yawn
     - records/yawn.ai-funnel-bridge-ledger.yawn
-    - 08-research/july-01-2026-yawn-ai-funnel-bridge-lock.ion
     - automation/yawn.bot.ai-writing-scan.yawn
+    - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed
