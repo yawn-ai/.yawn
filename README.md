@@ -43,7 +43,19 @@ never be collapsed.
 
 [Observation schema](schemas/observation.v1.schema.json) ·
 [Observation template](templates/observation.yawn) ·
-[Observation View contract](interface/yawn-observation-view-v1.yawn)
+[Observation View contract](interface/yawn-observation-view-v1.yawn) ·
+[Question and local-art chain](interface/local-observation-art-v0.1.yawn)
+
+The proposed [one-question inquiry aperture](rfcs/0002-inquiry-aperture-one-question-face.md)
+keeps this record network behind one situated Question instead of exposing an
+ontology dashboard as the primary experience.
+
+An open question may be organized from `remainsOpen` without rewriting its
+verbatim source. A visual brief and local image can then be proposed around
+that question while the question stays accessible live text. The brief,
+candidate, and serialized page are not new truth: acceptance, rendering,
+publication, preference updates, and Yawn promotion each keep separate
+authority.
 
 ## The loop
 

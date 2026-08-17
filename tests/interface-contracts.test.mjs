@@ -5,6 +5,7 @@ import { test } from "node:test";
 const brandPath = new URL("../interface/yawn-brand-v1.yawn", import.meta.url);
 const chromePath = new URL("../interface/yawn-chrome-v1.yawn", import.meta.url);
 const observationPath = new URL("../interface/yawn-observation-view-v1.yawn", import.meta.url);
+const localArtPath = new URL("../interface/local-observation-art-v0.1.yawn", import.meta.url);
 
 test("the public interface contracts preserve one canonical palette and quiet root shell", async () => {
   const [brand, chrome] = await Promise.all([
@@ -56,4 +57,16 @@ test("the observation View keeps one portable holon and attributed preference in
 
   assert.match(observation, /persistenceAuthorized: false/);
   assert.match(observation, /modelCallAuthorized: false/);
+});
+
+test("local observation art keeps Question, candidate, Projection, and View distinct", async () => {
+  const contract = await readFile(localArtPath, "utf8");
+  assert.match(contract, /organized_open_question_proposal/);
+  assert.match(contract, /rendered_as_accessible_text: required/);
+  assert.match(contract, /rendered_only_as_image_pixels: forbidden/);
+  assert.match(contract, /reflective_agent_not_authority/);
+  assert.match(contract, /candidate artifacts/);
+  assert.match(contract, /displaying a candidate by an attributed Agent in a review Arena is a Projection/);
+  assert.match(contract, /page composition and serialization are rebuildable Views/);
+  assert.match(contract, /automatic_acceptance_or_publish_or_promotion: forbidden/);
 });

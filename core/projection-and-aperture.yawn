@@ -1,15 +1,16 @@
 id: core/projection-and-aperture
-title: "projection, lens, and aperture"
+title: "Projection, View, lens, and aperture"
 kind: interface-boundary-contract
-status: draft-0.2
-updated: 2026-08-13
+status: draft-0.3
+updated: 2026-08-16
 
 definitions:
-  projection: "a purpose-specific rendering over canonical IDs and events"
-  lens: "a named projection rule that foregrounds particular relations"
+  projection: "what an attributed Agent actually expresses, represents, proposes, commits, or attempts into an Arena"
+  view: "a purpose-specific rebuildable rendering over canonical IDs and events"
+  lens: "a named View rule that foregrounds particular relations"
   aperture: "the scope, depth, time window, and salience included in a view"
 
-known_projections:
+known_views:
   - arena
   - timeline
   - proof-and-replay
@@ -20,7 +21,9 @@ known_projections:
 
 invariants:
   - "Timeline is a view, not a Yawn kind."
-  - "Agent Arena is a projection, not canonical state."
+  - "Agent Arena is a View, not canonical state."
+  - "Renderer, layout, color, image, and navigation state are View concerns unless an Agent expresses them into an Arena."
+  - "An Agent Projection remains distinct from its Intention, another Agent's Observation, and the resulting Consequence."
   - "Aperture changes visibility and salience, not truth or permission."
   - "Every interactive rendered object resolves to a stable canonical ID."
   - "Presentation-only events do not alter semantic state."

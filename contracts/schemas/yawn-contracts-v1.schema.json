@@ -190,7 +190,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["kind", "id"],
       "properties": {
-        "kind": { "enum": ["actor", "principal", "agent_space", "arena", "observation", "yawn", "source", "proof", "view", "git_commit"] },
+        "kind": { "enum": ["actor", "principal", "agent_space", "arena", "observation", "yawn", "source", "proof", "view", "git_commit", "question_proposal", "art_brief", "art_candidate", "view_feedback"] },
         "id": { "type": "string", "minLength": 1 },
         "revision": { "type": ["integer", "null"], "minimum": 0 },
         "stateSha256": { "anyOf": [{ "$ref": "#/$defs/Sha256" }, { "type": "null" }] }
@@ -298,6 +298,216 @@
         "operation": { "enum": ["set", "reset"] }, "value": {}, "status": { "const": "accepted" },
         "revision": { "type": "integer", "minimum": 1 }, "sourceEventRef": { "type": "string", "minLength": 1 },
         "createdAt": { "$ref": "#/$defs/Timestamp" }, "updatedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "QuestionProposalV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "questionProposalId", "revision", "observationRef", "source", "text", "transformation", "proposedBy", "organization", "questionStatus", "proposalStatus", "createdAt"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.question-proposal.v1" },
+        "questionProposalId": { "type": "string", "minLength": 1 },
+        "revision": { "type": "integer", "minimum": 1 },
+        "observationRef": {
+          "allOf": [
+            { "$ref": "#/$defs/RecordRef" },
+            { "required": ["revision", "stateSha256"], "properties": { "kind": { "const": "observation" }, "revision": { "type": "integer", "minimum": 1 }, "stateSha256": { "$ref": "#/$defs/Sha256" } } }
+          ]
+        },
+        "source": {
+          "type": "object", "additionalProperties": false,
+          "required": ["fieldPath", "verbatimText", "sourceSpanIndexes"],
+          "properties": {
+            "fieldPath": { "type": "string", "pattern": "^/remainsOpen/(0|[1-9][0-9]*)$" },
+            "verbatimText": { "type": "string", "minLength": 1 },
+            "sourceSpanIndexes": { "const": [] }
+          }
+        },
+        "text": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "transformation": { "enum": ["verbatim", "organized"] },
+        "proposedBy": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "enum": ["actor", "principal"] } } }] },
+        "organization": {
+          "type": "object", "additionalProperties": false,
+          "required": ["agentSpaceRef", "arenaRef", "aboutYawnRefs"],
+          "properties": {
+            "agentSpaceRef": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "const": "agent_space" } } }] },
+            "arenaRef": { "anyOf": [{ "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "const": "arena" } } }] }, { "type": "null" }] },
+            "aboutYawnRefs": { "type": "array", "uniqueItems": true, "items": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "const": "yawn" } } }] } }
+          }
+        },
+        "questionStatus": { "const": "open" },
+        "proposalStatus": { "const": "proposed" },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "ArtBriefV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "briefId", "revision", "observationRef", "questionProposalRef", "proposedBy", "visualIntention", "identityAsset", "textPolicy", "accessibleDescription", "semanticColorRoles", "compositionRequirements", "negativeConstraints", "render", "boundary", "proposalStatus", "createdAt"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.art-brief.v1" },
+        "briefId": { "type": "string", "minLength": 1 },
+        "revision": { "type": "integer", "minimum": 1 },
+        "observationRef": {
+          "allOf": [
+            { "$ref": "#/$defs/RecordRef" },
+            { "required": ["revision", "stateSha256"], "properties": { "kind": { "const": "observation" }, "revision": { "type": "integer", "minimum": 1 }, "stateSha256": { "$ref": "#/$defs/Sha256" } } }
+          ]
+        },
+        "questionProposalRef": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "required": ["revision", "stateSha256"], "properties": { "kind": { "const": "question_proposal" }, "revision": { "type": "integer", "minimum": 1 }, "stateSha256": { "$ref": "#/$defs/Sha256" } } }] },
+        "proposedBy": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "enum": ["actor", "principal"] } } }] },
+        "visualIntention": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "identityAsset": {
+          "type": "object", "additionalProperties": false,
+          "required": ["recordRef", "sha256", "crop", "role"],
+          "properties": {
+            "recordRef": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "const": "source" } } }] },
+            "sha256": { "$ref": "#/$defs/Sha256" },
+            "crop": { "enum": ["face_only", "full_body", "none"] },
+            "role": { "const": "reflective_agent_not_authority" }
+          }
+        },
+        "textPolicy": {
+          "type": "object", "additionalProperties": false,
+          "required": ["questionRenderedAsPixels", "liveTextRequired"],
+          "properties": {
+            "questionRenderedAsPixels": { "const": false },
+            "liveTextRequired": { "const": true }
+          }
+        },
+        "accessibleDescription": { "type": "string", "minLength": 1 },
+        "semanticColorRoles": {
+          "type": "object", "additionalProperties": false,
+          "required": ["observation", "question", "agent"],
+          "properties": {
+            "observation": { "type": "string", "minLength": 1 },
+            "question": { "type": "string", "minLength": 1 },
+            "agent": { "type": "string", "minLength": 1 }
+          }
+        },
+        "compositionRequirements": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "negativeConstraints": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "render": {
+          "type": "object", "additionalProperties": false,
+          "required": ["width", "height", "seed", "maxCandidates"],
+          "properties": {
+            "width": { "type": "integer", "minimum": 64, "maximum": 4096 },
+            "height": { "type": "integer", "minimum": 64, "maximum": 4096 },
+            "seed": { "type": "integer", "minimum": 0 },
+            "maxCandidates": { "const": 1 }
+          }
+        },
+        "boundary": {
+          "type": "object", "additionalProperties": false,
+          "required": ["effectGrantRequired", "externalNetworkEgressAuthorized", "paidProviderCallAuthorized", "maximumPaidCostMicrousd", "canonicalMutationAuthorized", "publicationAuthorized", "promotionAuthorized"],
+          "properties": {
+            "effectGrantRequired": { "const": true },
+            "externalNetworkEgressAuthorized": { "const": false },
+            "paidProviderCallAuthorized": { "const": false },
+            "maximumPaidCostMicrousd": { "const": 0 },
+            "canonicalMutationAuthorized": { "const": false },
+            "publicationAuthorized": { "const": false },
+            "promotionAuthorized": { "const": false }
+          }
+        },
+        "proposalStatus": { "const": "proposed" },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "ViewFeedbackV1": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "feedbackId", "ontologyRole", "assertedBy", "source", "subjectRef", "expectedExperience", "actualViewEvidence", "divergenceDimensions", "preferenceUpdateProposals", "proofObligations", "epistemicStatus", "universality", "proposalStatus", "boundary", "createdAt"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.view-feedback.v1" },
+        "feedbackId": { "type": "string", "minLength": 1 },
+        "ontologyRole": { "const": "proposal_facet" },
+        "assertedBy": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "enum": ["actor", "principal"] } } }] },
+        "source": {
+          "type": "object", "additionalProperties": false,
+          "required": ["coordinate", "coordinateKind", "platformMessageIdVerified", "exactQuote", "capturedAt"],
+          "properties": {
+            "coordinate": { "type": "string", "minLength": 1 },
+            "coordinateKind": { "enum": ["local_handoff", "browser_capture", "synthetic_fixture"] },
+            "platformMessageIdVerified": { "const": false },
+            "exactQuote": { "type": "string", "minLength": 1 },
+            "capturedAt": { "$ref": "#/$defs/Timestamp" }
+          }
+        },
+        "subjectRef": { "allOf": [{ "$ref": "#/$defs/RecordRef" }, { "properties": { "kind": { "const": "view" } } }] },
+        "expectedExperience": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["text", "assertedBy", "epistemicStatus"],
+            "properties": {
+              "text": { "type": "string", "minLength": 1 },
+              "assertedBy": { "type": "string", "minLength": 1 },
+              "epistemicStatus": { "const": "reported" }
+            }
+          }
+        },
+        "actualViewEvidence": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["description", "evidenceRef", "verificationStatus"],
+            "properties": {
+              "description": { "type": "string", "minLength": 1 },
+              "evidenceRef": { "$ref": "#/$defs/RecordRef" },
+              "verificationStatus": { "const": "reported_not_independently_verified" }
+            }
+          }
+        },
+        "divergenceDimensions": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "enum": ["testing_fidelity", "ontology_to_interface_fidelity", "source_to_view_traceability", "accessible_question_fidelity", "visual_identity_fidelity", "iteration_memory"] }
+        },
+        "preferenceUpdateProposals": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["preferenceProposalId", "scopeRef", "viewKind", "fieldPath", "operation", "value", "status", "rationale", "sourceFeedbackId"],
+            "properties": {
+              "preferenceProposalId": { "type": "string", "minLength": 1 },
+              "scopeRef": { "$ref": "#/$defs/RecordRef" },
+              "viewKind": { "type": "string", "minLength": 1 },
+              "fieldPath": { "type": "string", "pattern": "^/[A-Za-z0-9_.~/-]+$" },
+              "operation": { "enum": ["set", "reset"] },
+              "value": {},
+              "status": { "const": "proposed" },
+              "rationale": { "type": "string", "minLength": 1 },
+              "sourceFeedbackId": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "proofObligations": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["obligationId", "preconditions", "prediction", "postconditions", "verifier", "falsifier", "status"],
+            "properties": {
+              "obligationId": { "type": "string", "minLength": 1 },
+              "preconditions": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+              "prediction": { "type": "string", "minLength": 1 },
+              "postconditions": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+              "verifier": { "type": "string", "minLength": 1 },
+              "falsifier": { "type": "string", "minLength": 1 },
+              "status": { "const": "waiting" }
+            }
+          }
+        },
+        "epistemicStatus": { "const": "reported" },
+        "universality": { "const": "subjective_attributed_evaluation" },
+        "proposalStatus": { "const": "proposed" },
+        "boundary": {
+          "type": "object", "additionalProperties": false,
+          "required": ["canonicalMutationAuthorized", "automaticPreferenceApplicationAuthorized", "publicationAuthorized", "promotionAuthorized"],
+          "properties": {
+            "canonicalMutationAuthorized": { "const": false },
+            "automaticPreferenceApplicationAuthorized": { "const": false },
+            "publicationAuthorized": { "const": false },
+            "promotionAuthorized": { "const": false }
+          }
+        },
+        "createdAt": { "$ref": "#/$defs/Timestamp" }
       }
     },
     "YawnEvent": {

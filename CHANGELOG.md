@@ -14,6 +14,9 @@ labels and do not imply compatibility.
   field provenance, and protected semantic/authority/privacy/proof boundaries
 - Observation-first README entry and the Observation / Intention / Projection /
   Consequence distinction in the ontology
+- Source-bound Question, zero-paid-cost local Art Brief, hash-bound candidate,
+  and attributed View-feedback proposal contracts with deterministic View
+  materialization and a sanitized conformance fixture
 - Unified documentation hub and deployable GitHub Pages landing page
 - Working Draft 0.2 ontology for world, field, arena, Yawn, turn, transition,
   projection, and replay
