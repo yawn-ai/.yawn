@@ -27,6 +27,18 @@ test("normalizes dotted and spoken extension substitutions in established YAWN c
   assert.ok(result.corrections.length >= 2);
 });
 
+test("normalizes bare extension nouns without consuming separators", () => {
+  // yawn-invalid-alias-guard:start
+  const result = normalizeYawnLexemes(
+    "Import the ion file, then create a yon schema.",
+    { yawnContext: true },
+  );
+  // yawn-invalid-alias-guard:end
+
+  assert.equal(result.normalizedInput, "Import the .yawn file, then create a .yawn schema.");
+  assert.equal(result.corrections.length, 2);
+});
+
 test("normalizes product hosts and product nouns", () => {
   // yawn-invalid-alias-guard:start
   const result = normalizeYawnLexemes(
