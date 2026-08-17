@@ -30,6 +30,8 @@ packages. Security or correctness fixes may still require additive changes.
   Observation/record-subject slice
 - merge/split thresholds and conformance profiles
 - public projection APIs for arena, timeline, filesystem, memory, and replay
+- field validation of the new Observation-derived Question, local-art candidate,
+  and View-feedback proposal contracts beyond their conformance fixture
 
 Draft artifacts are useful for experiments but may change after RFC review.
 

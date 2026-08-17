@@ -90,6 +90,7 @@ links:
   - records/backup-log.yawn
   - records/feedback-log.yawn
   - records/next-move-ledger.yawn
+  - records/inquiry-aperture-one-question-face.yawn
 
 proof:
   source:

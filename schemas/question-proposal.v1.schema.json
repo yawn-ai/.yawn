@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/question-proposal.v1.schema.json",
+  "title": "YAWN Question Proposal V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "questionProposalId", "revision", "observationRef", "source", "text",
+    "transformation", "proposedBy", "organization", "questionStatus",
+    "proposalStatus", "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.question-proposal.v1" },
+    "questionProposalId": { "type": "string", "minLength": 1 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "observationRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "required": ["revision", "stateSha256"],
+          "properties": {
+            "kind": { "const": "observation" },
+            "revision": { "type": "integer", "minimum": 1 },
+            "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldPath", "verbatimText", "sourceSpanIndexes"],
+      "properties": {
+        "fieldPath": { "type": "string", "pattern": "^/remainsOpen/(0|[1-9][0-9]*)$" },
+        "verbatimText": { "type": "string", "minLength": 1 },
+        "sourceSpanIndexes": {
+          "const": []
+        }
+      }
+    },
+    "text": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "transformation": { "enum": ["verbatim", "organized"] },
+    "proposedBy": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        { "properties": { "kind": { "enum": ["actor", "principal"] } } }
+      ]
+    },
+    "organization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agentSpaceRef", "arenaRef", "aboutYawnRefs"],
+      "properties": {
+        "agentSpaceRef": {
+          "allOf": [
+            { "$ref": "record-ref.v1.schema.json" },
+            { "properties": { "kind": { "const": "agent_space" } } }
+          ]
+        },
+        "arenaRef": {
+          "anyOf": [
+            {
+              "allOf": [
+                { "$ref": "record-ref.v1.schema.json" },
+                { "properties": { "kind": { "const": "arena" } } }
+              ]
+            },
+            { "type": "null" }
+          ]
+        },
+        "aboutYawnRefs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "allOf": [
+              { "$ref": "record-ref.v1.schema.json" },
+              { "properties": { "kind": { "const": "yawn" } } }
+            ]
+          }
+        }
+      }
+    },
+    "questionStatus": { "const": "open" },
+    "proposalStatus": { "const": "proposed" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

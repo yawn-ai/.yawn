@@ -90,6 +90,14 @@ Arena <- Projection  <- Agent
                     consequence -> Observation'
 ```
 
+An open Question may be proposed from an Observation's `remainsOpen` field.
+Organizing its wording never overwrites the verbatim source. An Art Brief is a
+proposal for a possible Projection; rendered bytes are a candidate artifact.
+Displaying that candidate by an attributed Agent in a review Arena is the
+Projection. The page composition and its serialization remain rebuildable
+Views. None of these steps accepts a preference, proves the interpretation, or
+promotes the Observation into a Yawn.
+
 ### Yawn
 
 A durable, versioned orientation contract inside an arena. It holds enough of

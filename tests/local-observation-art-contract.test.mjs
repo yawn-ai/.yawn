@@ -12,7 +12,8 @@ test("local observation art keeps observation, intention, projection, and conseq
   for (const required of [
     "what_arrived",
     "visual_intention",
-    "rendered_projection",
+    "rendered_candidate_artifact",
+    "expressed_projection",
     "observed_consequence",
     "generated imagery never backfills what_arrived",
   ]) {

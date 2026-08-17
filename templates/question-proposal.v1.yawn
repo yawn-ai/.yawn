@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "yawn.question-proposal.v1",
+  "questionProposalId": "question-proposal:replace-me",
+  "revision": 1,
+  "observationRef": {
+    "kind": "observation",
+    "id": "observation:replace-me",
+    "revision": 1,
+    "stateSha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "source": {
+    "fieldPath": "/remainsOpen/0",
+    "verbatimText": "Copy the exact open wording from the Observation.",
+    "sourceSpanIndexes": []
+  },
+  "text": "Copy the exact open wording from the Observation.",
+  "transformation": "verbatim",
+  "proposedBy": {
+    "kind": "actor",
+    "id": "actor:replace-me"
+  },
+  "organization": {
+    "agentSpaceRef": {
+      "kind": "agent_space",
+      "id": "agent-space:replace-me"
+    },
+    "arenaRef": null,
+    "aboutYawnRefs": []
+  },
+  "questionStatus": "open",
+  "proposalStatus": "proposed",
+  "createdAt": "2026-08-16T00:00:00Z"
+}
