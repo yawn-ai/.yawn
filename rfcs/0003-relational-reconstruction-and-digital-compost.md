@@ -556,4 +556,4 @@ retention:
 
 The user-facing lesson should remain simple:
 
-> **You do not have to remember everything for your history to remain inspectable. You do not have to believe every reconstruction for
+> **You
