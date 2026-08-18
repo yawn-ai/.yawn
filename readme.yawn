@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 3
-updated: "2026-08-15"
+revision: 4
+updated: "2026-08-16"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -19,10 +19,10 @@ identity:
 
 signal:
   raw: >
-    The repository now has a coherent ontology hub, but Observation still needs
-    one executable identity, event stream, proof subject, serializer, and
-    preference boundary before YAWN.bot and YAWN.ai can express the protocol
-    inward and outward without collapsing source into inference or UI state.
+    Observation now has an executable identity, replay, proof subject,
+    serializer, and View-preference boundary. The next gap is preserving exact
+    lineage when an open question is organized, expressed through local art,
+    evaluated as a projection, and returned as actionable feedback.
   epistemic_status: observed
   source_refs:
     - README.md@before-ontology-hub
@@ -60,6 +60,14 @@ orientation:
       epistemic_status: reported
       source_refs:
         - README.md
+    - claim: "An Observation-derived Question, Art Brief, local candidate, and Projection feedback remain separately attributable proposals."
+      epistemic_status: observed
+      source_refs:
+        - schemas/question-proposal.v1.schema.json
+        - schemas/art-brief.v1.schema.json
+        - schemas/local-art-candidate.v1.schema.json
+        - schemas/projection-feedback.v1.schema.json
+        - fixtures/observation-question-art.v1.json
 
   governing_inference: >
     The repository serves as the ontology hub when it starts with Observation,
@@ -140,7 +148,8 @@ move:
     Maintain one concise human README, a live root landing page, an explicit
     layered specification, additive Draft 0.2 schemas and tests, commented
     templates, decisive examples, a first-class Observation record, and an
-    honest open-source governance surface.
+    Observation-to-question-to-art proposal chain with an honest open-source
+    governance surface.
   reversible: true
   authority_status: proposed-until-maintainer-merge
 
@@ -152,6 +161,8 @@ proof_contract:
     - "Root npm test passes."
     - "contracts npm run check and npm pack --dry-run pass."
     - "Observation fixture, event replay, serializer, and golden hash agree."
+    - "Question and Art Brief hashes bind to the exact Observation and source wording."
+    - "Unverified local candidates cannot pass reviewability or authorize publication."
     - "Internal links on the public hub resolve."
     - "The GitHub Pages root returns the new ontology hub after merge."
     - "Feedback and Declaration routes remain live."
@@ -191,6 +202,14 @@ protocol_layers:
     reducer: lib/observation-state-v1.mjs
     template: templates/observation.yawn
     valid_without_yawn_promotion: true
+  observation_question_art:
+    question_schema: schemas/question-proposal.v1.schema.json
+    brief_schema: schemas/art-brief.v1.schema.json
+    candidate_schema: schemas/local-art-candidate.v1.schema.json
+    feedback_schema: schemas/projection-feedback.v1.schema.json
+    interface_contract: interface/local-observation-art-v0.1.yawn
+    canonical_state: false
+    automatic_acceptance_publish_or_promotion: false
 
 ontology_links:
   specification: spec/README.md
@@ -208,6 +227,7 @@ ontology_links:
   observation_contract: schemas/observation.v1.schema.json
   record_reference: schemas/record-ref.v1.schema.json
   projection_preference: schemas/projection-preference.v1.schema.json
+  observation_question_art: interface/local-observation-art-v0.1.yawn
 
 practice_links:
   quickstart: docs/quickstart.md
@@ -218,6 +238,7 @@ practice_links:
     - templates/turn.yawn
     - templates/routing-proposal.yawn
     - templates/structural-change-receipt.yawn
+    - templates/observation-question-art.yawn
   examples:
     - examples/nested-agent-arena.yawn
     - examples/waiting-turn.yawn
@@ -240,7 +261,9 @@ replay:
   current_claim: >
     README.md is the human front door, readme.yawn is the repository's own
     orientation object, yawn.yawn is the machine-addressable manifest, and
-    Observation is the first executable entry into the ontology.
+    Observation is the first executable entry into the ontology. Open Question,
+    Art Brief, candidate, and feedback records preserve its source while
+    remaining proposal-only around it.
   next_review_when:
     - Draft 0.2 has field routing evidence
     - a unified document RFC is proposed

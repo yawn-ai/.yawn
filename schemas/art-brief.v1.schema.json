@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/art-brief.v1.schema.json",
+  "title": "YAWN Art Brief V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "briefId", "revision", "observationRef", "questionProposalRef", "proposedBy",
+    "visualIntention", "identityAsset", "textPolicy", "accessibleDescription",
+    "semanticColorRoles", "compositionRequirements", "negativeConstraints",
+    "render", "boundary", "proposalStatus", "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.art-brief.v1" },
+    "briefId": { "type": "string", "minLength": 1 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "observationRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "required": ["revision", "stateSha256"],
+          "properties": {
+            "kind": { "const": "observation" },
+            "revision": { "type": "integer", "minimum": 1 },
+            "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      ]
+    },
+    "questionProposalRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "required": ["revision", "stateSha256"],
+          "properties": {
+            "kind": { "const": "question_proposal" },
+            "revision": { "type": "integer", "minimum": 1 },
+            "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      ]
+    },
+    "proposedBy": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        { "properties": { "kind": { "enum": ["actor", "principal"] } } }
+      ]
+    },
+    "visualIntention": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "identityAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recordRef", "sha256", "crop", "role"],
+      "properties": {
+        "recordRef": {
+          "allOf": [
+            { "$ref": "record-ref.v1.schema.json" },
+            { "properties": { "kind": { "const": "source" } } }
+          ]
+        },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "crop": { "enum": ["face_only", "full_body", "none"] },
+        "role": { "const": "reflective_agent_not_authority" }
+      }
+    },
+    "textPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questionRenderedAsPixels", "liveTextRequired"],
+      "properties": {
+        "questionRenderedAsPixels": { "const": false },
+        "liveTextRequired": { "const": true }
+      }
+    },
+    "accessibleDescription": { "type": "string", "minLength": 1 },
+    "semanticColorRoles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observation", "question", "agent"],
+      "properties": {
+        "observation": { "type": "string", "minLength": 1 },
+        "question": { "type": "string", "minLength": 1 },
+        "agent": { "type": "string", "minLength": 1 }
+      }
+    },
+    "compositionRequirements": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "negativeConstraints": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "seed", "maxCandidates"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 64, "maximum": 4096 },
+        "height": { "type": "integer", "minimum": 64, "maximum": 4096 },
+        "seed": { "type": "integer", "minimum": 0 },
+        "maxCandidates": { "const": 1 }
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "effectGrantRequired", "externalNetworkEgressAuthorized",
+        "paidProviderCallAuthorized", "maximumPaidCostMicrousd",
+        "canonicalMutationAuthorized", "publicationAuthorized",
+        "promotionAuthorized"
+      ],
+      "properties": {
+        "effectGrantRequired": { "const": true },
+        "externalNetworkEgressAuthorized": { "const": false },
+        "paidProviderCallAuthorized": { "const": false },
+        "maximumPaidCostMicrousd": { "const": 0 },
+        "canonicalMutationAuthorized": { "const": false },
+        "publicationAuthorized": { "const": false },
+        "promotionAuthorized": { "const": false }
+      }
+    },
+    "proposalStatus": { "const": "proposed" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

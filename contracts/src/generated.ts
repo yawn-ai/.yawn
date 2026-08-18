@@ -353,7 +353,11 @@ export interface RecordRef {
     | "source"
     | "proof"
     | "view"
-    | "git_commit";
+    | "git_commit"
+    | "question_proposal"
+    | "art_brief"
+    | "art_candidate"
+    | "projection_feedback";
   id: string;
   revision?: number | null;
   stateSha256?: Sha256 | null;
@@ -507,6 +511,253 @@ export interface ProjectionPreferenceV1 {
   sourceEventRef: string;
   createdAt: Timestamp;
   updatedAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "QuestionProposalV1".
+ */
+export interface QuestionProposalV1 {
+  schemaVersion: "yawn.question-proposal.v1";
+  questionProposalId: string;
+  revision: number;
+  observationRef: RecordRef & {
+    kind?: "observation";
+    revision: number;
+    stateSha256: Sha256;
+    [k: string]: unknown;
+  };
+  source: {
+    fieldPath: string;
+    verbatimText: string;
+    sourceSpanIndexes: [];
+  };
+  text: string;
+  transformation: "verbatim" | "organized";
+  proposedBy: RecordRef & {
+    kind?: "actor" | "principal";
+    [k: string]: unknown;
+  };
+  organization: {
+    agentSpaceRef: RecordRef & {
+      kind?: "agent_space";
+      [k: string]: unknown;
+    };
+    arenaRef:
+      | (RecordRef & {
+          kind?: "arena";
+          [k: string]: unknown;
+        })
+      | null;
+    aboutYawnRefs: (RecordRef & {
+      kind?: "yawn";
+      [k: string]: unknown;
+    })[];
+  };
+  questionStatus: "open";
+  proposalStatus: "proposed";
+  createdAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ArtBriefV1".
+ */
+export interface ArtBriefV1 {
+  schemaVersion: "yawn.art-brief.v1";
+  briefId: string;
+  revision: number;
+  observationRef: RecordRef & {
+    kind?: "observation";
+    revision: number;
+    stateSha256: Sha256;
+    [k: string]: unknown;
+  };
+  questionProposalRef: RecordRef & {
+    kind?: "question_proposal";
+    revision: number;
+    stateSha256: Sha256;
+    [k: string]: unknown;
+  };
+  proposedBy: RecordRef & {
+    kind?: "actor" | "principal";
+    [k: string]: unknown;
+  };
+  visualIntention: string;
+  identityAsset: {
+    recordRef: RecordRef & {
+      kind?: "source";
+      [k: string]: unknown;
+    };
+    sha256: Sha256;
+    crop: "face_only" | "full_body" | "none";
+    role: "reflective_agent_not_authority";
+  };
+  textPolicy: {
+    questionRenderedAsPixels: false;
+    liveTextRequired: true;
+  };
+  accessibleDescription: string;
+  semanticColorRoles: {
+    observation: string;
+    question: string;
+    agent: string;
+  };
+  /**
+   * @minItems 1
+   */
+  compositionRequirements: [string, ...string[]];
+  negativeConstraints: string[];
+  render: {
+    width: number;
+    height: number;
+    seed: number;
+    maxCandidates: 1;
+  };
+  boundary: {
+    effectGrantRequired: true;
+    externalNetworkEgressAuthorized: false;
+    paidProviderCallAuthorized: false;
+    maximumPaidCostMicrousd: 0;
+    canonicalMutationAuthorized: false;
+    publicationAuthorized: false;
+    promotionAuthorized: false;
+  };
+  proposalStatus: "proposed";
+  createdAt: Timestamp;
+}
+/**
+ * This interface was referenced by `YAWNContractsV1`'s JSON-Schema
+ * via the `definition` "ProjectionFeedbackV1".
+ */
+export interface ProjectionFeedbackV1 {
+  schemaVersion: "yawn.projection-feedback.v1";
+  feedbackId: string;
+  ontologyRole: "proposal_facet";
+  assertedBy: RecordRef & {
+    kind?: "actor" | "principal";
+    [k: string]: unknown;
+  };
+  source: {
+    coordinate: string;
+    coordinateKind: "local_handoff" | "browser_capture" | "synthetic_fixture";
+    platformMessageIdVerified: false;
+    exactQuote: string;
+    capturedAt: Timestamp;
+  };
+  subjectRef: RecordRef & {
+    kind?: "view";
+    [k: string]: unknown;
+  };
+  /**
+   * @minItems 1
+   */
+  expectedExperience: [
+    {
+      text: string;
+      assertedBy: string;
+      epistemicStatus: "reported";
+    },
+    ...{
+      text: string;
+      assertedBy: string;
+      epistemicStatus: "reported";
+    }[]
+  ];
+  /**
+   * @minItems 1
+   */
+  actualProjectionEvidence: [
+    {
+      description: string;
+      evidenceRef: RecordRef;
+      verificationStatus: "reported_not_independently_verified";
+    },
+    ...{
+      description: string;
+      evidenceRef: RecordRef;
+      verificationStatus: "reported_not_independently_verified";
+    }[]
+  ];
+  /**
+   * @minItems 1
+   */
+  divergenceDimensions: [
+    (
+      | "testing_fidelity"
+      | "ontology_to_interface_fidelity"
+      | "source_to_projection_traceability"
+      | "accessible_question_fidelity"
+      | "visual_identity_fidelity"
+      | "iteration_memory"
+    ),
+    ...(
+      | "testing_fidelity"
+      | "ontology_to_interface_fidelity"
+      | "source_to_projection_traceability"
+      | "accessible_question_fidelity"
+      | "visual_identity_fidelity"
+      | "iteration_memory"
+    )[]
+  ];
+  /**
+   * @minItems 1
+   */
+  preferenceUpdateProposals: [
+    {
+      preferenceProposalId: string;
+      scopeRef: RecordRef;
+      viewKind: string;
+      fieldPath: string;
+      operation: "set" | "reset";
+      value: unknown;
+      status: "proposed";
+      rationale: string;
+      sourceFeedbackId: string;
+    },
+    ...{
+      preferenceProposalId: string;
+      scopeRef: RecordRef;
+      viewKind: string;
+      fieldPath: string;
+      operation: "set" | "reset";
+      value: unknown;
+      status: "proposed";
+      rationale: string;
+      sourceFeedbackId: string;
+    }[]
+  ];
+  /**
+   * @minItems 1
+   */
+  proofObligations: [
+    {
+      obligationId: string;
+      preconditions: string[];
+      prediction: string;
+      postconditions: string[];
+      verifier: string;
+      falsifier: string;
+      status: "waiting";
+    },
+    ...{
+      obligationId: string;
+      preconditions: string[];
+      prediction: string;
+      postconditions: string[];
+      verifier: string;
+      falsifier: string;
+      status: "waiting";
+    }[]
+  ];
+  epistemicStatus: "reported";
+  universality: "subjective_attributed_evaluation";
+  proposalStatus: "proposed";
+  boundary: {
+    canonicalMutationAuthorized: false;
+    automaticPreferenceApplicationAuthorized: false;
+    publicationAuthorized: false;
+    promotionAuthorized: false;
+  };
+  createdAt: Timestamp;
 }
 /**
  * This interface was referenced by `YAWNContractsV1`'s JSON-Schema

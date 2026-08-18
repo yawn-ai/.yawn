@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/projection-feedback.v1.schema.json",
+  "title": "YAWN Projection Feedback V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "feedbackId", "ontologyRole", "assertedBy", "source",
+    "subjectRef", "expectedExperience", "actualProjectionEvidence",
+    "divergenceDimensions", "preferenceUpdateProposals", "proofObligations",
+    "epistemicStatus", "universality", "proposalStatus", "boundary", "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.projection-feedback.v1" },
+    "feedbackId": { "type": "string", "minLength": 1 },
+    "ontologyRole": { "const": "proposal_facet" },
+    "assertedBy": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        { "properties": { "kind": { "enum": ["actor", "principal"] } } }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coordinate", "coordinateKind", "platformMessageIdVerified",
+        "exactQuote", "capturedAt"
+      ],
+      "properties": {
+        "coordinate": { "type": "string", "minLength": 1 },
+        "coordinateKind": { "enum": ["local_handoff", "browser_capture", "synthetic_fixture"] },
+        "platformMessageIdVerified": { "const": false },
+        "exactQuote": { "type": "string", "minLength": 1 },
+        "capturedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "subjectRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        { "properties": { "kind": { "const": "view" } } }
+      ]
+    },
+    "expectedExperience": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "assertedBy", "epistemicStatus"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 },
+          "assertedBy": { "type": "string", "minLength": 1 },
+          "epistemicStatus": { "const": "reported" }
+        }
+      }
+    },
+    "actualProjectionEvidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description", "evidenceRef", "verificationStatus"],
+        "properties": {
+          "description": { "type": "string", "minLength": 1 },
+          "evidenceRef": { "$ref": "record-ref.v1.schema.json" },
+          "verificationStatus": { "const": "reported_not_independently_verified" }
+        }
+      }
+    },
+    "divergenceDimensions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "testing_fidelity", "ontology_to_interface_fidelity",
+          "source_to_projection_traceability", "accessible_question_fidelity",
+          "visual_identity_fidelity", "iteration_memory"
+        ]
+      }
+    },
+    "preferenceUpdateProposals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "preferenceProposalId", "scopeRef", "viewKind", "fieldPath",
+          "operation", "value", "status", "rationale", "sourceFeedbackId"
+        ],
+        "properties": {
+          "preferenceProposalId": { "type": "string", "minLength": 1 },
+          "scopeRef": { "$ref": "record-ref.v1.schema.json" },
+          "viewKind": { "type": "string", "minLength": 1 },
+          "fieldPath": { "type": "string", "pattern": "^/[A-Za-z0-9_.~/-]+$" },
+          "operation": { "enum": ["set", "reset"] },
+          "value": {},
+          "status": { "const": "proposed" },
+          "rationale": { "type": "string", "minLength": 1 },
+          "sourceFeedbackId": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "proofObligations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "obligationId", "preconditions", "prediction", "postconditions",
+          "verifier", "falsifier", "status"
+        ],
+        "properties": {
+          "obligationId": { "type": "string", "minLength": 1 },
+          "preconditions": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "prediction": { "type": "string", "minLength": 1 },
+          "postconditions": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "verifier": { "type": "string", "minLength": 1 },
+          "falsifier": { "type": "string", "minLength": 1 },
+          "status": { "const": "waiting" }
+        }
+      }
+    },
+    "epistemicStatus": { "const": "reported" },
+    "universality": { "const": "subjective_attributed_evaluation" },
+    "proposalStatus": { "const": "proposed" },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonicalMutationAuthorized", "automaticPreferenceApplicationAuthorized",
+        "publicationAuthorized", "promotionAuthorized"
+      ],
+      "properties": {
+        "canonicalMutationAuthorized": { "const": false },
+        "automaticPreferenceApplicationAuthorized": { "const": false },
+        "publicationAuthorized": { "const": false },
+        "promotionAuthorized": { "const": false }
+      }
+    },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

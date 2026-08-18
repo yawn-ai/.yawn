@@ -24,6 +24,10 @@ holds:
   - record-proof-receipt.v1.schema.json
   - observation.v1.schema.json
   - projection-preference.v1.schema.json
+  - question-proposal.v1.schema.json
+  - art-brief.v1.schema.json
+  - local-art-candidate.v1.schema.json
+  - projection-feedback.v1.schema.json
   - agency-holarchy.v0.2.schema.json
 
 compatibility: >
@@ -43,6 +47,13 @@ observation_boundary: >
   address observations and Git commits without adding ontology-specific
   foreign keys. Projection preferences affect Views only and preserve
   field-level provenance.
+
+observation_proposal_boundary: >
+  Question, Art Brief, local candidate, and Projection feedback records are
+  closed proposal contracts around an exact Observation hash. They cannot
+  accept themselves, apply preferences, publish, promote, or mutate canonical
+  state. The tracked feedback fixture is synthetic; private exact text remains
+  in a local receipt.
 
 agency_holarchy_draft: >
   Draft 0.2 adds provider-neutral arena boundaries, one-parent holarchy,

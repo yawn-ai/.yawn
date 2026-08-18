@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "yawn.art-brief.v1",
+  "briefId": "art-brief:replace-me",
+  "revision": 1,
+  "observationRef": {
+    "kind": "observation",
+    "id": "observation:replace-me",
+    "revision": 1,
+    "stateSha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "questionProposalRef": {
+    "kind": "question_proposal",
+    "id": "question-proposal:replace-me",
+    "revision": 1,
+    "stateSha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "proposedBy": {
+    "kind": "actor",
+    "id": "actor:replace-me"
+  },
+  "visualIntention": "Make the open question encounterable without implying an answer.",
+  "identityAsset": {
+    "recordRef": {
+      "kind": "source",
+      "id": "asset:replace-me"
+    },
+    "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "crop": "face_only",
+    "role": "reflective_agent_not_authority"
+  },
+  "textPolicy": {
+    "questionRenderedAsPixels": false,
+    "liveTextRequired": true
+  },
+  "accessibleDescription": "Describe the proposed visual without replacing the live question.",
+  "semanticColorRoles": {
+    "observation": "#2fe3f4",
+    "question": "#e8ff03",
+    "agent": "#fd49ac"
+  },
+  "compositionRequirements": [
+    "one attributed reflective agent",
+    "one unresolved visual hinge",
+    "one quiet frame supporting the live question"
+  ],
+  "negativeConstraints": [
+    "no question typography in image pixels",
+    "no implied answer or proof"
+  ],
+  "render": {
+    "width": 1024,
+    "height": 1024,
+    "seed": 20260816,
+    "maxCandidates": 1
+  },
+  "boundary": {
+    "effectGrantRequired": true,
+    "externalNetworkEgressAuthorized": false,
+    "paidProviderCallAuthorized": false,
+    "maximumPaidCostMicrousd": 0,
+    "canonicalMutationAuthorized": false,
+    "publicationAuthorized": false,
+    "promotionAuthorized": false
+  },
+  "proposalStatus": "proposed",
+  "createdAt": "2026-08-16T00:01:00Z"
+}
