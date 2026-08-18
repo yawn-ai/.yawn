@@ -555,5 +555,3 @@ retention:
 ## 17. Product consequence
 
 The user-facing lesson should remain simple:
-
-> **You
