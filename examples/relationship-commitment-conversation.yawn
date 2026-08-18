@@ -7,19 +7,24 @@ compatibility_note: >
   The measurement and shared_field keys are retained as a migration fixture.
   Each desire remains attributable; no shared target or commitment is inferred.
 
-privacy: private
+privacy: public_synthetic_example
+privacy_note: >
+  This published example contains no recorded statements from real people.
+  All quotes are synthetic paraphrases written for illustration. A real record
+  of this shape would be privacy: private and must not be published without
+  every participant's recorded consent.
 partner_review_required: true
 relationship_impacting_moves_blocked: true
 
 source:
   template: templates/relationship.yawn
   question_packet: question-packets/relationship.yawn
-  origin: conversation
+  origin: synthetic_illustration
   raw_material: "A generic relationship conversation about commitment and repeated patterns."
   source_refs: []
-  privacy: private
+  privacy: public_synthetic_example
   consent:
-    recorded_with_consent: unknown
+    recorded_with_consent: not_applicable_synthetic
     shareable_with: []
     do_not_share_with: []
 
@@ -47,9 +52,9 @@ conversation:
   raw_summary: "Commitment, repeated patterns, and the desired relationship field were discussed."
   important_quotes:
     - speaker: self
-      quote: "We both need to make commitments to the relationship."
-      context: "Commitment conversation"
-      type: actual_quote
+      quote: "I think we each need to name what we are committing to."
+      context: "Commitment conversation (synthetic illustration - not a recorded statement)"
+      type: synthetic_paraphrase
   shared_topic: "Commitment and repeated relationship states"
   emotional_tone: "charged but oriented toward repair"
 

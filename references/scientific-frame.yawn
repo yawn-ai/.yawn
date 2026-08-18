@@ -67,8 +67,10 @@ bottom_line: >
 
 proof:
   source:
-    - "C:/Users/dave/Downloads/YAWN as an Observer Protocol for Lived Agency.md"
     - readme.yawn
     - docs/research-basis.md
     - migrations/2026-08-17-canonical-extension.yawn
-  status: source-backed
+  unpublished_drafts:
+    - title: "YAWN as an Observer Protocol for Lived Agency"
+      status: local unpublished draft; not publicly resolvable and therefore not proof
+  status: partially-source-backed
