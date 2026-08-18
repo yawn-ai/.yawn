@@ -103,6 +103,17 @@ typed subjects. It records text, epistemic status, confidence, sources, and the
 Observation records that ground it. An Observation can exist without an
 endorsed statement; several Agents can interpret the same source differently.
 
+The Yawn remains the durable orientation coordinate. An Observation is an
+attributed record within or about that coordinate, not a replacement for the
+Yawn. One Yawn may therefore carry many Observations from different Agents,
+times, sources, conditions, and limits. New Observations append and may support,
+contradict, or revise attributed statements without overwriting their sources.
+
+An Observation does not automatically become a Yawn. It may become a proposed
+linked or child Yawn only when it has its own independently inspectable lacuna,
+orientation, choice, move, and proof lifecycle. That promotion still requires
+the applicable authority and never follows from topical similarity alone.
+
 ### Orientation, Choice, and Intention
 
 **Orientation** is an Agent's revisable working model of what is happening,

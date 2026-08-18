@@ -46,6 +46,16 @@ Arena -> Observation -> Agent -> Orientation -> Choice -> Intention
 - **Consequence**: what the Arena and reality return, whether or not it matches
   the intention, prediction, or projection.
 
+The Yawn is the durable coordinate; an Observation is one attributed encounter
+with it. One Yawn can carry many Observations from the same or different Agents,
+times, sources, and conditions. A later Observation appends, confirms,
+contradicts, or revises the record; it does not silently replace the source or
+create another Yawn.
+
+An Observation may be proposed as a linked or child Yawn only when it develops
+an independently inspectable lacuna, orientation, choice, move, and proof
+lifecycle. Promotion remains a proposal until rightful approval.
+
 Intention and Projection never collapse. What an Agent meant can differ from
 what it expressed, what another Agent observed, how that Agent interpreted it,
 and what happened. YAWN keeps those differences inspectable.

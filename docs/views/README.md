@@ -18,11 +18,18 @@ compatibility aliases.
 | Arena | agents, affordances, constraints, boundaries, open turns | combat, fixed teams, or a winner |
 | Timeline | causal sequence, overlap, waiting, deadlines, handoffs | one global clock or total ordering |
 | Proof / replay | prediction, evidence, state delta, falsifier, revision | that a move proved itself |
+| Observation | what became available to one attributed Agent, under stated conditions and limits | that the View is the Yawn itself, the only valid perspective, or a new canonical Yawn |
 | Memory | sources, summaries, retrieval paths, freshness | that recall is complete or literal |
 | Causal graph | event and transition dependencies | that correlation is causation |
 | Filesystem | durable containers and local navigation | that folders establish semantic identity |
 | World | high-aperture context across nested arenas | that the rendered map exhausts reality |
 | Orientation Spiral | a deterministic human-facing orientation cycle centered on the active Yawn or lacuna | that geometry, color, or an agent overlay creates canonical state |
+
+An Observation View such as `/dave/observation` renders attributed Observation
+records attached to Dave's Yawn. The route is a lens over the same canonical
+coordinate, not a second state store or a child Yawn. A displayed Observation
+may be revised or contradicted while the source and attribution remain
+inspectable.
 
 ## Agent Arena
 
