@@ -1,0 +1,369 @@
+{
+  "schemaVersion": "yawn.dialogical-orientation-flywheel.v1",
+  "status": "constitutional-working-process",
+  "canonicalName": "Dialogical Orientation Flywheel",
+  "canonicalTerm": "dialogical_orientation",
+  "classification": "internal_cross_layer_process",
+  "notOntologyRoot": true,
+  "rootDependency": {
+    "substrate": [
+      "coupling",
+      "relationship",
+      "agent",
+      "arena"
+    ],
+    "statement": "The process begins inside an already-existing coupling and relationship state. It does not create the substrate by talking about it."
+  },
+  "purpose": "Turn an ambiguous signal, recurring pattern, conflict, or high-stakes question into a human-ratified orientation, a bounded authorized move, and a proof-bearing update without erasing dissent, provenance, or authorship.",
+  "externalLineage": [
+    {
+      "name": "Dialectic into Dialogos",
+      "authors": [
+        "John Vervaeke",
+        "Christopher Mastropietro"
+      ],
+      "role": "attributed philosophical and participatory-practice inspiration",
+      "notClaimed": "YAWN does not claim its software protocol is identical to the authors' full philosophical practice."
+    },
+    {
+      "name": "Bohm Dialogue",
+      "role": "inspiration for suspension, collective observation of assumptions, and common meaning without forced consensus"
+    },
+    {
+      "name": "Inquiry and deliberative dialogue",
+      "role": "engineering lineage for joint human-AI reasoning, decision support, and explicit disagreement"
+    }
+  ],
+  "distinctions": {
+    "dialectic": "Differentiate claims, reveal assumptions, generate counterexamples, and expose contradictions or category errors.",
+    "dialogos": "Enter a participatory phase in which distinct agents hold positions provisionally, establish shared reference, and allow the interaction to transform their orientations without requiring consensus.",
+    "deliberation": "Compare the resulting possibilities under values, constraints, risks, and decision rights.",
+    "ratification": "A rightful human or collective adopts, rejects, defers, or reframes a proposed direction.",
+    "execution": "A capability-bound agent attempts one authorized move.",
+    "proof": "Independent or appropriately separated evidence evaluates the consequence and constrains the update."
+  },
+  "modes": {
+    "fast": {
+      "useWhen": [
+        "routine",
+        "low stakes",
+        "reversible",
+        "single clear decision owner",
+        "no material value conflict",
+        "no ontology or policy change"
+      ],
+      "stages": [
+        "relationship_scope",
+        "source_preservation",
+        "orientation_packet",
+        "ratification",
+        "authorization",
+        "move",
+        "consequence_and_proof",
+        "update"
+      ],
+      "rule": "Do not force a ceremonial Dialogos session when a small reversible action and clear proof can safely answer the question."
+    },
+    "dialogical": {
+      "useWhenAny": [
+        "multiple affected agents",
+        "contested meaning or values",
+        "high consequence or low reversibility",
+        "recurring unresolved pattern",
+        "material disagreement",
+        "low confidence or conflicting evidence",
+        "ontology, policy, autonomy, identity, or public-purpose change",
+        "the user explicitly asks for pressure testing or deeper collective orientation"
+      ],
+      "stages": [
+        "relationship_scope",
+        "source_preservation",
+        "articulation",
+        "dialectic",
+        "aperture_diversification",
+        "dialogos",
+        "nexus_and_residue",
+        "orientation_packet",
+        "ratification",
+        "authorization",
+        "move",
+        "consequence_and_proof",
+        "update",
+        "optional_graduation_proposal"
+      ]
+    }
+  },
+  "stages": [
+    {
+      "id": "relationship_scope",
+      "layer": "substrate",
+      "purpose": "Name the participants, arena, coupling, relationship history, stakes, boundaries, access, authority, and affected parties before interpreting the signal.",
+      "outputs": [
+        "relationship_refs",
+        "participants",
+        "arena_ref",
+        "boundary",
+        "decision_rights"
+      ]
+    },
+    {
+      "id": "source_preservation",
+      "layer": "epistemic_operation",
+      "purpose": "Preserve the exact source, provenance, timestamps, transformations, and uncertainty before synthesis.",
+      "outputs": [
+        "source_refs",
+        "source_hashes",
+        "raw_statement",
+        "normalizations"
+      ]
+    },
+    {
+      "id": "articulation",
+      "layer": "epistemic_operation",
+      "purpose": "Let each relevant participant or represented position state what they observe, infer, value, fear, protect, and want without yet forcing synthesis.",
+      "outputs": [
+        "claims",
+        "values",
+        "assumptions",
+        "felt_signals",
+        "open_questions"
+      ]
+    },
+    {
+      "id": "dialectic",
+      "layer": "epistemic_operation",
+      "purpose": "Steelman and pressure-test the articulated positions through counterexamples, falsifiers, scope checks, and category-boundary checks.",
+      "outputs": [
+        "counterclaims",
+        "falsifiers",
+        "category_errors",
+        "revised_claims"
+      ]
+    },
+    {
+      "id": "aperture_diversification",
+      "layer": "epistemic_operation",
+      "purpose": "Collect observations through meaningfully different actors, stances, access channels, methods, and source lineages while discounting correlated passes.",
+      "outputs": [
+        "passes",
+        "dependency_map",
+        "coverage_map"
+      ]
+    },
+    {
+      "id": "dialogos",
+      "layer": "internal_cross_layer_process",
+      "purpose": "Hold positions in suspension long enough to establish shared reference, notice interaction effects, and permit mutual transformation without erasing the poles or demanding consensus.",
+      "forcedConsensus": false,
+      "outputs": [
+        "shared_reference",
+        "orientation_changes",
+        "newly_visible_relationship_dynamics",
+        "persistent_differences"
+      ]
+    },
+    {
+      "id": "nexus_and_residue",
+      "layer": "epistemic_operation",
+      "purpose": "Separate what is robust across applicable apertures from complementary facets, live conflicts, blind spots, and aperture-specific residue.",
+      "outputs": [
+        "invariant_core",
+        "complementary_facets",
+        "live_conflicts",
+        "blind_spots",
+        "residue"
+      ]
+    },
+    {
+      "id": "orientation_packet",
+      "layer": "epistemic_operation",
+      "purpose": "Materialize a reviewable current orientation: present state, possible state, lacuna, competing directions, risks, values, authority, and candidate next moves.",
+      "outputs": [
+        "current_state",
+        "possible_state",
+        "lacuna",
+        "candidate_directions",
+        "candidate_moves",
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "ratification",
+      "layer": "governance",
+      "purpose": "The rightful human or collective adopts, rejects, defers, narrows, or reframes the proposed direction. Ratification changes what is operative, not what is empirically true.",
+      "outputs": [
+        "decision",
+        "decision_owner",
+        "dissent_preserved",
+        "ratification_receipt"
+      ]
+    },
+    {
+      "id": "authorization",
+      "layer": "governance",
+      "purpose": "Bind the selected move to exact scope, capability, cost, privacy, timing, rollback, and proof conditions.",
+      "outputs": [
+        "work_order",
+        "effect_signature",
+        "authority_boundary",
+        "rollback_path"
+      ]
+    },
+    {
+      "id": "move",
+      "layer": "action_transition",
+      "purpose": "Attempt the smallest safe move that reduces the highest-priority lacuna, produces useful proof, and preserves meaningful options.",
+      "outputs": [
+        "execution_event",
+        "attempt_receipt"
+      ]
+    },
+    {
+      "id": "consequence_and_proof",
+      "layer": "action_transition",
+      "purpose": "Observe what reality and affected agents return; evaluate the declared proof condition independently enough that the move cannot prove itself.",
+      "outputs": [
+        "consequences",
+        "evidence_refs",
+        "proof_receipt",
+        "residual_lacuna"
+      ]
+    },
+    {
+      "id": "update",
+      "layer": "action_transition",
+      "purpose": "Append authorized events, rematerialize state, preserve superseded orientations, and begin the next turn from the changed relationship.",
+      "outputs": [
+        "updated_relationship",
+        "replayed_state",
+        "next_observation",
+        "next_open_turn"
+      ]
+    },
+    {
+      "id": "optional_graduation_proposal",
+      "layer": "governance",
+      "purpose": "Repeated clean proof may justify a proposal to widen autonomy, trust, scope, or responsibility. Graduation never activates itself.",
+      "optional": true,
+      "outputs": [
+        "graduation_proposal"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "source_steward",
+      "responsibility": "Preserve exact source, provenance, transformations, and privacy."
+    },
+    {
+      "id": "steelman",
+      "responsibility": "Construct the strongest coherent version of a position."
+    },
+    {
+      "id": "falsifier",
+      "responsibility": "Seek counterexamples, boundary failures, and unsafe assumptions."
+    },
+    {
+      "id": "aperture_witness",
+      "responsibility": "Contribute a genuinely different actor, stance, access channel, method, or source lineage."
+    },
+    {
+      "id": "integrator",
+      "responsibility": "Compile nexus, residue, conflicts, blind spots, and proposed orientation without pretending to own the decision."
+    },
+    {
+      "id": "rightful_steward",
+      "responsibility": "Ratify direction and retain terminal-goal, meaning, consent, and consequential decision rights."
+    },
+    {
+      "id": "executor",
+      "responsibility": "Attempt only the exact authorized move."
+    },
+    {
+      "id": "proof_witness",
+      "responsibility": "Evaluate consequence against the declared condition with visible independence and limitations."
+    }
+  ],
+  "passContract": {
+    "requiredFields": [
+      "id",
+      "actor",
+      "stance",
+      "accessChannel",
+      "method",
+      "sourceLineage",
+      "findings",
+      "limits"
+    ],
+    "resultVocabulary": [
+      "supports",
+      "contradicts",
+      "underdetermined",
+      "cannot_access",
+      "out_of_scope",
+      "not_independently_tested"
+    ],
+    "independenceRule": "Multiple passes by the same actor or model over the same sources are correlated unless a materially different access channel or method is demonstrated. Repetition is not independent confirmation."
+  },
+  "sessionOutputs": [
+    "source_preserved",
+    "passes",
+    "dependency_map",
+    "invariant_core",
+    "complementary_facets",
+    "live_conflicts",
+    "blind_spots",
+    "residue",
+    "orientation_packet",
+    "ratification_receipt",
+    "work_order",
+    "proof_contract"
+  ],
+  "invariants": [
+    "Coupling and relationship remain the substrate; dialogical orientation is an internal process.",
+    "Distinct agents and arenas are never collapsed into one synthetic actor.",
+    "Shared reference does not require shared interpretation.",
+    "Dialogos does not mean consensus, voting, persuasion, or emotional harmony.",
+    "Dialectic exposes differences; it does not automatically decide among values.",
+    "A model may propose a synthesis but may not ratify the human terminal direction.",
+    "Epistemic confidence and governance adoption remain separate.",
+    "The same model repeating itself does not create aperture diversity.",
+    "Residue, dissent, conflicts, and blind spots remain first-class outputs.",
+    "No move may occur before ratification and authorization when consequential effects are involved.",
+    "A move cannot prove itself.",
+    "Graduation follows repeated proof and remains proposal-only until rightful activation.",
+    "Routine reversible work may use the fast mode; full dialogical processing is not a universal ritual."
+  ],
+  "stopConditions": [
+    "The question is adequately oriented and a bounded proof-producing move is ratified.",
+    "No safe or authorized move exists; the turn enters an explicit waiting state.",
+    "The relationship boundary or consent required for continued inquiry is absent.",
+    "New evidence is required before further dialogue can improve orientation.",
+    "The session is generating repetition without new aperture, evidence, or discriminating test."
+  ],
+  "successMeasures": [
+    "time to identify the active lacuna",
+    "source versus inference conflation rate",
+    "number and quality of genuinely distinct apertures",
+    "correlated-pass discount accuracy",
+    "human correction and ratification clarity",
+    "dissent and residue preservation",
+    "time to one bounded next move",
+    "proof-loop closure rate",
+    "counterevidence update rate",
+    "reorientation burden on return",
+    "unauthorized action attempt rate",
+    "whether users understand who owns the decision"
+  ],
+  "stableShorthand": [
+    "Coupling is the condition.",
+    "Relationship is the situated state.",
+    "Dialectic differentiates.",
+    "Dialogos transforms orientation without erasing difference.",
+    "The nexus guides; the rightful steward decides.",
+    "Authority gates the move.",
+    "Reality supplies the consequence.",
+    "Proof updates the relationship.",
+    "Repeated proof may propose graduation."
+  ]
+}
