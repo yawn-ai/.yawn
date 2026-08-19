@@ -2,10 +2,43 @@
 
 Status: **Working Draft 0.2**
 
-YAWN models a bounded episode of orientation and agency. Its concepts are not
-claims that reality is naturally made of files, turns, or game objects. They
-are inspectable cuts that let people and software coordinate without hiding
-inference or authority.
+YAWN models how distinguishable Agents orient and act within history-dependent
+relationships and Arenas. Its concepts are not claims that reality is naturally
+made of files, turns, game objects, or five software layers. They are inspectable
+cuts that let people and software coordinate without hiding inference or
+authority.
+
+## Ontology layers and compilation boundary
+
+YAWN separates foundational conditions from operations, action, governance, and
+presentation so that a useful downstream mechanism cannot silently become the
+purpose of the whole system.
+
+```text
+L0  substrate             coupling, relationship, Agent, Arena, access,
+                           constraint, affordance, influence, history
+L1  epistemic operation   Observation, trace, evidence, aperture, relevance,
+                           orientation
+L2  action / transition   Intention, Projection, Move, Consequence, Proof,
+                           Update
+L3  governance            authority, permission, delegation, autonomy,
+                           graduation
+L4  projection / View     interfaces, narratives, diagrams, slides, video
+```
+
+This is a dependency and compilation order, not a final metaphysics. Agency and
+meaning cross layers and remain attributed; they are not automatically ontology
+roots or system-owned terminal objectives.
+
+Whole-system explainers MUST preserve the layer boundary in
+[`core/ONTOLOGY_LAYERING_AND_PROMOTION.yawn`](../core/ONTOLOGY_LAYERING_AND_PROMOTION.yawn)
+and the machine-readable classifications in
+[`core/ontology-layering.v1.json`](../core/ontology-layering.v1.json).
+
+A downstream concept can become a specialized subject without becoming the
+public purpose. For example, proof-gated graduation may explain an internal
+autonomy mechanism. It does not replace coupling and relationship as the
+substrate of the story.
 
 ## The core relation
 
@@ -17,29 +50,50 @@ Reality
               └─ Yawn holding one live orientation contract
                   └─ Turn containing moves, events, and waiting
                       └─ Transition supported by proof
-                          └─ Replayed state and a changed horizon
+                          └─ replayed state and a changed horizon
 ```
 
 These are related, not synonyms.
 
+### Coupling
+
+Coupling is the dependency and influence skeleton: changes in one pole alter,
+constrain, enable, or become informative to another pole. A body and oxygen, a
+thermostat and room, a person and road, or two communicating agents may be
+coupled in different ways.
+
+Coupling does not by itself imply mutual modeling, trust, consent, meaning,
+memory, or legitimate authority. A bare coupling can be real and consequential
+without being a reflective relationship.
+
 ### Relationship
 
-The situated, changing coupling through which an Agent and Arena become
-mutually identifiable for a purpose. Relationship is structurally prior to the
-rest of the operational loop: it conditions what can be disclosed as an
-Observation, what becomes relevant, which affordances exist, and which grants
-are active. It is not necessarily ownership, containment, agreement, or
-authority.
+A Relationship is the broader, history-dependent situated state through which
+one or more couplings acquire access conditions, roles, stakes, expectations,
+meanings, constraints, affordances, authority, and possible movement.
 
-Observation remains the operational entry point because it is the first
-inspectable epistemic record. These claims compose as:
+```text
+coupling = dependency / influence skeleton
+relationship = inspectable situated state around that skeleton
+```
+
+Not every coupling is a full reflective Relationship. Not every Relationship
+requires both poles to carry explicit psychological models of one another. YAWN
+preserves the distinguishable poles and does not reify Relationship as a
+mystical third substance.
+
+Relationship is structurally prior to the rest of the operational loop: it
+conditions what can be disclosed as an Observation, what becomes relevant,
+which affordances exist, and which grants are active. Observation remains the
+operational entry point because it is the first inspectable epistemic record.
+These claims compose as:
 
 ```text
 Relationship -> Observation -> Relevance -> Orientation -> Intention
              -> Projection -> Consequence -> Proof -> Updated Relationship
 ```
 
-The updated relationship is not automatically better or more permissive.
+The updated Relationship is not automatically better or more permissive.
 Consequence may narrow trust, suspend an execution relationship, expose a new
 lacuna, or require the Arena to be reframed. See
 [`core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn`](../core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn)
@@ -52,8 +106,8 @@ reality but does not presume to store it.
 
 ### World horizon
 
-The open-ended environment in which agents and arenas exist. A world view in an
-interface is a high-aperture projection across arenas; it is not a complete
+The open-ended environment in which Agents and Arenas exist. A world view in an
+interface is a high-aperture projection across Arenas; it is not a complete
 world model.
 
 ### Field
@@ -65,18 +119,38 @@ Fields are partial and attributed.
 ### Agent
 
 A role or entity with identity, capabilities, constraints, goals or values, and
-decision rights. Human, collective, institutional, and software agents can be
+decision rights. Human, collective, institutional, and software Agents can be
 represented operationally without claiming that they have the same kind of
 agency or experience.
+
+### Agency and graduation
+
+Agency is a cross-layer capacity realized through an Agent's situated access,
+orientation, action repertoire, authority, and feedback. A system may support
+or attenuate agency, but it may not silently choose what a human life or
+relationship is for.
+
+Graduation is a governance policy, not the ontology root or public purpose.
+Repeated proof may justify a proposal to widen an Agent's scope, trust,
+autonomy, or responsibility. Graduation cannot define the Relationship, choose
+the terminal goal, or prove itself.
+
+```text
+graduation of agency
+= optional internal proof-gated governance mechanism
+!= coupling or relationship substrate
+!= human terminal objective
+!= permission to automate everything
+```
 
 ### Arena
 
 A provisional, agent-relative slice of the world made relevant by a purpose,
 participants, affordances, constraints, resources, authority, and open lacunae.
-An arena is not necessarily competitive. It may be collaborative, private,
+An Arena is not necessarily competitive. It may be collaborative, private,
 administrative, creative, bodily, or computational.
 
-Every arena records its frame limits: what is admitted, excluded, unknown, and
+Every Arena records its frame limits: what is admitted, excluded, unknown, and
 subject to reframing. This protects against treating a useful small-world model
 as the whole world.
 
@@ -123,12 +197,12 @@ promotes the Observation into a Yawn.
 
 ### Yawn
 
-A durable, versioned orientation contract inside an arena. It holds enough of
-the current state, lacuna, optional target, boundary, authority, possible move,
+A durable, versioned orientation contract inside an Arena. It holds enough of
+the current state, lacuna, optional Target, boundary, authority, possible Move,
 and proof conditions to coordinate a meaningful update.
 
-A Yawn is not a topic, folder label, person, or arena. It can hold uncertainty
-and does not need to be ready for action or to have a target. When goal-oriented,
+A Yawn is not a topic, folder label, person, or Arena. It can hold uncertainty
+and does not need to be ready for action or to have a Target. When goal-oriented,
 it should have one primary independently testable transition contract.
 
 ### Lacuna
@@ -139,18 +213,18 @@ it is a first-class reason to hold a Yawn open.
 
 ### Turn
 
-A bounded, causally coherent episode opened against a state. An agent may act,
+A bounded, causally coherent episode opened against a state. An Agent may act,
 wait, delegate, receive events, or yield within it. Turns can be asynchronous,
 nested, and overlapping; they are cuts through continuous activity, not a claim
 that reality literally alternates turns.
 
 ### Move, event, transition
 
-- A **move** is an intended commitment: action, communication, delegation,
+- A **Move** is an intended commitment: action, communication, delegation,
   explicit non-action, or wait.
 - An **event** is an attributed occurrence, including exogenous change.
 - A **transition** is the measured state or affordance delta resulting from one
-  or more events. It is not identical to the move.
+  or more events. It is not identical to the Move.
 
 ### Proof and proof receipt
 
@@ -161,8 +235,8 @@ remain partial, or be disputed.
 
 ### State and replay
 
-State is a materialized view reduced from authorized events. Replay is the
-deterministic reconstruction of that view plus an inspectable account of what
+State is a materialized View reduced from authorized events. Replay is the
+deterministic reconstruction of that View plus an inspectable account of what
 changed. Presentation changes do not change semantic state.
 
 ### View and aperture
@@ -175,13 +249,13 @@ ontological Projection unless an Agent actually expresses it into an Arena.
 
 ### Execution-delegate relationship and consequence loop
 
-An execution delegate is an active, revocable relationship between a rightful
-grantor and a capability-bound worker. The relationship is the starting state
+An execution delegate is an active, revocable Relationship between a rightful
+grantor and a capability-bound worker. The Relationship is the starting state
 of delegated action, not a decorative label around an isolated task. Each
 external effect resolves through an active work order or owner-accepted reusable
 policy, an exact typed effect signature, current preconditions, a Projection
 into the external Arena, its observed Consequence, and a proof receipt that can
-update the relationship.
+update the Relationship.
 
 Repeated clean receipts can justify a reusable-policy proposal. They cannot
 activate that proposal, widen scope, add cost, or erase a SHA/proof boundary.
@@ -195,14 +269,14 @@ YAWN separates four semantic planes:
 
 | Plane | Question | Typical records |
 | --- | --- | --- |
-| World | What is represented as happening? | fields, arenas, observations, events, state |
-| Epistemic | How is it known? | claims, sources, confidence, disputes, lacunae, proof |
+| World | What is represented as happening? | fields, Arenas, Observations, events, state |
+| Epistemic | How is it known? | claims, sources, confidence, disputes, lacunae, Proof |
 | Normative | What matters and what is protected? | values, boundaries, privacy, authority |
-| Action | What may change next? | targets, moves, turns, transitions, updates |
+| Action | What may change next? | Targets, Moves, Turns, transitions, updates |
 
 Governance, temporal order, and provenance are control planes that cross all
 four. Collapsing these planes creates familiar errors: desire becoming fact,
-confidence becoming permission, an intended move becoming an outcome, or a UI
+confidence becoming permission, an intended Move becoming an outcome, or a UI
 becoming the source of truth.
 
 ## Epistemic statuses
@@ -217,12 +291,12 @@ Confidence describes the fit of a representation to available evidence. It is
 not importance, moral worth, freshness, consensus, or authorization. Each is a
 separate dimension.
 
-Adoption is also separate from effect authority. An adopted arena, Yawn, or
+Adoption is also separate from effect authority. An adopted Arena, Yawn, or
 relation may be part of the canonical graph while external action remains
 denied. Adoption never overrides per-item privacy or egress constraints.
 
 ## Facets, not subclasses
 
-Identity, relationship, context, framework, and ontology may be useful facets
+Identity, Relationship, context, framework, and ontology may be useful facets
 or projections of a Yawn. Draft 0.2 does not make them mutually exclusive Yawn
 types. The durable unit is the orientation contract, not a topical taxonomy.

@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "yawn.dialogical-orientation-session.v1",
+  "sessionId": "dialogical-session:ontology-flywheel:2026-08-18",
+  "status": "proposed_for_owner_review",
+  "mode": "dialogical",
+  "question": "Should Dialectic into Dialogos become YAWN's internal sensemaking flywheel?",
+  "relationshipScope": {
+    "participants": [
+      "agent:dave",
+      "agent:chatgpt",
+      "agent:codex-future"
+    ],
+    "arena": "arena:yawn-ontology-and-implementation",
+    "couplingRefs": [
+      "coupling:dave-yawn-project",
+      "coupling:dave-ai-collaboration"
+    ],
+    "relationshipRefs": [
+      "relationship:dave-yawn-four-year-development",
+      "relationship:dave-ai-recursive-orientation"
+    ],
+    "stakes": [
+      "preserve the correct ontology hierarchy",
+      "give Codex a reliable process for difficult turns",
+      "avoid ritualized over-engineering",
+      "retain Dave's terminal-goal and adoption authority"
+    ],
+    "decisionOwner": "agent:dave",
+    "affectedParties": [
+      "agent:dave",
+      "future YAWN contributors",
+      "future YAWN users"
+    ]
+  },
+  "source": {
+    "rawStatement": "We should have a process like a dialectic into the Dialogos type of dialogical format? Or is this too far?",
+    "sourceRef": "conversation:current#dialogical-flywheel-question",
+    "sourcePreserved": true,
+    "normalizations": [
+      {
+        "raw": "dialogixal",
+        "normalized": "dialogical",
+        "reason": "clear speech-to-text normalization with no semantic identity change"
+      }
+    ]
+  },
+  "articulatedPositions": [
+    {
+      "id": "position:dave",
+      "actor": "agent:dave",
+      "claim": "YAWN needs a repeatable dialectical and dialogical process so Codex and other intelligences can spin the internal flywheel without losing the project's relationship-first center.",
+      "epistemicStatus": "reported",
+      "values": [
+        "coherence",
+        "collective orientation",
+        "human authorship",
+        "usable agency",
+        "continuity"
+      ]
+    },
+    {
+      "id": "position:guardrail",
+      "actor": "agent:chatgpt",
+      "claim": "The process is useful only if it remains an internal sensemaking protocol rather than replacing coupling, relationship, Agent, or Arena as the ontology root.",
+      "epistemicStatus": "inferred",
+      "values": [
+        "layer integrity",
+        "falsifiability",
+        "bounded complexity"
+      ]
+    }
+  ],
+  "passes": [
+    {
+      "id": "pass:source-intent",
+      "actor": "agent:chatgpt",
+      "stance": "source_steward",
+      "accessChannel": "current conversation and accepted ontology-layer correction",
+      "method": "preserve explicit role language and classify the requested process",
+      "sourceLineage": [
+        "conversation:current",
+        "core:ontology-layering"
+      ],
+      "findings": [
+        {
+          "claim": "Dialogical orientation is intended as an internal flywheel process.",
+          "result": "supports"
+        },
+        {
+          "claim": "Dialogos should replace relationship as the root ontology.",
+          "result": "contradicts"
+        }
+      ],
+      "limits": [
+        "same assistant lineage as earlier ontology synthesis"
+      ],
+      "correlatedWith": [
+        "pass:steelman",
+        "pass:falsifier"
+      ]
+    },
+    {
+      "id": "pass:steelman",
+      "actor": "agent:chatgpt",
+      "stance": "steelman",
+      "accessChannel": "conceptual synthesis",
+      "method": "construct the strongest useful version of the proposed process",
+      "sourceLineage": [
+        "conversation:current",
+        "project:relationship-first-ontology"
+      ],
+      "findings": [
+        {
+          "claim": "Dialectic can expose contradictions and Dialogos can support shared reference and mutual transformation before a decision.",
+          "result": "supports"
+        },
+        {
+          "claim": "A replayable process can reduce semantic drift across human-AI collaboration.",
+          "result": "supports"
+        }
+      ],
+      "limits": [
+        "conceptual fit is not empirical proof of product benefit"
+      ],
+      "correlatedWith": [
+        "pass:source-intent",
+        "pass:falsifier"
+      ]
+    },
+    {
+      "id": "pass:falsifier",
+      "actor": "agent:chatgpt",
+      "stance": "adversarial_pressure_test",
+      "accessChannel": "counterexample and architecture analysis",
+      "method": "test for ritualization, consensus pressure, ontology promotion, and decision ambiguity",
+      "sourceLineage": [
+        "conversation:current",
+        "core:ontology-layering"
+      ],
+      "findings": [
+        {
+          "claim": "Every turn should require a full Dialogos process.",
+          "result": "contradicts"
+        },
+        {
+          "claim": "Dialogos should produce consensus before action.",
+          "result": "contradicts"
+        },
+        {
+          "claim": "The rightful owner must ratify direction separately from epistemic synthesis.",
+          "result": "supports"
+        }
+      ],
+      "limits": [
+        "same model and shared sources reduce actor independence"
+      ],
+      "correlatedWith": [
+        "pass:source-intent",
+        "pass:steelman"
+      ]
+    },
+    {
+      "id": "pass:research-lineage",
+      "actor": "agent:chatgpt-with-web-sources",
+      "stance": "research_comparison",
+      "accessChannel": "published philosophical and human-AI dialogue literature",
+      "method": "compare the proposed architecture with Dialectic into Dialogos, Bohm Dialogue, and inquiry dialogue",
+      "sourceLineage": [
+        "Vervaeke-Mastropietro-2021",
+        "Bohm-Dialogue",
+        "human-AI-inquiry-dialogue-research"
+      ],
+      "findings": [
+        {
+          "claim": "Dialogos is better treated as a participatory meaning-making practice than a debate or consensus algorithm.",
+          "result": "supports"
+        },
+        {
+          "claim": "Human-AI dialogue needs explicit decision ownership and value constraints.",
+          "result": "supports"
+        },
+        {
+          "claim": "The literature validates the exact YAWN stage sequence.",
+          "result": "not_independently_tested"
+        }
+      ],
+      "limits": [
+        "the sources provide lineage and constraints, not validation of YAWN's implementation"
+      ],
+      "correlatedWith": []
+    }
+  ],
+  "dependencyMap": {
+    "correlatedPassGroups": [
+      [
+        "pass:source-intent",
+        "pass:steelman",
+        "pass:falsifier"
+      ]
+    ],
+    "independentContribution": [
+      "pass:research-lineage"
+    ],
+    "rule": "The three ChatGPT role passes count as stance diversity but not three independent actors."
+  },
+  "nexus": {
+    "invariantCore": [
+      "Coupling and relationship remain the substrate.",
+      "A dialectical and dialogical protocol can support difficult sensemaking without becoming the ontology root.",
+      "Shared reference does not require consensus or identical interpretation.",
+      "The rightful human or collective ratifies direction.",
+      "Execution requires authorization and returns through consequence and proof.",
+      "Graduation remains optional, proof-gated governance."
+    ],
+    "complementaryFacets": [
+      "Dialectic is especially useful for claim differentiation and falsification.",
+      "Dialogos is especially useful for participatory transformation and newly shared meaning.",
+      "Fast mode is necessary for routine reversible work."
+    ],
+    "liveConflicts": [
+      "Whether the public-facing name should ever use Dialogos or retain only the canonical YAWN term dialogical orientation."
+    ],
+    "blindSpots": [
+      "No live multi-human session has tested the proposed record shape.",
+      "No comparative study shows that this process improves outcomes over a simpler review protocol."
+    ]
+  },
+  "residue": [
+    {
+      "claim": "Every genuinely different intelligence automatically raises legitimate confidence.",
+      "status": "conditional",
+      "supportedBy": [
+        "aperture-diversity principle"
+      ],
+      "rejectedOrLimitedBy": [
+        "shared training data",
+        "shared prompt lineage",
+        "irrelevant or incompetent apertures"
+      ],
+      "reason": "Diversity helps only when access, competence, and error modes are meaningfully different."
+    },
+    {
+      "claim": "Dialogos should be the public product identity.",
+      "status": "unresolved",
+      "supportedBy": [
+        "conceptual lineage"
+      ],
+      "rejectedOrLimitedBy": [
+        "attribution risk",
+        "jargon burden",
+        "possible confusion with ontology root"
+      ],
+      "reason": "Keep Dialogos attributed and internal until use demonstrates public value."
+    }
+  ],
+  "orientationPacket": {
+    "currentState": "YAWN has an explicit ontology layering contract but lacks a canonical process for difficult, contested, multi-aperture turns.",
+    "possibleState": "A two-mode dialogical orientation flywheel converts difficult signals into reviewable nexus and residue, human-ratified direction, bounded action, and proof-bearing relationship updates.",
+    "lacuna": "Whether the proposed process improves orientation enough to justify its complexity.",
+    "candidateDirections": [
+      "adopt the working architecture and test it on one historical and one live case",
+      "use only a minimal dialectical review protocol",
+      "defer implementation until a multi-human practice session is available"
+    ],
+    "recommendedDirection": "adopt the working architecture as a proposed internal process and require fixture-first validation before runtime work",
+    "uncertainty": "medium"
+  },
+  "ratification": {
+    "decisionOwner": "agent:dave",
+    "status": "pending_owner_review",
+    "allowedDecisions": [
+      "adopt_working_process",
+      "revise",
+      "defer",
+      "reject"
+    ],
+    "epistemicConfidenceSeparateFromAdoption": true
+  },
+  "candidateMove": {
+    "move": "Have Codex validate the architecture against one historical semantic-promotion failure and one new live decision before proposing UI or runtime implementation.",
+    "reversibility": "high",
+    "risk": "low",
+    "cost": "bounded engineering review",
+    "authorityRequired": "Dave-approved repository work order",
+    "externalEffectsAuthorized": false
+  },
+  "proofContract": {
+    "conditions": [
+      "The validator rejects Dialogos, orientation, or graduation as the ontology root.",
+      "The session record preserves correlated-pass discounts, nexus, residue, conflict, and blind spots.",
+      "A historical case can be replayed without rewriting its source.",
+      "A live case reaches one bounded ratified move with less reorientation burden than free-form chat.",
+      "No external action, merge, deployment, or autonomy widening occurs without separate authority."
+    ],
+    "result": "pending"
+  }
+}

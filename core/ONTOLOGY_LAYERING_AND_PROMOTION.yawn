@@ -1,0 +1,235 @@
+---
+schema_version: yawn.ontology-layering.v1
+title: Ontology Layering and Semantic Promotion Boundary
+type: constitutional_working_contract
+status: active_working_contract
+coordinate: yawn.ai/ontology/layering-and-promotion
+owner: dave
+mutationAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Ontology Layering and Semantic Promotion Boundary
+
+## Why this contract exists
+
+YAWN contains several true and useful loops. A recurring failure occurs when a
+downstream mechanism is promoted into the root ontology or public mission merely
+because it is vivid, newly articulated, or useful for one artifact.
+
+The concrete regression that produced this contract was:
+
+```text
+Dave described graduation of agency as an internal flywheel.
+A generated explainer promoted graduation of agency into the main story.
+The artifact displaced coupling, relationship, and coordinated orientation.
+```
+
+The synthesis was fluent and internally coherent. It was still a category
+error.
+
+This contract adds an explicit layer system so future humans and agents can tell
+what is foundational, what operates within the foundation, what governs action,
+and what is merely a View or narrative projection.
+
+## Canonical layer order
+
+```text
+L0  SUBSTRATE
+    Reality, distinguishable Agents and Arenas, coupling, relationship,
+    access, constraint, affordance, influence, and history.
+
+L1  EPISTEMIC OPERATION
+    Observation, trace, evidence, aperture, relevance, and orientation.
+
+L2  ACTION / TRANSITION
+    Intention, Projection, Move, Consequence, Proof, and Update.
+
+L3  GOVERNANCE
+    Authority, permission, delegation, autonomy, and graduation.
+
+L4  PROJECTION / VIEW
+    Interfaces, narratives, diagrams, slide decks, video, and other renderers.
+```
+
+The layers describe dependency and compilation order. They are not a claim that
+reality is naturally partitioned into five boxes.
+
+## Coupling and relationship
+
+A **coupling** is a dependency or influence relation: changes in one pole alter,
+constrain, enable, or become informative to another pole.
+
+A **relationship** is the broader, history-dependent situated state through
+which one or more couplings acquire access conditions, roles, stakes,
+expectations, meanings, constraints, affordances, authority, and possible
+movement.
+
+```text
+coupling = the dependency / influence skeleton
+relationship = the inspectable situated state around that skeleton
+```
+
+Not every coupling is a full reflective relationship. Not every relationship
+requires mutual psychological modeling. YAWN preserves the distinguishable
+poles and does not turn Relationship into a mystical substance.
+
+Relationship remains structurally prior to the operational loop because it
+conditions what can become observable, relevant, possible, or authorized.
+Observation remains operationally first because it is the first attributed
+epistemic record an implementation can preserve.
+
+## Agency and graduation
+
+**Agency** is a cross-layer capacity. It is realized through an Agent's situated
+access, model, values, action repertoire, authority, and feedback. It is not one
+more substrate object and it is not automatically YAWN's terminal purpose.
+
+**Graduation** is an L3 governance mechanism. Repeated proof may justify a
+proposal to widen an agent's scope, trust, autonomy, or responsibility.
+Graduation does not define the relationship, choose the human goal, or become
+the public mission.
+
+```text
+graduation of agency
+= optional internal proof-gated governance flywheel
+≠ YAWN's ontology root
+≠ YAWN's terminal objective
+≠ a license to automate everything
+```
+
+## Public purpose boundary
+
+The default public purpose is:
+
+> Make consequential couplings and relationship states inspectable so distinct
+> agents can establish shared reference, coordinate direction, take bounded
+> action, and learn from consequences without losing authorship.
+
+This permits orientation, agency, proof, and graduation to appear in the story,
+but only in their proper roles.
+
+The rightful human or collective retains authority over terminal goals,
+meaning, consent, and consequential adoption. AI may help inspect, compare,
+propose, simulate, and gather proof; it may not silently replace the direction
+of the relationship.
+
+## Narrative compilation rule
+
+Every explainer, presentation, route, diagram, or video that claims to explain
+YAWN as a whole MUST declare:
+
+```yaml
+root_subject:
+  term:
+  layer:
+  statement:
+
+public_purpose:
+
+primary_loop: []
+
+supporting_mechanisms:
+  - term:
+    layer:
+    role:
+
+internal_flywheel: []
+terminal_goal_owner:
+not_claimed: []
+source_intent:
+```
+
+The root subject MUST compile from L0 unless the ontology contract itself has
+been versioned through the semantic promotion gate.
+
+A downstream term MAY be the subject of a specialized explainer. It MUST NOT be
+presented as the purpose of the entire system merely because that explainer is
+about it.
+
+## Source-intent preservation
+
+Explicit role language from the rightful author is authoritative for artifact
+hierarchy unless it conflicts with an accepted constitutional contract.
+
+Examples:
+
+```text
+"This is an internal flywheel."
+→ supporting mechanism, not public mission
+
+"This is one way to look at it."
+→ View, not ontology replacement
+
+"I think this may be the root; pressure-test it."
+→ candidate constitutional proposal, not accepted root
+```
+
+Emphasis, excitement, repetition, rhetorical polish, visual prominence, or AI
+fluency do not constitute semantic promotion.
+
+## Semantic promotion gate
+
+A term can move upward only through a visible, versioned change that includes:
+
+1. an explicit RFC or constitutional proposal;
+2. counterexamples and pressure tests;
+3. evidence that the simpler ontology fails;
+4. affected schema and migration analysis;
+5. affected public language, interface, and action-policy analysis;
+6. rightful maintainer adoption; and
+7. a versioned contract update with rollback or supersession history.
+
+No generated slide deck, video, summary, homepage, or code comment may perform
+this promotion implicitly.
+
+## Regression rule
+
+The following compilation MUST fail:
+
+```yaml
+root_subject:
+  term: graduation
+  layer: governance
+public_purpose: Graduate agents toward goals.
+```
+
+The corrected compilation is:
+
+```yaml
+root_subject:
+  term: relationship
+  layer: substrate
+public_purpose: >
+  Help distinct agents inspect their consequential couplings, establish shared
+  reference, coordinate direction, act within authority, and learn.
+supporting_mechanisms:
+  - term: graduation
+    layer: governance
+    role: Widen bounded autonomy only after repeated proof.
+```
+
+## Stable shorthand
+
+```text
+Coupling first.
+Relationship made inspectable.
+Orientation made shareable.
+Agency made accountable.
+Graduation earned through proof.
+Views remain Views.
+```
+
+## Agent Orientation Elevation
+
+```yaml
+agent_orientation:
+  first_answer: "You are here"
+  role: "visible inference, not hidden authority"
+  current_state: "YAWN has rich concepts but previously lacked enforced layer ownership."
+  possible_state: "Every artifact preserves substrate, operation, governance, and View boundaries."
+  lacuna: "Whether the layer system remains sufficient under future counterexamples."
+  movement: "Validate every whole-system explainer against the machine-readable layering contract."
+  proof: "Regression tests reject orientation or graduation when promoted into the substrate root."
+  boundary: "This contract guides compilation; it does not claim a final metaphysics."
+```

@@ -1,0 +1,168 @@
+---
+schema_version: yawn.explainer-brief.v1
+title: YAWN Whole-System Explainer Brief Contract
+type: interface_contract
+status: active_working_contract
+coordinate: yawn.ai/interface/explainer-brief
+mutationAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# YAWN Whole-System Explainer Brief Contract
+
+## Purpose
+
+Prevent a specialized lens, operational loop, governance mechanism, or polished
+media artifact from silently replacing the ontology root or public mission.
+
+Every artifact that presents itself as an explanation of **YAWN as a whole**
+MUST begin from a validated brief.
+
+## Required record shape
+
+```yaml
+schemaVersion: yawn.explainer-brief.v1
+artifactKind: video | slide_deck | webpage | diagram | essay | audio
+
+sourceIntent:
+  sourceRefs: []
+  authorStatement:
+  rootSubjectAsUnderstood:
+  internalMechanismsNamedByAuthor: []
+  unresolvedAmbiguities: []
+
+rootSubject:
+  term:
+  layer: substrate
+  statement:
+
+headlineTerms: []
+
+publicPurpose:
+
+primaryLoop: []
+
+supportingMechanisms:
+  - term:
+    layer:
+    role:
+
+internalFlywheel: []
+
+terminalGoalOwner: rightful_human_or_collective
+
+notClaimed: []
+
+proof:
+  validationCommand: npm run validate
+  humanReviewRequired: true
+```
+
+## Validation rules
+
+1. `rootSubject.layer` MUST be `substrate`.
+2. Every `headlineTerms[]` entry MUST be classified as substrate in
+   `core/ontology-layering.v1.json`.
+3. `orientation`, `agency`, `proof`, `autonomy`, `graduation`, and `automation`
+   MUST NOT replace the whole-system public purpose.
+4. `graduation` MAY appear in `internalFlywheel` or `supportingMechanisms` with
+   layer `governance`.
+5. The primary loop MUST encounter relationship before orientation.
+6. Governance terms MUST NOT be presented as if they generate the relationship
+   or own its terminal goals.
+7. `terminalGoalOwner` MUST remain `rightful_human_or_collective`.
+8. Any ambiguity in the source hierarchy MUST remain visible rather than being
+   resolved by rhetorical confidence.
+9. A specialized mechanism explainer MUST identify itself as specialized and
+   MUST NOT use this whole-system brief to claim constitutional scope.
+
+## Default whole-system compilation
+
+```text
+existing coupling
+→ inspectable relationship state
+→ Observation through bounded access
+→ Orientation
+→ Intention and authorized Move
+→ Consequence and Proof
+→ updated relationship
+```
+
+Supporting governance:
+
+```text
+authority
+→ delegation
+→ bounded autonomy
+→ possible graduation after repeated proof
+```
+
+The governance sequence wraps or gates action. It does not replace the public
+purpose.
+
+## Correct example
+
+```yaml
+rootSubject:
+  term: relationship
+  layer: substrate
+  statement: >
+    Distinct agents are already coupled to one another and their environments;
+    YAWN makes the consequential relationship state inspectable.
+headlineTerms:
+  - coupling
+  - relationship
+supportingMechanisms:
+  - term: orientation
+    layer: epistemic_operation
+    role: Make each agent's situated model visible and correctable.
+  - term: graduation
+    layer: governance
+    role: Widen bounded autonomy only after repeated proof.
+internalFlywheel:
+  - graduation
+terminalGoalOwner: rightful_human_or_collective
+```
+
+## Invalid example
+
+```yaml
+rootSubject:
+  term: graduation
+  layer: governance
+headlineTerms:
+  - graduation
+publicPurpose: Graduate agents toward goals.
+terminalGoalOwner: system
+```
+
+This fails because it promotes an internal governance mechanism, obscures the
+coupling and relationship substrate, and transfers terminal-goal ownership to
+the system.
+
+## Media requirements
+
+A video with narration MUST also provide:
+
+- captions;
+- transcript;
+- chapter or scene map;
+- the validated explainer brief;
+- source lineage for substantive claims; and
+- a silent-readable visual path.
+
+Audio clarifies temporal movement. It does not authorize a new ontology.
+
+## Agent Orientation Elevation
+
+```yaml
+agent_orientation:
+  first_answer: "You are here"
+  role: "visible inference, not hidden authority"
+  current_state: "Explainers can accidentally promote a vivid mechanism into the mission."
+  possible_state: "Every whole-system artifact compiles from a declared and validated ontology layer map."
+  lacuna: "Whether future media generators actually consume the brief automatically."
+  movement: "Require the brief in consuming repositories and CI workflows."
+  proof: "An invalid graduation-first brief fails repository validation."
+  boundary: "This is a compilation and interface contract, not a metaphysical proof."
+```

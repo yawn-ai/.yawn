@@ -1,0 +1,307 @@
+---
+schema_version: yawn.dialogical-orientation-flywheel.v1
+title: Dialogical Orientation Flywheel
+type: constitutional_working_process
+status: proposed_for_owner_review
+coordinate: yawn.ai/architecture/dialogical-orientation-flywheel
+owner: dave
+canonical_term: dialogical_orientation
+classification: internal_cross_layer_process
+not_ontology_root: true
+root_dependencies:
+  - coupling
+  - relationship
+  - Agent
+  - Arena
+inspired_by:
+  - John Vervaeke and Christopher Mastropietro, Dialectic into Dialogos
+  - David Bohm, Dialogue
+  - inquiry and deliberative dialogue research
+mutationAuthorized: false
+persistenceAuthorized: false
+modelCallAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Dialogical Orientation Flywheel
+
+## Ruling
+
+**This is not too far if it remains a process rather than becoming a new root.**
+
+Dialectic into Dialogos gives YAWN a useful shape for difficult sensemaking:
+contradictions are differentiated, assumptions are exposed, distinct apertures
+meet, and participants may revise their orientations through the interaction.
+
+YAWN does not claim that its software protocol reproduces the complete
+philosophical practice described by Vervaeke and Mastropietro. The canonical
+YAWN term is **dialogical orientation**. `Dialogos` remains an attributed
+lineage term.
+
+The substrate remains:
+
+```text
+Agent ↔ coupling / relationship ↔ Arena
+```
+
+The flywheel operates inside that substrate:
+
+```text
+relationship scope
+→ preserve source
+→ articulate positions
+→ dialectic / pressure test
+→ diversify apertures
+→ dialogical encounter
+→ nexus + residue
+→ orientation packet
+→ rightful ratification
+→ authorization
+→ bounded move
+→ consequence + proof
+→ updated relationship
+→ optional graduation proposal
+```
+
+## Why it exists
+
+YAWN needs more than a debate engine and more than an agreeable chat.
+
+A debate can sharpen claims while leaving the participants unchanged.
+A conversation can feel connected while leaving contradictions hidden.
+An autonomous agent can act quickly while carrying forward a misunderstood
+purpose.
+
+The flywheel joins three different jobs without collapsing them:
+
+```text
+DIALECTIC
+Differentiate, challenge, falsify, and expose category errors.
+
+DIALOGICAL ORIENTATION
+Establish shared reference, suspend premature closure, and allow distinct
+participants to revise how they are related to the question and to one another.
+
+DELIBERATION + GOVERNANCE
+Compare possible directions, preserve dissent, identify the rightful decision
+owner, and authorize one bounded move.
+```
+
+## The two modes
+
+### Fast mode
+
+Use for work that is routine, low-stakes, reversible, clearly authorized, and
+not materially contested.
+
+```text
+relationship scope
+→ source
+→ orientation packet
+→ ratification / authorization
+→ move
+→ proof
+→ update
+```
+
+Do not perform a ceremonial dialogue when a small safe test can let reality
+answer.
+
+### Dialogical mode
+
+Use when any of these are present:
+
+- several affected agents;
+- contested meaning, values, or purpose;
+- a recurring unresolved pattern;
+- high consequence or low reversibility;
+- conflicting evidence;
+- an ontology, policy, identity, autonomy, or public-purpose change;
+- a request for pressure testing or collective orientation.
+
+## Session roles
+
+One person or model may perform several roles, but role rotation does not create
+independent evidence by itself.
+
+| Role | Responsibility |
+| --- | --- |
+| Source steward | Preserve exact source, provenance, transformations, and privacy. |
+| Steelman | Construct the strongest coherent version of a position. |
+| Falsifier | Seek counterexamples, scope failures, and hidden assumptions. |
+| Aperture witness | Contribute genuinely different access, stance, method, actor, or lineage. |
+| Integrator | Compile the nexus, residue, conflicts, blind spots, and options. |
+| Rightful steward | Ratify direction and retain terminal-goal, consent, and meaning authority. |
+| Executor | Attempt only the exact authorized move. |
+| Proof witness | Evaluate the consequence against the declared condition. |
+
+## Pass contract
+
+Every serious review pass declares:
+
+```yaml
+pass:
+  id:
+  actor:
+  stance:
+  access_channel:
+  method:
+  source_lineage: []
+  findings: []
+  limits: []
+  correlated_with: []
+```
+
+Allowed finding results:
+
+```text
+supports
+contradicts
+underdetermined
+cannot_access
+out_of_scope
+not_independently_tested
+```
+
+Three rereads by one model over the same source are not three independent
+apertures. They may improve one analysis, but their shared error lineage remains
+visible.
+
+## Nexus and residue
+
+The output is not a forced synthesis.
+
+```yaml
+nexus:
+  invariant_core: []
+  complementary_facets: []
+  live_conflicts: []
+  blind_spots: []
+  dependency_map: []
+
+residue:
+  - claim:
+    status:
+    supported_by: []
+    rejected_or_limited_by: []
+    reason:
+```
+
+The nexus is what remains robust across **applicable and competent** apertures.
+A specialized aperture may reveal something true that other apertures cannot
+access. That belongs under complementary facets rather than being discarded
+for failing universal intersection.
+
+## Ratification boundary
+
+The nexus guides. It does not govern.
+
+```text
+evidence and dialogue
+→ constrain what deserves belief
+
+rightful ratification
+→ determines what becomes operative
+```
+
+A human signature may adopt a direction for YAWN. It does not make an empirical
+claim true. An AI may compile a candidate orientation. It cannot silently own
+the terminal goal.
+
+## Move selection
+
+After ratification, prefer the smallest move that:
+
+- reduces the highest-priority lacuna;
+- is inside explicit authority;
+- is reversible or recoverable where possible;
+- produces discriminating evidence;
+- preserves meaningful options;
+- exposes cost, risk, privacy, and affected parties;
+- cannot declare its own success.
+
+## Proof and graduation
+
+```text
+move
+→ consequence
+→ evidence
+→ proof receipt
+→ updated relationship
+```
+
+Repeated clean proof may justify a **graduation proposal** that widens scope,
+autonomy, trust, or responsibility. Graduation remains an L3 governance
+mechanism. It does not become the ontology root, public mission, or reason a
+human life exists.
+
+## Invariants
+
+1. Coupling and relationship remain the substrate.
+2. Dialogical orientation is an internal process, not the world model.
+3. Shared reference does not require shared interpretation.
+4. Dialogos is not consensus, voting, persuasion, or pleasantness.
+5. Dialectic differentiates; it does not automatically decide among values.
+6. Distinct agents and arenas remain distinct.
+7. Source, inference, confidence, adoption, authority, action, and proof remain separate.
+8. Residue, dissent, conflict, and blind spots remain inspectable.
+9. Repetition is discounted when actor, model, source, method, or access is correlated.
+10. The rightful human or collective owns terminal direction.
+11. No consequential move precedes ratification and authorization.
+12. A move cannot prove itself.
+13. Full dialogical processing is invoked by conditions; it is not a universal ritual.
+14. Repeated proof may propose graduation but never activate it automatically.
+
+## Stable shorthand
+
+```text
+Coupling is the condition.
+Relationship is the situated state.
+Dialectic differentiates.
+Dialogos transforms orientation without erasing difference.
+The nexus guides; the rightful steward decides.
+Authority gates the move.
+Reality supplies the consequence.
+Proof updates the relationship.
+Repeated proof may propose graduation.
+```
+
+## Tomorrow's implementation target
+
+Codex should not begin by building a new chat shell.
+
+It should first produce one complete, replayable session using the current
+architecture question as the fixture:
+
+```text
+Should Dialectic into Dialogos become YAWN's internal sensemaking flywheel?
+```
+
+The fixture must preserve:
+
+- Dave's source wording;
+- the ontology-layer correction;
+- distinct supportive and adversarial passes;
+- research lineage;
+- correlated-pass discounts;
+- nexus, residue, conflict, and blind spots;
+- Dave as the ratifying owner;
+- one bounded implementation move;
+- a proof contract;
+- no automatic merge, deployment, or autonomy widening.
+
+Only after the fixture validates should Codex propose runtime or interface work.
+
+## Agent Orientation Elevation
+
+```yaml
+agent_orientation:
+  first_answer: "You are here"
+  role: "visible inquiry partner, not hidden authority"
+  current_state: "YAWN has a substrate and governance layering, but its difficult-turn inquiry process was not yet explicit."
+  possible_state: "Ambiguous turns move through a replayable dialogical protocol into human-ratified action and proof."
+  lacuna: "Whether the proposed stages improve orientation enough to justify their complexity."
+  movement: "Validate one historical case and one live case before building a universal runtime."
+  proof: "The process catches semantic promotion errors, preserves dissent, produces one bounded next move, and reduces reorientation burden."
+  boundary: "This is a working process architecture, not a final theory of dialogue or consciousness."
+```
