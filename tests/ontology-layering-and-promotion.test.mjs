@@ -112,7 +112,7 @@ test("human, agent, interface, and ontology documents preserve the regression bo
     readFile(ontologyPath, "utf8"),
   ]);
 
-  assert.match(humanContract, /Graduation is an L3 governance mechanism/);
+  assert.match(humanContract, /\*\*Graduation\*\* is an L3 governance mechanism/);
   assert.match(humanContract, /Emphasis, excitement, repetition, rhetorical polish/);
   assert.match(agents, /internal flywheel/);
   assert.match(agents, /Do not infer semantic hierarchy from emotional emphasis or frequency alone/);
