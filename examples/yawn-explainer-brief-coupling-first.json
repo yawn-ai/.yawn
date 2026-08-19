@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "yawn.explainer-brief.v1",
+  "artifactKind": "video",
+  "sourceIntent": {
+    "sourceRefs": [
+      "conversation://dave/2026-08-18/ontology-layering-correction"
+    ],
+    "authorStatement": "Graduation of agency is an internal flywheel; the larger purpose is helping distinct agents inspect and coordinate their couplings and relationships.",
+    "rootSubjectAsUnderstood": "coupling and relationship",
+    "internalMechanismsNamedByAuthor": [
+      "graduation"
+    ],
+    "unresolvedAmbiguities": [
+      "Whether coupling or relationship should be the preferred first public word."
+    ]
+  },
+  "rootSubject": {
+    "term": "relationship",
+    "layer": "substrate",
+    "statement": "Distinct agents are already coupled to one another and their environments; YAWN makes the consequential relationship state inspectable."
+  },
+  "headlineTerms": [
+    "coupling",
+    "relationship"
+  ],
+  "publicPurpose": "Help distinct agents establish shared reference, coordinate direction, take bounded action, and learn from consequences without losing authorship.",
+  "primaryLoop": [
+    "coupling",
+    "relationship",
+    "observation",
+    "orientation",
+    "intention",
+    "move",
+    "consequence",
+    "proof",
+    "updated_relationship"
+  ],
+  "supportingMechanisms": [
+    {
+      "term": "orientation",
+      "layer": "epistemic_operation",
+      "role": "Make each Agent's situated model visible and correctable."
+    },
+    {
+      "term": "agency",
+      "layer": "cross_layer_capacity",
+      "role": "Describe the capacity to sense, choose, act, and adapt within the relationship."
+    },
+    {
+      "term": "graduation",
+      "layer": "governance",
+      "role": "Widen bounded autonomy only after repeated proof."
+    }
+  ],
+  "internalFlywheel": [
+    "graduation"
+  ],
+  "terminalGoalOwner": "rightful_human_or_collective",
+  "notClaimed": [
+    "Graduation is the purpose of YAWN.",
+    "All participants must share one interpretation.",
+    "AI owns the terminal goal.",
+    "The View is the relationship itself."
+  ],
+  "proof": {
+    "validationCommand": "npm run validate",
+    "humanReviewRequired": true
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "yawn.ontology-layering.v1",
+  "status": "constitutional-working-contract",
+  "layerOrder": [
+    "substrate",
+    "epistemic_operation",
+    "action_transition",
+    "governance",
+    "projection"
+  ],
+  "terms": {
+    "reality": "substrate",
+    "agent": "substrate",
+    "arena": "substrate",
+    "coupling": "substrate",
+    "relationship": "substrate",
+    "access": "substrate",
+    "constraint": "substrate",
+    "affordance": "substrate",
+    "history": "substrate",
+    "observation": "epistemic_operation",
+    "trace": "epistemic_operation",
+    "evidence": "epistemic_operation",
+    "aperture": "epistemic_operation",
+    "relevance": "epistemic_operation",
+    "orientation": "epistemic_operation",
+    "intention": "action_transition",
+    "projection": "action_transition",
+    "move": "action_transition",
+    "consequence": "action_transition",
+    "proof": "action_transition",
+    "update": "action_transition",
+    "authority": "governance",
+    "permission": "governance",
+    "delegation": "governance",
+    "autonomy": "governance",
+    "graduation": "governance",
+    "view": "projection",
+    "interface": "projection",
+    "narrative": "projection",
+    "slide_deck": "projection",
+    "video": "projection"
+  },
+  "crossLayerTerms": {
+    "agency": {
+      "classification": "cross_layer_capacity",
+      "description": "Capacity realized through an Agent's situated access, orientation, action repertoire, authority, and feedback.",
+      "mayBeHeadlineRoot": false
+    },
+    "meaning": {
+      "classification": "cross_layer_significance",
+      "description": "Attributed significance arising for an Agent within a relationship, arena, and horizon.",
+      "mayBeHeadlineRoot": false
+    }
+  },
+  "publicMission": {
+    "headlineRootLayers": [
+      "substrate"
+    ],
+    "canonicalPurpose": "Make consequential couplings and relationship states inspectable so distinct agents can establish shared reference, coordinate direction, take bounded action, and learn from consequences without losing authorship.",
+    "terminalGoalOwner": "rightful_human_or_collective",
+    "downstreamTermsMayNotReplacePurpose": [
+      "orientation",
+      "agency",
+      "proof",
+      "autonomy",
+      "graduation",
+      "automation"
+    ]
+  },
+  "defaultNarrativeOrder": [
+    "coupling",
+    "relationship",
+    "observation",
+    "orientation",
+    "intention",
+    "move",
+    "consequence",
+    "proof",
+    "updated_relationship"
+  ],
+  "promotionGate": {
+    "required": [
+      "explicit RFC or constitutional proposal",
+      "counterexamples and pressure tests",
+      "affected-schema and migration analysis",
+      "public-language and interface impact analysis",
+      "rightful maintainer adoption",
+      "versioned contract update"
+    ],
+    "rule": "Emphasis, repetition, fluency, artifact polish, or a generated narrative cannot promote a downstream mechanism into the ontology root or public mission."
+  },
+  "sourceIntentRule": {
+    "rule": "An explicitly described internal mechanism, flywheel, implementation detail, or governance process remains subordinate unless a separate constitutional promotion is accepted.",
+    "example": "Graduation of agency is an internal proof-gated governance mechanism, not YAWN's root subject or terminal purpose."
+  }
+}

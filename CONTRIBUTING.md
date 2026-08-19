@@ -77,6 +77,47 @@ renames or historical cleanup in the same change as an unrelated semantic
 protocol change. A bounded naming migration with its own receipt, validator, and
 rollback/provenance path is acceptable.
 
+## Ontology layering and semantic promotion
+
+Read [`core/ONTOLOGY_LAYERING_AND_PROMOTION.yawn`](core/ONTOLOGY_LAYERING_AND_PROMOTION.yawn)
+before changing whole-system language, ontology diagrams, homepage theses,
+media, autonomy policy, or agent narratives.
+
+YAWN distinguishes:
+
+```text
+substrate
+→ epistemic operation
+→ action / transition
+→ governance
+→ projection / View
+```
+
+A concept can be important without being foundational. Do not promote a
+specialized lens, internal flywheel, or governance mechanism into the public
+mission because it is newly articulated, repeated, emotionally salient, or
+easy to visualize.
+
+The known regression is the promotion of **graduation of agency** from an
+internal proof-gated flywheel into the headline purpose. Future contributions
+must preserve:
+
+```text
+coupling and relationship  → substrate
+orientation                → epistemic operation
+graduation                 → governance
+slides, video, narrative   → View
+```
+
+Whole-system explainers MUST include a brief conforming to
+[`interface/yawn-explainer-brief-v1.yawn`](interface/yawn-explainer-brief-v1.yawn)
+and pass `npm run validate`.
+
+Moving a concept upward requires an RFC or constitutional proposal,
+counterexamples, pressure tests, schema and migration analysis, interface and
+language impact analysis, rightful maintainer adoption, and a versioned contract
+change. A polished artifact can propose promotion; it cannot perform promotion.
+
 ## AI-assisted contributions
 
 AI assistance is welcome. Disclose material use in the pull request:
@@ -94,6 +135,11 @@ third-party data without the right to publish them.
 AI-assisted speech or transcript ingestion must preserve naming corrections as
 attributed transformations when the correction changes a path, ID, schema
 selection, or source reference.
+
+AI-assisted synthesis must also preserve explicit role language. If a human
+calls something an internal mechanism, a working hypothesis, or one lens among
+several, the model must not silently promote it into the ontology root or public
+mission.
 
 ## Specification language
 
