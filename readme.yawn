@@ -1,13 +1,13 @@
 # Root orientation record for the repository.
 # README.md is the human landing page; this file dogfoods the protocol.
 
-spec_version: "0.2-draft"
+spec_version: "0.2-draft+objective-holon.0.1"
 id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 5
-updated: "2026-08-17"
+revision: 6
+updated: "2026-08-25"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -77,6 +77,11 @@ orientation:
       source_refs:
         - core/canonical-extension.yawn
         - scripts/validate-canonical-extension.mjs
+    - claim: "The root .yawn is an alignment bridge that may route principal-ratified objectives into dedicated objective Yawns and bounded Yawn.bots."
+      epistemic_status: proposed
+      source_refs:
+        - spec/objective-holons.md
+        - schemas/objective-holon.v0.1.schema.json
 
   governing_inference: >
     The repository serves as the ontology hub when it starts with Observation,
@@ -133,6 +138,7 @@ lacuna:
     - "How should privacy-preserving conversation import prove source coverage?"
     - "Which parts of Draft 0.2 should enter the next stable contract?"
     - "How should web and desktop ingestion share one normalization receipt?"
+    - "Which detected objectives deserve independent Yawns rather than attachment or a lateral link?"
 
 intent:
   mode: coordinate
@@ -146,6 +152,8 @@ intent:
 boundaries:
   must_not:
     - turn desire into authorization
+    - turn detection confidence into objective ratification
+    - turn objective ratification into bot activation or effect authority
     - turn confidence into permission
     - let a move verify itself
     - fabricate skipped orientation answers
@@ -208,6 +216,10 @@ protocol_layers:
     path: schemas/agency-holarchy.v0.2.schema.json
     version: "0.2-draft"
     stability: experimental
+  objective_holon:
+    path: schemas/objective-holon.v0.1.schema.json
+    version: "0.1-draft"
+    stability: experimental
   human_document:
     paths: [templates/, examples/]
     stability: mixed-and-explicitly-versioned
@@ -239,12 +251,14 @@ ontology_links:
   holarchy: spec/holarchy.md
   turns: spec/turns.md
   routing: spec/routing.md
+  objective_holons: spec/objective-holons.md
   questions: spec/questions.md
   serialization: spec/serialization.md
   world_field_arena: core/world-field-arena.yawn
   holarchy_contract: core/holarchy.yawn
   turn_contract: core/turn.yawn
   routing_contract: core/routing.yawn
+  objective_holon_contract: core/objective-holon.yawn
   projection_boundary: core/projection-and-aperture.yawn
   observation_contract: schemas/observation.v1.schema.json
   record_reference: schemas/record-ref.v1.schema.json
@@ -262,11 +276,13 @@ practice_links:
     - templates/routing-proposal.yawn
     - templates/structural-change-receipt.yawn
     - templates/observation-question-art.yawn
+    - templates/objective-holon.yawn
   examples:
     - examples/nested-agent-arena.yawn
     - examples/waiting-turn.yawn
     - examples/conversation-import-routing.yawn
     - examples/merge-split-routing.yawn
+    - examples/dave-good-dad-objective-holon.yawn
 
 project_links:
   documentation: docs/README.md
@@ -291,6 +307,7 @@ replay:
     contract before creation.
   next_review_when:
     - Draft 0.2 has field routing evidence
+    - Objective Holon 0.1 has principal-reviewed independence and activation evidence
     - a unified document RFC is proposed
     - an independent implementation reports a compatibility gap
     - a speech-to-text correction produces a false positive or missed alias

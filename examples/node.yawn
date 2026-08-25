@@ -2,7 +2,7 @@ id: examples/node
 title: "examples node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-13
+updated: 2026-08-25
 
 purpose: >
   Hold small example yawns so a person can see the protocol in ordinary use.
@@ -22,6 +22,7 @@ holds:
   - asynchronous waiting and resume example
   - conversation import routing example
   - merge versus link versus split example
+  - Dave / good dad objective holon and Yawn.bot example
 
 receives:
   - templates
@@ -49,6 +50,7 @@ links:
   - examples/waiting-turn.yawn
   - examples/conversation-import-routing.yawn
   - examples/merge-split-routing.yawn
+  - examples/dave-good-dad-objective-holon.yawn
   - fixtures/node.yawn
 
 proof:
@@ -64,4 +66,5 @@ proof:
     - examples/waiting-turn.yawn
     - examples/conversation-import-routing.yawn
     - examples/merge-split-routing.yawn
+    - examples/dave-good-dad-objective-holon.yawn
   status: seed-backed

@@ -1,0 +1,92 @@
+id: example/dave-good-dad-objective-holon
+title: "Dave / good dad objective holon"
+kind: example
+status: informative
+spec_version: objective-holon.v0.1
+updated: 2026-08-25
+
+source_signal:
+  asserted_by: principal:dave
+  text: "I want to be a good dad."
+  epistemic_status: reported
+
+compile_projection:
+  detections:
+    - kind: principal
+      value: Dave
+      epistemic_status: reported
+    - kind: desire
+      value: "Be a good dad"
+      epistemic_status: reported
+    - kind: objective_candidate
+      value: "Dave / good dad"
+      epistemic_status: inferred
+      confidence: 0.93
+    - kind: arena
+      value: "Dave's family relationships and parenting situations"
+      epistemic_status: inferred
+      confidence: 0.78
+    - kind: lacuna
+      value: "Which observable patterns would count as movement for this ongoing objective?"
+      epistemic_status: inferred
+      confidence: 0.72
+  correction_operators: [confirm, reject, correct, add_more]
+
+proposed_structure:
+  parent_yawn_ref: yawn:dave:root
+  yawn_ref: yawn:dave:good-dad
+  bot_ref: bot:dave:good-dad
+  bot_state: sleeping
+  independence_reasons:
+    - distinct_objective
+    - ongoing_time_horizon
+    - distinct_relationships
+    - recurring_proof_loop
+
+ratified_objective:
+  objective_ref: objective:dave:good-dad
+  principal_ref: principal:dave
+  statement: "Be a good dad."
+  purpose: "Steward how Dave shows up in his relationships with Sophia and Jace."
+  mode: maintain
+  horizon: ongoing
+  guardrails:
+    - "Do not reduce another family member to Dave's model of them."
+    - "Do not treat intensity, intention, or self-description as proof."
+    - "Do not optimize a score in place of the relationships themselves."
+
+objective_yawn:
+  yawn_ref: yawn:dave:good-dad
+  primary_parent_yawn_ref: yawn:dave:root
+  primary_objective_ref: objective:dave:good-dad
+  current_lacuna: "What needs attention now in order to serve this objective?"
+  child_examples:
+    - yawn:dave:good-dad/repair-after-rupture
+    - yawn:dave:good-dad/weekly-one-on-one-time
+  lateral_links:
+    - relation: dave-good-dad coordinates_with dave-partner
+    - relation: dave-good-dad depends_on family-shared-commitments
+
+yawn_bot:
+  bot_ref: bot:dave:good-dad
+  role: objective_steward
+  lifecycle_state: active
+  parent_bot_ref: bot:dave:root
+  principal_ref: principal:dave
+  personality_profile_ref: null
+  receives_structural_context:
+    - value:dave:family
+    - relationship:dave:sophia
+    - relationship:dave:jace
+  does_not_inherit:
+    - other_people's private models
+    - consent
+    - truth
+    - confidence
+    - effect authority
+    - proof
+
+proof_boundary: >
+  The bot can record evidence about bounded behaviors and relationship outcomes.
+  It cannot prove that Dave is, globally or permanently, a good dad. Each result
+  updates the orientation and exposes the next lacuna.

@@ -2,7 +2,7 @@ id: interface/node
 title: "interface node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-08-15
+updated: 2026-08-25
 
 purpose: >
   Hold the five-command brain interface and projection stack.
@@ -20,6 +20,7 @@ holds:
   - source-preserving + Yawn creation contract
   - local observation-question-art proposal chain
   - local observation-art generation contract
+  - dialogue objective compiler and correction operators
 
 receives:
   - lived signals
@@ -39,6 +40,7 @@ questions:
   - what is missing
   - what can move
   - what changed
+  - what objective and structure did the system detect
 
 links:
   - readme.yawn
@@ -50,6 +52,7 @@ links:
   - interface/yawn-capability-tags-v1.yawn
   - interface/new-yawn-v0.1.yawn
   - interface/local-observation-art-v0.1.yawn
+  - interface/objective-compiler.yawn
 
 proof:
   source:

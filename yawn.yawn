@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: repository-manifest
 status: active
-updated: 2026-08-17
+updated: 2026-08-25
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -25,7 +25,7 @@ official_runtime:
 summary: >
   .yawn is an open protocol for inspectable orientation and agency: attributed
   fields, provisional arenas, durable Yawns, causal turns, bounded authority,
-  proof, and replayable state.
+  principal-owned objectives, bounded Yawn.bots, proof, and replayable state.
 
 canonical_sentence: >
   .yawn does not contain reality. It makes an agent's orientation toward part
@@ -42,6 +42,7 @@ protocol_status:
   contracts_v1: stable
   state_substrate_v1: stable
   agency_holarchy_0_2: working-draft
+  objective_holon_0_1: working-draft
   unified_human_document: not-yet-specified
 
 root_loop:
@@ -90,6 +91,7 @@ core_links:
   holarchy: core/holarchy.yawn
   turn: core/turn.yawn
   routing: core/routing.yawn
+  objective_holon: core/objective-holon.yawn
   projection_and_aperture: core/projection-and-aperture.yawn
 
 schema_links:
@@ -105,6 +107,7 @@ schema_links:
   state_update_v1: schemas/state-update.v1.schema.json
   living_snapshot_v1: schemas/living-snapshot.v1.schema.json
   agency_holarchy_draft_0_2: schemas/agency-holarchy.v0.2.schema.json
+  objective_holon_draft_0_1: schemas/objective-holon.v0.1.schema.json
   contracts_v1: contracts/schemas/yawn-contracts-v1.schema.json
 
 spec_links:
@@ -113,6 +116,7 @@ spec_links:
   holarchy: spec/holarchy.md
   turns: spec/turns.md
   routing: spec/routing.md
+  objective_holons: spec/objective-holons.md
   questions: spec/questions.md
   serialization: spec/serialization.md
 
@@ -143,6 +147,8 @@ interface_links:
   move: interface/move.yawn
   memory: interface/memory.yawn
   projection_stack: interface/projection-stack.yawn
+  new_yawn: interface/new-yawn-v0.1.yawn
+  objective_compiler: interface/objective-compiler.yawn
 
 question_links:
   doorway: questions/node.yawn
@@ -236,6 +242,7 @@ template_links:
   turn: templates/turn.yawn
   routing_proposal: templates/routing-proposal.yawn
   structural_change_receipt: templates/structural-change-receipt.yawn
+  objective_holon: templates/objective-holon.yawn
 
 example_links:
   stuck: examples/stuck.yawn
@@ -252,6 +259,7 @@ example_links:
   waiting_turn: examples/waiting-turn.yawn
   conversation_import_routing: examples/conversation-import-routing.yawn
   merge_split_routing: examples/merge-split-routing.yawn
+  dave_good_dad_objective_holon: examples/dave-good-dad-objective-holon.yawn
 
 fixture_links:
   node: fixtures/node.yawn
@@ -259,6 +267,7 @@ fixture_links:
   optional_target_yawns_v1: fixtures/optional-target-yawns.v1.json
   multi_principal_family_v1: fixtures/multi-principal-family.v1.json
   agency_holarchy_draft_0_2: fixtures/agency-holarchy.v0.2.json
+  dave_good_dad_objective_holon_draft_0_1: fixtures/dave-good-dad-objective-holon.v0.1.json
 
 governance_links:
   governance: GOVERNANCE.md
@@ -272,6 +281,7 @@ governance_links:
   citation: CITATION.cff
   rfcs: rfcs/README.md
   agency_holarchy_rfc: rfcs/0001-agency-holarchy-working-draft.md
+  objective_holon_rfc: rfcs/0003-objective-holon-and-yawn-bot-lifecycle.md
   decisions: adr/README.md
 
 agent_links:
@@ -306,6 +316,13 @@ question_packet_rule: >
   Questions are projections over the ontology, not the ontology. A question
   packet maps plain-language answers into attributed semantic records and turns
   skipped answers into visible lacunae rather than invented content.
+
+objective_compiler_rule: >
+  Dialogue is a programming surface. Preserve the source; expose typed
+  detections and structural consequences; keep objective candidate,
+  ratification, objective Yawn, sleeping bot, activation, and effect authority
+  as separate records. The root .yawn routes objective holons as an alignment
+  bridge rather than owning every objective.
 
 folder_node_rule: >
   Every active folder is a knowledge node and mental-model node. Each active
@@ -374,6 +391,9 @@ boundary:
   - only authorized events update canonical materialized state
   - only suitable evidence or proof upgrades empirical claims
   - desire cannot authorize action
+  - confidence cannot ratify an objective
+  - objective ratification cannot activate a bot or authorize an effect
+  - child bots do not inherit truth consent privacy confidence proof or authority
   - a move cannot mark itself successful
   - transcript normalization cannot change semantic identity or authority
 

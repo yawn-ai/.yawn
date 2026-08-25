@@ -72,6 +72,46 @@ permissions, provenance, proof, or human judgment.
 - Grünwald (2000), “Model selection based on minimum description length”:
   <https://pubmed.ncbi.nlm.nih.gov/11151565/>
 
+## Goal networks and hierarchical action
+
+Goal Systems Theory represents goals and their means as a network: one goal can
+have several means, one means can serve several goals, and activation can move
+through those relations. YAWN uses this as support for objective holons that can
+coordinate multiple goals and connect laterally rather than flattening every
+direction into one assistant queue.
+
+The options framework in hierarchical reinforcement learning models bounded,
+temporally extended courses of action with their own initiation and termination
+conditions. It is a useful engineering analogy for delegated worker bots and
+proof-bounded turns. It is not evidence that human purposes are reward
+functions, that a bot owns its principal's objective, or that software agents
+have human-like experience.
+
+- Kruglanski et al. (2002), “A theory of goal systems”:
+  <https://doi.org/10.1016/S0065-2601(02)80008-9>
+- Sutton, Precup, and Singh (1999), “Between MDPs and semi-MDPs: A framework
+  for temporal abstraction in reinforcement learning”:
+  <https://doi.org/10.1016/S0004-3702(99)00052-1>
+
+## Choice architecture and adaptive disclosure
+
+Choice architecture affects decisions through both the structure of the choice
+task and the way options and attributes are described. Classic
+choice-reaction experiments also connect response time to the information or
+uncertainty in the alternatives under controlled conditions.
+
+YAWN therefore ranks currently valid operations only after authority, privacy,
+provenance, structural-fit, and proof gates; foregrounds a few high-value paths;
+shows the data-model consequence of each; and preserves correction and access
+to the rest. The limit of three suggested structural paths is a product
+heuristic to test, not a universal cognitive law. Probability ranks proposals;
+it does not establish the person's objective or authorize an operation.
+
+- Johnson et al. (2012), “Beyond nudges: Tools of a choice architecture”:
+  <https://doi.org/10.1007/s11002-012-9186-1>
+- Hick (1952), “On the rate of gain of information”:
+  <https://doi.org/10.1080/17470215208416600>
+
 ## Claim discipline
 
 When describing the project, use these labels:

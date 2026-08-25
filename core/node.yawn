@@ -2,7 +2,7 @@ id: core/node
 title: "core node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-13
+updated: 2026-08-25
 
 purpose: >
   Hold the public core concepts for understanding and using .yawn.
@@ -27,6 +27,7 @@ holds:
   - Yawn holarchy and typed relations
   - asynchronous turns and causal time
   - arena discovery and structural routing
+  - objective holons and Yawn.bot activation
   - projection and aperture boundaries
 
 receives:
@@ -46,6 +47,7 @@ questions:
   - what does proof protect
   - what arena is the smallest adequate cut
   - when should a signal attach, nest, link, merge, split, or remain held
+  - when should an objective receive its own Yawn and sleeping bot
 
 links:
   - readme.yawn
@@ -63,6 +65,7 @@ links:
   - core/holarchy.yawn
   - core/turn.yawn
   - core/routing.yawn
+  - core/objective-holon.yawn
   - core/projection-and-aperture.yawn
 
 proof:

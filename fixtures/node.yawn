@@ -1,16 +1,17 @@
 id: fixtures/node
-title: "state-substrate fixtures"
+title: "protocol fixtures"
 kind: contract-node
 status: active-mixed
-updated: 2026-08-13
+updated: 2026-08-25
 
-purpose: "Hold executable examples for schema, reducer, optional-target, and multi-principal invariants."
+purpose: "Hold executable examples for schema, reducer, holarchy, objective, and multi-principal invariants."
 
 holds:
   - canonical-contracts.v1.json
   - optional-target-yawns.v1.json
   - multi-principal-family.v1.json
   - agency-holarchy.v0.2.json
+  - dave-good-dad-objective-holon.v0.1.json
 
 coverage:
   - versioned canonical interfaces
@@ -23,6 +24,7 @@ coverage:
   - nested Yawns with one primary parent and typed relations
   - asynchronous waiting, resume conditions, causal events, and transitions
   - routing hard gates and authorized structural-change receipts
+  - typed objective detection, ratification, sleeping bot binding, and explicit activation
 
 proof:
   command: "npm test"

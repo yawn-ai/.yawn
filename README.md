@@ -185,6 +185,36 @@ permission.
 
 [Holarchy →](spec/holarchy.md) · [Routing →](spec/routing.md)
 
+## Objectives become holons; bots steward them
+
+A source signal can reveal a durable objective without immediately becoming a
+goal, instruction, or active agent. YAWN compiles the signal into typed,
+source-preserved detections; proposes the objective and its place in the
+holarchy; and waits for the principal to confirm, reject, correct, or add more.
+
+For example, “I want to be a good dad” may become the ratified objective
+`Dave/good-dad`. A dedicated Yawn then holds that objective, its relationships,
+boundaries, lacunae, and proof policy. A separate Yawn.bot can steward the
+contract after explicit activation. The root `.yawn` is the alignment bridge:
+it routes and relates objective holons rather than acting as one assistant that
+owns them all.
+
+```text
+signal → detections → objective candidate → ratification
+  → objective Yawn → sleeping Yawn.bot → activation → proof + replay
+```
+
+The default interface shows the compiled data model in concise protocol
+language, keeps correction controls available, and foregrounds no more than
+three ranked structural paths. A score says whether it is a heuristic or an
+estimated posterior; neither is ratification. Personality is optional
+programmed projection data. Child bots may
+receive selected structural context, but never silently inherit truth, consent,
+privacy, confidence, proof, identity, agreement, or effect authority.
+
+[Objective holons →](spec/objective-holons.md) ·
+[Dave / good dad →](examples/dave-good-dad-objective-holon.yawn)
+
 ## Agent Arena and open turns
 
 Agent Arena is the vivid, game-readable view: nested arenas, available moves,
@@ -241,8 +271,10 @@ The repository currently has two preserved v1 modules:
   update modules.
 
 Agency Holarchy 0.2 is an additive working draft covering arenas, Yawns,
-relations, turns, routing, and structural receipts. Neither v1 module is
-marketed as the complete schema for every human-readable `.yawn` file.
+relations, turns, routing, and structural receipts. Objective Holon 0.1 adds
+typed objective compilation, ratification, Yawn.bot binding, and activation.
+Neither v1 module is marketed as the complete schema for every human-readable
+`.yawn` file.
 
 These local commands are the primary proof path. GitHub Actions may run the
 same checks as a secondary witness; runner or billing unavailability is not a
@@ -264,6 +296,7 @@ test failure and cannot replace a commit-bound local result.
 | Import a long conversation archive | [Conversation routing](examples/conversation-import-routing.yawn) |
 | Generate observation art locally | [Local observation-art contract](interface/local-observation-art-v0.1.yawn) |
 | Understand merge vs. link vs. split | [Routing example](examples/merge-split-routing.yawn) |
+| See one objective become a Yawn.bot | [Dave / good dad](examples/dave-good-dad-objective-holon.yawn) |
 | Explore unresolved questions | [Q-Space](q-space/) |
 | Understand the evidence boundary | [Research basis](docs/research-basis.md) |
 | Navigate the whole repository | [Documentation hub](docs/) |

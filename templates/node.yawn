@@ -2,7 +2,7 @@ id: templates/node
 title: "templates node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-13
+updated: 2026-08-25
 
 purpose: >
   Hold reusable .yawn shapes that people and agents can copy without learning
@@ -28,6 +28,7 @@ holds:
   - asynchronous turn template
   - structural routing proposal template
   - structural change receipt template
+  - objective holon template
 
 receives:
   - repeated movement patterns
@@ -48,7 +49,9 @@ canonical_rule: >
   possible, possible_kind, and measurement fields are compatibility aliases.
   Draft 0.2 templates keep arena, one primary parent, typed lateral relations,
   asynchronous turns, routing proposals, and authorized structural receipts
-  distinct. No current human template is marketed as the complete .yawn schema.
+  distinct. Objective Holon 0.1 also keeps candidate, ratification, Yawn, bot,
+  and activation distinct. No current human template is marketed as the
+  complete .yawn schema.
 
 questions:
   - what shape should this yawn use
@@ -69,6 +72,7 @@ links:
   - templates/turn.yawn
   - templates/routing-proposal.yawn
   - templates/structural-change-receipt.yawn
+  - templates/objective-holon.yawn
   - schemas/node.yawn
 
 related_question_packets:
@@ -90,4 +94,5 @@ proof:
     - templates/turn.yawn
     - templates/routing-proposal.yawn
     - templates/structural-change-receipt.yawn
+    - templates/objective-holon.yawn
   status: seed-backed

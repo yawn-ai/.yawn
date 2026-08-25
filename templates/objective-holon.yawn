@@ -1,0 +1,64 @@
+schema_version: objective-holon.v0.1
+
+source:
+  refs: []
+  preserved_signal: ""
+
+compile_projection:
+  detections: []
+  correction_operators: [confirm, reject, correct, add_more]
+  proposed_operations: []
+  status: proposed
+
+objective_candidate:
+  principal_ref: ""
+  statement: ""
+  mode: maintain
+  horizon: ongoing
+  purpose_hypothesis: ""
+  confidence: 0.0
+  source_refs: []
+  proposed_parent_yawn_ref: ""
+  proposed_yawn_ref: ""
+  proposed_bot_ref: ""
+  independence_reasons: []
+
+ratification:
+  decision: held # accepted | rejected | corrected | held
+  authorized_by: ""
+  receipt_ref: ""
+
+objective:
+  objective_ref: ""
+  principal_ref: ""
+  statement: ""
+  purpose: ""
+  mode: maintain
+  horizon: ongoing
+  guardrails: []
+  progress_signals: []
+  status: proposed
+
+yawn:
+  yawn_ref: ""
+  primary_parent_yawn_ref: ""
+  arena_ref: ""
+  primary_objective_ref: ""
+  lacuna: ""
+  proof_policy_ref: ""
+
+yawn_bot:
+  bot_ref: ""
+  parent_bot_ref: ""
+  role: objective_steward
+  lifecycle_state: sleeping
+  personality_profile_ref: null
+  context_refs: []
+  relationship_refs: []
+  authority_grant_refs: []
+  activation_receipt_refs: []
+
+proof_boundary: >
+  Evidence may support or weaken a bounded progress claim. It does not prove a
+  person's identity, moral worth, or permanent completion of an ongoing
+  objective.

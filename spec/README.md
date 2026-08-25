@@ -1,7 +1,7 @@
 # YAWN specification
 
 Status: **Working Draft 0.2**
-Last updated: 2026-08-13
+Last updated: 2026-08-25
 
 This directory is the human-readable specification for `.yawn`: an open
 protocol for inspectable orientation and agency.
@@ -21,13 +21,14 @@ It does not claim that the record is the world.
 | Observation proposals | Source-bound open Question, Art Brief, local candidate, and attributed Projection feedback | [`question-proposal.v1`](../schemas/question-proposal.v1.schema.json) and related v1 schemas |
 | Delegated execution | Owner/delegate relationship, exact effect signatures, reusable policy proposals, reconciliation batches, and consequence receipts | [`execution-relationship.v1`](../schemas/execution-relationship.v1.schema.json) and related v1 schemas |
 | Agency holarchy | Arena, Yawn, relation, turn, routing, and structural change | [Draft 0.2 schema](../schemas/agency-holarchy.v0.2.schema.json) |
+| Objective holons | Detection, ratification, objective Yawn, Yawn.bot, and activation | [Draft 0.1 schema](../schemas/objective-holon.v0.1.schema.json) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
 | View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
 
-The v1 contracts are not silently redefined by this draft. Draft 0.2 is an
-additive candidate for a future unified protocol. Where prose and an executable
-schema disagree, treat that as a lacuna and open an issue; do not invent a
-silent reconciliation.
+The v1 contracts are not silently redefined by these drafts. Agency Holarchy
+0.2 and Objective Holon 0.1 are additive candidates for a future unified
+protocol. Where prose and an executable schema disagree, treat that as a lacuna
+and open an issue; do not invent a silent reconciliation.
 
 ## Normative core
 
@@ -52,6 +53,8 @@ can be tested.
 9. Every merge, split, or reparent operation MUST begin as a proposal and, when
    accepted, produce an authorized receipt that preserves provenance.
 10. The world MUST NOT be serialized as if the model exhausts reality.
+11. Detection MUST NOT become a ratified objective, and objective ratification
+    MUST NOT become bot activation or effect authority, by inference.
 
 ## Read the specification
 
@@ -59,6 +62,7 @@ can be tested.
 - [Holarchy](holarchy.md): containment, lateral relations, and inheritance
 - [Turns](turns.md): causal episodes, waiting, handoff, and replay
 - [Routing](routing.md): attach, create, link, merge, split, and hold
+- [Objective holons](objective-holons.md): compile, ratify, bind, activate, and spawn
 - [Nine questions](questions.md): the human orientation projection
 - [Serialization](serialization.md): identifiers, extensions, time, and hashes
 - [Observation schema](../schemas/observation.v1.schema.json): source-backed state valid before Yawn promotion

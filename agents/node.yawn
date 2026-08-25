@@ -2,7 +2,7 @@ id: agents/node
 title: "agents node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-07-11
+updated: 2026-08-25
 
 purpose: >
   Hold the public mental model for AI agents working inside a YAWN space.
@@ -18,6 +18,7 @@ holds:
   - allowed help
   - blocked hidden authority
   - access recording expectations
+  - root steward, objective steward, and worker lifecycle roles
 
 receives:
   - readme.yawn
@@ -40,6 +41,7 @@ questions:
   - what can yawn.bot never do
   - what can an agent safely infer
   - what must remain human-authorized
+  - which objective this bot is bound to and whether it is sleeping or active
 
 links:
   - agents/orientation.yawn
@@ -50,6 +52,7 @@ links:
   - agents/contributor-architecture.yawn
   - templates/agent-handoff.yawn
   - records/llm-access.yawn
+  - core/objective-holon.yawn
 
 proof:
   source:

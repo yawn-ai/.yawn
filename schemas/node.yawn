@@ -2,7 +2,7 @@ id: schemas/node
 title: "schema modules"
 kind: schema-index
 status: active
-updated: 2026-08-13
+updated: 2026-08-25
 
 purpose: >
   Hold machine-valid state-substrate modules and explicitly labeled protocol
@@ -34,6 +34,7 @@ holds:
   - reconciliation-batch.v1.schema.json
   - action-receipt.v1.schema.json
   - agency-holarchy.v0.2.schema.json
+  - objective-holon.v0.1.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
@@ -43,8 +44,9 @@ compatibility: >
 module_boundary: >
   The @yawn/contracts package is the stable v1 constitution/runtime bundle.
   These root schemas are the parallel state-substrate v1 modules plus the
-  experimental Agency Holarchy 0.2 aggregate. Neither surface is described as
-  the complete schema for every human-readable .yawn file.
+  experimental Agency Holarchy 0.2 and Objective Holon 0.1 aggregates. Neither
+  surface is described as the complete schema for every human-readable .yawn
+  file.
 
 observation_boundary: >
   Observation V1 is an accepted source-backed record that remains valid
@@ -71,6 +73,11 @@ agency_holarchy_draft: >
   Draft 0.2 adds provider-neutral arena boundaries, one-parent holarchy,
   lateral relations, asynchronous turns, transitions, proof receipts, routing
   proposals, and structural-change receipts without redefining v1.
+
+objective_holon_draft: >
+  Draft 0.1 separates typed objective detection, principal ratification,
+  objective-holding Yawns, sleeping bot bindings, activation receipts, and
+  effect authority without redefining v1 or Agency Holarchy 0.2.
 
 status_rule: >
   Modal, motivational, epistemic, lifecycle, authority, loop,

@@ -2,9 +2,9 @@ id: interface/mirror
 title: "/mirror"
 kind: cognition-handle
 status: v0-seed
-updated: 2026-08-17
+updated: 2026-08-25
 
-function: "pause and show what is here"
+function: "compile the present signal into an inspectable, correctable data-model projection"
 
 asks:
   - what has attention
@@ -13,11 +13,22 @@ asks:
   - what is known versus interpreted
 
 output:
+  source_preserved_signal: ""
   current_signal: ""
-  known_facts: []
-  interpretations: []
+  typed_detections: []
+  proposed_objective_candidates: []
+  proposed_structure: []
+  correction_operators: [confirm, reject, correct, add_more, split, link, hold]
   body_signal: ""
   open_questions: []
+
+default_voice:
+  mode: concise-protocol
+  personality_profile_ref: null
+
+boundary:
+  - "A detection is not a ratified objective."
+  - "A ratified objective is not bot activation or effect authority."
 
 proof:
   source:

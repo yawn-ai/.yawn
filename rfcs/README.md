@@ -33,3 +33,4 @@ in doubt, open an issue before assigning an RFC number.
 
 - [RFC 0001: Agency Holarchy Working Draft 0.2](0001-agency-holarchy-working-draft.md) — proposed
 - [RFC 0002: Inquiry Aperture — One Question Face](0002-inquiry-aperture-one-question-face.md) — proposed / owner review required
+- [RFC 0003: Objective holons and Yawn.bot lifecycle](0003-objective-holon-and-yawn-bot-lifecycle.md) — proposed

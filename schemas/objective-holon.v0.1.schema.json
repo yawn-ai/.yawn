@@ -1,0 +1,532 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/objective-holon.v0.1.schema.json",
+  "title": "YAWN Objective Holon Working Draft 0.1",
+  "description": "An additive contract for compiling dialogue into objective candidates, principal ratification, objective-holding Yawns, and explicitly activated Yawn.bot stewards.",
+  "$comment": "This module references Agent, Agent Space, Arena, Yawn, source, relationship, policy, and grant identifiers governed by other YAWN layers. It does not redefine stable V1 or Agency Holarchy 0.2.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "documentId",
+    "rootAlignment",
+    "compileProjections",
+    "objectiveCandidates",
+    "objectives",
+    "yawnBots",
+    "ratificationReceipts",
+    "activationReceipts",
+    "extensions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "objective-holon.v0.1" },
+    "documentId": { "$ref": "#/$defs/Identifier" },
+    "rootAlignment": { "$ref": "#/$defs/RootAlignment" },
+    "compileProjections": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/CompileProjection" }
+    },
+    "objectiveCandidates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ObjectiveCandidate" }
+    },
+    "objectives": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Objective" }
+    },
+    "yawnBots": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/YawnBot" }
+    },
+    "ratificationReceipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/RatificationReceipt" }
+    },
+    "activationReceipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ActivationReceipt" }
+    },
+    "extensions": { "$ref": "#/$defs/ExtensionBag" }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$"
+    },
+    "ReferenceArray": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Identifier" },
+      "uniqueItems": true
+    },
+    "ExtensionBag": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)+(?:/[A-Za-z0-9._~-]+)?$"
+      },
+      "additionalProperties": true
+    },
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorRef", "role", "producedAt", "extensions"],
+      "properties": {
+        "actorRef": { "$ref": "#/$defs/Identifier" },
+        "role": { "enum": ["human", "ai", "tool", "system"] },
+        "producedAt": { "$ref": "#/$defs/Timestamp" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ObjectiveMode": {
+      "enum": ["attain", "maintain", "restore", "prevent", "avoid", "understand", "decide", "reconcile", "hold_open"]
+    },
+    "ObjectiveHorizon": {
+      "enum": ["finite", "ongoing", "open"]
+    },
+    "RootAlignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agentSpaceRef",
+        "principalRef",
+        "rootYawnRef",
+        "rootBotRef",
+        "valueRefs",
+        "boundaryRefs",
+        "relationshipRefs",
+        "authorityRootRefs",
+        "inheritancePolicy",
+        "extensions"
+      ],
+      "properties": {
+        "agentSpaceRef": { "$ref": "#/$defs/Identifier" },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "rootYawnRef": { "$ref": "#/$defs/Identifier" },
+        "rootBotRef": { "$ref": "#/$defs/Identifier" },
+        "valueRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "boundaryRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "relationshipRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "authorityRootRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "inheritancePolicy": {
+          "const": "context_may_be_proposed; truth_identity_agreement_consent_privacy_confidence_proof_and_authority_require_explicit_records"
+        },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "Detection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["detectionId", "kind", "label", "value", "epistemicStatus", "confidence", "sourceRefs", "producedBy", "extensions"],
+      "properties": {
+        "detectionId": { "$ref": "#/$defs/Identifier" },
+        "kind": {
+          "enum": ["agent", "principal", "observation", "relationship", "desire", "value", "objective_candidate", "arena", "lacuna", "constraint", "boundary", "affordance", "proof_condition"]
+        },
+        "label": { "$ref": "#/$defs/Identifier" },
+        "value": { "$ref": "#/$defs/Identifier" },
+        "epistemicStatus": { "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": {
+          "allOf": [
+            { "$ref": "#/$defs/ReferenceArray" },
+            { "type": "array", "minItems": 1 }
+          ]
+        },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "CompileProjection": {
+      "type": "object",
+      "description": "A source-preserving, correctable projection of the parser's current data model. It is not canonical state.",
+      "additionalProperties": false,
+      "required": ["compileProjectionId", "sourceRefs", "detections", "objectiveCandidateRefs", "correctionOperators", "proposedOperations", "status", "producedBy", "extensions"],
+      "properties": {
+        "compileProjectionId": { "$ref": "#/$defs/Identifier" },
+        "sourceRefs": {
+          "allOf": [
+            { "$ref": "#/$defs/ReferenceArray" },
+            { "type": "array", "minItems": 1 }
+          ]
+        },
+        "detections": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Detection" }
+        },
+        "objectiveCandidateRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "correctionOperators": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["confirm", "reject", "correct", "add_more", "split", "link", "hold"]
+          },
+          "allOf": [
+            { "contains": { "const": "confirm" } },
+            { "contains": { "const": "reject" } },
+            { "contains": { "const": "correct" } },
+            { "contains": { "const": "add_more" } }
+          ]
+        },
+        "proposedOperations": {
+          "type": "array",
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/ProposedOperation" }
+        },
+        "status": { "const": "proposed" },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ProposedOperation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operationId", "kind", "rank", "rankingScore", "scoreKind", "hardGateStatus", "consequence", "basisDetectionRefs", "requiresConfirmation", "extensions"],
+      "properties": {
+        "operationId": { "$ref": "#/$defs/Identifier" },
+        "kind": {
+          "enum": ["attach_to_existing_yawn", "create_objective_holon", "create_child_worker", "create_sibling", "link_yawns", "propose_merge", "propose_split", "hold"]
+        },
+        "rank": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "rankingScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "scoreKind": { "enum": ["heuristic", "estimated_posterior"] },
+        "hardGateStatus": { "enum": ["passed", "requires_review"] },
+        "consequence": { "$ref": "#/$defs/Identifier" },
+        "basisDetectionRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "requiresConfirmation": { "const": true },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ObjectiveCandidate": {
+      "type": "object",
+      "description": "A machine-attributed interpretation of a possible principal-owned direction. Confidence never ratifies it.",
+      "additionalProperties": false,
+      "required": [
+        "objectiveCandidateId",
+        "principalRef",
+        "statement",
+        "mode",
+        "horizon",
+        "purposeHypothesis",
+        "confidence",
+        "sourceRefs",
+        "proposedParentYawnRef",
+        "proposedYawnRef",
+        "proposedBotRef",
+        "independenceReasons",
+        "status",
+        "producedBy",
+        "extensions"
+      ],
+      "properties": {
+        "objectiveCandidateId": { "$ref": "#/$defs/Identifier" },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "statement": { "$ref": "#/$defs/Identifier" },
+        "mode": { "$ref": "#/$defs/ObjectiveMode" },
+        "horizon": { "$ref": "#/$defs/ObjectiveHorizon" },
+        "purposeHypothesis": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": {
+          "allOf": [
+            { "$ref": "#/$defs/ReferenceArray" },
+            { "type": "array", "minItems": 1 }
+          ]
+        },
+        "proposedParentYawnRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "proposedYawnRef": { "$ref": "#/$defs/Identifier" },
+        "proposedBotRef": { "$ref": "#/$defs/Identifier" },
+        "independenceReasons": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["distinct_objective", "distinct_principal", "distinct_participants", "distinct_relationships", "distinct_time_horizon", "distinct_authority", "distinct_privacy", "distinct_proof_loop", "distinct_causal_lifecycle", "explicit_human_request"]
+          }
+        },
+        "status": { "const": "proposed" },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "Objective": {
+      "type": "object",
+      "description": "A principal-ratified direction that can coordinate many goals and turns. Progress evidence does not prove identity or moral worth.",
+      "additionalProperties": false,
+      "required": [
+        "objectiveId",
+        "principalRef",
+        "statement",
+        "purpose",
+        "mode",
+        "horizon",
+        "guardrails",
+        "progressSignals",
+        "derivedFromCandidateRef",
+        "status",
+        "ratifiedBy",
+        "ratifiedAt",
+        "extensions"
+      ],
+      "properties": {
+        "objectiveId": { "$ref": "#/$defs/Identifier" },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "statement": { "$ref": "#/$defs/Identifier" },
+        "purpose": { "$ref": "#/$defs/Identifier" },
+        "mode": { "$ref": "#/$defs/ObjectiveMode" },
+        "horizon": { "$ref": "#/$defs/ObjectiveHorizon" },
+        "guardrails": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Identifier" }
+        },
+        "progressSignals": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Identifier" }
+        },
+        "derivedFromCandidateRef": { "$ref": "#/$defs/Identifier" },
+        "status": { "enum": ["ratified", "paused", "retired", "revoked"] },
+        "ratifiedBy": { "$ref": "#/$defs/Identifier" },
+        "ratifiedAt": { "$ref": "#/$defs/Timestamp" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "ContextInheritance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contextRefs", "sourceRefs", "relationshipRefs", "exclusions", "extensions"],
+      "properties": {
+        "contextRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "sourceRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "relationshipRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "exclusions": {
+          "type": "array",
+          "minItems": 8,
+          "uniqueItems": true,
+          "items": { "enum": ["truth", "identity", "agreement", "consent", "privacy", "confidence", "effect_authority", "proof"] }
+        },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "SpawnPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mayProposeChildren", "newChildrenBegin", "activationRequiresPrincipalAuthorization", "authorityInheritance", "extensions"],
+      "properties": {
+        "mayProposeChildren": { "type": "boolean" },
+        "newChildrenBegin": { "const": "sleeping" },
+        "activationRequiresPrincipalAuthorization": { "const": true },
+        "authorityInheritance": { "const": "explicit_subset_only" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
+    "YawnBot": {
+      "type": "object",
+      "description": "A bounded stewarding agent/runtime bound to a Yawn. The Yawn is the contract; the bot operates inside it.",
+      "additionalProperties": false,
+      "required": [
+        "botId",
+        "yawnRef",
+        "parentBotRef",
+        "principalRef",
+        "objectiveRef",
+        "role",
+        "lifecycleState",
+        "runtimeAgentRef",
+        "personalityProfileRef",
+        "contextInheritance",
+        "authorityGrantRefs",
+        "ratificationReceiptRefs",
+        "activationReceiptRefs",
+        "questionPolicyRef",
+        "memoryPolicyRef",
+        "proofPolicyRef",
+        "spawnPolicy",
+        "producedBy",
+        "extensions"
+      ],
+      "properties": {
+        "botId": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "parentBotRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "objectiveRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "role": { "enum": ["root_steward", "objective_steward", "worker"] },
+        "lifecycleState": { "enum": ["sleeping", "orienting", "active", "waiting", "blocked", "paused", "retired"] },
+        "runtimeAgentRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "personalityProfileRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ],
+          "description": "Null selects concise protocol language. Personality is programmed projection data, not inherent bot identity."
+        },
+        "contextInheritance": { "$ref": "#/$defs/ContextInheritance" },
+        "authorityGrantRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "ratificationReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "activationReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "questionPolicyRef": { "$ref": "#/$defs/Identifier" },
+        "memoryPolicyRef": { "$ref": "#/$defs/Identifier" },
+        "proofPolicyRef": { "$ref": "#/$defs/Identifier" },
+        "spawnPolicy": { "$ref": "#/$defs/SpawnPolicy" },
+        "producedBy": { "$ref": "#/$defs/Producer" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "role": { "enum": ["objective_steward", "worker"] } },
+            "required": ["role"]
+          },
+          "then": {
+            "properties": { "objectiveRef": { "$ref": "#/$defs/Identifier" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "lifecycleState": { "enum": ["orienting", "active", "waiting", "blocked", "paused"] } },
+            "required": ["lifecycleState"]
+          },
+          "then": {
+            "properties": {
+              "authorityGrantRefs": { "type": "array", "minItems": 1 },
+              "activationReceiptRefs": { "type": "array", "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "lifecycleState": { "const": "sleeping" } },
+            "required": ["lifecycleState"]
+          },
+          "then": {
+            "properties": {
+              "authorityGrantRefs": { "type": "array", "maxItems": 0 },
+              "activationReceiptRefs": { "type": "array", "maxItems": 0 }
+            }
+          }
+        }
+      ]
+    },
+    "RatificationReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ratificationReceiptId", "objectiveCandidateRef", "decision", "objectiveRef", "yawnRef", "botRef", "principalRef", "authorizedBy", "corrections", "recordedAt", "extensions"],
+      "properties": {
+        "ratificationReceiptId": { "$ref": "#/$defs/Identifier" },
+        "objectiveCandidateRef": { "$ref": "#/$defs/Identifier" },
+        "decision": { "enum": ["accepted", "rejected", "corrected", "held"] },
+        "objectiveRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "yawnRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "botRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "authorizedBy": { "$ref": "#/$defs/Identifier" },
+        "corrections": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Identifier" }
+        },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "decision": { "const": "accepted" } },
+            "required": ["decision"]
+          },
+          "then": {
+            "properties": {
+              "objectiveRef": { "$ref": "#/$defs/Identifier" },
+              "yawnRef": { "$ref": "#/$defs/Identifier" },
+              "botRef": { "$ref": "#/$defs/Identifier" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "decision": { "enum": ["rejected", "held"] } },
+            "required": ["decision"]
+          },
+          "then": {
+            "properties": {
+              "objectiveRef": { "type": "null" },
+              "yawnRef": { "type": "null" },
+              "botRef": { "type": "null" }
+            }
+          }
+        }
+      ]
+    },
+    "ActivationReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["activationReceiptId", "botRef", "yawnRef", "objectiveRef", "fromState", "toState", "principalRef", "authorityGrantRefs", "authorizedBy", "recordedAt", "extensions"],
+      "properties": {
+        "activationReceiptId": { "$ref": "#/$defs/Identifier" },
+        "botRef": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "objectiveRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ]
+        },
+        "fromState": { "enum": ["sleeping", "paused"] },
+        "toState": { "const": "active" },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "authorityGrantRefs": {
+          "allOf": [
+            { "$ref": "#/$defs/ReferenceArray" },
+            { "type": "array", "minItems": 1 }
+          ]
+        },
+        "authorizedBy": { "$ref": "#/$defs/Identifier" },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    }
+  }
+}

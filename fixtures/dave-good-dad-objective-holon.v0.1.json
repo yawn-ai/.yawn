@@ -1,0 +1,323 @@
+{
+  "schemaVersion": "objective-holon.v0.1",
+  "documentId": "document:dave-good-dad-objective-holon",
+  "rootAlignment": {
+    "agentSpaceRef": "agent-space:dave",
+    "principalRef": "principal:dave",
+    "rootYawnRef": "yawn:dave:root",
+    "rootBotRef": "bot:dave:root",
+    "valueRefs": ["value:dave:family"],
+    "boundaryRefs": ["boundary:dave:human-authorship"],
+    "relationshipRefs": ["relationship:dave:sophia", "relationship:dave:jace"],
+    "authorityRootRefs": ["authority:dave:root"],
+    "inheritancePolicy": "context_may_be_proposed; truth_identity_agreement_consent_privacy_confidence_proof_and_authority_require_explicit_records",
+    "extensions": {}
+  },
+  "compileProjections": [
+    {
+      "compileProjectionId": "compile:dave:good-dad:1",
+      "sourceRefs": ["signal:dave:good-dad:1"],
+      "detections": [
+        {
+          "detectionId": "detection:dave:principal",
+          "kind": "principal",
+          "label": "Principal",
+          "value": "Dave",
+          "epistemicStatus": "reported",
+          "confidence": 1,
+          "sourceRefs": ["signal:dave:good-dad:1"],
+          "producedBy": {
+            "actorRef": "agent:yawn:root",
+            "role": "ai",
+            "producedAt": "2026-08-25T20:00:00Z",
+            "extensions": {}
+          },
+          "extensions": {}
+        },
+        {
+          "detectionId": "detection:dave:desire:good-dad",
+          "kind": "desire",
+          "label": "Desire",
+          "value": "Be a good dad",
+          "epistemicStatus": "reported",
+          "confidence": 1,
+          "sourceRefs": ["signal:dave:good-dad:1"],
+          "producedBy": {
+            "actorRef": "principal:dave",
+            "role": "human",
+            "producedAt": "2026-08-25T20:00:00Z",
+            "extensions": {}
+          },
+          "extensions": {}
+        },
+        {
+          "detectionId": "detection:dave:objective-candidate:good-dad",
+          "kind": "objective_candidate",
+          "label": "Objective candidate",
+          "value": "Dave / good dad",
+          "epistemicStatus": "inferred",
+          "confidence": 0.93,
+          "sourceRefs": ["signal:dave:good-dad:1"],
+          "producedBy": {
+            "actorRef": "agent:yawn:root",
+            "role": "ai",
+            "producedAt": "2026-08-25T20:00:01Z",
+            "extensions": {}
+          },
+          "extensions": {}
+        },
+        {
+          "detectionId": "detection:dave:arena:family",
+          "kind": "arena",
+          "label": "Arena",
+          "value": "Dave family relationships and parenting situations",
+          "epistemicStatus": "inferred",
+          "confidence": 0.78,
+          "sourceRefs": ["signal:dave:good-dad:1"],
+          "producedBy": {
+            "actorRef": "agent:yawn:root",
+            "role": "ai",
+            "producedAt": "2026-08-25T20:00:01Z",
+            "extensions": {}
+          },
+          "extensions": {}
+        },
+        {
+          "detectionId": "detection:dave:lacuna:good-dad",
+          "kind": "lacuna",
+          "label": "Lacuna",
+          "value": "Which observable patterns would count as movement for this ongoing objective?",
+          "epistemicStatus": "inferred",
+          "confidence": 0.72,
+          "sourceRefs": ["signal:dave:good-dad:1"],
+          "producedBy": {
+            "actorRef": "agent:yawn:root",
+            "role": "ai",
+            "producedAt": "2026-08-25T20:00:01Z",
+            "extensions": {}
+          },
+          "extensions": {}
+        }
+      ],
+      "objectiveCandidateRefs": ["objective-candidate:dave:good-dad"],
+      "correctionOperators": ["confirm", "reject", "correct", "add_more"],
+      "proposedOperations": [
+        {
+          "operationId": "operation:dave:good-dad:create-holon",
+          "kind": "create_objective_holon",
+          "rank": 1,
+          "rankingScore": 0.86,
+          "scoreKind": "estimated_posterior",
+          "hardGateStatus": "passed",
+          "consequence": "Create yawn:dave:good-dad under yawn:dave:root and bind bot:dave:good-dad in sleeping state after ratification.",
+          "basisDetectionRefs": ["detection:dave:objective-candidate:good-dad", "detection:dave:arena:family", "detection:dave:lacuna:good-dad"],
+          "requiresConfirmation": true,
+          "extensions": {}
+        },
+        {
+          "operationId": "operation:dave:good-dad:attach-root",
+          "kind": "attach_to_existing_yawn",
+          "rank": 2,
+          "rankingScore": 0.09,
+          "scoreKind": "estimated_posterior",
+          "hardGateStatus": "passed",
+          "consequence": "Keep the signal and candidate in yawn:dave:root without creating an independent objective Yawn.",
+          "basisDetectionRefs": ["detection:dave:objective-candidate:good-dad"],
+          "requiresConfirmation": true,
+          "extensions": {}
+        },
+        {
+          "operationId": "operation:dave:good-dad:hold",
+          "kind": "hold",
+          "rank": 3,
+          "rankingScore": 0.05,
+          "scoreKind": "estimated_posterior",
+          "hardGateStatus": "passed",
+          "consequence": "Preserve the unresolved candidate without creating structure or activating a bot.",
+          "basisDetectionRefs": ["detection:dave:lacuna:good-dad"],
+          "requiresConfirmation": true,
+          "extensions": {}
+        }
+      ],
+      "status": "proposed",
+      "producedBy": {
+        "actorRef": "agent:yawn:root",
+        "role": "ai",
+        "producedAt": "2026-08-25T20:00:01Z",
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "objectiveCandidates": [
+    {
+      "objectiveCandidateId": "objective-candidate:dave:good-dad",
+      "principalRef": "principal:dave",
+      "statement": "Be a good dad.",
+      "mode": "maintain",
+      "horizon": "ongoing",
+      "purposeHypothesis": "Steward how Dave shows up in his relationships with Sophia and Jace.",
+      "confidence": 0.93,
+      "sourceRefs": ["signal:dave:good-dad:1"],
+      "proposedParentYawnRef": "yawn:dave:root",
+      "proposedYawnRef": "yawn:dave:good-dad",
+      "proposedBotRef": "bot:dave:good-dad",
+      "independenceReasons": ["distinct_objective", "distinct_time_horizon", "distinct_participants", "distinct_proof_loop"],
+      "status": "proposed",
+      "producedBy": {
+        "actorRef": "agent:yawn:root",
+        "role": "ai",
+        "producedAt": "2026-08-25T20:00:01Z",
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "objectives": [
+    {
+      "objectiveId": "objective:dave:good-dad",
+      "principalRef": "principal:dave",
+      "statement": "Be a good dad.",
+      "purpose": "Steward how Dave shows up in his relationships with Sophia and Jace.",
+      "mode": "maintain",
+      "horizon": "ongoing",
+      "guardrails": [
+        "Do not reduce another family member to Dave's model of them.",
+        "Do not treat intention or intensity as proof.",
+        "Do not optimize a score in place of the relationships themselves."
+      ],
+      "progressSignals": [
+        "Bounded commitments are kept or honestly repaired.",
+        "Relevant family members can contribute their own attributed perspective.",
+        "Proof receipts record observable outcomes and residual lacunae."
+      ],
+      "derivedFromCandidateRef": "objective-candidate:dave:good-dad",
+      "status": "ratified",
+      "ratifiedBy": "principal:dave",
+      "ratifiedAt": "2026-08-25T20:01:00Z",
+      "extensions": {}
+    }
+  ],
+  "yawnBots": [
+    {
+      "botId": "bot:dave:root",
+      "yawnRef": "yawn:dave:root",
+      "parentBotRef": null,
+      "principalRef": "principal:dave",
+      "objectiveRef": null,
+      "role": "root_steward",
+      "lifecycleState": "active",
+      "runtimeAgentRef": "agent:yawn:root",
+      "personalityProfileRef": null,
+      "contextInheritance": {
+        "contextRefs": ["agent-space:dave"],
+        "sourceRefs": [],
+        "relationshipRefs": [],
+        "exclusions": ["truth", "identity", "agreement", "consent", "privacy", "confidence", "effect_authority", "proof"],
+        "extensions": {}
+      },
+      "authorityGrantRefs": ["authority:dave:root"],
+      "ratificationReceiptRefs": [],
+      "activationReceiptRefs": ["activation:dave:root"],
+      "questionPolicyRef": "question-policy:root-orientation",
+      "memoryPolicyRef": "memory-policy:dave:root",
+      "proofPolicyRef": "proof-policy:dave:root",
+      "spawnPolicy": {
+        "mayProposeChildren": true,
+        "newChildrenBegin": "sleeping",
+        "activationRequiresPrincipalAuthorization": true,
+        "authorityInheritance": "explicit_subset_only",
+        "extensions": {}
+      },
+      "producedBy": {
+        "actorRef": "principal:dave",
+        "role": "human",
+        "producedAt": "2026-08-25T19:00:00Z",
+        "extensions": {}
+      },
+      "extensions": {}
+    },
+    {
+      "botId": "bot:dave:good-dad",
+      "yawnRef": "yawn:dave:good-dad",
+      "parentBotRef": "bot:dave:root",
+      "principalRef": "principal:dave",
+      "objectiveRef": "objective:dave:good-dad",
+      "role": "objective_steward",
+      "lifecycleState": "active",
+      "runtimeAgentRef": "agent:yawn:dave:good-dad",
+      "personalityProfileRef": null,
+      "contextInheritance": {
+        "contextRefs": ["value:dave:family", "boundary:dave:human-authorship"],
+        "sourceRefs": ["signal:dave:good-dad:1"],
+        "relationshipRefs": ["relationship:dave:sophia", "relationship:dave:jace"],
+        "exclusions": ["truth", "identity", "agreement", "consent", "privacy", "confidence", "effect_authority", "proof"],
+        "extensions": {}
+      },
+      "authorityGrantRefs": ["authority:dave:good-dad:orient"],
+      "ratificationReceiptRefs": ["ratification:dave:good-dad"],
+      "activationReceiptRefs": ["activation:dave:good-dad"],
+      "questionPolicyRef": "question-policy:objective-steward",
+      "memoryPolicyRef": "memory-policy:dave:good-dad",
+      "proofPolicyRef": "proof-policy:dave:good-dad",
+      "spawnPolicy": {
+        "mayProposeChildren": true,
+        "newChildrenBegin": "sleeping",
+        "activationRequiresPrincipalAuthorization": true,
+        "authorityInheritance": "explicit_subset_only",
+        "extensions": {}
+      },
+      "producedBy": {
+        "actorRef": "agent:yawn:root",
+        "role": "ai",
+        "producedAt": "2026-08-25T20:01:00Z",
+        "extensions": {}
+      },
+      "extensions": {}
+    }
+  ],
+  "ratificationReceipts": [
+    {
+      "ratificationReceiptId": "ratification:dave:good-dad",
+      "objectiveCandidateRef": "objective-candidate:dave:good-dad",
+      "decision": "accepted",
+      "objectiveRef": "objective:dave:good-dad",
+      "yawnRef": "yawn:dave:good-dad",
+      "botRef": "bot:dave:good-dad",
+      "principalRef": "principal:dave",
+      "authorizedBy": "principal:dave",
+      "corrections": [],
+      "recordedAt": "2026-08-25T20:01:00Z",
+      "extensions": {}
+    }
+  ],
+  "activationReceipts": [
+    {
+      "activationReceiptId": "activation:dave:root",
+      "botRef": "bot:dave:root",
+      "yawnRef": "yawn:dave:root",
+      "objectiveRef": null,
+      "fromState": "sleeping",
+      "toState": "active",
+      "principalRef": "principal:dave",
+      "authorityGrantRefs": ["authority:dave:root"],
+      "authorizedBy": "principal:dave",
+      "recordedAt": "2026-08-25T19:00:00Z",
+      "extensions": {}
+    },
+    {
+      "activationReceiptId": "activation:dave:good-dad",
+      "botRef": "bot:dave:good-dad",
+      "yawnRef": "yawn:dave:good-dad",
+      "objectiveRef": "objective:dave:good-dad",
+      "fromState": "sleeping",
+      "toState": "active",
+      "principalRef": "principal:dave",
+      "authorityGrantRefs": ["authority:dave:good-dad:orient"],
+      "authorizedBy": "principal:dave",
+      "recordedAt": "2026-08-25T20:02:00Z",
+      "extensions": {}
+    }
+  ],
+  "extensions": {}
+}
