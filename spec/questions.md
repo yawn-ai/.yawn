@@ -159,7 +159,7 @@ SHOULD retain:
 ```yaml
 orientation_inquiry:
   question_key: scope
-  exact_rendered_prompt: "What has your attention?"
+  exact_rendered_prompt: "What has your attention, and what episode are we orienting?"
   policy_version: yawn.inquiry-selection.v0.1
   reason_asked: "opening signal capture"
   orientation_revision: 1
