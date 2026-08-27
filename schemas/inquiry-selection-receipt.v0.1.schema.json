@@ -81,7 +81,19 @@
         { "type": "null" }
       ]
     },
-    "candidateQuestionKeys": { "$ref": "#/$defs/QuestionKeys" },
+    "candidateQuestionKeys": {
+      "const": [
+        "scope",
+        "placement",
+        "perspective",
+        "current-state",
+        "intent",
+        "lacuna",
+        "boundary",
+        "movement",
+        "proof"
+      ]
+    },
     "hardGateResults": {
       "type": "array",
       "minItems": 5,

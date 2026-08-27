@@ -608,6 +608,7 @@ test("semantic validation closes candidate, exclusion, and evaluation references
 
   const reorderedCandidates = clone(fixture);
   reorderedCandidates.candidateQuestionKeys = ["proof", "boundary", "movement"];
+  assert.equal(validate(reorderedCandidates), false);
   assert.match(
     validateInquirySelectionReceiptSemantics(reorderedCandidates).join("\n"),
     /candidate_question_keys_must_cover_canonical_universe/,
