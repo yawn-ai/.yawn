@@ -2,6 +2,7 @@ id: question-packets/relationship
 title: "Relationship Yawn Intake"
 kind: question-packet
 status: seed
+updated: 2026-08-27
 
 target_template: templates/relationship.yawn
 mode: draft_populate_only
@@ -16,12 +17,13 @@ defaults:
 rules:
   - "Skipped answers become lacuna.open_questions."
   - "Quotes write to conversation.important_quotes."
-  - "Facts write to measurement.observed or measurement.known."
-  - "Interpretations write to measurement.inferred."
-  - "Desires write to measurement.desired."
-  - "Fears write to measurement.feared."
+  - "Facts write to attributed state_snapshots entries with observed or reported epistemic status."
+  - "Interpretations write to attributed state_snapshots entries with inferred epistemic status."
+  - "Desires write to desires entries and projection_stack.desire_refs."
+  - "Fears write to attributed feared snapshots and projection_stack.fears."
+  - "Each answer path is selective; a fear or partner hypothesis never becomes the principal's desire."
   - "Partner perspective writes to partner_model as possible, not known."
-  - "Partner inner states never write to measurement.known."
+  - "Partner inner states never receive observed or supported status without their attributable source."
   - "Relationship-impacting moves require partner review."
   - "Only authorized events update canonical state; suitable evidence or proof upgrades empirical claims."
 
@@ -31,38 +33,47 @@ questions:
     writes_to:
       - source.raw_material
       - conversation.raw_summary
-      - shared_field.current
+      - state_snapshots[].description
+      - shared_field.state_snapshot_refs
 
   - id: q_quotes
     prompt: "What did each person actually say? Use quotes if possible."
     writes_to:
       - conversation.important_quotes
-      - measurement.observed
+      - state_snapshots[].description
+      - state_snapshots[].epistemic_status
+      - state_snapshots[].source_refs
 
   - id: q_known
     prompt: "What do I know happened?"
     writes_to:
-      - measurement.known
-      - measurement.observed
+      - state_snapshots[].description
+      - state_snapshots[].epistemic_status
+      - state_snapshots[].source_refs
 
   - id: q_inference
     prompt: "What am I inferring or making it mean?"
     writes_to:
       - self_observer.what_i_am_inferring
-      - measurement.inferred
+      - state_snapshots[].description
+      - state_snapshots[].epistemic_status
+      - state_snapshots[].source_refs
 
   - id: q_desire
     prompt: "What do I want?"
     writes_to:
       - self_observer.what_i_want
-      - measurement.desired
-      - projection_stack.desires
+      - desires[].description
+      - desires[].principal_ref
+      - desires[].source_refs
+      - projection_stack.desire_refs
 
   - id: q_fear
     prompt: "What am I afraid might be true?"
     writes_to:
       - self_observer.what_i_fear
-      - measurement.feared
+      - state_snapshots[].description
+      - state_snapshots[].motivational_role
       - projection_stack.fears
 
   - id: q_partner_possible
@@ -70,7 +81,9 @@ questions:
     writes_to:
       - partner_model.what_they_may_want
       - partner_model.what_they_may_fear
-      - measurement.unknown
+      - state_snapshots[].description
+      - state_snapshots[].modal_role
+      - state_snapshots[].epistemic_status
 
   - id: q_forbidden_assumptions
     prompt: "What am I not allowed to assume about them?"

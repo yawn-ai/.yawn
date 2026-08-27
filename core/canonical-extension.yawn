@@ -6,8 +6,8 @@ id: "yawn:core:canonical-extension"
 title: "Canonical YAWN name and .yawn extension"
 kind: "lexical-invariant"
 status: "active"
-revision: 1
-updated: "2026-08-17"
+revision: 2
+updated: "2026-08-27"
 
 canonical:
   product_name: "YAWN"
@@ -21,18 +21,23 @@ canonical:
 invalid_schema_aliases:
   - ".ion"
   - ".yon"
+  - ".ywn"
 invalid_product_aliases:
   - "ION"
   - "Yon"
 common_speech_to_text_substitutions:
   - "dot ion"
   - "dot yon"
+  - "dot ywn"
   - "ion file"
   - "yon file"
+  - "ywn file"
   - "ion schema"
   - "yon schema"
+  - "ywn schema"
   - "ion record"
   - "yon record"
+  - "ywn record"
   - "ion protocol"
   - "yon protocol"
   - "ion.ai"

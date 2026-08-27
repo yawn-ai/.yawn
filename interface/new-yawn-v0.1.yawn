@@ -2,7 +2,7 @@ id: interface/new-yawn-v0.1
 title: "+ Yawn creation contract v0.1"
 kind: interface-contract
 status: active
-updated: 2026-08-25
+updated: 2026-08-27
 
 definition: >
   + Yawn preserves one signal and compiles typed provisional detections before
@@ -26,11 +26,12 @@ compiler_projection:
     Chips are examples and escape hatches, not ontological categories. The
     compiled data model remains underneath the interface.
 
-question_projection_rule: >
-  The nine questions are a canonical human orientation projection over the
-  ontology, not nine mandatory storage fields and not the ontology itself.
-  Interfaces may ask a smaller adaptive subset. Skipped answers remain visible
-  lacunae and are never fabricated.
+orientation_inquiry_rule: >
+  The nine stable semantic axes are a human orientation projection over the
+  ontology, not nine mandatory storage fields, a fixed interview order, or the
+  ontology itself. Interfaces ask one useful question by default and may expose
+  up to three candidate paths. Skipped answers remain typed lacunae and are
+  never fabricated.
 
 opening:
   question: "What is pulling your attention?"
@@ -50,37 +51,79 @@ semantic_planes:
   - normative
   - action
 
-canonical_questions:
-  - key: scope
-    question: "What is this Yawn about?"
-  - key: parent
-    question: "Where does it belong?"
-  - key: perspective
-    question: "Whose perspective is represented, and who is affected?"
-  - key: current-state
-    question: "What appears to be happening now?"
-  - key: intent
-    question: "What are you trying to make true, preserve, learn, avoid, repair, coordinate, decide, or accept—and why?"
-  - key: lacuna
-    question: "What is unknown, disputed, constrained, dependent, or in tension?"
-  - key: boundary
-    question: "What must be protected, and who may decide or act?"
-  - key: movement
-    question: "What can move next?"
-  - key: proof
-    question: "What would reality have to show for this Yawn to update or close?"
+canonical_question_packet:
+  ref: question-packets/orientation-nine.yawn
+  question_keys: [scope, placement, perspective, current-state, intent, lacuna, boundary, movement, proof]
+  rule: "Prompt variants preserve question_key and its semantic destination."
 
 adaptive_surface:
-  maximum_foreground_questions: 3
+  default_foreground_questions: 1
+  maximum_candidate_paths: 3
   all_questions_default: collapsed
-  priority:
-    - safety-or-authority-blocker
-    - movement-critical-missing-information
-    - high-consequence-low-confidence-claim
-    - contradiction-or-dispute
-    - stale-high-impact-information
-    - high-expected-information-value
-    - low-effort-material-orientation-gain
+  selection_policy_ref: core/inquiry-selection.yawn
+  orientation_map_schema_ref: schemas/orientation-map.v0.1.schema.json
+  selection_receipt_schema_ref: schemas/inquiry-selection-receipt.v0.1.schema.json
+  selection_result:
+    question_key: null
+    rationale: null
+    orientation_revision: null
+    orientation_semantic_hash: null
+    selection_receipt_ref: null
+    preference_ref: null
+    preference_hash: null
+    prompt_variant: null
+    exact_rendered_prompt: null
+    representation_medium: accessible-text
+    answer_input_adapter: null
+    hold: null
+  controls:
+    - why-this-question
+    - change-medium-or-input
+    - show-the-map
+    - pause-orientation
+  prompt_adaptation_boundary: >
+    Receipt V0.1 renders only the packet-pinned default prompt or deterministic
+    hard-gate overlay. Alternate probes and adapted wording may be previewed as
+    proposals, but asking them requires a later versioned receipt contract.
+  accessibility:
+    text_equivalent_required: true
+    meaning_must_not_depend_on_color_position_or_audio_alone: true
+
+orientation_inquiry_source:
+  preserve_every_turn:
+    - question_key
+    - question_packet_version
+    - exact_rendered_prompt
+    - prompt_variant
+    - selection_receipt_ref
+    - policy_version
+    - orientation_revision
+    - reason_asked
+    - sequence_position
+    - representation_medium
+    - answer_input_adapter
+    - response_source_refs
+    - answered_or_asserted_by
+    - epistemic_status
+    - answer_status
+    - mapping_status
+    - confidence
+    - freshness
+    - visibility
+    - dispute_status
+    - raw_response_or_content_addressed_source
+    - parsed_claim_refs
+    - correction_or_revision_ref
+  rule: "Speech, text, and file answer_input_adapter values change capture form, not semantic identity."
+
+presentation_profile:
+  view_kind: orientation_inquiry
+  accepted_preference_contract: schemas/projection-preference.v1.schema.json
+  inferred_fit_status: proposed-only
+  receipt_v0_1_may_change: [order, answer_input_adapter, representation_medium, accessibility]
+  proposal_only_until_versioned_prompt_registry: [wording, chunking, density, pacing]
+  may_not_change: [question_key, answer_meaning, safety, authority, privacy, provenance, proof]
+  fixed_learning_style_diagnosis: prohibited
 
 creation_readiness:
   - signal-captured
@@ -140,6 +183,7 @@ invariants:
   - the Yawn is the holon and the Coordinator operates inside it
   - objective detection, ratification, Yawn creation, bot binding, and bot activation remain distinct
   - original source language is preserved
+  - every question and answer retains question_key, exact_rendered_prompt, representation_medium, answer_input_adapter, and sequence provenance
   - a proposal is never presented as a confirmed answer
   - confidence describes representational fit rather than absolute truth or importance
   - freshness and confidence remain separate
@@ -148,5 +192,6 @@ invariants:
   - questions may reopen when evidence context participants or purpose changes
   - orientation coverage claim confidence and routing confidence remain separate
   - high question coverage never implies truth or authorization
+  - changing presentation does not change orientation semantics
 
 schema_version: yawn.new.v0.1

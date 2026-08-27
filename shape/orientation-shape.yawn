@@ -1,28 +1,60 @@
 id: shape/orientation-shape
 title: "orientation shape"
 kind: shape-primitive
-status: v0-seed
-updated: 2026-07-03
+status: draft-0.2
+updated: 2026-08-27
 
 definition: >
-  An orientation shape is the structured frame that makes part of an
-  information field inspectable before action.
+  An orientation shape is a human-readable, revisable frame that makes an
+  Agent's situated relationship with an Arena inspectable before, during, and
+  after inquiry, holding, choice, or movement.
 
 path:
-  - field
+  - active relationship
+  - observation or signal
+  - relevance
   - orientation
   - inference
   - lacuna
-  - boundary
-  - move
+  - boundary and authority
+  - choice
+  - projection or move
+  - consequence
   - proof
-  - memory
+  - memory and updated relationship
 
 stable_claim: >
   Any observing agent lives inside an information field it cannot fully hold.
-  .yawn gives that agent a shape for orienting: what was noticed, what was
-  inferred, what is missing, what is bounded, what can move, what proved
-  change, and what memory updates.
+  .yawn gives that agent one relationship-first shape for orienting: what was
+  noticed, from which role and Arena, what was inferred, what matters, what is
+  missing, what is bounded, what can be asked or moved, what consequence
+  returned, what proof supports an update, and how the relationship changed.
+
+semantic_composition:
+  relationship: "reference the active Agent-Arena coupling"
+  orientation: "reference attributed current state, concern, authority, lacuna, affordance, and proof conditions"
+  question_coverage: "use the stable keys in question-packets/orientation-nine.yawn"
+  selection: "use core/inquiry-selection.yawn to select one key or hold"
+  update: "use proof and authorized events rather than presentation state"
+
+orientation_inquiry:
+  canonical_semantic_state: false
+  may_include:
+    - view_kind
+    - orientation_map_ref
+    - question_key
+    - prompt_variant
+    - exact_rendered_prompt
+    - selection_receipt_ref
+    - accepted_preference_refs
+    - representation_medium
+    - answer_input_adapter
+    - pacing
+    - accessibility_fallback
+  rule: >
+    Question order, wording, medium, layout, and pacing are rebuildable View
+    concerns. They do not create a second orientation ontology or alter the
+    meaning of question_key.
 
 why_shape: >
   Shape is the readable capsule. A human can inspect it, an LLM can read it, a
@@ -31,10 +63,17 @@ why_shape: >
 boundary:
   - "Shape does not mean reality is literally code."
   - "Shape means a structured frame for making partial information inspectable."
+  - "Relationship is structurally first even when Observation is the first deliberate record."
+  - "Observer stance is not a second Agent without a separate persistent identity and authority."
+  - "Game is an optional Arena lens; level is scope or resolution, not worth."
+  - "Presentation preferences cannot rewrite semantic state or suppress material boundaries."
   - "Only authorized events update canonical state; suitable evidence or proof upgrades empirical claims."
 
 proof:
   source:
     - readme.yawn
     - templates/orientation-shape.yawn
-  status: seed-backed
+    - core/orientation.yawn
+    - core/inquiry-selection.yawn
+    - core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+  status: draft-backed

@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: repository-manifest
 status: active
-updated: 2026-08-25
+updated: 2026-08-27
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -43,6 +43,7 @@ protocol_status:
   state_substrate_v1: stable
   agency_holarchy_0_2: working-draft
   objective_holon_0_1: working-draft
+  orientation_map_0_1: working-draft
   unified_human_document: not-yet-specified
 
 root_loop:
@@ -93,6 +94,7 @@ core_links:
   routing: core/routing.yawn
   objective_holon: core/objective-holon.yawn
   projection_and_aperture: core/projection-and-aperture.yawn
+  inquiry_selection: core/inquiry-selection.yawn
 
 schema_links:
   node: schemas/node.yawn
@@ -108,6 +110,8 @@ schema_links:
   living_snapshot_v1: schemas/living-snapshot.v1.schema.json
   agency_holarchy_draft_0_2: schemas/agency-holarchy.v0.2.schema.json
   objective_holon_draft_0_1: schemas/objective-holon.v0.1.schema.json
+  orientation_map_draft_0_1: schemas/orientation-map.v0.1.schema.json
+  inquiry_selection_receipt_draft_0_1: schemas/inquiry-selection-receipt.v0.1.schema.json
   contracts_v1: contracts/schemas/yawn-contracts-v1.schema.json
 
 spec_links:
@@ -260,6 +264,7 @@ example_links:
   conversation_import_routing: examples/conversation-import-routing.yawn
   merge_split_routing: examples/merge-split-routing.yawn
   dave_good_dad_objective_holon: examples/dave-good-dad-objective-holon.yawn
+  participation_choice: examples/participation-choice.yawn
 
 fixture_links:
   node: fixtures/node.yawn
@@ -268,6 +273,8 @@ fixture_links:
   multi_principal_family_v1: fixtures/multi-principal-family.v1.json
   agency_holarchy_draft_0_2: fixtures/agency-holarchy.v0.2.json
   dave_good_dad_objective_holon_draft_0_1: fixtures/dave-good-dad-objective-holon.v0.1.json
+  orientation_map_draft_0_1: fixtures/orientation-map.v0.1.json
+  inquiry_selection_receipt_draft_0_1: fixtures/inquiry-selection-receipt.v0.1.json
 
 governance_links:
   governance: GOVERNANCE.md
@@ -316,6 +323,13 @@ question_packet_rule: >
   Questions are projections over the ontology, not the ontology. A question
   packet maps plain-language answers into attributed semantic records and turns
   skipped answers into visible lacunae rather than invented content.
+
+orientation_map_rule: >
+  Nine stable semantic axes hold attributed, revisable orientation coverage.
+  The versioned inquiry policy deterministically proposes one useful question,
+  up to three visible paths, or an explicit hold, then emits a closed replay
+  receipt. Wording, order, medium, pacing, density, and accessibility remain
+  View concerns; they do not change the semantic hash, truth, or authority.
 
 objective_compiler_rule: >
   Dialogue is a programming surface. Preserve the source; expose typed
@@ -396,6 +410,7 @@ boundary:
   - child bots do not inherit truth consent privacy confidence proof or authority
   - a move cannot mark itself successful
   - transcript normalization cannot change semantic identity or authority
+  - presentation preference cannot rewrite orientation semantics or hide a material boundary
 
 first_move:
   instruction: >
@@ -419,6 +434,7 @@ source:
   - shape/node.yawn
   - shape/orientation-shape.yawn
   - core/orientation.yawn
+  - core/inquiry-selection.yawn
   - core/memory-update.yawn
   - references/scientific-frame.yawn
   - references/july-01-lock.yawn

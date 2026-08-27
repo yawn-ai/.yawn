@@ -1,0 +1,914 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/inquiry-selection-receipt.v0.1.schema.json",
+  "title": "YAWN Inquiry Selection Receipt V0.1",
+  "description": "A closed, non-authoritative, internally self-consistent selection receipt. Paired replay checks equivalence against effective normalized ranking and render inputs; it does not authenticate historical input-object identity or origin.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "policyVersion",
+    "sourceQuestionPacketRef",
+    "promptSetVersion",
+    "promptSetSha256",
+    "orientationMapId",
+    "orientationMapRevision",
+    "orientationMapUpdatedAt",
+    "orientationSemanticSha256",
+    "rankingInputSha256",
+    "rankingResultLimit",
+    "renderInputSha256",
+    "principalRef",
+    "scopeRef",
+    "relationshipRef",
+    "arenaRef",
+    "candidateQuestionKeys",
+    "hardGateResults",
+    "exclusions",
+    "semanticPriorityInputs",
+    "interactionFitInputs",
+    "selectionStatus",
+    "selectedQuestion",
+    "hold",
+    "requestedHold",
+    "deterministicTieBreak",
+    "createdBy",
+    "sourceRefs",
+    "canonicalState",
+    "notAuthority",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.inquiry-selection-receipt.v0.1" },
+    "receiptId": {
+      "allOf": [
+        { "$ref": "#/$defs/Identifier" },
+        { "type": "string", "pattern": "^receipt:[^\\s]+$" }
+      ]
+    },
+    "policyVersion": { "const": "yawn.inquiry-selection.v0.1" },
+    "sourceQuestionPacketRef": { "const": "question-packets/orientation-nine@0.4.0-draft" },
+    "promptSetVersion": { "const": "0.4.0-draft" },
+    "promptSetSha256": {
+      "description": "Lowercase SHA-256 of the exact UTF-8 bytes of the versioned source question packet.",
+      "const": "8c1faa75c7dffaad21d559a9ffafeab4ac4c771c4151c322cfd53cd0f4d83cab"
+    },
+    "orientationMapId": { "$ref": "#/$defs/Identifier" },
+    "orientationMapRevision": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "orientationMapUpdatedAt": { "$ref": "#/$defs/Timestamp" },
+    "orientationSemanticSha256": { "$ref": "#/$defs/Sha256" },
+    "rankingInputSha256": {
+      "description": "Lowercase SHA-256 of the versioned ranking inputs consumed before selection.",
+      "$ref": "#/$defs/Sha256"
+    },
+    "rankingResultLimit": { "type": "integer", "minimum": 1, "maximum": 3 },
+    "renderInputSha256": {
+      "description": "Lowercase SHA-256 of the normalized representation, input-adapter, sequence, accessibility, and ranking receipt inputs.",
+      "$ref": "#/$defs/Sha256"
+    },
+    "principalRef": { "$ref": "#/$defs/PrincipalIdentifier" },
+    "scopeRef": { "$ref": "#/$defs/StrictRecordRef" },
+    "relationshipRef": {
+      "anyOf": [
+        { "$ref": "#/$defs/RelationshipRef" },
+        { "type": "null" }
+      ]
+    },
+    "arenaRef": {
+      "anyOf": [
+        { "$ref": "#/$defs/ArenaRef" },
+        { "type": "null" }
+      ]
+    },
+    "candidateQuestionKeys": { "$ref": "#/$defs/QuestionKeys" },
+    "hardGateResults": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/HardGateResult" }
+    },
+    "exclusions": {
+      "type": "array",
+      "maxItems": 9,
+      "items": { "$ref": "#/$defs/Exclusion" }
+    },
+    "semanticPriorityInputs": {
+      "type": "array",
+      "maxItems": 9,
+      "items": { "$ref": "#/$defs/SemanticPriorityInput" }
+    },
+    "interactionFitInputs": { "$ref": "#/$defs/InteractionFitInputs" },
+    "selectionStatus": { "enum": ["selected_question", "hold"] },
+    "selectedQuestion": {
+      "anyOf": [
+        { "$ref": "#/$defs/SelectedQuestion" },
+        { "type": "null" }
+      ]
+    },
+    "hold": {
+      "anyOf": [
+        { "$ref": "#/$defs/Hold" },
+        { "type": "null" }
+      ]
+    },
+    "requestedHold": {
+      "anyOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/Hold" },
+            {
+              "type": "object",
+              "properties": {
+                "reasonCode": {
+                  "enum": [
+                    "ambiguous_referent",
+                    "missing_source_or_authority_context",
+                    "unbounded_or_unnecessary_burden",
+                    "principal_requested_pause"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        { "type": "null" }
+      ]
+    },
+    "deterministicTieBreak": { "$ref": "#/$defs/DeterministicTieBreak" },
+    "createdBy": { "$ref": "#/$defs/ActorRef" },
+    "sourceRefs": { "$ref": "#/$defs/SourceRefs" },
+    "canonicalState": { "const": false },
+    "notAuthority": { "const": true },
+    "createdAt": { "$ref": "#/$defs/Timestamp" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "selectionStatus": { "const": "selected_question" } },
+        "required": ["selectionStatus"]
+      },
+      "then": {
+        "properties": {
+          "candidateQuestionKeys": { "type": "array", "minItems": 1 },
+          "selectedQuestion": { "$ref": "#/$defs/SelectedQuestion" },
+          "hold": { "type": "null" },
+          "deterministicTieBreak": {
+            "type": "object",
+            "properties": {
+              "finalistQuestionKeys": { "type": "array", "minItems": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "selectionStatus": { "const": "hold" } },
+        "required": ["selectionStatus"]
+      },
+      "then": {
+        "properties": {
+          "selectedQuestion": { "type": "null" },
+          "hold": { "$ref": "#/$defs/Hold" },
+          "deterministicTieBreak": {
+            "type": "object",
+            "properties": {
+              "finalistQuestionKeys": { "type": "array", "maxItems": 0 }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "PrincipalIdentifier": {
+      "type": "string",
+      "minLength": 11,
+      "maxLength": 500,
+      "pattern": "^principal:[^\\s]+$"
+    },
+    "StrictRecordRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S" },
+            "revision": {
+              "anyOf": [
+                { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+                { "type": "null" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ActorRef": {
+      "allOf": [
+        { "$ref": "#/$defs/StrictRecordRef" },
+        {
+          "type": "object",
+          "properties": { "kind": { "enum": ["actor", "principal"] } }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "kind": { "const": "principal" } },
+            "required": ["kind"]
+          },
+          "then": {
+            "type": "object",
+            "properties": { "id": { "type": "string", "pattern": "^principal:[^\\s]+$" } }
+          }
+        }
+      ]
+    },
+    "Sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,3})?Z$"
+    },
+    "Token": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "QuestionKey": {
+      "enum": [
+        "scope",
+        "placement",
+        "perspective",
+        "current-state",
+        "intent",
+        "lacuna",
+        "boundary",
+        "movement",
+        "proof"
+      ]
+    },
+    "QuestionKeys": {
+      "type": "array",
+      "maxItems": 9,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/QuestionKey" }
+    },
+    "GateKey": {
+      "enum": [
+        "immediate_safety_or_stability",
+        "authority_or_consent",
+        "privacy_visibility_or_egress",
+        "source_or_provenance",
+        "proof_or_falsifier_integrity"
+      ]
+    },
+    "RelationshipRef": {
+      "allOf": [
+        { "$ref": "#/$defs/StrictRecordRef" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "relationship" } },
+          "required": ["kind"]
+        }
+      ]
+    },
+    "ArenaRef": {
+      "allOf": [
+        { "$ref": "#/$defs/StrictRecordRef" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "arena" } },
+          "required": ["kind"]
+        }
+      ]
+    },
+    "SourceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/StrictRecordRef" }
+    },
+    "HardGateAssessmentEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionKey",
+        "assessmentStatus",
+        "foregroundability",
+        "assertedBy",
+        "epistemicStatus",
+        "confidence",
+        "sourceRefs"
+      ],
+      "properties": {
+        "questionKey": { "$ref": "#/$defs/QuestionKey" },
+        "assessmentStatus": { "enum": ["active", "clear", "unknown"] },
+        "foregroundability": { "enum": ["foregroundable", "blocked_by_answer_state", "not_required"] },
+        "assertedBy": { "$ref": "#/$defs/ActorRef" },
+        "epistemicStatus": { "enum": ["reported", "inferred", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "assessmentStatus": { "const": "clear" } },
+            "required": ["assessmentStatus"]
+          },
+          "then": {
+            "properties": {
+              "foregroundability": { "const": "not_required" },
+              "assertedBy": {
+                "allOf": [
+                  { "$ref": "#/$defs/ActorRef" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "principal" },
+                      "id": { "type": "string", "pattern": "^principal:[^\\s]+$" }
+                    },
+                    "required": ["kind", "id"]
+                  }
+                ]
+              },
+              "epistemicStatus": { "const": "reported" },
+              "confidence": { "type": "number", "minimum": 0.75 },
+              "sourceRefs": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "kind": { "const": "principal" },
+                    "id": { "type": "string", "pattern": "^principal:[^\\s]+$" }
+                  },
+                  "required": ["kind", "id"]
+                },
+                "minContains": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "foregroundability": { "enum": ["foregroundable", "blocked_by_answer_state"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "assessmentStatus": { "const": "unknown" } },
+            "required": ["assessmentStatus"]
+          },
+          "then": {
+            "properties": { "epistemicStatus": { "enum": ["inferred", "disputed", "unknown"] } }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "assertedBy": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string", "pattern": "^(assistant|agent|system):" }
+                },
+                "required": ["id"]
+              }
+            },
+            "required": ["assertedBy"]
+          },
+          "then": {
+            "properties": { "epistemicStatus": { "enum": ["inferred", "disputed", "unknown"] } }
+          }
+        }
+      ]
+    },
+    "AuthorityOrPrivacyGateAssessmentEvidence": {
+      "allOf": [
+        { "$ref": "#/$defs/HardGateAssessmentEvidence" },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "assessmentStatus": { "const": "clear" } },
+            "required": ["assessmentStatus"]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "assertedBy": {
+                "allOf": [
+                  { "$ref": "#/$defs/ActorRef" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "const": "principal" },
+                      "id": { "type": "string", "pattern": "^principal:[^\\s]+$" }
+                    },
+                    "required": ["kind", "id"]
+                  }
+                ]
+              },
+              "epistemicStatus": { "const": "reported" },
+              "sourceRefs": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "kind": { "const": "principal" },
+                    "id": { "type": "string", "pattern": "^principal:[^\\s]+$" }
+                  },
+                  "required": ["kind", "id"]
+                },
+                "minContains": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "HardGateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate", "status", "reasonCode", "detail", "derivedBy", "sourceRefs", "evidence"],
+      "properties": {
+        "gate": { "$ref": "#/$defs/GateKey" },
+        "status": { "enum": ["clear", "foreground", "required_hold", "unknown", "not_applicable"] },
+        "reasonCode": {
+          "anyOf": [
+            { "$ref": "#/$defs/Token" },
+            { "type": "null" }
+          ]
+        },
+        "detail": {
+          "anyOf": [
+            { "type": "string", "minLength": 1, "maxLength": 4000, "pattern": "\\S" },
+            { "type": "null" }
+          ]
+        },
+        "derivedBy": { "$ref": "#/$defs/ActorRef" },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" },
+        "evidence": {
+          "type": "array",
+          "minItems": 9,
+          "maxItems": 9,
+          "items": { "$ref": "#/$defs/HardGateAssessmentEvidence" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "enum": ["foreground", "required_hold", "unknown"] } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "reasonCode": { "$ref": "#/$defs/Token" },
+              "detail": { "type": "string", "minLength": 1, "pattern": "\\S" }
+            }
+          },
+          "else": {
+            "properties": {
+              "reasonCode": { "type": "null" },
+              "detail": { "type": "null" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "gate": { "enum": ["authority_or_consent", "privacy_visibility_or_egress"] }
+            },
+            "required": ["gate"]
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/AuthorityOrPrivacyGateAssessmentEvidence" }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Exclusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questionKey", "reasonCode", "gate", "detail", "assertedBy", "sourceRefs"],
+      "properties": {
+        "questionKey": { "$ref": "#/$defs/QuestionKey" },
+        "reasonCode": {
+          "enum": [
+            "already_covered",
+            "withheld",
+            "not_applicable",
+            "skipped_current_revision",
+            "deferred_current_revision"
+          ]
+        },
+        "gate": {
+          "anyOf": [
+            { "$ref": "#/$defs/GateKey" },
+            { "type": "null" }
+          ]
+        },
+        "detail": { "type": "string", "minLength": 1, "maxLength": 4000, "pattern": "\\S" },
+        "assertedBy": { "$ref": "#/$defs/ActorRef" },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "reasonCode": { "const": "hard_gate" } },
+            "required": ["reasonCode"]
+          },
+          "then": { "properties": { "gate": { "$ref": "#/$defs/GateKey" } } },
+          "else": { "properties": { "gate": { "type": "null" } } }
+        }
+      ]
+    },
+    "SemanticPriorityInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionKey",
+        "hardGates",
+        "movementCriticalLacuna",
+        "affectedRelationshipOrUnresolvedRole",
+        "consequence",
+        "consequenceConfidenceGap",
+        "answerConfidence",
+        "rankingSignalConfidence",
+        "contradictionOrDispute",
+        "staleness",
+        "staleHighImpact",
+        "expectedInformationValue",
+        "proofOrCloseConditionGap",
+        "orientationGain",
+        "assertedBy",
+        "epistemicStatus",
+        "sourceRefs"
+      ],
+      "properties": {
+        "questionKey": { "$ref": "#/$defs/QuestionKey" },
+        "hardGates": {
+          "type": "array",
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/GateKey" }
+        },
+        "movementCriticalLacuna": { "type": "boolean" },
+        "affectedRelationshipOrUnresolvedRole": { "type": "boolean" },
+        "consequence": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "consequenceConfidenceGap": { "type": "integer", "minimum": 0, "maximum": 300 },
+        "answerConfidence": {
+          "anyOf": [
+            { "type": "number", "minimum": 0, "maximum": 1 },
+            { "type": "null" }
+          ]
+        },
+        "rankingSignalConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "contradictionOrDispute": { "type": "boolean" },
+        "staleness": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "staleHighImpact": { "type": "integer", "minimum": 0, "maximum": 9 },
+        "expectedInformationValue": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "proofOrCloseConditionGap": { "type": "boolean" },
+        "orientationGain": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "assertedBy": { "$ref": "#/$defs/ActorRef" },
+        "epistemicStatus": { "enum": ["reported", "inferred", "disputed", "unknown"] },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" }
+      }
+    },
+    "CurrentTurnChoice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionKey",
+        "questionKeys",
+        "promptVariant",
+        "representationMedium",
+        "answerInputAdapter",
+        "assertedBy",
+        "sourceRefs",
+        "recordedAt"
+      ],
+      "properties": {
+        "questionKey": {
+          "anyOf": [
+            { "$ref": "#/$defs/QuestionKey" },
+            { "type": "null" }
+          ]
+        },
+        "questionKeys": {
+          "allOf": [
+            { "$ref": "#/$defs/QuestionKeys" },
+            { "type": "array", "minItems": 1 }
+          ]
+        },
+        "promptVariant": {
+          "type": "null"
+        },
+        "representationMedium": {
+          "type": "null"
+        },
+        "answerInputAdapter": {
+          "type": "null"
+        },
+        "assertedBy": { "$ref": "#/$defs/ActorRef" },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "PreferenceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preferenceId", "revision", "stateSha256", "scopeRef"],
+      "properties": {
+        "preferenceId": { "$ref": "#/$defs/Identifier" },
+        "revision": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "stateSha256": { "$ref": "#/$defs/Sha256" },
+        "scopeRef": {
+          "allOf": [
+            { "$ref": "#/$defs/StrictRecordRef" },
+            {
+              "type": "object",
+              "properties": {
+                "kind": { "enum": ["principal", "agent_space", "arena", "yawn", "observation", "view"] }
+              },
+              "required": ["kind"]
+            }
+          ]
+        }
+      }
+    },
+    "RecentAnswerStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questionKey", "coverageStatus", "answerStatus", "mappingStatus"],
+      "properties": {
+        "questionKey": { "$ref": "#/$defs/QuestionKey" },
+        "coverageStatus": {
+          "enum": ["missing", "partial", "covered", "stale"]
+        },
+        "answerStatus": {
+          "enum": [
+            "answered",
+            "proposed",
+            "corrected",
+            "skipped",
+            "unknown",
+            "disputed",
+            "deferred",
+            "withheld",
+            "not_applicable"
+          ]
+        },
+        "mappingStatus": {
+          "enum": ["unmapped", "proposed", "accepted", "corrected", "rejected"]
+        }
+      }
+    },
+    "InteractionEvaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionKey",
+        "permissionAndPrivacyRisk",
+        "answerable",
+        "answerBurden",
+        "explicitCurrentTurnOrderIndex",
+        "acceptedQuestionOrderIndex",
+        "presentationOrderIndex",
+        "recentDeferralOrRepetition",
+        "derivedBy",
+        "sourceRefs"
+      ],
+      "properties": {
+        "questionKey": { "$ref": "#/$defs/QuestionKey" },
+        "permissionAndPrivacyRisk": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "answerable": { "type": "boolean" },
+        "answerBurden": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "explicitCurrentTurnOrderIndex": {
+          "anyOf": [
+            { "type": "integer", "minimum": 0, "maximum": 8 },
+            { "type": "null" }
+          ]
+        },
+        "acceptedQuestionOrderIndex": {
+          "anyOf": [
+            { "type": "integer", "minimum": 0, "maximum": 8 },
+            { "type": "null" }
+          ]
+        },
+        "presentationOrderIndex": {
+          "anyOf": [
+            { "type": "integer", "minimum": 0, "maximum": 8 },
+            { "type": "null" }
+          ]
+        },
+        "recentDeferralOrRepetition": { "type": "boolean" },
+        "derivedBy": { "$ref": "#/$defs/ActorRef" },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" }
+      }
+    },
+    "InteractionFitInputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "currentTurnChoice",
+        "presentationOrderSource",
+        "accessibilityRequirementRefs",
+        "acceptedPreferenceRefs",
+        "acceptedPreferenceScopeRefs",
+        "acceptedPreferenceSha256",
+        "acceptedQuestionOrder",
+        "presentationChoiceEvidence",
+        "recentAnswerStatuses",
+        "evaluations"
+      ],
+      "properties": {
+        "currentTurnChoice": {
+          "anyOf": [
+            { "$ref": "#/$defs/CurrentTurnChoice" },
+            { "type": "null" }
+          ]
+        },
+        "presentationOrderSource": {
+          "enum": ["canonical", "accepted_preference", "explicit_current_turn"]
+        },
+        "accessibilityRequirementRefs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/StrictRecordRef" }
+        },
+        "acceptedPreferenceRefs": {
+          "type": "array",
+          "maxItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/PreferenceRef" }
+        },
+        "acceptedPreferenceScopeRefs": {
+          "type": "array",
+          "maxItems": 100,
+          "uniqueItems": true,
+          "items": {
+            "allOf": [
+              { "$ref": "#/$defs/StrictRecordRef" },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": { "enum": ["principal", "agent_space", "arena", "yawn", "observation", "view"] }
+                },
+                "required": ["kind"]
+              }
+            ]
+          }
+        },
+        "acceptedPreferenceSha256": {
+          "anyOf": [
+            { "$ref": "#/$defs/Sha256" },
+            { "type": "null" }
+          ]
+        },
+        "acceptedQuestionOrder": { "$ref": "#/$defs/QuestionKeys" },
+        "presentationChoiceEvidence": {
+          "anyOf": [
+            { "$ref": "#/$defs/PresentationChoiceEvidence" },
+            { "type": "null" }
+          ]
+        },
+        "recentAnswerStatuses": {
+          "type": "array",
+          "maxItems": 9,
+          "items": { "$ref": "#/$defs/RecentAnswerStatus" }
+        },
+        "evaluations": {
+          "type": "array",
+          "maxItems": 9,
+          "items": { "$ref": "#/$defs/InteractionEvaluation" }
+        }
+      }
+    },
+    "PresentationChoiceEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "providedBy",
+        "sourceRefs",
+        "representationMedium",
+        "answerInputAdapter"
+      ],
+      "properties": {
+        "source": { "const": "caller_supplied" },
+        "providedBy": { "$ref": "#/$defs/ActorRef" },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" },
+        "representationMedium": { "$ref": "#/$defs/Token" },
+        "answerInputAdapter": { "$ref": "#/$defs/Token" }
+      }
+    },
+    "SelectedQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionKey",
+        "promptVariant",
+        "exactRenderedPrompt",
+        "foregroundGateKeys",
+        "representationMedium",
+        "answerInputAdapter",
+        "sequencePosition"
+      ],
+      "properties": {
+        "questionKey": { "$ref": "#/$defs/QuestionKey" },
+        "promptVariant": { "enum": ["default", "gated"] },
+        "exactRenderedPrompt": { "type": "string", "minLength": 1, "maxLength": 4096, "pattern": "\\S" },
+        "foregroundGateKeys": {
+          "type": "array",
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/GateKey" }
+        },
+        "representationMedium": { "$ref": "#/$defs/Token" },
+        "answerInputAdapter": { "$ref": "#/$defs/Token" },
+        "sequencePosition": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "promptVariant": { "const": "default" } },
+            "required": ["promptVariant"]
+          },
+          "then": { "properties": { "foregroundGateKeys": { "type": "array", "maxItems": 0 } } },
+          "else": { "properties": { "foregroundGateKeys": { "type": "array", "minItems": 1 } } }
+        }
+      ]
+    },
+    "Hold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reasonCode", "detail", "assertedBy", "sourceRefs", "reopenCondition"],
+      "properties": {
+        "reasonCode": {
+          "enum": [
+            "no_candidate_survives_hard_gates",
+            "unforegroundable_live_hard_gate",
+            "ambiguous_referent",
+            "missing_source_or_authority_context",
+            "unbounded_or_unnecessary_burden",
+            "all_remaining_axes_deferred_or_withheld",
+            "no_currently_askable_orientation_axis",
+            "no_unresolved_orientation_axis",
+            "principal_requested_pause"
+          ]
+        },
+        "detail": { "type": "string", "minLength": 1, "maxLength": 4000, "pattern": "\\S" },
+        "assertedBy": { "$ref": "#/$defs/ActorRef" },
+        "sourceRefs": { "$ref": "#/$defs/SourceRefs" },
+        "reopenCondition": { "type": "string", "minLength": 1, "maxLength": 4000, "pattern": "\\S" }
+      }
+    },
+    "DeterministicTieBreak": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ruleOrder", "appliedThrough", "finalistQuestionKeys"],
+      "properties": {
+        "ruleOrder": {
+          "const": [
+            "hard_gate_priority",
+            "greater_semantic_priority",
+            "lower_answer_burden",
+            "explicit_current_turn_choice",
+            "accepted_question_order_preference",
+            "canonical_question_order"
+          ]
+        },
+        "appliedThrough": {
+          "enum": [
+            "not_needed",
+            "hard_gate_priority",
+            "greater_semantic_priority",
+            "lower_answer_burden",
+            "explicit_current_turn_choice",
+            "accepted_question_order_preference",
+            "canonical_question_order"
+          ]
+        },
+        "finalistQuestionKeys": {
+          "description": "Candidates remaining after the reported decisive stage; one winner for a selected question and none for a hold.",
+          "$ref": "#/$defs/QuestionKeys"
+        }
+      }
+    }
+  }
+}

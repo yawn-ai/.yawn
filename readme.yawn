@@ -1,13 +1,13 @@
 # Root orientation record for the repository.
 # README.md is the human landing page; this file dogfoods the protocol.
 
-spec_version: "0.2-draft+objective-holon.0.1"
+spec_version: "0.2-draft+objective-holon.0.1+orientation-map.0.1"
 id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 6
-updated: "2026-08-25"
+revision: 7
+updated: "2026-08-27"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -26,6 +26,8 @@ signal:
     and feedback chain now preserve exact lineage. The repository also needed
     one fail-closed naming invariant so speech-to-text substitutions could not
     create competing product names, schemas, paths, or relationship records.
+    Orientation now needs a replayable semantic map and adaptive question
+    selection without turning presentation preference into personal truth.
   epistemic_status: observed
   source_refs:
     - README.md
@@ -34,6 +36,8 @@ signal:
     - interface/local-observation-art-v0.1.yawn
     - core/canonical-extension.yawn
     - migrations/2026-08-17-canonical-extension.yawn
+    - schemas/orientation-map.v0.1.schema.json
+    - core/inquiry-selection.yawn
 
 orientation:
   current_state:
@@ -82,6 +86,12 @@ orientation:
       source_refs:
         - spec/objective-holons.md
         - schemas/objective-holon.v0.1.schema.json
+    - claim: "Orientation Map 0.1 preserves one nine-axis semantic map while question order, wording, pacing, density, and medium remain View concerns."
+      epistemic_status: proposed
+      source_refs:
+        - schemas/orientation-map.v0.1.schema.json
+        - question-packets/orientation-nine.yawn
+        - spec/questions.md
 
   governing_inference: >
     The repository serves as the ontology hub when it starts with Observation,
@@ -139,6 +149,7 @@ lacuna:
     - "Which parts of Draft 0.2 should enter the next stable contract?"
     - "How should web and desktop ingestion share one normalization receipt?"
     - "Which detected objectives deserve independent Yawns rather than attachment or a lateral link?"
+    - "Which adaptive inquiry heuristics survive principal review across Arenas and accessibility contexts?"
 
 intent:
   mode: coordinate
@@ -157,6 +168,7 @@ boundaries:
     - turn confidence into permission
     - let a move verify itself
     - fabricate skipped orientation answers
+    - diagnose a fixed learning style or treat presentation preference as semantic truth
     - disclose private context through parent-child inheritance
     - use embeddings or coordinates to decide identity
     - call the working draft a complete stable protocol
@@ -172,7 +184,8 @@ move:
     layered specification, additive Draft 0.2 schemas and tests, commented
     templates, decisive examples, a first-class Observation record, an
     Observation-to-question-to-art proposal chain, one canonical naming
-    contract, and an honest open-source governance surface.
+    contract, a replayable adaptive orientation map, and an honest open-source
+    governance surface.
   reversible: true
   authority_status: proposed-until-maintainer-merge
 
@@ -188,6 +201,7 @@ proof_contract:
     - "Question and Art Brief hashes bind to the exact Observation and source wording."
     - "Unverified local candidates cannot pass reviewability or authorize publication."
     - "Internal links on the public hub resolve."
+    - "Orientation-map schema, semantic, ranking, closed receipt, and presentation-separation tests pass."
     - "The GitHub Pages root returns the new ontology hub after merge."
     - "Feedback and Declaration routes remain live."
   falsifiers:
@@ -196,6 +210,7 @@ proof_contract:
     - "A projection can mutate semantic state or permissions."
     - "A structural change can erase source identity or bypass authority."
     - "A speech-to-text alias can create a competing schema or path without failure."
+    - "Changing question order or medium changes the semantic orientation hash."
 
 protocol_layers:
   stable_constitution:
@@ -220,6 +235,15 @@ protocol_layers:
     path: schemas/objective-holon.v0.1.schema.json
     version: "0.1-draft"
     stability: experimental
+  orientation_map:
+    schema: schemas/orientation-map.v0.1.schema.json
+    ranker: lib/orientation-map-v0.1.mjs
+    selector_and_receipt_runtime: lib/inquiry-selection-receipt-v0.1.mjs
+    receipt_schema: schemas/inquiry-selection-receipt.v0.1.schema.json
+    question_policy: core/inquiry-selection.yawn
+    presentation_preferences: schemas/projection-preference.v1.schema.json
+    version: "0.1-draft"
+    canonical_state: false
   human_document:
     paths: [templates/, examples/]
     stability: mixed-and-explicitly-versioned
@@ -259,6 +283,8 @@ ontology_links:
   turn_contract: core/turn.yawn
   routing_contract: core/routing.yawn
   objective_holon_contract: core/objective-holon.yawn
+  orientation_contract: core/orientation.yawn
+  inquiry_selection_contract: core/inquiry-selection.yawn
   projection_boundary: core/projection-and-aperture.yawn
   observation_contract: schemas/observation.v1.schema.json
   record_reference: schemas/record-ref.v1.schema.json
@@ -283,6 +309,7 @@ practice_links:
     - examples/conversation-import-routing.yawn
     - examples/merge-split-routing.yawn
     - examples/dave-good-dad-objective-holon.yawn
+    - examples/participation-choice.yawn
 
 project_links:
   documentation: docs/README.md
@@ -304,10 +331,12 @@ replay:
     Observation is the first executable entry into the ontology, Question and
     local-art records preserve its exact lineage as proposals, and all
     product/schema naming is normalized through one canonical extension
-    contract before creation.
+    contract before creation. Orientation Map 0.1 keeps the nine semantic axes
+    stable while adaptive questioning and presentation remain replayable Views.
   next_review_when:
     - Draft 0.2 has field routing evidence
     - Objective Holon 0.1 has principal-reviewed independence and activation evidence
+    - adaptive inquiry has principal-reviewed utility and burden evidence
     - a unified document RFC is proposed
     - an independent implementation reports a compatibility gap
     - a speech-to-text correction produces a false positive or missed alias

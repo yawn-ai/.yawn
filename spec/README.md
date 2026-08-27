@@ -1,7 +1,7 @@
 # YAWN specification
 
 Status: **Working Draft 0.2**
-Last updated: 2026-08-25
+Last updated: 2026-08-27
 
 This directory is the human-readable specification for `.yawn`: an open
 protocol for inspectable orientation and agency.
@@ -22,13 +22,14 @@ It does not claim that the record is the world.
 | Delegated execution | Owner/delegate relationship, exact effect signatures, reusable policy proposals, reconciliation batches, and consequence receipts | [`execution-relationship.v1`](../schemas/execution-relationship.v1.schema.json) and related v1 schemas |
 | Agency holarchy | Arena, Yawn, relation, turn, routing, and structural change | [Draft 0.2 schema](../schemas/agency-holarchy.v0.2.schema.json) |
 | Objective holons | Detection, ratification, objective Yawn, Yawn.bot, and activation | [Draft 0.1 schema](../schemas/objective-holon.v0.1.schema.json) |
+| Orientation map | Nine-axis semantic coverage, adaptive inquiry ranking, closed selection receipts, and presentation hypotheses | [Draft 0.1 schema](../schemas/orientation-map.v0.1.schema.json) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
 | View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
 
 The v1 contracts are not silently redefined by these drafts. Agency Holarchy
-0.2 and Objective Holon 0.1 are additive candidates for a future unified
-protocol. Where prose and an executable schema disagree, treat that as a lacuna
-and open an issue; do not invent a silent reconciliation.
+0.2, Objective Holon 0.1, and Orientation Map 0.1 are additive candidates for a
+future unified protocol. Where prose and an executable schema disagree, treat
+that as a lacuna and open an issue; do not invent a silent reconciliation.
 
 ## Normative core
 
@@ -55,6 +56,8 @@ can be tested.
 10. The world MUST NOT be serialized as if the model exhausts reality.
 11. Detection MUST NOT become a ratified objective, and objective ratification
     MUST NOT become bot activation or effect authority, by inference.
+12. Question order, wording, and medium MUST NOT alter semantic orientation or
+    suppress safety, authority, privacy, provenance, or proof.
 
 ## Read the specification
 

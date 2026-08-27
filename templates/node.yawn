@@ -2,7 +2,7 @@ id: templates/node
 title: "templates node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-25
+updated: 2026-08-27
 
 purpose: >
   Hold reusable .yawn shapes that people and agents can copy without learning
@@ -29,6 +29,7 @@ holds:
   - structural routing proposal template
   - structural change receipt template
   - objective holon template
+  - orientation_inquiry projection fields over an independent orientation_map
 
 receives:
   - repeated movement patterns
@@ -51,7 +52,8 @@ canonical_rule: >
   asynchronous turns, routing proposals, and authorized structural receipts
   distinct. Objective Holon 0.1 also keeps candidate, ratification, Yawn, bot,
   and activation distinct. No current human template is marketed as the
-  complete .yawn schema.
+  complete .yawn schema. orientation_inquiry presentation fields reference an
+  independent orientation_map View and never become semantic state themselves.
 
 questions:
   - what shape should this yawn use
@@ -73,11 +75,17 @@ links:
   - templates/routing-proposal.yawn
   - templates/structural-change-receipt.yawn
   - templates/objective-holon.yawn
+  - templates/orientation-shape.yawn
+  - question-packets/orientation-nine.yawn
+  - core/inquiry-selection.yawn
+  - schemas/orientation-map.v0.1.schema.json
+  - schemas/inquiry-selection-receipt.v0.1.schema.json
   - schemas/node.yawn
 
 related_question_packets:
   basic: question-packets/basic.yawn
   relationship: question-packets/relationship.yawn
+  orientation: question-packets/orientation-nine.yawn
 
 proof:
   source:
@@ -95,4 +103,7 @@ proof:
     - templates/routing-proposal.yawn
     - templates/structural-change-receipt.yawn
     - templates/objective-holon.yawn
-  status: seed-backed
+    - question-packets/orientation-nine.yawn
+    - core/inquiry-selection.yawn
+    - schemas/inquiry-selection-receipt.v0.1.schema.json
+  status: draft-backed

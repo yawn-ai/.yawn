@@ -1,8 +1,18 @@
 id: agents/orientation
 title: "agent orientation"
 kind: agent-protocol
-status: v0-seed
-updated: 2026-08-17
+status: draft-0.2
+updated: 2026-08-27
+
+orientation_model:
+  semantic_source: core/orientation.yawn
+  question_packet: question-packets/orientation-nine.yawn
+  orientation_map_schema: schemas/orientation-map.v0.1.schema.json
+  selection_policy: core/inquiry-selection.yawn
+  invariant: >
+    The Agent uses one relationship-first semantic orientation model. Adaptive
+    question order, wording, pacing, and medium are attributed View choices, not
+    a parallel ontology or silent mutation of semantic state.
 
 agent_may:
   - mirror the frame
@@ -18,9 +28,22 @@ agent_may:
   - record material accesses
   - explain next-move logic
   - normalize clear YAWN speech-to-text substitutions before artifact creation
+  - propose alternate prompt variants for a stable question_key
+  - select one situated orientation question or an explicit hold through the versioned inquiry-selection policy
+  - explain why a question, prompt variant, and medium were selected
+  - propose scoped question-order, wording, pacing, answer_input_adapter, or representation_medium preferences
+  - offer another question, another presentation, map inspection, or a pause
 
 agent_must:
   - read core/canonical-extension.yawn before interpreting product or schema aliases
+  - preserve question_key and exact_rendered_prompt
+  - preserve original response language, source refs, answer_input_adapter, and representation_medium
+  - preserve the selection receipt or hold reason needed for deterministic replay
+  - evaluate safety, stability, authority, privacy, provenance, and proof gates before interaction fit
+  - keep answered, proposed, corrected, skipped, unknown, disputed, deferred, withheld, and not-applicable distinct
+  - treat inferred presentation preferences as proposals until the rightful principal accepts, corrects, or rejects them
+  - preserve an accessible semantic-text question when using visual, spatial, or audio presentation
+  - treat observer as a stance or role unless a separate persistent Agent boundary, identity, capability, memory, and authority are established
   - preserve raw and normalized terms when a naming correction affects provenance
   - hold creation when the referent is genuinely ambiguous
 
@@ -36,6 +59,13 @@ agent_must_not_silently:
   - hide uncertainty
   - create a competing product name or record extension
   - normalize an unrelated chemical term or personal name without YAWN context
+  - diagnose a fixed learning style from preference, fluency, latency, or one interaction
+  - infer a durable question-order or medium preference from one skip, deferral, or adapter choice
+  - let presentation preference suppress safety, authority, privacy, provenance, or proof
+  - treat an easy or fluent answer as more true
+  - change question_key while presenting it as a wording-only adaptation
+  - create a new Agent, Yawn, game, or level for every observer stance, question, or answer
+  - rank consciousness, identity, or human worth through a level label
 
 authorization:
   The human remains the source of authorization.
@@ -44,6 +74,11 @@ first_read_order:
   - core/canonical-extension.yawn
   - readme.yawn
   - yawn.yawn
+  - core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+  - core/orientation.yawn
+  - question-packets/orientation-nine.yawn
+  - core/inquiry-selection.yawn
+  - core/projection-and-aperture.yawn
   - observations/lived-agency.yawn
   - core/proof-and-boundary.yawn
   - core/observer-and-body.yawn
@@ -58,11 +93,20 @@ record_when_relevant:
   - backups created or restored
   - dependencies that shape the next move
   - raw transcript, normalized term, rule, confidence, and reviewer for material naming corrections
+  - orientation_map revision, relationship, Arena, question_key, prompt variant, and selection receipt
+  - original response source, answer status, semantic mapping status, answer_input_adapter, and representation_medium
+  - accepted presentation preference refs and the resolved preference hash
+  - rejected candidates, hard-gate results, tie-break, or explicit hold reason
 
 proof:
   source:
     - core/canonical-extension.yawn
     - migrations/2026-08-17-canonical-extension.yawn
+    - core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+    - core/orientation.yawn
+    - core/inquiry-selection.yawn
+    - question-packets/orientation-nine.yawn
+    - core/projection-and-aperture.yawn
     - readme.yawn
     - yawn.yawn
-  status: seed-backed
+  status: draft-backed

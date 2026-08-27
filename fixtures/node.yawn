@@ -2,7 +2,7 @@ id: fixtures/node
 title: "protocol fixtures"
 kind: contract-node
 status: active-mixed
-updated: 2026-08-25
+updated: 2026-08-27
 
 purpose: "Hold executable examples for schema, reducer, holarchy, objective, and multi-principal invariants."
 
@@ -12,6 +12,8 @@ holds:
   - multi-principal-family.v1.json
   - agency-holarchy.v0.2.json
   - dave-good-dad-objective-holon.v0.1.json
+  - orientation-map.v0.1.json
+  - inquiry-selection-receipt.v0.1.json
 
 coverage:
   - versioned canonical interfaces
@@ -25,6 +27,8 @@ coverage:
   - asynchronous waiting, resume conditions, causal events, and transitions
   - routing hard gates and authorized structural-change receipts
   - typed objective detection, ratification, sleeping bot binding, and explicit activation
+  - nine-axis orientation coverage, deterministic inquiry rank, and presentation/semantic separation
+  - replayable selected-question and explicit-hold inquiry receipts with typed provenance
 
 proof:
   command: "npm test"

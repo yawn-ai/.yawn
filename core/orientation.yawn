@@ -1,19 +1,68 @@
 id: core/orientation
 title: "orientation"
 kind: core
-status: v0-seed
-updated: 2026-07-03
+status: draft-0.2
+updated: 2026-08-27
 
 definition: >
-  Orientation is the step where an observing agent locates itself inside a
-  partial information field before treating any signal as a claim or action.
+  Orientation is the revisable, attributed process and working state through
+  which an Agent locates itself in relationship with an Arena from within a
+  partial information field. It composes enough current context, concern,
+  uncertainty, authority, affordance, and proof conditions to make inquiry,
+  holding, choice, or movement inspectable without pretending to contain the
+  Agent, Arena, relationship, or reality.
+
+structural_and_operational_order:
+  relationship: "structurally first; it conditions what can become relevant"
+  observation: "operationally first; it makes the active relationship inspectable"
+  orientation: "revises the working map from attributed observations and inferences"
+  movement: "optional; inquiry, presence, holding, waiting, and deliberate non-action remain valid"
+  update: "proof and authorized events may revise the map and relationship"
 
 orientation_records:
-  observer: "who or what is observing"
-  context: "where the signal is being read"
-  stance: "how the observer is positioned"
-  attention: "what has focus"
-  current_location: "where the agent thinks it is in the frame"
+  relationship_ref: "the active Agent-Arena coupling being oriented within"
+  principal_and_role_refs: "whose rights govern and which situated roles are active"
+  arena_ref: "the provisional purpose-relevant slice of the world"
+  observation_refs: "what became available, from where, and through what access"
+  observer_stance: "how the observer is positioned; normally a stance of an existing Agent"
+  attention: "what currently has focus and why it may be salient"
+  current_location: "where the Agent thinks it is physically, socially, temporally, and structurally"
+  purpose_or_governing_question: "what makes this orientation relevant now"
+  current_state_refs: "attributed body, relationship, environment, and system state"
+  concern_need_value_and_commitment_refs: "what exerts pressure or matters, without converting desire into authority"
+  resource_constraint_and_capability_refs: "what enables, limits, or changes available participation"
+  authority_boundary_refs: "what must be protected and who may decide, disclose, or act"
+  lacuna_and_open_question_refs: "what remains unknown, disputed, missing, or unresolved"
+  affordance_or_candidate_move_refs: "what inquiry, holding, participation, or movement appears available"
+  proof_and_revision_refs: "what could revise specific claims and which orientation revision is current"
+
+one_model_rule: >
+  These records reference the shared YAWN ontology. They do not create a second
+  personal orientation ontology, a parallel Agent model, or mandatory storage
+  fields for every human interaction.
+
+perspective_boundaries:
+  observer: >
+    An observer is normally a metacognitive stance, role, or View of an embodied
+    Agent. Represent it as a distinct Agent only when it has a persistent
+    boundary, identity, capability, memory, and authority of its own.
+  game: >
+    A game is an optional lens over an Arena when goals, rules, participants,
+    stakes, or competition are useful. An Arena is not competitive by default.
+  level: >
+    A level is a declared scope, nesting depth, resolution, or capability
+    dimension. It never ranks consciousness, identity, or human worth.
+
+orientation_inquiry:
+  semantic_source: question-packets/orientation-nine.yawn
+  selection_policy: core/inquiry-selection.yawn
+  orientation_map_schema: schemas/orientation-map.v0.1.schema.json
+  view_kind: orientation_inquiry
+  rule: >
+    Stable question_key values provide shared semantic coverage. Their order,
+    wording, pacing, and representation_medium are noncanonical presentation
+    choices and may adapt to an Agent, Arena, current state, accessibility need,
+    and accepted preference.
 
 stable_claims:
   - "Agents receive information."
@@ -22,14 +71,24 @@ stable_claims:
   - "Those inferences can be wrong."
   - "Hidden inference creates risk."
   - "Externalizing inference improves review."
+  - "Orientation is attributed, situated, partial, time-indexed, and revisable."
+  - "A more detailed map does not become the Agent, Arena, relationship, or reality."
+  - "Question presentation may change without changing semantic state."
 
 boundary:
   - "Orientation is not proof."
   - "Orientation should name uncertainty before movement."
   - "A stronger orientation does not remove the need for consent or evidence."
+  - "A preferred question order or medium is not a fixed learning style or identity claim."
+  - "Presence, inquiry, waiting, and non-participation are not orientation failures."
+  - "A presentation preference cannot suppress safety, authority, privacy, provenance, or proof boundaries."
 
 proof:
   source:
     - shape/orientation-shape.yawn
+    - question-packets/orientation-nine.yawn
+    - core/inquiry-selection.yawn
+    - core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+    - core/projection-and-aperture.yawn
     - core/proof-and-boundary.yawn
-  status: seed-backed
+  status: draft-backed

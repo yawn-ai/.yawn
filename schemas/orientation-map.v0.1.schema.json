@@ -1,0 +1,836 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/orientation-map.v0.1.schema.json",
+  "title": "YAWN Orientation Map V0.1",
+  "description": "A contextual, revisable, noncanonical orientation View with attributed answer state, proposed presentation hypotheses, and replayable inquiry-selection inputs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "orientationMapId",
+    "revision",
+    "principalRef",
+    "scopeRef",
+    "relationshipRef",
+    "arenaRef",
+    "sourceQuestionPacket",
+    "axes",
+    "presentationProfileHypotheses",
+    "rankingPolicy",
+    "canonicalState",
+    "projectionStatus",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.orientation-map.v0.1" },
+    "orientationMapId": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S" },
+    "revision": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "principalRef": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^principal:[^\\s]+$" },
+    "scopeRef": {
+      "allOf": [
+        { "$ref": "#/$defs/StrictRecordRef" },
+        { "type": "object", "properties": { "kind": { "enum": ["principal", "agent_space", "arena", "yawn", "observation", "view"] } } }
+      ]
+    },
+    "relationshipRef": {
+      "anyOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/StrictRecordRef" },
+            { "type": "object", "properties": { "kind": { "const": "relationship" } } }
+          ]
+        },
+        { "type": "null" }
+      ]
+    },
+    "arenaRef": {
+      "anyOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/StrictRecordRef" },
+            { "type": "object", "properties": { "kind": { "const": "arena" } } }
+          ]
+        },
+        { "type": "null" }
+      ]
+    },
+    "sourceQuestionPacket": {
+      "const": {
+        "id": "question-packets/orientation-nine",
+        "version": "0.4.0-draft",
+        "sha256": "8c1faa75c7dffaad21d559a9ffafeab4ac4c771c4151c322cfd53cd0f4d83cab"
+      }
+    },
+    "axes": { "$ref": "#/$defs/AxisMap" },
+    "presentationProfileHypotheses": { "$ref": "#/$defs/PresentationProfileHypotheses" },
+    "rankingPolicy": {
+      "const": {
+        "policyVersion": "yawn.inquiry-selection.v0.1",
+        "promptSetVersion": "0.4.0-draft",
+        "promptSetSha256": "8c1faa75c7dffaad21d559a9ffafeab4ac4c771c4151c322cfd53cd0f4d83cab",
+        "maximumResults": 3,
+        "gateClearConfidenceMinimum": 0.75,
+        "presentationOrderRole": "accepted-or-explicit-substantive-tie-break-only",
+        "semanticPriorityOrder": [
+          "movement_critical_missing_information",
+          "affected_relationship_or_unresolved_role",
+          "high_consequence_low_confidence",
+          "contradiction_or_dispute",
+          "stale_high_impact_information",
+          "expected_information_value",
+          "proof_or_close_condition_gap",
+          "orientation_gain_per_effort",
+          "lower_effort"
+        ],
+        "tieBreakOrder": [
+          "hard_gate_priority",
+          "greater_semantic_priority",
+          "lower_answer_burden",
+          "explicit_current_turn_choice",
+          "accepted_question_order_preference",
+          "canonical_question_order"
+        ],
+        "canonicalOrder": [
+          "scope",
+          "placement",
+          "perspective",
+          "current-state",
+          "intent",
+          "lacuna",
+          "boundary",
+          "movement",
+          "proof"
+        ]
+      }
+    },
+    "canonicalState": { "const": false },
+    "projectionStatus": { "const": "proposed" },
+    "createdAt": { "$ref": "#/$defs/Timestamp" },
+    "updatedAt": { "$ref": "#/$defs/Timestamp" }
+  },
+  "$defs": {
+    "StrictRecordRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S" },
+            "revision": {
+              "anyOf": [
+                { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+                { "type": "null" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Timestamp": {
+      "type": "string",
+      "maxLength": 100,
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]{1,3})?Z$"
+    },
+    "QuestionKey": {
+      "enum": [
+        "scope",
+        "placement",
+        "perspective",
+        "current-state",
+        "intent",
+        "lacuna",
+        "boundary",
+        "movement",
+        "proof"
+      ]
+    },
+    "RecordRefs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/StrictRecordRef" }
+    },
+    "QuestionEventRefs": {
+      "type": "array",
+      "maxItems": 100,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/QuestionEventRef" }
+    },
+    "SelectionReceiptRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "revision", "stateSha256"],
+      "properties": {
+        "kind": { "const": "inquiry_selection_receipt" },
+        "id": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^receipt:[^\\s]+$" },
+        "revision": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "QuestionEventRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "revision", "stateSha256", "assertedBy", "selectionReceiptRef"],
+      "properties": {
+        "kind": { "const": "question_event" },
+        "id": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^question-event:[^\\s]+$" },
+        "revision": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "assertedBy": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^(principal|actor|assistant|agent|system):[^\\s]+$" },
+        "selectionReceiptRef": { "$ref": "#/$defs/SelectionReceiptRef" }
+      }
+    },
+    "AnswerSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "assertedBy",
+        "epistemicStatus",
+        "confidence",
+        "freshness",
+        "visibility",
+        "disputeStatus",
+        "sourceRefs",
+        "selectionReceiptRef",
+        "updatedAt"
+      ],
+      "properties": {
+        "summary": { "type": "string", "minLength": 1, "maxLength": 64000, "pattern": "\\S" },
+        "assertedBy": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^(principal|actor|assistant|agent|system):[^\\s]+$" },
+        "epistemicStatus": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "freshness": { "enum": ["current", "stale", "unknown"] },
+        "visibility": { "enum": ["private", "shared", "public"] },
+        "disputeStatus": { "enum": ["undisputed", "disputed", "unknown"] },
+        "sourceRefs": { "$ref": "#/$defs/RecordRefs" },
+        "selectionReceiptRef": { "$ref": "#/$defs/SelectionReceiptRef" },
+        "updatedAt": { "$ref": "#/$defs/Timestamp" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": { "assertedBy": { "type": "string", "pattern": "^(assistant|agent|system):" } },
+            "required": ["assertedBy"]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "epistemicStatus": { "enum": ["inferred", "assumed", "predicted", "disputed", "unknown"] }
+            }
+          }
+        }
+      ]
+    },
+    "HardGateAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "assertedBy", "epistemicStatus", "confidence", "sourceRefs"],
+      "properties": {
+        "status": { "enum": ["active", "clear", "unknown"] },
+        "assertedBy": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^(principal|actor|assistant|agent|system):[^\\s]+$" },
+        "epistemicStatus": { "enum": ["reported", "inferred", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RecordRefs" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": { "assertedBy": { "type": "string", "pattern": "^(assistant|agent|system):" } },
+            "required": ["assertedBy"]
+          },
+          "then": {
+            "type": "object",
+            "properties": { "epistemicStatus": { "enum": ["inferred", "disputed", "unknown"] } }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "status": { "const": "clear" } },
+            "required": ["status"]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "assertedBy": {
+                "type": "string",
+                "pattern": "^principal:[^\\s]+$"
+              },
+              "epistemicStatus": { "const": "reported" },
+              "confidence": { "type": "number", "minimum": 0.75 },
+              "sourceRefs": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "kind": { "const": "principal" },
+                    "id": { "type": "string", "pattern": "^principal:[^\\s]+$" }
+                  },
+                  "required": ["kind", "id"]
+                },
+                "minContains": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "status": { "const": "unknown" } },
+            "required": ["status"]
+          },
+          "then": {
+            "type": "object",
+            "properties": { "epistemicStatus": { "enum": ["inferred", "disputed", "unknown"] } }
+          }
+        }
+      ]
+    },
+    "AuthorityOrPrivacyGateAssessment": {
+      "allOf": [
+        { "$ref": "#/$defs/HardGateAssessment" },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "status": { "const": "clear" } },
+            "required": ["status"]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "assertedBy": {
+                "type": "string",
+                "pattern": "^principal:[^\\s]+$"
+              },
+              "epistemicStatus": { "const": "reported" },
+              "sourceRefs": {
+                "type": "array",
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "kind": { "const": "principal" },
+                    "id": { "type": "string", "pattern": "^principal:[^\\s]+$" }
+                  },
+                  "required": ["kind", "id"]
+                },
+                "minContains": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "HardGateAssessments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "immediateSafetyOrStability",
+        "authorityOrConsent",
+        "privacyVisibilityOrEgress",
+        "sourceOrProvenance",
+        "proofOrFalsifierIntegrity"
+      ],
+      "properties": {
+        "immediateSafetyOrStability": { "$ref": "#/$defs/HardGateAssessment" },
+        "authorityOrConsent": { "$ref": "#/$defs/AuthorityOrPrivacyGateAssessment" },
+        "privacyVisibilityOrEgress": { "$ref": "#/$defs/AuthorityOrPrivacyGateAssessment" },
+        "sourceOrProvenance": { "$ref": "#/$defs/HardGateAssessment" },
+        "proofOrFalsifierIntegrity": { "$ref": "#/$defs/HardGateAssessment" }
+      }
+    },
+    "RankingSignals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hardGateAssessments",
+        "movementCriticalMissingInformation",
+        "affectedRelationshipOrUnresolvedRole",
+        "consequence",
+        "contradictionOrDispute",
+        "staleness",
+        "informationValue",
+        "proofOrCloseConditionGap",
+        "orientationGain",
+        "effort",
+        "assertedBy",
+        "epistemicStatus",
+        "confidence",
+        "sourceRefs"
+      ],
+      "properties": {
+        "hardGateAssessments": { "$ref": "#/$defs/HardGateAssessments" },
+        "movementCriticalMissingInformation": { "type": "boolean" },
+        "affectedRelationshipOrUnresolvedRole": { "type": "boolean" },
+        "consequence": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "contradictionOrDispute": { "type": "boolean" },
+        "staleness": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "informationValue": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "proofOrCloseConditionGap": { "type": "boolean" },
+        "orientationGain": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "effort": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "assertedBy": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^(principal|actor|assistant|agent|system):[^\\s]+$" },
+        "epistemicStatus": { "enum": ["reported", "inferred", "disputed", "unknown"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RecordRefs" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": { "assertedBy": { "type": "string", "pattern": "^(assistant|agent|system):" } },
+            "required": ["assertedBy"]
+          },
+          "then": {
+            "type": "object",
+            "properties": { "epistemicStatus": { "enum": ["inferred", "disputed", "unknown"] } }
+          }
+        }
+      ]
+    },
+    "AxisState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverageStatus",
+        "answerStatus",
+        "mappingStatus",
+        "currentAnswer",
+        "questionEventRefs",
+        "rankingSignals"
+      ],
+      "properties": {
+        "coverageStatus": { "enum": ["missing", "partial", "covered", "stale"] },
+        "answerStatus": {
+          "enum": [
+            "unasked",
+            "answered",
+            "proposed",
+            "corrected",
+            "skipped",
+            "unknown",
+            "disputed",
+            "deferred",
+            "withheld",
+            "not_applicable"
+          ]
+        },
+        "mappingStatus": { "enum": ["unmapped", "proposed", "accepted", "corrected", "rejected"] },
+        "currentAnswer": {
+          "anyOf": [
+            { "$ref": "#/$defs/AnswerSnapshot" },
+            { "type": "null" }
+          ]
+        },
+        "questionEventRefs": { "$ref": "#/$defs/QuestionEventRefs" },
+        "rankingSignals": { "$ref": "#/$defs/RankingSignals" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": { "answerStatus": { "enum": ["unasked", "skipped", "deferred", "withheld"] } },
+            "required": ["answerStatus"]
+          },
+          "then": { "type": "object", "properties": { "currentAnswer": { "type": "null" } } },
+          "else": { "type": "object", "properties": { "currentAnswer": { "$ref": "#/$defs/AnswerSnapshot" } } }
+        },
+        {
+          "if": { "type": "object", "properties": { "answerStatus": { "const": "unasked" } }, "required": ["answerStatus"] },
+          "then": {
+            "type": "object",
+            "properties": {
+              "coverageStatus": { "const": "missing" },
+              "mappingStatus": { "const": "unmapped" },
+              "questionEventRefs": { "type": "array", "maxItems": 0 }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "answerStatus": { "not": { "const": "unasked" } } },
+            "required": ["answerStatus"]
+          },
+          "then": { "type": "object", "properties": { "questionEventRefs": { "type": "array", "minItems": 1 } } }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "answerStatus": { "enum": ["skipped", "deferred", "withheld"] } },
+            "required": ["answerStatus"]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "coverageStatus": { "const": "missing" },
+              "mappingStatus": { "enum": ["accepted", "corrected"] }
+            }
+          }
+        },
+        {
+          "if": { "type": "object", "properties": { "answerStatus": { "const": "answered" } }, "required": ["answerStatus"] },
+          "then": { "type": "object", "properties": { "mappingStatus": { "const": "accepted" } } }
+        },
+        {
+          "if": { "type": "object", "properties": { "answerStatus": { "const": "corrected" } }, "required": ["answerStatus"] },
+          "then": { "type": "object", "properties": { "mappingStatus": { "const": "corrected" } } }
+        },
+        {
+          "if": { "type": "object", "properties": { "answerStatus": { "const": "proposed" } }, "required": ["answerStatus"] },
+          "then": {
+            "type": "object",
+            "properties": {
+              "coverageStatus": { "enum": ["missing", "partial"] },
+              "mappingStatus": { "enum": ["proposed", "rejected"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "answerStatus": { "enum": ["unknown", "disputed"] } },
+            "required": ["answerStatus"]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "coverageStatus": { "const": "partial" },
+              "mappingStatus": { "enum": ["accepted", "corrected"] }
+            }
+          }
+        },
+        {
+          "if": { "type": "object", "properties": { "answerStatus": { "const": "disputed" } }, "required": ["answerStatus"] },
+          "then": {
+            "type": "object",
+            "properties": {
+              "currentAnswer": {
+                "allOf": [
+                  { "$ref": "#/$defs/AnswerSnapshot" },
+                  { "type": "object", "properties": { "disputeStatus": { "const": "disputed" } } }
+                ]
+              },
+              "rankingSignals": {
+                "allOf": [
+                  { "$ref": "#/$defs/RankingSignals" },
+                  { "type": "object", "properties": { "contradictionOrDispute": { "const": true } } }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": { "type": "object", "properties": { "answerStatus": { "const": "not_applicable" } }, "required": ["answerStatus"] },
+          "then": {
+            "type": "object",
+            "properties": {
+              "coverageStatus": { "const": "covered" },
+              "mappingStatus": { "enum": ["accepted", "corrected"] }
+            }
+          }
+        },
+        {
+          "if": { "type": "object", "properties": { "coverageStatus": { "const": "covered" } }, "required": ["coverageStatus"] },
+          "then": {
+            "type": "object",
+            "properties": {
+              "answerStatus": { "enum": ["answered", "corrected", "not_applicable"] },
+              "mappingStatus": { "enum": ["accepted", "corrected"] }
+            }
+          }
+        },
+        {
+          "if": { "type": "object", "properties": { "coverageStatus": { "const": "stale" } }, "required": ["coverageStatus"] },
+          "then": {
+            "type": "object",
+            "properties": {
+              "answerStatus": { "enum": ["answered", "corrected"] },
+              "currentAnswer": {
+                "allOf": [
+                  { "$ref": "#/$defs/AnswerSnapshot" },
+                  { "type": "object", "properties": { "freshness": { "const": "stale" } } }
+                ]
+              },
+              "rankingSignals": {
+                "allOf": [
+                  { "$ref": "#/$defs/RankingSignals" },
+                  { "type": "object", "properties": { "staleness": { "type": "integer", "minimum": 1, "maximum": 3 } } }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": { "mappingStatus": { "const": "unmapped" } },
+            "required": ["mappingStatus"]
+          },
+          "then": { "type": "object", "properties": { "answerStatus": { "const": "unasked" } } }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "currentAnswer": {
+                "type": "object",
+                "properties": {
+                  "assertedBy": { "type": "string", "pattern": "^(assistant|agent|system):" }
+                },
+                "required": ["assertedBy"]
+              }
+            },
+            "required": ["currentAnswer"]
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "answerStatus": { "const": "proposed" },
+              "mappingStatus": { "enum": ["proposed", "rejected"] }
+            }
+          }
+        }
+      ]
+    },
+    "AxisMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "placement",
+        "perspective",
+        "current-state",
+        "intent",
+        "lacuna",
+        "boundary",
+        "movement",
+        "proof"
+      ],
+      "properties": {
+        "scope": { "$ref": "#/$defs/AxisState" },
+        "placement": { "$ref": "#/$defs/AxisState" },
+        "perspective": { "$ref": "#/$defs/AxisState" },
+        "current-state": { "$ref": "#/$defs/AxisState" },
+        "intent": { "$ref": "#/$defs/AxisState" },
+        "lacuna": { "$ref": "#/$defs/AxisState" },
+        "boundary": { "$ref": "#/$defs/AxisState" },
+        "movement": { "$ref": "#/$defs/AxisState" },
+        "proof": { "$ref": "#/$defs/AxisState" }
+      }
+    },
+    "MediumHypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["medium", "epistemicStatus", "proposalStatus", "confidence", "sourceRefs", "updatedAt"],
+      "properties": {
+        "medium": { "enum": ["voice", "free_text", "structured_choice", "visual_map", "mixed"] },
+        "epistemicStatus": { "const": "hypothesized" },
+        "proposalStatus": { "const": "proposed" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RecordRefs" },
+        "updatedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "QuestionOrderHypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questionKeys", "epistemicStatus", "proposalStatus", "confidence", "sourceRefs", "updatedAt"],
+      "properties": {
+        "questionKeys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 9,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/QuestionKey" }
+        },
+        "epistemicStatus": { "const": "hypothesized" },
+        "proposalStatus": { "const": "proposed" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RecordRefs" },
+        "updatedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "PresentationProfileHypotheses": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preferredMedia", "preferredQuestionOrder"],
+      "properties": {
+        "preferredMedia": {
+          "type": "array",
+          "maxItems": 5,
+          "items": { "$ref": "#/$defs/MediumHypothesis" },
+          "allOf": [
+            { "contains": { "type": "object", "properties": { "medium": { "const": "voice" } }, "required": ["medium"] }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "properties": { "medium": { "const": "free_text" } }, "required": ["medium"] }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "properties": { "medium": { "const": "structured_choice" } }, "required": ["medium"] }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "properties": { "medium": { "const": "visual_map" } }, "required": ["medium"] }, "minContains": 0, "maxContains": 1 },
+            { "contains": { "type": "object", "properties": { "medium": { "const": "mixed" } }, "required": ["medium"] }, "minContains": 0, "maxContains": 1 }
+          ]
+        },
+        "preferredQuestionOrder": {
+          "anyOf": [
+            { "$ref": "#/$defs/QuestionOrderHypothesis" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "CurrentTurnQuestionOrder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questionKeys", "assertedBy", "sourceRefs", "recordedAt"],
+      "properties": {
+        "questionKeys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 9,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/QuestionKey" }
+        },
+        "assertedBy": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^principal:[^\\s]+$" },
+        "sourceRefs": { "$ref": "#/$defs/RecordRefs" },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" }
+      }
+    },
+    "AcceptedQuestionOrderPreference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidenceSchemaVersion",
+        "viewKind",
+        "fieldPath",
+        "activeScopeRefs",
+        "questionKeys",
+        "status",
+        "preferenceHash",
+        "preferenceRefs",
+        "principalRef"
+      ],
+      "properties": {
+        "evidenceSchemaVersion": { "const": "yawn.orientation-question-order-preference-evidence.v1" },
+        "viewKind": { "const": "orientation_inquiry" },
+        "fieldPath": { "const": "/question/defaultAxisOrder" },
+        "activeScopeRefs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "uniqueItems": true,
+          "items": {
+            "allOf": [
+              { "$ref": "#/$defs/StrictRecordRef" },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": { "enum": ["principal", "agent_space", "arena", "yawn", "observation", "view"] }
+                },
+                "required": ["kind"]
+              }
+            ]
+          }
+        },
+        "questionKeys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 9,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/QuestionKey" }
+        },
+        "status": { "const": "accepted" },
+        "preferenceHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "principalRef": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^principal:[^\\s]+$" },
+        "preferenceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["preferenceId", "revision", "stateSha256", "scopeRef"],
+            "properties": {
+              "preferenceId": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S" },
+              "revision": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+              "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "scopeRef": {
+                "allOf": [
+                  { "$ref": "#/$defs/StrictRecordRef" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": { "enum": ["principal", "agent_space", "arena", "yawn", "observation", "view"] }
+                    },
+                    "required": ["kind"]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "SelectionHold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reasonCode", "description", "assertedBy", "sourceRefs", "reopenCondition"],
+      "properties": {
+        "reasonCode": {
+          "enum": [
+            "referent_ambiguous",
+            "required_source_or_authority_context_missing",
+            "unbounded_or_unnecessary_burden",
+            "explicit_principal_pause"
+          ]
+        },
+        "description": { "type": "string", "minLength": 1, "maxLength": 2000, "pattern": "\\S" },
+        "assertedBy": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^(principal|actor|assistant|agent|system):[^\\s]+$" },
+        "sourceRefs": { "$ref": "#/$defs/RecordRefs" },
+        "reopenCondition": { "type": "string", "minLength": 1, "maxLength": 2000, "pattern": "\\S" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "reasonCode": { "const": "explicit_principal_pause" } },
+            "required": ["reasonCode"]
+          },
+          "then": {
+            "properties": { "assertedBy": { "type": "string", "pattern": "^principal:[^\\s]+$" } }
+          }
+        }
+      ]
+    },
+    "SelectionOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "limit": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "currentTurnQuestionOrder": {
+          "anyOf": [
+            { "$ref": "#/$defs/CurrentTurnQuestionOrder" },
+            { "type": "null" }
+          ]
+        },
+        "acceptedQuestionOrderPreference": {
+          "anyOf": [
+            { "$ref": "#/$defs/AcceptedQuestionOrderPreference" },
+            { "type": "null" }
+          ]
+        },
+        "hold": {
+          "anyOf": [
+            { "$ref": "#/$defs/SelectionHold" },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -21,8 +21,10 @@ and historical material so each can be read with the right level of trust.
 3. Validate the [v1 contracts](../contracts/) and [state schemas](../schemas/).
 4. Experiment with the [Agency Holarchy Draft 0.2](../schemas/agency-holarchy.v0.2.schema.json).
 5. Compile a signal into an [Objective Holon Draft 0.1](../spec/objective-holons.md).
-6. Read [serialization and compatibility](../spec/serialization.md).
-7. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
+6. Resolve adaptive inquiry with the [Orientation Map Draft 0.1](../schemas/orientation-map.v0.1.schema.json)
+   and its [closed selection receipt](../schemas/inquiry-selection-receipt.v0.1.schema.json).
+7. Read [serialization and compatibility](../spec/serialization.md).
+8. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
 
 ### I want to understand the theory
 
@@ -30,8 +32,9 @@ and historical material so each can be read with the right level of trust.
 2. Read the [holarchy](../spec/holarchy.md), [turn](../spec/turns.md), and
    [routing](../spec/routing.md) specifications.
 3. Study the [objective/Yawn/Yawn.bot lifecycle](../spec/objective-holons.md).
-4. See how [projections](projections/README.md) render one canonical graph.
-5. Review the [research basis and limits](research-basis.md).
+4. Read how [orientation questions adapt without changing meaning](../spec/questions.md).
+5. See how [projections](projections/README.md) render one canonical graph.
+6. Review the [research basis and limits](research-basis.md).
 
 ### I want to contribute
 

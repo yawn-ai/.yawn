@@ -1,8 +1,8 @@
 id: shape/node
 title: "shape node"
 kind: mental-model-node
-status: v0-seed
-updated: 2026-07-03
+status: draft-0.2
+updated: 2026-08-27
 
 purpose: >
   Hold the public primitives behind .yawn as an orientation shape: field,
@@ -12,6 +12,7 @@ holds:
   - information field
   - orientation shape
   - observing agent
+  - orientation_map and orientation_inquiry projection boundary
 
 receives:
   - raw signals
@@ -36,9 +37,18 @@ links:
   - core/orientation.yawn
   - core/memory-update.yawn
   - templates/orientation-shape.yawn
+  - question-packets/orientation-nine.yawn
+  - core/inquiry-selection.yawn
+  - schemas/orientation-map.v0.1.schema.json
+  - schemas/inquiry-selection-receipt.v0.1.schema.json
 
 proof:
   source:
     - readme.yawn
     - yawn.yawn
-  status: seed-backed
+    - shape/orientation-shape.yawn
+    - templates/orientation-shape.yawn
+    - question-packets/orientation-nine.yawn
+    - core/inquiry-selection.yawn
+    - schemas/inquiry-selection-receipt.v0.1.schema.json
+  status: draft-backed

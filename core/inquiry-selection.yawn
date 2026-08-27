@@ -1,0 +1,218 @@
+id: core/inquiry-selection
+title: "inquiry selection"
+kind: governance-policy
+status: draft-0.1
+updated: 2026-08-27
+policy_version: yawn.inquiry-selection.v0.1
+
+purpose: >
+  Select one situated orientation question or an explicit hold from the shared
+  nine-key semantic projection. Selection may adapt to the current Arena and an
+  Agent's accepted presentation preferences without creating a second ontology,
+  hiding a material boundary, or turning a ranking score into authority.
+
+semantic_source:
+  question_packet: question-packets/orientation-nine.yawn
+  orientation_map_schema: schemas/orientation-map.v0.1.schema.json
+  view_kind: orientation_inquiry
+  stable_identity: question_key
+  invariant: "Prompt variants and media preserve question_key."
+
+inputs:
+  required:
+    - orientation_revision_ref
+    - relationship_ref
+    - arena_ref
+    - canonical_question_universe
+    - policy_version
+  canonical_question_universe: >
+    The selector always evaluates the exact nine stable question keys in
+    canonical order. Per-axis answer and mapping control states derive any
+    exclusions; callers do not supply a narrower candidate set.
+  when_available:
+    - observation_refs
+    - lacuna_refs
+    - boundary_and_authority_refs
+    - proof_state_refs
+    - accepted_projection_preference_refs
+    - current_turn_presentation_choice
+    - accessibility_requirements
+    - candidate_coverage_answer_and_mapping_states
+
+selection_passes:
+  - pass: hard_gates
+    order: 1
+    purpose: "Protect the Agent and affected parties before optimizing question fit."
+    priority:
+      - immediate_safety_or_stability
+      - authority_or_consent_blocker
+      - privacy_visibility_or_egress_blocker
+      - source_or_provenance_loss
+      - proof_or_falsifier_integrity
+    rule: >
+      A material hard gate is foregrounded or causes an explicit hold. No score,
+      preference, fluent answer, or model confidence may bypass it.
+    negative_assessment_boundary: >
+      A false blocker flag counts as clear only when its attributed ranking
+      assessment is neither unknown nor disputed and has confidence of at least
+      0.75. Every clear assessment requires a report from the current principal
+      with that principal retained as a source; machine inference cannot clear
+      a hard gate. Otherwise the gate remains unknown and must be foregrounded
+      or held.
+
+  - pass: semantic_priority
+    order: 2
+    purpose: "Find the missing orientation that could most change a rightful next choice."
+    priority:
+      - movement_critical_missing_information
+      - affected_relationship_or_unresolved_role
+      - high_consequence_low_confidence
+      - contradiction_or_dispute
+      - stale_high_impact_information
+      - expected_information_value
+      - proof_or_close_condition_gap
+      - orientation_gain_per_effort
+      - lower_effort
+    rule: >
+      Semantic priority selects among stable question keys. It is based on the
+      current relationship, Arena, orientation revision, and open lacunae rather
+      than a fixed interview sequence.
+
+  - pass: interaction_fit
+    order: 3
+    purpose: "Render the selected inquiry in a form the Agent can use now."
+    considerations:
+      - explicit_current_turn_choice
+      - accessibility_requirement
+      - accepted_question_order_preference
+      - accepted_answer_input_adapter_or_representation_medium_preference
+      - answerability
+      - effort_and_friction
+      - recent_deferral_or_repetition
+    rule: >
+      Interaction fit may choose order among otherwise suitable keys and record
+      a caller-supplied representation medium and answer input adapter. Receipt
+      V0.1 renders only the packet-pinned default prompt or its deterministic
+      hard-gate overlay; wording or pacing proposals require a future versioned
+      prompt registry before they can affect executable selection. Interaction
+      fit may not change semantic identity, required attribution, hard gates,
+      truth status, or authority.
+
+preference_precedence:
+  outside_preferences:
+    - semantic_invariants
+    - safety_authority_privacy_and_proof_gates
+  ordered_from_highest_specificity:
+    - explicit_current_turn_choice
+    - current_yawn_scope
+    - current_arena_scope
+    - principal_scope
+    - view_default
+  inference_rule: >
+    An explicit accepted preference may be used at its declared scope. A pattern
+    inferred from behavior remains a proposal until the rightful principal
+    accepts, corrects, or rejects it.
+  evidence_rule: >
+    Accepted question order carries a dedicated evidence hash, the winning
+    preference's typed scope, and the exact active scope set. The selector
+    recomputes the hash and rejects scopes outside the current principal,
+    default View, scope, or Arena context.
+
+selection_result:
+  foreground_question_limit: 1
+  allowed:
+    - selected_question
+    - explicit_hold
+  hold_when:
+    - no_candidate_survives_hard_gates
+    - unforegroundable_live_hard_gate
+    - ambiguous_referent
+    - missing_source_or_authority_context
+    - unbounded_or_unnecessary_burden
+    - all_remaining_axes_deferred_or_withheld
+    - no_currently_askable_orientation_axis
+    - no_unresolved_orientation_axis
+    - principal_requested_pause
+  hold_rule: "A hold names its reason and the smallest condition that could reopen selection."
+
+determinism:
+  candidate_order: "canonical question order before scoring"
+  tie_break:
+    - hard_gate_priority
+    - greater_semantic_priority
+    - lower_answer_burden
+    - explicit_current_turn_choice
+    - accepted_question_order_preference
+    - canonical_question_order
+  replay_rule: >
+    The same canonical question universe, per-axis control states, effective
+    versioned inputs, preference hash, policy version, and tie-break rules
+    produce the same selected key or hold.
+
+selection_receipt:
+  schema_ref: schemas/inquiry-selection-receipt.v0.1.schema.json
+  executable_selector: lib/inquiry-selection-receipt-v0.1.mjs
+  canonical_semantic_state: false
+  required:
+    - receipt_id
+    - orientation_revision_ref
+    - orientation_map_updated_at
+    - orientation_semantic_hash
+    - ranking_input_hash
+    - ranking_result_limit
+    - render_input_hash
+    - relationship_ref
+    - arena_ref
+    - candidate_question_keys
+    - exclusions_and_hard_gate_results
+    - per_gate_assessment_evidence
+    - semantic_priority_inputs
+    - interaction_fit_inputs
+    - candidate_coverage_answer_and_mapping_states
+    - accepted_preference_hash_or_null
+    - presentation_choice_evidence_or_null
+    - policy_version
+    - selected_question_or_null
+    - typed_hold_or_null
+    - requested_hold_or_null
+    - deterministic_tie_break
+    - created_at
+  boundary: >
+    The receipt is self-consistent evidence for a View-level selection. Paired
+    replay checks equivalence against the effective normalized ranking and
+    render inputs committed by its hashes; inputs that cannot affect an outcome
+    may normalize away. The receipt does not authenticate historical input
+    objects, accept an answer, prove a claim, mutate the orientation, or
+    authorize movement.
+
+answer_feedback:
+  statuses:
+    - answered
+    - proposed
+    - corrected
+    - skipped
+    - unknown
+    - disputed
+    - deferred
+    - withheld
+    - not_applicable
+  rule: >
+    Answer status informs later selection but never silently becomes a durable
+    preference, a truth judgment, or evidence of a fixed learning style.
+
+boundaries:
+  - "Question rank is not importance, truth, obligation, diagnosis, or permission."
+  - "A person may choose another question, ask for another presentation, inspect the map, or pause."
+  - "Visual, spatial, or audio presentation retains an accessible semantic-text question."
+  - "Original response language and answer_input_adapter provenance remain available."
+  - "Unknown, skipped, deferred, withheld, disputed, and not-applicable remain distinct."
+
+proof:
+  condition: >
+    Given equivalent effective normalized ranking and render inputs, executable
+    replay recovers why one question_key, prompt variant, and medium were
+    selected—or why selection held—without treating presentation as canonical
+    orientation state. Receipt-only validation establishes shape and internal
+    evidence consistency, not authenticity of origin or identity of the full
+    historical input objects.
+  status: contract-defined

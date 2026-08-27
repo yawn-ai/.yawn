@@ -2,7 +2,7 @@ id: question-packets/node
 title: "question packets node"
 kind: mental-model-node
 status: active
-updated: 2026-08-13
+updated: 2026-08-27
 
 purpose: >
   Hold simple intake contracts that let a person answer plain-language
@@ -23,6 +23,7 @@ produces:
   - draft-populated .yawn files
   - visible lacuna entries for missing answers
   - safer separation between observation, inference, boundary, move, and proof
+  - stable orientation keys across adaptive wording order and medium
 
 rules:
   - "Question packets are fill protocols, not competing templates."
@@ -32,6 +33,7 @@ rules:
   - "Only authorized events update canonical materialized state."
   - "Only suitable evidence or proof upgrades empirical claims."
   - "Questions are projections over the ontology, not the ontology."
+  - "Adaptive inquiry uses core/inquiry-selection.yawn and preserves question_key, exact_rendered_prompt, representation_medium, and answer_input_adapter provenance."
 
 links:
   - questions/node.yawn
@@ -39,6 +41,7 @@ links:
   - question-packets/relationship.yawn
   - question-packets/orientation-nine.yawn
   - question-packets/turn-close.yawn
+  - core/inquiry-selection.yawn
   - templates/full.yawn
   - templates/relationship.yawn
   - examples/relationship-commitment-conversation.yawn
@@ -48,4 +51,6 @@ proof:
     - readme.yawn
     - templates/full.yawn
     - templates/relationship.yawn
-  status: seed-backed
+    - question-packets/orientation-nine.yawn
+    - core/inquiry-selection.yawn
+  status: draft-backed

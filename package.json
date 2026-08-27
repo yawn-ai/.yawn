@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "generate:inquiry-selection-receipt": "node scripts/generate-inquiry-selection-receipt-v0.1.mjs",
     "test": "npm run validate && node --test --test-concurrency=1 tests/*.test.mjs",
-    "validate": "node scripts/validate-canonical-extension.mjs && node scripts/validate-state-target-v1.mjs && node scripts/validate-agency-holarchy-v0.2.mjs && node scripts/validate-objective-holon-v0.1.mjs"
+    "validate": "node scripts/validate-canonical-extension.mjs && node scripts/validate-state-target-v1.mjs && node scripts/validate-agency-holarchy-v0.2.mjs && node scripts/validate-objective-holon-v0.1.mjs && node scripts/validate-orientation-map-v0.1.mjs && node scripts/validate-inquiry-selection-receipt-v0.1.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0"

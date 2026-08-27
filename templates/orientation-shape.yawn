@@ -3,7 +3,7 @@ title: ""
 
 kind: orientation-shape
 status: seed
-version: "1.0.0"
+version: "1.1.0-draft"
 created: ""
 updated: ""
 
@@ -16,11 +16,63 @@ field:
   metadata: {}
 
 orientation:
+  revision_id: ""
+  as_of: ""
+  relationship_ref: ""
+  principal_ref: ""
+  agent_role_refs: []
+  arena_ref: ""
   observer: ""
   context: ""
   stance: ""
   attention: ""
   current_location: ""
+  purpose_or_governing_question: ""
+  observation_refs: []
+  current_state_refs: []
+  concern_need_value_and_commitment_refs: []
+  resource_constraint_and_capability_refs: []
+  authority_boundary_refs: []
+  lacuna_and_open_question_refs: []
+  affordance_or_candidate_move_refs: []
+  proof_and_revision_refs: []
+
+semantic_question_coverage:
+  packet_ref: question-packets/orientation-nine.yawn
+  # coverage_status: missing | partial | covered | stale. answer_status:
+  # unasked | answered | proposed | corrected | skipped | unknown | disputed |
+  # deferred | withheld | not_applicable. mapping_status: unmapped | proposed |
+  # accepted | corrected | rejected. Statement and question-event refs preserve
+  # attributed semantic records; question presentation never substitutes for them.
+  by_key:
+    scope: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    placement: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    perspective: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    current-state: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    intent: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    lacuna: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    boundary: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    movement: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+    proof: { coverage_status: missing, answer_status: unasked, mapping_status: unmapped, statement_refs: [], question_event_refs: [] }
+
+orientation_inquiry:
+  canonical_semantic_state: false
+  view_kind: orientation_inquiry
+  orientation_map_ref: null
+  selection_policy_ref: core/inquiry-selection.yawn
+  question_key: null
+  prompt_variant: null
+  exact_rendered_prompt: null
+  selection_receipt_ref: null
+  accepted_preference_refs: []
+  accepted_preference_hash: null
+  representation_medium: semantic-text
+  answer_input_adapter: null
+  response_source_ref: null
+  answer_input_adapter_metadata: {}
+  pacing: one-at-a-time
+  accessibility_fallback: semantic-text
+  hold: null
 
 state_snapshot:
   description: ""
@@ -45,6 +97,11 @@ lacuna:
 boundary:
   must_not_assume: []
   must_not_do: []
+  presentation_must_not:
+    - "change question_key while presenting the change as wording-only"
+    - "silently create a durable preference"
+    - "suppress safety, authority, privacy, provenance, or proof"
+    - "treat an observer stance as a second Agent"
   anti_false_certainty:
     - "signal is not instruction"
     - "resonance is not proof"

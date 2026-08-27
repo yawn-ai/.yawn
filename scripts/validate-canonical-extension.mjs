@@ -23,13 +23,13 @@ const scannedExtensions = new Set([
 ]);
 
 // yawn-invalid-alias-guard:start
-const forbiddenPathPattern = /\.(?:ion|yon)$/iu;
+const forbiddenPathPattern = /\.(?:ion|yon|ywn)$/iu;
 const forbiddenContentPatterns = [
-  { id: "dotted-invalid-extension", pattern: /\.(?:ion|yon)\b/iu },
-  { id: "invalid-schema-key", pattern: /^\s*(?:ion|yon)\s*:/imu },
+  { id: "dotted-invalid-extension", pattern: /\.(?:ion|yon|ywn)\b/iu },
+  { id: "invalid-schema-key", pattern: /^\s*(?:ion|yon|ywn)\s*:/imu },
   {
     id: "invalid-schema-noun",
-    pattern: /\b(?:ion|yon)\s+(?:file|files|schema|schemas|record|records|format|formats|extension|extensions|protocol|protocols)\b/iu,
+    pattern: /\b(?:ion|yon|ywn)\s+(?:file|files|schema|schemas|record|records|format|formats|extension|extensions|protocol|protocols)\b/iu,
   },
   { id: "invalid-product-host", pattern: /\b(?:ion|yon)\.(?:ai|bot)\b/iu },
   { id: "retired-expansion", pattern: /\bInterface Orientation Node\b/iu },

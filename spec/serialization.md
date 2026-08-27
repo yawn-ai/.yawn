@@ -14,7 +14,7 @@ The product name is **YAWN** and the human-readable record extension is
 **`.yawn`**.
 
 <!-- yawn-invalid-alias-guard:start -->
-`.ion` and `.yon` are invalid YAWN schema aliases. They frequently appear as
+`.ion`, `.yon`, and `.ywn` are invalid YAWN schema aliases. They frequently appear as
 speech-to-text or model-transcription substitutions, but implementations MUST
 NOT accept them as alternate extensions, compatibility formats, or distinct
 ontologies.
