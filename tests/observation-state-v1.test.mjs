@@ -14,6 +14,19 @@ import { resolveProjectionPreferences } from "../lib/projection-preference-v1.mj
 const fixture = async (name) => JSON.parse(await readFile(new URL(`../fixtures/${name}`, import.meta.url), "utf8"));
 const schema = async (name) => JSON.parse(await readFile(new URL(`../schemas/${name}`, import.meta.url), "utf8"));
 const GOLDEN_OBSERVATION_SHA256 = "495e916cc5ef539e6523fa41995532060e18951efb409801791dfd53c82862ca";
+const projectionPrincipalRef = "principal:fixture-owner";
+const preference = (preferenceId, scopeRef, fieldPath, operation, value, revision, viewKind) => ({
+  preferenceId,
+  principalRef: projectionPrincipalRef,
+  scopeRef,
+  fieldPath,
+  operation,
+  value,
+  revision,
+  ...(viewKind === undefined ? {} : { viewKind }),
+  status: "accepted",
+  sourceEventRef: `event:${preferenceId}`,
+});
 
 test("Observation is valid without Target, Move, or Yawn promotion", async () => {
   const observation = await fixture("observation.v1.json");
@@ -124,16 +137,123 @@ test("generic event and proof schemas address records without a Yawn foreign key
 });
 
 test("projection preferences preserve precedence, resets, and field provenance", () => {
-  const make = (preferenceId, scopeRef, fieldPath, operation, value, revision) => ({
-    preferenceId, scopeRef, fieldPath, operation, value, revision, status: "accepted", sourceEventRef: `event:${preferenceId}`,
-  });
   const resolved = resolveProjectionPreferences([
-    { preferences: [make("default-density", { kind: "view", id: "view:default" }, "/density", "set", "calm", 1)] },
-    { preferences: [make("dave-density", { kind: "principal", id: "principal:dave" }, "/density", "set", "compact", 2)] },
-    { preferences: [make("observation-reset", { kind: "observation", id: "observation:one" }, "/density", "reset", null, 1)] },
+    { preferences: [preference("default-density", { kind: "view", id: "view:default" }, "/density", "set", "calm", 1)] },
+    { preferences: [preference("fixture-owner-density", { kind: "principal", id: projectionPrincipalRef }, "/density", "set", "compact", 2)] },
+    { preferences: [preference("observation-reset", { kind: "observation", id: "observation:one" }, "/density", "reset", null, 1)] },
   ]);
   assert.equal(resolved.fields["/density"], undefined);
   assert.equal(resolved.resets["/density"].preferenceId, "observation-reset");
   assert.match(resolved.preferenceHash, /^[a-f0-9]{64}$/);
-  assert.throws(() => resolveProjectionPreferences([{ preferences: [make("bad", { kind: "view", id: "view:x" }, "/authority/canWrite", "set", true, 1)] }]), /protected_projection_preference/);
+});
+
+test("targeted projection preferences stay within their View and use scope specificity", () => {
+  const orientation = "orientation_inquiry";
+  const art = "observation_question_art";
+  const activeScopeRefs = [
+    { kind: "view", id: "view:default" },
+    { kind: "principal", id: projectionPrincipalRef },
+    { kind: "arena", id: "arena:current-lived-field" },
+    { kind: "yawn", id: "yawn:fixture:participation-choice" },
+  ];
+  const layers = [
+    { preferences: [
+      preference("yawn-medium", { kind: "yawn", id: "yawn:fixture:participation-choice" }, "/output/modality", "set", "visual_map", 1, orientation),
+      preference("yawn-order", { kind: "yawn", id: "yawn:fixture:participation-choice" }, "/question/defaultAxisOrder", "set", ["perspective", "current-state"], 1, orientation),
+      preference("art-medium", { kind: "yawn", id: "yawn:fixture:participation-choice" }, "/output/modality", "set", "image", 1, art),
+      preference("art-order", { kind: "yawn", id: "yawn:fixture:participation-choice" }, "/question/defaultAxisOrder", "set", ["visual-intention"], 1, art),
+    ] },
+    { preferences: [
+      preference("arena-medium", { kind: "arena", id: "arena:current-lived-field" }, "/output/modality", "set", "voice", 1, orientation),
+      preference("arena-pacing", { kind: "arena", id: "arena:current-lived-field" }, "/pacing", "set", "one-question", 1, orientation),
+    ] },
+    { preferences: [
+      preference("principal-medium", { kind: "principal", id: projectionPrincipalRef }, "/output/modality", "set", "free_text", 1, orientation),
+      preference("principal-order", { kind: "principal", id: projectionPrincipalRef }, "/question/defaultAxisOrder", "set", ["scope", "current-state"], 1, orientation),
+      preference("principal-wording", { kind: "principal", id: projectionPrincipalRef }, "/question/wordingStyle", "set", "plain", 1, orientation),
+    ] },
+    { preferences: [
+      preference("legacy-unscoped-density", { kind: "principal", id: projectionPrincipalRef }, "/density", "set", "compact", 1),
+    ] },
+  ];
+
+  const resolvedOrientation = resolveProjectionPreferences(layers, {
+    viewKind: orientation,
+    principalRef: projectionPrincipalRef,
+    activeScopeRefs,
+  });
+  assert.equal(resolvedOrientation.viewKind, orientation);
+  assert.equal(resolvedOrientation.fields["/output/modality"].value, "visual_map");
+  assert.equal(resolvedOrientation.fields["/output/modality"].preferenceId, "yawn-medium");
+  assert.deepEqual(resolvedOrientation.fields["/question/defaultAxisOrder"].value, ["perspective", "current-state"]);
+  assert.equal(resolvedOrientation.fields["/question/wordingStyle"].value, "plain");
+  assert.equal(resolvedOrientation.fields["/pacing"].value, "one-question");
+  assert.equal(resolvedOrientation.fields["/density"], undefined);
+
+  assert.throws(
+    () => resolveProjectionPreferences(layers, art),
+    /projection_preference_options_object_required/,
+  );
+});
+
+test("a more-specific targeted reset wins while omitted presentation axes remain inherited", () => {
+  const orientation = "orientation_inquiry";
+  const resolved = resolveProjectionPreferences([
+    { preferences: [
+      preference("yawn-medium-reset", { kind: "yawn", id: "yawn:fixture:participation-choice" }, "/output/modality", "reset", null, 1, orientation),
+    ] },
+    { preferences: [
+      preference("principal-medium", { kind: "principal", id: projectionPrincipalRef }, "/output/modality", "set", "free_text", 1, orientation),
+      preference("principal-order", { kind: "principal", id: projectionPrincipalRef }, "/question/defaultAxisOrder", "set", ["scope", "placement"], 1, orientation),
+      preference("principal-wording", { kind: "principal", id: projectionPrincipalRef }, "/question/wordingStyle", "set", "plain", 1, orientation),
+    ] },
+    { preferences: [
+      preference("arena-medium", { kind: "arena", id: "arena:current-lived-field" }, "/output/modality", "set", "voice", 1, orientation),
+    ] },
+  ], {
+    viewKind: orientation,
+    principalRef: projectionPrincipalRef,
+    activeScopeRefs: [
+      { kind: "principal", id: projectionPrincipalRef },
+      { kind: "arena", id: "arena:current-lived-field" },
+      { kind: "yawn", id: "yawn:fixture:participation-choice" },
+    ],
+  });
+
+  assert.equal(resolved.fields["/output/modality"], undefined);
+  assert.equal(resolved.resets["/output/modality"].preferenceId, "yawn-medium-reset");
+  assert.deepEqual(resolved.fields["/question/defaultAxisOrder"].value, ["scope", "placement"]);
+  assert.equal(resolved.fields["/question/wordingStyle"].value, "plain");
+});
+
+test("projection preferences cannot hide protected semantics in any View", () => {
+  const protectedPaths = [
+    "/Authority/canWrite",
+    "/presentation/safety/visible",
+    "/semantic_truth/visible",
+    "/sections/proof/visible",
+  ];
+
+  for (const [index, fieldPath] of protectedPaths.entries()) {
+    const bad = preference(
+      `bad-${index}`,
+      { kind: "yawn", id: "yawn:fixture:participation-choice" },
+      fieldPath,
+      "set",
+      false,
+      1,
+      "orientation_inquiry",
+    );
+    assert.throws(
+      () => resolveProjectionPreferences([{ preferences: [bad] }], {
+        viewKind: "orientation_inquiry",
+        principalRef: projectionPrincipalRef,
+        activeScopeRefs: [
+          { kind: "principal", id: projectionPrincipalRef },
+          { kind: "yawn", id: "yawn:fixture:participation-choice" },
+        ],
+      }),
+      /protected_projection_preference/,
+    );
+  }
 });

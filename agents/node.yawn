@@ -1,8 +1,8 @@
 id: agents/node
 title: "agents node"
 kind: mental-model-node
-status: v0-seed
-updated: 2026-08-25
+status: active-mixed
+updated: 2026-08-27
 
 purpose: >
   Hold the public mental model for AI agents working inside a YAWN space.
@@ -19,6 +19,7 @@ holds:
   - blocked hidden authority
   - access recording expectations
   - root steward, objective steward, and worker lifecycle roles
+  - orientation_map reading and orientation_inquiry selection boundaries
 
 receives:
   - readme.yawn
@@ -42,6 +43,7 @@ questions:
   - what can an agent safely infer
   - what must remain human-authorized
   - which objective this bot is bound to and whether it is sleeping or active
+  - which question_key or explicit hold should orientation_inquiry surface
 
 links:
   - agents/orientation.yawn
@@ -53,6 +55,11 @@ links:
   - templates/agent-handoff.yawn
   - records/llm-access.yawn
   - core/objective-holon.yawn
+  - core/orientation.yawn
+  - core/inquiry-selection.yawn
+  - question-packets/orientation-nine.yawn
+  - schemas/orientation-map.v0.1.schema.json
+  - schemas/inquiry-selection-receipt.v0.1.schema.json
 
 proof:
   source:
@@ -61,5 +68,8 @@ proof:
     - agents/repo-contributor.yawn
     - agents/yawn.bot.policy.yawn
     - agents/contributor-agent.yawn
+    - core/inquiry-selection.yawn
+    - schemas/inquiry-selection-receipt.v0.1.schema.json
+    - question-packets/orientation-nine.yawn
     - readme.yawn
-  status: seed-backed
+  status: draft-backed

@@ -40,6 +40,10 @@ labels and do not imply compatibility.
   receipts
 - Executable objective-holon schema, Dave/good-dad fixture, semantic validator,
   conformance tests, compiler interface, template, example, and RFC
+- Adaptive Orientation Map Working Draft 0.1 with one stable nine-axis semantic
+  map, deterministic next-question ranking, closed selection/hold receipts,
+  semantic hashing, presentation-fit hypotheses, a sanitized participation-choice
+  example, and conformance tests
 - Unified documentation hub and deployable GitHub Pages landing page
 - Working Draft 0.2 ontology for world, field, arena, Yawn, turn, transition,
   projection, and replay
@@ -65,6 +69,11 @@ labels and do not imply compatibility.
   truth, consent, privacy, proof, personality, or authority
 - Set concise typed protocol output as the default programming interface and
   made personality an optional projection field
+- Separated orientation meaning from presentation preferences: wording, order,
+  pacing, density, medium, and accessibility remain scoped View concerns and
+  never become fixed learning-style or authority claims
+- Routed legacy intake packet answers into fields that actually exist in the
+  current templates so attributed state, desire, and source data are preserved
 - Made `README.md` the concise human front door and `readme.yawn` the repository
   orientation record, removing the unsupported canonical/mirror claim
 - Declared the existing contracts package and state substrate as parallel v1

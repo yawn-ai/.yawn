@@ -16,12 +16,12 @@ test("exposes one canonical product and extension", () => {
 test("normalizes dotted and spoken extension substitutions in established YAWN context", () => {
   // yawn-invalid-alias-guard:start
   const result = normalizeYawnLexemes(
-    "Import the .ion file, then create a dot yon schema.",
+    "Import the .ion file, create a dot yon schema, then preserve the raw .YWN token.",
     { yawnContext: true },
   );
   // yawn-invalid-alias-guard:end
 
-  assert.equal(result.normalizedInput, "Import the .yawn file, then create a .yawn schema.");
+  assert.equal(result.normalizedInput, "Import the .yawn file, create a .yawn schema, then preserve the raw .yawn token.");
   assert.equal(result.changed, true);
   assert.equal(result.rawInput.includes(".ion"), true);
   assert.ok(result.corrections.length >= 2);
@@ -86,5 +86,6 @@ test("rejects invalid record paths", () => {
   // yawn-invalid-alias-guard:start
   assert.throws(() => assertCanonicalYawnPath("dave/arena.ion"));
   assert.throws(() => assertCanonicalYawnPath("dave/arena.yon"));
+  assert.throws(() => assertCanonicalYawnPath("dave/arena.ywn"));
   // yawn-invalid-alias-guard:end
 });

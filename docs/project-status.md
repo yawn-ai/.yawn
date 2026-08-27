@@ -1,6 +1,6 @@
 # Project status
 
-Last verified: 2026-08-25
+Last verified: 2026-08-27
 
 YAWN is public, MIT licensed, maintainer-led, and under active development.
 Parts of the protocol are stable enough to build against; the integrated
@@ -31,6 +31,9 @@ packages. Security or correctness fixes may still require additive changes.
   change records
 - Objective Holon 0.1: typed detection, objective ratification, objective-Yawn
   binding, Yawn.bot lifecycle, and activation receipts
+- Orientation Map 0.1: nine-axis semantic coverage, deterministic adaptive
+  inquiry, closed selection/hold replay receipts, source-preserving presentation
+  metadata, and proposed presentation-fit hypotheses
 - the exact portable `.yawn` document envelope
 - cross-module canonical hashing and reference resolution beyond the new
   Observation/record-subject slice
@@ -73,6 +76,8 @@ Draft artifacts are useful for experiments but may change after RFC review.
 11. Objective Holon 0.1 proves lifecycle separation but still references Yawn,
     agent, source, policy, and authority identifiers governed by other modules;
     a unified aggregate and cross-document resolver remain future work.
+12. Orientation Map 0.1 implements deterministic heuristic ranking, not a
+    calibrated psychometric instrument or proof of one universal question order.
 
 ## Historical naming migration
 

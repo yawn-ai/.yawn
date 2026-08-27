@@ -2,7 +2,7 @@ id: core/node
 title: "core node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-25
+updated: 2026-08-27
 
 purpose: >
   Hold the public core concepts for understanding and using .yawn.
@@ -29,6 +29,7 @@ holds:
   - arena discovery and structural routing
   - objective holons and Yawn.bot activation
   - projection and aperture boundaries
+  - adaptive inquiry selection and replay receipts
 
 receives:
   - readme.yawn
@@ -48,6 +49,7 @@ questions:
   - what arena is the smallest adequate cut
   - when should a signal attach, nest, link, merge, split, or remain held
   - when should an objective receive its own Yawn and sleeping bot
+  - which orientation question or explicit hold is useful now
 
 links:
   - readme.yawn
@@ -67,6 +69,7 @@ links:
   - core/routing.yawn
   - core/objective-holon.yawn
   - core/projection-and-aperture.yawn
+  - core/inquiry-selection.yawn
 
 proof:
   source:
@@ -75,5 +78,7 @@ proof:
     - core/co-orientation-loop.yawn
     - core/memory-update.yawn
     - core/folder-node.yawn
+    - core/inquiry-selection.yawn
+    - question-packets/orientation-nine.yawn
     - spec/README.md
-  status: seed-backed
+  status: draft-backed

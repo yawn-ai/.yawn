@@ -34,7 +34,7 @@ silently change its meaning or authority.
 
 <!-- yawn-invalid-alias-guard:start -->
 The product is **YAWN** and the only YAWN record extension is **`.yawn`**.
-`.ion` and `.yon` are invalid aliases commonly introduced by speech-to-text or
+`.ion`, `.yon`, and `.ywn` are invalid aliases commonly introduced by speech-to-text or
 model transcription. They are not alternate formats, schemas, products, or
 compatibility layers.
 <!-- yawn-invalid-alias-guard:end -->
@@ -230,24 +230,38 @@ may safely sleep while the trace remains open.
 
 ## The nine orientation questions
 
-Questions are a human projection over the ontology, not nine mandatory database
-fields:
+These are stable semantic coverage axes, not nine mandatory database fields or
+a fixed interview order. A person may enter through any question, wording, or
+accessible medium while answers map back to the same attributed graph:
 
-1. What is this Yawn about?
-2. Where does it belong?
-3. Whose perspective is represented, and who is affected?
+1. What has your attention, and what episode are we orienting?
+2. Where and when is this happening, and which relationship or Arena is active?
+3. Who are you here, in what role, and who participates or is affected?
 4. What appears to be happening now?
-5. What are you trying to make true, preserve, learn, avoid, repair, coordinate,
-   decide, or accept—and why?
+5. What matters, is needed, or is being protected—and why?
 6. What is unknown, disputed, constrained, dependent, or in tension?
 7. What must be protected, and who may decide or act?
-8. What can move next?
-9. What would reality have to show for this Yawn to update or close?
+8. What is possible next?
+9. What would reality have to show for this map to update?
+
+An adaptive interface asks one useful question at a time and may expose up to
+three candidate paths. Safety and authority blockers outrank convenience;
+accepted View preferences may tune order and the chosen representation medium
+or answer-input adapter without changing meaning. Wording, pacing, and density
+may remain attributed preference proposals, but receipt V0.1 executes only the
+packet-pinned default or hard-gated prompt; a later versioned prompt registry is
+required for adapted wording. Unknown, skipped, disputed, deferred, and
+withheld answers stay distinct rather than being silently completed.
 
 Coverage, claim confidence, and routing confidence remain separate. Answering
-all nine does not make the answers true or authorize a move.
+all nine does not make the answers true or authorize a move. For a choice about
+which “game” or competition is worth entering, orientation begins with the
+relationship, obligation, value, or capacity worth serving or protecting;
+competition remains an optional Arena lens.
 
-[Question-to-ontology traceability →](spec/questions.md)
+[Question-to-ontology traceability →](spec/questions.md) ·
+[Selection receipt schema →](schemas/inquiry-selection-receipt.v0.1.schema.json) ·
+[Participation-choice example →](examples/participation-choice.yawn)
 
 ## Build and validate
 
@@ -273,6 +287,8 @@ The repository currently has two preserved v1 modules:
 Agency Holarchy 0.2 is an additive working draft covering arenas, Yawns,
 relations, turns, routing, and structural receipts. Objective Holon 0.1 adds
 typed objective compilation, ratification, Yawn.bot binding, and activation.
+Orientation Map 0.1 adds attributed semantic coverage, adaptive inquiry, and
+closed selected-question or hold receipts while keeping presentation separate.
 Neither v1 module is marketed as the complete schema for every human-readable
 `.yawn` file.
 
@@ -297,6 +313,7 @@ test failure and cannot replace a commit-bound local result.
 | Generate observation art locally | [Local observation-art contract](interface/local-observation-art-v0.1.yawn) |
 | Understand merge vs. link vs. split | [Routing example](examples/merge-split-routing.yawn) |
 | See one objective become a Yawn.bot | [Dave / good dad](examples/dave-good-dad-objective-holon.yawn) |
+| Orient before choosing a game or competition | [Participation-choice example](examples/participation-choice.yawn) |
 | Explore unresolved questions | [Q-Space](q-space/) |
 | Understand the evidence boundary | [Research basis](docs/research-basis.md) |
 | Navigate the whole repository | [Documentation hub](docs/) |

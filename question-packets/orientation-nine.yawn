@@ -1,8 +1,9 @@
 id: question-packets/orientation-nine
 title: "Nine-question orientation projection"
 kind: question-packet
-status: draft-0.2
-updated: 2026-08-13
+status: draft-0.4
+version: 0.4.0-draft
+updated: 2026-08-27
 
 purpose: >
   Project the shared ontology into nine human questions while preserving source,
@@ -14,52 +15,199 @@ projection_rule: >
   remains attributed; skipped answers become lacunae; AI answers remain
   proposals until accepted.
 
+semantic_identity_rule: >
+  The nine stable question_key values are shared coverage coordinates over one
+  YAWN ontology. Default display order, prompt wording, pacing,
+  answer_input_adapter, and representation_medium are noncanonical View choices.
+  Reordering or adapting a prompt never changes question_key.
+
+receipt_v0_1_prompt_boundary: >
+  The executable Inquiry Selection Receipt V0.1 registers only the exact
+  default_prompt and deterministic gated overlay. alternate_probes and other
+  wording or pacing preferences remain non-executable presentation proposals
+  until a later versioned prompt registry binds their identity and exact bytes.
+
+orientation_map:
+  schema_ref: schemas/orientation-map.v0.1.schema.json
+  selection_policy_ref: core/inquiry-selection.yawn
+  selection_receipt_schema_ref: schemas/inquiry-selection-receipt.v0.1.schema.json
+  canonical_semantic_state: false
+  boundary: "The orientation_map is a revisable View; this packet supplies semantic question_key values."
+
+default_order_rule: >
+  default_display_order is a fallback for context-free presentation, not a
+  required interview sequence, developmental hierarchy, or ranking of worth.
+  Hard gates and situated semantic priority may select another key first.
+
+gate_prompt_overlay:
+  prompt_variant: gated
+  ordered_gate_clauses:
+    immediate_safety_or_stability: "immediate safety or stability"
+    authority_or_consent: "authority or consent"
+    privacy_visibility_or_egress: "privacy, visibility, or egress"
+    source_or_provenance: "source or provenance integrity"
+    proof_or_falsifier_integrity: "proof or falsifier integrity"
+  exact_template: >-
+    Before answering, address these live or unresolved gates: {ordered_gate_clauses}.
+    Then answer: {default_prompt}
+  rule: >
+    When selection encounters one or more active or unknown hard gates, the
+    exact rendered inquiry uses this gated variant and lists every live or
+    unresolved gate in policy order. Presentation preferences cannot remove,
+    hide, or replace the gate clause.
+
+answer_contract:
+  applies_to_every_stable_key: true
+  statuses:
+    - answered
+    - proposed
+    - corrected
+    - skipped
+    - unknown
+    - disputed
+    - deferred
+    - withheld
+    - not_applicable
+  required_metadata:
+    - question_key
+    - question_packet_version
+    - exact_rendered_prompt
+    - prompt_variant
+    - selection_receipt_ref
+    - response_source_refs
+    - answered_or_asserted_by
+    - epistemic_status
+    - answer_status
+    - mapping_status
+    - confidence
+    - freshness
+    - visibility
+    - dispute_status
+    - answer_input_adapter
+    - representation_medium
+  mapping_statuses:
+    - proposed
+    - accepted
+    - corrected
+    - rejected
+
 questions:
-  - number: 1
-    key: scope
-    prompt: "What is this Yawn about?"
-    maps_to: [subject, sources, scope]
-  - number: 2
-    key: placement
-    prompt: "Where does it belong?"
-    maps_to: [arena, primary-parent, lateral-relations, routing-proposal]
-  - number: 3
-    key: perspective
-    prompt: "Whose perspective is represented, and who is affected?"
-    maps_to: [agents, roles, attribution, affected-parties]
-  - number: 4
-    key: current-state
-    prompt: "What appears to be happening now?"
-    maps_to: [field, observations, reports, state-snapshots]
-  - number: 5
-    key: intent
-    prompt: "What are you trying to make true, preserve, learn, avoid, repair, coordinate, decide, or accept—and why?"
-    maps_to: [values, desire, optional-target, purpose]
-  - number: 6
-    key: lacuna
-    prompt: "What is unknown, disputed, constrained, dependent, or in tension?"
-    maps_to: [lacunae, disputes, constraints, dependencies]
-  - number: 7
-    key: boundary
-    prompt: "What must be protected, and who may decide or act?"
-    maps_to: [privacy, egress, boundary, authority, grants]
-  - number: 8
-    key: movement
-    prompt: "What can move next?"
-    maps_to: [affordances, choices, moves, waits, delegations]
-  - number: 9
-    key: proof
-    prompt: "What would reality have to show for this Yawn to update or close?"
-    maps_to: [prediction, verifier, falsifier, proof-policy, close-condition]
+  - question_key: scope
+    default_display_order: 1
+    semantic_axis: "the live signal, subject, source boundary, and scope of attention"
+    default_prompt: "What has your attention, and what episode are we orienting?"
+    alternate_probes:
+      - "What has your attention right now?"
+      - "What episode, concern, or possibility are we trying to orient within?"
+      - "What belongs inside this inquiry, and what does not?"
+    maps_to: [signal, subject, sources, scope, field]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: placement
+    default_display_order: 2
+    semantic_axis: "situated relationship, location, Arena, horizon, and proposed structural placement"
+    default_prompt: "Where and when is this happening, and which relationship or Arena is active?"
+    alternate_probes:
+      - "Where and when is this happening, and at what scope?"
+      - "What relationship and Arena are already active?"
+      - "Does this update an existing Yawn, relate to one, or require a new routing proposal?"
+    maps_to: [relationship, field, arena, horizon, primary-parent, lateral-relations, routing-proposal]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: perspective
+    default_display_order: 3
+    semantic_axis: "principal, observer stance, Agent roles, relationships, attribution, and affected parties"
+    default_prompt: "Who are you here, in what role, and who participates or is affected?"
+    alternate_probes:
+      - "Who are you in this situation?"
+      - "Who participates, observes, decides, acts, or bears consequences?"
+      - "Is this observer a stance of an existing Agent or a genuinely separate Agent?"
+    maps_to: [principal, observer, agents, roles, relationship, attribution, affected-parties]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: current-state
+    default_display_order: 4
+    semantic_axis: "attributed present state across body, Agent, relationship, environment, and system"
+    default_prompt: "What appears to be happening now?"
+    alternate_probes:
+      - "What do you know directly, what was reported, and what are you inferring?"
+      - "What bodily state, relationship pattern, environment, resource, or constraint is shaping this moment?"
+      - "What capabilities and pressures change what is actually possible now?"
+    maps_to: [field, observations, reports, state-snapshots, resources, constraints, capabilities]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: intent
+    default_display_order: 5
+    semantic_axis: "concern, need, value, desire, purpose, commitment, and chosen or inherited participation"
+    default_prompt: "What matters, is needed, or is being protected—and why?"
+    alternate_probes:
+      - "What matters or is needed here, and to whom?"
+      - "What purpose, mission, obligation, or relationship would this participation serve or protect?"
+      - "Is this game or objective chosen, inherited, imposed, implicit, declined, or unclear?"
+    maps_to: [concerns, needs, values, desires, purpose, commitments, optional-target, participation-mode]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: lacuna
+    default_display_order: 6
+    semantic_axis: "decision-relevant absence, uncertainty, dispute, dependency, constraint, or tension"
+    default_prompt: "What is unknown, disputed, constrained, dependent, or in tension?"
+    alternate_probes:
+      - "What missing answer could actually change the orientation or choice?"
+      - "What assumptions or contradictions need to remain visible?"
+      - "What can only be learned through participation, waiting, or proof?"
+    maps_to: [lacunae, unknowns, disputes, constraints, dependencies, tensions]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: boundary
+    default_display_order: 7
+    semantic_axis: "safety, stability, privacy, consent, obligation, decision rights, and effect authority"
+    default_prompt: "What must be protected, and who may decide or act?"
+    alternate_probes:
+      - "What must not be assumed, exposed, forced, spent, or changed?"
+      - "Is what is needed from you an explicit request, ratified commitment, inferred expectation, or unresolved claim?"
+      - "Whose consent or review is required before this affects a relationship or the world?"
+    maps_to: [safety, stability, privacy, egress, consent, obligations, boundary, authority, grants]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: movement
+    default_display_order: 8
+    semantic_axis: "available inquiry, presence, holding, participation, non-participation, choice, or movement"
+    default_prompt: "What is possible next?"
+    alternate_probes:
+      - "Would it be coherent to observe, ask, wait, cooperate, exit, voice, redesign, compete, or act?"
+      - "What is the smallest sufficient and authorized commitment?"
+      - "What option preserves agency and recovery while uncertainty remains?"
+    maps_to: [affordances, choices, inquiries, holds, moves, waits, exits, delegations]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
+
+  - question_key: proof
+    default_display_order: 9
+    semantic_axis: "predicted consequence, verifier, falsifier, update rule, and changed relationship"
+    default_prompt: "What would reality have to show for this map to update?"
+    alternate_probes:
+      - "What consequence would support, weaken, or reframe this orientation?"
+      - "Who or what can verify the change, and what would falsify it?"
+      - "How would the updated state and relationship differ from the current map?"
+    maps_to: [prediction, consequence, verifier, falsifier, proof-policy, update-rule, close-condition, updated-relationship]
+    answer_contract_ref: question-packets/orientation-nine#answer_contract
 
 per_answer_metadata:
+  - question_key
+  - question_packet_version
+  - exact_rendered_prompt
+  - prompt_variant
+  - selection_receipt_ref
   - source_refs
   - asserted_by
   - epistemic_status
+  - answer_status
+  - mapping_status
   - confidence
   - freshness
   - visibility
   - dispute_status
+  - answer_input_adapter
+  - representation_medium
 
 separate_metrics:
   orientation_coverage: "how much decision-relevant context is represented"
@@ -68,13 +216,23 @@ separate_metrics:
 
 boundaries:
   - "Nine of nine answered does not mean true."
+  - "The default display order is not a required sequence or developmental hierarchy."
   - "Confidence does not authorize movement or disclosure."
   - "Skipped answers are not inferred from silence."
+  - "Unknown, skipped, deferred, withheld, disputed, and not-applicable remain distinct."
   - "A desire is not shared agreement."
+  - "Another party's need does not silently become the principal's obligation."
+  - "Observer stance does not create a second Agent by default."
+  - "Game and level remain optional lenses for Arena and scope; they do not rank human worth."
+  - "Question order, wording, and medium cannot suppress safety, authority, privacy, provenance, or proof."
   - "What changed belongs to turn close and replay, not initial orientation."
 
 links:
   - spec/questions.md
+  - core/orientation.yawn
+  - core/inquiry-selection.yawn
+  - schemas/orientation-map.v0.1.schema.json
+  - schemas/inquiry-selection-receipt.v0.1.schema.json
   - interface/new-yawn-v0.1.yawn
   - question-packets/turn-close.yawn
   - templates/full.yawn

@@ -93,6 +93,29 @@ Yawn. What the observer added and what another Agent inferred are separately
 attributed. Attaching an Observation to a Yawn does not retype it; optional
 promotion creates a distinct Yawn and an inspectable relation.
 
+### Orientation
+
+Orientation is a time-indexed, attributed, purpose-relative working map of an
+Agent in relationship with an Arena. It may compose observations, role and
+perspective, bodily and environmental state, concerns and needs, values and
+commitments, constraints and resources, authority, lacunae, affordances,
+possible moves, and the conditions that would revise the map.
+
+Orientation is revisable process and state, not a view from nowhere and not a
+claim that every organism consciously asks the same questions. The nine
+orientation questions are stable semantic coverage axes designed by YAWN; an
+interface may enter through any axis, wording, or accessible medium. The
+resulting presentation is a View. It does not create different semantic truth.
+The machine-facing View identifiers are `orientation_map` for the revisable
+coverage projection and `orientation_inquiry` for its question-facing surface.
+
+An `observer` is normally a metacognitive stance or View of the same embodied
+Agent. It becomes a distinct Agent only when a system intentionally gives it a
+persistent identity boundary, capabilities, memory, objective, and authority.
+Likewise, a `game` is an optional lens over an Arena, and a `level` names a
+declared scope, nesting depth, or capability dimension—never a ranking of
+human worth or consciousness.
+
 ### Intention
 
 The Agent's presently selected or endorsed direction: what it means to

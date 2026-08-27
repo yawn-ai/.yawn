@@ -11,6 +11,8 @@ may change as real use reveals a better arena.
 - [x] Specify a one-parent holarchy with typed lateral links
 - [x] Specify typed objective detection, ratification, objective Yawns, and
   separately activated Yawn.bots as an additive working draft
+- [x] Specify a replayable adaptive orientation map and next-question policy
+  while keeping presentation preference separate from semantic truth
 - [ ] Publish and independently verify the live, navigable ontology hub and
   open-source trust surface
 - [ ] Collect reviewed arena-routing, merge, and split decisions as calibration
@@ -30,6 +32,8 @@ may change as real use reveals a better arena.
 - [ ] Calibrate routing confidence using human-reviewed decisions
 - [ ] Calibrate objective-independence proposals using principal-reviewed
   confirm, reject, correct, split, link, and hold decisions
+- [ ] Calibrate adaptive inquiry ranking using correction rate, burden,
+  decision usefulness, and principal-reviewed orientation outcomes
 - [ ] Replace environment-specific paths in pre-hub automation with injected,
   repository-relative configuration while preserving historical receipts
 
@@ -50,7 +54,8 @@ may change as real use reveals a better arena.
 - semantic similarity as identity;
 - hidden AI authority;
 - private context shared by inheritance;
-- moves that prove themselves; or
+- moves that prove themselves;
+- fixed learning-style diagnoses or presentation preferences treated as truth; or
 - a map that claims to be the world.
 
 Propose changes through the [RFC process](rfcs/README.md).

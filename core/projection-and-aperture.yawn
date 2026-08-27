@@ -2,13 +2,16 @@ id: core/projection-and-aperture
 title: "Projection, View, lens, and aperture"
 kind: interface-boundary-contract
 status: draft-0.3
-updated: 2026-08-16
+updated: 2026-08-27
 
 definitions:
   projection: "what an attributed Agent actually expresses, represents, proposes, commits, or attempts into an Arena"
   view: "a purpose-specific rebuildable rendering over canonical IDs and events"
   lens: "a named View rule that foregrounds particular relations"
   aperture: "the scope, depth, time window, and salience included in a view"
+  orientation_map: "a time-indexed rebuildable View of attributed orientation coverage; never a second canonical state store"
+  orientation_inquiry: "a question-facing View that renders one orientation_map lacuna without changing semantic state"
+  presentation_profile: "scoped and revisable View preferences for wording, order, pacing, density, medium, and accessibility"
 
 known_views:
   - arena
@@ -18,6 +21,18 @@ known_views:
   - causal-graph
   - filesystem
   - world
+  - orientation_map
+  - orientation_inquiry
+
+orientation_presentation_boundary:
+  semantic_source: question-packets/orientation-nine.yawn
+  selection_policy: core/inquiry-selection.yawn
+  accepted_preference_contract: schemas/projection-preference.v1.schema.json
+  rule: >
+    question_key and answer meaning survive a change of wording, order, layout,
+    representation_medium, or answer_input_adapter. Inferred presentation fit
+    remains a proposal until accepted; measured usefulness is a separate scoped
+    claim.
 
 invariants:
   - "Timeline is a view, not a Yawn kind."
@@ -28,6 +43,8 @@ invariants:
   - "Every interactive rendered object resolves to a stable canonical ID."
   - "Presentation-only events do not alter semantic state."
   - "Color and spatial position never carry semantics alone."
+  - "Presentation preference is not a learning-style diagnosis or semantic claim."
+  - "A View preference cannot hide safety, authority, privacy, provenance, semantic coverage, or proof."
 
 links:
   - docs/projections/README.md

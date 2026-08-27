@@ -1,0 +1,529 @@
+spec_version: "0.2-draft"
+id: "yawn:example:participation-choice"
+title: "What is worth participating in now?"
+kind: yawn
+status: draft
+version: "1.0.0"
+revision: 1
+created: "2026-08-27"
+updated: "2026-08-27"
+
+protocol_context:
+  agent_space_ref: "agent-space:example:principal"
+  arena_ref: "arena:example:orientation-under-information-abundance"
+  primary_parent_yawn_ref: null
+  lateral_relation_refs: []
+  active_turn_refs: []
+  routing_proposal_ref: null
+  structural_change_receipt_refs: []
+  extensions:
+    ai.yawn.orientation/participation-choice-v1:
+      maturity: provisional_example
+      publication_role: sanitized_informative_example
+      observer_stance:
+        view_ref: "view:example:metacognitive-stance"
+        embodied_agent_ref: "agent:example:principal"
+        separate_agent: false
+        note: >-
+          The observer is a revisable metacognitive stance rendered as a View,
+          not a second consciousness or an independently authorized agent.
+      principal_role:
+        principal_ref: "principal:example"
+        held_by_agent_ref: "agent:example:principal"
+        scope_ref: "yawn:example:participation-choice"
+        authority_status: example_declared
+      publication_boundary:
+        synthetic_non_personal_example: true
+        runtime_authorization_claimed: false
+        note: >-
+          Publication of this repository example does not constitute a
+          consent or sharing receipt for any person-specific source record.
+      scope_lens_candidates:
+        values:
+          - moment
+          - embodied_agent
+          - relationship
+          - project
+          - institution
+          - wider_system
+          - existential
+        boundary: >-
+          These are provisional View labels for locating participation. They do
+          not rank consciousness, development, or human worth.
+      participation_classification_candidates:
+        values: [chosen, inherited, imposed, implicit, declined, unclear]
+        boundary: "A classification is a principal-correctable proposal, not a diagnosis."
+      objective_lifecycle:
+        stage: objective_candidates
+        source_signal_status: reported
+        candidate_refs:
+          - "objective-candidate:example:presence"
+          - "objective-candidate:example:cooperative-change"
+          - "objective-candidate:example:bounded-competition"
+        routing_state: hold
+        ratification_decision: held
+        objective_holding_yawn_created: false
+        yawn_bot_created: false
+        yawn_bot_activated: false
+        boundary: >-
+          Detection is not adoption. No candidate becomes an objective, child
+          Yawn, or active Yawn.bot without principal ratification and the
+          required structural and activation receipts.
+      independent_companions:
+        orientation_map:
+          view_kind: orientation_map
+          schema_ref: schemas/orientation-map.v0.1.schema.json
+          fixture_ref: fixtures/orientation-map.v0.1.json
+          orientation_inquiry:
+            view_kind: orientation_inquiry
+            selection_policy_ref: core/inquiry-selection.yawn
+            receipt_schema_ref: schemas/inquiry-selection-receipt.v0.1.schema.json
+            selector_runtime_ref: lib/inquiry-selection-receipt-v0.1.mjs
+          relationship: informative_companion_projection
+          embedded_in_this_yawn: false
+          canonical_semantic_state: false
+          boundary: >-
+            The companion orientation_map is an independent draft View over
+            attributed records. It neither changes this example nor supplies
+            truth, consent, proof, or authority.
+      normalization_receipts:
+        # yawn-invalid-alias-guard:start
+        - raw_input: ".YWN"
+          normalized_input: ".yawn"
+          rule_id: dotted-extension
+          context_basis: "The surrounding request explicitly concerned the YAWN protocol."
+          confidence: 1.0
+          reviewed_by: "agent:example:orientation-mirror"
+          reviewed_at: "2026-08-27"
+        - raw_input: ".YOn"
+          normalized_input: ".yawn"
+          rule_id: dotted-extension
+          context_basis: "The surrounding request explicitly concerned the YAWN protocol."
+          confidence: 1.0
+          reviewed_by: "agent:example:orientation-mirror"
+          reviewed_at: "2026-08-27"
+        # yawn-invalid-alias-guard:end
+
+source:
+  template: templates/full.yawn
+  origin: artifact
+  raw_material: >-
+    Sanitized example: a principal is comparing presence, cooperation, change,
+    and bounded competition while deciding what deserves finite attention.
+  source_refs:
+    - "source:example:participation-choice-sanitized"
+  quotes: []
+  privacy: public
+  consent:
+    recorded_with_consent: false
+    applicability: not_applicable_synthetic_non_personal
+    note: "No person-specific recording exists in this synthetic example."
+    authorization_refs: []
+    shareable_with: []
+    do_not_share_with: []
+
+movement:
+  loop_status: orienting
+  mode: ask
+  loop:
+    - signal
+    - orientation
+    - choice
+    - move
+    - proof
+    - update
+
+observer:
+  name: "Example principal"
+  role: self
+  position: "Embodied agent using view:example:metacognitive-stance"
+  attention: "Which current forms of participation deserve finite attention?"
+  body_state: "unknown"
+  emotional_tone: "uncertain"
+  agency_level: unknown
+
+field:
+  name: "Orientation under informational abundance"
+  slice: "Current participation choices"
+  context: >-
+    Information is abundant, but time, attention, energy, standing, and
+    decision rights remain finite.
+  environment: "A mixed personal, relational, institutional, and technological field"
+  relationship_context: >-
+    The principal is already coupled to several situations before deciding
+    whether to endorse, alter, pause, or leave them.
+  time_horizon: "the current orientation turn"
+  constraints:
+    - "finite time, attention, energy, and embodiment"
+    - "incomplete knowledge despite abundant information"
+    - "some consequences become visible only through participation"
+    - "other affected people retain their own rights and decision authority"
+  available_resources:
+    - "metacognitive reflection"
+    - "source-preserving AI assistance"
+    - "principal correction and ratification"
+    - "small reversible experiments"
+
+signal:
+  raw: "How do I decide which form of participation is worth choosing now?"
+  noticed: >-
+    Multiple lenses can make presence, cooperation, change, or competition
+    appear to be the relevant next orientation.
+  body_cues: []
+  emotions:
+    - uncertainty
+  repeated_pattern: "More available information does not by itself select what matters."
+  why_it_has_attention: "A choice can consume resources and alter affected relationships."
+
+state:
+  materialized:
+    event_cursor: 0
+    state_hash: ""
+    reducer_version: yawn-state-reducer.v1
+    lifecycle_status: draft
+  snapshots:
+    - id: "state:example:participation-choice:reported-signal"
+      scope_ref: "arena:example:orientation-under-information-abundance"
+      description: >-
+        The principal reports uncertainty about which current participation,
+        if any, should be deliberately endorsed.
+      attributed_to: "principal:example"
+      modal_role: actual
+      motivational_role: neutral
+      epistemic_status: reported
+      source_refs:
+        - "source:example:participation-choice-sanitized"
+    - id: "state:example:participation-choice:selection-inference"
+      scope_ref: "yawn:example:participation-choice"
+      description: >-
+        The immediate bottleneck may be selecting what is worth serving or
+        protecting rather than obtaining more information.
+      attributed_to: "agent:example:orientation-mirror"
+      modal_role: possible
+      motivational_role: neutral
+      epistemic_status: inferred
+      source_refs:
+        - "source:example:participation-choice-sanitized"
+  possibilities:
+    - id: "objective-candidate:example:presence"
+      kind: objective_candidate
+      principal_ref: "principal:example"
+      description: "Maintain present-moment awareness without adding a new strategic objective."
+      proposed_mode: maintain
+      proposed_horizon: open
+      purpose_hypothesis: "Protect unforced attention while the larger choice remains unresolved."
+      classification: unclear
+      attributed_to: "agent:example:orientation-mirror"
+      epistemic_status: inferred
+      confidence: 0.68
+      authority_status: proposed
+      ratification_status: held
+      routing_status: hold
+      source_refs:
+        - "source:example:participation-choice-sanitized"
+    - id: "objective-candidate:example:cooperative-change"
+      kind: objective_candidate
+      principal_ref: "principal:example"
+      description: "Join a cooperative effort that protects or grows an affected relationship."
+      proposed_mode: attain
+      proposed_horizon: finite
+      purpose_hypothesis: "Use bounded action to learn whether cooperation improves the relationship field."
+      classification: unclear
+      attributed_to: "agent:example:orientation-mirror"
+      epistemic_status: inferred
+      confidence: 0.61
+      authority_status: proposed
+      ratification_status: held
+      routing_status: hold
+      source_refs:
+        - "source:example:participation-choice-sanitized"
+    - id: "objective-candidate:example:bounded-competition"
+      kind: objective_candidate
+      principal_ref: "principal:example"
+      description: "Enter a bounded competition only if its stakes, standing, means, and exit conditions become explicit."
+      proposed_mode: attain
+      proposed_horizon: finite
+      purpose_hypothesis: "Test whether bounded competition protects or advances a ratified concern."
+      classification: unclear
+      attributed_to: "agent:example:orientation-mirror"
+      epistemic_status: inferred
+      confidence: 0.47
+      authority_status: proposed
+      ratification_status: held
+      routing_status: hold
+      source_refs:
+        - "source:example:participation-choice-sanitized"
+  unknowns:
+    - "Which forms of participation are already active without explicit endorsement?"
+    - "Which relationship, obligation, value, or capacity for agency matters most now?"
+    - "Whether an apparent competition is actually a coordination problem"
+    - "What evidence would materially change the choice"
+
+desires:
+  - id: "desire:example:intentional-participation"
+    principal_ref: "principal:example"
+    description: "Participate intentionally rather than by unexamined default."
+    source_refs:
+      - "source:example:participation-choice-sanitized"
+    authority_status: self_reported
+    visibility: public
+
+target_conditions: []
+
+status_dimensions:
+  lifecycle: draft
+  authority: proposed
+  loop: orienting
+  axis_resolution: potential
+  presentation: preview
+
+compatibility_aliases:
+  frame.current: "read as an attributed state snapshot"
+  frame.possible: "read as a possibility or target candidate according to context"
+  possible_kind.desired: "read as desire plus proposed attain-target; never ratified goal"
+  measurement.desired: "read as attributed desire candidates"
+
+lacuna:
+  gap: >-
+    Which relationship, obligation, value, or capacity for agency is worth
+    serving or protecting now?
+  missing_bridge: >-
+    A principal-reviewed map of current participation and one explicit reason
+    for choosing, pausing, declining, or continuing a form of participation.
+  open_questions:
+    - "What is already consuming attention, whether or not it is endorsed?"
+    - "Who is affected, and what rights, promises, or boundaries apply?"
+    - "What would be protected without status, fear, or external reward?"
+    - "Where does the principal have legitimate standing and tractable influence?"
+    - "What uncertainty could reverse the choice?"
+  what_would_make_this_clearer: >-
+    The principal corrects a short participation map and explains which one
+    consideration should lead the next choice.
+
+projection_stack:
+  beliefs: []
+  habits: []
+  values: []
+  needs: []
+  desire_refs:
+    - "desire:example:intentional-participation"
+  fears: []
+  body_patterns: []
+  relationship_patterns: []
+  constraints:
+    - "finite attention"
+    - "incomplete knowledge"
+  access:
+    - "principal self-report"
+    - "AI-proposed organization"
+  identity_frames: []
+  prior_commitments: []
+  hidden_loops: []
+
+axis:
+  clarity: low
+  agency: potential
+  proofability: medium
+  reversibility: high
+  risk: low
+  embodiment: medium
+  coherence: unknown
+  novelty: medium
+  permission_safety: high
+
+relationship:
+  applies: true
+  kind: other
+  participants:
+    - ref: "agent:example:principal"
+      role: embodied_principal
+    - ref: "arena:example:orientation-under-information-abundance"
+      role: situated_field
+  shared_context: "An agent-arena coupling made inspectable for one participation choice."
+  shared_commitments: []
+  explicit_requests:
+    - "Offer a correctable orientation map without selecting an objective for the principal."
+  implicit_expectations: []
+  tensions:
+    - "presence without striving"
+    - "deliberate participation and change"
+  repair_needed: []
+  intimacy_context:
+    applies: false
+    desires: []
+    boundaries: []
+    fears: []
+    open_questions: []
+    consent_notes: []
+  must_not_collapse:
+    - "one person's inference into shared truth"
+    - "desire into entitlement"
+    - "fear into accusation"
+    - "resonance into proof"
+    - "an objective candidate into a ratified objective"
+    - "an observer stance into a separate consciousness"
+    - "perceived pressure into proof that a competition exists"
+
+move:
+  intent_id: "transition-intent:example:map-current-participation"
+  from_state_hash: ""
+  target_condition_refs: []
+  invited: >-
+    Name no more than five current forms of participation and let the principal
+    correct how each is classified.
+  expected_delta: >-
+    A principal-reviewed map makes the unresolved choice and its most important
+    tradeoff more explicit without ratifying an objective.
+  smallest_step: >-
+    List up to five current forms of participation and provisionally mark each
+    chosen, inherited, imposed, implicit, declined, or unclear.
+  owner: "principal:example"
+  reversible: true
+  agency_cost: low
+  consent_required:
+    - "principal:example"
+  blocked_until:
+    - "the principal chooses to begin the inquiry"
+  alternatives:
+    - "Hold the question open without creating an objective or Yawn.bot."
+  stop_condition: >-
+    Stop if classification creates pressure to endorse an objective or makes an
+    affected person's rights appear to belong to the principal.
+  proof_contract_ref: ""
+
+boundary:
+  must_not_assume:
+    - "that more information can choose what the principal should value"
+    - "that presence and strategic action are mutually exclusive"
+    - "that systemic pressure proves a competition exists"
+    - "that a metacognitive stance is a separate consciousness"
+    - "that any candidate objective has been ratified"
+  must_not_force:
+    - "selection of a game, battle, objective, or identity"
+  must_not_delegate:
+    - "principal ratification"
+    - "another affected person's consent or decision rights"
+  must_not_publish:
+    - "private source text or identifying personal context"
+  must_ask_first:
+    - "before persisting a principal-specific map"
+    - "before creating or activating an objective-holding Yawn.bot"
+  blocked_effects:
+    persistence_authorized: false
+    external_effects_authorized: false
+    relationship_claim_authorized: false
+    agent_action_authorized: false
+    public_sharing_authorized: false
+  safety_notes:
+    - "This is a synthetic non-personal example, not a sharing grant for any underlying source."
+  anti_false_certainty:
+    - "signal is not instruction"
+    - "resonance is not proof"
+    - "coincidence is not command"
+    - "memory is not objective record"
+    - "AI output is not authority"
+    - "intensity is not truth"
+    - "only authorized events update canonical materialized state"
+    - "only suitable evidence or proof upgrades empirical claims"
+    - "desire cannot authorize action"
+    - "a move cannot mark itself successful"
+
+proof:
+  condition: >-
+    The principal reviews no more than five participation items, corrects their
+    classifications, and names the one unresolved consideration that most
+    affects the choice.
+  status: not_started
+  evidence: []
+  falsifier: >-
+    The map cannot be corrected into a recognizable account, or the exercise
+    pressures the principal to ratify an objective rather than clarifying the
+    open choice.
+  confidence: unknown
+  timestamp: ""
+  proof_receipts: []
+
+transition_result:
+  intent_ref: "transition-intent:example:map-current-participation"
+  action_event_refs: []
+  observed_delta: ""
+  outcome_status: not_observed
+  residual_lacuna_refs: []
+  unintended_effects: []
+
+update:
+  authorized_event_refs: []
+  prior_state_hash: ""
+  next_state_hash: ""
+  changed_paths: []
+  empirical_claim_refs: []
+  reducer_version: yawn-state-reducer.v1
+
+agent:
+  role: mirror
+  receives:
+    - source
+    - signal
+    - state
+    - desires
+    - target_conditions
+    - lacuna
+    - projection_stack
+    - relationship
+    - move
+    - boundary
+    - proof
+  may:
+    - "separate principal reports from AI inference"
+    - "propose correctable participation classifications"
+    - "surface objective candidates"
+    - "name open questions and one bounded inquiry move"
+  must_not:
+    - "decide what deserves devotion"
+    - "ratify an objective for the principal"
+    - "create a child Yawn from a possibility"
+    - "activate a Yawn.bot"
+    - "claim direct access to felt experience"
+    - "claim proof before evidence"
+    - "silently mutate memory or canon"
+
+coherence:
+  parent_yawns: []
+  child_yawns: []
+  supports: []
+  conflicts_with: []
+  depends_on: []
+  proof_gaps:
+    - "No principal review or action receipt exists."
+    - "No objective candidate has been ratified."
+  echoes:
+    - "spec/questions.md"
+    - "spec/objective-holons.md"
+    - "core/observer-and-body.yawn"
+    - "core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn"
+    - "schemas/orientation-map.v0.1.schema.json"
+    - "fixtures/orientation-map.v0.1.json"
+    - "core/inquiry-selection.yawn"
+    - "schemas/inquiry-selection-receipt.v0.1.schema.json"
+  source_hashes: []
+  unresolved_tensions:
+    - "presence and deliberate change"
+    - "abundant information and finite attention"
+  recoherence_suggestions:
+    - "After principal review, either hold, attach, link, or propose one objective holon through routing."
+
+replay:
+  before: "The participation choice is unresolved."
+  after: ""
+  changed: []
+  did_not_change:
+    - "No objective is ratified."
+    - "No child Yawn or Yawn.bot exists."
+    - "No external effect is authorized."
+  learned: []
+  still_open:
+    - "What is worth serving or protecting now?"
+    - "Which form of participation, if any, best serves it?"
+  next_questions:
+    - "What current participation is least visible because it feels normal?"
+  next_yawn: ""

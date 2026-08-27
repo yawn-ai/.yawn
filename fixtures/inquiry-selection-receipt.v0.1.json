@@ -1,0 +1,1357 @@
+{
+  "schemaVersion": "yawn.inquiry-selection-receipt.v0.1",
+  "receiptId": "receipt:fixture:orientation-selection",
+  "policyVersion": "yawn.inquiry-selection.v0.1",
+  "sourceQuestionPacketRef": "question-packets/orientation-nine@0.4.0-draft",
+  "promptSetVersion": "0.4.0-draft",
+  "promptSetSha256": "8c1faa75c7dffaad21d559a9ffafeab4ac4c771c4151c322cfd53cd0f4d83cab",
+  "orientationMapId": "orientation-map:fixture-participation-choice",
+  "orientationMapRevision": 1,
+  "orientationMapUpdatedAt": "2026-08-27T12:00:00Z",
+  "orientationSemanticSha256": "05e67d61a18b045ee94037a08a0dd52e95a6bcd6ca1ed9d2574e31dc0dc3060a",
+  "rankingInputSha256": "a25fc74e9286fa31e3aaed7e13fc15a39d90645df0e00a117ffea1145c24f6b5",
+  "rankingResultLimit": 3,
+  "renderInputSha256": "f9a4a8c6f135d8d30ca10d6d2a13d2fdfc43d397a98f3e2a99d7903e1d922210",
+  "principalRef": "principal:fixture-owner",
+  "scopeRef": {
+    "kind": "yawn",
+    "id": "yawn:fixture-participation-choice",
+    "revision": 1,
+    "stateSha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "relationshipRef": {
+    "kind": "relationship",
+    "id": "relationship:fixture-owner:current-lived-field",
+    "revision": 1,
+    "stateSha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "arenaRef": {
+    "kind": "arena",
+    "id": "arena:fixture-current-lived-field",
+    "revision": 1,
+    "stateSha256": "3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "candidateQuestionKeys": [
+    "scope",
+    "placement",
+    "perspective",
+    "current-state",
+    "intent",
+    "lacuna",
+    "boundary",
+    "movement",
+    "proof"
+  ],
+  "hardGateResults": [
+    {
+      "gate": "immediate_safety_or_stability",
+      "status": "foreground",
+      "reasonCode": "immediate_safety_or_stability",
+      "detail": "The selected inquiry must foreground the live immediate_safety_or_stability gate.",
+      "derivedBy": {
+        "kind": "actor",
+        "id": "system:orientation-selector"
+      },
+      "sourceRefs": [
+        {
+          "kind": "principal",
+          "id": "principal:fixture-owner"
+        },
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ],
+      "evidence": [
+        {
+          "questionKey": "scope",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "placement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "perspective",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "current-state",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "intent",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "lacuna",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "boundary",
+          "assessmentStatus": "active",
+          "foregroundability": "foregroundable",
+          "assertedBy": {
+            "kind": "actor",
+            "id": "assistant:fixture-cartographer"
+          },
+          "epistemicStatus": "inferred",
+          "confidence": 0.82,
+          "sourceRefs": [
+            {
+              "kind": "source",
+              "id": "question-packets/orientation-nine"
+            }
+          ]
+        },
+        {
+          "questionKey": "movement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "proof",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gate": "authority_or_consent",
+      "status": "foreground",
+      "reasonCode": "authority_or_consent_blocker",
+      "detail": "The selected inquiry must foreground the live authority_or_consent gate.",
+      "derivedBy": {
+        "kind": "actor",
+        "id": "system:orientation-selector"
+      },
+      "sourceRefs": [
+        {
+          "kind": "principal",
+          "id": "principal:fixture-owner"
+        },
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ],
+      "evidence": [
+        {
+          "questionKey": "scope",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "placement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "perspective",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "current-state",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "intent",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "lacuna",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "boundary",
+          "assessmentStatus": "active",
+          "foregroundability": "foregroundable",
+          "assertedBy": {
+            "kind": "actor",
+            "id": "assistant:fixture-cartographer"
+          },
+          "epistemicStatus": "inferred",
+          "confidence": 0.82,
+          "sourceRefs": [
+            {
+              "kind": "source",
+              "id": "question-packets/orientation-nine"
+            }
+          ]
+        },
+        {
+          "questionKey": "movement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "proof",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gate": "privacy_visibility_or_egress",
+      "status": "clear",
+      "reasonCode": null,
+      "detail": null,
+      "derivedBy": {
+        "kind": "actor",
+        "id": "system:orientation-selector"
+      },
+      "sourceRefs": [
+        {
+          "kind": "principal",
+          "id": "principal:fixture-owner"
+        }
+      ],
+      "evidence": [
+        {
+          "questionKey": "scope",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "placement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "perspective",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "current-state",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "intent",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "lacuna",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "boundary",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.82,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "movement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "proof",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gate": "source_or_provenance",
+      "status": "clear",
+      "reasonCode": null,
+      "detail": null,
+      "derivedBy": {
+        "kind": "actor",
+        "id": "system:orientation-selector"
+      },
+      "sourceRefs": [
+        {
+          "kind": "principal",
+          "id": "principal:fixture-owner"
+        }
+      ],
+      "evidence": [
+        {
+          "questionKey": "scope",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "placement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "perspective",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "current-state",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "intent",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "lacuna",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "boundary",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.82,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "movement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "proof",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gate": "proof_or_falsifier_integrity",
+      "status": "clear",
+      "reasonCode": null,
+      "detail": null,
+      "derivedBy": {
+        "kind": "actor",
+        "id": "system:orientation-selector"
+      },
+      "sourceRefs": [
+        {
+          "kind": "principal",
+          "id": "principal:fixture-owner"
+        }
+      ],
+      "evidence": [
+        {
+          "questionKey": "scope",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "placement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "perspective",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "current-state",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "intent",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "lacuna",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "boundary",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.82,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "movement",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        },
+        {
+          "questionKey": "proof",
+          "assessmentStatus": "clear",
+          "foregroundability": "not_required",
+          "assertedBy": {
+            "kind": "principal",
+            "id": "principal:fixture-owner"
+          },
+          "epistemicStatus": "reported",
+          "confidence": 0.8,
+          "sourceRefs": [
+            {
+              "kind": "principal",
+              "id": "principal:fixture-owner"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "questionKey": "scope",
+      "reasonCode": "already_covered",
+      "gate": null,
+      "detail": "The candidate was excluded by the versioned ranking disposition: accepted_complete_answer.",
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    },
+    {
+      "questionKey": "current-state",
+      "reasonCode": "already_covered",
+      "gate": null,
+      "detail": "The candidate was excluded by the versioned ranking disposition: accepted_complete_answer.",
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    },
+    {
+      "questionKey": "intent",
+      "reasonCode": "already_covered",
+      "gate": null,
+      "detail": "The candidate was excluded by the versioned ranking disposition: accepted_complete_answer.",
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    }
+  ],
+  "semanticPriorityInputs": [
+    {
+      "questionKey": "placement",
+      "hardGates": [],
+      "movementCriticalLacuna": false,
+      "affectedRelationshipOrUnresolvedRole": true,
+      "consequence": 1,
+      "consequenceConfidenceGap": 39,
+      "answerConfidence": 0.61,
+      "rankingSignalConfidence": 0.61,
+      "contradictionOrDispute": false,
+      "staleness": 0,
+      "staleHighImpact": 0,
+      "expectedInformationValue": 1,
+      "proofOrCloseConditionGap": false,
+      "orientationGain": 1,
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "epistemicStatus": "inferred",
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    },
+    {
+      "questionKey": "perspective",
+      "hardGates": [],
+      "movementCriticalLacuna": false,
+      "affectedRelationshipOrUnresolvedRole": true,
+      "consequence": 2,
+      "consequenceConfidenceGap": 200,
+      "answerConfidence": null,
+      "rankingSignalConfidence": 0.55,
+      "contradictionOrDispute": false,
+      "staleness": 0,
+      "staleHighImpact": 0,
+      "expectedInformationValue": 2,
+      "proofOrCloseConditionGap": false,
+      "orientationGain": 2,
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "epistemicStatus": "inferred",
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    },
+    {
+      "questionKey": "lacuna",
+      "hardGates": [],
+      "movementCriticalLacuna": false,
+      "affectedRelationshipOrUnresolvedRole": false,
+      "consequence": 3,
+      "consequenceConfidenceGap": 165,
+      "answerConfidence": 0.45,
+      "rankingSignalConfidence": 0.6,
+      "contradictionOrDispute": true,
+      "staleness": 0,
+      "staleHighImpact": 0,
+      "expectedInformationValue": 3,
+      "proofOrCloseConditionGap": false,
+      "orientationGain": 3,
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "epistemicStatus": "inferred",
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    },
+    {
+      "questionKey": "boundary",
+      "hardGates": [
+        "immediate_safety_or_stability",
+        "authority_or_consent"
+      ],
+      "movementCriticalLacuna": false,
+      "affectedRelationshipOrUnresolvedRole": true,
+      "consequence": 3,
+      "consequenceConfidenceGap": 12,
+      "answerConfidence": 0.96,
+      "rankingSignalConfidence": 0.82,
+      "contradictionOrDispute": false,
+      "staleness": 0,
+      "staleHighImpact": 0,
+      "expectedInformationValue": 2,
+      "proofOrCloseConditionGap": false,
+      "orientationGain": 2,
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "epistemicStatus": "inferred",
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    },
+    {
+      "questionKey": "movement",
+      "hardGates": [],
+      "movementCriticalLacuna": true,
+      "affectedRelationshipOrUnresolvedRole": false,
+      "consequence": 3,
+      "consequenceConfidenceGap": 300,
+      "answerConfidence": null,
+      "rankingSignalConfidence": 0.68,
+      "contradictionOrDispute": false,
+      "staleness": 0,
+      "staleHighImpact": 0,
+      "expectedInformationValue": 3,
+      "proofOrCloseConditionGap": false,
+      "orientationGain": 3,
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "epistemicStatus": "inferred",
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    },
+    {
+      "questionKey": "proof",
+      "hardGates": [],
+      "movementCriticalLacuna": false,
+      "affectedRelationshipOrUnresolvedRole": false,
+      "consequence": 2,
+      "consequenceConfidenceGap": 200,
+      "answerConfidence": null,
+      "rankingSignalConfidence": 0.64,
+      "contradictionOrDispute": false,
+      "staleness": 0,
+      "staleHighImpact": 0,
+      "expectedInformationValue": 3,
+      "proofOrCloseConditionGap": true,
+      "orientationGain": 3,
+      "assertedBy": {
+        "kind": "actor",
+        "id": "assistant:fixture-cartographer"
+      },
+      "epistemicStatus": "inferred",
+      "sourceRefs": [
+        {
+          "kind": "source",
+          "id": "question-packets/orientation-nine"
+        }
+      ]
+    }
+  ],
+  "interactionFitInputs": {
+    "currentTurnChoice": null,
+    "presentationOrderSource": "canonical",
+    "accessibilityRequirementRefs": [],
+    "acceptedPreferenceRefs": [],
+    "acceptedPreferenceScopeRefs": [],
+    "acceptedPreferenceSha256": null,
+    "acceptedQuestionOrder": [],
+    "presentationChoiceEvidence": {
+      "source": "caller_supplied",
+      "providedBy": {
+        "kind": "actor",
+        "id": "system:orientation-selector"
+      },
+      "sourceRefs": [
+        {
+          "kind": "yawn",
+          "id": "yawn:fixture-participation-choice",
+          "revision": 1,
+          "stateSha256": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "representationMedium": "accessible-text",
+      "answerInputAdapter": "typed-text"
+    },
+    "recentAnswerStatuses": [
+      {
+        "questionKey": "scope",
+        "coverageStatus": "covered",
+        "answerStatus": "answered",
+        "mappingStatus": "accepted"
+      },
+      {
+        "questionKey": "placement",
+        "coverageStatus": "partial",
+        "answerStatus": "proposed",
+        "mappingStatus": "proposed"
+      },
+      {
+        "questionKey": "current-state",
+        "coverageStatus": "covered",
+        "answerStatus": "answered",
+        "mappingStatus": "accepted"
+      },
+      {
+        "questionKey": "intent",
+        "coverageStatus": "covered",
+        "answerStatus": "answered",
+        "mappingStatus": "accepted"
+      },
+      {
+        "questionKey": "lacuna",
+        "coverageStatus": "partial",
+        "answerStatus": "proposed",
+        "mappingStatus": "proposed"
+      },
+      {
+        "questionKey": "boundary",
+        "coverageStatus": "partial",
+        "answerStatus": "answered",
+        "mappingStatus": "accepted"
+      }
+    ],
+    "evaluations": [
+      {
+        "questionKey": "placement",
+        "permissionAndPrivacyRisk": 0,
+        "answerable": true,
+        "answerBurden": 1,
+        "explicitCurrentTurnOrderIndex": null,
+        "acceptedQuestionOrderIndex": null,
+        "presentationOrderIndex": null,
+        "recentDeferralOrRepetition": false,
+        "derivedBy": {
+          "kind": "actor",
+          "id": "system:orientation-selector"
+        },
+        "sourceRefs": [
+          {
+            "kind": "source",
+            "id": "question-packets/orientation-nine"
+          }
+        ]
+      },
+      {
+        "questionKey": "perspective",
+        "permissionAndPrivacyRisk": 0,
+        "answerable": true,
+        "answerBurden": 1,
+        "explicitCurrentTurnOrderIndex": null,
+        "acceptedQuestionOrderIndex": null,
+        "presentationOrderIndex": null,
+        "recentDeferralOrRepetition": false,
+        "derivedBy": {
+          "kind": "actor",
+          "id": "system:orientation-selector"
+        },
+        "sourceRefs": [
+          {
+            "kind": "source",
+            "id": "question-packets/orientation-nine"
+          }
+        ]
+      },
+      {
+        "questionKey": "lacuna",
+        "permissionAndPrivacyRisk": 0,
+        "answerable": true,
+        "answerBurden": 2,
+        "explicitCurrentTurnOrderIndex": null,
+        "acceptedQuestionOrderIndex": null,
+        "presentationOrderIndex": null,
+        "recentDeferralOrRepetition": false,
+        "derivedBy": {
+          "kind": "actor",
+          "id": "system:orientation-selector"
+        },
+        "sourceRefs": [
+          {
+            "kind": "source",
+            "id": "question-packets/orientation-nine"
+          }
+        ]
+      },
+      {
+        "questionKey": "boundary",
+        "permissionAndPrivacyRisk": 2,
+        "answerable": true,
+        "answerBurden": 1,
+        "explicitCurrentTurnOrderIndex": null,
+        "acceptedQuestionOrderIndex": null,
+        "presentationOrderIndex": null,
+        "recentDeferralOrRepetition": false,
+        "derivedBy": {
+          "kind": "actor",
+          "id": "system:orientation-selector"
+        },
+        "sourceRefs": [
+          {
+            "kind": "source",
+            "id": "question-packets/orientation-nine"
+          }
+        ]
+      },
+      {
+        "questionKey": "movement",
+        "permissionAndPrivacyRisk": 0,
+        "answerable": true,
+        "answerBurden": 1,
+        "explicitCurrentTurnOrderIndex": null,
+        "acceptedQuestionOrderIndex": null,
+        "presentationOrderIndex": null,
+        "recentDeferralOrRepetition": false,
+        "derivedBy": {
+          "kind": "actor",
+          "id": "system:orientation-selector"
+        },
+        "sourceRefs": [
+          {
+            "kind": "source",
+            "id": "question-packets/orientation-nine"
+          }
+        ]
+      },
+      {
+        "questionKey": "proof",
+        "permissionAndPrivacyRisk": 0,
+        "answerable": true,
+        "answerBurden": 1,
+        "explicitCurrentTurnOrderIndex": null,
+        "acceptedQuestionOrderIndex": null,
+        "presentationOrderIndex": null,
+        "recentDeferralOrRepetition": false,
+        "derivedBy": {
+          "kind": "actor",
+          "id": "system:orientation-selector"
+        },
+        "sourceRefs": [
+          {
+            "kind": "source",
+            "id": "question-packets/orientation-nine"
+          }
+        ]
+      }
+    ]
+  },
+  "selectionStatus": "selected_question",
+  "selectedQuestion": {
+    "questionKey": "boundary",
+    "promptVariant": "gated",
+    "exactRenderedPrompt": "Before answering, address these live or unresolved gates: immediate safety or stability; authority or consent. Then answer: What must be protected, and who may decide or act?",
+    "foregroundGateKeys": [
+      "immediate_safety_or_stability",
+      "authority_or_consent"
+    ],
+    "representationMedium": "accessible-text",
+    "answerInputAdapter": "typed-text",
+    "sequencePosition": 1
+  },
+  "hold": null,
+  "requestedHold": null,
+  "deterministicTieBreak": {
+    "ruleOrder": [
+      "hard_gate_priority",
+      "greater_semantic_priority",
+      "lower_answer_burden",
+      "explicit_current_turn_choice",
+      "accepted_question_order_preference",
+      "canonical_question_order"
+    ],
+    "appliedThrough": "hard_gate_priority",
+    "finalistQuestionKeys": [
+      "boundary"
+    ]
+  },
+  "createdBy": {
+    "kind": "actor",
+    "id": "system:orientation-selector"
+  },
+  "sourceRefs": [
+    {
+      "kind": "yawn",
+      "id": "yawn:fixture-participation-choice",
+      "revision": 1,
+      "stateSha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  ],
+  "canonicalState": false,
+  "notAuthority": true,
+  "createdAt": "2026-08-27T12:00:01Z"
+}

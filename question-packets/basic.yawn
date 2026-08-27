@@ -2,6 +2,7 @@ id: question-packets/basic
 title: "Basic Yawn Intake"
 kind: question-packet
 status: seed
+updated: 2026-08-27
 
 target_template: templates/full.yawn
 mode: draft_populate_only
@@ -10,9 +11,10 @@ privacy_default: private
 rules:
   - "Skipped answers become lacuna.open_questions."
   - "Do not invent missing answers."
-  - "Facts write to measurement.observed or measurement.known."
-  - "Interpretations write to measurement.inferred."
+  - "Facts write to attributed state.snapshots entries with observed or reported epistemic status."
+  - "Interpretations write to attributed state.snapshots entries with inferred epistemic status."
   - "Desires, fears, and needs stay labeled."
+  - "A combined answer writes selectively: wants become desires, needs remain needs, and fears remain feared snapshots or fear projections."
   - "Boundaries write before moves are authorized."
   - "Only authorized events update canonical state; suitable evidence or proof upgrades empirical claims."
 
@@ -29,22 +31,27 @@ questions:
     writes_to:
       - source.raw_material
       - source.quotes
-      - measurement.observed
+      - state.snapshots[].description
+      - state.snapshots[].epistemic_status
+      - state.snapshots[].source_refs
 
   - id: q_inference
     prompt: "What are you inferring?"
     writes_to:
-      - measurement.inferred
-      - frame.current
-      - frame.possible
+      - state.snapshots[].description
+      - state.snapshots[].epistemic_status
+      - state.snapshots[].source_refs
+      - state.possibilities
 
   - id: q_want_fear_need
     prompt: "What do you want, fear, or need?"
     writes_to:
-      - measurement.desired
-      - measurement.feared
+      - desires[].description
+      - desires[].principal_ref
+      - desires[].source_refs
+      - state.snapshots[].motivational_role
       - projection_stack.needs
-      - projection_stack.desires
+      - projection_stack.desire_refs
       - projection_stack.fears
 
   - id: q_missing

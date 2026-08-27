@@ -3,8 +3,9 @@
 Status: **Working Draft 0.2**
 
 The orienting agent's first structural job is to infer the smallest adequate
-arena in which one authorized, falsifiable move makes sense—and then propose
-where the corresponding Yawn belongs in the holarchy.
+arena in which presence, inquiry, maintenance, waiting, or one authorized and
+falsifiable move makes sense—and then propose where the corresponding Yawn
+belongs in the holarchy.
 
 This is a routing proposal, not an automatic truth claim. Low-confidence or
 high-consequence cases remain on hold for human review.
@@ -143,3 +144,21 @@ conversation's content hash as its source span. Only the principal's own message
 counted, never believed. Sensitive arenas may withhold verbatim openings. The pipeline and its do-not-do rules are in
 [`examples/conversation-import-routing.yawn`](../examples/conversation-import-routing.yawn); the first field run
 (2,150 conversations, 2026-08-17) recorded what worked and what did not in the principal's private Agent Space.
+
+## Orientation answer routing
+
+An answer first becomes attributed source material and one or more provisional
+Observations or claims. It then maps to the canonical orientation axes without
+overwriting the exact response, `exact_rendered_prompt`,
+`answer_input_adapter`, sequence position, or the orientation_map revision
+against which it was asked.
+
+Attach the answer to an existing Yawn when it updates the same Arena, lacuna,
+relationship, or proof contract. Propose a child, sibling, or root only when an
+independently meaningful transition, lifecycle, owner, authority boundary, or
+proof contract requires it. One question or answer does not imply one Yawn.
+
+Accepted question-order, medium, wording, pacing, density, and accessibility
+choices route to the scoped View-preference stream. They do not become claims
+about the person's identity, alter the Yawn holarchy, or suppress safety,
+authority, privacy, provenance, or proof requirements.

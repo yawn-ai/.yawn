@@ -11,7 +11,7 @@ than through a second live schema layer.
 README.md / index.html     public doors
 spec/                      human-readable specification
 contracts/                 stable v1 constitution/runtime package
-schemas/                   state, agency-holarchy, objective-holon, and other labeled protocol drafts
+schemas/                   state, agency-holarchy, objective-holon, orientation-map, and other labeled drafts
 core/                      concept records and lexical invariants
 templates/                 authoring surfaces
 examples/ + fixtures/      explanatory and executable evidence
@@ -41,7 +41,7 @@ The removal is **semantic absorption**, not history erasure:
 
 # yawn-invalid-alias-guard:start
 The product is **YAWN** and the only YAWN record extension is **`.yawn`**.
-`.ion` and `.yon` are invalid schema aliases and common speech-to-text/model
+`.ion`, `.yon`, and `.ywn` are invalid schema aliases and common speech-to-text/model
 transcription errors. They are not compatibility formats or alternate
 ontologies.
 # yawn-invalid-alias-guard:end
