@@ -2,7 +2,7 @@ id: core/routing
 title: "arena discovery and Yawn routing"
 kind: governance-contract
 status: draft-0.2
-updated: 2026-08-13
+updated: 2026-08-25
 
 primary_orientation: >
   Infer the smallest adequate arena in which one authorized, falsifiable move
@@ -41,9 +41,23 @@ authorization_rule: >
   AI and automation produce routing proposals. An accepted structural change
   requires a rightful authority and emits an append-only receipt.
 
+objective_lifecycle:
+  sequence:
+    - typed-detection
+    - objective-candidate
+    - independence-and-routing-proposal
+    - principal-ratification
+    - objective-holding-yawn
+    - sleeping-yawn-bot
+    - separate-activation-receipt
+  rule: >
+    Confidence can rank a proposal. It cannot ratify an objective, create
+    canonical structure, activate a bot, or grant effect authority.
+
 links:
   - spec/routing.md
   - spec/questions.md
   - core/world-field-arena.yawn
   - core/holarchy.yawn
   - templates/structural-change-receipt.yawn
+  - spec/objective-holons.md

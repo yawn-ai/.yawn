@@ -1,0 +1,118 @@
+id: interface/objective-compiler
+title: "dialogue objective compiler"
+kind: interface-contract
+status: draft-0.1
+updated: 2026-08-25
+
+definition: >
+  Natural language is source input. The compiler preserves it, emits typed
+  provisional detections, proposes structural operations, and waits for the
+  rightful principal to confirm, reject, correct, add, split, link, or hold.
+
+default_voice:
+  mode: protocol
+  personality_profile_ref: null
+  emits:
+    - signal-received
+    - detected
+    - reported
+    - inferred
+    - unresolved
+    - requires-confirmation
+    - proposed-structure
+    - proposed-operation
+    - receipt
+
+detection_kinds:
+  - agent
+  - principal
+  - observation
+  - relationship
+  - desire
+  - value
+  - objective_candidate
+  - arena
+  - lacuna
+  - constraint
+  - boundary
+  - affordance
+  - proof_condition
+
+correction_operators:
+  - confirm
+  - reject
+  - correct
+  - add_more
+  - split
+  - link
+  - hold
+
+surface_label_mapping:
+  yes_or_agree: confirm
+  no_or_disagree: reject
+  edit_or_not_quite: correct
+  add_more: add_more
+  rule: "Labels may fit local context; clicks emit the stable canonical operator in a receipt."
+
+choice_architecture:
+  model: "ranked decision policy over currently valid semantic and structural operations"
+  hard_gates_before_ranking:
+    - rightful-principal-and-decision-authority
+    - privacy-visibility-and-egress
+    - source-and-dispute-preservation
+    - existing-yawn-and-relation-fit
+    - objective-independence
+    - proof-and-causal-boundary
+  primary_correction_controls: [confirm, reject, correct, add_more]
+  maximum_suggested_structural_paths: 3
+  full_operator_access: inspectable
+  score_kinds:
+    heuristic: "relative ranking signal; not a probability"
+    estimated_posterior: "calibrated estimate of structural fit given the current evidence"
+  rule: >
+    Show the few highest-value valid operations, their structural consequence,
+    and the uncertainty that changes the ranking. Do not present a probabilistic
+    guess as the user's objective or hide the remaining operators.
+
+structural_operators:
+  - attach_to_existing_yawn
+  - create_objective_holon
+  - create_child_worker
+  - create_sibling
+  - link_yawns
+  - propose_merge
+  - propose_split
+
+activation_operators:
+  - activate
+  - inspect_contract
+  - keep_sleeping
+  - pause
+  - retire
+
+rendering_rule: >
+  Show the data model fields that materially affect interpretation, routing,
+  authority, or movement. Put uncertainty on the individual detection. Do not
+  replace the parse with anthropomorphic reassurance or hide structural
+  consequences behind conversational copy.
+
+copy_boundary:
+  avoid_by_default:
+    - "I think I'm hearing"
+    - "I may be wrong"
+    - simulated-emotional-reassurance
+  prefer:
+    - SIGNAL-RECEIVED
+    - SIGNAL-COMPILED
+    - DETECTED
+    - INFERRED
+    - UNRESOLVED
+    - REQUIRES-CONFIRMATION
+
+invariants:
+  - source language remains inspectable
+  - reported human content remains distinct from machine inference
+  - clicks create explicit receipts rather than retroactively rewriting source
+  - objective confirmation and bot activation remain separate
+  - no objective candidate becomes canonical through confidence alone
+  - no bot gains effect authority through nesting or duplication

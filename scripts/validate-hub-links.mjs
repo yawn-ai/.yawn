@@ -25,10 +25,12 @@ const markdownFiles = [
   "spec/holarchy.md",
   "spec/turns.md",
   "spec/routing.md",
+  "spec/objective-holons.md",
   "spec/questions.md",
   "spec/serialization.md",
   "rfcs/README.md",
   "rfcs/0001-agency-holarchy-working-draft.md",
+  "rfcs/0003-objective-holon-and-yawn-bot-lifecycle.md",
   "adr/README.md",
 ];
 

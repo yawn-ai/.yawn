@@ -9,6 +9,8 @@ may change as real use reveals a better arena.
 - [x] Separate world, field, arena, Yawn, turn, event, transition, and projection
 - [x] Make waiting and asynchronous causal turns first-class
 - [x] Specify a one-parent holarchy with typed lateral links
+- [x] Specify typed objective detection, ratification, objective Yawns, and
+  separately activated Yawn.bots as an additive working draft
 - [ ] Publish and independently verify the live, navigable ontology hub and
   open-source trust surface
 - [ ] Collect reviewed arena-routing, merge, and split decisions as calibration
@@ -26,6 +28,8 @@ may change as real use reveals a better arena.
   receipt conformance suites
 - [ ] Extend cross-document relation-cycle, merge, split, and reparent validators
 - [ ] Calibrate routing confidence using human-reviewed decisions
+- [ ] Calibrate objective-independence proposals using principal-reviewed
+  confirm, reject, correct, split, link, and hold decisions
 - [ ] Replace environment-specific paths in pre-hub automation with injected,
   repository-relative configuration while preserving historical receipts
 

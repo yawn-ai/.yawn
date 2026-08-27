@@ -15,6 +15,7 @@ Reality
       └─ Field available to an agent
           └─ Arena disclosed for a purpose
               └─ Yawn holding one live orientation contract
+                  ├─ optional Yawn.bot steward
                   └─ Turn containing moves, events, and waiting
                       └─ Transition supported by proof
                           └─ Replayed state and a changed horizon
@@ -131,6 +132,28 @@ A Yawn is not a topic, folder label, person, or arena. It can hold uncertainty
 and does not need to be ready for action or to have a target. When goal-oriented,
 it should have one primary independently testable transition contract.
 
+### Objective and objective holon
+
+An **objective** is a principal-owned direction ratified to persist across
+turns, goals, or maintenance cycles. A parser may detect an objective candidate,
+but confidence does not adopt it. Desire, candidate, ratification, target,
+commitment, and authorization remain distinct records.
+
+An **objective holon** is a Yawn whose primary contract holds one ratified
+objective. It may coordinate several bounded goals or child Yawns without
+turning an ongoing human objective into a fixed score or proof of identity.
+
+### Yawn.bot
+
+A Yawn.bot is a bounded stewarding agent/runtime bound to a Yawn. The Yawn is
+the durable contract; the bot operates inside it. A Yawn may exist with a
+sleeping bot or no bot. Ratifying an objective does not activate the bot, and
+activation does not itself grant permission for external effects.
+
+The root Yawn.bot is an alignment bridge and routing steward. Objective
+stewards hold one primary ratified objective; worker bots hold narrower
+delegated transitions or proof obligations.
+
 ### Lacuna
 
 The named absence, uncertainty, dispute, missing bridge, or unformalized
@@ -197,8 +220,8 @@ YAWN separates four semantic planes:
 | --- | --- | --- |
 | World | What is represented as happening? | fields, arenas, observations, events, state |
 | Epistemic | How is it known? | claims, sources, confidence, disputes, lacunae, proof |
-| Normative | What matters and what is protected? | values, boundaries, privacy, authority |
-| Action | What may change next? | targets, moves, turns, transitions, updates |
+| Normative | What matters and what is protected? | values, desires, objectives, boundaries, privacy, authority |
+| Action | What may change next? | targets, goals, bots, moves, turns, transitions, updates |
 
 Governance, temporal order, and provenance are control planes that cross all
 four. Collapsing these planes creates familiar errors: desire becoming fact,

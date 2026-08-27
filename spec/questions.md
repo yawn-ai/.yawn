@@ -28,7 +28,7 @@ asking them verbatim.
 | 2 | World / Governance | arena, primary parent, lateral relations | a routing proposal can be made |
 | 3 | World / Provenance | agents, roles, perspectives, affected parties | attribution is visible |
 | 4 | World / Epistemic | field, observations, reports, current state | current claims have statuses and sources |
-| 5 | Normative / Action | values, optional target, purpose, motivation | desire is separate from agreement and authority |
+| 5 | Normative / Action | values, desire, objective candidate, optional target, purpose, motivation | a candidate is separate from ratification, agreement, and authority |
 | 6 | Epistemic | lacunae, disputes, constraints, dependencies | missing structure is explicit |
 | 7 | Normative / Governance | boundaries, privacy, decision rights, grants | unsafe moves can be excluded |
 | 8 | Action | affordances, candidate moves, waits, delegations | an authorized next turn may be proposed |

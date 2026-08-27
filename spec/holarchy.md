@@ -42,6 +42,12 @@ A child:
 - reports relevant state and proof upward without exposing private content that
   the parent is not authorized to receive.
 
+An objective may deserve its own child Yawn when it has an independently
+meaningful direction, principal, time horizon, relationship set, authority or
+privacy boundary, or recurring proof loop. The objective does not become a
+child merely because a classifier is confident; creation remains a structural
+proposal and principal ratification remains a separate event.
+
 ## Inheritance
 
 Inheritance is explicit and field-specific. Implementations MUST NOT infer that
@@ -51,9 +57,22 @@ a parent.
 - Authority can narrow automatically; widening requires an explicit grant.
 - Privacy and egress constraints inherit unless explicitly made stricter.
 - Sources remain attributed across every structural operation.
-- Targets, beliefs, and confidence do not automatically inherit.
+- Targets, objectives, truth claims, beliefs, agreement, consent, identity, and
+  confidence do not automatically inherit.
 - Proof may roll up only when the parent declares how child proof satisfies a
   parent condition.
+
+## Yawn.bot inheritance and spawning
+
+The Yawn holarchy and bot runtime tree are related but not identical. A Yawn
+can exist without an active bot. A root steward may propose an objective
+steward; an objective steward may propose narrower workers. Every new bot starts
+sleeping.
+
+Duplication copies a protocol shell and explicit breadcrumbs. It does not copy
+truth, consent, privacy decisions, confidence, proof, personality, identity, or
+effect authority. Activation requires its own accepted receipt; any external
+effect still requires a suitable grant.
 
 ## Arenas and nested agent arenas
 

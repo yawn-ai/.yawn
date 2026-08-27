@@ -35,6 +35,11 @@ labels and do not imply compatibility.
 - Source-bound Question, zero-paid-cost local Art Brief, hash-bound candidate,
   and attributed View-feedback proposal contracts with deterministic View
   materialization and a sanitized conformance fixture
+- Objective Holon Working Draft 0.1 for typed signal compilation, principal
+  ratification, objective-holding Yawns, Yawn.bot bindings, and activation
+  receipts
+- Executable objective-holon schema, Dave/good-dad fixture, semantic validator,
+  conformance tests, compiler interface, template, example, and RFC
 - Unified documentation hub and deployable GitHub Pages landing page
 - Working Draft 0.2 ontology for world, field, arena, Yawn, turn, transition,
   projection, and replay
@@ -55,6 +60,11 @@ labels and do not imply compatibility.
   Yawn promotion a separate human-approved lifecycle from Observation
 - Made repository-owned local checks the primary proof path and GitHub Actions a
   secondary witness
+- Defined the root `.yawn` as an alignment bridge and routing steward, with
+  objective-steward and worker bots that start sleeping and inherit no hidden
+  truth, consent, privacy, proof, personality, or authority
+- Set concise typed protocol output as the default programming interface and
+  made personality an optional projection field
 - Made `README.md` the concise human front door and `readme.yawn` the repository
   orientation record, removing the unsupported canonical/mirror claim
 - Declared the existing contracts package and state substrate as parallel v1

@@ -11,12 +11,13 @@ than through a second live schema layer.
 README.md / index.html     public doors
 spec/                      human-readable specification
 contracts/                 stable v1 constitution/runtime package
-schemas/                   state modules and labeled protocol drafts
+schemas/                   state, agency-holarchy, objective-holon, and other labeled protocol drafts
 core/                      concept records and lexical invariants
 templates/                 authoring surfaces
 examples/ + fixtures/      explanatory and executable evidence
 docs/                      guides, status, projections, research boundary
 interface/ + q-space/      presentation contracts and projections
+agents/                    runtime identities and bounded bot-role contracts
 rfcs/ + adr/               proposed and accepted change rationale
 migrations/                source-preserving structural receipts
 ```

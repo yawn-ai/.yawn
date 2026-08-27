@@ -2,7 +2,7 @@ id: core/motivation-and-purpose
 title: "motivation and purpose"
 kind: semantic-contract
 status: v1
-updated: 2026-07-21
+updated: 2026-08-25
 
 desire:
   definition: "A felt pull toward an experience, condition, object, relationship, or possibility."
@@ -37,9 +37,24 @@ terms:
   commitment: "the accepted cost or constraint protecting a choice"
   authorization: "permission to produce a declared effect"
 
+objective_holon_extension_0_1:
+  status: working-draft
+  compatibility: "additive; does not redefine the v1 desire/target progression"
+  lifecycle:
+    - attributed-desire-or-other-signal
+    - objective-candidate
+    - principal-ratified-objective
+    - objective-holding-yawn
+    - optional-separately-activated-yawn-bot
+  terms:
+    objective_candidate: "an attributed hypothesis that a signal expresses a direction worth holding"
+    objective: "a principal-ratified direction that can persist across goals or turns"
+
 invariants:
   - "Desire remains attributable to its principal."
   - "One participant's desire never becomes shared agreement by inference."
+  - "Confidence never ratifies an objective."
+  - "Objective ratification never activates a bot or authorizes an effect."
   - "Commitment and authorization remain explicit events."
 
 proof:

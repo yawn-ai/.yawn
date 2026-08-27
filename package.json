@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "npm run validate && node --test --test-concurrency=1 tests/*.test.mjs",
-    "validate": "node scripts/validate-canonical-extension.mjs && node scripts/validate-state-target-v1.mjs && node scripts/validate-agency-holarchy-v0.2.mjs"
+    "validate": "node scripts/validate-canonical-extension.mjs && node scripts/validate-state-target-v1.mjs && node scripts/validate-agency-holarchy-v0.2.mjs && node scripts/validate-objective-holon-v0.1.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0"

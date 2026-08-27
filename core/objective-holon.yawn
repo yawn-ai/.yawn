@@ -1,0 +1,57 @@
+id: core/objective-holon
+title: "objective holons and Yawn.bot activation"
+kind: ontology-contract
+status: draft-0.1
+updated: 2026-08-25
+
+definition: >
+  A principal-owned objective may become its own Yawn holon when it deserves a
+  persistent orientation, authority, relationship, question, and proof loop. A
+  Yawn.bot is the bounded stewarding agent bound to that contract; it is not the
+  objective, the principal, or the Yawn itself.
+
+lifecycle:
+  - source-preserved-signal
+  - typed-detections
+  - objective-candidate
+  - structural-routing-proposal
+  - principal-ratification
+  - objective-holding-yawn
+  - sleeping-yawn-bot
+  - explicit-activation-grant
+  - turns-moves-proof-and-replay
+
+distinct_records:
+  objective_candidate: "machine-attributed hypothesis; never silently adopted"
+  objective: "principal-ratified direction held across goals or turns"
+  yawn: "durable orientation contract holding the objective and live lacuna"
+  yawn_bot: "bounded stewarding runtime operating inside the Yawn"
+
+root_alignment_bridge:
+  role: "detect, route, relate, protect, and propose"
+  does_not: "execute every objective or silently authorize descendants"
+
+child_activation_rule: >
+  A child bot begins sleeping. Structural context may be proposed for
+  inheritance, but truth, identity, consent, privacy, confidence, proof, and
+  effect authority require their own attributed records or explicit grants.
+
+bot_roles:
+  - root_steward
+  - objective_steward
+  - worker
+
+invariants:
+  - "Detection is not ratification."
+  - "Ratification is not effect authority."
+  - "A Yawn is the contract; a Yawn.bot is its bounded steward."
+  - "One objective steward has one ratified primary objective."
+  - "An ongoing objective can gather local proof without claiming final proof of identity or worth."
+  - "Duplication copies a protocol shell, never authority, consent, truth, or proof."
+  - "Personality is optional programmed projection data, not default bot identity."
+
+links:
+  - spec/objective-holons.md
+  - schemas/objective-holon.v0.1.schema.json
+  - interface/objective-compiler.yawn
+  - examples/dave-good-dad-objective-holon.yawn

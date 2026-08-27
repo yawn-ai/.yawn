@@ -24,6 +24,22 @@ World, field, arena, and Yawn remain distinct. The field is what the agent can
 currently access. The arena is the provisional task-relevant slice. The Yawn
 is the durable contract for one live lacuna or transition within it.
 
+## From signal to objective holon
+
+When dialogue appears to express a durable direction, routing follows an
+inspectable lifecycle:
+
+```text
+signal → typed detections → objective candidate → independence proposal
+  → principal ratification → objective Yawn → optional bot activation
+```
+
+These are separate decisions. A system may be highly confident that “I want to
+be a good dad” expresses an objective and still be wrong about its wording,
+scope, parent, participants, or whether it deserves an independent Yawn. The
+interface exposes those fields and offers `confirm`, `reject`, `correct`,
+`add_more`, `split`, `link`, and `hold` operations.
+
 ## Outcomes
 
 | Proposal | Use when |
@@ -37,6 +53,11 @@ is the durable contract for one live lacuna or transition within it.
 | `merge_candidate` | Two Yawns appear to encode the same arena, transition, authority, and proof contract |
 | `split_candidate` | One Yawn contains independently closable transitions, proofs, owners, or permission scopes |
 | `hold` | Evidence, authority, privacy, or structural confidence is insufficient |
+
+Bot creation and bot activation are not routing outcomes. After an accepted
+objective-Yawn creation receipt, a bot may be bound in `sleeping` state.
+Activation requires a separate principal-authorized receipt, and effect
+authority remains separately granted.
 
 “Related” is not the same as “identical.” Link by default when a merge would
 erase meaningful provenance, disagreement, ownership, or proof boundaries.

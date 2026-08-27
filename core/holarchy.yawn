@@ -2,7 +2,7 @@ id: core/holarchy
 title: "Yawn holarchy and relations"
 kind: ontology-contract
 status: draft-0.2
-updated: 2026-08-13
+updated: 2026-08-25
 
 definition: >
   A Yawn is a durable whole that may also contribute as a part of a larger
@@ -40,9 +40,19 @@ inheritance:
   authority: "may narrow automatically; widening requires an explicit rightful grant"
   privacy: "inherits unless made stricter; never widens by nesting"
   sources: "retain attribution"
-  targets: "do not automatically inherit"
+  structural_context: "may be proposed as an explicit subset"
+  targets_and_objectives: "do not automatically inherit"
+  truth_identity_agreement_and_consent: "do not automatically inherit"
   confidence: "does not automatically inherit"
   proof: "rolls up only through a declared parent condition"
+
+bot_tree:
+  relation_to_yawn_holarchy: "bound to it, but not identical to it"
+  root_role: root_steward
+  objective_role: objective_steward
+  delegated_role: worker
+  new_child_state: sleeping
+  duplication_rule: "copies a protocol shell, not truth, consent, privacy, proof, personality, or authority"
 
 structural_change_rule: >
   Create, attach, reparent, merge, and split begin as proposals. Accepted
@@ -63,3 +73,4 @@ links:
   - core/world-field-arena.yawn
   - core/routing.yawn
   - schemas/agency-holarchy.v0.2.schema.json
+  - core/objective-holon.yawn

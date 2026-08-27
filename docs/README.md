@@ -20,16 +20,18 @@ and historical material so each can be read with the right level of trust.
 2. Learn the [ontology](../spec/ontology.md) and [state substrate](../core/state.yawn).
 3. Validate the [v1 contracts](../contracts/) and [state schemas](../schemas/).
 4. Experiment with the [Agency Holarchy Draft 0.2](../schemas/agency-holarchy.v0.2.schema.json).
-5. Read [serialization and compatibility](../spec/serialization.md).
-6. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
+5. Compile a signal into an [Objective Holon Draft 0.1](../spec/objective-holons.md).
+6. Read [serialization and compatibility](../spec/serialization.md).
+7. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
 
 ### I want to understand the theory
 
 1. Read [World → Field → Arena → Yawn](../spec/ontology.md).
 2. Read the [holarchy](../spec/holarchy.md), [turn](../spec/turns.md), and
    [routing](../spec/routing.md) specifications.
-3. See how [projections](projections/README.md) render one canonical graph.
-4. Review the [research basis and limits](research-basis.md).
+3. Study the [objective/Yawn/Yawn.bot lifecycle](../spec/objective-holons.md).
+4. See how [projections](projections/README.md) render one canonical graph.
+5. Review the [research basis and limits](research-basis.md).
 
 ### I want to contribute
 
