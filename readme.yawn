@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 7
-updated: "2026-08-27"
+revision: 8
+updated: "2026-08-28"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -16,6 +16,7 @@ identity:
   copyright_holder: "The Yawn Company"
   human_front_door: README.md
   repository_manifest: yawn.yawn
+  protocol_release_manifest: protocol-manifest.v0.1.json
   canonical_extension_contract: core/canonical-extension.yawn
   canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
 
@@ -202,6 +203,8 @@ proof_contract:
     - "Unverified local candidates cannot pass reviewability or authorize publication."
     - "Internal links on the public hub resolve."
     - "Orientation-map schema, semantic, ranking, closed receipt, and presentation-separation tests pass."
+    - "Interaction-operator receipts preserve exact scope and source binding while every authority and lifecycle effect remains false."
+    - "The protocol manifest resolves every required profile artifact and matches its recorded SHA-256."
     - "The GitHub Pages root returns the new ontology hub after merge."
     - "Feedback and Declaration routes remain live."
   falsifiers:
@@ -211,8 +214,16 @@ proof_contract:
     - "A structural change can erase source identity or bypass authority."
     - "A speech-to-text alias can create a competing schema or path without failure."
     - "Changing question order or medium changes the semantic orientation hash."
+    - "A confirmation receipt is treated as an answer, objective ratification, bot activation, authority grant, or external-effect permission."
+    - "A consumer can omit or alter a required profile artifact while still claiming the same protocol revision."
 
 protocol_layers:
+  protocol_release_manifest:
+    path: protocol-manifest.v0.1.json
+    schema: schemas/protocol-manifest.v0.1.schema.json
+    revision: yawn.protocol.2026-08-28.2
+    compatibility: additive
+    runtime_profile: yawn.bot/new.v0.1
   stable_constitution:
     path: contracts/
     version: "1.0.0"
@@ -244,6 +255,14 @@ protocol_layers:
     presentation_preferences: schemas/projection-preference.v1.schema.json
     version: "0.1-draft"
     canonical_state: false
+  interaction_operator_receipt:
+    schema: schemas/interaction-operator-receipt.v0.1.schema.json
+    runtime: lib/interaction-operator-receipt-v0.1.mjs
+    validator: scripts/validate-interaction-operator-receipt-v0.1.mjs
+    fixture: fixtures/interaction-operator-receipt.v0.1.json
+    version: "0.1-draft"
+    canonical_state: false
+    grants_authority: false
   human_document:
     paths: [templates/, examples/]
     stability: mixed-and-explicitly-versioned
@@ -323,6 +342,7 @@ project_links:
   declaration_of_agency: agency-declaration/index.html
   q_space: q-space/node.yawn
   canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
+  protocol_manifest_and_interaction_receipts_rfc: rfcs/0004-content-addressed-conformance-and-interaction-receipts.md
 
 replay:
   current_claim: >

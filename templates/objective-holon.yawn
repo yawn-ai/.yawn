@@ -18,15 +18,17 @@ objective_candidate:
   purpose_hypothesis: ""
   confidence: 0.0
   source_refs: []
-  proposed_parent_yawn_ref: ""
-  proposed_yawn_ref: ""
-  proposed_bot_ref: ""
+  proposed_parent_yawn_ref: null
+  proposed_yawn_ref: null
+  proposed_bot_ref: null
   independence_reasons: []
 
 ratification:
   decision: held # accepted | rejected | corrected | held
   authorized_by: ""
   receipt_ref: ""
+  optional_yawn_proposal_ref: null
+  optional_bot_proposal_ref: null
 
 objective:
   objective_ref: ""
@@ -39,8 +41,12 @@ objective:
   progress_signals: []
   status: proposed
 
+yawn_materialization:
+  status: not_materialized
+  structural_change_receipt_ref: null
+
 yawn:
-  yawn_ref: ""
+  yawn_ref: null
   primary_parent_yawn_ref: ""
   arena_ref: ""
   primary_objective_ref: ""
@@ -48,14 +54,16 @@ yawn:
   proof_policy_ref: ""
 
 yawn_bot:
-  bot_ref: ""
+  bot_ref: null
   parent_bot_ref: ""
   role: objective_steward
-  lifecycle_state: sleeping
+  binding_state: absent
+  lifecycle_state: null
   personality_profile_ref: null
   context_refs: []
   relationship_refs: []
   authority_grant_refs: []
+  binding_receipt_refs: []
   activation_receipt_refs: []
 
 proof_boundary: >

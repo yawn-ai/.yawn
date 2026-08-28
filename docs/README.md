@@ -23,8 +23,12 @@ and historical material so each can be read with the right level of trust.
 5. Compile a signal into an [Objective Holon Draft 0.1](../spec/objective-holons.md).
 6. Resolve adaptive inquiry with the [Orientation Map Draft 0.1](../schemas/orientation-map.v0.1.schema.json)
    and its [closed selection receipt](../schemas/inquiry-selection-receipt.v0.1.schema.json).
-7. Read [serialization and compatibility](../spec/serialization.md).
-8. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
+7. Record explicit review and response events with the
+   [Interaction Operator Receipt Draft 0.1](../schemas/interaction-operator-receipt.v0.1.schema.json).
+8. Verify the exact module set for `/new` with the
+   [`yawn.bot/new.v0.1` profile](../protocol-manifest.v0.1.json).
+9. Read [serialization and compatibility](../spec/serialization.md).
+10. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
 
 ### I want to understand the theory
 

@@ -35,15 +35,25 @@ labels and do not imply compatibility.
 - Source-bound Question, zero-paid-cost local Art Brief, hash-bound candidate,
   and attributed View-feedback proposal contracts with deterministic View
   materialization and a sanitized conformance fixture
-- Objective Holon Working Draft 0.1 for typed signal compilation, principal
-  ratification, objective-holding Yawns, Yawn.bot bindings, and activation
-  receipts
+- Objective Holon Working Draft 0.1 for typed signal compilation, objective-only
+  principal ratification, optional authorized Yawn promotion, separately
+  receipted sleeping-bot binding, and separately resolved activation
 - Executable objective-holon schema, Dave/good-dad fixture, semantic validator,
   conformance tests, compiler interface, template, example, and RFC
 - Adaptive Orientation Map Working Draft 0.1 with one stable nine-axis semantic
   map, deterministic next-question ranking, closed selection/hold receipts,
   semantic hashing, presentation-fit hypotheses, a sanitized participation-choice
   example, and conformance tests
+- A content-addressed Protocol Manifest V0.1 with an additive semantic revision,
+  exact artifact hashes, a canonical reorder-invariant artifact-set recipe,
+  and a closed `yawn.bot/new.v0.1` conformance profile whose claim identity is
+  the detached whole-manifest hash paired with the profile ID
+- Interaction Operator Receipt V0.1 for exact, non-authoritative review and
+  question-response events, immutable constitutional Source evidence, closed
+  transition tables, and fail-closed application boundaries, plus RFC 0004
+- RFC 0005 separating objective ratification, Agency `create_yawn`, sleeping
+  BotBindingReceipt, activation, and effect authority while preserving legacy
+  Objective Holon 0.1 document-local compatibility
 - Unified documentation hub and deployable GitHub Pages landing page
 - Working Draft 0.2 ontology for world, field, arena, Yawn, turn, transition,
   projection, and replay

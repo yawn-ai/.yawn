@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://yawn.ai/schemas/objective-holon.v0.1.schema.json",
   "title": "YAWN Objective Holon Working Draft 0.1",
-  "description": "An additive contract for compiling dialogue into objective candidates, principal ratification, objective-holding Yawns, and explicitly activated Yawn.bot stewards.",
+  "description": "An additive contract for compiling dialogue into objective candidates, principal ratification, optional objective-holding Yawns, separately receipted sleeping-bot bindings, and explicitly activated Yawn.bot stewards.",
   "$comment": "This module references Agent, Agent Space, Arena, Yawn, source, relationship, policy, and grant identifiers governed by other YAWN layers. It does not redefine stable V1 or Agency Holarchy 0.2.",
   "type": "object",
   "additionalProperties": false,
@@ -41,6 +41,10 @@
     "ratificationReceipts": {
       "type": "array",
       "items": { "$ref": "#/$defs/RatificationReceipt" }
+    },
+    "botBindingReceipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/BotBindingReceipt" }
     },
     "activationReceipts": {
       "type": "array",
@@ -248,8 +252,20 @@
             { "type": "null" }
           ]
         },
-        "proposedYawnRef": { "$ref": "#/$defs/Identifier" },
-        "proposedBotRef": { "$ref": "#/$defs/Identifier" },
+        "proposedYawnRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ],
+          "description": "An optional structural proposal. Null preserves a ratifiable objective candidate without implying Yawn materialization."
+        },
+        "proposedBotRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ],
+          "description": "An optional sleeping-bot proposal. A non-null bot proposal requires a proposed Yawn but creates neither record."
+        },
         "independenceReasons": {
           "type": "array",
           "minItems": 1,
@@ -261,7 +277,18 @@
         "status": { "const": "proposed" },
         "producedBy": { "$ref": "#/$defs/Producer" },
         "extensions": { "$ref": "#/$defs/ExtensionBag" }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "proposedBotRef": { "$ref": "#/$defs/Identifier" } },
+            "required": ["proposedBotRef"]
+          },
+          "then": {
+            "properties": { "proposedYawnRef": { "$ref": "#/$defs/Identifier" } }
+          }
+        }
+      ]
     },
     "Objective": {
       "type": "object",
@@ -335,7 +362,7 @@
     },
     "YawnBot": {
       "type": "object",
-      "description": "A bounded stewarding agent/runtime bound to a Yawn. The Yawn is the contract; the bot operates inside it.",
+      "description": "A bounded stewarding agent/runtime bound to a Yawn. The Yawn is the contract; the bot operates inside it. For an objective/worker bot, producedBy records the materialized bound-bot record, not the earlier opaque bot proposal; strict binding conformance requires producedAt at or after BotBindingReceipt.recordedAt and before activation.",
       "additionalProperties": false,
       "required": [
         "botId",
@@ -392,6 +419,7 @@
         "contextInheritance": { "$ref": "#/$defs/ContextInheritance" },
         "authorityGrantRefs": { "$ref": "#/$defs/ReferenceArray" },
         "ratificationReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
+        "bindingReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
         "activationReceiptRefs": { "$ref": "#/$defs/ReferenceArray" },
         "questionPolicyRef": { "$ref": "#/$defs/Identifier" },
         "memoryPolicyRef": { "$ref": "#/$defs/Identifier" },
@@ -407,7 +435,25 @@
             "required": ["role"]
           },
           "then": {
-            "properties": { "objectiveRef": { "$ref": "#/$defs/Identifier" } }
+            "properties": {
+              "parentBotRef": { "$ref": "#/$defs/Identifier" },
+              "objectiveRef": { "$ref": "#/$defs/Identifier" },
+              "bindingReceiptRefs": { "type": "array", "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "role": { "const": "root_steward" } },
+            "required": ["role"]
+          },
+          "then": {
+            "properties": {
+              "parentBotRef": { "type": "null" },
+              "objectiveRef": { "type": "null" },
+              "ratificationReceiptRefs": { "type": "array", "maxItems": 0 },
+              "bindingReceiptRefs": { "type": "array", "maxItems": 0 }
+            }
           }
         },
         {
@@ -439,6 +485,7 @@
     "RatificationReceipt": {
       "type": "object",
       "additionalProperties": false,
+      "description": "A principal decision about an objective candidate. Optional Yawn/bot cross-links record accepted proposal context only; this receipt never creates or binds either structure.",
       "required": ["ratificationReceiptId", "objectiveCandidateRef", "decision", "objectiveRef", "yawnRef", "botRef", "principalRef", "authorizedBy", "corrections", "recordedAt", "extensions"],
       "properties": {
         "ratificationReceiptId": { "$ref": "#/$defs/Identifier" },
@@ -462,6 +509,13 @@
             { "type": "null" }
           ]
         },
+        "correctedCandidateRef": {
+          "anyOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "null" }
+          ],
+          "description": "Optional additive pointer to the distinct replacement candidate. Strict /new conformance requires it for decision=corrected."
+        },
         "principalRef": { "$ref": "#/$defs/Identifier" },
         "authorizedBy": { "$ref": "#/$defs/Identifier" },
         "corrections": {
@@ -479,10 +533,17 @@
           },
           "then": {
             "properties": {
-              "objectiveRef": { "$ref": "#/$defs/Identifier" },
-              "yawnRef": { "$ref": "#/$defs/Identifier" },
-              "botRef": { "$ref": "#/$defs/Identifier" }
+              "objectiveRef": { "$ref": "#/$defs/Identifier" }
             }
+          }
+        },
+        {
+          "if": {
+            "properties": { "botRef": { "$ref": "#/$defs/Identifier" } },
+            "required": ["botRef"]
+          },
+          "then": {
+            "properties": { "yawnRef": { "$ref": "#/$defs/Identifier" } }
           }
         },
         {
@@ -497,11 +558,71 @@
               "botRef": { "type": "null" }
             }
           }
+        },
+        {
+          "if": {
+            "properties": { "decision": { "const": "corrected" } },
+            "required": ["decision"]
+          },
+          "then": {
+            "properties": {
+              "objectiveRef": { "type": "null" },
+              "yawnRef": { "type": "null" },
+              "botRef": { "type": "null" },
+              "corrections": { "type": "array", "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "decision": { "enum": ["accepted", "rejected", "held"] } },
+            "required": ["decision"]
+          },
+          "then": {
+            "properties": {
+              "correctedCandidateRef": { "type": "null" },
+              "corrections": { "type": "array", "maxItems": 0 }
+            }
+          }
         }
       ]
     },
+    "BotBindingReceipt": {
+      "type": "object",
+      "description": "A receipt claiming principal authorization to bind a bot to an already materialized Yawn in sleeping state. It is distinct from objective ratification, StructuralChangeReceipt(create_yawn), activation, authority grants, and effect authority. Applying it requires external authentication plus resolution of the referenced structural receipt, authority, and current state.",
+      "additionalProperties": false,
+      "required": ["botBindingReceiptId", "botRef", "yawnRef", "objectiveRef", "ratificationReceiptRef", "fromBindingState", "toBindingState", "principalRef", "structuralChangeReceiptRef", "authorityRef", "authorizationStatus", "authorizedBy", "effects", "recordedAt", "extensions"],
+      "properties": {
+        "botBindingReceiptId": { "$ref": "#/$defs/Identifier" },
+        "botRef": { "$ref": "#/$defs/Identifier" },
+        "yawnRef": { "$ref": "#/$defs/Identifier" },
+        "objectiveRef": { "$ref": "#/$defs/Identifier" },
+        "ratificationReceiptRef": { "$ref": "#/$defs/Identifier" },
+        "fromBindingState": { "enum": ["absent", "proposed"] },
+        "toBindingState": { "const": "sleeping" },
+        "principalRef": { "$ref": "#/$defs/Identifier" },
+        "structuralChangeReceiptRef": { "$ref": "#/$defs/Identifier" },
+        "authorityRef": { "$ref": "#/$defs/Identifier" },
+        "authorizationStatus": { "const": "authorized" },
+        "authorizedBy": { "$ref": "#/$defs/Identifier" },
+        "effects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["botActivated", "authorityGranted", "effectAuthorityGranted", "externalEffectsAuthorized"],
+          "properties": {
+            "botActivated": { "const": false },
+            "authorityGranted": { "const": false },
+            "effectAuthorityGranted": { "const": false },
+            "externalEffectsAuthorized": { "const": false }
+          }
+        },
+        "recordedAt": { "$ref": "#/$defs/Timestamp" },
+        "extensions": { "$ref": "#/$defs/ExtensionBag" }
+      }
+    },
     "ActivationReceipt": {
       "type": "object",
+      "description": "A document-local claim of bounded activation. Before application, a consumer must authenticate principal identity, resolve every authority grant and current bot state, enforce unique receipt identity/idempotency, and fail closed. This receipt never grants effect authority or authorizes an external effect.",
       "additionalProperties": false,
       "required": ["activationReceiptId", "botRef", "yawnRef", "objectiveRef", "fromState", "toState", "principalRef", "authorityGrantRefs", "authorizedBy", "recordedAt", "extensions"],
       "properties": {

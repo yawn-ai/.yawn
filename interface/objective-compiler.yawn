@@ -2,7 +2,7 @@ id: interface/objective-compiler
 title: "dialogue objective compiler"
 kind: interface-contract
 status: draft-0.1
-updated: 2026-08-25
+updated: 2026-08-28
 
 definition: >
   Natural language is source input. The compiler preserves it, emits typed
@@ -47,12 +47,23 @@ correction_operators:
   - link
   - hold
 
+interaction_operator_contract:
+  schema_ref: schemas/interaction-operator-receipt.v0.1.schema.json
+  confirm_reject_review_scopes: [detection_mapping, proposal_review]
+  question_response_operators: [answer, correct, mark_unknown, mark_disputed, skip, defer, withhold, mark_not_applicable]
+  rule: >
+    A review receipt records an interaction disposition only. Confirmation is
+    not truth, objective ratification, bot activation, authority, canonical
+    mutation, or permission for an external effect.
+
 surface_label_mapping:
+  applies_to_review_scopes: [detection_mapping, proposal_review]
   yes_or_agree: confirm
   no_or_disagree: reject
   edit_or_not_quite: correct
   add_more: add_more
-  rule: "Labels may fit local context; clicks emit the stable canonical operator in a receipt."
+  question_event_rule: "Yes or no offered as an answer emits answer, not confirm or reject."
+  rule: "Labels may fit local context; clicks emit the scope-valid canonical operator in a receipt."
 
 choice_architecture:
   model: "ranked decision policy over currently valid semantic and structural operations"
@@ -90,6 +101,30 @@ activation_operators:
   - pause
   - retire
 
+governed_objective_lifecycle:
+  confirm_interpretation_or_proposal:
+    receipt: InteractionOperatorReceipt
+    canonical_effect: none
+  ratify_objective:
+    receipt: RatificationReceipt
+    canonical_effect: ratified-objective-only
+    yawn_and_bot_refs: optional-proposal-context-not-materialization
+  create_yawn:
+    receipt: schemas/agency-holarchy.v0.2.schema.json#/$defs/StructuralChangeReceipt
+    operation: create_yawn
+    requires: [exact-proposed-routing-proposal, rightful-authority, current-head-check]
+  bind_sleeping_bot:
+    receipt: BotBindingReceipt
+    transition: absent-or-proposed-to-sleeping
+    requires: [resolved-structural-change-receipt, rightful-principal, current-head-check]
+    canonical_effect: bot-binding-only
+  activate:
+    receipt: ActivationReceipt
+    requires: [authenticated-principal, exact-authority-grant-resolution, current-lifecycle-state, receipt-id-idempotency]
+    canonical_effect: bounded-bot-activation-only-after-external-resolution
+    effect_authority: false
+  objective_linked_materialization_conformance: unavailable-until-aggregate-cross-document-resolver
+
 rendering_rule: >
   Show the data model fields that materially affect interpretation, routing,
   authority, or movement. Put uncertainty on the individual detection. Do not
@@ -113,6 +148,10 @@ invariants:
   - source language remains inspectable
   - reported human content remains distinct from machine inference
   - clicks create explicit receipts rather than retroactively rewriting source
-  - objective confirmation and bot activation remain separate
+  - interaction confirmation is not objective ratification
+  - a ratified objective may exist without a Yawn and a Yawn may exist without a bot
+  - ratify_objective, authorized create_yawn, sleeping bot binding, and bot activation require separate receipts
+  - a BotBindingReceipt cannot ratify an objective, create a Yawn, activate a bot, grant authority, or authorize an effect
+  - local ActivationReceipt validation cannot apply activation or authenticate authority
   - no objective candidate becomes canonical through confidence alone
   - no bot gains effect authority through nesting or duplication

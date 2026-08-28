@@ -65,6 +65,10 @@ runtime configuration.
 - `readme.yawn` is the root orientation record, not a source from which the
   Markdown README is mechanically generated.
 - `yawn.yawn` is the machine-addressable repository manifest.
+- `protocol-manifest.v0.1.json` is the commit-independent, content-addressed
+  semantic revision and product-profile manifest. A downstream conformance
+  claim pins `(detached whole-manifest SHA-256, profileId)`; an accepted Git
+  commit may be recorded as an additional provenance witness.
 - `core/canonical-extension.yawn` is the naming and speech-normalization
   invariant.
 - Executable schemas are canonical only for the version and kind named in their

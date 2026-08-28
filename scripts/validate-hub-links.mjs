@@ -30,7 +30,10 @@ const markdownFiles = [
   "spec/serialization.md",
   "rfcs/README.md",
   "rfcs/0001-agency-holarchy-working-draft.md",
+  "rfcs/0002-inquiry-aperture-one-question-face.md",
   "rfcs/0003-objective-holon-and-yawn-bot-lifecycle.md",
+  "rfcs/0004-content-addressed-conformance-and-interaction-receipts.md",
+  "rfcs/0005-optional-objective-promotion-and-bot-binding.md",
   "adr/README.md",
 ];
 

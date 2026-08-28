@@ -9,10 +9,13 @@ may change as real use reveals a better arena.
 - [x] Separate world, field, arena, Yawn, turn, event, transition, and projection
 - [x] Make waiting and asynchronous causal turns first-class
 - [x] Specify a one-parent holarchy with typed lateral links
-- [x] Specify typed objective detection, ratification, objective Yawns, and
-  separately activated Yawn.bots as an additive working draft
+- [x] Specify typed objective detection, objective-only ratification, optional
+  Yawn promotion, receipted sleeping-bot binding, and separately resolved
+  activation as an additive working draft
 - [x] Specify a replayable adaptive orientation map and next-question policy
   while keeping presentation preference separate from semantic truth
+- [x] Publish a content-addressed `/new` conformance profile and typed
+  interaction receipts that cannot self-grant authority
 - [ ] Publish and independently verify the live, navigable ontology hub and
   open-source trust surface
 - [ ] Collect reviewed arena-routing, merge, and split decisions as calibration
@@ -29,6 +32,13 @@ may change as real use reveals a better arena.
 - [ ] Add privacy/egress, multi-principal authority, revocation, and deletion
   receipt conformance suites
 - [ ] Extend cross-document relation-cycle, merge, split, and reparent validators
+- [ ] Add an aggregate Objective Holon resolver for external Yawn, policy,
+  authority, principal, and proof references
+- [ ] Add the interaction-application resolver for authenticated identity,
+  Source/subject resolution, current-state CAS, receipt-ID idempotency, and
+  privacy/egress
+- [ ] Add ratification, binding, activation, pause/reactivation, and retirement
+  supersession/head-chain contracts
 - [ ] Calibrate routing confidence using human-reviewed decisions
 - [ ] Calibrate objective-independence proposals using principal-reviewed
   confirm, reject, correct, split, link, and hold decisions

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "yawn.interaction.operator-receipt.v0.1",
+  "receiptId": "receipt:interaction:dave-good-dad-detection-confirm",
+  "operator": "confirm",
+  "reviewScope": "detection_mapping",
+  "actorRef": "principal:dave",
+  "principalRef": "principal:dave",
+  "subject": {
+    "kind": "detection",
+    "id": "detection:dave:good-dad-objective",
+    "revision": 1,
+    "stateSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "compileProjectionRef": {
+      "kind": "compile_projection",
+      "id": "compile-projection:dave:good-dad-objective",
+      "revision": 1,
+      "stateSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "sourceRefs": [
+      {
+        "kind": "source",
+        "id": "11111111-1111-4111-8111-111111111111",
+        "sourceSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    ]
+  },
+  "interactionSourceRefs": [
+    {
+      "kind": "source",
+      "id": "22222222-2222-4222-8222-222222222222",
+      "sourceSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "response": null,
+  "correction": null,
+  "additionalEvidenceRefs": [],
+  "relatedSubjectRefs": [],
+  "result": {
+    "subjectDisposition": "representation_confirmed",
+    "mappingTransition": {
+      "fromStatus": "proposed",
+      "toStatus": "accepted"
+    },
+    "answerTransition": null,
+    "followupRequired": false
+  },
+  "effects": {
+    "canonicalMutationAuthorized": false,
+    "truthEstablished": false,
+    "objectiveRatified": false,
+    "botActivated": false,
+    "authorityGranted": false,
+    "effectAuthorityGranted": false,
+    "externalEffectsAuthorized": false
+  },
+  "canonicalState": false,
+  "notAuthority": true,
+  "recordedAt": "2026-08-28T12:00:00Z",
+  "extensions": {}
+}

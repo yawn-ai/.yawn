@@ -2,7 +2,7 @@ id: scripts/node
 title: "scripts"
 kind: verification-node
 status: active
-updated: 2026-08-27
+updated: 2026-08-28
 
 purpose: "Hold dependency-free checks that verify public .yawn contracts without becoming runtime authority."
 
@@ -13,6 +13,8 @@ holds:
   - scripts/validate-objective-holon-v0.1.mjs
   - scripts/validate-orientation-map-v0.1.mjs
   - scripts/validate-inquiry-selection-receipt-v0.1.mjs
+  - scripts/validate-interaction-operator-receipt-v0.1.mjs
+  - scripts/validate-protocol-manifest-v0.1.mjs
   - scripts/generate-inquiry-selection-receipt-v0.1.mjs
   - scripts/validate-hub-links.mjs
   - scripts/validate-public-surfaces.py

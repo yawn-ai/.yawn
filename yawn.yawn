@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: repository-manifest
 status: active
-updated: 2026-08-27
+updated: 2026-08-28
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -13,6 +13,7 @@ specification_root: spec/README.md
 core_loop: core/co-orientation-loop.yawn
 canonical_extension_contract: core/canonical-extension.yawn
 canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
+protocol_release_manifest: protocol-manifest.v0.1.json
 
 official_runtime:
   identity: YAWN.bot
@@ -44,6 +45,8 @@ protocol_status:
   agency_holarchy_0_2: working-draft
   objective_holon_0_1: working-draft
   orientation_map_0_1: working-draft
+  interaction_operator_receipt_0_1: working-draft
+  protocol_manifest_0_1: working-draft
   unified_human_document: not-yet-specified
 
 root_loop:
@@ -112,6 +115,8 @@ schema_links:
   objective_holon_draft_0_1: schemas/objective-holon.v0.1.schema.json
   orientation_map_draft_0_1: schemas/orientation-map.v0.1.schema.json
   inquiry_selection_receipt_draft_0_1: schemas/inquiry-selection-receipt.v0.1.schema.json
+  interaction_operator_receipt_draft_0_1: schemas/interaction-operator-receipt.v0.1.schema.json
+  protocol_manifest_v0_1: schemas/protocol-manifest.v0.1.schema.json
   contracts_v1: contracts/schemas/yawn-contracts-v1.schema.json
 
 spec_links:
@@ -160,6 +165,7 @@ question_links:
   where_am_i: questions/where-am-i.yawn
   what_can_i_do_next: questions/what-can-i-do-next.yawn
   open_questions: questions/open-questions.yawn
+  protocol_coherence_lacunae: q-space/protocol-coherence-lacunae.yawn
 
 observation_links:
   lived_agency: observations/lived-agency.yawn
@@ -275,6 +281,7 @@ fixture_links:
   dave_good_dad_objective_holon_draft_0_1: fixtures/dave-good-dad-objective-holon.v0.1.json
   orientation_map_draft_0_1: fixtures/orientation-map.v0.1.json
   inquiry_selection_receipt_draft_0_1: fixtures/inquiry-selection-receipt.v0.1.json
+  interaction_operator_receipt_draft_0_1: fixtures/interaction-operator-receipt.v0.1.json
 
 governance_links:
   governance: GOVERNANCE.md
@@ -289,6 +296,8 @@ governance_links:
   rfcs: rfcs/README.md
   agency_holarchy_rfc: rfcs/0001-agency-holarchy-working-draft.md
   objective_holon_rfc: rfcs/0003-objective-holon-and-yawn-bot-lifecycle.md
+  protocol_manifest_and_interaction_receipts_rfc: rfcs/0004-content-addressed-conformance-and-interaction-receipts.md
+  objective_lifecycle_separation_amendment_rfc: rfcs/0005-optional-objective-promotion-and-bot-binding.md
   decisions: adr/README.md
 
 agent_links:

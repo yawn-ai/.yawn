@@ -189,19 +189,24 @@ permission.
 
 A source signal can reveal a durable objective without immediately becoming a
 goal, instruction, or active agent. YAWN compiles the signal into typed,
-source-preserved detections; proposes the objective and its place in the
-holarchy; and waits for the principal to confirm, reject, correct, or add more.
+source-preserved detections and proposes an objective and possible place in the
+holarchy. The principal can confirm, reject, correct, or add to that
+interpretation; this review is not objective ratification. Ratification is a
+separate explicit operation.
 
 For example, “I want to be a good dad” may become the ratified objective
-`Dave/good-dad`. A dedicated Yawn then holds that objective, its relationships,
-boundaries, lacunae, and proof policy. A separate Yawn.bot can steward the
-contract after explicit activation. The root `.yawn` is the alignment bridge:
+`Dave/good-dad`. If a distinct durable holon is useful, an authorized structural
+receipt can create a Yawn to hold that objective, its relationships, boundaries,
+lacunae, and proof policy. A separate receipt can bind a sleeping Yawn.bot, and
+another can activate bounded stewardship. Ratification alone does none of
+those things. The root `.yawn` is the alignment bridge:
 it routes and relates objective holons rather than acting as one assistant that
 owns them all.
 
 ```text
-signal → detections → objective candidate → ratification
-  → objective Yawn → sleeping Yawn.bot → activation → proof + replay
+signal → detections → objective candidate → ratified objective
+  → optional authorized Yawn → optional receipted sleeping bot
+    → optional activation → proof + replay
 ```
 
 The default interface shows the compiled data model in concise protocol
@@ -213,7 +218,8 @@ receive selected structural context, but never silently inherit truth, consent,
 privacy, confidence, proof, identity, agreement, or effect authority.
 
 [Objective holons →](spec/objective-holons.md) ·
-[Dave / good dad →](examples/dave-good-dad-objective-holon.yawn)
+[Dave / good dad →](examples/dave-good-dad-objective-holon.yawn) ·
+[Lifecycle amendment →](rfcs/0005-optional-objective-promotion-and-bot-binding.md)
 
 ## Agent Arena and open turns
 
@@ -286,17 +292,53 @@ The repository currently has two preserved v1 modules:
 
 Agency Holarchy 0.2 is an additive working draft covering arenas, Yawns,
 relations, turns, routing, and structural receipts. Objective Holon 0.1 adds
-typed objective compilation, ratification, Yawn.bot binding, and activation.
+typed objective compilation, objective-only ratification, optional Yawn
+promotion, receipted sleeping-bot binding, and separately resolved activation.
 Orientation Map 0.1 adds attributed semantic coverage, adaptive inquiry, and
 closed selected-question or hold receipts while keeping presentation separate.
 Neither v1 module is marketed as the complete schema for every human-readable
 `.yawn` file.
 
+[`protocol-manifest.v0.1.json`](protocol-manifest.v0.1.json) publishes the
+commit-independent semantic revision, exact artifact hashes, and closed
+`yawn.bot/new.v0.1` conformance profile. A downstream lock still records the
+detached whole-manifest SHA-256 together with `profileId` (and may also record
+the accepted Git commit); the manifest prevents a consumer from silently
+omitting or adding a required module while claiming current protocol
+conformance.
+[RFC 0004](rfcs/0004-content-addressed-conformance-and-interaction-receipts.md)
+records the proposed compatibility, authority, and cross-document boundaries.
+Explicit UI review and response events use the
+[Interaction Operator Receipt V0.1](schemas/interaction-operator-receipt.v0.1.schema.json).
+Its validators establish document-local binding and attribution only. Applying
+a View transition additionally requires authenticated actor/principal identity,
+resolution of the exact constitutional Source UUID and hash, subject, selection
+receipt and prompt hash, proof that the claimed `fromStatus` is current in
+append-only state, receipt-ID idempotency/conflict checks, and a fail-closed
+privacy/egress check that prevents Response visibility from widening Source
+visibility.
+
+Including the Objective Holon artifacts proves that the objective grammar is
+available. It does not prove that referenced Yawns, authority grants, or policy
+records resolve, and it does not prove materialization conformance; those claims
+require cross-document resolution. Likewise, an interaction confirmation is a
+review receipt, not ratification, bot activation, or effect authority.
+[RFC 0005](rfcs/0005-optional-objective-promotion-and-bot-binding.md)
+separately governs optional objective promotion and BotBindingReceipt.
+
+`artifactSetSha256` is SHA-256 over the UTF-8 bytes of `JSON.stringify` applied
+to lexicographically sorted `[moduleId, version, path, role, sha256]` tuples,
+with no added whitespace or trailing newline. This makes the digest insensitive
+to manifest array order but sensitive to every normative tuple value. It is
+artifact-set integrity, not profile identity; `protocolRevision` and
+`artifactSetSha256` are each insufficient without the detached raw-manifest hash
+and profile ID.
+
 These local commands are the primary proof path. GitHub Actions may run the
 same checks as a secondary witness; runner or billing unavailability is not a
 test failure and cannot replace a commit-bound local result.
 
-[Protocol layers →](spec/README.md) · [Project status →](docs/project-status.md) ·
+[Protocol manifest →](protocol-manifest.v0.1.json) · [Protocol layers →](spec/README.md) · [Project status →](docs/project-status.md) ·
 [Serialization →](spec/serialization.md)
 
 ## Find your path

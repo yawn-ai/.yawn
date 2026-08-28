@@ -1,0 +1,373 @@
+{
+  "$schema": "./schemas/protocol-manifest.v0.1.schema.json",
+  "schemaVersion": "yawn.protocol-manifest.v0.1",
+  "protocolRevision": "yawn.protocol.2026-08-28.2",
+  "compatibilityMode": "additive",
+  "hashAlgorithm": "sha256",
+  "artifactSetCanonicalization": "utf8-json-stringify-lexicographically-sorted-tuples:[moduleId,version,path,role,sha256];no-whitespace;no-trailing-newline",
+  "artifactSetSha256": "cc3c912cf50a0eadb4fbd5a7745b8b7d7c65ef067868d09b7f38bb80b6674d10",
+  "modules": [
+    {
+      "moduleId": "protocol-manifest.v0.1",
+      "version": "0.1-draft",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "schemas/protocol-manifest.v0.1.schema.json",
+          "role": "executable_schema",
+          "sha256": "e3ca1ecb05fc1229cdb94ce6d785c92126681a2951e3ab08208a088cf4553b73"
+        },
+        {
+          "path": "lib/protocol-manifest-v0.1.mjs",
+          "role": "reference_runtime",
+          "sha256": "3f18770dccbf647efef294453599d925202ceab1e4ae9862e9efb2748dddc930"
+        },
+        {
+          "path": "scripts/validate-protocol-manifest-v0.1.mjs",
+          "role": "verification_cli",
+          "sha256": "32cfc9abfc006a5e55666e2e8441bde7b5b33c0e464868f71d17dca92040b751"
+        }
+      ]
+    },
+    {
+      "moduleId": "ontology.0.2",
+      "version": "0.2-draft",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "spec/ontology.md",
+          "role": "normative_contract",
+          "sha256": "793ca54c135d71d665e686084cae66159d684d57cf7fa30af9dabee43cbf342b"
+        },
+        {
+          "path": "core/projection-and-aperture.yawn",
+          "role": "normative_contract",
+          "sha256": "bbb855c59da4f6e4d10beec6096b35b0f828593eaad930ec074212399f195540"
+        }
+      ]
+    },
+    {
+      "moduleId": "record-ref.v1",
+      "version": "1",
+      "stability": "stable",
+      "artifacts": [
+        {
+          "path": "schemas/record-ref.v1.schema.json",
+          "role": "executable_schema",
+          "sha256": "b8ccd711502bc42fc927f269944795bf31e46774487de7fe5cf11d7410ead9f2"
+        }
+      ]
+    },
+    {
+      "moduleId": "contracts.v1",
+      "version": "1",
+      "stability": "stable",
+      "artifacts": [
+        {
+          "path": "contracts/schemas/yawn-contracts-v1.schema.json",
+          "role": "executable_schema",
+          "sha256": "8ad69c5e813262f4d19935f9d115d30472ae75a0ec94bfb0c9a0724d22d8a988"
+        }
+      ]
+    },
+    {
+      "moduleId": "record-event-proof.v1",
+      "version": "1",
+      "stability": "stable",
+      "artifacts": [
+        {
+          "path": "schemas/record-event.v1.schema.json",
+          "role": "executable_schema",
+          "sha256": "6a79ecc661944245631118c5da0bb78ba767bc6de86732e4e7e9e74389be0eff"
+        },
+        {
+          "path": "schemas/record-proof-receipt.v1.schema.json",
+          "role": "executable_schema",
+          "sha256": "15cd8f2c0ed3ba77ebddbd3196ad66133f77ff47b1e138636fba5c3fa44d2ad3"
+        }
+      ]
+    },
+    {
+      "moduleId": "observation.v1",
+      "version": "1",
+      "stability": "stable",
+      "artifacts": [
+        {
+          "path": "schemas/observation.v1.schema.json",
+          "role": "executable_schema",
+          "sha256": "14523e1b12a2e38710d174ef97ee68068767450ae191ed57260b503ca0822114"
+        },
+        {
+          "path": "lib/observation-state-v1.mjs",
+          "role": "reference_runtime",
+          "sha256": "dd48a7e230a7ba0ddb9cea9cce5a4b313c075efd040018f8e3d606ee74f3548b"
+        },
+        {
+          "path": "interface/yawn-observation-view-v1.yawn",
+          "role": "interface_contract",
+          "sha256": "c8cbe202cb7270d8c175f09ab5f8ac1fb405f4edf7fbee56a2b245934af7923a"
+        }
+      ]
+    },
+    {
+      "moduleId": "agency-holarchy.v0.2",
+      "version": "0.2-draft",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "core/holarchy.yawn",
+          "role": "normative_contract",
+          "sha256": "d40daf8d2c7ba6fabdcd2865b8fc4b78d33d392d772f67586a7adebd445a8245"
+        },
+        {
+          "path": "schemas/agency-holarchy.v0.2.schema.json",
+          "role": "executable_schema",
+          "sha256": "c9d1e372cb9531e897887ce7fab7209e8cca6096e6db62420cf05285d1d0a5e7"
+        },
+        {
+          "path": "lib/agency-holarchy-v0.2.mjs",
+          "role": "reference_runtime",
+          "sha256": "a817d6c06fcebbee562c3c8e190578f3ee1af10486e0a496686ade23e2be981a"
+        },
+        {
+          "path": "spec/holarchy.md",
+          "role": "normative_contract",
+          "sha256": "299f2be807414cdd502ce848c6951ac64d0f5eeaaad1cc98d8be335163b0cfe0"
+        }
+      ]
+    },
+    {
+      "moduleId": "objective-holon.v0.1",
+      "version": "0.1-draft",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "core/objective-holon.yawn",
+          "role": "normative_contract",
+          "sha256": "d018794e3caa298d584ef74581df4407ca72bd9da9632eb737880d0044d0f6a6"
+        },
+        {
+          "path": "schemas/objective-holon.v0.1.schema.json",
+          "role": "executable_schema",
+          "sha256": "ef285d77bd645a3b3e744fcfbb14be7dcad16d86fc8bf7a351baddef317d8718"
+        },
+        {
+          "path": "lib/objective-holon-v0.1.mjs",
+          "role": "reference_runtime",
+          "sha256": "3987147956b8e160c4b61291802d26ab349321e51c48b7f9c3f06aafe9320be6"
+        },
+        {
+          "path": "spec/objective-holons.md",
+          "role": "normative_contract",
+          "sha256": "cd4e642f862494044398446a6664d1d4ff8a75653fe0cf5d564836e506b12eb8"
+        },
+        {
+          "path": "interface/objective-compiler.yawn",
+          "role": "interface_contract",
+          "sha256": "9481cc9575f01a85c3cffa9a696a06ff16bd1e1e5fe9538b26bdc881ce5bf708"
+        },
+        {
+          "path": "templates/objective-holon.yawn",
+          "role": "authoring_template",
+          "sha256": "077f5e9892fc57559c39ea081f82d7ab723b72cb1a8ae33aab132bb806282f8c"
+        },
+        {
+          "path": "scripts/validate-objective-holon-v0.1.mjs",
+          "role": "verification_cli",
+          "sha256": "baf94ee1d0a153196cace173123be2013c4b896e11e8f7fc125e14e373038cde"
+        },
+        {
+          "path": "fixtures/dave-good-dad-objective-holon.v0.1.json",
+          "role": "conformance_fixture",
+          "sha256": "53cee92c23ccb8cadf17895e1c924f77b8b5071c06c7a784a2f8d29596df20e1"
+        },
+        {
+          "path": "examples/dave-good-dad-objective-holon.yawn",
+          "role": "conformance_fixture",
+          "sha256": "bd1ed69599da16cf08aa61a434eefad41b6988de83797ebdf094b55c66a8018c"
+        }
+      ]
+    },
+    {
+      "moduleId": "projection-preference.v1",
+      "version": "1",
+      "stability": "stable",
+      "artifacts": [
+        {
+          "path": "schemas/projection-preference.v1.schema.json",
+          "role": "executable_schema",
+          "sha256": "16931c96542bf4d3fe318a093c1bbb379862b093d75d90ea89e3a923afb8ce13"
+        },
+        {
+          "path": "lib/projection-preference-v1.mjs",
+          "role": "reference_runtime",
+          "sha256": "209af66c4c43ac804b724d608f9546d9b0b95b9b4f58162743515894bd7840c9"
+        }
+      ]
+    },
+    {
+      "moduleId": "orientation-map.v0.1",
+      "version": "0.1-draft",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "core/orientation.yawn",
+          "role": "normative_contract",
+          "sha256": "8d3e5b0768e965aec1c5adea2578439b2172d73838f44b997cab77c3d622edcd"
+        },
+        {
+          "path": "question-packets/orientation-nine.yawn",
+          "role": "semantic_packet",
+          "sha256": "8c1faa75c7dffaad21d559a9ffafeab4ac4c771c4151c322cfd53cd0f4d83cab"
+        },
+        {
+          "path": "schemas/orientation-map.v0.1.schema.json",
+          "role": "executable_schema",
+          "sha256": "d42ef95126734e58890c8fdaf0b722bea57435032ebc7c859776493aae0f8d24"
+        },
+        {
+          "path": "lib/orientation-map-v0.1.mjs",
+          "role": "reference_runtime",
+          "sha256": "c903933006639631e82b41e53f57a633b109c7acab184098df8c35d322fce007"
+        }
+      ]
+    },
+    {
+      "moduleId": "inquiry-selection.v0.1",
+      "version": "0.1-draft",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "core/inquiry-selection.yawn",
+          "role": "normative_contract",
+          "sha256": "b4ad9c16ac0c6d2eb5a398cb59c715e9188ad6dda270678102a6cf4778bc10d9"
+        },
+        {
+          "path": "schemas/inquiry-selection-receipt.v0.1.schema.json",
+          "role": "executable_schema",
+          "sha256": "0a9c3f58a374d6f014c0c4fa41d14c3d76a52031aa22f4ba48201158dfc547b6"
+        },
+        {
+          "path": "lib/inquiry-selection-receipt-v0.1.mjs",
+          "role": "reference_runtime",
+          "sha256": "199a5c8e6a46f8fcc0be26f44be10c11f4e61a48f66283390e2c9064699ba09f"
+        }
+      ]
+    },
+    {
+      "moduleId": "interaction-operator-receipt.v0.1",
+      "version": "0.1-draft",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "schemas/interaction-operator-receipt.v0.1.schema.json",
+          "role": "executable_schema",
+          "sha256": "c6df70d4085dcae32708b57c4a5b786742a62252f27f936c6f4cab3ff92ac382"
+        },
+        {
+          "path": "lib/interaction-operator-receipt-v0.1.mjs",
+          "role": "reference_runtime",
+          "sha256": "f9c124983f1a978138434c72085e9d2f39c7a7de1d05dfc38eeb4a01493e2394"
+        },
+        {
+          "path": "scripts/validate-interaction-operator-receipt-v0.1.mjs",
+          "role": "verification_cli",
+          "sha256": "f275f6272d9d1375f34551d99edebf00c1ac5fb2df4e1264bd32e8b47d2a35d4"
+        },
+        {
+          "path": "fixtures/interaction-operator-receipt.v0.1.json",
+          "role": "conformance_fixture",
+          "sha256": "d314c1e5c0599367d5fd5ca73cec5f74a52493a13d0b2d9ff812677934dd4c67"
+        }
+      ]
+    },
+    {
+      "moduleId": "new-yawn-interface.v0.1",
+      "version": "0.1",
+      "stability": "working_draft",
+      "artifacts": [
+        {
+          "path": "interface/new-yawn-v0.1.yawn",
+          "role": "interface_contract",
+          "sha256": "4552235340b24a07c69a8d2a5a8135afab2948bf205d03c58a5257ae26b91f6b"
+        }
+      ]
+    }
+  ],
+  "conformanceProfiles": [
+    {
+      "profileId": "yawn.bot/new.v0.1",
+      "status": "working_draft",
+      "description": "The minimum content-addressed public protocol surface required to implement /new without silently omitting Observation, Objective Holon, Orientation Map, inquiry selection, interaction receipts, or their authority and View boundaries.",
+      "requiredModuleIds": [
+        "protocol-manifest.v0.1",
+        "ontology.0.2",
+        "record-ref.v1",
+        "contracts.v1",
+        "record-event-proof.v1",
+        "observation.v1",
+        "agency-holarchy.v0.2",
+        "objective-holon.v0.1",
+        "projection-preference.v1",
+        "orientation-map.v0.1",
+        "inquiry-selection.v0.1",
+        "interaction-operator-receipt.v0.1",
+        "new-yawn-interface.v0.1"
+      ],
+      "requiredArtifactPaths": [
+        "schemas/protocol-manifest.v0.1.schema.json",
+        "lib/protocol-manifest-v0.1.mjs",
+        "scripts/validate-protocol-manifest-v0.1.mjs",
+        "spec/ontology.md",
+        "core/projection-and-aperture.yawn",
+        "schemas/record-ref.v1.schema.json",
+        "contracts/schemas/yawn-contracts-v1.schema.json",
+        "schemas/record-event.v1.schema.json",
+        "schemas/record-proof-receipt.v1.schema.json",
+        "schemas/observation.v1.schema.json",
+        "lib/observation-state-v1.mjs",
+        "interface/yawn-observation-view-v1.yawn",
+        "core/holarchy.yawn",
+        "schemas/agency-holarchy.v0.2.schema.json",
+        "lib/agency-holarchy-v0.2.mjs",
+        "spec/holarchy.md",
+        "core/objective-holon.yawn",
+        "schemas/objective-holon.v0.1.schema.json",
+        "lib/objective-holon-v0.1.mjs",
+        "spec/objective-holons.md",
+        "interface/objective-compiler.yawn",
+        "templates/objective-holon.yawn",
+        "scripts/validate-objective-holon-v0.1.mjs",
+        "fixtures/dave-good-dad-objective-holon.v0.1.json",
+        "examples/dave-good-dad-objective-holon.yawn",
+        "schemas/projection-preference.v1.schema.json",
+        "lib/projection-preference-v1.mjs",
+        "core/orientation.yawn",
+        "question-packets/orientation-nine.yawn",
+        "schemas/orientation-map.v0.1.schema.json",
+        "lib/orientation-map-v0.1.mjs",
+        "core/inquiry-selection.yawn",
+        "schemas/inquiry-selection-receipt.v0.1.schema.json",
+        "lib/inquiry-selection-receipt-v0.1.mjs",
+        "schemas/interaction-operator-receipt.v0.1.schema.json",
+        "lib/interaction-operator-receipt-v0.1.mjs",
+        "scripts/validate-interaction-operator-receipt-v0.1.mjs",
+        "fixtures/interaction-operator-receipt.v0.1.json",
+        "interface/new-yawn-v0.1.yawn"
+      ],
+      "invariants": [
+        "observation_valid_without_promotion",
+        "orientation_map_is_noncanonical_view",
+        "confirmation_is_not_authority",
+        "objective_ratification_is_not_bot_activation",
+        "activation_is_not_effect_authority",
+        "view_yawn_and_yawn_bot_are_distinct",
+        "objective_materialization_requires_cross_document_resolution",
+        "interaction_receipt_application_requires_resolution",
+        "source_evidence_uses_constitutional_source_identity",
+        "objective_bot_binding_receipt_required"
+      ]
+    }
+  ],
+  "extensions": {}
+}
