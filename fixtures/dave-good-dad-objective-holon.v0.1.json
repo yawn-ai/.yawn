@@ -218,6 +218,7 @@
       },
       "authorityGrantRefs": ["authority:dave:root"],
       "ratificationReceiptRefs": [],
+      "bindingReceiptRefs": [],
       "activationReceiptRefs": ["activation:dave:root"],
       "questionPolicyRef": "question-policy:root-orientation",
       "memoryPolicyRef": "memory-policy:dave:root",
@@ -256,6 +257,7 @@
       },
       "authorityGrantRefs": ["authority:dave:good-dad:orient"],
       "ratificationReceiptRefs": ["ratification:dave:good-dad"],
+      "bindingReceiptRefs": ["bot-binding:dave:good-dad"],
       "activationReceiptRefs": ["activation:dave:good-dad"],
       "questionPolicyRef": "question-policy:objective-steward",
       "memoryPolicyRef": "memory-policy:dave:good-dad",
@@ -270,7 +272,7 @@
       "producedBy": {
         "actorRef": "agent:yawn:root",
         "role": "ai",
-        "producedAt": "2026-08-25T20:01:00Z",
+        "producedAt": "2026-08-25T20:01:30Z",
         "extensions": {}
       },
       "extensions": {}
@@ -282,12 +284,36 @@
       "objectiveCandidateRef": "objective-candidate:dave:good-dad",
       "decision": "accepted",
       "objectiveRef": "objective:dave:good-dad",
-      "yawnRef": "yawn:dave:good-dad",
-      "botRef": "bot:dave:good-dad",
+      "yawnRef": null,
+      "botRef": null,
       "principalRef": "principal:dave",
       "authorizedBy": "principal:dave",
       "corrections": [],
       "recordedAt": "2026-08-25T20:01:00Z",
+      "extensions": {}
+    }
+  ],
+  "botBindingReceipts": [
+    {
+      "botBindingReceiptId": "bot-binding:dave:good-dad",
+      "botRef": "bot:dave:good-dad",
+      "yawnRef": "yawn:dave:good-dad",
+      "objectiveRef": "objective:dave:good-dad",
+      "ratificationReceiptRef": "ratification:dave:good-dad",
+      "fromBindingState": "proposed",
+      "toBindingState": "sleeping",
+      "principalRef": "principal:dave",
+      "structuralChangeReceiptRef": "structural-change:dave:good-dad:create-yawn",
+      "authorityRef": "authority:dave:root",
+      "authorizationStatus": "authorized",
+      "authorizedBy": "principal:dave",
+      "effects": {
+        "botActivated": false,
+        "authorityGranted": false,
+        "effectAuthorityGranted": false,
+        "externalEffectsAuthorized": false
+      },
+      "recordedAt": "2026-08-25T20:01:30Z",
       "extensions": {}
     }
   ],

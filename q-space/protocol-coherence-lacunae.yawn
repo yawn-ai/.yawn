@@ -1,0 +1,31 @@
+id: q-space/protocol-coherence-lacunae
+title: "Protocol coherence lacunae"
+kind: unresolved-question-projection
+status: proposed
+updated: 2026-08-28
+
+arena: yawn.bot/new.v0.1-conformance
+profile_status: working-draft
+
+open_lacunae:
+  - id: aggregate-cross-document-resolver
+    question: "How will exact Yawn, principal, authority, policy, RoutingProposal, StructuralChangeReceipt, Source, and proof references resolve and fail closed as one aggregate?"
+    current_boundary: "Document-local grammar and semantic validators do not prove materialization or application."
+  - id: interaction-application-resolver
+    question: "How will a consumer authenticate identity, prove current-state CAS, enforce receipt-ID idempotency, and prevent privacy/egress widening before a View transition?"
+    current_boundary: "A self-consistent Interaction Operator Receipt is not sufficient application authority."
+  - id: lifecycle-supersession-head-chain
+    question: "How will corrected ratification, rebinding, pause/reactivation, activation replacement, and retirement preserve one replayable head?"
+    current_boundary: "Strict V0.1 requires one binding and permits at most one activation receipt for each objective-steward or worker bot; the root carries no binding, and ambiguous duplicates are rejected."
+
+proof_to_close:
+  - versioned schema and reducer
+  - authenticated authority and privacy adversaries
+  - append-only concurrency and idempotency tests
+  - cross-document fixtures with missing, stale, forged, and conflicting refs
+  - maintainer-reviewed RFC and migration path
+
+non_claims:
+  - "Working-draft profile inclusion is not aggregate resolution."
+  - "Local validation is not authority to apply a transition."
+  - "A timestamp is not a supersession or atomic-batch identity."

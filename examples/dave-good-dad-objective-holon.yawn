@@ -3,7 +3,8 @@ title: "Dave / good dad objective holon"
 kind: example
 status: informative
 spec_version: objective-holon.v0.1
-updated: 2026-08-25
+updated: 2026-08-28
+executable_fixture_ref: fixtures/dave-good-dad-objective-holon.v0.1.json
 
 source_signal:
   asserted_by: principal:dave
@@ -33,6 +34,7 @@ compile_projection:
   correction_operators: [confirm, reject, correct, add_more]
 
 proposed_structure:
+  objective_candidate_ref: objective-candidate:dave:good-dad
   parent_yawn_ref: yawn:dave:root
   yawn_ref: yawn:dave:good-dad
   bot_ref: bot:dave:good-dad
@@ -42,6 +44,21 @@ proposed_structure:
     - ongoing_time_horizon
     - distinct_relationships
     - recurring_proof_loop
+
+ratification_receipt:
+  ratification_receipt_ref: ratification:dave:good-dad
+  objective_candidate_ref: objective-candidate:dave:good-dad
+  decision: accepted
+  objective_ref: objective:dave:good-dad
+  yawn_ref: null
+  bot_ref: null
+  principal_ref: principal:dave
+  authorized_by: principal:dave
+  boundary: >
+    This receipt ratifies the objective without structural refs. The later
+    StructuralChangeReceipt and BotBindingReceipt create the Yawn and bind the
+    sleeping bot; ratification does not create, bind, activate, grant authority,
+    or authorize external effects.
 
 ratified_objective:
   objective_ref: objective:dave:good-dad
@@ -55,7 +72,22 @@ ratified_objective:
     - "Do not treat intensity, intention, or self-description as proof."
     - "Do not optimize a score in place of the relationships themselves."
 
+yawn_materialization:
+  operation: create_yawn
+  structural_change_receipt_ref: structural-change:dave:good-dad:create-yawn
+  receipt_schema_ref: schemas/agency-holarchy.v0.2.schema.json#/$defs/StructuralChangeReceipt
+  exact_proposed_routing_proposal_ref: routing-proposal:dave:good-dad:create-yawn
+  rightful_authority_ref: authority:dave:root
+  current_head_check: unresolved-in-this-informative-example
+  aggregate_resolution_status: unavailable-in-objective-holon-v0.1
+  boundary: >
+    This example names the separate Agency Holarchy receipt required to create
+    the Yawn. The Objective Holon fixture does not embed or resolve the Routing
+    Proposal, authority record, current holarchy head, or structural receipt, so
+    it does not claim end-to-end objective materialization conformance.
+
 objective_yawn:
+  projection_status: informative-unresolved-until-aggregate-resolution
   yawn_ref: yawn:dave:good-dad
   primary_parent_yawn_ref: yawn:dave:root
   primary_objective_ref: objective:dave:good-dad
@@ -67,6 +99,47 @@ objective_yawn:
     - relation: dave-good-dad coordinates_with dave-partner
     - relation: dave-good-dad depends_on family-shared-commitments
 
+bot_binding_receipt:
+  bot_binding_receipt_ref: bot-binding:dave:good-dad
+  bot_ref: bot:dave:good-dad
+  yawn_ref: yawn:dave:good-dad
+  objective_ref: objective:dave:good-dad
+  ratification_receipt_ref: ratification:dave:good-dad
+  from_binding_state: proposed
+  to_binding_state: sleeping
+  structural_change_receipt_ref: structural-change:dave:good-dad:create-yawn
+  principal_ref: principal:dave
+  authority_ref: authority:dave:root
+  authorization_status: authorized
+  authorized_by: principal:dave
+  effects:
+    bot_activated: false
+    authority_granted: false
+    effect_authority_granted: false
+    external_effects_authorized: false
+  boundary: >
+    This receipt binds the bot to an already materialized Yawn in sleeping state.
+    It does not ratify the objective, create the Yawn, activate the bot, grant
+    authority, or authorize external effects. Application still requires external
+    resolution of the structural receipt, rightful authority, and current head.
+
+activation_receipt:
+  activation_receipt_ref: activation:dave:good-dad
+  bot_ref: bot:dave:good-dad
+  yawn_ref: yawn:dave:good-dad
+  objective_ref: objective:dave:good-dad
+  from_state: sleeping
+  to_state: active
+  principal_ref: principal:dave
+  authority_grant_refs:
+    - authority:dave:good-dad:orient
+  authorized_by: principal:dave
+  boundary: >
+    This receipt activates bounded orientation stewardship. Activation does not
+    itself authorize an external effect. Application must authenticate the
+    principal, resolve the exact grants and current lifecycle state, and enforce
+    append-only receipt-ID idempotency.
+
 yawn_bot:
   bot_ref: bot:dave:good-dad
   role: objective_steward
@@ -74,6 +147,14 @@ yawn_bot:
   parent_bot_ref: bot:dave:root
   principal_ref: principal:dave
   personality_profile_ref: null
+  ratification_receipt_refs:
+    - ratification:dave:good-dad
+  binding_receipt_refs:
+    - bot-binding:dave:good-dad
+  activation_receipt_refs:
+    - activation:dave:good-dad
+  authority_grant_refs:
+    - authority:dave:good-dad:orient
   receives_structural_context:
     - value:dave:family
     - relationship:dave:sophia

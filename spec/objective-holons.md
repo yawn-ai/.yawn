@@ -4,21 +4,21 @@ Status: **Working Draft 0.1**
 
 YAWN treats dialogue as a programming surface. A signal may reveal a durable
 objective, but detection is not adoption and adoption is not authorization.
-The system exposes its parse, lets the rightful principal correct it, and only
-then may create an objective-holding Yawn and activate a Yawn.bot to steward it.
+The system exposes its parse and lets the rightful principal correct it.
+Interpretation confirmation, objective ratification, authorized Yawn creation,
+sleeping-bot binding, and bot activation remain separate operations with
+separate receipts. A ratified objective need not become a Yawn or a bot.
 
 ## The lifecycle
 
 ```text
-source-preserved signal
-  -> typed detections
-    -> objective candidate
-      -> routing and independence proposal
-        -> principal ratification
-          -> objective-holding Yawn
-            -> sleeping Yawn.bot
-              -> explicit activation grant
-                -> questions, moves, proof, replay
+source-preserved signal -> typed detections -> objective candidate
+  -> principal ratification -> ratified objective
+
+optional structural branch:
+  exact proposed RoutingProposal -> authorized create_yawn receipt
+    -> optional bot-binding receipt -> sleeping Yawn.bot
+      -> explicit activation receipt -> active bounded stewardship
 ```
 
 Each arrow is inspectable. No arrow is inferred merely because the next record
@@ -51,9 +51,11 @@ rupture or establishing one weekly ritual.
 ### Yawn.bot
 
 The stewarding agent/runtime bound to a Yawn. The Yawn is the contract; the bot
-is the bounded agent that operates inside it. A Yawn can exist without an
-active bot. A bot begins sleeping and gains no effect authority until activation
-is explicitly granted.
+is the bounded agent that operates inside it. A ratified objective can exist
+without a Yawn, and a Yawn can exist without a bot. A proposed bot becomes a
+sleeping binding only through a BotBindingReceipt, then gains bounded runtime
+activation only through a separate ActivationReceipt. Neither operation grants
+effect authority.
 
 ## The root alignment bridge
 
@@ -115,8 +117,12 @@ Proposed structure
   Yawn                yawn:dave:good-dad
   Bot                 bot:dave:good-dad · sleeping
 
-[Confirm objective] [Reject] [Correct] [Add more]
+[Confirm interpretation] [Reject] [Correct] [Add more]
 ```
+
+`Confirm interpretation` emits an Interaction Operator Receipt for the exact
+detection or proposal. It does not ratify an objective, create a Yawn, activate
+a bot, or grant authority.
 
 Correction controls stay available while no more than three currently valid
 structural paths are foregrounded. Ranking may combine estimated structural
@@ -126,24 +132,56 @@ never stands in for ratification.
 
 ```text
 Recommended operation
-  1  CREATE OBJECTIVE HOLON   structural fit 0.86   requires confirmation
+  1  REQUEST OBJECTIVE RATIFICATION   structural fit 0.86
 
 Other valid paths
   2  ATTACH TO ROOT          structural fit 0.09
   3  HOLD                    structural fit 0.05
 
-[Create objective holon] [Choose another path] [Inspect all operators]
+[Request ratification] [Choose another path] [Inspect all operators]
 ```
 
-After ratification, activation is a separate operation:
+The governed lifecycle is explicit:
 
 ```text
-OBJECTIVE RATIFIED
-YAWN CREATED
-BOT SLEEPING
+ratify_objective
+  -> RatificationReceipt
+
+create_yawn
+  -> exact proposed RoutingProposal
+  -> rightful authority and current-head checks
+  -> agency-holarchy StructuralChangeReceipt(operation: create_yawn)
+
+bind sleeping bot
+  -> BotBindingReceipt(from: absent|proposed, to: sleeping)
+  -> resolve referenced StructuralChangeReceipt, authority, and current state
+
+activate
+  -> ActivationReceipt
+  -> authenticate principal, resolve grants and current bot state
+  -> enforce append-only receipt-ID idempotency
 
 [Activate] [Inspect contract] [Keep sleeping]
 ```
+
+An Interaction Operator Receipt cannot satisfy any of those lifecycle receipts.
+Objective Holon V0.1 validates document-local lifecycle coherence, while Agency
+Holarchy 0.2 governs structural creation. Because the aggregate cross-document
+resolver is not yet defined, this profile does not claim end-to-end
+objective-linked materialization conformance.
+
+V0.1 requires one binding receipt and permits at most one activation receipt for
+each objective-steward or worker bot; the root steward carries no binding
+receipt. For a retired non-root bot, the activation receipt is retained only as
+historical provenance; it is not current authority. Pause, reactivation,
+retirement, and decision-change history need a future explicit
+supersession/head chain. Until then, the strict profile rejects ambiguous
+duplicate current records.
+
+Local ActivationReceipt validation cannot apply or authorize activation. The
+consumer must authenticate the principal, resolve every authority grant, prove
+the claimed lifecycle state current, and enforce unique receipt-ID idempotency.
+Activation remains distinct from effect authority and external effects.
 
 Personality is an optional projection field. With no selected personality,
 Yawn.bot emits typed detections, uncertainties, proposed operations, and
@@ -154,6 +192,13 @@ receipts in concise protocol language.
 The additive schema at
 [`schemas/objective-holon.v0.1.schema.json`](../schemas/objective-holon.v0.1.schema.json)
 defines compile projections, objective candidates, ratified objectives,
-Yawn.bot bindings, ratification receipts, and activation receipts. It references
+Yawn.bot records, ratification receipts, bot-binding receipts, and activation
+receipts. It references
 Yawn and agent identifiers governed by the stable v1 and Agency Holarchy 0.2
 layers rather than redefining those contracts.
+
+A successful standalone Objective Holon validation therefore does not prove
+that referenced Yawns, principals, policies, grants, or structural receipts
+resolve. Implementations must fail closed rather than infer materialization from
+an interface confirmation, infer a Yawn from objective ratification, or infer a
+sleeping bot binding from either receipt.

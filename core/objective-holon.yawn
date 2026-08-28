@@ -2,7 +2,7 @@ id: core/objective-holon
 title: "objective holons and Yawn.bot activation"
 kind: ontology-contract
 status: draft-0.1
-updated: 2026-08-25
+updated: 2026-08-28
 
 definition: >
   A principal-owned objective may become its own Yawn holon when it deserves a
@@ -16,9 +16,10 @@ lifecycle:
   - objective-candidate
   - structural-routing-proposal
   - principal-ratification
-  - objective-holding-yawn
-  - sleeping-yawn-bot
-  - explicit-activation-grant
+  - ratified-objective-without-required-structure
+  - optional-authorized-yawn-materialization
+  - optional-bot-binding-receipt-to-sleeping
+  - optional-explicit-activation-receipt
   - turns-moves-proof-and-replay
 
 distinct_records:
@@ -43,6 +44,9 @@ bot_roles:
 
 invariants:
   - "Detection is not ratification."
+  - "Ratification does not create a Yawn or bind a bot."
+  - "A ratified objective may exist without a Yawn; a Yawn may exist without a bot."
+  - "Bot binding and bot activation use separate receipts."
   - "Ratification is not effect authority."
   - "A Yawn is the contract; a Yawn.bot is its bounded steward."
   - "One objective steward has one ratified primary objective."

@@ -1,6 +1,6 @@
 # Project status
 
-Last verified: 2026-08-27
+Last verified: 2026-08-28
 
 YAWN is public, MIT licensed, maintainer-led, and under active development.
 Parts of the protocol are stable enough to build against; the integrated
@@ -29,15 +29,20 @@ packages. Security or correctness fixes may still require additive changes.
 
 - Agency Holarchy 0.2: arena, Yawn, relation, turn, routing, and structural
   change records
-- Objective Holon 0.1: typed detection, objective ratification, objective-Yawn
-  binding, Yawn.bot lifecycle, and activation receipts
+- Objective Holon 0.1: typed detection, objective-only ratification, optional
+  Yawn promotion, strict BotBindingReceipt conformance, and activation receipts
 - Orientation Map 0.1: nine-axis semantic coverage, deterministic adaptive
   inquiry, closed selection/hold replay receipts, source-preserving presentation
   metadata, and proposed presentation-fit hypotheses
+- Interaction Operator Receipt 0.1: document-local, non-authoritative review and response
+  receipts that keep confirmation, answers, ratification, activation, and effect
+  authority distinct
+- Protocol Manifest 0.1: content-addressed module membership and the closed
+  `yawn.bot/new.v0.1` conformance profile
 - the exact portable `.yawn` document envelope
-- cross-module canonical hashing and reference resolution beyond the new
-  Observation/record-subject slice
-- merge/split thresholds and conformance profiles
+- aggregate cross-document reference and authority resolution beyond the
+  document-local validators
+- merge/split thresholds and additional conformance profiles
 - public projection APIs for arena, timeline, filesystem, memory, and replay
 - field validation of the new Observation-derived Question, local-art candidate,
   and View-feedback proposal contracts beyond their conformance fixture
@@ -78,6 +83,12 @@ Draft artifacts are useful for experiments but may change after RFC review.
     a unified aggregate and cross-document resolver remain future work.
 12. Orientation Map 0.1 implements deterministic heuristic ranking, not a
     calibrated psychometric instrument or proof of one universal question order.
+13. Interaction receipt application still needs an aggregate resolver for
+    authenticated identity, exact Source/subject refs, current-state CAS,
+    receipt-ID idempotency, and privacy/egress.
+14. Ratification, binding, pause/reactivation, activation, and retirement need a
+    versioned supersession/head chain before multiple lifecycle receipts can be
+    replayed without ambiguity.
 
 ## Historical naming migration
 

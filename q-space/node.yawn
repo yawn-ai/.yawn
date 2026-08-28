@@ -2,7 +2,7 @@ id: q-space/node
 title: "Q-Space"
 kind: unresolved-question-projection
 status: owner-review-required
-updated: 2026-07-16
+updated: 2026-08-28
 protocol_revision: q-space.protocol.v1
 
 governing_question: "What is Q-Space?"
@@ -22,6 +22,7 @@ responsibility_map:
 
 routes:
   protocol: q-space/protocol-v1.yawn
+  protocol_coherence_lacunae: q-space/protocol-coherence-lacunae.yawn
   question_node: templates/q-space-question-node.yawn
   answer_event: templates/q-space-answer-event.yawn
   frontier_candidate: templates/q-space-frontier-candidate.yawn

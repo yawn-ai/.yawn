@@ -1,19 +1,22 @@
 id: interface/new-yawn-v0.1
 title: "+ Yawn creation contract v0.1"
 kind: interface-contract
-status: active
-updated: 2026-08-27
+status: working-draft-0.1
+updated: 2026-08-28
 
 definition: >
-  + Yawn preserves one signal and compiles typed provisional detections before
-  proposing a private draft holon. The creation surface and the Yawn surface
-  are the same object at different resolutions; it is not a conventional
-  onboarding form.
+  + Yawn preserves one signal as an Observation and compiles typed provisional
+  detections before optionally proposing a private draft holon. The same
+  interface may progressively project Observation, candidate, and created-Yawn
+  states, but those records remain distinct. An Observation remains valid
+  without promotion, and no Yawn exists until an explicit, receipted
+  materialization operation. This is not a conventional onboarding form.
 
 compiler_projection:
   contract: interface/objective-compiler.yawn
   default_voice: concise-protocol
   personality_default: null
+  interaction_operator_receipt_schema_ref: schemas/interaction-operator-receipt.v0.1.schema.json
   visible_fields:
     - source-preserved-signal
     - typed-detections-with-per-field-status-and-confidence
@@ -24,7 +27,9 @@ compiler_projection:
   correction_operators: [confirm, reject, correct, add_more, split, link, hold]
   rule: >
     Chips are examples and escape hatches, not ontological categories. The
-    compiled data model remains underneath the interface.
+    compiled data model remains underneath the interface. Confirm and reject
+    review a detection or proposal; they do not answer an open question or
+    authorize canonical materialization.
 
 orientation_inquiry_rule: >
   The nine stable semantic axes are a human orientation projection over the
@@ -164,7 +169,28 @@ runtime_0_1:
     scope_label: THIS YAWN
     accessible_name_required: true
   storage: versioned-browser-local-draft
-  creation: automatic-on-first-nonempty-signal
+  capture: automatic-observation-on-first-nonempty-signal
+  pre_materialization_view_kind: observation
+  yawn_materialization:
+    operation: create_yawn
+    receipt_schema_ref: schemas/agency-holarchy.v0.2.schema.json#/$defs/StructuralChangeReceipt
+    exact_proposed_routing_proposal_ref: required-as-StructuralChangeReceipt.proposalRef
+    rightful_authority:
+      authorization_status: authorized
+      authorized_by_role: human
+      authority_ref: required
+    current_head_checks:
+      - beforeStateRef resolves to the current holarchy head
+      - eventRefs preserve append-only continuity
+      - afterStateRef matches the authorized materialization result
+    interaction_operator_receipt_satisfies: false
+    objective_linked_end_to_end_conformance: unavailable-until-aggregate-cross-document-resolver
+    boundary: >
+      The Interaction Operator Receipt can confirm a representation or proposal,
+      but it can never create a Yawn. Even a valid StructuralChangeReceipt proves
+      objective-linked materialization only after the future aggregate resolver
+      closes the referenced objective, Yawn, principal, policy, and authority
+      records.
   autosave:
     strategy: debounce-plus-page-hide-flush
     persistence: browser-local
@@ -181,6 +207,7 @@ runtime_0_1:
 
 invariants:
   - the Yawn is the holon and the Coordinator operates inside it
+  - an Observation remains valid without promotion or Yawn materialization
   - objective detection, ratification, Yawn creation, bot binding, and bot activation remain distinct
   - original source language is preserved
   - every question and answer retains question_key, exact_rendered_prompt, representation_medium, answer_input_adapter, and sequence provenance

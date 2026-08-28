@@ -5,13 +5,21 @@
 - Authors: David Forman with AI-assisted synthesis
 - Decision authority: founding maintainer
 
+> Amendment notice: [RFC 0005](0005-optional-objective-promotion-and-bot-binding.md)
+> replaces this RFC's linear promotion implication. Ratification may stop at an
+> objective; Yawn creation, sleeping-bot binding, and activation are optional,
+> separately receipted transitions.
+
 ## Summary
 
 Add an executable lifecycle between dialogue and agent activation:
 
 ```text
 signal -> typed detections -> objective candidate -> principal ratification
-  -> objective-holding Yawn -> sleeping Yawn.bot -> activation grant
+  -> ratified objective
+
+optional: authorized Yawn creation -> receipted sleeping-bot binding
+  -> activation receipt
 ```
 
 This makes explicit that the root `.yawn` is an alignment bridge and routing
@@ -44,8 +52,11 @@ The additive `objective-holon.v0.1` contract defines:
 - `ObjectiveCandidate`: a machine-attributed hypothesis with routing reasons;
 - `Objective`: a principal-ratified, finite/ongoing/open direction;
 - `YawnBot`: a sleeping or active steward bound to one Yawn;
-- `RatificationReceipt`: the principal's explicit response to a candidate; and
-- `ActivationReceipt`: the separate authority event that activates a bot.
+- `RatificationReceipt`: the principal's explicit response to a candidate;
+- `BotBindingReceipt`: the separate absent/proposed-to-sleeping binding event;
+  and
+- `ActivationReceipt`: a document-local activation claim whose application
+  requires external principal, grant, current-state, and idempotency checks.
 
 The module references Yawn and agent identifiers governed elsewhere. It does
 not replace stable V1 or Agency Holarchy 0.2.
@@ -57,15 +68,18 @@ not replace stable V1 or Agency Holarchy 0.2.
 3. A Yawn is the contract; a Yawn.bot is the bounded steward inside it.
 4. Objective stewards hold exactly one ratified primary objective.
 5. Root stewards may route multiple objectives without owning them.
-6. New child bots begin sleeping.
-7. Structural context may inherit; truth, consent, confidence, privacy,
+6. Ratified objectives need not become Yawns, and Yawns need not receive bots.
+7. New child bots begin sleeping only through a BotBindingReceipt.
+8. Structural context may inherit; truth, consent, confidence, privacy,
    authority, identity, agreement, and proof do not silently inherit.
-8. Duplication copies a shell, not powers or claims.
-9. Ongoing objectives gather bounded progress evidence rather than global proof
+9. Duplication copies a shell, not powers or claims.
+10. Ongoing objectives gather bounded progress evidence rather than global proof
    of personal identity or moral worth.
-10. Personality is optional programmed projection data.
-11. Operation scores declare whether they are heuristics or estimated
+11. Personality is optional programmed projection data.
+12. Operation scores declare whether they are heuristics or estimated
     posteriors; neither kind ratifies the objective or authorizes the operation.
+13. Local activation validation cannot apply activation, authenticate authority,
+    or grant effect authority.
 
 ## Alternatives
 
@@ -91,8 +105,14 @@ software Yawn bots have human-like agency.
 ## Acceptance evidence
 
 - schema and semantic tests pass;
-- the Dave/good-dad fixture exercises candidate, ratification, creation, and
-  activation as separate records;
+- the Dave/good-dad example distinguishes candidate, ratification, external
+  Agency Yawn creation, bot binding, and activation, and labels unresolved
+  cross-document materialization honestly;
+- objective-only and optional Yawn proposal/cross-link without bot variants
+  remain valid; actual Yawn materialization remains externally resolved;
+- strict `/new` binding conformance rejects objective bots without a matching
+  BotBindingReceipt while generic validation preserves optional binding-field
+  absence for otherwise coherent 0.1 working-draft documents;
 - active bots without ratified objectives or activation receipts fail;
 - parent-bot cycles fail; and
 - proposed operations are ordered, detection-traceable, confirmation-requiring,

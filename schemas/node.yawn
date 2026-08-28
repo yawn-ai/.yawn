@@ -2,7 +2,7 @@ id: schemas/node
 title: "schema modules"
 kind: schema-index
 status: active
-updated: 2026-08-27
+updated: 2026-08-28
 
 purpose: >
   Hold machine-valid state-substrate modules and explicitly labeled protocol
@@ -37,6 +37,8 @@ holds:
   - objective-holon.v0.1.schema.json
   - orientation-map.v0.1.schema.json
   - inquiry-selection-receipt.v0.1.schema.json
+  - interaction-operator-receipt.v0.1.schema.json
+  - protocol-manifest.v0.1.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
@@ -87,6 +89,19 @@ orientation_map_draft: >
   inputs without making the map canonical state or preference semantic truth.
   Its inquiry-selection receipt closes the selected-question versus hold result,
   pins prompt and policy inputs, and remains non-authoritative View provenance.
+
+protocol_manifest: >
+  Manifest V0.1 gives implementations a commit-independent semantic revision,
+  content hashes, and closed conformance profiles. It does not make a draft
+  module stable or let a passing hash widen authority.
+
+interaction_operator_receipt: >
+  Receipt V0.1 binds review and question-response operators to exact subjects
+  and sources. Confirmation records a scoped disposition only; it cannot
+  establish truth, ratify an objective, activate a bot, grant authority, mutate
+  canonical state, or authorize an external effect. Local validation also does
+  not authenticate the actor, resolve referenced records, or prove fromStatus
+  current; a consumer must close those checks before applying a View transition.
 
 status_rule: >
   Modal, motivational, epistemic, lifecycle, authority, loop,

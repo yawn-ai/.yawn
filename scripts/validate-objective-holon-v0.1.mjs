@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import Ajv2020 from "ajv/dist/2020.js";
-import { validateObjectiveHolonSemantics } from "../lib/objective-holon-v0.1.mjs";
+import { validateObjectiveHolonBindingConformance } from "../lib/objective-holon-v0.1.mjs";
 
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"));
 
@@ -13,7 +13,7 @@ if (!validate(fixture)) {
   console.error(ajv.errorsText(validate.errors, { separator: "\n" }));
   process.exitCode = 1;
 } else {
-  const semanticErrors = validateObjectiveHolonSemantics(fixture);
+  const semanticErrors = validateObjectiveHolonBindingConformance(fixture);
   if (semanticErrors.length > 0) {
     console.error(semanticErrors.join("\n"));
     process.exitCode = 1;
