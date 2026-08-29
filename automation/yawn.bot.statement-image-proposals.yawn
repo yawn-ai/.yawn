@@ -1,0 +1,104 @@
+id: automation/yawn.bot.statement-image-proposals
+title: "yawn.bot statement-image proposals"
+kind: automation-contract
+status: proposal-only-not-scheduled
+created: 2026-08-29
+updated: 2026-08-29
+
+automation_id: yawn-bot-statement-image-proposals
+schedule: not-scheduled
+policy: agents/yawn.bot.policy.yawn
+
+purpose: >
+  Detect a strong statement or quote in a public YAWN.bot artifact and compile
+  a reviewable adjacent-image proposal. The automation may describe a bounded
+  image brief and its approval payload, but it may not generate, spend, stage,
+  merge, deploy, or publish on its own.
+
+proposal_input:
+  - exact public page coordinate
+  - exact statement bytes and SHA-256
+  - target region in the page
+  - human-readable visual intention
+  - accessibility alternative text
+  - generator adapter requested
+  - maximum candidate count
+  - numeric spend ceiling or explicit zero-cost adapter
+  - proposed public asset path
+  - proposal expiry
+
+proposal_output:
+  - exact prompt and negative constraints
+  - layout recommendation and responsive behavior
+  - candidate count and cost boundary
+  - expected artifact media type and dimensions
+  - separate generation and publication effects
+  - canonical approval payload JSON
+  - SHA-256 of the canonical approval payload
+  - proof checklist and rollback path
+
+canonical_approval_contract:
+  data_model: JSON
+  canonicalization: recursively sort every object key; preserve array order; emit compact JSON
+  encoding: UTF-8
+  digest: SHA-256
+  accepted_digest_format: exactly-64-lowercase-hex-characters
+  approval_must_name:
+    - principal and authority
+    - exact proposal payload digest
+    - exact target coordinate and region
+    - exact source statement digest
+    - generator adapter
+    - maximum candidate count
+    - numeric spend ceiling or explicit zero-cost boundary
+    - generation effect
+    - publication effect if publication is authorized
+    - expiry and rollback boundary
+  rejection_rule: "Missing, mismatched, malformed, expired, ambiguous, or previously consumed approval blocks the effect."
+
+effect_gates:
+  generation_or_spend: >
+    Blocked until a current owner-decision receipt names this proposal digest,
+    the generation effect, adapter, candidate limit, cost boundary, and expiry.
+  publication: >
+    Blocked until a current owner-decision receipt names this proposal digest,
+    the exact publication effect, coordinate, region, and asset. One receipt may
+    authorize the bounded generation-and-publication bundle only when both
+    effects are explicit; no effect may be inferred from the other.
+  proof: >
+    Generation must record the actual adapter, candidate count, cost when known,
+    artifact digest, and conformance result. Publication must separately record
+    source control, deployment, HTTP, browser, accessibility, and rollback proof.
+
+allowed_without_effect_approval:
+  - inspect already-public YAWN.bot source text
+  - detect candidate statements
+  - compile a local proposal
+  - compute statement and proposal digests
+  - show the proposal for human review
+
+blocked_without_effect_approval:
+  - invoke an image model
+  - incur provider cost
+  - persist a generated candidate outside the review workspace
+  - change application source
+  - create a branch, commit, or pull request
+  - upload an asset
+  - merge, deploy, publish, or change a domain
+
+recurrence_boundary:
+  current_interception_receipt_reusable: false
+  prior_approval_implies_future_approval: false
+  first_candidate_rule_inherited: false
+  standing_budget: false
+  automatic_generation: false
+  automatic_publication: false
+  per_proposal_bounded_approval_required: true
+
+proof:
+  source:
+    - records/interception-statement-image-approval-2026-08-29.yawn
+    - records/interception-statement-image-result-2026-08-29.yawn
+    - agents/yawn.bot.policy.yawn
+  status: contract-proposed-no-runtime-created
+
