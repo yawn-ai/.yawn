@@ -83,7 +83,7 @@ state:
       attributed_to: ""
       modal_role: actual # actual | possible | predicted | counterfactual
       motivational_role: neutral # desired | feared | neutral
-      epistemic_status: reported # reported | observed | inferred | assumed | supported | disputed | unknown | unproven
+      epistemic_status: reported # reported | observed | inferred | assumed | predicted | disputed | unknown
       source_refs: []
   possibilities: []
   unknowns: []

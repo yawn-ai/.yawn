@@ -1,0 +1,43 @@
+id: records/epistemic-status-drift-ledger-2026-08-28
+title: "Epistemic-status vocabulary drift — cross-root scan and containment"
+kind: observation-record
+status: reported_pending_dave_acceptance
+recorded_at: 2026-08-28
+recorded_by: agent:anthropic:claude-code
+epistemic_status: observed
+
+observation: >
+  A deterministic scan across the three roots on 2026-08-28 found the
+  epistemic_status field drifted into 50+ ad-hoc values against the
+  ontology's seven (observed | reported | inferred | assumed | predicted |
+  disputed | unknown). Counts of non-canonical scalar values: this canon
+  repository 6 (now grandfathered and test-locked), dave.yawn/Yawns ~54
+  (dominant strains: proposed x14, reported_plus_inferred x13),
+  web-game/YAWNS ~25 (observed_with_labeled_inference x9,
+  observed_and_inferred x8). One apparent violation
+  (epistemic_status: true in YAWN_COGNITIVE_CONTAINER_RUNTIME.yawn) is a
+  false positive - a contract requirement flag, not a status value.
+
+root_cause: >
+  templates/full.yawn taught a divergent vocabulary (supported/unproven
+  present, predicted absent), so authors composing nuance had no sanctioned
+  place for it and minted composite statuses inline. Free-text statuses make
+  records uncomputable by rankers, graduation ladders, and claim calculators.
+
+containment: >
+  This proposal fixes the template, adds
+  tests/epistemic-status-vocabulary.test.mjs locking this repository to the
+  seven values with an explicit shrink-only grandfather ledger, and records
+  this drift map. It does NOT rewrite any existing record - history is
+  preserved; migration of each grandfathered record belongs to its author.
+
+proposed_convention: >
+  epistemic_status holds exactly one of the seven values. Composite nuance
+  moves to epistemic_note (free text) or per-claim attribution blocks.
+  Downstream roots (dave.yawn, web-game/YAWNS) adopt the same checker after
+  Dave accepts this convention; their legacy values migrate opportunistically
+  when records are next touched, never in bulk.
+
+boundary: >
+  Proposal until the principal rules. No record content was rewritten; the
+  only mutated file is the template's teaching comment.
