@@ -12,7 +12,7 @@ sources:
   - file: records/interception-statement-image-approval-2026-08-29.yawn
     role: "strict SHA-256-bound one-time owner approval for the Interception statement-image operation"
   - file: records/interception-statement-image-result-2026-08-29.yawn
-    role: "candidate artifact proof with production publication explicitly pending"
+    role: "candidate artifact and directly observed production-publication proof"
   - file: automation/yawn.bot.statement-image-proposals.yawn
     role: "proposal-only contract that blocks image generation, spend, and publication without per-proposal bounded approval"
   - file: agency-declaration.yawn
