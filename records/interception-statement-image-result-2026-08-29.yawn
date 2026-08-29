@@ -1,0 +1,87 @@
+id: records/interception-statement-image-result-2026-08-29
+title: "Interception statement-image bounded action result"
+kind: bounded-action-proof-receipt
+status: proved-candidate-and-production-publication
+created: 2026-08-29
+updated: 2026-08-29
+
+principal:
+  name: David Forman
+  role: principal of @dave
+
+approval_binding:
+  record: records/interception-statement-image-approval-2026-08-29.yawn
+  payload_sha256: 9eb8a992d0244d408fc2a2a192f7548df208fa8ecefbb7fd18c47832bcb3b4f5
+  authorization_semantics: conditional-first-conforming-candidate-preauthorization
+  post_output_aesthetic_acceptance_observed: false
+
+implementation_binding:
+  proposal_sha256: a1cdb820ffe0d0f46360dc34012fdbfe35113622e998ddf119752ebbc21e375c
+  approval_sha256: b065043b45323d83cf100d4951b04bec2f1b7f865b05f9eb558cfd28558404c5
+  source_contract: https://github.com/yawn-ai/yawn.bot/blob/00fc4d69ca6de7696c2f8ceba28af5ba9bf0c888/src/domain/statement-image-contract.ts
+
+generation:
+  requested_capability: yawn.bot/image-generator
+  actual_adapter: OpenAI-built-in-image-generation
+  adapter_equivalence_claim: none
+  candidate_count: 1
+  provider_request_id: not-recorded
+  provider_cost: unknown
+  completed: true
+
+candidate_artifact:
+  media_type: image/png
+  width_px: 1254
+  height_px: 1254
+  color_mode: RGB
+  bytes: 1632964
+  sha256: 54bd1d3bd256857ddfc6f2027f8af8aa8b209c1d62194a24e07db31cd387718b
+  canonical_public_asset_path: /interception/interception-statement-v1.png
+
+conformance_observation:
+  composition: "A magenta signal reaches a cyan aperture and branches into several lime and cyan paths."
+  dark_scientific_editorial_field: observed
+  square_raster: observed
+  faces: not-observed
+  logos: not-observed
+  readable_text: not-observed
+  required_alt_prepared: "An emotional signal reaches an opening and branches into several possible actions."
+  eligibility_under_preauthorization: conforming
+  boundary: "This observation checks the visible brief; it is not a scientific validation or post-output aesthetic acceptance."
+
+publication:
+  target_coordinate: https://yawn.bot/interception
+  target_region: "statement call-out beside the paper central claim"
+  source_pull_request: https://github.com/yawn-ai/yawn.bot/pull/82
+  source_commit: d3f6a3a994186edf8526b439f8ab290858946032
+  preview_deployment_id: dpl_GJ4EktDWGusGm5ZxdCnbbdw6hXyH
+  production_deployment_id: dpl_BLwoHutZdbCALgQ33Dych42yxqVM
+  canonical_http_status: 200
+  browser_figure_visibility: observed
+  browser_accessible_alt: observed
+  route_owned_console_errors: 0
+  status: proved
+
+result:
+  generation: proved-by-artifact-digest-and-metadata
+  publication: proved-by-ready-deployment-http-and-browser
+  overall: proved-bounded-operation
+  authorization_is_not_success: true
+
+proof_completed:
+  - exact source pull request and merge commit recorded
+  - production deployment identifier reached ready state
+  - canonical coordinate returned HTTP 200
+  - adjacent figure and accessible alternative text were browser-observed
+  - route-owned browser console error count was zero
+
+remaining_lacunas:
+  - post-output aesthetic acceptance remains unrecorded
+  - no recurring or standing authority was granted
+
+effect_boundary:
+  second_generation_authorized: false
+  recurring_authority_created: false
+  standing_spend_created: false
+  research_evidence_status_changed: false
+  deployment_success_inferred: false

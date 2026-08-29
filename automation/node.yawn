@@ -2,7 +2,7 @@ id: automation/node
 title: "automation node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-08-17
+updated: 2026-08-29
 
 purpose: >
   Hold automations that watch for feedback, contributor signals, and bounded
@@ -21,6 +21,7 @@ holds:
   - yawn.bot license reference audit
   - yawn.ai open-source funnel bridge
   - yawn.bot AI-writing scan
+  - yawn.bot statement-image proposal compiler
 
 receives:
   - GitHub issues
@@ -34,6 +35,7 @@ receives:
   - license and reference risks
   - public .yawn main-branch diffs for yawn.ai
   - AI-writing-style signals in public text
+  - strong statements and quotes in public YAWN.bot artifacts
 
 produces:
   - triage summaries
@@ -50,6 +52,7 @@ produces:
   - yawn.ai homepage bridge reports
   - AI-writing risk reports
   - human-review queues
+  - hash-bound statement-image proposals
 
 questions:
   - what new feedback arrived
@@ -66,6 +69,7 @@ questions:
   - should this public .yawn change update the yawn.ai teaching funnel
   - does this public text sound generically AI-written
   - does this require human authorization
+  - should this statement receive an adjacent image proposal
 
 links:
   - automation/yawn-bot-repo-contributor-loop.yawn
@@ -81,6 +85,7 @@ links:
   - automation/yawn.bot.license-reference-audit.yawn
   - automation/yawn.ai.funnel-bridge.yawn
   - automation/yawn.bot.ai-writing-scan.yawn
+  - automation/yawn.bot.statement-image-proposals.yawn
   - records/automation-log.yawn
 
 proof:
@@ -92,6 +97,7 @@ proof:
     - agents/yawn.bot.policy.yawn
     - automation/yawn.ai.funnel-bridge.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
+    - automation/yawn.bot.statement-image-proposals.yawn
     - automation/yawn.bot.pr-notification.yawn
     - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

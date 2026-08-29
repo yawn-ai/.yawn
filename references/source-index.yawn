@@ -9,6 +9,12 @@ sources:
     role: "David Forman's public Interception working paper, evidence register, open emotional catalog, and canonical yawn.bot coordinate"
   - file: records/interception-publication-2026-08-29.yawn
     role: "exact source-control, Vercel production, HTTP, metadata, and browser proof for the Interception publication"
+  - file: records/interception-statement-image-approval-2026-08-29.yawn
+    role: "strict SHA-256-bound one-time owner approval for the Interception statement-image operation"
+  - file: records/interception-statement-image-result-2026-08-29.yawn
+    role: "candidate artifact proof with production publication explicitly pending"
+  - file: automation/yawn.bot.statement-image-proposals.yawn
+    role: "proposal-only contract that blocks image generation, spend, and publication without per-proposal bounded approval"
   - file: agency-declaration.yawn
     role: "public Declaration of Agency source object, standalone GitHub/Vercel surface, birthday frame, field recording, proof boundary, and /agency-declaration route"
   - file: references/ownership-and-license.yawn
@@ -46,6 +52,9 @@ proof:
   source:
     - references/interception.yawn
     - records/interception-publication-2026-08-29.yawn
+    - records/interception-statement-image-approval-2026-08-29.yawn
+    - records/interception-statement-image-result-2026-08-29.yawn
+    - automation/yawn.bot.statement-image-proposals.yawn
     - readme.yawn
     - references/ownership-and-license.yawn
     - agents/yawn.bot.yawn

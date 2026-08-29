@@ -29,6 +29,8 @@ holds:
   - YAWN.bot runtime promotion receipt
   - cold-start orientation proof
   - Interception public publication receipt
+  - Interception statement-image owner decision
+  - Interception statement-image bounded action result
 
 receives:
   - agent actions
@@ -93,6 +95,8 @@ links:
   - records/next-move-ledger.yawn
   - records/inquiry-aperture-one-question-face.yawn
   - records/interception-publication-2026-08-29.yawn
+  - records/interception-statement-image-approval-2026-08-29.yawn
+  - records/interception-statement-image-result-2026-08-29.yawn
 
 proof:
   source:
@@ -109,5 +113,7 @@ proof:
     - records/yawn.bot-ai-writing-ledger.yawn
     - records/feedback-log.yawn
     - records/interception-publication-2026-08-29.yawn
+    - records/interception-statement-image-approval-2026-08-29.yawn
+    - records/interception-statement-image-result-2026-08-29.yawn
     - readme.yawn
   status: seed-backed

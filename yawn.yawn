@@ -198,10 +198,13 @@ automation_links:
   yawn_bot_license_audit: automation/yawn.bot.license-reference-audit.yawn
   yawn_ai_funnel_bridge: automation/yawn.ai.funnel-bridge.yawn
   yawn_bot_ai_writing_scan: automation/yawn.bot.ai-writing-scan.yawn
+  yawn_bot_statement_image_proposals: automation/yawn.bot.statement-image-proposals.yawn
   automation_log: records/automation-log.yawn
 
 record_links:
   interception_publication: records/interception-publication-2026-08-29.yawn
+  interception_statement_image_approval: records/interception-statement-image-approval-2026-08-29.yawn
+  interception_statement_image_result: records/interception-statement-image-result-2026-08-29.yawn
   material_time: records/material-time.yawn
   access_log: records/access-log.yawn
   llm_access: records/llm-access.yawn

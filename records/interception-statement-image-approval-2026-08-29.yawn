@@ -1,0 +1,80 @@
+id: records/interception-statement-image-approval-2026-08-29
+title: "Interception statement-image owner decision"
+kind: owner-decision-receipt
+status: accepted-with-conditions
+created: 2026-08-29
+updated: 2026-08-29
+
+principal:
+  name: David Forman
+  role: principal of @dave
+  authority: owner-and-publication-principal
+
+decision:
+  expression: "With record of approval, take this as approval"
+  received_on: 2026-08-29
+  interpretation: conditional-first-conforming-candidate-preauthorization
+  post_output_aesthetic_acceptance: not-claimed
+  recurring_or_standing_authority: false
+
+binding:
+  algorithm: sha256
+  canonicalization: recursively-key-sorted-json
+  encoding: UTF-8
+  digest_format: lowercase-hex-64
+  canonical_json: '{"approval_class":"conditional-first-conforming-candidate-preauthorization","approved_effects":["generate exactly one image candidate for the bounded brief","place the first conforming candidate beside the identified Interception statement","publish the changed Interception page to https://yawn.bot/interception","publish approval and result records without private material"],"authorized_candidate_count":1,"conformance":{"accessibility_alt":"An emotional signal reaches an opening and branches into several possible actions.","composition":"an abstract emotional signal reaches an aperture and branches into several possible actions","forbidden":["faces","logos","readable text"],"format":"square raster image","style":"YAWN.bot scientific-editorial palette on a dark field"},"cost_boundary":"no standing budget; candidate count is the binding limit","current_request_quote":"With record of approval, take this as approval","expires_when":"the one candidate is generated and the bounded page publication is attempted, or the candidate fails conformance","principal":{"name":"David Forman","role":"principal of @dave"},"purpose":"adjacent statement figure (tag image)","received_on":"2026-08-29","requested_capability":"yawn.bot/image-generator","separate_from_post_output_acceptance":true,"source_statement":"Interception does not stop emotion. It loosens the learned coupling between emotion and the next action. Emotion may supply the signal; awareness makes the interception.","target":{"coordinate":"https://yawn.bot/interception","region":"statement call-out beside the paper central claim"},"unauthorized_effects":["generate a second candidate","reuse this approval for another statement or page","recurring generation","standing spend","publish nonconforming output","treat the image as evidence or research data"]}'
+  payload_sha256: 9eb8a992d0244d408fc2a2a192f7548df208fa8ecefbb7fd18c47832bcb3b4f5
+
+authorized_bundle:
+  requested_capability: yawn.bot/image-generator
+  candidate_count: 1
+  target_coordinate: https://yawn.bot/interception
+  target_region: "statement call-out beside the paper central claim"
+  source_statement: >
+    Interception does not stop emotion. It loosens the learned coupling between
+    emotion and the next action. Emotion may supply the signal; awareness makes
+    the interception.
+  effects:
+    - generate exactly one image candidate for the bounded brief
+    - place the first conforming candidate beside the identified statement
+    - publish the changed Interception page at the target coordinate
+    - publish approval and result records without private material
+
+conformance_gate:
+  composition: "an abstract emotional signal reaches an aperture and branches into several possible actions"
+  style: "YAWN.bot scientific-editorial palette on a dark field"
+  format: square-raster-image
+  required_alt: "An emotional signal reaches an opening and branches into several possible actions."
+  forbidden:
+    - faces
+    - logos
+    - readable text
+  failure_rule: "A nonconforming first candidate ends this grant; it does not authorize another generation or publication."
+
+cost_boundary:
+  standing_budget: false
+  numeric_ceiling_supplied: false
+  binding_limit: one-candidate-only
+  provider_cost_claim: none
+
+expires_when: >
+  The one candidate is generated and the bounded page publication is attempted,
+  or the candidate fails the conformance gate.
+
+not_authorized:
+  - a second candidate
+  - another statement, region, page, or domain
+  - recurring or standing generation
+  - standing spend
+  - publication of nonconforming output
+  - treating the image as evidence, research data, or a scientific result
+  - reuse of this receipt by the proposal-only recurring automation
+
+proof:
+  source:
+    - records/interception-statement-image-result-2026-08-29.yawn
+    - automation/yawn.bot.statement-image-proposals.yawn
+  authorization_status: accepted-with-conditions
+  execution_status: separate-record
+  publication_status: not-proved-by-this-record
+
