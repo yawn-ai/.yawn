@@ -2,7 +2,7 @@ id: references/node
 title: "references node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-01
+updated: 2026-08-29
 
 purpose: >
   Hold public reference frames that make the system understandable and
@@ -13,6 +13,7 @@ holds:
   - ownership and license
   - scientific frame
   - july 01 lock
+  - interception public research reference
 
 receives:
   - local documents
@@ -36,6 +37,7 @@ links:
   - references/ownership-and-license.yawn
   - references/scientific-frame.yawn
   - references/july-01-lock.yawn
+  - references/interception.yawn
   - 08-research/node.yawn
 
 proof:
@@ -44,4 +46,5 @@ proof:
     - references/ownership-and-license.yawn
     - references/scientific-frame.yawn
     - references/july-01-lock.yawn
+    - references/interception.yawn
   status: seed-backed
