@@ -1,0 +1,91 @@
+id: records/interception-publication-2026-08-29
+title: "Interception public research publication"
+kind: public-publication-receipt
+status: complete
+created: 2026-08-29
+updated: 2026-08-29
+
+principal:
+  name: David Forman
+  role: principal of @dave
+  authority: >
+    Dave explicitly requested live publication on his own domain in the
+    YAWN.bot design language and asked for the appropriate .yawn updates.
+
+publication:
+  title: "Interception — awareness between emotion and action"
+  coordinate: https://yawn.bot/interception
+  source_model: https://yawn.bot/interception/model.yawn
+  paper_status: public-working-paper
+  peer_review_status: not-peer-reviewed
+  published_on: 2026-08-29
+  license: CC-BY-4.0
+
+source_control:
+  repository: https://github.com/yawn-ai/yawn.bot
+  pull_request: https://github.com/yawn-ai/yawn.bot/pull/78
+  candidate_commit: d5dd95c662b76e5daf7579be1314292637d027e5
+  merge_commit: e91798f338fe143b6825d9f5e109c05def239766
+  merge_method: squash
+  exact_head_guard: passed
+
+deployment:
+  provider: Vercel
+  project: yawn-bot
+  project_id: prj_V25QfP6Hcbp5OXmM5ogU2M1vDNLW
+  preview_id: dpl_A8QBu5fkGg5Ku9XaD5jL9q6Y9QJz
+  production_id: dpl_HdYmDromXpyk4QTJvgaSV3txqqGQ
+  production_state: READY
+  production_commit: e91798f338fe143b6825d9f5e109c05def239766
+  canonical_alias: yawn.bot
+  alias_error: null
+
+proof:
+  source:
+    - https://github.com/yawn-ai/yawn.bot/pull/78
+    - https://github.com/yawn-ai/yawn.bot/commit/e91798f338fe143b6825d9f5e109c05def239766
+    - https://yawn.bot/interception
+    - https://yawn.bot/interception/model.yawn
+  build:
+    - "Vercel production build completed; /interception statically prerendered"
+    - "repository TypeScript passed in both proof and production-build phases"
+    - "changed-file ESLint passed"
+    - "relationship-mirror focused suite passed 16/16"
+    - "dedicated Interception evidence suite passed 6/6"
+  protocol:
+    - "three YAWNS records passed the exact universal contract-shape audit"
+    - "observation required fields and RFC3339 timestamps passed source audit"
+    - "all changed src and YAWNS behavior paths are covered by the accepted observation"
+  http:
+    route: 200
+    source_model: 200
+  browser:
+    final_url: https://yawn.bot/interception
+    title: "Interception — awareness between emotion and action · YAWN.bot"
+    author: David Forman
+    role: principal of @dave
+    published: 29 August 2026
+    canonical: https://yawn.bot/interception
+    scholarly_json_ld_author: David Forman
+    paper_sections: 9
+    emotional_catalog_labels: 28
+    horizontal_overflow: false
+    route_owned_console_errors: 0
+  status: production-verified
+
+evidence_boundary: >
+  The publication states that no included study tests Interception as
+  operationally defined. Component evidence, method analogues, YAWN-specific
+  inferences, limitations, and a behavioral null remain visibly separate.
+
+effect_boundary:
+  runtime_model_calls: false
+  private_state_reads: false
+  persistence: false
+  runtime_mutation: false
+  route_external_effects: false
+  publication_effect: completed-and-proved
+
+remaining_lacuna:
+  - "The complete Interception protocol still requires direct empirical testing against a time-matched neutral pause."
+  - "The protected preview browser exposed only a fixed desktop viewport; responsive media rules were statically audited, while canonical phone replay remains useful follow-up proof."

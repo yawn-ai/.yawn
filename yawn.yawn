@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: repository-manifest
 status: active
-updated: 2026-08-27
+updated: 2026-08-29
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -201,6 +201,7 @@ automation_links:
   automation_log: records/automation-log.yawn
 
 record_links:
+  interception_publication: records/interception-publication-2026-08-29.yawn
   material_time: records/material-time.yawn
   access_log: records/access-log.yawn
   llm_access: records/llm-access.yawn
@@ -298,6 +299,7 @@ agent_links:
   repo_contributor_policy: agents/yawn.bot.policy.yawn
 
 reference_links:
+  interception: references/interception.yawn
   source_index: references/source-index.yawn
   ownership_and_license: references/ownership-and-license.yawn
   scientific_frame: references/scientific-frame.yawn
@@ -425,6 +427,8 @@ material_record_rule: >
   why it mattered, what changed, and what proof or risk remains.
 
 source:
+  - references/interception.yawn
+  - records/interception-publication-2026-08-29.yawn
   - core/co-orientation-loop.yawn
   - core/canonical-extension.yawn
   - migrations/2026-08-17-canonical-extension.yawn

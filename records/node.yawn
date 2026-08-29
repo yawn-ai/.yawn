@@ -2,7 +2,7 @@ id: records/node
 title: "records node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-07-11
+updated: 2026-08-29
 
 purpose: >
   Hold material time: access logs, LLM-used context, GitHub surfaces, backups,
@@ -28,6 +28,7 @@ holds:
   - next-move ledger
   - YAWN.bot runtime promotion receipt
   - cold-start orientation proof
+  - Interception public publication receipt
 
 receives:
   - agent actions
@@ -91,6 +92,7 @@ links:
   - records/feedback-log.yawn
   - records/next-move-ledger.yawn
   - records/inquiry-aperture-one-question-face.yawn
+  - records/interception-publication-2026-08-29.yawn
 
 proof:
   source:
@@ -106,5 +108,6 @@ proof:
     - records/yawn.ai-funnel-bridge-ledger.yawn
     - records/yawn.bot-ai-writing-ledger.yawn
     - records/feedback-log.yawn
+    - records/interception-publication-2026-08-29.yawn
     - readme.yawn
   status: seed-backed

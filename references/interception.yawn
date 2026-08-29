@@ -1,0 +1,108 @@
+id: references/interception
+title: "Interception — awareness between emotion and action"
+kind: public-research-reference
+status: public-working-paper
+updated: 2026-08-29
+
+coordinate: https://yawn.bot/interception
+source_repository: https://github.com/yawn-ai/yawn.bot
+source_model: https://yawn.bot/interception/model.yawn
+license: CC-BY-4.0
+peer_review_status: not-peer-reviewed
+
+principal:
+  name: David Forman
+  role: principal of @dave
+
+purpose: >
+  Hold the public, evidence-bounded reference frame for Interception and make
+  the paper's construct, sources, inferences, limitations, and test boundary
+  inspectable outside the application repository.
+
+definition: >
+  Interception is the moment an activated pattern becomes observable before it
+  becomes behavior. Operationally it requires detection, representation, and
+  an altered probability of the next action.
+
+call_out: >
+  Interception does not stop emotion. It loosens the learned coupling between
+  emotion and the next action. Emotion may supply the signal; awareness makes
+  the interception.
+
+sequence:
+  - Programming
+  - Emotion
+  - Interception
+  - Yawn
+  - Choice
+  - Update
+
+evidence_boundary: >
+  No cited study tests Interception as operationally defined. Six cases test
+  component mechanisms and two are measurement or engineering analogues.
+  Reported results remain distinct from YAWN-specific inference.
+
+case_studies:
+  - id: mccurry-conflict-pause-2024
+    role: component-mechanism
+    paper: https://www.nature.com/articles/s44271-024-00122-4
+    open_data: https://doi.org/10.5281/zenodo.12936112
+    code: https://github.com/AnnahGrace01/FTF-CRTT
+  - id: kircanski-affect-labeling-2012
+    role: component-mechanism
+    paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC4721564/
+  - id: levy-gigi-labeling-intensity-2022
+    role: component-mechanism
+    paper: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0279303
+    open_data: https://osf.io/gzjq5/
+  - id: mayiwar-self-distancing-2024
+    role: component-mechanism
+    paper: https://onlinelibrary.wiley.com/doi/10.1002/bdm.2378
+    open_data_code_materials: https://osf.io/jhdsf/
+  - id: naragon-gainey-decentering-2023
+    role: component-mechanism
+    paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC10538949/
+    public_project: https://osf.io/gct7x/
+  - id: andreu-mindfulness-null-2018
+    role: component-mechanism-boundary-null
+    paper: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0191661
+    open_data: https://doi.org/10.5281/zenodo.1044036
+  - id: wager-reappraisal-pathways-2008
+    role: mechanism-analogue
+    paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC2742320/
+    open_data: https://openneuro.org/datasets/ds000108/versions/00002
+  - id: heartsteps-decision-points-2019
+    role: engineering-analogue
+    paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC6401341/
+    open_data: https://github.com/klasnja/HeartStepsV1
+
+emotional_catalog:
+  name: GoEmotions
+  role: open-emotion-language-corpus
+  sample: 58009 English Reddit comments
+  labels: 27 emotions plus neutral
+  agreement_filtered_split: 54263
+  published_baseline: macro-F1 .46 across 28 labels
+  paper: https://aclanthology.org/2020.acl-main.372/
+  open_data: https://github.com/google-research/google-research/tree/master/goemotions/data
+  code: https://github.com/google-research/google-research/tree/master/goemotions
+  boundary: >
+    This is an inspectable vocabulary for expressed English Reddit language,
+    not ground truth about private feelings. Platform, culture, filtering, and
+    annotation biases apply.
+
+proof:
+  source_commit: https://github.com/yawn-ai/yawn.bot/commit/e91798f338fe143b6825d9f5e109c05def239766
+  source_pr: https://github.com/yawn-ai/yawn.bot/pull/78
+  deployment: dpl_HdYmDromXpyk4QTJvgaSV3txqqGQ
+  canonical_http: "200 for /interception and /interception/model.yawn"
+  browser: "David Forman, principal of @dave, 29 August 2026, canonical metadata, 9 paper sections, 28 catalog labels, no horizontal overflow, no route-owned console errors"
+  status: production-verified
+
+boundary:
+  - public working paper, not peer reviewed
+  - conceptual and research artifact, not medical advice or therapy
+  - awareness is not automatically agency
+  - neural change is not behavioral proof
+  - labels are provisional models rather than hidden truth
+  - no private state, persistence, model call, or runtime mutation
