@@ -37,6 +37,41 @@ sequence:
   - Choice
   - Update
 
+# Revision-2 conformance (model.yawn revision 2, 2026-08-28): the paper's
+# six steps and the ontology's canonical loop are ONE loop at two apertures.
+sequence_mapping:
+  canonical_loop: >
+    Relationship -> Observation -> Relevance -> Orientation -> Intention ->
+    Projection -> Consequence -> Proof -> Updated Relationship
+  note: >
+    Interception is the Observation-becoming-Orientation segment; Projection,
+    Consequence, and Proof are carried by the completed-cycle definition.
+
+lacuna:
+  id: emotion-action-coupling-untested-as-full-protocol
+  statement: >
+    Component mechanisms are studied; the complete protocol has never been
+    tested against a time-matched neutral pause. This absence is the
+    first-class reason the Yawn stays open (Q-int-1..3 carry owners in the
+    served model, revision 2, which also splits claim support from
+    proof_status so the register can be computed).
+
+connections:
+  - ref: core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+    relation: constitutional-ground
+  - ref: yawn.bot yawnalogue contract
+    relation: productized-response-gate
+  - ref: yawn.bot cognition graduation ladder
+    relation: same-ladder-as-claim-proof-status
+  - ref: yawn.bot bias-detector operator
+    relation: component-mechanism-in-product
+  - ref: yawn.bot aperture-router goodhart_guard
+    relation: falsifier-guard
+  - private_traces: >
+      One naturalistic completed-cycle trace exists in the principal's
+      private root (2026-08-28); coordinate withheld by the family-privacy
+      boundary.
+
 evidence_boundary: >
   No cited study tests Interception as operationally defined. Six cases test
   component mechanisms and two are measurement or engineering analogues.
