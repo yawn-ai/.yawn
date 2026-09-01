@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/choice-event.v0.1.schema.json",
+  "title": "YAWN Choice Event V0.1",
+  "description": "An attributed record of a rightful principal selecting, rejecting, or holding after a move-selection proposal. The event never grants effect authority by itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "choiceEventId",
+    "revision",
+    "principalRef",
+    "orientationMapRef",
+    "moveSelectionReceiptRef",
+    "decision",
+    "authorization",
+    "sourceRefs",
+    "canonicalState",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.choice-event.v0.1" },
+    "choiceEventId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^choice:[^\\s]+$"
+    },
+    "revision": { "type": "integer", "minimum": 1 },
+    "principalRef": { "$ref": "#/$defs/PrincipalRef" },
+    "orientationMapRef": { "$ref": "#/$defs/OrientationMapRef" },
+    "moveSelectionReceiptRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "revision", "stateSha256"],
+      "properties": {
+        "kind": { "const": "move_selection_receipt" },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^receipt:move-selection:[^\\s]+$"
+        },
+        "revision": { "type": "integer", "minimum": 1 },
+        "stateSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "decision": {
+      "oneOf": [
+        { "$ref": "#/$defs/SelectedDecision" },
+        { "$ref": "#/$defs/HeldDecision" },
+        { "$ref": "#/$defs/RejectedDecision" }
+      ]
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grantedByThisEvent", "resolutionStatus", "authorityRef", "effectAuthorized"],
+      "properties": {
+        "grantedByThisEvent": { "const": false },
+        "resolutionStatus": { "enum": ["not_resolved", "separately_resolved", "blocked"] },
+        "authorityRef": {
+          "anyOf": [
+            { "$ref": "record-ref.v1.schema.json" },
+            { "type": "null" }
+          ]
+        },
+        "effectAuthorized": { "const": false }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "resolutionStatus": { "const": "separately_resolved" } },
+            "required": ["resolutionStatus"]
+          },
+          "then": {
+            "properties": { "authorityRef": { "$ref": "record-ref.v1.schema.json" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "resolutionStatus": { "enum": ["not_resolved", "blocked"] } },
+            "required": ["resolutionStatus"]
+          },
+          "then": {
+            "properties": { "authorityRef": { "type": "null" } }
+          }
+        }
+      ]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": { "$ref": "record-ref.v1.schema.json" }
+    },
+    "canonicalState": { "type": "boolean" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "PrincipalRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "principal" } }
+        }
+      ]
+    },
+    "OrientationMapRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "view" } }
+        }
+      ]
+    },
+    "DecisionBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "selectedCandidateId", "selectedByRef", "rationale", "epistemicStatus"],
+      "properties": {
+        "kind": { "enum": ["selected", "held", "rejected_all"] },
+        "selectedCandidateId": {
+          "anyOf": [
+            { "type": "string", "minLength": 1, "maxLength": 500 },
+            { "type": "null" }
+          ]
+        },
+        "selectedByRef": { "$ref": "#/$defs/PrincipalRef" },
+        "rationale": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "epistemicStatus": { "const": "reported" }
+      }
+    },
+    "SelectedDecision": {
+      "allOf": [
+        { "$ref": "#/$defs/DecisionBase" },
+        {
+          "type": "object",
+          "properties": {
+            "kind": { "const": "selected" },
+            "selectedCandidateId": { "type": "string", "minLength": 1, "maxLength": 500 }
+          }
+        }
+      ]
+    },
+    "HeldDecision": {
+      "allOf": [
+        { "$ref": "#/$defs/DecisionBase" },
+        {
+          "type": "object",
+          "properties": {
+            "kind": { "const": "held" },
+            "selectedCandidateId": { "type": "null" }
+          }
+        }
+      ]
+    },
+    "RejectedDecision": {
+      "allOf": [
+        { "$ref": "#/$defs/DecisionBase" },
+        {
+          "type": "object",
+          "properties": {
+            "kind": { "const": "rejected_all" },
+            "selectedCandidateId": { "type": "null" }
+          }
+        }
+      ]
+    }
+  }
+}
