@@ -101,7 +101,7 @@
           "risk": 0.1,
           "cost": 0.05
         },
-        "computedScore": 0.8534,
+        "computedScore": 0.8524,
         "sourceRefs": [{ "kind": "observation", "id": "observation:new-frontier-source-001" }]
       },
       {
@@ -164,7 +164,7 @@
       "bestAlternativeCandidateId": null
     },
     "epistemicStatus": "inferred",
-    "confidence": 0.8534,
+    "confidence": 0.8524,
     "choiceRequired": true,
     "authorizationRequired": true,
     "canonicalState": false,
