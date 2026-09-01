@@ -2,7 +2,7 @@ id: core/node
 title: "core node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-27
+updated: 2026-09-01
 
 purpose: >
   Hold the public core concepts for understanding and using .yawn.
@@ -30,6 +30,7 @@ holds:
   - objective holons and Yawn.bot activation
   - projection and aperture boundaries
   - adaptive inquiry selection and replay receipts
+  - non-authoritative move selection and rightful choice receipts
 
 receives:
   - readme.yawn
@@ -50,6 +51,7 @@ questions:
   - when should a signal attach, nest, link, merge, split, or remain held
   - when should an objective receive its own Yawn and sleeping bot
   - which orientation question or explicit hold is useful now
+  - which move is merely recommended, which move did the rightful principal choose, and what authority remains separately required
 
 links:
   - readme.yawn
@@ -70,6 +72,7 @@ links:
   - core/objective-holon.yawn
   - core/projection-and-aperture.yawn
   - core/inquiry-selection.yawn
+  - core/choice-and-move-selection.yawn
 
 proof:
   source:
@@ -79,6 +82,9 @@ proof:
     - core/memory-update.yawn
     - core/folder-node.yawn
     - core/inquiry-selection.yawn
+    - core/choice-and-move-selection.yawn
     - question-packets/orientation-nine.yawn
+    - schemas/move-selection-receipt.v0.1.schema.json
+    - schemas/choice-event.v0.1.schema.json
     - spec/README.md
   status: draft-backed
