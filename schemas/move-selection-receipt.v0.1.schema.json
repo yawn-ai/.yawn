@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/move-selection-receipt.v0.1.schema.json",
+  "title": "YAWN Move Selection Receipt V0.1",
+  "description": "A noncanonical replay receipt for one move proposal or explicit hold. It is not a choice or authorization.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "revision",
+    "coordinateRef",
+    "principalRef",
+    "orientationRevisionRef",
+    "relationshipRef",
+    "arenaRef",
+    "policyVersion",
+    "candidateMoves",
+    "hardGateResults",
+    "selectedMoveId",
+    "hold",
+    "rankingExplanation",
+    "authorityStatus",
+    "canonicalState",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.move-selection-receipt.v0.1" },
+    "receiptId": { "type": "string", "pattern": "^receipt:[^\\s]+$" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "coordinateRef": { "type": "string", "minLength": 1 },
+    "principalRef": { "type": "string", "pattern": "^principal:[^\\s]+$" },
+    "orientationRevisionRef": { "type": "string", "minLength": 1 },
+    "relationshipRef": { "type": ["string", "null"] },
+    "arenaRef": { "type": ["string", "null"] },
+    "policyVersion": { "const": "yawn.move-selection.v0.1" },
+    "candidateMoves": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": { "$ref": "#/$defs/CandidateMove" }
+    },
+    "hardGateResults": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/HardGateResult" }
+    },
+    "selectedMoveId": { "type": ["string", "null"] },
+    "hold": {
+      "anyOf": [
+        { "$ref": "#/$defs/Hold" },
+        { "type": "null" }
+      ]
+    },
+    "rankingExplanation": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "authorityStatus": {
+      "enum": ["not_requested", "required", "present_unverified", "blocked"]
+    },
+    "canonicalState": { "const": false },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "selectedMoveId": { "type": "string" },
+        "hold": { "type": "null" }
+      }
+    },
+    {
+      "properties": {
+        "selectedMoveId": { "type": "null" },
+        "hold": { "$ref": "#/$defs/Hold" }
+      }
+    }
+  ],
+  "$defs": {
+    "CandidateMove": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "moveId",
+        "kind",
+        "description",
+        "assertedBy",
+        "epistemicStatus",
+        "sourceRefs",
+        "expectedConsequence",
+        "reversible",
+        "affectedRelationships",
+        "authorityRequired",
+        "proofOrCloseCondition",
+        "scoreInputs"
+      ],
+      "properties": {
+        "moveId": { "type": "string", "minLength": 1 },
+        "kind": {
+          "enum": ["inquiry", "hold", "wait", "presence", "exit", "non_participation", "direct_action", "delegated_action"]
+        },
+        "description": { "type": "string", "minLength": 1 },
+        "assertedBy": { "type": "string", "minLength": 1 },
+        "epistemicStatus": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"]
+        },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "expectedConsequence": { "type": "string", "minLength": 1 },
+        "reversible": { "type": "boolean" },
+        "affectedRelationships": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "authorityRequired": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "proofOrCloseCondition": { "type": "string", "minLength": 1 },
+        "scoreInputs": {
+          "type": "object",
+          "additionalProperties": { "type": ["number", "string", "boolean", "null"] }
+        }
+      }
+    },
+    "HardGateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate", "status", "sourceRefs"],
+      "properties": {
+        "gate": {
+          "enum": ["immediate_safety_or_stability", "authority_or_consent", "privacy_visibility_or_egress", "provenance_integrity", "proof_or_falsifier_integrity"]
+        },
+        "status": { "enum": ["clear", "active", "unknown"] },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Hold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason", "reopenCondition"],
+      "properties": {
+        "reason": { "type": "string", "minLength": 1 },
+        "reopenCondition": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
