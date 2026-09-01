@@ -1,0 +1,224 @@
+{
+  "moveSelectionReceipt": {
+    "schemaVersion": "yawn.move-selection-receipt.v0.1",
+    "receiptId": "receipt:move-selection:new-frontier-001",
+    "revision": 1,
+    "orientationMapRef": {
+      "kind": "view",
+      "id": "view:orientation-map:new-frontier-001",
+      "revision": 1,
+      "stateSha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "principalRef": {
+      "kind": "principal",
+      "id": "principal:dave",
+      "revision": 1,
+      "stateSha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "relationshipRef": {
+      "kind": "relationship",
+      "id": "relationship:dave-yawn",
+      "revision": 1,
+      "stateSha256": "3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    "arenaRef": {
+      "kind": "arena",
+      "id": "arena:yawn-core",
+      "revision": 1,
+      "stateSha256": "4444444444444444444444444444444444444444444444444444444444444444"
+    },
+    "sourceRefs": [
+      {
+        "kind": "observation",
+        "id": "observation:new-frontier-source-001",
+        "revision": 1,
+        "stateSha256": "5555555555555555555555555555555555555555555555555555555555555555"
+      }
+    ],
+    "gateAssessments": {
+      "immediateSafetyOrStability": {
+        "status": "clear",
+        "reason": "No immediate safety or stability effect is proposed by a private clarification question.",
+        "assertedByRef": { "kind": "principal", "id": "principal:dave" },
+        "epistemicStatus": "reported",
+        "confidence": 1,
+        "sourceRefs": [{ "kind": "principal", "id": "principal:dave" }]
+      },
+      "authorityOrConsent": {
+        "status": "clear",
+        "reason": "The candidate remains a private proposal and requires a separate choice and authority event before any effect.",
+        "assertedByRef": { "kind": "principal", "id": "principal:dave" },
+        "epistemicStatus": "reported",
+        "confidence": 1,
+        "sourceRefs": [{ "kind": "principal", "id": "principal:dave" }]
+      },
+      "privacyVisibilityOrEgress": {
+        "status": "clear",
+        "reason": "The fixture is private and contains no external disclosure or egress.",
+        "assertedByRef": { "kind": "principal", "id": "principal:dave" },
+        "epistemicStatus": "reported",
+        "confidence": 1,
+        "sourceRefs": [{ "kind": "principal", "id": "principal:dave" }]
+      },
+      "sourceOrProvenance": {
+        "status": "clear",
+        "reason": "The exact source Observation and Orientation Map revision are referenced.",
+        "assertedByRef": { "kind": "principal", "id": "principal:dave" },
+        "epistemicStatus": "reported",
+        "confidence": 1,
+        "sourceRefs": [{ "kind": "observation", "id": "observation:new-frontier-source-001" }]
+      },
+      "proofOrFalsifierIntegrity": {
+        "status": "clear",
+        "reason": "The selected candidate asks for discriminating clarification and does not claim that asking is proof.",
+        "assertedByRef": { "kind": "principal", "id": "principal:dave" },
+        "epistemicStatus": "reported",
+        "confidence": 1,
+        "sourceRefs": [{ "kind": "observation", "id": "observation:new-frontier-source-001" }]
+      }
+    },
+    "candidates": [
+      {
+        "candidateId": "move-candidate:confirm-parent-purpose",
+        "moveRef": "move:ask-principal-to-confirm-parent-and-purpose",
+        "label": "Ask the principal to confirm the proposed parent coordinate and purpose before materialization.",
+        "proposedByRef": { "kind": "actor", "id": "agent:yawn:local-compiler" },
+        "epistemicStatus": "inferred",
+        "expectedConsequence": "The Orientation Map gains an attributed placement and purpose correction without creating or activating a Yawn.",
+        "reversibility": "reversible",
+        "authorityStatus": "required",
+        "authorityRef": null,
+        "gateStatus": "clear",
+        "blockedBy": [],
+        "scoreInputs": {
+          "orientationFit": 0.95,
+          "goalValueFit": 0.92,
+          "relationshipFit": 0.85,
+          "sufficiency": 0.88,
+          "informationGain": 0.85,
+          "proofability": 0.9,
+          "optionPreservation": 0.95,
+          "risk": 0.1,
+          "cost": 0.05
+        },
+        "computedScore": 0.8534,
+        "sourceRefs": [{ "kind": "observation", "id": "observation:new-frontier-source-001" }]
+      },
+      {
+        "candidateId": "move-candidate:materialize-immediately",
+        "moveRef": "move:create-frontier-yawn-now",
+        "label": "Materialize and activate the proposed Frontier Yawn immediately.",
+        "proposedByRef": { "kind": "actor", "id": "agent:yawn:local-compiler" },
+        "epistemicStatus": "inferred",
+        "expectedConsequence": "A new coordinate and runtime steward would exist before the principal has resolved its parent, purpose, and authority.",
+        "reversibility": "partially_reversible",
+        "authorityStatus": "unknown",
+        "authorityRef": null,
+        "gateStatus": "blocked",
+        "blockedBy": ["authorityOrConsent", "proofOrFalsifierIntegrity"],
+        "scoreInputs": {
+          "orientationFit": 0.8,
+          "goalValueFit": 0.85,
+          "relationshipFit": 0.8,
+          "sufficiency": 0.65,
+          "informationGain": 0.5,
+          "proofability": 0.4,
+          "optionPreservation": 0.2,
+          "risk": 0.65,
+          "cost": 0.6
+        },
+        "computedScore": 0.533,
+        "sourceRefs": [{ "kind": "observation", "id": "observation:new-frontier-source-001" }]
+      }
+    ],
+    "rankingPolicy": {
+      "policyVersion": "yawn.move-selection.v0.1",
+      "rule": "hard-gates-then-attributed-weighted-comparison",
+      "weights": {
+        "orientationFit": 0.16,
+        "goalValueFit": 0.14,
+        "relationshipFit": 0.1,
+        "sufficiency": 0.12,
+        "informationGain": 0.1,
+        "proofability": 0.14,
+        "optionPreservation": 0.1,
+        "reversibility": 0.08,
+        "riskPenalty": 0.04,
+        "costPenalty": 0.02
+      },
+      "tieBreakOrder": [
+        "clearer-hard-gates",
+        "higher-proofability",
+        "greater-option-preservation",
+        "greater-reversibility",
+        "lower-risk",
+        "lower-cost",
+        "lexicographic-candidate-id"
+      ]
+    },
+    "outcome": {
+      "kind": "proposal",
+      "selectedCandidateId": "move-candidate:confirm-parent-purpose",
+      "hold": null,
+      "whySelected": "The private clarification is reversible, proofable, low risk, preserves options, and resolves movement-critical uncertainty. This is a recommendation, not a choice or authorization.",
+      "bestAlternativeCandidateId": null
+    },
+    "epistemicStatus": "inferred",
+    "confidence": 0.8534,
+    "choiceRequired": true,
+    "authorizationRequired": true,
+    "canonicalState": false,
+    "createdAt": "2026-09-01T16:00:00Z"
+  },
+  "choiceEvent": {
+    "schemaVersion": "yawn.choice-event.v0.1",
+    "choiceEventId": "choice:new-frontier-confirm-parent-purpose-001",
+    "revision": 1,
+    "principalRef": {
+      "kind": "principal",
+      "id": "principal:dave",
+      "revision": 1,
+      "stateSha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "orientationMapRef": {
+      "kind": "view",
+      "id": "view:orientation-map:new-frontier-001",
+      "revision": 1,
+      "stateSha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "moveSelectionReceiptRef": {
+      "kind": "move_selection_receipt",
+      "id": "receipt:move-selection:new-frontier-001",
+      "revision": 1,
+      "stateSha256": "6666666666666666666666666666666666666666666666666666666666666666"
+    },
+    "decision": {
+      "kind": "selected",
+      "selectedCandidateId": "move-candidate:confirm-parent-purpose",
+      "selectedByRef": {
+        "kind": "principal",
+        "id": "principal:dave",
+        "revision": 1,
+        "stateSha256": "2222222222222222222222222222222222222222222222222222222222222222"
+      },
+      "rationale": "Confirm the map before creating structure.",
+      "epistemicStatus": "reported"
+    },
+    "authorization": {
+      "grantedByThisEvent": false,
+      "resolutionStatus": "not_resolved",
+      "authorityRef": null,
+      "effectAuthorized": false
+    },
+    "sourceRefs": [
+      {
+        "kind": "principal",
+        "id": "principal:dave",
+        "revision": 1,
+        "stateSha256": "2222222222222222222222222222222222222222222222222222222222222222"
+      }
+    ],
+    "canonicalState": false,
+    "createdAt": "2026-09-01T16:01:00Z"
+  }
+}
