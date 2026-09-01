@@ -2,7 +2,7 @@ id: interface/node
 title: "interface node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-08-27
+updated: 2026-09-01
 
 purpose: >
   Hold the five-command brain interface and projection stack.
@@ -18,10 +18,12 @@ holds:
   - shared brand and capability semantics
   - quiet public-root and progressively disclosed public-View shells
   - source-preserving + Yawn creation contract
+  - coordinate-complete New Yawn grid over the canonical Orientation Map
   - local observation-question-art proposal chain
   - local observation-art generation contract
   - dialogue objective compiler and correction operators
   - one-question orientation_inquiry View with source-preserving selection and answer provenance
+  - non-authoritative move proposals and rightful choice boundaries
 
 receives:
   - lived signals
@@ -43,6 +45,8 @@ questions:
   - what changed
   - what objective and structure did the system detect
   - why was this orientation question and presentation selected
+  - what is settled, proposed, or still open at this coordinate
+  - what intelligence is bound here without becoming identity or authority
 
 links:
   - readme.yawn
@@ -53,12 +57,16 @@ links:
   - interface/yawn-brand-v1.yawn
   - interface/yawn-capability-tags-v1.yawn
   - interface/new-yawn-v0.1.yawn
+  - interface/coordinate-complete-new-yawn.yawn
   - interface/local-observation-art-v0.1.yawn
   - interface/objective-compiler.yawn
   - core/inquiry-selection.yawn
+  - core/choice-and-move-selection.yawn
   - question-packets/orientation-nine.yawn
   - schemas/orientation-map.v0.1.schema.json
   - schemas/inquiry-selection-receipt.v0.1.schema.json
+  - schemas/move-selection-receipt.v0.1.schema.json
+  - schemas/choice-event.v0.1.schema.json
 
 proof:
   source:
@@ -68,7 +76,11 @@ proof:
     - interface/move.yawn
     - interface/memory.yawn
     - interface/new-yawn-v0.1.yawn
+    - interface/coordinate-complete-new-yawn.yawn
     - core/inquiry-selection.yawn
+    - core/choice-and-move-selection.yawn
     - schemas/inquiry-selection-receipt.v0.1.schema.json
+    - schemas/move-selection-receipt.v0.1.schema.json
+    - schemas/choice-event.v0.1.schema.json
     - question-packets/orientation-nine.yawn
   status: draft-backed

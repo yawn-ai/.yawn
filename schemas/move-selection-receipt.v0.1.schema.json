@@ -1,0 +1,357 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/move-selection-receipt.v0.1.schema.json",
+  "title": "YAWN Move Selection Receipt V0.1",
+  "description": "A replayable, non-authoritative recommendation or hold over attributed candidate moves. Selection is not rightful choice, authorization, execution, consequence, proof, or update.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "revision",
+    "orientationMapRef",
+    "principalRef",
+    "relationshipRef",
+    "arenaRef",
+    "sourceRefs",
+    "gateAssessments",
+    "candidates",
+    "rankingPolicy",
+    "outcome",
+    "epistemicStatus",
+    "confidence",
+    "choiceRequired",
+    "authorizationRequired",
+    "canonicalState",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.move-selection-receipt.v0.1" },
+    "receiptId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^receipt:move-selection:[^\\s]+$"
+    },
+    "revision": { "type": "integer", "minimum": 1 },
+    "orientationMapRef": { "$ref": "#/$defs/OrientationMapRef" },
+    "principalRef": { "$ref": "#/$defs/PrincipalRef" },
+    "relationshipRef": {
+      "anyOf": [
+        { "$ref": "#/$defs/RelationshipRef" },
+        { "type": "null" }
+      ]
+    },
+    "arenaRef": {
+      "anyOf": [
+        { "$ref": "#/$defs/ArenaRef" },
+        { "type": "null" }
+      ]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": { "$ref": "record-ref.v1.schema.json" }
+    },
+    "gateAssessments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "immediateSafetyOrStability",
+        "authorityOrConsent",
+        "privacyVisibilityOrEgress",
+        "sourceOrProvenance",
+        "proofOrFalsifierIntegrity"
+      ],
+      "properties": {
+        "immediateSafetyOrStability": { "$ref": "#/$defs/GateAssessment" },
+        "authorityOrConsent": { "$ref": "#/$defs/GateAssessment" },
+        "privacyVisibilityOrEgress": { "$ref": "#/$defs/GateAssessment" },
+        "sourceOrProvenance": { "$ref": "#/$defs/GateAssessment" },
+        "proofOrFalsifierIntegrity": { "$ref": "#/$defs/GateAssessment" }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": { "$ref": "#/$defs/MoveCandidate" }
+    },
+    "rankingPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyVersion", "rule", "weights", "tieBreakOrder"],
+      "properties": {
+        "policyVersion": { "const": "yawn.move-selection.v0.1" },
+        "rule": { "const": "hard-gates-then-attributed-weighted-comparison" },
+        "weights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "orientationFit",
+            "goalValueFit",
+            "relationshipFit",
+            "sufficiency",
+            "informationGain",
+            "proofability",
+            "optionPreservation",
+            "reversibility",
+            "riskPenalty",
+            "costPenalty"
+          ],
+          "properties": {
+            "orientationFit": { "const": 0.16 },
+            "goalValueFit": { "const": 0.14 },
+            "relationshipFit": { "const": 0.1 },
+            "sufficiency": { "const": 0.12 },
+            "informationGain": { "const": 0.1 },
+            "proofability": { "const": 0.14 },
+            "optionPreservation": { "const": 0.1 },
+            "reversibility": { "const": 0.08 },
+            "riskPenalty": { "const": 0.04 },
+            "costPenalty": { "const": 0.02 }
+          }
+        },
+        "tieBreakOrder": {
+          "const": [
+            "clearer-hard-gates",
+            "higher-proofability",
+            "greater-option-preservation",
+            "greater-reversibility",
+            "lower-risk",
+            "lower-cost",
+            "lexicographic-candidate-id"
+          ]
+        }
+      }
+    },
+    "outcome": {
+      "oneOf": [
+        { "$ref": "#/$defs/ProposalOutcome" },
+        { "$ref": "#/$defs/HoldOutcome" }
+      ]
+    },
+    "epistemicStatus": { "const": "inferred" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "choiceRequired": { "const": true },
+    "authorizationRequired": { "const": true },
+    "canonicalState": { "const": false },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "OrientationMapRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "view" } }
+        }
+      ]
+    },
+    "PrincipalRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "principal" } }
+        }
+      ]
+    },
+    "RelationshipRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "relationship" } }
+        }
+      ]
+    },
+    "ArenaRef": {
+      "allOf": [
+        { "$ref": "record-ref.v1.schema.json" },
+        {
+          "type": "object",
+          "properties": { "kind": { "const": "arena" } }
+        }
+      ]
+    },
+    "GateAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason", "assertedByRef", "epistemicStatus", "confidence", "sourceRefs"],
+      "properties": {
+        "status": { "enum": ["active", "clear", "unknown"] },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "assertedByRef": { "$ref": "record-ref.v1.schema.json" },
+        "epistemicStatus": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": { "$ref": "record-ref.v1.schema.json" }
+        }
+      }
+    },
+    "ScoreInputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "orientationFit",
+        "goalValueFit",
+        "relationshipFit",
+        "sufficiency",
+        "informationGain",
+        "proofability",
+        "optionPreservation",
+        "risk",
+        "cost"
+      ],
+      "properties": {
+        "orientationFit": { "type": "number", "minimum": 0, "maximum": 1 },
+        "goalValueFit": { "type": "number", "minimum": 0, "maximum": 1 },
+        "relationshipFit": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sufficiency": { "type": "number", "minimum": 0, "maximum": 1 },
+        "informationGain": { "type": "number", "minimum": 0, "maximum": 1 },
+        "proofability": { "type": "number", "minimum": 0, "maximum": 1 },
+        "optionPreservation": { "type": "number", "minimum": 0, "maximum": 1 },
+        "risk": { "type": "number", "minimum": 0, "maximum": 1 },
+        "cost": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "MoveCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateId",
+        "moveRef",
+        "label",
+        "proposedByRef",
+        "epistemicStatus",
+        "expectedConsequence",
+        "reversibility",
+        "authorityStatus",
+        "authorityRef",
+        "gateStatus",
+        "blockedBy",
+        "scoreInputs",
+        "computedScore",
+        "sourceRefs"
+      ],
+      "properties": {
+        "candidateId": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "moveRef": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "label": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "proposedByRef": { "$ref": "record-ref.v1.schema.json" },
+        "epistemicStatus": {
+          "enum": ["observed", "reported", "inferred", "assumed", "predicted", "disputed", "unknown"]
+        },
+        "expectedConsequence": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "reversibility": { "enum": ["reversible", "partially_reversible", "irreversible"] },
+        "authorityStatus": { "enum": ["available", "required", "blocked", "unknown"] },
+        "authorityRef": {
+          "anyOf": [
+            { "$ref": "record-ref.v1.schema.json" },
+            { "type": "null" }
+          ]
+        },
+        "gateStatus": { "enum": ["clear", "blocked", "unknown"] },
+        "blockedBy": {
+          "type": "array",
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "immediateSafetyOrStability",
+              "authorityOrConsent",
+              "privacyVisibilityOrEgress",
+              "sourceOrProvenance",
+              "proofOrFalsifierIntegrity"
+            ]
+          }
+        },
+        "scoreInputs": { "$ref": "#/$defs/ScoreInputs" },
+        "computedScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": { "$ref": "record-ref.v1.schema.json" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "gateStatus": { "const": "clear" } },
+            "required": ["gateStatus"]
+          },
+          "then": {
+            "properties": { "blockedBy": { "type": "array", "maxItems": 0 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "gateStatus": { "enum": ["blocked", "unknown"] } },
+            "required": ["gateStatus"]
+          },
+          "then": {
+            "properties": { "blockedBy": { "type": "array", "minItems": 1 } }
+          }
+        }
+      ]
+    },
+    "ProposalOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "selectedCandidateId", "hold", "whySelected", "bestAlternativeCandidateId"],
+      "properties": {
+        "kind": { "const": "proposal" },
+        "selectedCandidateId": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "hold": { "type": "null" },
+        "whySelected": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "bestAlternativeCandidateId": {
+          "anyOf": [
+            { "type": "string", "minLength": 1, "maxLength": 500 },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "HoldOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "selectedCandidateId", "hold", "whySelected", "bestAlternativeCandidateId"],
+      "properties": {
+        "kind": { "const": "hold" },
+        "selectedCandidateId": { "type": "null" },
+        "hold": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reason", "reopenCondition"],
+          "properties": {
+            "reason": {
+              "enum": [
+                "live_or_unknown_hard_gate",
+                "no_eligible_candidate",
+                "ambiguous_principal_or_relationship",
+                "missing_orientation",
+                "principal_requested_pause"
+              ]
+            },
+            "reopenCondition": { "type": "string", "minLength": 1, "maxLength": 4000 }
+          }
+        },
+        "whySelected": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "bestAlternativeCandidateId": {
+          "anyOf": [
+            { "type": "string", "minLength": 1, "maxLength": 500 },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}
