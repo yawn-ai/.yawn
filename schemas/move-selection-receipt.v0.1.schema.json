@@ -289,7 +289,7 @@
             "required": ["gateStatus"]
           },
           "then": {
-            "properties": { "blockedBy": { "maxItems": 0 } }
+            "properties": { "blockedBy": { "type": "array", "maxItems": 0 } }
           }
         },
         {
@@ -298,7 +298,7 @@
             "required": ["gateStatus"]
           },
           "then": {
-            "properties": { "blockedBy": { "minItems": 1 } }
+            "properties": { "blockedBy": { "type": "array", "minItems": 1 } }
           }
         }
       ]
