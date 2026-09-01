@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/new-yawn-coordinate-workbench-view.v0.1.schema.json",
+  "title": "YAWN New Coordinate Workbench View V0.1",
+  "description": "A strict, rebuildable, noncanonical projection over the YAWN Orientation Map plus intelligence-binding metadata.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "canonicalState",
+    "projectionStatus",
+    "compilerVersion",
+    "viewId",
+    "source",
+    "draftIdentity",
+    "orientationResolutionLevel",
+    "cells",
+    "boundaries"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.new-yawn-coordinate-workbench-view.v0.1" },
+    "canonicalState": { "const": false },
+    "projectionStatus": { "const": "proposed" },
+    "compilerVersion": { "const": "yawn.new-yawn-workbench-compiler.v0.1" },
+    "viewId": {
+      "type": "string",
+      "pattern": "^view:[a-f0-9]{24}$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "draftIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "coordinate", "lifecycle", "principalStatus"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "coordinate": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "lifecycle": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "principalStatus": { "type": "string", "minLength": 1, "maxLength": 500 }
+      }
+    },
+    "orientationResolutionLevel": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Draft represented coverage only; never truth, worth, intelligence, maturity, autonomy, authority, or proof."
+    },
+    "cells": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "prefixItems": [
+        { "$ref": "#/$defs/IdentityCell" },
+        { "$ref": "#/$defs/IntelligenceCell" },
+        { "$ref": "#/$defs/RelationshipCell" },
+        { "$ref": "#/$defs/ArenaCell" },
+        { "$ref": "#/$defs/StateCell" },
+        { "$ref": "#/$defs/PurposeCell" },
+        { "$ref": "#/$defs/LacunaCell" },
+        { "$ref": "#/$defs/BoundaryCell" },
+        { "$ref": "#/$defs/MovementCell" },
+        { "$ref": "#/$defs/ProofCell" }
+      ],
+      "items": false
+    },
+    "boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "persistence",
+        "graphMutation",
+        "providerConnection",
+        "authorityGrant",
+        "externalEffects"
+      ],
+      "properties": {
+        "persistence": { "const": false },
+        "graphMutation": { "const": false },
+        "providerConnection": { "const": false },
+        "authorityGrant": { "const": false },
+        "externalEffects": { "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "EpistemicStatus": {
+      "enum": [
+        "observed",
+        "reported",
+        "inferred",
+        "assumed",
+        "predicted",
+        "disputed",
+        "unknown"
+      ]
+    },
+    "CellStatus": {
+      "enum": [
+        "missing",
+        "unknown",
+        "proposed",
+        "reported",
+        "observed",
+        "accepted",
+        "disputed",
+        "stale",
+        "proof_pending",
+        "verified",
+        "not_applicable"
+      ]
+    },
+    "Cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cellKey",
+        "mapsTo",
+        "status",
+        "assertedBy",
+        "epistemicStatus",
+        "sourceExcerpt"
+      ],
+      "properties": {
+        "cellKey": { "type": "string" },
+        "mapsTo": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 100 }
+        },
+        "status": { "$ref": "#/$defs/CellStatus" },
+        "assertedBy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^(principal|actor|user|assistant|agent|system|service):[^\\s]+$"
+        },
+        "epistemicStatus": { "$ref": "#/$defs/EpistemicStatus" },
+        "sourceExcerpt": {
+          "anyOf": [
+            { "type": "string", "minLength": 1, "maxLength": 220 },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "IdentityCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "identity" } } }
+      ]
+    },
+    "IntelligenceCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "intelligence" } } }
+      ]
+    },
+    "RelationshipCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "relationship" } } }
+      ]
+    },
+    "ArenaCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "arena" } } }
+      ]
+    },
+    "StateCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "state" } } }
+      ]
+    },
+    "PurposeCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "purpose" } } }
+      ]
+    },
+    "LacunaCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "lacuna" } } }
+      ]
+    },
+    "BoundaryCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "boundary" } } }
+      ]
+    },
+    "MovementCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "movement" } } }
+      ]
+    },
+    "ProofCell": {
+      "allOf": [
+        { "$ref": "#/$defs/Cell" },
+        { "type": "object", "properties": { "cellKey": { "const": "proof" } } }
+      ]
+    }
+  }
+}
