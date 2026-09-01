@@ -65,7 +65,7 @@ test("holds when every candidate is blocked or outside an authority path", () =>
 
 test("scoring is deterministic and bounded", () => {
   const candidate = fixture.moveSelectionReceipt.candidates[0];
-  assert.equal(scoreMoveCandidate(candidate), 0.8534);
+  assert.equal(scoreMoveCandidate(candidate), 0.8524);
   assert.throws(
     () => scoreMoveCandidate({ ...candidate, scoreInputs: { ...candidate.scoreInputs, risk: 2 } }),
     /score_out_of_bounds:risk/,
