@@ -1,0 +1,16 @@
+id: notes/source-bound-integration-plan
+status: working
+updated: 2026-09-01
+required_before_ready_for_review:
+  - strict AJV compilation
+  - semantic adversarial tests
+  - YAML parse
+  - hub-link validation
+  - exact-head repository test
+  - independent overlap review against draft PRs 23, 24, and 25
+not_authorized:
+  - merge
+  - production deployment
+  - private source publication
+  - Kickstarter message send
+  - runtime Agent activation
