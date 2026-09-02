@@ -252,7 +252,6 @@ related_contracts:
   - core/move-selection.yawn
   - core/projection-and-aperture.yawn
   - core/proof-and-boundary.yawn
-  - core/choice-and-move-selection.yawn
   - core/objective-holon.yawn
   - schemas/agency-holarchy.v0.2.schema.json
   - schemas/objective-holon.v0.1.schema.json
