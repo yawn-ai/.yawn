@@ -18,31 +18,28 @@
     },
     "OptionalRef": {
       "anyOf": [
-        { "$ref": "#/$defs/Identifier" },
-        { "type": "null" }
+        {
+          "$ref": "#/$defs/Identifier"
+        },
+        {
+          "type": "null"
+        }
       ]
     },
     "Refs": {
       "type": "array",
       "uniqueItems": true,
-      "items": { "$ref": "#/$defs/Identifier" }
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
     },
     "RequiredRefs": {
-      "allOf": [
-        { "$ref": "#/$defs/Refs" },
-        { "minItems": 1 }
-      ]
-    },
-    "EpistemicStatus": {
-      "enum": [
-        "reported",
-        "observed",
-        "inferred",
-        "assumed",
-        "predicted",
-        "disputed",
-        "unknown"
-      ]
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
     },
     "ExpressionProvision": {
       "type": "object",
@@ -50,44 +47,103 @@
       "required": [
         "provisionId",
         "revision",
-        "label",
-        "purpose",
-        "interfaceMode",
+        "modelRef",
         "questionRefs",
         "positionRefs",
-        "targetArenaRef",
+        "purpose",
         "audiencePolicyRef",
+        "arenaRef",
+        "medium",
+        "aperture",
+        "interactionAffordances",
         "allowedProjectionKinds",
         "constraints",
         "sourceRefs",
         "status",
-        "acceptanceEventRef",
         "createdAt"
       ],
       "properties": {
-        "provisionId": { "$ref": "#/$defs/Identifier" },
-        "revision": { "type": "integer", "minimum": 1 },
-        "label": { "$ref": "#/$defs/NonBlankText" },
-        "purpose": { "$ref": "#/$defs/NonBlankText" },
-        "interfaceMode": {
-          "enum": [
-            "explainer",
-            "letter",
-            "timeline",
-            "research",
-            "game",
-            "dialogue",
-            "lesson",
-            "debate",
-            "visual",
-            "data",
-            "other"
-          ]
+        "provisionId": {
+          "$ref": "#/$defs/Identifier"
         },
-        "questionRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "positionRefs": { "$ref": "#/$defs/Refs" },
-        "targetArenaRef": { "$ref": "#/$defs/Identifier" },
-        "audiencePolicyRef": { "$ref": "#/$defs/Identifier" },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "modelRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "questionRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "positionRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "purpose": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "audiencePolicyRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "arenaRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "medium": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "aperture": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "includedRefs",
+            "withheldRefs",
+            "timeRange",
+            "depth",
+            "redactionPolicyRefs"
+          ],
+          "properties": {
+            "includedRefs": {
+              "$ref": "#/$defs/RequiredRefs"
+            },
+            "withheldRefs": {
+              "$ref": "#/$defs/Refs"
+            },
+            "timeRange": {
+              "$ref": "#/$defs/NonBlankText"
+            },
+            "depth": {
+              "enum": [
+                "summary",
+                "standard",
+                "deep",
+                "source_level"
+              ]
+            },
+            "redactionPolicyRefs": {
+              "$ref": "#/$defs/Refs"
+            }
+          }
+        },
+        "interactionAffordances": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "inspect_sources",
+              "ask",
+              "confirm",
+              "reject",
+              "correct",
+              "add_more",
+              "defer",
+              "request_access",
+              "connect",
+              "download",
+              "choose_move"
+            ]
+          }
+        },
         "allowedProjectionKinds": {
           "type": "array",
           "minItems": 1,
@@ -95,25 +151,39 @@
           "items": {
             "enum": [
               "statement",
-              "message",
-              "document",
-              "image",
-              "interface",
-              "lesson",
-              "game_scene",
-              "move_candidate",
+              "question",
+              "explanation",
+              "story",
+              "visual",
+              "request",
+              "invitation",
+              "disclosure",
+              "proposal",
+              "commitment",
               "other"
             ]
           }
         },
         "constraints": {
           "type": "array",
-          "items": { "$ref": "#/$defs/NonBlankText" }
+          "items": {
+            "$ref": "#/$defs/NonBlankText"
+          }
         },
-        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "status": { "enum": ["proposed", "accepted", "retired"] },
-        "acceptanceEventRef": { "$ref": "#/$defs/OptionalRef" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "approved",
+            "retired"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
       }
     },
     "Projection": {
@@ -123,45 +193,71 @@
         "projectionId",
         "revision",
         "provisionRef",
+        "projectorRef",
+        "arenaRef",
         "projectionKind",
-        "assertedBy",
-        "summary",
-        "artifactRef",
-        "targetArenaRef",
-        "audiencePolicyRef",
+        "contentRef",
         "sourceRefs",
         "status",
-        "expressionEventRef",
-        "createdAt"
+        "projectedAt"
       ],
       "properties": {
-        "projectionId": { "$ref": "#/$defs/Identifier" },
-        "revision": { "type": "integer", "minimum": 1 },
-        "provisionRef": { "$ref": "#/$defs/Identifier" },
+        "projectionId": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "provisionRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "projectorRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "arenaRef": {
+          "$ref": "#/$defs/Identifier"
+        },
         "projectionKind": {
           "enum": [
             "statement",
-            "message",
-            "document",
-            "image",
-            "interface",
-            "lesson",
-            "game_scene",
-            "move_candidate",
+            "question",
+            "explanation",
+            "story",
+            "visual",
+            "request",
+            "invitation",
+            "disclosure",
+            "proposal",
+            "commitment",
             "other"
           ]
         },
-        "assertedBy": { "$ref": "#/$defs/Identifier" },
-        "summary": { "$ref": "#/$defs/NonBlankText" },
-        "artifactRef": { "$ref": "#/$defs/OptionalRef" },
-        "targetArenaRef": { "$ref": "#/$defs/Identifier" },
-        "audiencePolicyRef": { "$ref": "#/$defs/Identifier" },
-        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "status": {
-          "enum": ["draft", "proposed", "expressed", "withdrawn", "superseded"]
+        "contentRef": {
+          "$ref": "#/$defs/Identifier"
         },
-        "expressionEventRef": { "$ref": "#/$defs/OptionalRef" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "projected",
+            "withdrawn",
+            "superseded"
+          ]
+        },
+        "projectedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
       }
     },
     "Move": {
@@ -170,63 +266,74 @@
       "required": [
         "moveId",
         "revision",
-        "kind",
+        "projectionRef",
         "description",
         "proposedBy",
-        "projectionRef",
-        "selectionReceiptRef",
+        "expectedConsequences",
         "choiceEventRef",
-        "authorityGrantRefs",
-        "expectedConsequence",
-        "affectedRelationshipRefs",
-        "reversibility",
-        "proofCondition",
+        "authorizationRefs",
+        "proofConditionRef",
         "sourceRefs",
         "status",
-        "executionEventRef",
-        "createdAt"
+        "executedAt"
       ],
       "properties": {
-        "moveId": { "$ref": "#/$defs/Identifier" },
-        "revision": { "type": "integer", "minimum": 1 },
-        "kind": {
-          "enum": [
-            "inquiry",
-            "hold",
-            "wait",
-            "presence",
-            "exit",
-            "non_participation",
-            "direct_action",
-            "delegated_action"
-          ]
+        "moveId": {
+          "$ref": "#/$defs/Identifier"
         },
-        "description": { "$ref": "#/$defs/NonBlankText" },
-        "proposedBy": { "$ref": "#/$defs/Identifier" },
-        "projectionRef": { "$ref": "#/$defs/OptionalRef" },
-        "selectionReceiptRef": { "$ref": "#/$defs/OptionalRef" },
-        "choiceEventRef": { "$ref": "#/$defs/OptionalRef" },
-        "authorityGrantRefs": { "$ref": "#/$defs/Refs" },
-        "expectedConsequence": { "$ref": "#/$defs/NonBlankText" },
-        "affectedRelationshipRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "reversibility": {
-          "enum": ["high", "medium", "low", "irreversible", "unknown"]
+        "revision": {
+          "type": "integer",
+          "minimum": 1
         },
-        "proofCondition": { "$ref": "#/$defs/NonBlankText" },
-        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "projectionRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "description": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "proposedBy": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "expectedConsequences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/NonBlankText"
+          }
+        },
+        "choiceEventRef": {
+          "$ref": "#/$defs/OptionalRef"
+        },
+        "authorizationRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "proofConditionRef": {
+          "$ref": "#/$defs/OptionalRef"
+        },
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
         "status": {
           "enum": [
             "proposed",
             "selected",
-            "chosen",
             "authorized",
             "executed",
             "blocked",
-            "withdrawn"
+            "abandoned"
           ]
         },
-        "executionEventRef": { "$ref": "#/$defs/OptionalRef" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "executedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
       }
     },
     "Consequence": {
@@ -236,61 +343,133 @@
         "consequenceId",
         "revision",
         "moveRef",
-        "observerRef",
         "description",
+        "observedBy",
         "epistemicStatus",
-        "confidence",
+        "causalStatus",
+        "evidenceRefs",
         "sourceRefs",
-        "status",
-        "observedAt",
-        "createdAt"
+        "occurredAt"
       ],
       "properties": {
-        "consequenceId": { "$ref": "#/$defs/Identifier" },
-        "revision": { "type": "integer", "minimum": 1 },
-        "moveRef": { "$ref": "#/$defs/Identifier" },
-        "observerRef": { "$ref": "#/$defs/Identifier" },
-        "description": { "$ref": "#/$defs/NonBlankText" },
-        "epistemicStatus": {
-          "enum": ["reported", "observed", "disputed", "unknown"]
+        "consequenceId": {
+          "$ref": "#/$defs/Identifier"
         },
-        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "status": { "enum": ["observed", "reported", "disputed", "superseded"] },
-        "observedAt": { "type": "string", "format": "date-time" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "moveRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "description": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "observedBy": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "epistemicStatus": {
+          "enum": [
+            "reported",
+            "observed",
+            "inferred",
+            "disputed",
+            "unknown"
+          ]
+        },
+        "causalStatus": {
+          "enum": [
+            "caused",
+            "contributed",
+            "correlated",
+            "disputed",
+            "unknown"
+          ]
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time"
+        }
       }
     },
     "ProofAdjudication": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "proofAdjudicationId",
+        "proofId",
         "revision",
-        "contractRef",
-        "targetRefs",
-        "evidenceRefs",
+        "moveRef",
+        "consequenceRefs",
+        "evaluationRefs",
+        "proofConditionRef",
         "adjudicatedBy",
         "result",
         "rationale",
+        "evidenceRefs",
         "sourceRefs",
-        "canonicalUpdateAuthorizedByThisRecord",
-        "createdAt"
+        "status",
+        "adjudicatedAt"
       ],
       "properties": {
-        "proofAdjudicationId": { "$ref": "#/$defs/Identifier" },
-        "revision": { "type": "integer", "minimum": 1 },
-        "contractRef": { "$ref": "#/$defs/Identifier" },
-        "targetRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "evidenceRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "adjudicatedBy": { "$ref": "#/$defs/Identifier" },
-        "result": {
-          "enum": ["satisfied", "failed", "partial", "contested", "insufficient"]
+        "proofId": {
+          "$ref": "#/$defs/Identifier"
         },
-        "rationale": { "$ref": "#/$defs/NonBlankText" },
-        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "canonicalUpdateAuthorizedByThisRecord": { "const": false },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "moveRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "consequenceRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "evaluationRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "proofConditionRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "adjudicatedBy": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "result": {
+          "enum": [
+            "satisfied",
+            "partially_satisfied",
+            "not_satisfied",
+            "insufficient_evidence",
+            "contested"
+          ]
+        },
+        "rationale": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "recorded",
+            "accepted",
+            "disputed",
+            "superseded"
+          ]
+        },
+        "adjudicatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
       }
     },
     "Update": {
@@ -299,26 +478,59 @@
       "required": [
         "updateId",
         "revision",
-        "targetRef",
-        "supersedesRevisionRef",
-        "patchSummary",
-        "proofAdjudicationRefs",
-        "authorizationEventRef",
+        "triggerRefs",
+        "changedRef",
+        "beforeRevision",
+        "afterRevision",
+        "summary",
+        "authorizedByEventRef",
         "sourceRefs",
         "status",
-        "createdAt"
+        "recordedAt"
       ],
       "properties": {
-        "updateId": { "$ref": "#/$defs/Identifier" },
-        "revision": { "type": "integer", "minimum": 1 },
-        "targetRef": { "$ref": "#/$defs/Identifier" },
-        "supersedesRevisionRef": { "$ref": "#/$defs/OptionalRef" },
-        "patchSummary": { "$ref": "#/$defs/NonBlankText" },
-        "proofAdjudicationRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "authorizationEventRef": { "$ref": "#/$defs/OptionalRef" },
-        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "status": { "enum": ["proposed", "authorized", "applied", "rejected", "superseded"] },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "updateId": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "triggerRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "changedRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "beforeRevision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "afterRevision": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "summary": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "authorizedByEventRef": {
+          "$ref": "#/$defs/OptionalRef"
+        },
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "authorized",
+            "applied",
+            "rejected"
+          ]
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
       }
     },
     "Relation": {
@@ -326,79 +538,136 @@
       "additionalProperties": false,
       "required": [
         "relationId",
+        "revision",
         "fromRef",
+        "relationKind",
         "toRef",
-        "relationType",
         "assertedBy",
         "epistemicStatus",
         "confidence",
         "sourceRefs",
-        "status",
-        "createdAt"
+        "status"
       ],
       "properties": {
-        "relationId": { "$ref": "#/$defs/Identifier" },
-        "fromRef": { "$ref": "#/$defs/Identifier" },
-        "toRef": { "$ref": "#/$defs/Identifier" },
-        "relationType": {
+        "relationId": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fromRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "relationKind": {
           "enum": [
-            "supports",
-            "contradicts",
-            "derived_from",
             "answers",
-            "provisioned_by",
-            "projects_as",
-            "proposes_move",
-            "produces_consequence",
+            "provisions",
+            "projects",
+            "attempts",
+            "observed_as",
             "evaluated_by",
-            "adjudicated_by",
-            "updates",
-            "opens",
+            "measured_against",
+            "supported_by",
+            "conflicts_with",
             "amplifies",
             "mutes",
-            "couples",
-            "decouples",
-            "about",
-            "depends_on",
-            "part_of",
-            "related_to",
+            "couples_to",
+            "decouples_from",
+            "derived_from",
+            "updates",
+            "opens_question",
+            "represented_by",
             "other"
           ]
         },
-        "assertedBy": { "$ref": "#/$defs/Identifier" },
-        "epistemicStatus": { "$ref": "#/$defs/EpistemicStatus" },
-        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
-        "status": { "enum": ["proposed", "accepted", "disputed", "superseded"] },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "toRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "assertedBy": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "epistemicStatus": {
+          "enum": [
+            "reported",
+            "observed",
+            "inferred",
+            "assumed",
+            "predicted",
+            "disputed",
+            "unknown"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "reported",
+            "accepted_as_attributed",
+            "disputed",
+            "superseded"
+          ]
+        }
       }
     },
     "TraversalView": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["viewKind", "canonicalState", "stageOrder", "rule"],
+      "required": [
+        "viewId",
+        "modelRef",
+        "canonicalSemanticState",
+        "defaultOrder",
+        "visibleRefs",
+        "sourceRefs",
+        "createdAt"
+      ],
       "properties": {
-        "viewKind": { "const": "recursive_cognitive_passage" },
-        "canonicalState": { "const": false },
-        "stageOrder": {
-          "type": "array",
-          "minItems": 10,
-          "maxItems": 10,
-          "prefixItems": [
-            { "const": "question" },
-            { "const": "position" },
-            { "const": "expression_provision" },
-            { "const": "projection" },
-            { "const": "move" },
-            { "const": "consequence" },
-            { "const": "evaluation" },
-            { "const": "proof_adjudication" },
-            { "const": "update" },
-            { "const": "question" }
-          ],
-          "items": false
+        "viewId": {
+          "$ref": "#/$defs/Identifier"
         },
-        "rule": { "$ref": "#/$defs/NonBlankText" }
+        "modelRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "canonicalSemanticState": {
+          "const": false
+        },
+        "defaultOrder": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "question",
+              "position",
+              "expression_provision",
+              "projection",
+              "move",
+              "consequence",
+              "evaluation",
+              "proof_adjudication",
+              "update",
+              "next_question_or_hold"
+            ]
+          }
+        },
+        "visibleRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "sourceRefs": {
+          "$ref": "#/$defs/RequiredRefs"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
       }
     }
   }
