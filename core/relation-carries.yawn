@@ -1,0 +1,81 @@
+id: core/relation-carries
+title: "what a relation step carries — grants, obligations, value, coordination; the slash command as capability invocation"
+kind: ontology-contract
+status: draft-0.1
+updated: 2026-09-02
+proposed_by: agent:anthropic:claude-code
+epistemic_status: inferred
+epistemic_note: "Dave's source words are reported in the linked dave.yawn record; this contract is @claude's synthesis and stays a proposal until Dave rules"
+owner_ruling: pending
+rfc: rfcs/0004-slash-command-as-capability-invocation.md
+depends_on:
+  - core/relation-address (yawn-ai/.yawn#27, proposed)
+  - core/open-relation-port (yawn-ai/.yawn#27, proposed)
+  - core/holarchy
+  - core/proof-and-boundary
+
+definition: >
+  A relation step (A/B) is not only a traversal; it carries. What it carries
+  is the grants, obligations, value delivery, and coordination protocol that
+  actually flow between its endpoints while the step is active. A slash
+  command (/verb) is a capability invocation: a Move addressed at the
+  innermost relation step of the address it is issued inside. Its authority is
+  exactly what that step carries, intersected with current availability and an
+  explicit rightful event. The same glyph names the noun and the verb because
+  they are one operator seen from two standpoints.
+
+carries:
+  grants: "capabilities the from-endpoint makes invocable for the to-endpoint; a subset of what the grantor rightfully holds; directional; revocable"
+  obligations: "what each endpoint owes the other while the step is active (receipts, cursor advance, proof, reply)"
+  value_delivery: "what actually flows across the step (a brief, a decision, a proof, attention, a payment)"
+  coordination_protocol: "the message and receipt grammar the endpoints agree to (e.g. yawn.collaboration-message.v1)"
+  revocation: "a grantor event; stale input or a failed check suspends, it never widens"
+
+slash_command:
+  definition: "a capability invocation: a Move addressed at a relation step"
+  reading: "<relation address> + /<verb> => perform verb using only what the innermost step carries"
+  examples:
+    - "yawn.bot/dave + /capabilities => render what the yawn.bot->dave step carries (owner aperture)"
+    - "yawn.bot + /capabilities => render the capability types the shared ontology defines (public View; nothing granted)"
+    - "yawn.bot/claude + /loop => invoke loop with the yawn.bot->claude grants; if loop is not carried, the invocation is a proposal"
+  view_commands: "a slash command that names a View (/ontology, /frontier) is a projection change, not an effect; it needs no grant beyond read"
+
+invariants:
+  - "A step cannot mint capability: carries.grants is a subset of what the grantor rightfully holds (holarchy inheritance rule)."
+  - "Carrying is directional: the inverse View does not carry the same grants unless declared."
+  - "A carried grant is not availability and not proof: ability, access, authority, availability, and proof stay distinct."
+  - "No invocation from nowhere: a slash command with no relation address resolves against the Open Relation Port and can only propose."
+  - "Authority = carried grant ∩ current availability ∩ explicit rightful event; confidence, habit, and prior success never widen it."
+  - "An invocation with an external effect emits the same receipts as any Move, with the relation address on the receipt so replay shows which relation was exercised."
+  - "Inheritance is by reference: yawn.bot/<principal>/<coordinate> reaches the shared coordinate through the principal's step; no copy of the shared record is made under the principal."
+
+taxonomy_view:
+  trigger: "selecting the slash in a rendered address"
+  discloses:
+    - the two endpoints (the two bots or principals) and their holonic positions
+    - relation type and direction
+    - what the step carries (grants with boundaries, obligations, value delivery, protocol)
+    - source, epistemic status, effective time, and revocation state
+  boundary: "a View; selecting it changes no permission, truth, or state"
+
+boundary: >
+  This contract is additive and proposed. It grants nothing, changes no
+  schema on main, and makes no current implementation conformant. Absent
+  `carries` means unknown, not nothing.
+
+proof:
+  source:
+    - dave.yawn/Preferences/YAWN_BOT_SLASH_ONTOLOGY_INHERITANCE_AND_MAIL_PRIMARY_2026_09_02.yawn
+    - dave.yawn/Yawns/RELATIONSHIP_SLASH_QUESTIONS.yawn
+    - yawn-ai/.yawn#27 core/relation-address.yawn
+    - yawn-ai/yawn.bot#109 YAWNS/Product/YAWN_SHARED_PUBLIC_COGNITIVE_COORDINATES.yawn
+    - supabase yawn_capabilities: 9 owner grants + 6 execution-delegate grants = 15 on 2026-09-02
+  falsifier: "a legitimate real invocation whose authority cannot be derived from the address's carried grants plus a rightful event"
+  status: proposal-pending-owner-ruling
+
+links:
+  - rfcs/0004-slash-command-as-capability-invocation.md
+  - core/holarchy.yawn
+  - core/proof-and-boundary.yawn
+  - core/projection-and-aperture.yawn
+  - spec/ontology.md
