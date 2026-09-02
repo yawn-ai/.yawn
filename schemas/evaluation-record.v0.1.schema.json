@@ -192,14 +192,12 @@
       }
     },
     "RequiredRefs": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/Refs"
-        },
-        {
-          "minItems": 1
-        }
-      ]
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
     },
     "Criterion": {
       "type": "object",
