@@ -2,7 +2,8 @@ id: core/proof-and-boundary
 title: "proof and boundary"
 kind: safety-protocol
 status: v1
-updated: 2026-08-17
+evaluation_extension_status: draft-0.1
+updated: 2026-09-01
 
 contract:
   state: "only authorized events update canonical materialized state"
@@ -15,6 +16,9 @@ safety_rail:
   - memory is not objective record
   - ai output is not authority
   - intensity is not truth
+  - confidence is not correctness
+  - consequence is not judgment
+  - Evaluation is not proof
 
 labels:
   - known
@@ -33,19 +37,44 @@ separate_status_dimensions:
   - loop
   - axis_resolution
   - presentation
+  - evaluation
+  - proof_adjudication
 
 transition_boundary:
   - "Desire cannot authorize action."
+  - "A recommendation cannot become rightful choice without an attributed choice event."
+  - "Choice cannot authorize an external effect."
   - "A move cannot mark itself successful."
-  - "Proof evaluates results; it does not erase intent, cost, or unintended effects."
+  - "A consequence records what became observable; it does not emit a universal verdict."
+  - "An Evaluation records who assessed what, according to which criteria; it does not satisfy its own proof contract."
+  - "Proof evaluates specified claims or results; it does not erase intent, cost, conflicting judgments, or unintended effects."
+  - "Proof permits only the update covered by the relevant authority and event."
+
+evaluation_boundary:
+  canonical_term: Evaluation
+  human_alias: Judgment
+  draft_schema: schemas/evaluation-record.v0.1.schema.json
+  required_distinctions:
+    evaluator: "the attributed Agent, principal, delegate, or adjudicator making the assessment"
+    target: "the Question, Position, provision, Projection, Move, Consequence, Evaluation, Proof state, Update, relationship, or criterion being assessed"
+    criteria: "the goals, values, needs, norms, boundaries, predictions, preferences, contracts, or comparisons used"
+    assessment: "criterion-level and overall direction with rationale"
+    epistemic_status: "how the evaluator knows or infers the assessment"
+    authority_status: "what role the evaluation has and does not have"
+    proof_status: "not proof, proof candidate, or linked to a separate adjudication"
+  rules:
+    - "Multiple Evaluations may conflict without forced consensus."
+    - "A principal's Evaluation may be decisive for their own preference or meaning while remaining non-authoritative for another principal or an external effect."
+    - "A delegated Evaluation remains inside its grant and cannot silently inherit terminal goals or values."
+    - "Evaluating an Evaluation opens metacognitive inquiry; recursion alone adds no evidence or authority."
 
 allowed_material: >
-  A .yawn may hold intuition, dreams, feelings, hypotheses, fears, hopes, and
-  interpretations, but it should label them honestly.
+  A .yawn may hold intuition, dreams, feelings, hypotheses, fears, hopes,
+  interpretations, and judgments, but it should label and attribute them honestly.
 
 proof_can_be:
   - observed outcome
-  - completed action
+  - completed authorized action
   - external artifact
   - timestamped note
   - message sent or received
@@ -59,4 +88,5 @@ proof:
     - references/scientific-frame.yawn
     - templates/proof.yawn
     - migrations/2026-08-17-canonical-extension.yawn
-  status: seed-backed
+    - core/source-bound-mental-model.yawn
+  status: seed-backed-with-draft-evaluation-extension
