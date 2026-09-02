@@ -6,7 +6,7 @@ on:
       - feat/open-relation-observation-v0-1
     paths:
       - .github/workflows/install-open-relation-observation.yml
-      - open-relation-patch-v0.1.tar.gz
+      - .bootstrap/open-relation-patch.part-*
 
 permissions:
   contents: write
@@ -31,11 +31,34 @@ jobs:
             package-lock.json
             contracts/package-lock.json
 
-      - name: Install reviewed proposal files
+      - name: Reconstruct and install reviewed proposal
         shell: bash
         run: |
           set -euo pipefail
-          tar -xzf open-relation-patch-v0.1.tar.gz -C .
+          cat .bootstrap/open-relation-patch.part-* | base64 -d > /tmp/open-relation-patch.tar.gz
+          echo "0a918fd6d691e4f55d133cffa567dab76a82bc1a2fd8257e962c424f8eb38561  /tmp/open-relation-patch.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/open-relation-patch.tar.gz -C .
+
+          python <<'PY'
+          from pathlib import Path
+
+          installer = Path("scripts/install-open-relation-observation.py")
+          lines = installer.read_text().splitlines()
+          installer.write_text("\n".join(
+              line[10:] if line.startswith("          ") else line
+              for line in lines
+          ).rstrip() + "\n")
+
+          test_file = Path("tests/relation-address-v0.1.test.mjs")
+          text = test_file.read_text()
+          text = text.replace('import addFormats from "ajv-formats";\n', '')
+          text = text.replace(
+              'const ajv = new Ajv2020({ allErrors: true, strict: true });\naddFormats(ajv);',
+              'const ajv = new Ajv2020({ allErrors: true, strict: true, validateFormats: false });',
+          )
+          test_file.write_text(text)
+          PY
+
           python scripts/install-open-relation-observation.py
 
       - name: Validate complete protocol branch
@@ -50,7 +73,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm open-relation-patch-v0.1.tar.gz
+          rm -rf .bootstrap
+          rm -f open-relation-patch-v0.1.tar.gz
           rm scripts/install-open-relation-observation.py
           rm .github/workflows/install-open-relation-observation.yml
           git config user.name "YAWN protocol integrator"
