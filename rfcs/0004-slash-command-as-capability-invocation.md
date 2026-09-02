@@ -60,6 +60,7 @@ carries:
     - capability: yawn.read
       boundary: { scope: owner_agent_space }
       granted_by: user:dave
+      grant_ref: execution-relationship:dave-yawn-execution-delegate   # the explicit grant record; the path never grants
       revocable: true
   obligations:       # what each endpoint owes the other while the step is active (receipts, cursor advance, proof)
     - "append receipts to the shared thread"
@@ -73,6 +74,9 @@ Invariants:
 
 1. `carries.grants` is a **subset** of what the from-endpoint rightfully holds;
    a step cannot mint capability (holarchy inheritance rule, unchanged).
+   **A path grants nothing**: `pathGrantsAuthority` stays `false` (PR #27);
+   every carried grant references an explicit grant record via `grant_ref`,
+   and a `carries` block without `grant_ref` carries no authority.
 2. Carrying is **directional**; the inverse View (`B/A`) does not carry the same
    grants unless declared.
 3. A declared grant is **not availability** and **not proof** (the
@@ -119,6 +123,12 @@ principal's declared step. The principal **references** the shared meaning; the
 step **carries** the principal's grants. No copy of the shared record is made
 under the principal (PR yawn-ai/yawn.bot#109, "Dave references them; he does
 not privately own or duplicate their meanings").
+
+### 3.4 Illegal casts
+
+capability → permission · path → grant · carried grant → availability ·
+carried grant → proof of delivery · coordination protocol → agreement ·
+attention or value delivery → authority.
 
 ## 4. Alternatives and counterexamples
 

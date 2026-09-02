@@ -25,7 +25,7 @@ definition: >
   they are one operator seen from two standpoints.
 
 carries:
-  grants: "capabilities the from-endpoint makes invocable for the to-endpoint; a subset of what the grantor rightfully holds; directional; revocable"
+  grants: "capabilities the from-endpoint makes invocable for the to-endpoint; a subset of what the grantor rightfully holds; directional; revocable; each grant carries a grant_ref to an explicit grant record (an AuthorityGrant or execution relationship) — the path itself never grants"
   obligations: "what each endpoint owes the other while the step is active (receipts, cursor advance, proof, reply)"
   value_delivery: "what actually flows across the step (a brief, a decision, a proof, attention, a payment)"
   coordination_protocol: "the message and receipt grammar the endpoints agree to (e.g. yawn.collaboration-message.v1)"
@@ -41,6 +41,7 @@ slash_command:
   view_commands: "a slash command that names a View (/ontology, /frontier) is a projection change, not an effect; it needs no grant beyond read"
 
 invariants:
+  - "A path grants nothing: pathGrantsAuthority stays false (relation-address); a grant exists only as an explicit grant record referenced by grant_ref, and a carries block without grant_ref carries no authority."
   - "A step cannot mint capability: carries.grants is a subset of what the grantor rightfully holds (holarchy inheritance rule)."
   - "Carrying is directional: the inverse View does not carry the same grants unless declared."
   - "A carried grant is not availability and not proof: ability, access, authority, availability, and proof stay distinct."
@@ -48,6 +49,14 @@ invariants:
   - "Authority = carried grant ∩ current availability ∩ explicit rightful event; confidence, habit, and prior success never widen it."
   - "An invocation with an external effect emits the same receipts as any Move, with the relation address on the receipt so replay shows which relation was exercised."
   - "Inheritance is by reference: yawn.bot/<principal>/<coordinate> reaches the shared coordinate through the principal's step; no copy of the shared record is made under the principal."
+
+illegal_casts:
+  - "capability -> permission"
+  - "path -> grant"
+  - "carried grant -> availability"
+  - "carried grant -> proof of delivery"
+  - "coordination protocol -> agreement"
+  - "attention or value delivery -> authority"
 
 taxonomy_view:
   trigger: "selecting the slash in a rendered address"
