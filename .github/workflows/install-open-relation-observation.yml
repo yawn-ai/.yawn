@@ -40,6 +40,7 @@ jobs:
           tar -xzf /tmp/open-relation-patch.tar.gz -C .
 
           python <<'PY'
+          import json
           from pathlib import Path
 
           installer = Path("scripts/install-open-relation-observation.py")
@@ -57,6 +58,28 @@ jobs:
               'const ajv = new Ajv2020({ allErrors: true, strict: true, validateFormats: false });',
           )
           test_file.write_text(text)
+
+          schema_file = Path("schemas/relation-address.v0.1.schema.json")
+          schema = json.loads(schema_file.read_text())
+          for conditional in schema["allOf"]:
+              steps = conditional.get("then", {}).get("properties", {}).get("steps")
+              if steps is not None:
+                  steps["type"] = "array"
+          schema_file.write_text(json.dumps(schema, indent=2) + "\n")
+
+          readme = Path("README.md")
+          readme_text = readme.read_text()
+          legacy_link = "[Local observation-art contract](interface/local-observation-art-v0.1.yawn)"
+          if legacy_link not in readme_text:
+              anchor = "[Relational Observation schema](schemas/relational-observation.v0.1.schema.json)\n"
+              if anchor not in readme_text:
+                  raise SystemExit("README relational Observation anchor missing")
+              readme_text = readme_text.replace(
+                  anchor,
+                  anchor + "\n" + legacy_link + "\n",
+                  1,
+              )
+              readme.write_text(readme_text)
           PY
 
           python scripts/install-open-relation-observation.py
