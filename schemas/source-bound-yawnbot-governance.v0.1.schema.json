@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/source-bound-yawnbot-governance.v0.1.schema.json",
+  "title": "YAWN Source-Bound Yawnbot Governance Records V0.1",
+  "description": "Runtime binding, audience policy, and non-collapse boundaries for a source-bound Yawnbot package.",
+  "$defs": {
+    "Identifier": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S" },
+    "NonBlankText": { "type": "string", "minLength": 1, "maxLength": 64000, "pattern": "\\S" },
+    "OptionalRef": {
+      "anyOf": [
+        { "$ref": "#/$defs/Identifier" },
+        { "type": "null" }
+      ]
+    },
+    "Refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/Identifier" }
+    },
+    "RequiredRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/Identifier" }
+    },
+    "RuntimeBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "role", "agentRef", "questionRefs", "authorityGrantRefs", "activationReceiptRefs", "scope", "stopOrRetireConditions"],
+      "properties": {
+        "status": { "enum": ["none", "candidate", "sleeping", "active", "retired"] },
+        "role": { "const": "mental_model_steward" },
+        "agentRef": { "$ref": "#/$defs/OptionalRef" },
+        "questionRefs": { "$ref": "#/$defs/Refs" },
+        "authorityGrantRefs": { "$ref": "#/$defs/Refs" },
+        "activationReceiptRefs": { "$ref": "#/$defs/Refs" },
+        "scope": { "$ref": "#/$defs/NonBlankText" },
+        "stopOrRetireConditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/NonBlankText" }
+        }
+      }
+    },
+    "AudiencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audiencePolicyId", "revision", "subjectRefs", "ownerRefs", "audienceRefs", "visibility", "disclosureIntent", "publicationStatus", "consentRefs", "authorizationEventRef", "redactionRules", "requestAccessAllowed", "sourceRefs", "boundary", "createdAt"],
+      "properties": {
+        "audiencePolicyId": { "$ref": "#/$defs/Identifier" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "subjectRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "ownerRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "audienceRefs": { "$ref": "#/$defs/Refs" },
+        "visibility": { "enum": ["private", "restricted", "shared", "public_candidate", "public"] },
+        "disclosureIntent": { "enum": ["hold", "review", "request_access", "publish_candidate", "publish"] },
+        "publicationStatus": { "enum": ["not_authorized", "authorized", "published", "revoked"] },
+        "consentRefs": { "$ref": "#/$defs/Refs" },
+        "authorizationEventRef": { "$ref": "#/$defs/OptionalRef" },
+        "redactionRules": { "type": "array", "items": { "$ref": "#/$defs/NonBlankText" } },
+        "requestAccessAllowed": { "type": "boolean" },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["intentIsPublication", "connectionWidensVisibility", "inheritanceWidensVisibility"],
+          "properties": {
+            "intentIsPublication": { "const": false },
+            "connectionWidensVisibility": { "const": false },
+            "inheritanceWidensVisibility": { "const": false }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "PackageBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourcePreserved", "generatedTextIsAcceptedState", "answerIsTruth", "expressionProvisionIsProjection", "projectionIsMove", "expectedConsequenceIsObservedConsequence", "consequenceIsEvaluation", "evaluationIsProof", "proofIsUpdateAuthorization", "moveSelfProves", "exposureRequirementPublishes", "connectionImportsTruthOrAuthority", "characterViewIsAgent", "defaultTraversalIsOntology", "externalEffectsAuthorized", "canonicalMutationAuthorized"],
+      "properties": {
+        "sourcePreserved": { "const": true },
+        "generatedTextIsAcceptedState": { "const": false },
+        "answerIsTruth": { "const": false },
+        "expressionProvisionIsProjection": { "const": false },
+        "projectionIsMove": { "const": false },
+        "expectedConsequenceIsObservedConsequence": { "const": false },
+        "consequenceIsEvaluation": { "const": false },
+        "evaluationIsProof": { "const": false },
+        "proofIsUpdateAuthorization": { "const": false },
+        "moveSelfProves": { "const": false },
+        "exposureRequirementPublishes": { "const": false },
+        "connectionImportsTruthOrAuthority": { "const": false },
+        "characterViewIsAgent": { "const": false },
+        "defaultTraversalIsOntology": { "const": false },
+        "externalEffectsAuthorized": { "const": false },
+        "canonicalMutationAuthorized": { "const": false }
+      }
+    }
+  }
+}
