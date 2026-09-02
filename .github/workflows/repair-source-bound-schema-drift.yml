@@ -70,8 +70,6 @@ jobs:
           }
           NODE
 
-          rm .github/workflows/repair-source-bound-schema-drift.yml
-
       - name: Validate complete protocol branch
         run: |
           npm ci
@@ -80,10 +78,11 @@ jobs:
           npm --prefix contracts ci
           npm --prefix contracts run check
 
-      - name: Commit exact repaired state
+      - name: Commit exact repaired state and remove helper
         shell: bash
         run: |
           set -euo pipefail
+          rm .github/workflows/repair-source-bound-schema-drift.yml
           git config user.name "YAWN protocol repair"
           git config user.email "hi@yawn.ai"
           git add -A
