@@ -14,6 +14,7 @@ semantic_sources:
   orientation: core/orientation.yawn
   orientation_map: schemas/orientation-map.v0.1.schema.json
   inquiry_selection: core/inquiry-selection.yawn
+  source_bound_model: core/source-bound-mental-model.yawn
   decision_template: templates/decision.yawn
   proof_boundary: core/proof-and-boundary.yawn
   execution_relationship: schemas/execution-relationship.v1.schema.json
@@ -30,6 +31,8 @@ inputs:
     - hard_gate_assessments
     - policy_version
   when_available:
+    - governing_question_refs
+    - current_position_refs
     - objective_and_value_refs
     - lacuna_and_dispute_refs
     - affected_relationship_refs
@@ -58,6 +61,19 @@ selection_passes:
     name: interaction_fit
     priority: [explicit_current_choice, accessibility, accepted_presentation_preference, answerability, friction]
 
+selection_vs_evaluation:
+  rule: >
+    Selection compares predicted candidate fit before rightful choice.
+    Evaluation is a later or concurrent attributed assessment of a Position,
+    provision, Projection, Move, Consequence, proof-readiness state, or Update
+    against explicit criteria. Neither operation proves a claim, supplies the
+    principal's choice, or authorizes an effect.
+  learning_boundary: >
+    Observed Consequences, later Evaluations, and Proof adjudications may become
+    source material for a new Orientation Map and move-selection receipt. They
+    do not retroactively change what the prior selector knew or convert the
+    prior recommendation into a proved decision.
+
 result:
   allowed: [selected_move_proposal, explicit_hold]
   foreground_limit: 1
@@ -72,7 +88,8 @@ receipt:
   boundary: >
     The receipt may prove deterministic selection from pinned inputs. It cannot
     prove the selected claim true, authenticate the principal's choice, mutate
-    the Orientation Map, or authorize execution.
+    the Orientation Map, authorize execution, predict the actual consequence,
+    determine a later Evaluation, or supply the Proof result.
 
 illegal_casts:
   - "rank -> importance or truth"
@@ -80,6 +97,9 @@ illegal_casts:
   - "choice -> authorization"
   - "capability -> permission"
   - "execution -> consequence"
+  - "expected consequence -> observed consequence"
+  - "consequence -> evaluation"
+  - "evaluation -> proof"
   - "consequence -> proof"
   - "acceptance -> truth"
 
@@ -88,4 +108,5 @@ proof:
   falsifier: >
     Equivalent effective inputs do not replay to the same proposal or hold, or
     the policy suppresses a safer/authorized option, hides a losing candidate,
-    or allows a score to bypass a hard gate.
+    allows a score to bypass a hard gate, or retrospectively rewrites its input
+    because a later consequence, judgment, or proof differed from prediction.
