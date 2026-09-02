@@ -2,10 +2,11 @@ id: interface/node
 title: "interface node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-08-27
+updated: 2026-09-01
 
 purpose: >
-  Hold the five-command brain interface and projection stack.
+  Hold the five-command brain interface, projection stack, and progressively
+  disclosed source-bound Yawnbot workbench.
 
 holds:
   - mirror
@@ -18,6 +19,8 @@ holds:
   - shared brand and capability semantics
   - quiet public-root and progressively disclosed public-View shells
   - source-preserving + Yawn creation contract
+  - coordinate-complete New Yawn resolution View
+  - source-bound Yawnbot compiler and recursive cognitive passage
   - local observation-question-art proposal chain
   - local observation-art generation contract
   - dialogue objective compiler and correction operators
@@ -28,12 +31,15 @@ receives:
   - current frames
   - missing bridges
   - proof and replay needs
+  - transcripts, documents, images, repositories, events, and prior Yawns
 
 produces:
   - cognition handles
   - frame maps
+  - attributed Questions and provisional Positions
+  - bounded expression provisions
   - movement choices
-  - replay surfaces
+  - criterion-visible Evaluation and replay surfaces
 
 questions:
   - what is here
@@ -43,6 +49,12 @@ questions:
   - what changed
   - what objective and structure did the system detect
   - why was this orientation question and presentation selected
+  - what is this Yawnbot trying to resolve
+  - what is its current attributed Position
+  - how should that Position be provisioned into this interaction
+  - what was actually expressed or moved
+  - what consequence was observed
+  - who judged it, according to what, and what would change that judgment
 
 links:
   - readme.yawn
@@ -53,12 +65,18 @@ links:
   - interface/yawn-brand-v1.yawn
   - interface/yawn-capability-tags-v1.yawn
   - interface/new-yawn-v0.1.yawn
+  - interface/new-yawn-coordinate-resolution-v0.1.yawn
+  - interface/source-bound-yawnbot-workbench-v0.1.yawn
   - interface/local-observation-art-v0.1.yawn
   - interface/objective-compiler.yawn
   - core/inquiry-selection.yawn
+  - core/move-selection.yawn
+  - core/source-bound-mental-model.yawn
   - question-packets/orientation-nine.yawn
   - schemas/orientation-map.v0.1.schema.json
   - schemas/inquiry-selection-receipt.v0.1.schema.json
+  - schemas/source-bound-yawnbot.v0.1.schema.json
+  - schemas/evaluation-record.v0.1.schema.json
 
 proof:
   source:
@@ -68,7 +86,12 @@ proof:
     - interface/move.yawn
     - interface/memory.yawn
     - interface/new-yawn-v0.1.yawn
+    - interface/new-yawn-coordinate-resolution-v0.1.yawn
+    - interface/source-bound-yawnbot-workbench-v0.1.yawn
     - core/inquiry-selection.yawn
+    - core/move-selection.yawn
+    - core/source-bound-mental-model.yawn
     - schemas/inquiry-selection-receipt.v0.1.schema.json
+    - schemas/source-bound-yawnbot.v0.1.schema.json
     - question-packets/orientation-nine.yawn
   status: draft-backed
