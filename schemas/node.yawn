@@ -2,7 +2,7 @@ id: schemas/node
 title: "schema modules"
 kind: schema-index
 status: active
-updated: 2026-08-27
+updated: 2026-09-01
 
 purpose: >
   Hold machine-valid state-substrate modules and explicitly labeled protocol
@@ -37,6 +37,12 @@ holds:
   - objective-holon.v0.1.schema.json
   - orientation-map.v0.1.schema.json
   - inquiry-selection-receipt.v0.1.schema.json
+  - move-selection-receipt.v0.1.schema.json
+  - evaluation-record.v0.1.schema.json
+  - source-bound-yawnbot-cognition.v0.1.schema.json
+  - source-bound-yawnbot-passage.v0.1.schema.json
+  - source-bound-yawnbot-governance.v0.1.schema.json
+  - source-bound-yawnbot.v0.1.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
@@ -46,9 +52,10 @@ compatibility: >
 module_boundary: >
   The @yawn/contracts package is the stable v1 constitution/runtime bundle.
   These root schemas are the parallel state-substrate v1 modules plus the
-  experimental Agency Holarchy 0.2, Objective Holon 0.1, and Orientation Map
-  0.1 modules. Neither surface is described as the complete schema for every
-  human-readable .yawn file.
+  experimental Agency Holarchy 0.2, Objective Holon 0.1, Orientation Map 0.1,
+  move-selection 0.1, Evaluation 0.1, and Source-Bound Yawnbot 0.1 modules.
+  Neither surface is described as the complete schema for every human-readable
+  .yawn file.
 
 observation_boundary: >
   Observation V1 is an accepted source-backed record that remains valid
@@ -88,9 +95,20 @@ orientation_map_draft: >
   Its inquiry-selection receipt closes the selected-question versus hold result,
   pins prompt and policy inputs, and remains non-authoritative View provenance.
 
+source_bound_yawnbot_draft: >
+  Draft 0.1 preserves source references and compiles correctable cognitive
+  facets plus a graph of Questions, Positions, expression provisions,
+  Character Views, Projections, Moves, Consequences, criterion-relative
+  Evaluations, separate Proof adjudications, Updates, audience policies, and
+  runtime-binding state. The aggregate is noncanonical: source is not accepted
+  cognition, Position is not truth, provision is not Projection, consequence
+  is not judgment, Evaluation is not proof, exposure intent is not publication,
+  and Character View is not Agent.
+
 status_rule: >
   Modal, motivational, epistemic, lifecycle, authority, loop,
-  axis-resolution, and presentation statuses are independent dimensions.
+  axis-resolution, presentation, evaluation, and proof-adjudication statuses
+  are independent dimensions.
 
 proof:
   command: "npm ci && npm test"
