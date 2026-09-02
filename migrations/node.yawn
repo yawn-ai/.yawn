@@ -2,7 +2,7 @@ id: migrations
 title: "protocol migrations"
 kind: folder-node
 status: active
-updated: 2026-08-17
+updated: 2026-09-01
 
 purpose: >
   Preserve the source, decision, compatibility boundary, authority, proof, and
@@ -10,14 +10,18 @@ purpose: >
 
 entries:
   - migrations/2026-08-17-canonical-extension.yawn
+  - migrations/2026-09-01-source-bound-mental-model-v0.1.yawn
 
 rules:
   - migration receipts are .yawn records
   - old source remains attributable through immutable commits or hashes
   - a migration does not promote every historical claim
   - rollback must preserve current naming, authority, privacy, and proof invariants
+  - source compilation remains proposal-only unless a separate attributed disposition event promotes a record
+  - legacy judgments split into attributed Evaluation and separate Proof only when the source supports that distinction
 
 proof:
   source:
     - core/canonical-extension.yawn
+    - core/source-bound-mental-model.yawn
     - spec/serialization.md
