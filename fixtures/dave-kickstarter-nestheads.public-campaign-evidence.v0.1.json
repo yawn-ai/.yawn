@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "yawn.public-source-evidence.v0.1",
+  "evidenceId": "evidence:dave:kickstarter:nestheads:public-campaigns:v0.1",
+  "subjectRef": "model:dave:kickstarter:nestheads",
+  "capturedAt": "2026-09-02T03:00:00Z",
+  "capturedBy": "agent:openai:gpt-5.6-pro",
+  "epistemicStatus": "observed_public_sources",
+  "campaigns": [
+    {
+      "campaignRef": "kickstarter:nestheads:nestheads-whats-in-your-head",
+      "title": "Nestheads - The Game in Your Brain",
+      "status": "cancelled_by_creator",
+      "fundingPeriod": {
+        "opened": "2023-01-03",
+        "closed": "2023-02-14"
+      },
+      "backers": 303,
+      "pledgedUsd": 14417,
+      "goalUsd": 60000,
+      "sourceQuality": "public_secondary_plus_contemporaneous_creator_release",
+      "sourceRefs": [
+        "https://www.kicktraq.com/projects/nestheads/nestheads-whats-in-your-head/",
+        "https://www.prnewswire.com/news-releases/nestheads-open-world-adventure-game-that-merges-cognitive-science-and-gaming-launches-on-kickstarter-301712312.html"
+      ],
+      "openLacunae": [
+        "primary Kickstarter campaign body",
+        "reward tiers",
+        "updates and comments",
+        "cancellation communication",
+        "current supporter contact and consent boundary"
+      ]
+    },
+    {
+      "campaignRef": "kickstarter:nestheads:the-game-in-your-brain",
+      "title": "Nestheads: A Cute Solution to the Mental Health Crisis",
+      "status": "funded",
+      "fundingPeriod": {
+        "opened": "2023-04-21",
+        "closed": "2023-05-23"
+      },
+      "backers": 266,
+      "pledgedUsd": 14651,
+      "goalUsd": 10000,
+      "visibleUpdates": 10,
+      "visibleComments": 18,
+      "lastVisibleUpdate": "2025-04-15",
+      "sourceQuality": "primary_kickstarter_campaign_page",
+      "sourceRefs": [
+        "https://www.kickstarter.com/projects/nestheads/the-game-in-your-brain"
+      ],
+      "openLacunae": [
+        "reward tiers and FAQ",
+        "update bodies",
+        "comment contents",
+        "individual reward and fulfillment state",
+        "refund state",
+        "current backer contact and consent boundary"
+      ]
+    }
+  ],
+  "cohortRelationship": {
+    "uniquePersonCount": null,
+    "cohortOverlap": "unknown",
+    "countsMayBeSummedAsUniquePeople": false,
+    "campaignPromisesMayBeMerged": false,
+    "campaignRewardsMayBeMerged": false,
+    "campaignCommunicationMayBeMerged": false,
+    "reason": "The same person may have backed both campaigns, and campaign status, promises, rewards, communication histories, and present obligations differ."
+  },
+  "projectionGuidance": {
+    "campaignAFriendlyDescription": "the 303 supporters of the earlier cancelled campaign",
+    "campaignBFriendlyDescription": "the 266 backers of the later funded campaign",
+    "prohibitedCombinedClaim": "569 unique backers",
+    "rule": "Every backer-facing expression names its intended campaign cohort or explicitly states when both are addressed under different relationship conditions."
+  },
+  "boundary": {
+    "privateBackerDataIncluded": false,
+    "cohortOverlapInferred": false,
+    "legalConclusionEstablished": false,
+    "fulfillmentEstablished": false,
+    "contactAuthorized": false,
+    "publicationAuthorized": false,
+    "externalEffectsAuthorized": false
+  }
+}
