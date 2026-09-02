@@ -1,0 +1,11 @@
+id: notes/source-bound-validation-receipt
+status: pending-exact-head-proof
+updated: 2026-09-01
+branch: feat/source-bound-mental-model-v0-1
+checks:
+  schema_shape: pending
+  semantic_adversarial_suite: pending
+  yaml_parse: pending
+  hub_links: pending
+  full_repository_tests: pending
+rule: "This receipt is not proof until exact-head automation records the result."
