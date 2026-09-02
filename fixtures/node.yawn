@@ -2,9 +2,9 @@ id: fixtures/node
 title: "protocol fixtures"
 kind: contract-node
 status: active-mixed
-updated: 2026-08-27
+updated: 2026-09-01
 
-purpose: "Hold executable examples for schema, reducer, holarchy, objective, and multi-principal invariants."
+purpose: "Hold executable examples for schema, reducer, holarchy, objective, source-bound mental-model, and multi-principal invariants."
 
 holds:
   - canonical-contracts.v1.json
@@ -14,6 +14,7 @@ holds:
   - dave-good-dad-objective-holon.v0.1.json
   - orientation-map.v0.1.json
   - inquiry-selection-receipt.v0.1.json
+  - dave-kickstarter-nestheads.source-bound-yawnbot.v0.1.json
 
 coverage:
   - versioned canonical interfaces
@@ -29,6 +30,8 @@ coverage:
   - typed objective detection, ratification, sleeping bot binding, and explicit activation
   - nine-axis orientation coverage, deterministic inquiry rank, and presentation/semantic separation
   - replayable selected-question and explicit-hold inquiry receipts with typed provenance
+  - source-preserving compilation into correctable facets, Questions, Positions, provisions, Character Views, Moves, Consequences, Evaluations, Proof adjudications, and Updates
+  - Nestheads/Kickstarter dogfood without private-source publication, invented consequences, or fulfillment claims
 
 proof:
   command: "npm test"
