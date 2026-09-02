@@ -1,0 +1,88 @@
+id: notes/source-bound-overlap-review
+kind: architecture-review
+status: completed-working-review
+updated: 2026-09-01
+reviewer: agent:openai:gpt-5.6-pro
+reviewed:
+  - pull_request: 23
+    title: "Coordinate-complete cognition: type move selection, rightful choice, and New Yawn projection"
+  - pull_request: 24
+    title: "Proposal: coordinate-complete New Yawn workbench"
+  - pull_request: 25
+    title: "Compile New Yawn into coordinate-complete resolution"
+  - pull_request: 26
+    title: "Define source-bound Yawnbots and criterion-relative Evaluation"
+
+finding: >
+  PRs 23, 24, and 25 are nearby attempts to close the same New Yawn and move-selection seam. They should not be merged independently as three parallel canonical stories. PR 26 correctly remains stacked on the smaller PR 25 projection and adds a downstream source-bound grammar rather than another Orientation Map, resolution ladder, inquiry selector, or move selector.
+
+pr_23:
+  unique_value:
+    - explicit rightful Choice Event schema
+    - strongest full path from recommendation through choice, authority, execution, consequence, proof, and update
+    - adversarial tests for recommendation-choice-authorization separation
+  overlap:
+    - move-selection receipt
+    - coordinate-complete New Yawn View
+    - core and interface index edits
+  disposition: >
+    Preserve the Choice Event work as a candidate focused follow-on. Do not copy its entire alternative New Yawn interface or second move-selection story into PR 26. PR 26 therefore uses an external choiceEventRef and keeps the absence of an accepted Choice Event contract visible.
+
+pr_24:
+  unique_value:
+    - runtime compiler, backfill, and correction-path experiments
+    - detailed coordinate header and workbench View
+    - explicit intelligence-binding readout
+  overlap:
+    - parallel New Yawn workbench contract
+    - parallel resolution grid and level semantics
+    - parallel schema and compiler path
+  disposition: >
+    Treat PR 24 as an implementation experiment to mine after the semantic contract settles. Do not merge its parallel workbench schema beside PR 25 without a deliberate port or retirement decision. Reuse only unique runtime/backfill ideas that conform to the accepted projection.
+
+pr_25:
+  unique_value:
+    - smallest coordinate-complete noncanonical View
+    - proposal-only Auto-lacuna and Auto-cohere
+    - compact move-selection receipt without redefining choice
+  overlap:
+    - parent substrate for PR 26
+  disposition: >
+    Keep PR 26 stacked on PR 25. PR 25 owns coordinate resolution and move-selection proposal semantics; PR 26 owns preserved source compilation, Position-as-Answer, expression provision, Character View, Consequence, criterion-relative Evaluation, Proof separation, Update, and recursion.
+
+pr_26_boundary:
+  owns:
+    - source-bound mental-model aggregate
+    - recursive passage as a View
+    - Evaluation as canonical term with Judgment as interface alias
+    - source-to-proposal correction and ratification boundary
+    - expression-provision versus Projection distinction
+    - Nestheads/Kickstarter sanitized dogfood fixture
+  does_not_own:
+    - another Orientation Map
+    - another coordinate resolution ladder
+    - another inquiry selector
+    - a second move selector
+    - canonical Choice Event
+    - runtime compiler or database migration
+    - production UI or publication
+
+recommended_sequence:
+  - validate PR 26 on the exact stacked head
+  - owner-review PR 25 and PR 26 together as distinct layers
+  - decide whether to extract PR 23 Choice Event into a focused additive draft
+  - either port PR 24 runtime/backfill ideas onto the chosen contract or close it as superseded experiment
+  - only then implement the product workbench and persistence layer
+
+risk_if_ignored:
+  - duplicate source-of-truth contracts
+  - conflicting resolution metrics
+  - recommendation and choice semantics drifting by interface
+  - two parallel workbench schemas
+  - future agents selecting whichever draft best fits their preferred answer
+
+boundary:
+  - "This review does not close, merge, supersede, or authorize any pull request."
+  - "Choice Event remains a candidate contract, not silently accepted canon."
+  - "Runtime implementation remains downstream of semantic owner review."
+  - "Exact-head CI remains separate proof."
