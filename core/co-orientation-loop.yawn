@@ -2,7 +2,7 @@ id: core/co-orientation-loop
 title: "co-orientation loop"
 kind: protocol-loop
 status: active
-updated: 2026-07-11
+updated: 2026-09-01
 
 purpose: >
   Define the universal .yawn loop where a system locates itself, a human or
@@ -42,15 +42,37 @@ orientation_layers:
       - active coordinate
 
 loop:
-  - locate the system
-  - receive human expression or another source signal
+  - locate the system and active relationship
+  - receive and preserve human expression or another source signal
   - separate observation from inference
   - mirror attributed alternatives and uncertainty
   - keep correction and disagreement visible
-  - ask, hold, test, move, or deliberately defer
-  - gather proof for specific claims
-  - replay what changed
-  - update durable memory only when authority and proof permit
+  - ask, answer provisionally, hold, test, move, or deliberately defer
+  - provision an intended expression without confusing the provision with an actual Projection
+  - bind rightful choice and exact authority before consequential movement
+  - observe consequences without assuming causation, meaning, success, or failure
+  - record attributed Evaluations against explicit criteria when judgment is useful
+  - adjudicate proof for specific claims against pinned proof conditions
+  - replay what changed and which questions opened, closed, split, or remained held
+  - update durable memory only when authority and suitable proof permit
+
+source_bound_recursive_trace:
+  semantic_source: core/source-bound-mental-model.yawn
+  interface: interface/source-bound-yawnbot-workbench-v0.1.yawn
+  default_view:
+    - Question
+    - Position-as-Answer
+    - Expression-provision
+    - Projection-or-Move
+    - Consequence
+    - Evaluation-as-Judgment
+    - Proof-adjudication
+    - Update
+    - next-Question-or-hold
+  rule: >
+    This is a useful traversal View over the active loop and graph, not a
+    second master loop or mandatory sequence. Every item may be absent,
+    repeated, branched, nested, disputed, or intentionally held.
 
 state_machines:
   capture:
@@ -65,14 +87,34 @@ state_machines:
     - corrected
     - endorsed
     - evidence-updated
+  expression_provision:
+    - none
+    - proposed
+    - approved
+    - retired
   action:
     - none
     - proposed
+    - chosen
     - authorized
     - executing
     - blocked
     - proved
     - failed
+  consequence:
+    - none
+    - reported
+    - observed
+    - inferred
+    - disputed
+    - unknown
+  evaluation:
+    - none
+    - proposed
+    - reported
+    - accepted
+    - disputed
+    - superseded
   proof:
     - none
     - proposed
@@ -89,17 +131,33 @@ movement_rule: >
 projection_rule: >
   Smaller and larger projections share the same orientation revision,
   authority state, and proof state. A projection may omit information but may
-  not create a conflicting truth.
+  not create a conflicting truth. An Expression provision configures a
+  possible interaction; it does not become a Projection until an attributed
+  expression actually enters an Arena.
+
+evaluation_rule: >
+  Evaluation is an attributed, criterion-relative assessment. It may record a
+  principal's meaning or preference, a delegate's bounded analysis, or a proof
+  adjudicator's assessment role, but it remains distinct from the observed
+  consequence, objective task performance, rightful choice, effect authority,
+  and proof result.
 
 boundary:
   - "Human expression and attributed machine inference remain distinguishable."
   - "Shared orientation is a working model, not objective truth."
+  - "An Answer is a Position toward a Question, not truth or closure."
+  - "Expression provision is not Projection, publication, choice, or action."
+  - "A Move is not its consequence, and temporal order alone does not establish causation."
+  - "A consequence is not a universal judgment."
+  - "An Evaluation or confidence score is not proof."
   - "Non-mutation does not imply privacy or prohibit data egress."
   - "External calls, persistence, publication, spending, and world action require separate authority."
-  - "Only proof updates empirical claims in the durable map."
+  - "Only suitable proof and authorized events update empirical claims in the durable map."
 
 proof:
   condition: >
-    A context-free observer can identify every orientation layer, authority
-    boundary, active question, proof state, and allowed transition.
+    A context-free observer can identify every orientation layer, source,
+    governing Question, current Position, expression provision, actual
+    Projection or Move, observed consequence, evaluator and criteria, proof
+    state, authority boundary, and allowed transition.
   status: contract-defined
