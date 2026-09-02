@@ -1,0 +1,36 @@
+id: review/source-bound-mental-model/overlap-map
+kind: review-map
+status: proposed
+updated: 2026-09-01
+stacked_on:
+  pull_request: 25
+  branch: feat/coordinate-complete-new-yawn-v0-1
+reconciles:
+  - pr: 23
+    overlap: "Move selection, rightful choice, and coordinate-complete New Yawn"
+    decision: "Reuse typed selection and choice seams; do not introduce another Move selector."
+  - pr: 24
+    overlap: "New Yawn workbench and resolution cells"
+    decision: "Treat source-bound workbench as a specialization/View, not a competing setup ontology."
+  - pr: 25
+    overlap: "Coordinate-complete resolution, intelligence binding, lacunae, proof, and replay"
+    decision: "Add source compilation, expression provisioning, Evaluation, and portable access boundaries on top of the accepted base proposal."
+  - pr: 14
+    overlap: "Relationship-first ontology layering and dialogical orientation"
+    decision: "Keep Relationship structurally first; keep the recursive passage at the View/action layers."
+new_decisions:
+  - "Judgment is the human label; Evaluation is the attributed protocol record."
+  - "Position is a package role over existing attributed Statement semantics, not another Statement ontology."
+  - "Expression provision is distinct from Projection, and Projection is distinct from Move."
+  - "Consequence is distinct from Evaluation; Evaluation is distinct from Proof and Update authority."
+  - "Character Views do not become Agents through appearance or animation."
+  - "Connection and public-expression intent do not inherit or authorize truth, identity, consent, privacy, authority, Proof, or publication."
+open_review_questions:
+  - "Should Evaluation remain a standalone draft schema or specialize an existing feedback/appraisal record?"
+  - "Which canonical event binds a proposed Position to an attributed Statement?"
+  - "Should the portable aggregate embed normalized envelopes or carry only canonical refs plus cached Views?"
+  - "What retention and revocation rules prevent source-bound modeling from becoming interpersonal surveillance?"
+merge_rule: >
+  Do not merge this branch or overlapping New Yawn drafts independently until
+  terminology, ownership of each seam, migration behavior, and supersession are
+  explicit.
