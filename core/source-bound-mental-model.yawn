@@ -1,0 +1,280 @@
+id: core/source-bound-mental-model
+title: "source-bound mental model and recursive cognitive passage"
+kind: protocol-grammar
+status: working-draft-0.1
+updated: 2026-09-01
+
+purpose: >
+  Define how a Yawnbot may preserve an attributed source, compile correctable
+  cognitive proposals, maintain a relationship to a subject, provision that
+  model into an interaction, learn from consequences, and remain portable
+  without turning generated interpretation, human judgment, interface state,
+  or runtime agency into truth or authority.
+
+one_model_rule: >
+  This contract specializes the shared YAWN ontology. It does not create a
+  second personal ontology, another master loop, a universal psychology, or a
+  canonical claim that every thought must pass through the same stages.
+
+foundational_distinction:
+  yawnbot: >
+    A persistent, addressable mental-model steward for one relationship to a
+    subject. It can retain sources, questions, attributed positions,
+    expression provisions, candidate moves, consequences, evaluations, proof,
+    revisions, and relations. It is not identical to any one answer,
+    expression, character, model provider, or rendered page.
+  relationship: >
+    Structurally first. The Yawnbot exists because an Agent or principal is in
+    a consequential informational relationship with a subject, Arena, other
+    Agent, project, question, artifact, or event.
+  source: >
+    What became available and from where. Exact source material remains
+    distinguishable from every segmentation, summary, label, inference, and
+    proposed model compiled from it.
+
+substrate:
+  form: typed-directed-graph
+  rule: >
+    Questions, positions, provisions, projections, moves, consequences,
+    evaluations, proof adjudications, updates, cognitive facets, characters,
+    and sources are addressable records joined by attributed typed relations.
+    Any record may become the subject of a later question without changing its
+    original type or forcing a single linear history.
+
+human_facing_default_passage:
+  status: noncanonical-rebuildable-view
+  order:
+    - question
+    - position
+    - expression_provision
+    - projection
+    - move
+    - consequence
+    - evaluation
+    - proof_adjudication
+    - update
+    - reopened_or_new_question
+  reading: >
+    Question -> Position -> Expression provision -> Projection -> Move ->
+    Consequence -> Evaluation -> Proof -> Update -> Question'.
+  boundary: >
+    This is a useful traversal through the graph, not the ontology itself.
+    Stages may be absent, repeated, nested, disputed, simultaneous, or
+    deliberately held. A Yawnbot may remain at inquiry, presence, waiting, or
+    non-participation without failure.
+
+terms:
+  question: >
+    What the Yawnbot or a participant is presently trying to resolve. A
+    governing question can organize attention without becoming a terminal goal
+    or requiring immediate closure.
+  position:
+    human_alias: answer
+    definition: >
+      An attributed, time-indexed stance offered in relation to a question.
+      It carries sources, epistemic status, confidence, alternatives, revision,
+      and acceptance state. An answer is never cast directly to truth.
+  expression_provision: >
+    A bounded configuration for making selected parts of a model available in
+    an interaction: audience, purpose, medium, aperture, constraints, allowed
+    projection kinds, and governing sources. It is a possibility for
+    expression, not expression that has occurred.
+  projection: >
+    What an attributed Agent actually represents, proposes, commits, or
+    attempts into an Arena under an expression provision. A draft projection
+    is still distinct from an expressed projection and from its consequence.
+  move: >
+    A bounded attempted transition. A proposed or selected move is not chosen,
+    authorized, executed, successful, or proved merely because it appears in a
+    coherent model.
+  consequence: >
+    A source-backed change, response, trace, or observed delta following an
+    executed move or other event in the Arena. Expected consequences belong to
+    move selection; they are not consequence records.
+  evaluation:
+    human_alias: judgment
+    definition: >
+      An attributed assessment of a target against an explicit criteria
+      snapshot. It records who evaluated what, in which relationship and Arena,
+      using which criteria, observations, sources, rationale, uncertainty, and
+      time. Conflicting evaluations may coexist.
+    boundary: >
+      Evaluation is not reality, consequence, moral authority, empirical
+      proof, rightful choice, or permission to update canonical state.
+  proof_adjudication: >
+    A contract-facing determination of whether named evidence satisfies,
+    fails, partially meets, contests, or remains insufficient for a previously
+    stated proof condition. Evaluation can inform inquiry but cannot substitute
+    for this adjudication.
+  update: >
+    An attributed revision proposal or authorized state change that identifies
+    what changed, why, which proof and authority support it, what remains open,
+    and which prior revision it supersedes.
+
+source_compilation:
+  passage:
+    - preserve or reference the source with provenance and visibility
+    - segment candidate thoughts without deleting the original context
+    - propose questions, positions, criteria, relations, and cognitive facets
+    - show source spans, confidence, alternatives, and unknowns
+    - let the rightful participant confirm, reject, correct, add, defer, or inspect
+    - promote only through an explicit attributed disposition event
+  rule: >
+    A compiler proposal remains a proposal even when fluent, high-confidence,
+    repeated, emotionally resonant, or accepted as useful. Acceptance records
+    authorship of a representation; it does not prove the represented claim.
+
+cognitive_facets:
+  examples:
+    - thought
+    - belief
+    - goal
+    - value
+    - need
+    - assumption
+    - bias
+    - boundary
+    - habit
+    - emotion
+    - void
+    - argument
+    - quote
+    - lacuna
+  ontology_role: proposal-facet
+  rule: >
+    These are useful, revisable interpretive handles rather than claims that
+    folk-psychological labels expose a person's hidden essence. Each facet
+    remains source-bound, attributed, confidence-labeled, and separately
+    ratified before durable use.
+
+character_view:
+  definition: >
+    An optional symbolic, spatial, narrative, or game representation of one or
+    more model records. Nestheads characters may make cognition inspectable and
+    memorable without becoming the source of truth.
+  agent_boundary: >
+    A character View is not an Agent. Promote a candidate to Agent only through
+    the existing identity, persistence, capability, memory, relationship,
+    authority, activation, stop, and retirement contracts.
+
+selection_and_learning:
+  before_a_move: >
+    Inquiry and move selection compare predicted fit, expected consequences,
+    gates, reversibility, information value, cost, affected relationships, and
+    proofability using the orientation available at that time.
+  after_a_move: >
+    Consequences are observed first. Evaluations then assess targets against
+    explicit criteria. Proof adjudicates named tests. Authorized updates revise
+    the model without rewriting the historical selection receipt or pretending
+    later knowledge was available earlier.
+  recursion: >
+    An evaluation may open "Why was this judged this way?" That question can
+    expose criteria, values, assumptions, histories, relationships, and
+    conflicting perspectives. The recursive opening creates new graph paths;
+    it does not erase the evaluated record.
+
+expression_and_access:
+  portable_package: >
+    A Yawnbot package may carry stable IDs, bounded snapshots, source refs,
+    relation edges, expression provisions, audience policies, revisions, and
+    integrity information so another intelligence can orient without inheriting
+    the principal's identity, beliefs, agreement, consent, privacy, authority,
+    or proof.
+  connection: >
+    Connecting one Yawnbot to another creates an attributed relationship edge
+    with scope and revocation. It does not merge identities, silently import
+    truth, or widen either side's visibility or authority.
+  exposure_requirement: >
+    A record may propose that particular information should be exposed to a
+    network or audience. That requirement remains intent until owners,
+    affected principals, audience, consent, redaction, and publication
+    authorization are explicit.
+
+runtime_binding:
+  rule: >
+    The mental model and a runtime Yawnbot Agent remain distinct. A source-bound
+    model may exist without any active Agent. Candidate, sleeping, active, and
+    retired bindings follow the Objective Holon, Agency Holarchy, and execution
+    authority contracts.
+  provider_boundary: >
+    A model provider or connected intelligence is not the Yawnbot's identity,
+    rightful principal, decision owner, or authority source.
+
+illegal_casts:
+  - "source -> interpretation"
+  - "segmentation -> thought truth"
+  - "compiler proposal -> accepted cognition"
+  - "facet label -> identity"
+  - "question -> obligation to answer"
+  - "position or answer -> truth"
+  - "expression provision -> projection"
+  - "draft projection -> expression event"
+  - "projection -> move"
+  - "move proposal -> choice"
+  - "choice -> authorization"
+  - "execution -> consequence"
+  - "expected consequence -> observed consequence"
+  - "consequence -> evaluation"
+  - "evaluation or judgment -> proof"
+  - "proof -> authorization or update"
+  - "publication intent -> publication"
+  - "connection -> inheritance"
+  - "character View -> Agent"
+  - "default traversal View -> ontology"
+
+conformance:
+  aggregate_schema: schemas/source-bound-yawnbot.v0.1.schema.json
+  evaluation_schema: schemas/evaluation-record.v0.1.schema.json
+  fixture: fixtures/dave-kickstarter-nestheads.source-bound-yawnbot.v0.1.json
+  validator: scripts/validate-source-bound-yawnbot-v0.1.mjs
+  tests: tests/source-bound-yawnbot-v0.1.test.mjs
+
+first_dogfood:
+  coordinate: dave/kickstarter/nestheads
+  purpose: >
+    Demonstrate a founder's source-preserving relationship to an unfinished
+    public commitment without publishing private source text, inventing
+    consequences, treating context as absolution, claiming the draft was sent,
+    or claiming the proposed mental-model interface fulfills the original
+    campaign promise.
+  current_boundary:
+    - source references only; private exact text is not embedded
+    - founder update remains a draft projection
+    - send remains a proposed move
+    - no message consequence exists before execution
+    - no proof or canonical update is claimed
+    - public access remains an unauthorized candidate policy
+
+related_contracts:
+  - core/orientation.yawn
+  - core/co-orientation-loop.yawn
+  - core/inquiry-selection.yawn
+  - core/move-selection.yawn
+  - core/projection-and-aperture.yawn
+  - core/proof-and-boundary.yawn
+  - core/choice-and-move-selection.yawn
+  - core/objective-holon.yawn
+  - schemas/agency-holarchy.v0.2.schema.json
+  - schemas/objective-holon.v0.1.schema.json
+  - interface/new-yawn-coordinate-resolution-v0.1.yawn
+
+open_lacunae:
+  - whether Position should receive a stable v1 contract outside this aggregate
+  - how exact source spans are encrypted, revoked, and selectively disclosed
+  - how multi-principal evaluation and publication conflicts are negotiated
+  - how portable packages bind integrity without freezing living models
+  - how model usefulness, burden, and agency effects should be compared against simpler notes
+  - how a private Dave record becomes a sanitized public Kickstarter View through explicit receipts
+
+proof:
+  success: >
+    A fresh intelligence can distinguish source, inference, attributed stance,
+    provision, actual expression, move state, consequence, evaluation, proof,
+    update, audience authority, character View, and runtime Agent while tracing
+    each record to sources and preserving unresolved questions.
+  falsifier: >
+    A simpler source-linked note system performs equally or better on
+    attribution, correction, privacy, question quality, coordination, movement,
+    proof closure, retained agency, and cognitive burden—or this grammar causes
+    false psychological certainty, compulsive modeling, identity reification,
+    surveillance pressure, or publication without consent.
