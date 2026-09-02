@@ -1,0 +1,60 @@
+name: Install and validate open relation observation draft
+
+on:
+  push:
+    branches:
+      - feat/open-relation-observation-v0-1
+    paths:
+      - .github/workflows/install-open-relation-observation.yml
+      - open-relation-patch-v0.1.tar.gz
+
+permissions:
+  contents: write
+
+jobs:
+  install-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: feat/open-relation-observation-v0-1
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            contracts/package-lock.json
+
+      - name: Install reviewed proposal files
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -xzf open-relation-patch-v0.1.tar.gz -C .
+          python scripts/install-open-relation-observation.py
+
+      - name: Validate complete protocol branch
+        run: |
+          npm ci
+          npm test
+          node scripts/validate-hub-links.mjs
+          npm --prefix contracts ci
+          npm --prefix contracts run check
+
+      - name: Commit exact validated state
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm open-relation-patch-v0.1.tar.gz
+          rm scripts/install-open-relation-observation.py
+          rm .github/workflows/install-open-relation-observation.yml
+          git config user.name "YAWN protocol integrator"
+          git config user.email "hi@yawn.ai"
+          git add -A
+          git commit -m "feat: define open relation addresses and relational Observation"
+          git push origin HEAD:feat/open-relation-observation-v0-1
