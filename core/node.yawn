@@ -2,7 +2,7 @@ id: core/node
 title: "core node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-27
+updated: 2026-09-01
 
 purpose: >
   Hold the public core concepts for understanding and using .yawn.
@@ -28,8 +28,9 @@ holds:
   - asynchronous turns and causal time
   - arena discovery and structural routing
   - objective holons and Yawn.bot activation
-  - projection and aperture boundaries
-  - adaptive inquiry selection and replay receipts
+  - projection, expression-provision, View, and aperture boundaries
+  - adaptive inquiry and move selection with replay receipts
+  - source-bound Yawnbots and the recursive Question-Position-Expression-Move-Evaluation grammar
 
 receives:
   - readme.yawn
@@ -50,6 +51,11 @@ questions:
   - when should a signal attach, nest, link, merge, split, or remain held
   - when should an objective receive its own Yawn and sleeping bot
   - which orientation question or explicit hold is useful now
+  - what Question is this Yawnbot trying to resolve
+  - which attributed Position currently answers it
+  - how may that Position be provisioned into an interaction without changing it
+  - what actually moved, what consequence was observed, and who evaluated it according to what
+  - which judgment should open a new question rather than silently become proof
 
 links:
   - readme.yawn
@@ -70,6 +76,8 @@ links:
   - core/objective-holon.yawn
   - core/projection-and-aperture.yawn
   - core/inquiry-selection.yawn
+  - core/move-selection.yawn
+  - core/source-bound-mental-model.yawn
 
 proof:
   source:
@@ -79,6 +87,8 @@ proof:
     - core/memory-update.yawn
     - core/folder-node.yawn
     - core/inquiry-selection.yawn
+    - core/move-selection.yawn
+    - core/source-bound-mental-model.yawn
     - question-packets/orientation-nine.yawn
     - spec/README.md
   status: draft-backed
