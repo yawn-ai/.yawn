@@ -22,6 +22,7 @@ holds:
   - local observation-art generation contract
   - dialogue objective compiler and correction operators
   - one-question orientation_inquiry View with source-preserving selection and answer provenance
+  - Dave / Observation open-slash dogfood View with Questions, Relation, Compare, Sources, and .yawn expressions
 
 receives:
   - lived signals
@@ -59,6 +60,9 @@ links:
   - question-packets/orientation-nine.yawn
   - schemas/orientation-map.v0.1.schema.json
   - schemas/inquiry-selection-receipt.v0.1.schema.json
+  - interface/dave-observation-dogfood-v0.1.yawn
+  - schemas/relation-address.v0.1.schema.json
+  - schemas/relational-observation.v0.1.schema.json
 
 proof:
   source:

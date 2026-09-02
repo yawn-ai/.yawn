@@ -1,0 +1,129 @@
+---
+schema_version: yawn.ontology-contract.v0.1
+id: core/open-relation-port
+title: Open Relation Port
+kind: ontology-contract
+status: proposed
+version: 0.1.0
+updated: 2026-09-02
+coordinate: yawn.ai/ontology/open-relation-port
+owner: dave
+mutationAuthorized: false
+persistenceAuthorized: false
+modelCallAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Open Relation Port
+
+## Definition
+
+An Open Relation Port is a View of an addressable anchor while no target or
+foreground relationship is presently selected.
+
+```text
+Dave/
+```
+
+does not mean “nothing exists after Dave.” It means:
+
+- the anchor is known;
+- its history remains available;
+- no particular relationship is required to occupy the foreground;
+- a relation may become salient, be proposed, or remain unbound;
+- no observation, question, choice, or action is implied merely by openness.
+
+The literal URL may be normalized to `/dave`. The semantic trailing slash lives
+in the model and View manifest, not in dependence on browser routing behavior.
+
+## State vocabulary
+
+```yaml
+port_states:
+  open:
+    target_ref: null
+    relation_ref: null
+    target_absence: intentional_unbound
+  proposed_binding:
+    target_or_relation_candidate: present
+    owner_acceptance: pending
+  bound:
+    typed_relation_ref: present
+    interaction_required: false
+  engaged:
+    foreground_relation_ref: present
+    active_episode: present
+  returned_open:
+    prior_relationship_history: retained
+    foreground_relation_ref: null
+```
+
+`returned_open` is a transition event. The materialized state may then be
+`open`, with provenance showing what was released from the foreground.
+
+## Not pure consciousness
+
+The Open Relation Port is an operational representation of openness, attention
+availability, or pre-objective relational readiness. It is not proof of a pure
+awareness state, consciousness, enlightenment, completion, detachment, or
+absence of unresolved relationships.
+
+Returning to open does not require every child, Question, commitment, or
+relationship to be resolved. It requires only that no particular relation is
+currently forced into the foreground.
+
+## Observer boundary
+
+The open port may make observation possible, but it is not itself an
+Observation. An Observation requires some attributed difference to become
+available through access, conditions, and a relationship.
+
+```text
+open relation port
+  ≠ Observation
+  ≠ observer Agent
+  ≠ empty memory
+  ≠ completed life
+```
+
+## Role boundary
+
+An embodied Agent may occupy observer, participant, actor, affected, observed,
+co-observer, or steward roles. Those roles do not create separate Agents unless
+persistent identity, memory, capability, objective, and authority boundaries
+are separately established.
+
+## Lifecycle
+
+```text
+open
+→ proposed binding
+→ bound
+→ engaged
+→ consequence received
+→ model updated
+→ return to open
+```
+
+Binding and engagement are optional. Holding open is a valid state.
+
+## Proof and falsifier
+
+This primitive is useful if it helps interfaces:
+
+- distinguish a principal from the currently foregrounded relation;
+- release attention without deleting history;
+- avoid treating unresolvedness as interface failure;
+- propose relationships without inventing them;
+- and resume prior relationships through preserved references.
+
+Revise or retire it if the open-port state adds no behavior beyond a nullable
+target, repeatedly gets mistaken for consciousness, or makes navigation less
+clear than an ordinary attributed View.
+
+## Links
+
+- `core/relation-address.yawn`
+- `core/relational-observation.yawn`
+- `schemas/relation-address.v0.1.schema.json`
+- `spec/ontology.md`

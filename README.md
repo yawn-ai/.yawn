@@ -3,236 +3,313 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-e8ff03.svg)](LICENSE)
 [![Status: working draft](https://img.shields.io/badge/ontology-working%20draft-fd49ac.svg)](docs/project-status.md)
 
-**An open protocol for inspectable orientation and agency.**
+**An open protocol for inspectable relationships, orientation, and agency.**
 
-`.yawn` gives human and AI agents a portable way to show what they noticed,
-what they inferred, what remains missing, what they were authorized to do, what
-happened, and what evidence changed the state.
+`.yawn` helps a person and their intelligences preserve what was received, who
+received it, through which relationship, what was inferred, what remains
+unknown, what may happen next, and what reality later changed.
 
-It is not a truth machine, a theory that reality is code, or permission for an
-agent to act. It is an accountable orientation toward part of a world no model
-fully contains.
-
-| Part | Role |
-| --- | --- |
-| [`.yawn`](https://github.com/yawn-ai/.yawn) | The holonic record: portable source, state, authority, proof, and revision contracts. |
-| [YAWN.bot](https://yawn.bot) | The holonic interface and action agent: where a person observes, chooses, approves, and coordinates moves. |
-| [YAWN.ai](https://yawn.ai) | The intelligence: it observes and processes records, preserves inference as proposal, and helps the system orient. |
-
-They are three roles around one record grammar, not three competing stores.
-The record can exist without either website; neither website may
-silently change its meaning or authority.
+It is not a truth machine, a mind upload, a theory that reality is code, or
+permission for an agent to act. It is a portable, correctable model of a
+relationship to part of a world no model fully contains.
 
 > **Automate the burden. Preserve the authorship. Return the time.**
 
-[Explore the ontology hub](https://yawn-ai.github.io/.yawn/) ·
-[Read the specification](spec/) ·
-[Write your first Yawn](docs/quickstart.md) ·
-[See nested Agent Arena](examples/nested-agent-arena.yawn)
+[Five-minute quickstart](docs/quickstart.md) ·
+[Ontology](spec/ontology.md) ·
+[Research basis](docs/research-basis.md) ·
+[Mental models and social sense-making](docs/mental-models-and-social-sensemaking.md) ·
+[Schema directory](schemas/)
+
+## Why you may be here
+
+Human beings do not encounter every relevant fact at once. We perceive from a
+standpoint, attend selectively, remember imperfectly, inherit language and
+social models, infer causes, and act before uncertainty disappears.
+
+Psychology does not require a little all-seeing person inside the head.
+Executive functions help regulate attention and goal-directed behavior, while
+metacognitive processes monitor and regulate parts of that regulation. Both are
+limited, distributed, and context-sensitive—not a view from nowhere.
+
+Mental models help us describe, explain, simulate, and predict. They also hide
+their own construction. A model can feel obvious because it is familiar,
+identity-protective, institutionally reinforced, repeatedly narrated, or useful
+for coordination. Persistence and popularity are evidence about transmission,
+not automatic evidence of truth.
+
+AI increases the stakes. An agent can now summarize, infer, plan, write, call
+tools, and act faster than a person can inspect every hidden assumption. Most
+agent frameworks can represent prompts, goals, tools, memory, and workflows.
+That is necessary but insufficient when the system cannot answer:
+
+- Who is related to what?
+- From whose standpoint did this become observable?
+- What is the purpose of this relationship?
+- Which roles, boundaries, affected principals, and histories are active?
+- Which inference came from which source?
+- Who may choose, disclose, or act?
+- What consequence would revise the model?
+
+`.yawn` is an attempt to make that missing relational layer inspectable.
+
+## The smallest useful picture
+
+```text
+Agent/                                  open relation port
+  ↓ something becomes relevant
+Agent /[typed relation]/ Subject        bound relation address
+  ↓
+Observation → Orientation → Question → Position
+  ↓
+Choice, hold, or refusal
+  ↓
+Projection / Move → Consequence → Evaluation → Proof → Update
+  ↓
+Agent′/                                 renewed openness with history retained
+```
+
+This is a useful traversal through a recursive graph, not a compulsory pipeline.
+Any node can remain open, branch, conflict, or become the subject of another
+Question.
+
+## The open slash
+
+```text
+Dave
+```
+
+names an addressable referent.
+
+```text
+Dave/
+```
+
+projects Dave at an **open relation port**: the anchor is known, while no target
+or foreground relationship is presently selected.
+
+```text
+Dave/Observation
+```
+
+projects a typed relation from Dave to Observation, such as
+`holds_model_of`. It does not mean Observation is literally inside Dave.
+
+The slash is the visible traversal handle. The relationship record underneath
+it carries the semantics:
+
+```yaml
+from_ref: agent:dave
+to_ref: concept:observation
+relation_type: holds_model_of
+direction: forward
+standpoint_ref: agent:dave
+arena_ref: arena:public-model-sharing
+roles: [observer, model-steward]
+aperture_ref: aperture:public
+source_refs: []
+```
+
+Only an explicit `primary_parent` relation creates semantic ancestry. A path
+prefix alone is address context—not proof of containment, identity, agreement,
+consent, truth, or authority.
+
+[Open relation port](core/open-relation-port.yawn) ·
+[Relation address](core/relation-address.yawn) ·
+[Relation Address schema](schemas/relation-address.v0.1.schema.json)
+
+## Relationship first; Observation first in use
+
+A relationship is structurally first because Agent, Arena, relevance,
+affordance, power, trust, and possible action are operationally specified
+through their coupling.
+
+Observation is operationally first because it is the first inspectable record
+of a difference becoming available from within that already-active
+relationship.
+
+```text
+Relationship
+  → Observation
+  → Relevance
+  → Orientation
+  → Question and Position
+  → Choice / hold / refusal
+  → Projection or Move
+  → Consequence
+  → Evaluation
+  → Proof
+  → authorized Update
+  → Updated Relationship
+```
+
+The observer is normally a role, stance, or View of an existing Agent. It
+becomes a distinct Agent only when a system gives it a persistent identity
+boundary, memory, capabilities, objectives, and authority.
+
+A relational Observation preserves:
+
+```text
+observer + observed referent + relationship + Arena
++ standpoint + access + mediation + conditions + limits
++ registered difference + observer contribution + inference
+```
+
+Self-observation is useful but is not independent corroboration. Repeating the
+same source through several models does not create aperture diversity.
+
+[Relationship-first Agent–Arena](core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn) ·
+[Relational Observation](core/relational-observation.yawn) ·
+[Relational Observation schema](schemas/relational-observation.v0.1.schema.json)
+
+[Local observation-art contract](interface/local-observation-art-v0.1.yawn)
+
+## Mental models: clues, not verdicts
+
+A mental model is a partial representation used to make possibilities runnable:
+to explain, anticipate, compare, decide, or coordinate.
+
+Models emerge through perception, memory, language, instruction, imitation,
+institutions, communities, tools, and repeated participation. Religious,
+scientific, political, professional, and family traditions can all transmit
+useful structure, blind spots, identity commitments, and standards of evidence.
+
+YAWN therefore does not ask only, “What do you believe?” It preserves:
+
+```text
+Question
+→ attributed Positions
+→ sources and source relationships
+→ alternatives and counterexamples
+→ confidence and uncertainty
+→ social transmission and identity stakes
+→ agreement, conflict, and inaccessible standpoints
+→ criteria for Evaluation
+→ consequences and falsifiers
+```
+
+When two people answer the same Question differently, the next operation is not
+forced consensus. The system can expose which sources, definitions, values,
+criteria, roles, or experiences differ—and which Move could increase shared
+resolution without erasing either participant.
+
+[Deeper research and design implications →](docs/mental-models-and-social-sensemaking.md)
+
+## Source-bound Yawnbots
+
+A source-bound Yawnbot begins with whatever the person actually has: a
+transcript, message, document, image, event, repository record, or rough
+thought.
+
+```text
+exact Source
+→ attributed compiler proposals
+→ correction by the rightful principal
+→ Questions, Positions, facets, relationships, and possible Moves
+→ provisioned expressions for an audience
+→ consequence, Evaluation, Proof, and Update
+```
+
+Generated interpretation never silently becomes accepted cognition.
+
+A Yawnbot is an addressable steward of a durable relationship model. The
+`.yawn` record is the portable contract; a runtime bot is optional and requires
+separate activation and authority.
+
+[Source-bound aggregate](schemas/source-bound-yawnbot.v0.1.schema.json) ·
+[Evaluation record](schemas/evaluation-record.v0.1.schema.json) ·
+[Source-bound workbench](interface/source-bound-yawnbot-workbench-v0.1.yawn)
 
 ## One name, one extension
 
 <!-- yawn-invalid-alias-guard:start -->
-The product is **YAWN** and the only YAWN record extension is **`.yawn`**.
-`.ion`, `.yon`, and `.ywn` are invalid aliases commonly introduced by speech-to-text or
-model transcription. They are not alternate formats, schemas, products, or
-compatibility layers.
+The project is **YAWN** and the only YAWN record extension is **`.yawn`**.
+`.ion`, `.yon`, and `.ywn` are common speech-to-text substitutions. They are not
+alternate formats, products, schemas, or compatibility layers.
 <!-- yawn-invalid-alias-guard:end -->
 
-In an already-established YAWN context, implementations normalize those
-substitutions **before** creating a path, ID, schema, or record. When the
-referent could genuinely be something else—such as a chemical term or a
-person's name—the system preserves the raw words and asks or flags the
-ambiguity. A correction never changes semantic identity or grants authority.
+In an established YAWN context, implementations normalize those substitutions
+before creating a path, identifier, schema, or record. The original source text
+must remain preserved, and genuine ambiguity must remain visible.
 
-[Canonical naming contract →](core/canonical-extension.yawn) ·
-[Migration receipt →](migrations/2026-08-17-canonical-extension.yawn)
-
-## Start with Observation
-
-Observation is the cleanest entry into the ontology: what became available to
-an attributed Agent from an Arena, under stated conditions and limits. It is
-valid before a Target, Intention, Projection, Move, or Yawn exists.
-
-An accepted Observation remains its own record. Attaching it to a Yawn does not
-make it a child Yawn, and promotion creates a distinct Yawn through a separate
-human-approved lifecycle. What was observed and what an Agent inferred must
-never be collapsed.
-
-[Observation schema](schemas/observation.v1.schema.json) ·
-[Delegated execution](schemas/execution-relationship.v1.schema.json) ·
-[Observation template](templates/observation.yawn) ·
-[Observation View contract](interface/yawn-observation-view-v1.yawn) ·
-[Question and local-art chain](interface/local-observation-art-v0.1.yawn)
-
-The proposed [one-question inquiry aperture](rfcs/0002-inquiry-aperture-one-question-face.md)
-keeps this record network behind one situated Question instead of exposing an
-ontology dashboard as the primary experience.
-
-An open question may be organized from `remainsOpen` without rewriting its
-verbatim source. A visual brief and local image can then be proposed around
-that question while the question stays accessible live text. The brief,
-candidate, and serialized page are not new truth: acceptance, rendering,
-publication, preference updates, and Yawn promotion each keep separate
-authority.
-
-## Start inside Relationship
-
-Relationship is structurally first even though Observation is operationally
-first. An Agent can observe only from a situated relation with an Arena, its
-affordances, other agents, and the conditions that disclose anything at all.
-The protocol therefore keeps both statements true without turning either into
-an absolute hierarchy:
-
-```text
-Relationship -> Observation -> Relevance -> Orientation -> Intention
-             -> Projection -> Consequence -> Proof -> Updated Relationship
-```
-
-The relationship is dynamic, not decorative context. It may change what can be
-noticed, what matters, what movement is appropriate, and what authority is
-actually active. Proof returns to the relationship instead of merely closing a
-task.
-
-[Relationship-first Agent Arena →](core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn) ·
-[Research braid →](references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn) ·
-[Attributed collaboration history →](agents/collaboration-history.yawn)
-
-## The loop
-
-```text
-signal → orientation → choice → move → proof → update
-```
-
-YAWN exists because agents act from inferences they often cannot see. The loop
-makes those inferences inspectable before action and makes consequences
-replayable afterward.
-
-State is the substrate. Desire is attributed directional evidence. Targets are
-optional and scoped. Moves attempt change; proof evaluates outcomes; authorized
-events rematerialize state.
+[Canonical naming contract](core/canonical-extension.yawn)
 
 ## A small `.yawn`
 
 ```yaml
-title: "The next release still feels unclear"
+title: "I keep reopening the plan"
 
-signal: "I keep reopening the plan without choosing a release boundary."
-current: "Several useful changes are mixed into one undefined release."
+source:
+  kind: self_report
+  text: "I keep reopening the plan without choosing a release boundary."
 
-inference: "The blocker may be an unclear proof boundary, not lack of effort."
-epistemic_status: inferred
+relationship:
+  ref: relationship:dave-release
+  agent_ref: agent:dave
+  arena_ref: arena:current-release
 
-lacuna: "Which changes must ship together for the release to be coherent?"
+observation:
+  what_became_available: "The plan has been reopened several times."
+  observer_added: "I am interpreting repetition as evidence of a missing frame."
+
+question: "Which changes must ship together for the release to be coherent?"
+
+position:
+  statement: "The blocker may be an unclear proof boundary, not lack of effort."
+  epistemic_status: inferred
+  confidence: 0.62
+
+lacuna:
+  - "Which changes are independently testable?"
+  - "What would be lost by shipping the smallest slice?"
 
 boundary:
   - "Do not publish private user data."
   - "Do not call a draft stable."
+  - "Confidence does not authorize release."
 
 move: "List the smallest independently testable release slice."
 proof: "Every included change has an owner, test, and rollback path."
-replay: "Record what changed and what remains open."
+replay: "Record what changed, what failed, and what remains open."
 ```
 
-Unknown is a valid answer. Waiting is a valid state. A move can be deferred.
+Unknown is a valid answer. Waiting is a valid state. A Move can be deferred.
 Skipped context becomes a visible lacuna, not invented certainty.
 
-## The ontology
+## The semantic planes
+
+| Plane | Question | Typical records |
+| --- | --- | --- |
+| World | What is represented as happening? | fields, Arenas, observations, events, state |
+| Epistemic | How is it known? | claims, sources, confidence, disputes, lacunae, proof |
+| Normative | What matters and what is protected? | values, needs, commitments, privacy, authority |
+| Action | What may change next? | choices, holds, projections, Moves, turns, transitions |
+
+Time, provenance, governance, and relation addresses cross all four planes.
+
+Common illegal casts include:
 
 ```text
-Reality
-  └─ World horizon                 open; exceeds the model
-      └─ Field                     information available to an observer
-          └─ Arena                 provisional task-relevant slice
-              └─ Yawn             durable orientation contract
-                  └─ Turn          causal episode: act, wait, delegate, yield
-                      └─ Events    attributed occurrences
-                          └─ Transition + proof
-                              └─ replayed state and a changed horizon
+source ≠ interpretation
+Position / Answer ≠ truth
+confidence ≠ authority
+expression provision ≠ Projection
+Projection ≠ Move
+recommendation ≠ choice
+expected consequence ≠ observed Consequence
+Consequence ≠ Evaluation
+Evaluation ≠ Proof
+Proof ≠ unrestricted Update
+Character View ≠ Agent
+path prefix ≠ parentage
+open port ≠ pure consciousness
+related sources ≠ independent corroboration
 ```
-
-World, field, arena, and Yawn are not synonyms. An arena names the agents,
-affordances, constraints, authority, resources, exclusions, and open questions
-that matter for a purpose. A Yawn holds one live orientation contract inside
-that arena. A turn traces how that contract acts—or waits—through causal time.
-
-[Definitions and semantic planes →](spec/ontology.md)
-
-## Interface contracts
-
-YAWN.ai and YAWN.bot share one semantic palette and one compact public-header
-grammar while keeping their roles distinct. Public roots stay quiet; richer
-View tools appear only through explicit disclosure when the route has a real
-canonical object to inspect.
-
-[Brand contract →](interface/yawn-brand-v1.yawn) ·
-[Chrome contract →](interface/yawn-chrome-v1.yawn) ·
-[Observation View contract →](interface/yawn-observation-view-v1.yawn) ·
-[Desktop Homebase contract →](interface/desktop-homebase-v1.yawn)
-
-## Nested agency without hidden authority
-
-Yawns form a holarchy: one acyclic primary-parent backbone plus typed lateral
-links such as `overlaps`, `depends_on`, `supports`, `conflicts_with`, and
-`supersedes`. A child is an independently inspectable sub-contract, not merely a
-similar topic or nearby file.
-
-Every create, attach, reparent, merge, or split begins as a proposal. Accepted
-changes append an authorized receipt preserving sources, aliases, disputes,
-proof conditions, and the before/after state. Embeddings and spatial position
-may retrieve candidates; they never determine identity, disclosure, or
-permission.
-
-[Holarchy →](spec/holarchy.md) · [Routing →](spec/routing.md)
-
-## Objectives become holons; bots steward them
-
-A source signal can reveal a durable objective without immediately becoming a
-goal, instruction, or active agent. YAWN compiles the signal into typed,
-source-preserved detections; proposes the objective and its place in the
-holarchy; and waits for the principal to confirm, reject, correct, or add more.
-
-For example, “I want to be a good dad” may become the ratified objective
-`Dave/good-dad`. A dedicated Yawn then holds that objective, its relationships,
-boundaries, lacunae, and proof policy. A separate Yawn.bot can steward the
-contract after explicit activation. The root `.yawn` is the alignment bridge:
-it routes and relates objective holons rather than acting as one assistant that
-owns them all.
-
-```text
-signal → detections → objective candidate → ratification
-  → objective Yawn → sleeping Yawn.bot → activation → proof + replay
-```
-
-The default interface shows the compiled data model in concise protocol
-language, keeps correction controls available, and foregrounds no more than
-three ranked structural paths. A score says whether it is a heuristic or an
-estimated posterior; neither is ratification. Personality is optional
-programmed projection data. Child bots may
-receive selected structural context, but never silently inherit truth, consent,
-privacy, confidence, proof, identity, agreement, or effect authority.
-
-[Objective holons →](spec/objective-holons.md) ·
-[Dave / good dad →](examples/dave-good-dad-objective-holon.yawn)
-
-## Agent Arena and open turns
-
-Agent Arena is the vivid, game-readable view: nested arenas, available moves,
-open turns, consequences, and what becomes possible next. It is a projection,
-not the source of truth. Arena does not mean combat, and reality does not
-literally wait for one global turn clock.
-
-Turns may overlap, nest, wait on external systems, resume, delegate, or hand
-off. “Keeping this turn open” means the causal episode is unresolved; execution
-may safely sleep while the trace remains open.
-
-[Turn protocol →](spec/turns.md) · [Projection boundary →](docs/projections/README.md)
 
 ## The nine orientation questions
 
-These are stable semantic coverage axes, not nine mandatory database fields or
-a fixed interview order. A person may enter through any question, wording, or
-accessible medium while answers map back to the same attributed graph:
+These are stable coverage coordinates, not mandatory database fields or a fixed
+interview order:
 
 1. What has your attention, and what episode are we orienting?
 2. Where and when is this happening, and which relationship or Arena is active?
@@ -244,24 +321,30 @@ accessible medium while answers map back to the same attributed graph:
 8. What is possible next?
 9. What would reality have to show for this map to update?
 
-An adaptive interface asks one useful question at a time and may expose up to
-three candidate paths. Safety and authority blockers outrank convenience;
-accepted View preferences may tune order and the chosen representation medium
-or answer-input adapter without changing meaning. Wording, pacing, and density
-may remain attributed preference proposals, but receipt V0.1 executes only the
-packet-pinned default or hard-gated prompt; a later versioned prompt registry is
-required for adapted wording. Unknown, skipped, disputed, deferred, and
-withheld answers stay distinct rather than being silently completed.
+An interface should ask the highest-leverage Question it can justify, or
+explicitly hold. Answering all nine does not make the answers true or authorize
+a Move.
 
-Coverage, claim confidence, and routing confidence remain separate. Answering
-all nine does not make the answers true or authorize a move. For a choice about
-which “game” or competition is worth entering, orientation begins with the
-relationship, obligation, value, or capacity worth serving or protecting;
-competition remains an optional Arena lens.
+[Question packet](question-packets/orientation-nine.yawn) ·
+[Inquiry selection](core/inquiry-selection.yawn)
 
-[Question-to-ontology traceability →](spec/questions.md) ·
-[Selection receipt schema →](schemas/inquiry-selection-receipt.v0.1.schema.json) ·
-[Participation-choice example →](examples/participation-choice.yawn)
+## Holarchy without compulsory hierarchy
+
+Yawns may form one acyclic primary-parent backbone for addressability and
+maintenance. Non-containment meaning uses typed lateral relations such as
+`supports`, `depends_on`, `conflicts_with`, `coordinates_with`, and
+`derived_from`.
+
+Parent–child is one relationship type. It is not the meaning of every slash.
+
+Create, attach, reparent, merge, split, connect, expose, activate, and publish
+begin as proposals. Accepted changes require a rightful authority and append an
+inspectable receipt. Privacy and authority may narrow through inheritance; they
+never silently widen.
+
+[Holarchy](spec/holarchy.md) ·
+[Routing](spec/routing.md) ·
+[Agency Holarchy schema](schemas/agency-holarchy.v0.2.schema.json)
 
 ## Build and validate
 
@@ -278,83 +361,54 @@ npm ci
 npm run check
 ```
 
-The repository currently has two preserved v1 modules:
-
-- [`@yawn/contracts` v1](contracts/): constitutional and runtime contracts;
-- [`schemas/*.v1`](schemas/): state, event, desire, target, transition, and
-  update modules.
-
-Agency Holarchy 0.2 is an additive working draft covering arenas, Yawns,
-relations, turns, routing, and structural receipts. Objective Holon 0.1 adds
-typed objective compilation, ratification, Yawn.bot binding, and activation.
-Orientation Map 0.1 adds attributed semantic coverage, adaptive inquiry, and
-closed selected-question or hold receipts while keeping presentation separate.
-Neither v1 module is marketed as the complete schema for every human-readable
-`.yawn` file.
-
-These local commands are the primary proof path. GitHub Actions may run the
-same checks as a secondary witness; runner or billing unavailability is not a
-test failure and cannot replace a commit-bound local result.
-
-[Protocol layers →](spec/README.md) · [Project status →](docs/project-status.md) ·
-[Serialization →](spec/serialization.md)
+JSON Schema validates shape. Reducers and policy engines must additionally
+validate referential integrity, temporal order, source independence, tree
+acyclicity, privacy, consent, authority, and effect boundaries.
 
 ## Find your path
 
 | If you want to… | Start here |
 | --- | --- |
+| Understand why the protocol exists | [Mental models and social sense-making](docs/mental-models-and-social-sensemaking.md) |
 | Record what became available before interpreting it | [Observation template](templates/observation.yawn) |
+| Model a directional slash path | [Relation Address schema](schemas/relation-address.v0.1.schema.json) |
+| Represent a trailing open slash | [Open relation port](core/open-relation-port.yawn) |
 | Write one useful record | [Five-minute quickstart](docs/quickstart.md) |
-| Copy a human template | [Basic](templates/basic.yawn), [Arena](templates/arena.yawn), [Turn](templates/turn.yawn) |
-| Build an implementation | [Specification](spec/), [schemas](schemas/), [fixtures](fixtures/) |
-| See the holarchy in use | [Nested Agent Arena](examples/nested-agent-arena.yawn) |
-| Model an async dependency | [Waiting turn](examples/waiting-turn.yawn) |
-| Import a long conversation archive | [Conversation routing](examples/conversation-import-routing.yawn) |
-| Generate observation art locally | [Local observation-art contract](interface/local-observation-art-v0.1.yawn) |
-| Understand merge vs. link vs. split | [Routing example](examples/merge-split-routing.yawn) |
-| See one objective become a Yawn.bot | [Dave / good dad](examples/dave-good-dad-objective-holon.yawn) |
-| Orient before choosing a game or competition | [Participation-choice example](examples/participation-choice.yawn) |
-| Explore unresolved questions | [Q-Space](q-space/) |
-| Understand the evidence boundary | [Research basis](docs/research-basis.md) |
-| Navigate the whole repository | [Documentation hub](docs/) |
+| Build an implementation | [Specification](spec/) and [schemas](schemas/) |
+| See nested Agent–Arena structure | [Nested Agent Arena](examples/nested-agent-arena.yawn) |
+| Understand link, merge, and split | [Routing example](examples/merge-split-routing.yawn) |
+| Turn a durable objective into a Yawnbot | [Dave / good dad](examples/dave-good-dad-objective-holon.yawn) |
+| Explore unresolved Questions | [Q-Space](q-space/) |
+| Inspect research boundaries | [Research basis](docs/research-basis.md) |
 
-## Status, limits, and intent
+## Status and intent
 
-YAWN is experimental. We are publishing the grammar early because agents are
-becoming more capable faster than their actions are becoming inspectable. The
-vocabulary should earn stability through use, criticism, migration evidence,
-and independent implementations.
+YAWN is experimental. The grammar is public early because agents are becoming
+more capable faster than their relationships, inferences, and actions are
+becoming inspectable.
 
-The core invariants are firmer than the draft names:
-
-- observed, reported, inferred, assumed, predicted, disputed, and unknown stay
-  distinct;
-- confidence is not freshness, importance, consensus, or permission;
-- privacy and authority are checked before moves are ranked;
-- AI output remains a proposal until rightful approval;
-- moves do not prove themselves;
-- canonical history is append-only; and
-- projections can change the view, never the truth or authority underneath it.
+The vocabulary should earn stability through use, criticism, migration
+evidence, independent implementation, and contact with consequences.
 
 YAWN should carry the mechanical and return meaningful choice to the human. It
-should not become a new boss, optimize every free hour, or decide what a life is
-for.
+should not become a new boss, diagnose a person from prose, optimize every free
+hour, or decide what a life is for.
 
 ## Project and contribution
 
-The repository is MIT licensed and honestly maintainer-led. Humans and
-AI-assisted contributors are welcome; disclose material AI use, preserve source
-rights, and bring proof with protocol changes.
+The repository is MIT licensed and maintainer-led. Human and AI-assisted
+contributors are welcome. Disclose material AI use, preserve source rights,
+keep uncertainty visible, and bring proof with protocol changes.
 
-[Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) ·
-[Governance](GOVERNANCE.md) · [Security](SECURITY.md) ·
-[Code of conduct](CODE_OF_CONDUCT.md) · [Changelog](CHANGELOG.md)
+[Contributing](CONTRIBUTING.md) ·
+[Roadmap](ROADMAP.md) ·
+[Governance](GOVERNANCE.md) ·
+[Security](SECURITY.md) ·
+[Code of conduct](CODE_OF_CONDUCT.md) ·
+[Changelog](CHANGELOG.md)
 
 The [Declaration of Agency](https://yawn-ai.github.io/.yawn/agency-declaration/)
-is a cultural expression of the project's human boundary. The specification is
-the narrower engineering contract.
-
-If this work informs research or software, see [`CITATION.cff`](CITATION.cff)
-and cite the version or commit you used.
+is a cultural expression of the human boundary. The specification is the
+narrower engineering contract.
 
 **Intelligence should carry the mechanical. Humans should carry the meaningful.**

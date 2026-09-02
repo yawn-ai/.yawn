@@ -1,0 +1,375 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/relation-address.v0.1.schema.json",
+  "title": "YAWN Relation Address V0.1",
+  "description": "A directional View over typed relation steps. A path is address context, not automatic containment, consent, truth, or authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "addressId",
+    "anchorRef",
+    "displayPath",
+    "portState",
+    "steps",
+    "standpointRef",
+    "foregroundRelationRef",
+    "foregroundQuestionRef",
+    "sourceRefs",
+    "status",
+    "createdAt",
+    "boundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "yawn.relation-address.v0.1"
+    },
+    "addressId": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "anchorRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "displayPath": {
+      "$ref": "#/$defs/Path"
+    },
+    "portState": {
+      "enum": [
+        "open",
+        "proposed_binding",
+        "bound",
+        "engaged",
+        "returned_open"
+      ]
+    },
+    "targetAbsence": {
+      "enum": [
+        "intentional_unbound",
+        "unknown",
+        "withheld",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Step"
+      }
+    },
+    "standpointRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "foregroundRelationRef": {
+      "$ref": "#/$defs/OptionalRef"
+    },
+    "foregroundQuestionRef": {
+      "$ref": "#/$defs/OptionalRef"
+    },
+    "sourceRefs": {
+      "$ref": "#/$defs/Refs"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "accepted_view",
+        "superseded",
+        "retired"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pathProvesParentage",
+        "pathProvesIdentity",
+        "pathProvesConsent",
+        "pathGrantsAuthority",
+        "openPortIsPureConsciousness",
+        "canonicalMutationAuthorized"
+      ],
+      "properties": {
+        "pathProvesParentage": {
+          "const": false
+        },
+        "pathProvesIdentity": {
+          "const": false
+        },
+        "pathProvesConsent": {
+          "const": false
+        },
+        "pathGrantsAuthority": {
+          "const": false
+        },
+        "openPortIsPureConsciousness": {
+          "const": false
+        },
+        "canonicalMutationAuthorized": {
+          "const": false
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "portState": {
+            "const": "open"
+          }
+        },
+        "required": [
+          "portState"
+        ]
+      },
+      "then": {
+        "properties": {
+          "steps": {
+            "maxItems": 0,
+            "type": "array"
+          },
+          "foregroundRelationRef": {
+            "type": "null"
+          },
+          "targetAbsence": {
+            "const": "intentional_unbound"
+          }
+        },
+        "required": [
+          "targetAbsence"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "portState": {
+            "enum": [
+              "bound",
+              "engaged"
+            ]
+          }
+        },
+        "required": [
+          "portState"
+        ]
+      },
+      "then": {
+        "properties": {
+          "steps": {
+            "minItems": 1,
+            "type": "array"
+          },
+          "foregroundRelationRef": {
+            "$ref": "#/$defs/Identifier"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "OptionalRef": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Identifier"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
+    },
+    "Path": {
+      "type": "string",
+      "pattern": "^[^\\\\\\s]+/$|^[^\\\\\\s]+(?:/[^/\\\\\\s]+)+$"
+    },
+    "Step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stepId",
+        "fromRef",
+        "toRef",
+        "relationRef",
+        "relationType",
+        "direction",
+        "roleBindings",
+        "arenaRef",
+        "mediationRefs",
+        "apertureRef",
+        "effectiveAt",
+        "sourceRefs",
+        "epistemicStatus",
+        "semanticParentage"
+      ],
+      "properties": {
+        "stepId": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "fromRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "toRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "relationRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "relationType": {
+          "enum": [
+            "primary_parent",
+            "holds_model_of",
+            "observes",
+            "participates_in",
+            "affected_by",
+            "created",
+            "questions",
+            "projects",
+            "delegates_to",
+            "shares_with",
+            "coordinates_with",
+            "depends_on",
+            "supports",
+            "conflicts_with",
+            "derived_from",
+            "other"
+          ]
+        },
+        "direction": {
+          "enum": [
+            "forward",
+            "inverse"
+          ]
+        },
+        "roleBindings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          }
+        },
+        "arenaRef": {
+          "$ref": "#/$defs/OptionalRef"
+        },
+        "mediationRefs": {
+          "$ref": "#/$defs/Refs"
+        },
+        "apertureRef": {
+          "$ref": "#/$defs/OptionalRef"
+        },
+        "effectiveAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          }
+        },
+        "epistemicStatus": {
+          "enum": [
+            "observed",
+            "reported",
+            "inferred",
+            "assumed",
+            "predicted",
+            "disputed",
+            "unknown"
+          ]
+        },
+        "semanticParentage": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "relationType": {
+                "const": "primary_parent"
+              }
+            },
+            "required": [
+              "relationType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semanticParentage": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "relationType": {
+                "not": {
+                  "const": "primary_parent"
+                }
+              }
+            },
+            "required": [
+              "relationType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semanticParentage": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "RoleBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "participantRef",
+        "role"
+      ],
+      "properties": {
+        "participantRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "role": {
+          "enum": [
+            "anchor",
+            "target",
+            "observer",
+            "observed",
+            "participant",
+            "actor",
+            "affected",
+            "principal",
+            "delegate",
+            "steward",
+            "other"
+          ]
+        }
+      }
+    }
+  }
+}

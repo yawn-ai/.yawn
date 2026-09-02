@@ -30,6 +30,9 @@ holds:
   - objective holons and Yawn.bot activation
   - projection and aperture boundaries
   - adaptive inquiry selection and replay receipts
+  - open relation ports and return-to-open foreground state
+  - typed Relation Addresses behind slash paths
+  - relational Observation with observer/observed role separation
 
 receives:
   - readme.yawn
@@ -50,6 +53,8 @@ questions:
   - when should a signal attach, nest, link, merge, split, or remain held
   - when should an objective receive its own Yawn and sleeping bot
   - which orientation question or explicit hold is useful now
+  - which typed relation does a slash path project, and is it genuine parentage
+  - when may an engaged relationship return to an open foreground without deleting history
 
 links:
   - readme.yawn
@@ -70,6 +75,9 @@ links:
   - core/objective-holon.yawn
   - core/projection-and-aperture.yawn
   - core/inquiry-selection.yawn
+  - core/open-relation-port.yawn
+  - core/relation-address.yawn
+  - core/relational-observation.yawn
 
 proof:
   source:
@@ -80,5 +88,7 @@ proof:
     - core/folder-node.yawn
     - core/inquiry-selection.yawn
     - question-packets/orientation-nine.yawn
+    - core/relation-address.yawn
+    - core/relational-observation.yawn
     - spec/README.md
   status: draft-backed

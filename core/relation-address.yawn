@@ -1,0 +1,192 @@
+---
+schema_version: yawn.ontology-contract.v0.1
+id: core/relation-address
+title: Relation Address — the slash as a typed traversal
+kind: ontology-contract
+status: proposed
+version: 0.1.0
+updated: 2026-09-02
+coordinate: yawn.ai/ontology/relation-address
+owner: dave
+mutationAuthorized: false
+persistenceAuthorized: false
+modelCallAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Relation Address
+
+## Definition
+
+A Relation Address is a directional, time-indexed View over one or more typed
+relation steps.
+
+```text
+A/B
+```
+
+is human-facing compression for:
+
+```text
+A
+/[ relation reference
+   + relation type
+   + direction
+   + role bindings
+   + standpoint
+   + Arena
+   + mediation
+   + aperture
+   + effective time
+   + source state ]/
+B
+```
+
+The slash is the visible traversal handle. It is not the relationship record
+itself.
+
+## Core distinction
+
+```text
+entity
+≠ relation
+≠ coupling
+≠ relationship
+≠ Relation Address
+≠ slash glyph
+≠ .yawn record
+≠ rendered page
+```
+
+- **Entity**: an addressable referent.
+- **Relation**: an attributed typed connection among referents.
+- **Coupling**: the mechanism through which changes influence one another.
+- **Relationship**: a sufficiently persistent coupling carrying history,
+  stakes, expectations, boundaries, and trajectory.
+- **Relation Address**: a selected directional path through relation records.
+- **Slash**: the quiet interface handle between visible address segments.
+- **`.yawn`**: the durable source-bound record.
+- **Page**: a purpose- and audience-specific View.
+
+## Parentage rule
+
+Parent–child is one relation type. It is not the universal meaning of `/`.
+
+Only an explicit `primary_parent` step establishes semantic ancestry:
+
+```yaml
+relation_type: primary_parent
+semantic_parentage: true
+```
+
+All other relation types require:
+
+```yaml
+semantic_parentage: false
+```
+
+A route may still use hierarchical URL syntax for stable addressing while its
+semantic relation is `holds_model_of`, `participates_in`, `observes`,
+`coordinates_with`, or another typed relation.
+
+## Direction and inverse Views
+
+```text
+dave/lauran
+```
+
+and:
+
+```text
+lauran/dave
+```
+
+may be directional Views over one shared relationship record. They need not
+carry identical roles, access, salience, power, or disclosure.
+
+An inverse View must be explicit. Reversing a path does not automatically
+reverse authority, obligation, causation, consent, or truth.
+
+## Path composition
+
+```text
+A/B/C
+```
+
+composes two relation steps. Each step remains inspectable and may use a
+different relation type.
+
+A composed address must preserve:
+
+- the stable referents;
+- the exact relation references;
+- direction;
+- role bindings;
+- source and epistemic state;
+- time;
+- aperture;
+- and whether any step is genuine parentage.
+
+## Open endpoint
+
+A Relation Address may terminate at an Open Relation Port:
+
+```text
+Dave/
+```
+
+In that state the anchor remains known while target and foreground relation are
+intentionally unbound. `null` must distinguish intentional openness from
+unknown, withheld, not-applicable, or invalid state.
+
+## Interface contract
+
+The default path remains visually quiet. Selecting a slash may disclose:
+
+- relation type and direction;
+- participant roles;
+- relationship or coupling reference;
+- Arena and standpoint;
+- source and uncertainty;
+- current aperture and audience;
+- inverse or adjacent Views;
+- active Questions;
+- and whether the step establishes semantic parentage.
+
+The disclosure is a View. It grants no consent, authority, publication, or
+mutation.
+
+## Triangulation
+
+A mental model may be informed by several Relation Addresses around one subject.
+Confidence should account for source and relation-path independence rather than
+counting repeated transformations of one source as corroboration.
+
+```yaml
+triangulation:
+  subject_ref:
+  relation_address_refs: []
+  standpoint_refs: []
+  source_independence_classes: []
+  agreements: []
+  conflicts: []
+  inaccessible_perspectives: []
+```
+
+## Falsifiers
+
+Revise this proposal if:
+
+- users reliably read every slash as containment despite disclosure;
+- explicit relation manifests do not improve routing or model comparison;
+- address composition cannot remain understandable;
+- relation typing adds more maintenance burden than correction value;
+- or a simpler graph-link interface performs as well.
+
+## Links
+
+- `core/open-relation-port.yawn`
+- `core/relational-observation.yawn`
+- `schemas/relation-address.v0.1.schema.json`
+- `core/holarchy.yawn`
+- `core/routing.yawn`

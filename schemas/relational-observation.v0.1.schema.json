@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/relational-observation.v0.1.schema.json",
+  "title": "YAWN Relational Observation V0.1",
+  "description": "An attributed difference registered from a standpoint within an active relationship and Arena. Observer roles do not automatically create separate Agents.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "observationId",
+    "observerRef",
+    "observedRef",
+    "relationshipRef",
+    "relationAddressRef",
+    "arenaRef",
+    "participationRoles",
+    "standpoint",
+    "access",
+    "mediationRefs",
+    "whatBecameAvailable",
+    "observerAdded",
+    "inferences",
+    "conditions",
+    "limits",
+    "observerEffect",
+    "independenceClass",
+    "sourceRefs",
+    "epistemicStatus",
+    "confidence",
+    "status",
+    "observedAt",
+    "recordedAt",
+    "boundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "yawn.relational-observation.v0.1"
+    },
+    "observationId": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "observerRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "observedRef": {
+      "$ref": "#/$defs/OptionalRef"
+    },
+    "relationshipRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "relationAddressRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "arenaRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "participationRoles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "observer",
+          "participant",
+          "actor",
+          "affected",
+          "observed",
+          "co_observer",
+          "self_observer",
+          "steward",
+          "unclear"
+        ]
+      }
+    },
+    "standpoint": {
+      "$ref": "#/$defs/NonBlankText"
+    },
+    "access": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/NonBlankText"
+      }
+    },
+    "mediationRefs": {
+      "$ref": "#/$defs/Refs"
+    },
+    "whatBecameAvailable": {
+      "$ref": "#/$defs/NonBlankText"
+    },
+    "observerAdded": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Statement"
+      }
+    },
+    "inferences": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Statement"
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/NonBlankText"
+      }
+    },
+    "limits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/NonBlankText"
+      }
+    },
+    "observerEffect": {
+      "$ref": "#/$defs/NonBlankText"
+    },
+    "independenceClass": {
+      "enum": [
+        "first_person_same_episode",
+        "same_source_reanalysis",
+        "shared_source_different_standpoint",
+        "independent_source",
+        "unknown"
+      ]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
+    },
+    "epistemicStatus": {
+      "enum": [
+        "observed",
+        "reported",
+        "inferred",
+        "assumed",
+        "predicted",
+        "disputed",
+        "unknown"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "accepted",
+        "disputed",
+        "superseded"
+      ]
+    },
+    "observedAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observerIsInfallible",
+        "observerRoleCreatesAgent",
+        "selfObservationIsIndependentCorroboration",
+        "observationIsInference",
+        "observationGrantsAuthority",
+        "canonicalMutationAuthorized"
+      ],
+      "properties": {
+        "observerIsInfallible": {
+          "const": false
+        },
+        "observerRoleCreatesAgent": {
+          "const": false
+        },
+        "selfObservationIsIndependentCorroboration": {
+          "const": false
+        },
+        "observationIsInference": {
+          "const": false
+        },
+        "observationGrantsAuthority": {
+          "const": false
+        },
+        "canonicalMutationAuthorized": {
+          "const": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "NonBlankText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64000,
+      "pattern": "\\S"
+    },
+    "OptionalRef": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Identifier"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
+    },
+    "Statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statementId",
+        "text",
+        "assertedBy",
+        "epistemicStatus",
+        "confidence",
+        "sourceRefs"
+      ],
+      "properties": {
+        "statementId": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "text": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "assertedBy": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "epistemicStatus": {
+          "enum": [
+            "observed",
+            "reported",
+            "inferred",
+            "assumed",
+            "predicted",
+            "disputed",
+            "unknown"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          }
+        }
+      }
+    }
+  }
+}
