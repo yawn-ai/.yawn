@@ -1,13 +1,20 @@
 id: notes/source-bound-integration-plan
-status: working
+status: working-validation
 updated: 2026-09-01
 required_before_ready_for_review:
-  - strict AJV compilation
-  - semantic adversarial tests
-  - YAML parse
-  - hub-link validation
-  - exact-head repository test
-  - independent overlap review against draft PRs 23, 24, and 25
+  strict_ajv_compilation: pending_exact_head_ci
+  semantic_adversarial_tests: pending_exact_head_ci
+  yaml_parse: pending_exact_head_ci
+  hub_link_validation: pending_exact_head_ci
+  exact_head_repository_test: pending_exact_head_ci
+  independent_overlap_review:
+    status: completed-working-review
+    receipt: notes/source-bound-overlap-review.yawn
+stack:
+  base_pull_request: 25
+  source_bound_pull_request: 26
+  rule: >
+    PR 25 owns coordinate resolution and move-selection proposal semantics. PR 26 owns source compilation, Position-as-Answer, expression provisioning, Character Views, Consequence, Evaluation, Proof separation, Update, and recursion. Neither is canonical until owner review and merge.
 not_authorized:
   - merge
   - production deployment
