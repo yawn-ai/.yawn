@@ -1,0 +1,709 @@
+{
+  "schemaVersion": "yawn.source-bound-yawnbot.v0.1",
+  "modelId": "model:dave:kickstarter:nestheads",
+  "coordinate": "dave/kickstarter/nestheads",
+  "revision": 1,
+  "principalRef": "principal:dave",
+  "relationshipRef": "relationship:dave:nestheads-kickstarter-backers",
+  "arenaRef": "arena:nestheads-kickstarter-accountability",
+  "subject": {
+    "kind": "project",
+    "label": "Nestheads Kickstarter relationship",
+    "description": "A source-bound working model for accounting to the people who supported an unfinished Nestheads campaign and determining what can honestly happen next.",
+    "sourceRefs": [
+      "source:conversation:2026-09-01-kickstarter",
+      "source:dave-private:nestheads-corpus-audit"
+    ]
+  },
+  "lifecycleState": "candidate",
+  "runtimeBinding": {
+    "status": "candidate",
+    "role": "mental_model_steward",
+    "agentRef": null,
+    "questionRefs": [
+      "question:dave:kickstarter:what-is-owed",
+      "question:dave:kickstarter:context-without-absolution",
+      "question:dave:kickstarter:provable-deliverable"
+    ],
+    "authorityGrantRefs": [],
+    "activationReceiptRefs": [],
+    "scope": "Maintain a revisable model and propose questions or drafts; do not send, publish, promise delivery, spend, contact backers, or claim proof.",
+    "stopOrRetireConditions": [
+      "Dave rejects the framing or asks that the model be removed.",
+      "The model cannot preserve source, consent, or attribution boundaries.",
+      "A simpler source-linked record demonstrably serves the relationship with less burden."
+    ]
+  },
+  "sourceRecords": [
+    {
+      "sourceId": "source:conversation:2026-09-01-kickstarter",
+      "sourceKind": "transcript",
+      "assertedBy": "principal:dave",
+      "capturedBy": "agent:openai:gpt-5.6-pro",
+      "locator": "Private conversation on 2026-09-01; exact platform message identifiers and bytes are not embedded in this public fixture.",
+      "contentSha256": null,
+      "integrityStatus": "unverified_reference",
+      "exactTextAvailable": false,
+      "visibility": "private",
+      "status": "reference_only",
+      "capturedAt": "2026-09-02T00:30:00Z",
+      "notes": [
+        "Reported shame, context, accountability intent, and desire to communicate remain attributable to Dave rather than independently verified history."
+      ]
+    },
+    {
+      "sourceId": "source:dave-private:nestheads-corpus-audit",
+      "sourceKind": "repository_record",
+      "assertedBy": "agent:anthropic:claude-code",
+      "capturedBy": "agent:openai:gpt-5.6-pro",
+      "locator": "dave.yawn-private/Yawns/corpus-mining-2026-08-18/ARENA_ENRICHMENTS_2026_08_18.yawn",
+      "contentSha256": null,
+      "integrityStatus": "unverified_reference",
+      "exactTextAvailable": false,
+      "visibility": "private",
+      "status": "reference_only",
+      "capturedAt": "2026-09-02T00:30:00Z",
+      "notes": [
+        "The audit identifies stable Nestheads themes and origin-history lacunae; it is not proof of every underlying event."
+      ]
+    },
+    {
+      "sourceId": "source:yawn-bot:nestheads-assets",
+      "sourceKind": "repository_record",
+      "assertedBy": "repository:yawn-ai/yawn.bot",
+      "capturedBy": "agent:openai:gpt-5.6-pro",
+      "locator": "yawn-ai/yawn.bot/public/nestheads",
+      "contentSha256": null,
+      "integrityStatus": "unverified_reference",
+      "exactTextAvailable": false,
+      "visibility": "public",
+      "status": "reference_only",
+      "capturedAt": "2026-09-02T00:30:00Z",
+      "notes": [
+        "Existing characters and world art are candidate View material, not runtime Agents or publication authorization."
+      ]
+    }
+  ],
+  "compilerProposals": [
+    {
+      "proposalId": "proposal:question:what-is-owed",
+      "kind": "question",
+      "text": "What does Dave owe the Nestheads Kickstarter backers now?",
+      "proposedBy": "agent:openai:gpt-5.6-pro",
+      "targetRef": "model:dave:kickstarter:nestheads",
+      "compiledRecordRef": "question:dave:kickstarter:what-is-owed",
+      "epistemicStatus": "inferred",
+      "confidence": 0.92,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "alternatives": [
+        "What relationship is Dave trying to repair or continue?",
+        "What commitment remains unresolved?"
+      ],
+      "status": "proposed",
+      "dispositionEventRef": null,
+      "correctionOperators": ["confirm", "reject", "correct", "add_more", "defer", "inspect_sources"]
+    },
+    {
+      "proposalId": "proposal:value:accountability",
+      "kind": "value",
+      "text": "Context should remain visible without erasing responsibility.",
+      "proposedBy": "agent:openai:gpt-5.6-pro",
+      "targetRef": "model:dave:kickstarter:nestheads",
+      "compiledRecordRef": "facet:value:accountability",
+      "epistemicStatus": "inferred",
+      "confidence": 0.88,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "alternatives": [
+        "Dave may prioritize reconnection, explanation, completion, restitution, or closure differently after review."
+      ],
+      "status": "proposed",
+      "dispositionEventRef": null,
+      "correctionOperators": ["confirm", "reject", "correct", "add_more", "defer", "inspect_sources"]
+    },
+    {
+      "proposalId": "proposal:lacuna:original-promise",
+      "kind": "lacuna",
+      "text": "The exact original promise, fulfillment record, current expectations, and provable deliverable have not yet been reconstructed in this model.",
+      "proposedBy": "agent:openai:gpt-5.6-pro",
+      "targetRef": "model:dave:kickstarter:nestheads",
+      "compiledRecordRef": "facet:lacuna:original-promise",
+      "epistemicStatus": "unknown",
+      "confidence": 0.98,
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "alternatives": [],
+      "status": "proposed",
+      "dispositionEventRef": null,
+      "correctionOperators": ["confirm", "reject", "correct", "add_more", "defer", "inspect_sources"]
+    },
+    {
+      "proposalId": "proposal:expression:founder-update",
+      "kind": "expression_provision",
+      "text": "Provision a founder update that distinguishes apology, context, responsibility, current stance, unresolved claims, and a bounded next step.",
+      "proposedBy": "agent:openai:gpt-5.6-pro",
+      "targetRef": "model:dave:kickstarter:nestheads",
+      "compiledRecordRef": "provision:founder-update:backers",
+      "epistemicStatus": "inferred",
+      "confidence": 0.84,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "alternatives": [
+        "Send a shorter status-first note before sharing the full model.",
+        "Invite a small backer review group before a broad update.",
+        "Hold communication until the campaign record is reconstructed."
+      ],
+      "status": "proposed",
+      "dispositionEventRef": null,
+      "correctionOperators": ["confirm", "reject", "correct", "add_more", "defer", "inspect_sources"]
+    }
+  ],
+  "modelFacets": [
+    {
+      "facetId": "facet:emotion:shame",
+      "ontologyRole": "proposal_facet",
+      "facetKind": "emotion",
+      "text": "Dave reports shame when reflecting on this unfinished relationship.",
+      "assertedBy": "principal:dave",
+      "epistemicStatus": "reported",
+      "confidence": 0.96,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "derivedFromRefs": [],
+      "status": "proposed",
+      "ratificationEventRef": null
+    },
+    {
+      "facetId": "facet:value:accountability",
+      "ontologyRole": "proposal_facet",
+      "facetKind": "value",
+      "text": "An accountable explanation should preserve context while keeping responsibility and unresolved obligations visible.",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.88,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "derivedFromRefs": ["proposal:value:accountability"],
+      "status": "proposed",
+      "ratificationEventRef": null
+    },
+    {
+      "facetId": "facet:assumption:resolution-helps",
+      "ontologyRole": "proposal_facet",
+      "facetKind": "assumption",
+      "text": "Backers may benefit from an optional source-linked model rather than a context-free status alone.",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "assumed",
+      "confidence": 0.62,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "derivedFromRefs": [],
+      "status": "proposed",
+      "ratificationEventRef": null
+    },
+    {
+      "facetId": "facet:lacuna:original-promise",
+      "ontologyRole": "proposal_facet",
+      "facetKind": "lacuna",
+      "text": "The original promise, fulfillment record, current expectations, and provable present deliverable remain incompletely reconstructed.",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "unknown",
+      "confidence": 0.98,
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "derivedFromRefs": ["proposal:lacuna:original-promise"],
+      "status": "proposed",
+      "ratificationEventRef": null
+    }
+  ],
+  "characterViews": [
+    {
+      "characterViewId": "character-view:nestheads:context-model",
+      "label": "Nestheads context characters",
+      "viewKind": "game",
+      "representsRefs": [
+        "facet:emotion:shame",
+        "facet:value:accountability",
+        "facet:assumption:resolution-helps",
+        "facet:lacuna:original-promise"
+      ],
+      "assetRefs": [
+        "asset:yawn-bot:nestheads:characters",
+        "asset:yawn-bot:nestheads:cognition"
+      ],
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:yawn-bot:nestheads-assets"
+      ],
+      "status": "proposed",
+      "agentRef": null,
+      "canonicalState": false
+    }
+  ],
+  "questions": [
+    {
+      "questionId": "question:dave:kickstarter:what-is-owed",
+      "revision": 1,
+      "text": "What does Dave owe the Nestheads Kickstarter backers now?",
+      "askedBy": "agent:openai:gpt-5.6-pro",
+      "aboutRefs": [
+        "model:dave:kickstarter:nestheads",
+        "relationship:dave:nestheads-kickstarter-backers"
+      ],
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "governing": true,
+      "status": "provisionally_answered",
+      "parentQuestionRef": null,
+      "openedFromRef": null,
+      "answeredByPositionRefs": [
+        "position:dave:kickstarter:context-not-absolution",
+        "position:dave:kickstarter:model-not-fulfillment"
+      ],
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "questionId": "question:dave:kickstarter:context-without-absolution",
+      "revision": 1,
+      "text": "Which context helps explain the delay without functioning as absolution or shifting the burden to backers?",
+      "askedBy": "agent:openai:gpt-5.6-pro",
+      "aboutRefs": [
+        "facet:value:accountability",
+        "facet:emotion:shame",
+        "projection:founder-update:draft"
+      ],
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "governing": false,
+      "status": "open",
+      "parentQuestionRef": "question:dave:kickstarter:what-is-owed",
+      "openedFromRef": "facet:value:accountability",
+      "answeredByPositionRefs": [],
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "questionId": "question:dave:kickstarter:provable-deliverable",
+      "revision": 1,
+      "text": "What can now be offered that is concrete, bounded, consent-respecting, and honestly provable?",
+      "askedBy": "agent:openai:gpt-5.6-pro",
+      "aboutRefs": [
+        "model:dave:kickstarter:nestheads",
+        "facet:lacuna:original-promise"
+      ],
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "governing": false,
+      "status": "open",
+      "parentQuestionRef": "question:dave:kickstarter:what-is-owed",
+      "openedFromRef": "facet:lacuna:original-promise",
+      "answeredByPositionRefs": [],
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "positions": [
+    {
+      "positionId": "position:dave:kickstarter:context-not-absolution",
+      "revision": 1,
+      "questionRef": "question:dave:kickstarter:what-is-owed",
+      "text": "The update should explain material context while leaving responsibility, unresolved obligations, and the backers' right to judge the situation intact.",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.86,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "alternativePositionRefs": [],
+      "status": "proposed",
+      "acceptanceEventRef": null,
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "positionId": "position:dave:kickstarter:model-not-fulfillment",
+      "revision": 1,
+      "questionRef": "question:dave:kickstarter:what-is-owed",
+      "text": "A source-linked Yawnbot may become part of the relationship and deliverable, but its sophistication does not by itself fulfill or replace the original campaign promise.",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.91,
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "alternativePositionRefs": [],
+      "status": "proposed",
+      "acceptanceEventRef": null,
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "expressionProvisions": [
+    {
+      "provisionId": "provision:founder-update:backers",
+      "revision": 1,
+      "label": "Founder accountability update",
+      "purpose": "Help Dave communicate honestly while distinguishing apology, context, present stance, uncertainty, privacy, proposed next steps, and proof.",
+      "interfaceMode": "letter",
+      "questionRefs": [
+        "question:dave:kickstarter:what-is-owed",
+        "question:dave:kickstarter:context-without-absolution",
+        "question:dave:kickstarter:provable-deliverable"
+      ],
+      "positionRefs": [
+        "position:dave:kickstarter:context-not-absolution",
+        "position:dave:kickstarter:model-not-fulfillment"
+      ],
+      "targetArenaRef": "arena:nestheads-kickstarter-accountability",
+      "audiencePolicyRef": "audience-policy:kickstarter-public-candidate",
+      "allowedProjectionKinds": ["message", "document", "interface"],
+      "constraints": [
+        "Do not present context as exoneration.",
+        "Do not claim a message was sent, a promise fulfilled, or a consequence observed before proof.",
+        "Do not expose private source text or affected people's information without consent.",
+        "Keep original-promise and present-deliverable uncertainty visible.",
+        "Offer a concise path before optional deeper exploration."
+      ],
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "status": "proposed",
+      "acceptanceEventRef": null,
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "projections": [
+    {
+      "projectionId": "projection:founder-update:draft",
+      "revision": 1,
+      "provisionRef": "provision:founder-update:backers",
+      "projectionKind": "message",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "summary": "A not-yet-final message shape: direct apology, responsibility retained, bounded context, honest current status, optional model link, unresolved questions, and one concrete next commitment after owner review.",
+      "artifactRef": null,
+      "targetArenaRef": "arena:nestheads-kickstarter-accountability",
+      "audiencePolicyRef": "audience-policy:kickstarter-public-candidate",
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "draft",
+      "expressionEventRef": null,
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "moves": [
+    {
+      "moveId": "move:review-reconstruct-then-send",
+      "revision": 1,
+      "kind": "direct_action",
+      "description": "Reconstruct the campaign record, review and correct the founder update, approve its audience aperture, then separately authorize sending it through an appropriate Kickstarter channel.",
+      "proposedBy": "agent:openai:gpt-5.6-pro",
+      "projectionRef": "projection:founder-update:draft",
+      "selectionReceiptRef": null,
+      "choiceEventRef": null,
+      "authorityGrantRefs": [],
+      "expectedConsequence": "Backers receive a clear update and can respond, disengage, request clarification, or inspect an optional model without being told how to judge it.",
+      "affectedRelationshipRefs": ["relationship:dave:nestheads-kickstarter-backers"],
+      "reversibility": "low",
+      "proofCondition": "A separately authorized send receipt identifies exact approved content, recipient scope, channel, timestamp, and delivery result; later responses remain distinct consequences.",
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "executionEventRef": null,
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "consequences": [],
+  "evaluations": [
+    {
+      "schemaVersion": "yawn.evaluation-record.v0.1",
+      "evaluationId": "evaluation:founder-update:draft-readiness",
+      "revision": 1,
+      "evaluatorRef": "agent:openai:gpt-5.6-pro",
+      "relationshipRef": "relationship:dave:nestheads-kickstarter-backers",
+      "arenaRef": "arena:nestheads-kickstarter-accountability",
+      "targetRef": "projection:founder-update:draft",
+      "targetKind": "projection",
+      "phase": "concurrent",
+      "criteria": [
+        {
+          "criterionId": "criterion:accountability",
+          "label": "Accountability",
+          "description": "Context remains visible without erasing responsibility, unresolved obligations, or the audience's right to evaluate the situation.",
+          "direction": "meet",
+          "importance": "blocking",
+          "basisRefs": ["facet:value:accountability"],
+          "sourceRefs": ["source:conversation:2026-09-01-kickstarter"]
+        },
+        {
+          "criterionId": "criterion:evidentiary-honesty",
+          "label": "Evidentiary honesty",
+          "description": "Claims about history, current deliverable, send state, and outcomes remain bounded by inspectable sources and named lacunae.",
+          "direction": "meet",
+          "importance": "blocking",
+          "basisRefs": ["facet:lacuna:original-promise"],
+          "sourceRefs": [
+            "source:conversation:2026-09-01-kickstarter",
+            "source:dave-private:nestheads-corpus-audit"
+          ]
+        },
+        {
+          "criterionId": "criterion:privacy-consent",
+          "label": "Privacy and consent",
+          "description": "Private source material and affected people's information are not exposed merely because a public-facing model is intended.",
+          "direction": "meet",
+          "importance": "blocking",
+          "basisRefs": ["audience-policy:kickstarter-private-working"],
+          "sourceRefs": ["source:conversation:2026-09-01-kickstarter"]
+        }
+      ],
+      "judgments": [
+        {
+          "criterionRef": "criterion:accountability",
+          "assessment": "supports",
+          "rationale": "The current shape foregrounds apology and responsibility rather than treating context as exoneration.",
+          "epistemicStatus": "inferred",
+          "confidence": 0.78,
+          "sourceRefs": ["source:conversation:2026-09-01-kickstarter"]
+        },
+        {
+          "criterionRef": "criterion:evidentiary-honesty",
+          "assessment": "unclear",
+          "rationale": "The original promise, fulfillment history, and presently provable deliverable remain unresolved.",
+          "epistemicStatus": "inferred",
+          "confidence": 0.94,
+          "sourceRefs": [
+            "source:conversation:2026-09-01-kickstarter",
+            "source:dave-private:nestheads-corpus-audit"
+          ]
+        },
+        {
+          "criterionRef": "criterion:privacy-consent",
+          "assessment": "unclear",
+          "rationale": "The intended aperture is described, but exact redactions, affected-party boundaries, and publication authorization are unresolved.",
+          "epistemicStatus": "inferred",
+          "confidence": 0.9,
+          "sourceRefs": ["source:conversation:2026-09-01-kickstarter"]
+        }
+      ],
+      "overallAssessment": "mixed",
+      "epistemicStatus": "inferred",
+      "confidence": 0.82,
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "evidenceRefs": [],
+      "dissentingEvaluationRefs": [],
+      "opensQuestionRefs": [
+        "question:dave:kickstarter:context-without-absolution",
+        "question:dave:kickstarter:provable-deliverable"
+      ],
+      "status": "proposed",
+      "boundary": {
+        "evaluationIsReality": false,
+        "evaluationIsConsequence": false,
+        "proofGrantedByThisRecord": false,
+        "authorityGrantedByThisRecord": false,
+        "canonicalMutationAuthorized": false
+      },
+      "evaluatedAt": "2026-09-02T00:30:00Z",
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "proofAdjudications": [],
+  "updates": [],
+  "relations": [
+    {
+      "relationId": "relation:position-context:answers-question",
+      "fromRef": "position:dave:kickstarter:context-not-absolution",
+      "toRef": "question:dave:kickstarter:what-is-owed",
+      "relationType": "answers",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.86,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "relationId": "relation:position-model:answers-question",
+      "fromRef": "position:dave:kickstarter:model-not-fulfillment",
+      "toRef": "question:dave:kickstarter:what-is-owed",
+      "relationType": "answers",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.91,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "relationId": "relation:provision:projects-draft",
+      "fromRef": "provision:founder-update:backers",
+      "toRef": "projection:founder-update:draft",
+      "relationType": "projects_as",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "observed",
+      "confidence": 1,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "relationId": "relation:projection:proposes-move",
+      "fromRef": "projection:founder-update:draft",
+      "toRef": "move:review-reconstruct-then-send",
+      "relationType": "proposes_move",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.83,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "relationId": "relation:projection:evaluated-by-readiness",
+      "fromRef": "projection:founder-update:draft",
+      "toRef": "evaluation:founder-update:draft-readiness",
+      "relationType": "evaluated_by",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "observed",
+      "confidence": 1,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "relationId": "relation:evaluation:opens-deliverable-question",
+      "fromRef": "evaluation:founder-update:draft-readiness",
+      "toRef": "question:dave:kickstarter:provable-deliverable",
+      "relationType": "opens",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.94,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "relationId": "relation:assumption:amplifies-detail",
+      "fromRef": "facet:assumption:resolution-helps",
+      "toRef": "provision:founder-update:backers",
+      "relationType": "amplifies",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.72,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "relationId": "relation:lacuna:mutes-send",
+      "fromRef": "facet:lacuna:original-promise",
+      "toRef": "move:review-reconstruct-then-send",
+      "relationType": "mutes",
+      "assertedBy": "agent:openai:gpt-5.6-pro",
+      "epistemicStatus": "inferred",
+      "confidence": 0.97,
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "status": "proposed",
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "audiencePolicies": [
+    {
+      "audiencePolicyId": "audience-policy:kickstarter-private-working",
+      "revision": 1,
+      "subjectRefs": [
+        "model:dave:kickstarter:nestheads",
+        "source:conversation:2026-09-01-kickstarter",
+        "source:dave-private:nestheads-corpus-audit"
+      ],
+      "ownerRefs": ["principal:dave"],
+      "audienceRefs": [],
+      "visibility": "private",
+      "disclosureIntent": "hold",
+      "publicationStatus": "not_authorized",
+      "consentRefs": [],
+      "authorizationEventRef": null,
+      "redactionRules": [
+        "Do not expose exact private conversation text.",
+        "Do not expose affected people's identities or private history.",
+        "A request-access mechanism does not create entitlement to access."
+      ],
+      "requestAccessAllowed": false,
+      "sourceRefs": ["source:conversation:2026-09-01-kickstarter"],
+      "boundary": {
+        "intentIsPublication": false,
+        "connectionWidensVisibility": false,
+        "inheritanceWidensVisibility": false
+      },
+      "createdAt": "2026-09-02T00:30:00Z"
+    },
+    {
+      "audiencePolicyId": "audience-policy:kickstarter-public-candidate",
+      "revision": 1,
+      "subjectRefs": [
+        "provision:founder-update:backers",
+        "projection:founder-update:draft",
+        "character-view:nestheads:context-model"
+      ],
+      "ownerRefs": ["principal:dave"],
+      "audienceRefs": ["audience:nestheads-kickstarter-backers"],
+      "visibility": "public_candidate",
+      "disclosureIntent": "publish_candidate",
+      "publicationStatus": "not_authorized",
+      "consentRefs": [],
+      "authorizationEventRef": null,
+      "redactionRules": [
+        "Publish only owner-reviewed propositions with visible attribution and uncertainty.",
+        "Keep exact private sources behind explicit access and consent boundaries.",
+        "Do not represent fulfillment, send state, consequences, or proof beyond receipts."
+      ],
+      "requestAccessAllowed": true,
+      "sourceRefs": [
+        "source:conversation:2026-09-01-kickstarter",
+        "source:yawn-bot:nestheads-assets"
+      ],
+      "boundary": {
+        "intentIsPublication": false,
+        "connectionWidensVisibility": false,
+        "inheritanceWidensVisibility": false
+      },
+      "createdAt": "2026-09-02T00:30:00Z"
+    }
+  ],
+  "traversalView": {
+    "viewKind": "recursive_cognitive_passage",
+    "canonicalState": false,
+    "stageOrder": [
+      "question",
+      "position",
+      "expression_provision",
+      "projection",
+      "move",
+      "consequence",
+      "evaluation",
+      "proof_adjudication",
+      "update",
+      "question"
+    ],
+    "rule": "Render only stages and records that exist; preserve branches, holds, conflicts, source status, and missing stages rather than fabricating a complete line."
+  },
+  "boundary": {
+    "sourcePreserved": true,
+    "generatedTextIsAcceptedState": false,
+    "answerIsTruth": false,
+    "expressionProvisionIsProjection": false,
+    "projectionIsMove": false,
+    "expectedConsequenceIsObservedConsequence": false,
+    "consequenceIsEvaluation": false,
+    "evaluationIsProof": false,
+    "proofIsUpdateAuthorization": false,
+    "moveSelfProves": false,
+    "exposureRequirementPublishes": false,
+    "connectionImportsTruthOrAuthority": false,
+    "characterViewIsAgent": false,
+    "defaultTraversalIsOntology": false,
+    "externalEffectsAuthorized": false,
+    "canonicalMutationAuthorized": false
+  },
+  "createdAt": "2026-09-02T00:30:00Z",
+  "updatedAt": "2026-09-02T00:30:00Z"
+}

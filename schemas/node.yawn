@@ -37,6 +37,8 @@ holds:
   - objective-holon.v0.1.schema.json
   - orientation-map.v0.1.schema.json
   - inquiry-selection-receipt.v0.1.schema.json
+  - relation-address.v0.1.schema.json
+  - relational-observation.v0.1.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
@@ -87,6 +89,16 @@ orientation_map_draft: >
   inputs without making the map canonical state or preference semantic truth.
   Its inquiry-selection receipt closes the selected-question versus hold result,
   pins prompt and policy inputs, and remains non-authoritative View provenance.
+
+relation_address_draft: >
+  Draft 0.1 separates an addressable anchor, an intentionally open
+  relation port, and one or more typed relation steps. Only an explicit
+  primary_parent step may establish semantic ancestry.
+
+relational_observation_draft: >
+  Draft 0.1 adds observer and observed roles, standpoint, access,
+  mediation, observer contribution, limits, observer effect, and source-
+  independence class without replacing Observation V1.
 
 status_rule: >
   Modal, motivational, epistemic, lifecycle, authority, loop,

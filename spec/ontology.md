@@ -46,6 +46,29 @@ lacuna, or require the Arena to be reframed. See
 [`core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn`](../core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn)
 for the high-resolution constitutional source.
 
+### Open relation port and Relation Address
+
+An **Open Relation Port** is a View of an addressable anchor while no target or
+foreground relationship is presently selected. A trailing slash such as
+`Dave/` can render that open foreground state without claiming that the record
+has captured pure consciousness, completed every relationship, or erased
+history.
+
+A **Relation Address** is a directional, time-indexed View over explicit typed
+relation steps. The slash is the visible traversal handle; it is not the
+relationship record itself. A step preserves the stable endpoints, relation
+reference and type, direction, roles, standpoint, Arena, mediation, aperture,
+effective time, source state, and whether it establishes semantic parentage.
+
+Only an explicit `primary_parent` relation establishes ancestry. Path order or
+URL prefix alone does not prove containment, identity, agreement, consent,
+truth, or authority. `A/B/C` composes relation steps; it does not silently make
+B the owner or ontological parent of C.
+
+See [`core/open-relation-port.yawn`](../core/open-relation-port.yawn),
+[`core/relation-address.yawn`](../core/relation-address.yawn), and
+[`schemas/relation-address.v0.1.schema.json`](../schemas/relation-address.v0.1.schema.json).
+
 ### Reality
 
 Whatever constrains consequences and can disconfirm the record. YAWN refers to
@@ -92,6 +115,24 @@ An Observation remains valid with no Target, Intention, Projection, Move, or
 Yawn. What the observer added and what another Agent inferred are separately
 attributed. Attaching an Observation to a Yawn does not retype it; optional
 promotion creates a distinct Yawn and an inspectable relation.
+
+#### Relational Observation
+
+A Relational Observation makes the already-present coupling inspectable without
+claiming a view from nowhere. It preserves the observer and observed referent,
+relationship, Arena, standpoint, access, mediation, conditions, limits,
+registered difference, observer contribution, observer effect, time, and
+source-independence class.
+
+Observer, participant, actor, affected, observed, co-observer, self-observer,
+and steward are episode-relative roles. One embodied Agent may occupy several
+roles. A reflective stance becomes a distinct Agent only when it receives its
+own persistent identity boundary, continuity, memory, capabilities, objective,
+and authority. Self-observation remains useful but is not independent
+corroboration.
+
+See [`core/relational-observation.yawn`](../core/relational-observation.yawn)
+and [`schemas/relational-observation.v0.1.schema.json`](../schemas/relational-observation.v0.1.schema.json).
 
 ### Orientation
 

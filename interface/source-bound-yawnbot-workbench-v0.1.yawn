@@ -1,0 +1,279 @@
+id: interface/source-bound-yawnbot-workbench-v0.1
+title: "Source-bound Yawnbot workbench"
+kind: interface-contract
+status: working-draft-0.1
+version: 0.1.0-draft
+updated: 2026-09-01
+
+purpose: >
+  Let a person place an unrestricted source or thought into a Yawnbot, inspect
+  how the system is interpreting it, correct the emerging model, provision
+  useful expressions, and follow movement through reality without making the
+  person complete an ontology form or mistaking a polished View for truth.
+
+one_model_rule: >
+  This is a noncanonical View over core/source-bound-mental-model.yawn, the
+  Orientation Map, Agency Holarchy, inquiry selection, Move selection, proof,
+  and audience-policy records. It does not create another cognition store,
+  runtime Agent identity, authority source, or master loop.
+
+entry:
+  routes:
+    generic: /new
+    account_scoped_example: /dave/new
+  prompt: "What has your attention?"
+  accepted_inputs:
+    - typed or spoken thought
+    - pasted text
+    - conversation or transcript reference
+    - document or artifact reference
+    - image or event reference
+    - existing .yawn coordinate
+  source_rule: >
+    Preserve or reference the submitted source before proposing segmentation,
+    labels, Questions, characters, claims, relationships, or Moves. When exact
+    bytes are unavailable, show reference-only and integrity status instead of
+    inventing a content hash.
+
+progressive_resolution:
+  initial_surface:
+    - source signal
+    - proposed Yawnbot name and coordinate
+    - one governing Question candidate
+    - privacy state
+    - confirm, correct, reject, add more, defer, and inspect-source controls
+  rule: >
+    Ask only the few Questions most likely to change a rightful next choice.
+    Never require all cells to be filled, and never use completeness as a score
+    of intelligence, worth, consciousness, honesty, maturity, or readiness.
+
+workbench_cells:
+  - id: source
+    label: Source
+    maps_to: [sourceRecords, compilerProposals]
+  - id: relationship
+    label: Relationship
+    maps_to: [relationshipRef, arenaRef, relations]
+  - id: questions
+    label: Questions
+    maps_to: [questions]
+  - id: positions
+    label: Answers
+    canonical_label: Positions
+    maps_to: [positions]
+  - id: facets
+    label: Model
+    maps_to: [modelFacets, characterViews]
+  - id: expressions
+    label: Expressions
+    maps_to: [expressionProvisions, projections]
+  - id: moves
+    label: Moves
+    maps_to: [moves]
+  - id: reality
+    label: Reality
+    maps_to: [consequences]
+  - id: evaluations
+    label: Judgments
+    canonical_label: Evaluations
+    maps_to: [evaluations]
+  - id: proof
+    label: Proof
+    maps_to: [proofAdjudications, updates]
+  - id: access
+    label: Access
+    maps_to: [audiencePolicies, runtimeBinding, boundary]
+
+cell_states:
+  allowed:
+    - unknown
+    - proposed
+    - reported
+    - accepted_as_attributed
+    - disputed
+    - blocked
+    - stale
+    - evidence_pending
+    - evidenced
+    - unauthorized
+  rules:
+    - "Unknown and held states remain visible and are not failures."
+    - "Reported, inferred, proposed, accepted-as-attributed, and proved remain visually distinct."
+    - "A populated cell is not necessarily true, current, relevant, consented, or authorized."
+    - "Only attributed records determine state; the renderer never promotes canonical state."
+
+passage_view:
+  label: "Follow this Yawn"
+  canonical: false
+  default_order:
+    - Question
+    - Position
+    - Expression provision
+    - Projection
+    - Move
+    - Consequence
+    - Evaluation
+    - Proof adjudication
+    - Update
+    - Question
+  rendering_rule: >
+    Render only records that exist. Branch whenever multiple Questions,
+    Positions, Moves, Consequences, or Evaluations coexist. Show holds and
+    missing stages rather than drawing a false completed line. Selecting any
+    stage opens its source, attribution, relations, alternatives, confidence,
+    audience, authority, and revision history.
+
+compiler_feed:
+  units:
+    - source segment
+    - proposed thought or cognitive facet
+    - proposed Question
+    - proposed Position
+    - proposed relation or coupling
+    - proposed character View
+    - proposed expression provision
+    - proposed Move
+    - explicit lacuna or conflict
+  operations: [confirm, reject, correct, add_more, defer, inspect_sources]
+  effect: proposal-only
+  boundary: >
+    Confirming records that the representation is acceptable for the stated
+    scope. It does not prove the claim, authorize a Move, activate an Agent,
+    widen access, or publish anything.
+
+expression_panel:
+  definition: >
+    An expression provision chooses purpose, audience, interface mode,
+    Questions, Positions, aperture, constraints, and allowed Projection kinds.
+  examples:
+    - explain
+    - concise update
+    - founder letter
+    - research paper
+    - timeline
+    - lesson
+    - debate
+    - relationship conversation
+    - Nestheads game View
+  rule: >
+    A preview remains a draft Projection. An expression event is recorded only
+    when an attributed Projection actually enters its Arena.
+
+judgment_panel:
+  user_label: Judgment
+  canonical_record: Evaluation
+  must_show:
+    - evaluator
+    - target
+    - phase
+    - relationship and Arena
+    - criteria snapshot and basis
+    - criterion-level judgments
+    - overall assessment
+    - sources and evidence
+    - confidence and epistemic status
+    - dissenting Evaluations
+    - Questions opened
+  primary_prompt: "According to what?"
+  boundary: >
+    Reality returns Consequences; an evaluator supplies Judgment. Neither a
+    strong feeling nor an authoritative voice may silently convert Evaluation
+    into Consequence, proof, choice, permission, or identity.
+
+character_layer:
+  default: optional
+  rule: >
+    A Nestheads or other character may represent a facet, Question, tension,
+    relationship, or passage for memorability and play. Show which records the
+    character represents. Do not give it Agent status, persistence, authority,
+    or a profile merely because it appears animate.
+
+access_panel:
+  operations:
+    - keep private
+    - share with named audience
+    - propose public View
+    - request affected-principal consent
+    - configure redaction
+    - allow or disallow access requests
+    - inspect authorization and revocation
+  boundary: >
+    "Must expose to the network" is a disclosure-requirement proposal, not a
+    publication event. Connection never widens visibility, imports truth, or
+    transfers authority by inheritance.
+
+portable_connection:
+  user_language: "Connect this Yawnbot"
+  creates: >
+    A typed, scoped, attributed, revocable relationship edge between stable
+    coordinates or package revisions.
+  never_creates:
+    - merged identity
+    - inherited agreement
+    - inherited consent
+    - inherited privacy aperture
+    - inherited authority
+    - imported proof
+
+kickstarter_dogfood:
+  coordinate: dave/kickstarter/nestheads
+  default_expression: founder-update
+  current_visible_state:
+    source: reference-only
+    governing_question: proposed
+    positions: proposed
+    founder_message: draft
+    send_move: proposed
+    consequence: absent
+    evaluation: proposed
+    proof: absent
+    public_access: candidate-not-authorized
+  character_use: >
+    Existing Nestheads assets may render context, shame, accountability,
+    assumptions, and lacunae after an asset manifest and owner-reviewed mapping
+    are approved. The base View must remain usable without animation or game art.
+
+illegal_casts:
+  - "cell completion -> truth or worth"
+  - "Answer label -> canonical truth"
+  - "expression configuration -> expression event"
+  - "preview -> sent message"
+  - "expected result -> Consequence"
+  - "Judgment -> reality or proof"
+  - "accept proposal -> publish"
+  - "connect -> inherit"
+  - "character -> Agent"
+  - "passage View -> ontology"
+
+implementation_boundary:
+  current: protocol-only
+  not_authorized:
+    - production UI change
+    - database migration
+    - private source import
+    - model call
+    - character generation
+    - message send
+    - public publication
+    - runtime Agent activation
+    - external effect
+
+proof:
+  required_scenarios:
+    - messy self-reflection transcript
+    - consciousness Question with several Positions
+    - founder-accountability draft with no send receipt
+    - conflicting Evaluations using different criteria
+    - relationship record with multiple rightful principals
+    - ordinary task where no character or Agent should be created
+    - requested public exposure without consent or authorization
+    - connected Yawnbots with incompatible beliefs and privacy policies
+  success: >
+    A person can begin naturally, understand what the system thinks it heard,
+    correct it cheaply, inspect why any Judgment was made, distinguish draft
+    from action and action from Consequence, and provision only the bounded
+    expression they intend without losing authorship.
+  falsifier: >
+    The workbench increases false certainty, modeling burden, compulsive
+    completion, surveillance pressure, accidental publication, identity
+    reification, or action errors compared with a simpler source-linked note.

@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/source-bound-yawnbot-cognition.v0.1.schema.json",
+  "title": "YAWN Source-Bound Cognition Records V0.1",
+  "description": "Source, compiler proposal, cognitive facet, character View, Question, and attributed Position records.",
+  "$defs": {
+    "Identifier": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S" },
+    "NonBlankText": { "type": "string", "minLength": 1, "maxLength": 64000, "pattern": "\\S" },
+    "OptionalRef": {
+      "anyOf": [
+        { "$ref": "#/$defs/Identifier" },
+        { "type": "null" }
+      ]
+    },
+    "Refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/Identifier" }
+    },
+    "RequiredRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/Identifier" }
+    },
+    "EpistemicStatus": {
+      "enum": ["reported", "observed", "inferred", "assumed", "predicted", "disputed", "unknown"]
+    },
+    "SourceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "sourceKind",
+        "assertedBy",
+        "capturedBy",
+        "locator",
+        "contentSha256",
+        "integrityStatus",
+        "exactTextAvailable",
+        "visibility",
+        "status",
+        "capturedAt",
+        "notes"
+      ],
+      "properties": {
+        "sourceId": { "$ref": "#/$defs/Identifier" },
+        "sourceKind": {
+          "enum": ["transcript", "message", "document", "image", "artifact", "event", "import", "repository_record", "synthetic_fixture", "other"]
+        },
+        "assertedBy": { "$ref": "#/$defs/Identifier" },
+        "capturedBy": { "$ref": "#/$defs/Identifier" },
+        "locator": { "$ref": "#/$defs/NonBlankText" },
+        "contentSha256": {
+          "anyOf": [
+            { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            { "type": "null" }
+          ]
+        },
+        "integrityStatus": {
+          "enum": ["verified_content_hash", "unverified_reference", "sanitized_derivative_hash", "unavailable"]
+        },
+        "exactTextAvailable": { "type": "boolean" },
+        "visibility": { "enum": ["private", "restricted", "shared", "public"] },
+        "status": { "enum": ["preserved", "sanitized_derivative", "reference_only", "redacted", "unavailable"] },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "notes": { "type": "array", "items": { "$ref": "#/$defs/NonBlankText" } }
+      }
+    },
+    "CompilerProposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proposalId",
+        "kind",
+        "text",
+        "proposedBy",
+        "targetRef",
+        "compiledRecordRef",
+        "epistemicStatus",
+        "confidence",
+        "sourceRefs",
+        "alternatives",
+        "status",
+        "dispositionEventRef",
+        "correctionOperators"
+      ],
+      "properties": {
+        "proposalId": { "$ref": "#/$defs/Identifier" },
+        "kind": {
+          "enum": [
+            "thought", "belief", "goal", "value", "need", "assumption", "bias", "boundary", "habit", "emotion", "void", "argument", "quote", "question", "position", "criterion", "lacuna", "relationship", "character_view", "agent_candidate", "expression_provision", "move"
+          ]
+        },
+        "text": { "$ref": "#/$defs/NonBlankText" },
+        "proposedBy": { "$ref": "#/$defs/Identifier" },
+        "targetRef": { "$ref": "#/$defs/OptionalRef" },
+        "compiledRecordRef": { "$ref": "#/$defs/OptionalRef" },
+        "epistemicStatus": { "$ref": "#/$defs/EpistemicStatus" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "alternatives": { "type": "array", "items": { "$ref": "#/$defs/NonBlankText" } },
+        "status": { "enum": ["proposed", "accepted", "rejected", "corrected", "deferred"] },
+        "dispositionEventRef": { "$ref": "#/$defs/OptionalRef" },
+        "correctionOperators": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "contains": { "const": "correct" },
+          "items": { "enum": ["confirm", "reject", "correct", "add_more", "defer", "inspect_sources"] }
+        }
+      }
+    },
+    "ModelFacet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "facetId", "ontologyRole", "facetKind", "text", "assertedBy", "epistemicStatus", "confidence", "sourceRefs", "derivedFromRefs", "status", "ratificationEventRef"
+      ],
+      "properties": {
+        "facetId": { "$ref": "#/$defs/Identifier" },
+        "ontologyRole": { "const": "proposal_facet" },
+        "facetKind": {
+          "enum": ["thought", "belief", "goal", "value", "need", "assumption", "bias", "boundary", "habit", "emotion", "void", "argument", "quote", "lacuna", "other"]
+        },
+        "text": { "$ref": "#/$defs/NonBlankText" },
+        "assertedBy": { "$ref": "#/$defs/Identifier" },
+        "epistemicStatus": { "$ref": "#/$defs/EpistemicStatus" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "derivedFromRefs": { "$ref": "#/$defs/Refs" },
+        "status": { "enum": ["proposed", "ratified", "disputed", "superseded"] },
+        "ratificationEventRef": { "$ref": "#/$defs/OptionalRef" }
+      }
+    },
+    "CharacterView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["characterViewId", "label", "viewKind", "representsRefs", "assetRefs", "sourceRefs", "status", "agentRef", "canonicalState"],
+      "properties": {
+        "characterViewId": { "$ref": "#/$defs/Identifier" },
+        "label": { "$ref": "#/$defs/NonBlankText" },
+        "viewKind": { "enum": ["symbolic", "spatial", "narrative", "game", "portrait", "other"] },
+        "representsRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "assetRefs": { "$ref": "#/$defs/Refs" },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "status": { "enum": ["proposed", "accepted_view", "retired"] },
+        "agentRef": { "type": "null" },
+        "canonicalState": { "const": false }
+      }
+    },
+    "Question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questionId", "revision", "text", "askedBy", "aboutRefs", "sourceRefs", "governing", "status", "parentQuestionRef", "openedFromRef", "answeredByPositionRefs", "createdAt"],
+      "properties": {
+        "questionId": { "$ref": "#/$defs/Identifier" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "text": { "$ref": "#/$defs/NonBlankText" },
+        "askedBy": { "$ref": "#/$defs/Identifier" },
+        "aboutRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "governing": { "type": "boolean" },
+        "status": { "enum": ["open", "held", "provisionally_answered", "answered", "retired"] },
+        "parentQuestionRef": { "$ref": "#/$defs/OptionalRef" },
+        "openedFromRef": { "$ref": "#/$defs/OptionalRef" },
+        "answeredByPositionRefs": { "$ref": "#/$defs/Refs" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["positionId", "revision", "questionRef", "text", "assertedBy", "epistemicStatus", "confidence", "sourceRefs", "alternativePositionRefs", "status", "acceptanceEventRef", "createdAt"],
+      "properties": {
+        "positionId": { "$ref": "#/$defs/Identifier" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "questionRef": { "$ref": "#/$defs/Identifier" },
+        "text": { "$ref": "#/$defs/NonBlankText" },
+        "assertedBy": { "$ref": "#/$defs/Identifier" },
+        "epistemicStatus": { "$ref": "#/$defs/EpistemicStatus" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "alternativePositionRefs": { "$ref": "#/$defs/Refs" },
+        "status": { "enum": ["proposed", "reported", "accepted", "disputed", "superseded"] },
+        "acceptanceEventRef": { "$ref": "#/$defs/OptionalRef" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+---
+schema_version: yawn.interface-contract.v0.1
+id: interface/dave-observation-dogfood-v0.1
+title: Dave / Observation — open-slash dogfood View
+kind: interface-contract
+status: proposed
+version: 0.1.0
+updated: 2026-09-02
+coordinate: yawn.bot/dave/observation
+route: /dave/observation
+owner: dave
+audience: public
+mutationAuthorized: false
+persistenceAuthorized: false
+modelCallAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Dave / Observation
+
+## Purpose
+
+Make `yawn.bot/dave/observation` the first complete dogfood View of:
+
+```text
+Open Relation Port
+→ typed Relation Address
+→ Relational Observation
+→ Question
+→ attributed Position
+→ possible comparison or Move
+→ Consequence, Evaluation, Proof, and Update
+→ return to open
+```
+
+The page presents Dave's current model of Observation. It is shareable, sourced,
+correctable, and explicitly not a final theory of consciousness.
+
+## Stable default View
+
+The default View inherits the simplicity of `/frontier`:
+
+- one narrow column;
+- one coordinate;
+- one governing Question;
+- one honesty boundary;
+- a ranked list of Questions;
+- native disclosure;
+- the first item open;
+- no dashboard before the model;
+- no decorative ontology inventory;
+- no model call or persistence.
+
+## Governing Question
+
+> What is Observation, and how can an Agent inspect what it is adding without
+> pretending to stand outside the relationship?
+
+## Ranked Question surface
+
+1. Who or what is observing?
+2. What became noticeable?
+3. What is being observed?
+4. Through what relationship or interface did it appear?
+5. Which roles are active?
+6. What did the observer add?
+7. What remains outside the frame?
+8. Which other standpoint could challenge this View?
+9. What choice or hold becomes possible?
+10. What would reality have to show for the model to update and the foreground
+    relation to reopen?
+
+Each answer is Dave's attributed working Position. Each item also exposes one
+remaining lacuna and one bounded next operation.
+
+## Header View selector
+
+The coordinate remains visible in the shared global header. Immediately after
+the coordinate, one dropdown selects among Views over the same model:
+
+- Questions — public default;
+- Relation — open port, typed slash, roles, coupling, and path semantics;
+- Compare — two Positions around one Question without forced consensus;
+- Sources — research and repository lineage;
+- `.yawn` — portable public-safe model.
+
+A View change changes presentation and aperture. It does not change truth,
+parentage, authority, or canonical state.
+
+The selector is a retained, focused extraction of the earlier public-expression
+work. It must be integrated on current product `main`, not silently depend on
+the unmerged Frontier/Dave-root PR stack.
+
+## Comparison passage
+
+```text
+shared Question
+  ├─ Dave Position
+  └─ another attributed Position
+        ↓
+definitions · sources · standpoints · roles · criteria · values · evidence
+        ↓
+agree · clarify disagreement · ask · test · coordinate without agreement · hold
+```
+
+The page must not infer another person's Position from silence.
+
+## Public/private boundary
+
+The public View may include:
+
+- Dave's current attributed Position;
+- public research sources;
+- public `.yawn` contracts;
+- open Questions;
+- correction and comparison invitations;
+- explicit uncertainties and falsifiers.
+
+It must not include:
+
+- raw private conversation archives;
+- another person's private model;
+- unapproved family details;
+- inferred diagnoses;
+- private relationship state;
+- hidden model traces;
+- or a claim that the page is Dave himself.
+
+## Proof
+
+Before release:
+
+- route renders at desktop, 390 px, and 320 px without overflow;
+- global coordinate and View selector are keyboard operable;
+- direct query links preserve the selected public View;
+- first Question is open and every item remains usable without JavaScript-only
+  custom disclosure;
+- `/observation` remains the generic capture entry and is not replaced;
+- public page reads no private snapshot;
+- `.yawn` download is public-safe and source-attributed;
+- all four effect flags remain false;
+- focused tests, TypeScript, lint, production build, and browser console pass.
+
+## Falsifier
+
+Simplify or retire this View if users cannot state the distinction between
+Observation and inference after using it, if the slash model increases confusion,
+or if the View selector adds navigation cost without improving comparison,
+source inspection, or correction.

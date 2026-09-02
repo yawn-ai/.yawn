@@ -1,0 +1,169 @@
+---
+schema_version: yawn.ontology-contract.v0.1
+id: core/relational-observation
+title: Relational Observation
+kind: ontology-contract
+status: proposed
+version: 0.1.0
+updated: 2026-09-02
+coordinate: yawn.ai/ontology/relational-observation
+owner: dave
+mutationAuthorized: false
+persistenceAuthorized: false
+modelCallAuthorized: false
+externalEffectsAuthorized: false
+---
+
+# Relational Observation
+
+## Definition
+
+A Relational Observation is an attributed difference registered by an
+observer-role, from a standpoint, within a relationship and Arena, through
+particular access and mediation.
+
+```text
+Observation =
+  registered difference
+  + observer
+  + observed referent
+  + relationship
+  + Arena
+  + standpoint
+  + access
+  + mediation
+  + conditions
+  + limits
+  + time
+```
+
+Observation remains operationally first because it is the first inspectable
+epistemic record. Relationship remains structurally first because it conditions
+what can become available, relevant, salient, or actionable.
+
+## Observer and observed are roles
+
+The primitive Question is:
+
+> Which role or roles are you occupying in this relationship now?
+
+Possible roles include:
+
+- observer;
+- participant;
+- actor;
+- affected;
+- observed;
+- co-observer;
+- self-observer;
+- steward;
+- unclear.
+
+One embodied Agent may occupy several roles. Selecting `self-observer` does not
+create a second Agent.
+
+A separate Agent requires its own persistent identity boundary, continuity,
+memory, capabilities, objective, and authority.
+
+## Separation inside the record
+
+```yaml
+what_became_available:
+observer_added:
+inferences:
+conditions:
+limits:
+observer_effect:
+```
+
+- `what_became_available` describes the registered difference.
+- `observer_added` records attributed framing, selection, naming, or report.
+- `inferences` remain proposed interpretations.
+- `conditions` state what shaped access.
+- `limits` preserve what the record cannot establish.
+- `observer_effect` states how attention, measurement, interaction, or
+  participation may have changed the episode.
+
+## Independence classes
+
+```text
+first_person_same_episode
+same_source_reanalysis
+shared_source_different_standpoint
+independent_source
+unknown
+```
+
+These classes prevent repeated processing of one source from being treated as
+independent corroboration.
+
+Two Agents can share a source while occupying different standpoints. That may
+increase interpretive diversity without creating independent evidence of the
+underlying event.
+
+## Reflexive observation
+
+```text
+Dave-as-observer / Dave-as-participant
+```
+
+is a role relation inside one Agent episode, not an identity split.
+
+Self-observation can reveal attention, emotion, remembered experience,
+interpretation, and bodily state. It cannot by itself establish another
+person's inner state, an external causal chain, universal meaning, or objective
+success.
+
+## Observation Questions
+
+A minimal Observation interface may ask:
+
+1. What became noticeable?
+2. Who or what was observing?
+3. What was observed?
+4. Through what relationship or interface did it appear?
+5. Which roles were active?
+6. What did the observer add?
+7. What remains outside the frame?
+8. Which other standpoint could challenge this view?
+9. What consequence would revise the model?
+
+The interface should ask only the highest-leverage subset necessary for the
+current episode.
+
+## Downstream passage
+
+```text
+Relational Observation
+→ Orientation
+→ Question
+→ attributed Position
+→ Choice, hold, or refusal
+→ Projection / Move
+→ Consequence
+→ Evaluation
+→ Proof
+→ authorized Update
+→ revised Relationship or Open Relation Port
+```
+
+This is a traversal View. Observation does not require a Move.
+
+## Falsifiers
+
+Revise this proposal if:
+
+- users cannot distinguish `what_became_available` from `observer_added`;
+- role metadata feels diagnostic or identity-fixing;
+- source-independence classes do not improve confidence calibration;
+- relational metadata prevents simple capture;
+- or a smaller attributed Observation record preserves the same correction
+  value.
+
+## Links
+
+- `schemas/relational-observation.v0.1.schema.json`
+- `schemas/observation.v1.schema.json`
+- `core/relation-address.yawn`
+- `core/open-relation-port.yawn`
+- `core/orientation.yawn`

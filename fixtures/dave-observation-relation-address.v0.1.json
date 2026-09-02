@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "yawn.relation-address-fixture.v0.1",
+  "documentId": "fixture:dave-observation-open-slash",
+  "relationAddresses": [
+    {
+      "schemaVersion": "yawn.relation-address.v0.1",
+      "addressId": "address:dave:open",
+      "anchorRef": "agent:dave",
+      "displayPath": "yawn.bot/dave/",
+      "portState": "open",
+      "targetAbsence": "intentional_unbound",
+      "steps": [],
+      "standpointRef": "agent:dave",
+      "foregroundRelationRef": null,
+      "foregroundQuestionRef": null,
+      "sourceRefs": [
+        "source:dave-reflection:2026-09-02"
+      ],
+      "status": "proposed",
+      "createdAt": "2026-09-02T15:00:00Z",
+      "boundary": {
+        "pathProvesParentage": false,
+        "pathProvesIdentity": false,
+        "pathProvesConsent": false,
+        "pathGrantsAuthority": false,
+        "openPortIsPureConsciousness": false,
+        "canonicalMutationAuthorized": false
+      }
+    },
+    {
+      "schemaVersion": "yawn.relation-address.v0.1",
+      "addressId": "address:dave:observation",
+      "anchorRef": "agent:dave",
+      "displayPath": "yawn.bot/dave/observation",
+      "portState": "engaged",
+      "steps": [
+        {
+          "stepId": "step:dave-holds-observation-model",
+          "fromRef": "agent:dave",
+          "toRef": "concept:observation",
+          "relationRef": "relationship:dave-observation-model",
+          "relationType": "holds_model_of",
+          "direction": "forward",
+          "roleBindings": [
+            {
+              "participantRef": "agent:dave",
+              "role": "observer"
+            },
+            {
+              "participantRef": "agent:dave",
+              "role": "steward"
+            },
+            {
+              "participantRef": "concept:observation",
+              "role": "target"
+            }
+          ],
+          "arenaRef": "arena:public-model-sharing",
+          "mediationRefs": [
+            "interface:yawn.bot",
+            "agent:openai:gpt-5.6-pro"
+          ],
+          "apertureRef": "aperture:dave-observation-public",
+          "effectiveAt": "2026-09-02T15:00:00Z",
+          "sourceRefs": [
+            "source:dave-reflection:2026-09-02"
+          ],
+          "epistemicStatus": "reported",
+          "semanticParentage": false
+        }
+      ],
+      "standpointRef": "agent:dave",
+      "foregroundRelationRef": "relationship:dave-observation-model",
+      "foregroundQuestionRef": "question:what-is-observation",
+      "sourceRefs": [
+        "source:dave-reflection:2026-09-02"
+      ],
+      "status": "proposed",
+      "createdAt": "2026-09-02T15:00:00Z",
+      "boundary": {
+        "pathProvesParentage": false,
+        "pathProvesIdentity": false,
+        "pathProvesConsent": false,
+        "pathGrantsAuthority": false,
+        "openPortIsPureConsciousness": false,
+        "canonicalMutationAuthorized": false
+      }
+    }
+  ],
+  "relationalObservation": {
+    "schemaVersion": "yawn.relational-observation.v0.1",
+    "observationId": "observation:dave:open-slash-reflection",
+    "observerRef": "agent:dave",
+    "observedRef": "concept:observation",
+    "relationshipRef": "relationship:dave-observation-model",
+    "relationAddressRef": "address:dave:observation",
+    "arenaRef": "arena:ontology-dogfood",
+    "participationRoles": [
+      "self_observer",
+      "participant",
+      "steward"
+    ],
+    "standpoint": "Dave is reflecting from inside the YAWN ontology-building relationship.",
+    "access": [
+      "first-person report",
+      "conversation history",
+      "repository records",
+      "AI reflections returned in the current dialogue"
+    ],
+    "mediationRefs": [
+      "conversation:chatgpt:2026-09-02",
+      "agent:openai:gpt-5.6-pro"
+    ],
+    "whatBecameAvailable": "The trailing slash appears to function as an open relation state, while a completed slash path appears to bind an attributed relation.",
+    "observerAdded": [
+      {
+        "statementId": "statement:dave:slash-intuition",
+        "text": "Dave interprets the open slash as closely related to observation and return to openness.",
+        "assertedBy": "agent:dave",
+        "epistemicStatus": "reported",
+        "confidence": 0.96,
+        "sourceRefs": [
+          "source:dave-reflection:2026-09-02"
+        ]
+      }
+    ],
+    "inferences": [
+      {
+        "statementId": "statement:system:open-port-inference",
+        "text": "A distinct Open Relation Port may preserve Dave's intuition without collapsing openness into an empirical Observation or a claim about pure consciousness.",
+        "assertedBy": "agent:openai:gpt-5.6-pro",
+        "epistemicStatus": "inferred",
+        "confidence": 0.92,
+        "sourceRefs": [
+          "source:dave-reflection:2026-09-02"
+        ]
+      }
+    ],
+    "conditions": [
+      "The reflection occurred during active ontology design.",
+      "The source uses slash and backslash language interchangeably in speech."
+    ],
+    "limits": [
+      "This record does not establish a final theory of consciousness.",
+      "This record does not prove that human cognition is literally implemented as a path graph.",
+      "The public-facing model must remain correctable by Dave and other attributed observers."
+    ],
+    "observerEffect": "The dialogue and prior model responses shaped which distinctions Dave could notice and name.",
+    "independenceClass": "first_person_same_episode",
+    "sourceRefs": [
+      "source:dave-reflection:2026-09-02"
+    ],
+    "epistemicStatus": "reported",
+    "confidence": 0.9,
+    "status": "proposed",
+    "observedAt": "2026-09-02T15:00:00Z",
+    "recordedAt": "2026-09-02T15:05:00Z",
+    "boundary": {
+      "observerIsInfallible": false,
+      "observerRoleCreatesAgent": false,
+      "selfObservationIsIndependentCorroboration": false,
+      "observationIsInference": false,
+      "observationGrantsAuthority": false,
+      "canonicalMutationAuthorized": false
+    }
+  }
+}

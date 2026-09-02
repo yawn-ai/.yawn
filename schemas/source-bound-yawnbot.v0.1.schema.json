@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/source-bound-yawnbot.v0.1.schema.json",
+  "title": "YAWN Source-Bound Yawnbot Package V0.1",
+  "description": "A noncanonical portable aggregate over the shared YAWN ontology for source-preserving questions, attributed positions, expression provisions, projections, moves, consequences, evaluations, proof, updates, relations, character Views, runtime binding, and audience policy.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "modelId", "coordinate", "revision", "principalRef", "relationshipRef", "arenaRef", "subject", "lifecycleState", "runtimeBinding", "sourceRecords", "compilerProposals", "modelFacets", "characterViews", "questions", "positions", "expressionProvisions", "projections", "moves", "consequences", "evaluations", "proofAdjudications", "updates", "relations", "audiencePolicies", "traversalView", "boundary", "createdAt", "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.source-bound-yawnbot.v0.1" },
+    "modelId": { "$ref": "#/$defs/Identifier" },
+    "coordinate": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._/-]*$", "maxLength": 500 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "principalRef": { "$ref": "#/$defs/Identifier" },
+    "relationshipRef": { "$ref": "#/$defs/Identifier" },
+    "arenaRef": { "$ref": "#/$defs/Identifier" },
+    "subject": { "$ref": "#/$defs/Subject" },
+    "lifecycleState": { "enum": ["candidate", "planted", "sleeping", "active", "retired"] },
+    "runtimeBinding": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-governance.v0.1.schema.json#/$defs/RuntimeBinding" },
+    "sourceRecords": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-cognition.v0.1.schema.json#/$defs/SourceRecord" }
+    },
+    "compilerProposals": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-cognition.v0.1.schema.json#/$defs/CompilerProposal" }
+    },
+    "modelFacets": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-cognition.v0.1.schema.json#/$defs/ModelFacet" }
+    },
+    "characterViews": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-cognition.v0.1.schema.json#/$defs/CharacterView" }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-cognition.v0.1.schema.json#/$defs/Question" }
+    },
+    "positions": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-cognition.v0.1.schema.json#/$defs/Position" }
+    },
+    "expressionProvisions": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/ExpressionProvision" }
+    },
+    "projections": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/Projection" }
+    },
+    "moves": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/Move" }
+    },
+    "consequences": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/Consequence" }
+    },
+    "evaluations": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/evaluation-record.v0.1.schema.json" }
+    },
+    "proofAdjudications": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/ProofAdjudication" }
+    },
+    "updates": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/Update" }
+    },
+    "relations": {
+      "type": "array",
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/Relation" }
+    },
+    "audiencePolicies": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-governance.v0.1.schema.json#/$defs/AudiencePolicy" }
+    },
+    "traversalView": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-passage.v0.1.schema.json#/$defs/TraversalView" },
+    "boundary": { "$ref": "https://yawn.ai/schemas/source-bound-yawnbot-governance.v0.1.schema.json#/$defs/PackageBoundary" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "Identifier": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S" },
+    "NonBlankText": { "type": "string", "minLength": 1, "maxLength": 64000, "pattern": "\\S" },
+    "RequiredRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/Identifier" }
+    },
+    "Subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "label", "description", "sourceRefs"],
+      "properties": {
+        "kind": { "enum": ["topic", "question", "project", "relationship", "objective", "event", "artifact", "other"] },
+        "label": { "$ref": "#/$defs/NonBlankText" },
+        "description": { "$ref": "#/$defs/NonBlankText" },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" }
+      }
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/evaluation-record.v0.1.schema.json",
+  "title": "YAWN Evaluation Record V0.1",
+  "description": "An attributed, criteria-explicit assessment of a target. Evaluation is not consequence, proof, authority, or canonical update.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "evaluationId",
+    "revision",
+    "evaluatorRef",
+    "relationshipRef",
+    "arenaRef",
+    "targetRef",
+    "targetKind",
+    "phase",
+    "criteria",
+    "judgments",
+    "overallAssessment",
+    "epistemicStatus",
+    "confidence",
+    "sourceRefs",
+    "evidenceRefs",
+    "dissentingEvaluationRefs",
+    "opensQuestionRefs",
+    "status",
+    "boundary",
+    "evaluatedAt",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.evaluation-record.v0.1" },
+    "evaluationId": { "$ref": "#/$defs/Identifier" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "evaluatorRef": { "$ref": "#/$defs/Identifier" },
+    "relationshipRef": { "$ref": "#/$defs/Identifier" },
+    "arenaRef": { "$ref": "#/$defs/Identifier" },
+    "targetRef": { "$ref": "#/$defs/Identifier" },
+    "targetKind": {
+      "enum": [
+        "question",
+        "position",
+        "expression_provision",
+        "projection",
+        "move",
+        "consequence",
+        "proof_adjudication",
+        "update",
+        "relationship",
+        "view",
+        "other"
+      ]
+    },
+    "phase": { "enum": ["prospective", "concurrent", "retrospective"] },
+    "criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Criterion" }
+    },
+    "judgments": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/CriterionJudgment" }
+    },
+    "overallAssessment": {
+      "enum": ["favorable", "unfavorable", "mixed", "unclear", "not_applicable"]
+    },
+    "epistemicStatus": { "$ref": "#/$defs/EpistemicStatus" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "sourceRefs": { "$ref": "#/$defs/RequiredRefs" },
+    "evidenceRefs": { "$ref": "#/$defs/Refs" },
+    "dissentingEvaluationRefs": { "$ref": "#/$defs/Refs" },
+    "opensQuestionRefs": { "$ref": "#/$defs/Refs" },
+    "status": {
+      "enum": ["proposed", "recorded", "accepted_as_attributed", "disputed", "superseded"]
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evaluationIsReality",
+        "evaluationIsConsequence",
+        "proofGrantedByThisRecord",
+        "authorityGrantedByThisRecord",
+        "canonicalMutationAuthorized"
+      ],
+      "properties": {
+        "evaluationIsReality": { "const": false },
+        "evaluationIsConsequence": { "const": false },
+        "proofGrantedByThisRecord": { "const": false },
+        "authorityGrantedByThisRecord": { "const": false },
+        "canonicalMutationAuthorized": { "const": false }
+      }
+    },
+    "evaluatedAt": { "type": "string", "format": "date-time" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "NonBlankText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64000,
+      "pattern": "\\S"
+    },
+    "Refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/Identifier" }
+    },
+    "RequiredRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/Identifier" }
+    },
+    "EpistemicStatus": {
+      "enum": ["reported", "observed", "inferred", "assumed", "predicted", "disputed", "unknown"]
+    },
+    "Criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "criterionId",
+        "label",
+        "description",
+        "direction",
+        "importance",
+        "basisRefs",
+        "sourceRefs"
+      ],
+      "properties": {
+        "criterionId": { "$ref": "#/$defs/Identifier" },
+        "label": { "$ref": "#/$defs/NonBlankText" },
+        "description": { "$ref": "#/$defs/NonBlankText" },
+        "direction": { "enum": ["maximize", "minimize", "meet", "avoid", "maintain", "explore"] },
+        "importance": { "enum": ["blocking", "high", "medium", "low"] },
+        "basisRefs": { "$ref": "#/$defs/RequiredRefs" },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" }
+      }
+    },
+    "CriterionJudgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "criterionRef",
+        "assessment",
+        "rationale",
+        "epistemicStatus",
+        "confidence",
+        "sourceRefs"
+      ],
+      "properties": {
+        "criterionRef": { "$ref": "#/$defs/Identifier" },
+        "assessment": { "enum": ["supports", "violates", "mixed", "unclear", "not_applicable"] },
+        "rationale": { "$ref": "#/$defs/NonBlankText" },
+        "epistemicStatus": { "$ref": "#/$defs/EpistemicStatus" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceRefs": { "$ref": "#/$defs/RequiredRefs" }
+      }
+    }
+  }
+}
