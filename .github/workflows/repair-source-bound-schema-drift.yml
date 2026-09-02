@@ -1,0 +1,91 @@
+name: Repair source-bound schema drift
+
+on:
+  push:
+    branches:
+      - feat/source-bound-mental-model-v0-1
+    paths:
+      - .github/workflows/repair-source-bound-schema-drift.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: feat/source-bound-mental-model-v0-1
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            contracts/package-lock.json
+
+      - name: Restore reviewed semantics and repair only RequiredRefs
+        shell: bash
+        run: |
+          set -euo pipefail
+          reviewed=c9f8c8efa0b3dbc13e09c401187ff4ad4fecca36
+          git fetch origin "$reviewed"
+          files=(
+            schemas/source-bound-yawnbot-cognition.v0.1.schema.json
+            schemas/source-bound-yawnbot-passage.v0.1.schema.json
+            schemas/source-bound-yawnbot-governance.v0.1.schema.json
+            schemas/evaluation-record.v0.1.schema.json
+          )
+          for file in "${files[@]}"; do
+            git show "$reviewed:$file" > "$file"
+          done
+
+          node <<'NODE'
+          import fs from 'node:fs';
+
+          const files = [
+            'schemas/source-bound-yawnbot-cognition.v0.1.schema.json',
+            'schemas/source-bound-yawnbot-passage.v0.1.schema.json',
+            'schemas/source-bound-yawnbot-governance.v0.1.schema.json',
+            'schemas/evaluation-record.v0.1.schema.json',
+          ];
+
+          for (const file of files) {
+            const schema = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const defs = schema.$defs;
+            if (!defs?.RequiredRefs) throw new Error(`${file}: RequiredRefs missing`);
+            defs.RequiredRefs = {
+              type: 'array',
+              minItems: 1,
+              uniqueItems: true,
+              items: { $ref: '#/$defs/Identifier' },
+            };
+            fs.writeFileSync(file, `${JSON.stringify(schema, null, 2)}\n`);
+          }
+          NODE
+
+          rm .github/workflows/repair-source-bound-schema-drift.yml
+
+      - name: Validate complete protocol branch
+        run: |
+          npm ci
+          npm test
+          node scripts/validate-hub-links.mjs
+          npm --prefix contracts ci
+          npm --prefix contracts run check
+
+      - name: Commit exact repaired state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "YAWN protocol repair"
+          git config user.email "hi@yawn.ai"
+          git add -A
+          git commit -m "fix: restore source-bound schema semantics under strict AJV"
+          git push origin HEAD:feat/source-bound-mental-model-v0-1
