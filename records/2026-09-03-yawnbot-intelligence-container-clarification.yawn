@@ -1,0 +1,85 @@
+id: records/2026-09-03-yawnbot-intelligence-container-clarification
+title: "Yawn.bot is bounded architecture for intelligence"
+kind: clarification-record
+status: proposed-canonical-backfill
+recorded: 2026-09-03
+supersedes_history: false
+
+source_observation: >
+  The product and ontology distinction has become clearer: Yawn.bot is not the
+  intelligence itself and should not be identified with a particular AI model,
+  provider, or agent. It is the bounded architecture/runtime that intelligence
+  may inhabit and operate through around a Yawn.
+
+clarification:
+  yawn: >
+    The durable, versioned orientation contract: the inspectable record of the
+    situated thing being oriented, including relevant state, relationships,
+    lacunae, boundaries, authority, affordances, possible transitions, and
+    proof conditions.
+  yawn_bot: >
+    The bounded, inspectable architecture/runtime around a Yawn through which
+    one or more intelligences and agents may participate. Yawn.bot provides the
+    shared cognitive/execution environment, interfaces, boundaries, provenance,
+    permissions, memory/state access, coordination surfaces, and proof loop. It
+    is not itself synonymous with intelligence, an AI model, or an autonomous
+    agent.
+  intelligence: >
+    A capability that may be connected to and operate through Yawn.bot. The
+    intelligence may be supplied by YAWN.ai, another AI/model/provider, a local
+    system, a human participant, or combinations of these, subject to explicit
+    identity, capability, provenance, privacy, and authority boundaries.
+  yawn_ai: >
+    YAWN.ai is the YAWN-provided AI/cloud intelligence and compute service. It
+    may inhabit and operate through Yawn.bot, but Yawn.bot does not require
+    YAWN.ai and must not make the user's durable orientation dependent on one
+    intelligence provider.
+  human_editability: >
+    A Yawn remains inspectable and manually processable. A rightful user may
+    read, organize, edit, or process the permitted .yawn representation without
+    requiring an AI intelligence to be present, while preserving provenance,
+    history, authority, and proof boundaries.
+
+architecture_invariant: >
+  Intelligence is replaceable or composable; the Yawn's durable orientation and
+  records persist. Connecting or replacing intelligence must not silently
+  rewrite history, adopt objectives, widen authority, or erase provenance.
+
+multi_agent_invariant: >
+  Yawn.bot may connect multiple intelligences and multiple human or software
+  agents. Participation does not collapse their identities, observations,
+  intentions, permissions, or claims into one voice. Every material contribution
+  remains attributable.
+
+relationship_to_agency: >
+  Yawn.bot makes an Agent-Arena relationship more inspectable and gives bounded
+  intelligences a common place from which to help orient, discover relevant
+  concepts and relationships, surface lacunae and affordances, propose moves,
+  observe consequences, and evaluate proof without automatically acquiring the
+  principal's decision rights.
+
+anti_collapse_rules:
+  - "Yawn.bot != intelligence"
+  - "Yawn.bot != AI model or provider"
+  - "Yawn.bot != Agent"
+  - "Yawn.bot != Yawn"
+  - "YAWN.ai != Yawn.bot"
+  - "connected intelligence != rightful principal"
+  - "model confidence != authority"
+  - "provider change != semantic state reset"
+
+migration_note: >
+  Earlier records may describe Yawn.bot as a bounded stewarding agent/runtime or
+  execution agent. Preserve those records as historical evidence. New canonical
+  material should interpret the runtime/container aspect as primary and model
+  the steward, worker, human, or AI intelligence operating through it as a
+  separately attributed Agent or intelligence connection. Backfill by adding
+  mappings/clarifications rather than destructively rewriting historical source
+  records.
+
+proof_conditions:
+  - "Canonical ontology distinguishes Yawn.bot architecture from connected intelligence and Agents."
+  - "YAWN.ai is represented as an optional YAWN-provided intelligence/compute service, not as a requirement for Yawn.bot."
+  - "Provider-neutral intelligence connections preserve attribution, authority, privacy, and provenance."
+  - "Manual/no-AI operation remains representable."
+  - "Historical contradictory wording remains discoverable with an explicit migration mapping."
