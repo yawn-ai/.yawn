@@ -2,7 +2,7 @@ id: core/orientation
 title: "orientation"
 kind: core
 status: draft-0.2
-updated: 2026-08-27
+updated: 2026-09-03
 
 definition: >
   Orientation is the revisable, attributed process and working state through
@@ -36,10 +36,62 @@ orientation_records:
   affordance_or_candidate_move_refs: "what inquiry, holding, participation, or movement appears available"
   proof_and_revision_refs: "what could revise specific claims and which orientation revision is current"
 
+orientation_coordinate_lenses:
+  status: "noncanonical explanatory coordinates over the shared ontology"
+  purpose: >
+    These lenses provide a compact way to ask whether an orientation has enough
+    resolution without creating new root primitives, a second ontology, or a
+    mandatory interview sequence. One record may contribute to several lenses.
+  ontology: "what is represented as existing or occurring in this orientation?"
+  taxonomy: "what distinctions, kinds, statuses, or facets matter here?"
+  topology: "how are the relevant Agents, Arenas, Yawns, resources, constraints, and other records related or situated?"
+  phenomenology: "what is attributed as being experienced or salient from this situated perspective?"
+  epistemology: "how is each material claim known, sourced, inferred, disputed, uncertain, or falsifiable?"
+  axiology: "what concerns, needs, values, commitments, stakes, or protections make something matter without converting importance into authority?"
+  teleology: "what intention, ratified objective, target, governing question, or direction organizes this episode without treating purpose as an objective property of reality?"
+  dynamics: "what is changing, what could change, through which events or moves, and what transition would count?"
+  rule: >
+    Orientation is the integrating process; these are coordinate lenses for
+    increasing or auditing its resolution. They do not replace the canonical
+    nine orientation question keys (scope, placement, perspective,
+    current_state, intent, lacuna, boundary, movement, proof), which remain the
+    stable interaction coverage coordinates.
+
+four_e_constraint:
+  status: "research-informed design constraint, not an exhaustive theory of cognition"
+  embodied: >
+    Preserve relevant bodily, affective, sensorimotor, capability, and
+    physiological context rather than treating the Agent as disembodied data.
+  embedded: >
+    Preserve the Agent's situated dependence on an Arena, environment,
+    relationships, resources, norms, and constraints.
+  enacted: >
+    Treat orientation as continuously revisable through participation, action,
+    consequence, and perception rather than as a static internal world model.
+  extended: >
+    Represent tools, artifacts, institutions, other Agents, and computational
+    systems when they materially participate in the cognitive or agency loop,
+    while preserving identity, provenance, privacy, and authority boundaries.
+  anti_reification_rule: >
+    A concept, taxonomy, graph, View, or .yawn record is an inspectable model of
+    situated activity, not the activity, relationship, Agent, Arena, or reality
+    itself. YAWN therefore models situated relationships from which concepts
+    and affordances become available; it does not assume all cognition is
+    explicit conceptual manipulation.
+
+coordinate_to_agency_bridge:
+  orientation_question: "given this situated, partial map, what affordances are available now?"
+  agency_sequence: "affordances -> choice -> authority -> move or holding -> consequence -> proof -> authorized update"
+  invariant: >
+    Greater model resolution may improve orientation, but confidence never
+    becomes truth, importance never becomes authority, recommendation never
+    becomes choice, a Move never becomes its Consequence, and Consequence never
+    becomes Proof without an explicit check.
+
 one_model_rule: >
-  These records reference the shared YAWN ontology. They do not create a second
-  personal orientation ontology, a parallel Agent model, or mandatory storage
-  fields for every human interaction.
+  These records and coordinate lenses reference the shared YAWN ontology. They
+  do not create a second personal orientation ontology, a parallel Agent model,
+  or mandatory storage fields for every human interaction.
 
 perspective_boundaries:
   observer: >
@@ -74,6 +126,8 @@ stable_claims:
   - "Orientation is attributed, situated, partial, time-indexed, and revisable."
   - "A more detailed map does not become the Agent, Arena, relationship, or reality."
   - "Question presentation may change without changing semantic state."
+  - "Ontology, taxonomy, topology, phenomenology, epistemology, axiology, teleology, and dynamics may be used as overlapping orientation lenses without becoming root primitives."
+  - "4E cognition constrains YAWN against disembodied, decontextualized, static, or tool-isolated models of agency."
 
 boundary:
   - "Orientation is not proof."
@@ -82,6 +136,8 @@ boundary:
   - "A preferred question order or medium is not a fixed learning style or identity claim."
   - "Presence, inquiry, waiting, and non-participation are not orientation failures."
   - "A presentation preference cannot suppress safety, authority, privacy, provenance, or proof boundaries."
+  - "The orientation coordinate lenses are audit/projection lenses, not a universal hierarchy of mind or reality."
+  - "4E is a design constraint and research braid, not proof that YAWN is a complete theory of cognition."
 
 proof:
   source:
