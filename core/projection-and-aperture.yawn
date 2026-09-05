@@ -25,6 +25,7 @@ known_views:
   - orientation_inquiry
   - yawn_temporal_header
   - ranked_move_deliberation
+  - yawnbot_agentic_embodiment
 
 orientation_presentation_boundary:
   semantic_source: question-packets/orientation-nine.yawn
@@ -51,11 +52,14 @@ invariants:
   - "Historical replay can never widen current access rights."
   - "Opening an advocate/challenger deliberation changes explanatory aperture, not rank, choice, authority, or proof."
   - "A forecast trace is attributed model history, not a market price or world fact."
+  - "Giving a Yawn an agentic character or bot body changes embodiment and interaction, not semantic identity, consciousness, truth, authority, or proof."
+  - "A Yawnbot embodiment resolves to explicit Yawn, Agent, intelligence, capability, authority, and provisioning references rather than collapsing them into one character."
 
 links:
   - docs/projections/README.md
   - interface/projection-stack.yawn
   - interface/yawn-temporal-header-v0.1.yawn
   - interface/ranked-move-deliberation-v0.1.yawn
+  - interface/yawnbot-agentic-embodiment-v0.1.yawn
   - interface/yawn-brand-v1.yawn
   - core/world-field-arena.yawn
