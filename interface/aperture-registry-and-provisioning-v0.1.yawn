@@ -1,0 +1,469 @@
+id: interface/aperture-registry-and-provisioning-v0.1
+title: "Dynamic aperture registry, presentation preferences, and provisioning"
+kind: interface-governance-boundary-contract
+status: proposed-v0.1
+version: 0.1.0
+recorded: 2026-09-05
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+purpose: >
+  Let one canonical Yawn be experienced through multiple selectable,
+  context-sensitive, permission-safe apertures without hard-coding one interface,
+  duplicating private/public semantic state, diagnosing a fixed learning style,
+  or letting a View widen access, authority, or truth.
+
+product_language:
+  dropdown_label: "Aperture"
+  question: "How do you want to see this Yawn right now?"
+  default_experience: >
+    Begin with the smallest useful question-facing aperture for a sparse Yawn,
+    the attention-frontier aperture for a longitudinal root Yawn, and an
+    explicitly published public aperture for anonymous viewers.
+  user_control: >
+    The user may change aperture at any time, choose Auto, use a saved default,
+    temporarily override it, or create/import another permitted aperture.
+
+terminology_boundary:
+  view_kind: >
+    A versioned semantic rendering family such as orientation inquiry,
+    attention frontier, relationship inspector, timeline, proof, model, public
+    story, or game world.
+  aperture: >
+    The current scope, depth, time window, salience, and included relations of a
+    View.
+  aperture_preset: >
+    A named user-facing binding of a view definition, aperture parameters,
+    presentation profile, temporal cursor, and fallback behavior. The UI may
+    call this simply an Aperture.
+  presentation_profile: >
+    Scoped preferences for wording, order, pacing, density, medium,
+    interaction, and accessibility. This is not a claim that the user has a
+    fixed biological learning style.
+  provisioning: >
+    Explicit rights governing which principals, participants, guests, groups,
+    public audiences, Agents, and providers may access which canonical
+    resources, sources, fields, relationships, Views, or effects.
+  publication: >
+    An authorized, versioned public or shared projection generated from data the
+    publisher may disclose. Publication never changes the underlying truth or
+    grants access to private source state.
+
+runtime_equation: >
+  effective rendered Yawn = canonical semantic state at event cursor
+  INTERSECT viewer/resource grants
+  INTERSECT source availability and egress policy
+  FILTER through the selected view definition and aperture parameters
+  RENDER through the effective presentation profile.
+
+invariants:
+  - "Aperture selects visibility and presentation; it does not create truth."
+  - "Provisioning determines access; a View cannot grant access it does not possess."
+  - "Changing aperture does not mutate canonical semantic state."
+  - "Changing presentation preference does not change question or claim identity."
+  - "Public and private pages are not independent copies of the Yawn."
+  - "A public aperture exposes only explicitly provisioned fields and derived claims."
+  - "Private source data is never copied into a public View merely because the renderer requests it."
+  - "Historical replay obeys both historical visibility and the viewer's current effective rights."
+  - "A user preference cannot suppress safety, authority, consent, privacy, provenance, uncertainty, or proof."
+  - "An inferred preference remains a proposal until accepted at a declared scope."
+  - "Custom apertures cannot bypass canonical identity, field-level access, or effect-authority gates."
+  - "Aperture availability is registry-driven and permission-filtered, not a hard-coded UI enum."
+
+canonical_reconstructability:
+  rule: >
+    A portable .yawn package should preserve enough canonical semantic state,
+    event/revision identity, relationships, source references and hashes, View
+    definitions, accepted presentation preferences, provisioning grants, and
+    policy versions to reconstruct permitted projections reproducibly.
+  source_body_boundary: >
+    Large or sensitive raw source bodies may remain encrypted, local, external,
+    expired, redacted, or deleted. The Yawn retains permitted coordinates,
+    provenance, status, and tombstones rather than requiring all raw data to be
+    embedded in one file.
+  unavailable_rule: >
+    If a required source is unavailable or withheld, the View shows the gap. It
+    does not regenerate or infer the missing source as though it were present.
+
+aperture_registry:
+  purpose: >
+    Define apertures as versioned data and capabilities so new representations
+    can be added without adding another hard-coded route union or page-specific
+    switch statement.
+  required_definition_fields:
+    - aperture_definition_id
+    - version
+    - title
+    - view_kind
+    - purpose
+    - compatible_semantic_centers_or_yawn_modes
+    - required_canonical_inputs
+    - optional_inputs
+    - aperture_parameter_schema
+    - presentation_parameter_schema
+    - interaction_operator_refs
+    - accessibility_contract
+    - required_capability_refs
+    - public_safety_transform_or_null
+    - fallback_aperture_ref
+    - renderer_ref
+    - renderer_integrity_or_review_status
+    - owner_or_publisher_ref
+    - status
+  aperture_parameters:
+    - scope_refs
+    - relation_filters
+    - depth
+    - time_window_or_event_cursor
+    - salience_policy
+    - ordering_or_ranking_policy
+    - included_epistemic_statuses
+    - density
+  renderer_boundary: >
+    Declarative renderers are preferred. Executable third-party renderers require
+    a reviewed capability boundary, sandbox, integrity identity, least-necessary
+    data aperture, and no implicit effect authority.
+  composition: >
+    A composite aperture may embed or link other apertures while preserving each
+    child View's stable IDs, source status, permissions, and operator meanings.
+  portability: >
+    Aperture definitions and presets may be shared or imported independently of
+    private Yawn content. Importing a renderer or preset does not import the
+    creator's authority, sources, private data, or accepted preferences.
+
+initial_registry_candidates:
+  note: >
+    These are starter definitions, not a closed enum. Availability depends on
+    context, compatible data, capability, accessibility, and rights.
+  candidates:
+    - auto
+    - questions_first
+    - attention_frontier
+    - relationship_inspector
+    - concept_map
+    - timeline_and_replay
+    - proof_and_evidence
+    - decisions_and_moves
+    - raw_model
+    - public_story
+    - agentic_yawnbot
+    - nestheads_game_world
+
+questions_first_default:
+  role: >
+    Questions First is the default aperture for a sparse or newly captured Yawn
+    because missing orientation should be surfaced before a move is fabricated.
+  not_universal: >
+    It is not the mandatory View for root orientation, public publishing,
+    historical replay, accessibility needs, or a user who explicitly chooses a
+    different compatible aperture.
+
+preference_resolution:
+  hard_gates_outside_preference:
+    - safety
+    - rightful_authority
+    - consent
+    - privacy_and_egress
+    - source_and_provenance
+    - proof_integrity
+    - accessibility_minimums
+  ordered_precedence:
+    - explicit_current_turn_choice
+    - shared_link_or_published_view_binding
+    - accepted_view_specific_preference
+    - accepted_yawn_scope_preference
+    - accepted_arena_scope_preference
+    - accepted_agent_space_preference
+    - accepted_principal_preference
+    - context_policy_default
+    - system_fallback
+  transient_override: >
+    A temporary aperture choice changes only the present session unless the user
+    selects a scope such as this Yawn, this Arena, my private default, or my
+    public default.
+  auto_mode: >
+    Auto may select among permitted registered apertures from task, device,
+    accessibility, current lacuna, and measured local usefulness. It must show
+    what it selected, allow immediate override, and never persist a fixed type
+    claim without acceptance.
+  inference_rule: >
+    Repeated selections, corrections, task performance, context restoration,
+    and explicit feedback may support a scoped aperture suggestion. Dwell time,
+    clicks, or engagement alone are insufficient evidence of learning value.
+  suggested_switch_copy: >
+    "This may be easier to inspect as a relationship map because three active
+    questions depend on the same relationship. Switch for now?"
+
+public_private_and_shared_views:
+  default_owner_state:
+    visibility: private
+    aperture: context_policy_default
+    publication: disabled
+  default_public_state:
+    rule: >
+      A public aperture template may exist, but no Yawn becomes publicly
+      discoverable or readable until the rightful publisher explicitly grants
+      and reviews publication.
+  private_default_view: >
+    The owner may choose a default private aperture per principal, Agent Space,
+    Arena, Yawn, device, or task context.
+  public_default_view: >
+    A Yawn may designate one versioned public aperture and revision binding.
+    Public viewers receive that projection, not the private owner default.
+  viewer_specific_view: >
+    Two authorized viewers may use different presentation profiles and
+    apertures over the same underlying shared state. Their private annotations
+    and preferences do not silently become shared semantic state.
+  snapshot_modes:
+    live: "rebuild from the latest permitted canonical state"
+    pinned: "bind to one authorized revision/event cursor"
+  sanitization_rule: >
+    Public summaries must retain source and epistemic status appropriate to the
+    disclosure. A sanitized derivative may omit protected details but may not
+    convert uncertainty or another person's private model into public fact.
+
+provisioning_model:
+  default: deny
+  subjects:
+    - rightful_principal_or_owner
+    - named_user_or_username
+    - invited_email_guest
+    - participant
+    - group_or_teamspace
+    - organization_or_domain
+    - public_link_holder
+    - anonymous_public
+    - named_agent_or_service_identity
+    - intelligence_provider_connection
+  resource_granularity:
+    - agent_space
+    - yawn
+    - descendant_scope
+    - concept_or_symbol
+    - relationship
+    - field_or_claim
+    - source_body
+    - evidence_item
+    - aperture_definition
+    - aperture_instance_or_publication
+    - capability
+    - effect_operation
+  access_levels:
+    - discover
+    - view
+    - comment_or_respond
+    - propose
+    - edit_semantic_state
+    - manage_attention
+    - invite_or_share
+    - export
+    - connect_intelligence
+    - equip_capability
+    - authorize_effect
+    - administer
+  constraints:
+    - expiration
+    - purpose_or_use_limit
+    - environment
+    - device_or_network
+    - provider_or_model
+    - no_egress
+    - no_export
+    - no_onward_sharing
+    - redaction_or_field_mask
+    - temporal_revision_limit
+    - inherited_or_explicit
+  grant_receipt_requires:
+    - grant_id
+    - grantor_with_rightful_authority
+    - subject_ref
+    - resource_ref_and_scope
+    - access_level
+    - constraints
+    - effective_at
+    - expires_at_or_null
+    - source_event_ref
+    - status
+    - revocation_or_supersession_ref
+  inheritance: >
+    Descendants may inherit narrower rights when explicitly configured. Nesting,
+    linking, selecting an aperture, or inviting an Agent never widens rights.
+  agent_boundary: >
+    Granting an Agent read access does not grant effect authority. Connecting an
+    intelligence provider does not grant it export, training, retention, or
+    disclosure rights beyond the exact connection policy.
+
+header_and_dropdown_contract:
+  adjacent_controls:
+    - temporal_control
+    - aperture_control
+    - provisioning_control
+  recommended_shape: >
+    [icon] [title + address] [Now/history] [Aperture: Questions First v]
+    [Private / Shared / Public v]
+  aperture_dropdown:
+    sections:
+      - recommended_or_auto
+      - saved_for_this_yawn
+      - compatible_registered_apertures
+      - public_preview_if_authorized
+      - create_or_import_aperture
+      - manage_defaults
+    each_option_shows:
+      - title
+      - purpose
+      - current_or_default_badge
+      - scope_if_saved
+      - accessibility_or_capability_warning
+      - reason_if_recommended
+    save_actions:
+      - use_once
+      - set_for_this_yawn
+      - set_for_this_arena
+      - set_as_my_private_default
+      - set_as_my_public_authoring_default
+  provisioning_dropdown:
+    actions:
+      - keep_private
+      - invite_username_or_email
+      - add_group_or_team
+      - create_shared_link_if_authorized
+      - configure_public_publication
+      - set_access_level
+      - set_expiration_and_export_rules
+      - inspect_effective_access
+      - revoke
+      - copy_permitted_link
+    rule: >
+      Aperture and provisioning remain separate controls because selecting how to
+      see a Yawn must not accidentally change who can see it.
+
+nestheads_aperture:
+  status: proposed_view_family
+  role: >
+    Nestheads may be an open-world, embodied, game-like aperture over the same
+    canonical Yawn state rather than a competing ontology or duplicated product
+    model.
+  renderer: Phaser_or_successor_game_renderer
+  requirements:
+    - stable canonical object IDs
+    - same event cursor and replay semantics
+    - same epistemic and authority laws
+    - semantic mapping from game actions to explicit YAWN operators
+    - accessible non-game equivalent
+    - no semantic mutation from decorative movement or animation
+    - permission-filtered local scene construction
+  boundary: >
+    Walking to, touching, feeding, fighting, equipping, or moving a game object
+    is a presentation interaction until it emits a reviewable semantic operator
+    with the required authority. The game world cannot make metaphorical action
+    count as proof.
+
+dynamic_detection:
+  may_detect:
+    - explicit_aperture_request
+    - repeated_manual_switches
+    - task_and_lacuna_fit
+    - device_and_accessibility_context
+    - correction_or_navigation_difficulty
+    - measured_context_restoration_or_task_success
+  may_propose:
+    - temporary_switch
+    - saved_scoped_preference
+    - new_custom_aperture
+    - lower_or_higher_density
+    - different_input_or_output_medium
+  may_not:
+    - assign_fixed_learning_style_as_truth
+    - optimize_only_for_engagement_or_session_length
+    - hide uncertainty_or_hard_gates
+    - persist_a_preference_without_attribution_and_scope
+    - expose_an_aperture_the_viewer_cannot_access
+
+current_codebase_pressure_test:
+  findings:
+    - >
+      The current ViewSwitcher uses a hard-coded ViewMode union and fixed
+      VIEW_OPTIONS array. This is a useful prototype but violates the desired
+      registry-driven extensibility if treated as final architecture.
+    - >
+      The current VisibilityDropdown limits sharing to public, participants, and
+      private and defaults its component input to public. The durable default
+      should remain private and effective permissions should come from grants,
+      not only a presentation enum.
+    - >
+      The current ParticipantsDropdown supports a username/email-shaped UI but
+      user invitation is incomplete and linked participants receive a static
+      "Can edit" presentation. It is not yet a source of enterprise-grade
+      effective access.
+    - >
+      The current visibility resolver distinguishes only owner, participant, and
+      anonymous access with full, summary-only, or hidden. It should remain a
+      compatibility adapter while a granular grant model is introduced.
+    - >
+      The existing projection-preference schema and deterministic resolver are a
+      strong substrate: they already preserve principal, scope, view kind,
+      field path, operation, source event, revision, and timestamps.
+  migration_rule: >
+    Introduce registry and grant adapters around existing routes and components.
+    Do not create a parallel canonical Yawn store or destructively replace
+    visibility fields before compatibility and RLS tests pass.
+
+acceptance_tests:
+  - "The same Yawn revision rendered through two apertures preserves the same canonical IDs and epistemic meanings."
+  - "Switching aperture never changes visibility, authority, or semantic state."
+  - "Changing provisioning never silently changes the owner's selected aperture."
+  - "A new registered aperture appears without changing a closed ViewMode enum in every consuming component."
+  - "A custom aperture cannot read a field or source outside the viewer's effective grants."
+  - "Questions First is selected for a sparse private Yawn unless the user or a higher-priority context rule chooses otherwise."
+  - "The root Agent Space may default to Attention Frontier while a nested open inquiry defaults to Questions First."
+  - "An inferred aperture preference is shown as a proposal and is not serialized as a fixed learning style."
+  - "Two users can view the same shared Yawn through different accepted presentation profiles without duplicating semantic state."
+  - "A public viewer receives only the explicitly published aperture and cannot enumerate private compatible apertures."
+  - "A pinned public aperture remains reproducible at its authorized revision."
+  - "Revoking a grant immediately removes future access and historical replay cannot bypass revocation."
+  - "Invite by username/email, role assignment, expiration, export control, and revocation produce attributed grant receipts."
+  - "Nestheads and a text aperture render the same Yawn identity and event cursor, and game interactions do not mutate semantics without an explicit operator receipt."
+  - "Accessibility requirements can override aesthetic preference without changing semantic identity."
+
+comparative_tests:
+  conditions:
+    - fixed_questions_first
+    - user_selected_aperture
+    - auto_contextual_aperture_with_visible_reason
+    - nestheads_game_aperture
+    - raw_model_aperture
+  measures:
+    - orientation_gain
+    - correction_cost
+    - navigation_success
+    - context_restoration_time
+    - task_or_question_completion
+    - preference_reversal
+    - authority_and_privacy_comprehension
+    - cognitive_carrying_reduction
+    - unwanted_engagement_capture
+  research_boundary: >
+    User preference and measured task-context usefulness may guide presentation.
+    Do not claim that matching a fixed learning style improves learning without
+    direct evidence.
+
+falsifiers:
+  - "The registry adds more complexity than it removes and users cannot predict what an aperture changes."
+  - "Users confuse aperture selection with sharing or permission changes."
+  - "Dynamic adaptation hides important information or feels manipulative."
+  - "Custom Views create semantic drift or incompatible controls."
+  - "Public projections leak private source or relationship data."
+  - "The game aperture increases engagement without improving orientation, recall, or agency."
+  - "Maintaining many aperture presets recreates the cognitive burden YAWN is intended to reduce."
+
+links:
+  - core/projection-and-aperture.yawn
+  - core/inquiry-selection.yawn
+  - schemas/projection-preference.v1.schema.json
+  - lib/projection-preference-v1.mjs
+  - interface/new-yawn-v0.1.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
+  - interface/ranked-move-deliberation-v0.1.yawn
+  - interface/yawnbot-agentic-embodiment-v0.1.yawn
+  - records/2026-09-05-selectable-aperture-and-provisioning-clarification.yawn

@@ -1,0 +1,109 @@
+id: interface/yawn-temporal-header-v0.1
+title: "Yawn temporal identity, replay, and provisioning header"
+kind: interface-boundary-contract
+status: proposed-0.1
+updated: 2026-09-04
+
+purpose: >
+  Make a Yawn's stable identity, current temporal position, replay affordance,
+  and effective provisioning visible at the same place the user sees the Yawn's
+  icon, title, and address. Time is not decorative metadata: a Yawn is a
+  time-indexed orientation contract whose meaning, evidence, authority, and
+  relationships can change across authorized events.
+
+header_identity:
+  required_visible:
+    - yawn_icon_or_fallback
+    - yawn_title
+    - canonical_or_resolved_address
+    - current_effective_timestamp
+    - effective_provisioning_summary
+  interaction:
+    timestamp: "opens the temporal replay aperture"
+    provisioning: "opens the effective sharing/provisioning aperture"
+
+replay_view:
+  controls:
+    - play_forward
+    - pause
+    - play_reverse
+    - scrub
+    - select_moment
+  source_rule: >
+    Replay moments must derive from preserved, attributable Yawn events,
+    revisions, receipts, or authorized snapshots. UI animation is not proof and
+    must never synthesize historical semantic state that was not actually
+    recorded.
+  selected_moment_rule: >
+    Selecting a historical moment changes the View/aperture only. It does not
+    roll back, mutate, authorize, or replace current canonical state.
+  current_marker: >
+    Returning to the latest moment returns the user to the current replay head.
+
+clock_semantics:
+  preferred_timestamp: "latest authorized semantic event effective_time"
+  acceptable_fallback: "record updated_at when no semantic replay head is available"
+  requirement: >
+    The interface should distinguish a semantic/effective event timestamp from a
+    storage-write timestamp when both are available. Ordering must be
+    deterministic and preserve source timestamps and provenance.
+
+provisioning_view:
+  compact_states:
+    - private
+    - shared
+    - public
+  requirements:
+    - "The compact state is visible without opening settings."
+    - "Shared state may expose a count or safe summary without leaking recipient identities."
+    - "Inherited provisioning is visibly distinguishable from an explicit local decision."
+    - "Provisioning is independent from epistemic confidence, truth, or authority."
+  replay_access_rule: >
+    Historical replay must never widen access because a past snapshot had a
+    broader provisioning state. Access to historical content is bounded by the
+    intersection of the viewer's current rights and the historical record's
+    permitted visibility, subject to explicit rightful grants.
+
+view_boundaries:
+  - "Timestamp is not freshness of truth; it is a temporal coordinate."
+  - "Replay is a View over preserved history, not destructive version switching."
+  - "Provisioning is not ownership, truth, endorsement, or authority."
+  - "Public/private badges must not encode semantics only by color."
+  - "Every replayed rendered object resolves to stable canonical identity."
+  - "Historical claims retain the actor, epistemic status, evidence, and authority they had at that moment."
+  - "A later update does not erase a prior disagreement or source record."
+
+product_language:
+  current: "Last updated"
+  deeper_meaning: >
+    The timestamp is a doorway into the Yawn's lived history: what changed,
+    when it changed, who or what changed it, what was believed or authorized at
+    that moment, and what proof later revised it.
+
+implementation_notes:
+  progressive_delivery:
+    phase_1: >
+      Surface icon, title, address, latest recorded timestamp, and provisioning.
+      If only one replay moment exists, show disabled replay controls honestly.
+    phase_2: >
+      Bind replay controls to the canonical replay/event source and materialize
+      historical Views by event position.
+    phase_3: >
+      Add diffs between moments, relationship/proof changes, and relevance-aware
+      jumps to meaningful history without making every storage write a cognitive
+      event.
+
+links:
+  - core/projection-and-aperture.yawn
+  - core/holarchy.yawn
+  - core/turn.yawn
+  - core/orientation.yawn
+  - core/proof-and-boundary.yawn
+
+proof_conditions:
+  - "A Yawn header visibly presents icon, title, address, timestamp, and provisioning."
+  - "Clicking the timestamp exposes play, pause, reverse, and scrub controls."
+  - "A one-moment Yawn never pretends a fabricated replay history exists."
+  - "Selecting history changes only the View until an explicit separate mutation is authorized."
+  - "Private/shared/public state is readable without relying on color alone."
+  - "Current access rights cannot be widened by replaying a historically broader snapshot."

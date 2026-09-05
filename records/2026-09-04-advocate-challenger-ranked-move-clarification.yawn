@@ -1,0 +1,135 @@
+id: records/2026-09-04-advocate-challenger-ranked-move-clarification
+title: "Advocate and challenger as a deliberation aperture over ranked moves"
+kind: clarification-record
+status: proposed-canonical-backfill
+recorded: 2026-09-04
+supersedes_history: false
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+source_observation: >
+  The root attention frontier should not present an unexplained next-best-move
+  score. Selecting a ranked item should progressively disclose why it currently
+  leads, the strongest advocate and adversarial cases, the assumptions and
+  evidence behind the estimate, the unresolved lacunae, and the changes that
+  would alter the ranking. A market-like trace can make belief revision visible
+  as the user adds information.
+
+clarification:
+  central_move: >
+    Treat advocate and adversary/challenger as attributed roles inside one
+    bounded move-deliberation episode, not as automatic persistent Yawnbots.
+  persistence_boundary: >
+    A Yawn.bot is the durable runtime around a Yawn. A temporary advocate or
+    challenger is normally an ephemeral Agent role with bounded context, budget,
+    authority, output, and expiry. It earns a persistent Yawn only if its work
+    develops an independently meaningful orientation and proof loop.
+  principal: >
+    The ranking engine and integrator produce a recommendation hypothesis. The
+    rightful principal may accept, modify, reject, hold, or delegate it. User
+    agreement is not proof that the recommendation was correct.
+  reality: >
+    Advocate and challenger help before action. Consequence and proof constrain
+    the model afterward. Neither model consensus nor eloquent argument replaces
+    reality contact.
+
+pressure_test_corrections:
+  - >
+    Do not force a symmetric debate. Steelman both sides while allowing evidence
+    to remain strongly asymmetric; otherwise the interface manufactures false
+    balance.
+  - >
+    Do not use one opaque line for probability, leverage, importance, salience,
+    and rank. These quantities must remain distinguishable.
+  - >
+    A Polymarket-like line is a forecast-revision trace, not a market price. It
+    must show whose estimate it is, what outcome and horizon it concerns, which
+    evidence moved it, and where no estimate was recorded.
+  - >
+    One model producing both sides is useful but correlated. High-consequence
+    decisions may justify blinded or cross-provider independent Agents.
+  - >
+    More role Agents are not automatically more intelligence. Spawn only when
+    expected information gain exceeds compute, coordination, and attention cost.
+  - >
+    A user's click teaches preferences or reveals missing context; it does not
+    establish that the clicked move was objectively best. Outcome and proof must
+    remain separate learning signals.
+
+ui_aperture:
+  collapsed:
+    - current_rank
+    - candidate_move
+    - why_now
+    - outcome_probability_or_unknown
+    - expected_leverage_summary
+    - rank_confidence
+    - largest_lacuna
+  expanded:
+    - intended_outcome_and_time_horizon
+    - advocate_case
+    - challenger_case
+    - assumptions
+    - supporting_and_contradictory_evidence
+    - factor_contributions
+    - forecast_history
+    - rank_history
+    - alternatives_and_opportunity_cost
+    - what_would_change_the_ranking
+    - authority_and_provisioning
+    - dialogue
+    - accept_modify_reject_hold_or_delegate
+
+learning_loop:
+  sequence:
+    - ranked_candidate_set
+    - advocate_and_challenger_cases
+    - rationale_dialogue
+    - new_attributed_user_or_world_evidence
+    - explicit_ranking_revision_with_delta
+    - principal_choice_or_hold
+    - move_or_delegation
+    - consequence
+    - proof_evaluation
+    - calibration_update
+  desired_behavior: >
+    As the user contributes information, YAWN should identify which assumption,
+    relationship, value, constraint, probability, or dependency changed; revise
+    only the affected estimate; preserve the prior estimate; and explain the
+    delta. Repeated corrections may improve local ranking policy, while broader
+    propagation requires stronger evidence and authority.
+
+root_attention_frontier:
+  rule: >
+    The username/root Yawn renders only a small current stack rank across local
+    Yawn attention claims. Opening an item moves into its deliberation aperture;
+    it does not flatten the underlying holarchy or convert View order into a
+    permanent containment hierarchy.
+
+implementation_target:
+  statement: >
+    Clicking a ranked next move should feel like opening the market and argument
+    structure behind the recommendation: what outcome is being forecast, who is
+    making each case, why the estimate moved, what remains unknown, and what the
+    principal can do next.
+  public_boundary: >
+    Public Views may show a sanitized candidate and rationale while private
+    evidence, health data, relationship history, and agent traces remain hidden
+    under effective field-level provisioning.
+
+proof_questions:
+  - "Does opening the advocate/challenger aperture improve decision understanding or merely add more prose?"
+  - "Do user corrections produce traceable rank changes and fewer repeated model errors?"
+  - "Are probability forecasts calibrated separately from leverage and priority rank?"
+  - "Does independent challenge improve outcomes enough to justify its compute and attention cost?"
+  - "Can historical replay reconstruct why a move was ranked first at that moment?"
+  - "Does the system preserve strong evidence asymmetry instead of forcing both sides to appear equal?"
+
+links:
+  - interface/ranked-move-deliberation-v0.1.yawn
+  - records/2026-09-04-externalized-cognition-resurfacing-and-agency-loop.yawn
+  - core/inquiry-selection.yawn
+  - core/orientation.yawn
+  - core/holarchy.yawn
+  - core/projection-and-aperture.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
