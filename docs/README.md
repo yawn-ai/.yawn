@@ -66,6 +66,8 @@ immutable source commit and path-by-path absorption map are preserved in the
 Historical wording is attributable evidence, not current canon merely under a
 new filename.
 
+Execution runs (proposals, not canon): [Run 01 · Lap 0 architecture truth map](execution-plans/run-01/lap-0/README.md).
+
 For the current compatibility boundary and known gaps, see
 [Project status](project-status.md) and [Repository map](repository-map.md).
 
