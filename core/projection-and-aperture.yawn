@@ -2,7 +2,7 @@ id: core/projection-and-aperture
 title: "Projection, View, lens, and aperture"
 kind: interface-boundary-contract
 status: draft-0.3
-updated: 2026-08-27
+updated: 2026-09-04
 
 definitions:
   projection: "what an attributed Agent actually expresses, represents, proposes, commits, or attempts into an Arena"
@@ -23,6 +23,7 @@ known_views:
   - world
   - orientation_map
   - orientation_inquiry
+  - yawn_temporal_header
 
 orientation_presentation_boundary:
   semantic_source: question-packets/orientation-nine.yawn
@@ -45,9 +46,12 @@ invariants:
   - "Color and spatial position never carry semantics alone."
   - "Presentation preference is not a learning-style diagnosis or semantic claim."
   - "A View preference cannot hide safety, authority, privacy, provenance, semantic coverage, or proof."
+  - "Selecting a historical replay moment changes temporal aperture, not canonical state."
+  - "Historical replay can never widen current access rights."
 
 links:
   - docs/projections/README.md
   - interface/projection-stack.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
   - interface/yawn-brand-v1.yawn
   - core/world-field-arena.yawn
