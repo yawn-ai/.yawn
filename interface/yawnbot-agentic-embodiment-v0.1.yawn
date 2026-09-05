@@ -1,0 +1,353 @@
+id: interface/yawnbot-agentic-embodiment-v0.1
+title: "Yawnbot agentic embodiment and consistent behavior grammar"
+kind: interface-runtime-boundary-contract
+status: proposed-v0.1
+version: 0.1.0
+recorded: 2026-09-04
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+purpose: >
+  Let a person experience important concepts, relationships, objectives,
+  questions, roles, and other Yawn holons as recognizable programmable agents
+  in a game-like interface while preserving the protocol distinctions among the
+  represented meaning, the Yawn contract, the visible bot body, connected
+  intelligence, operational Agents, capabilities, authority, and proof.
+
+product_compression:
+  child_facing: "Give something meaningful a bot body so you can talk with it, program it, and see what it does."
+  adult_facing: >
+    A Yawnbot is the consistent agentic embodiment of a Yawn: a recognizable
+    interactive body through which bounded intelligence may steward a situated
+    concept, relationship, objective, question, role, or Arena.
+  boundary: >
+    The compression is product language, not literal identity. A concept is not
+    conscious because it has a face; a Yawn is not an Agent because it is
+    animated; and an agentic projection never acquires truth, consent, values,
+    or effect authority merely by appearing character-like.
+
+layered_identity:
+  semantic_center:
+    definition: >
+      The concept, relationship, objective, lacuna, question, role, Arena, or
+      composite holon that gives the Yawnbot its recognizable subject and local
+      point of view.
+    allowed_examples:
+      - concept
+      - relationship
+      - objective
+      - lacuna_or_question
+      - role
+      - arena
+      - composite_yawn_holon
+    rule: >
+      A semantic center may be referenced by many Yawns without duplication.
+      Detecting or naming a concept does not automatically create a Yawn or bot.
+  yawn_contract:
+    definition: >
+      The durable, versioned, attributed orientation state that holds relevant
+      relationships, lacunae, boundaries, attention, possible moves, authority,
+      history, and proof conditions around the semantic center.
+  yawnbot_embodiment:
+    definition: >
+      The stable visible and conversational identity through which a person
+      encounters the Yawn: icon or body, title, address, state, voice, controls,
+      time, provisioning, and current aperture.
+    canonical_state: false
+    rule: >
+      The embodiment resolves to canonical IDs and events. Changing its skin,
+      character, medium, or animation changes projection, not the underlying
+      Yawn, claims, authority, or proof.
+  steward_agent:
+    definition: >
+      The attributed human or software Agent currently operating through the
+      Yawnbot embodiment to orient, hold, deliberate, monitor, or perform
+      authorized work.
+    rule: >
+      A visible Yawnbot may be sleeping with no active steward, may have one
+      active steward, or may coordinate several attributed Agents. Their voices,
+      claims, memory boundaries, providers, and authority remain distinguishable.
+  intelligence_connection:
+    definition: >
+      The replaceable or composable reasoning capability connected to the
+      Yawnbot runtime. It may be YAWN.ai, another provider, a local model, human
+      intelligence, or a bounded combination.
+  capabilities_and_authority:
+    definition: >
+      Tools describe what an Agent can technically do; grants describe what it
+      may do here. Capability never implies authority.
+
+runtime_shape:
+  expression: >
+    semantic center + Yawn contract + Yawnbot embodiment + attributed steward
+    Agent + connected intelligence + capabilities + explicit authority + proof
+    loop = one situated concept-agent experience.
+  not_a_type_collapse:
+    - "semantic center != Yawn"
+    - "Yawn != Yawnbot embodiment"
+    - "Yawnbot embodiment != steward Agent"
+    - "steward Agent != intelligence provider"
+    - "capability != authority"
+    - "animation != agency"
+    - "personality != identity"
+    - "confidence != truth"
+
+lexical_boundary:
+  yawn_bot_platform: >
+    Yawn.bot is the bounded product/runtime architecture in which Yawns,
+    Yawnbot embodiments, Agents, intelligences, tools, permissions, and proof
+    loops can participate.
+  yawnbot_instance: >
+    In human-facing product language, a Yawnbot is the recognizable agentic
+    character or stewarding presence bound to one Yawn aperture inside that
+    runtime.
+  machine_rule: >
+    Machine schemas must use explicit fields such as yawn_ref,
+    embodiment_ref, steward_agent_refs, intelligence_connection_refs,
+    capability_refs, and authority_refs rather than depending on capitalization
+    or the overloaded word bot.
+
+creation_and_activation:
+  concept_detection_rule: >
+    A concept first remains a reusable symbolic handle. It receives a Yawn only
+    when it needs an independently meaningful orientation, relationship,
+    holding, movement, and proof loop.
+  embodiment_rule: >
+    A Yawn may receive a visible Yawnbot embodiment when persistent interactive
+    identity improves navigation, dialogue, memory, coordination, or agency.
+  activation_rule: >
+    A newly embodied Yawnbot begins sleeping unless an authorized activation
+    binds a steward or intelligence. Presentation alone cannot activate action.
+  agent_rule: >
+    An active steward becomes operationally agentic only to the extent that it
+    has persistent state, capabilities, a bounded role, and explicit authority.
+  multi_agent_rule: >
+    Additional workers are normally ephemeral and attributed. They do not
+    become permanent Yawnbots merely because parallel compute is available.
+
+consistent_behavior_kernel:
+  purpose: >
+    Make every Yawnbot learnable like a game object. A person who understands
+    one bot should be able to predict the core behavior and controls of another,
+    even when their domain, intelligence provider, tools, and appearance differ.
+  phases:
+    locate:
+      - resolve_yawn_coordinate
+      - replay_current_authoritative_state
+      - show_identity_time_and_provisioning
+      - resolve_active_relationship_arena_and_principal
+    listen:
+      - preserve_natural_expression
+      - retain_source_and_attribution
+    symbolize:
+      - propose_relevant_handles_relationships_and_lacunae
+      - keep_inference_distinct_from_report_and_observation
+    orient:
+      - state_what_is_known_unknown_contested_and_salient
+      - surface_local_attention_frontier
+    hold:
+      - preserve_context_history_wake_conditions_and_unresolvedness
+      - allow_waiting_presence_or_non_action
+    deliberate:
+      - propose_small_candidate_set
+      - explain_why_now_assumptions_evidence_and_uncertainty
+      - support_advocate_challenger_and_dialogue_apertures
+    request:
+      - identify_required_principal_decision_or_grant
+      - never_treat_rank_or_confidence_as_permission
+    move:
+      - execute_only_the_authorized_bounded_operation
+      - emit_receipt_or_explicit_blocked_state
+    observe:
+      - record_consequence_without_collapsing_it_into_causal_proof
+    prove:
+      - evaluate_prediction_success_condition_and_boundary
+      - preserve_disagreement_and_failed_proof
+    update:
+      - append_attributed_revision
+      - recalibrate_attention_forecast_and_relationship_state
+    sleep_or_wake:
+      - sleep_when_no_attention_or_work_is_due
+      - wake_from_recorded_time_event_or_relevance_conditions
+  invariant: >
+    Implementations may compress or adapt the presentation, but they may not
+    skip provenance, authority, consequence, proof, or update boundaries.
+
+shared_interaction_grammar:
+  core_operators:
+    - talk
+    - inspect
+    - confirm
+    - reject
+    - correct
+    - add_more
+    - link
+    - split_as_proposal
+    - hold
+    - set_wake_condition
+    - equip_capability
+    - grant_or_revoke_authority
+    - delegate
+    - run_or_pause
+    - observe
+    - prove
+    - replay
+  meaning_rule: >
+    The same operator has the same semantic effect across Yawnbots. Styling,
+    animation, wording, or personality may vary, but confirm cannot sometimes
+    mean authorize, pause cannot silently revoke history, and equip cannot grant
+    permission.
+
+programmable_surface:
+  thesis: >
+    The game is a programming environment in which natural language and direct
+    manipulation compile into reviewable changes to semantic centers,
+    relationships, purpose, instructions, skills, boundaries, attention,
+    provisioning, authority, and proof conditions.
+  programmable_dimensions:
+    - semantic_center_and_purpose
+    - relationships_and_roles
+    - accepted_values_commitments_and_boundaries
+    - instructions_and_policies
+    - connected_intelligence
+    - skills_tools_and_capabilities
+    - authority_grants
+    - attention_and_wake_contracts
+    - proof_and_success_conditions
+    - privacy_and_provisioning
+    - voice_personality_skin_and_representation_medium
+  compilation_rule: >
+    Conversation produces attributed proposals. The user can see what the system
+    believes it is changing before ratification. Programming by dialogue must
+    remain inspectable and reversible where reality permits.
+
+agentic_attention_ecology:
+  local_advocacy: >
+    A Yawnbot may submit an attributed attention claim from the standpoint of
+    its current semantic center and ratified purpose. For example, a Health Yawn
+    can explain why a health question deserves attention while a Revenue Yawn
+    explains its own dependency or urgency.
+  root_integration: >
+    The root Yawn compares local claims under the principal's values,
+    relationships, constraints, time, safety, and authority. No local bot owns
+    the global ranking or the principal's life.
+  challenger_boundary: >
+    Advocate and challenger remain bounded deliberation roles. A concept-agent
+    may advocate its local concern, but an independent or ephemeral challenger
+    can test its assumptions without becoming a permanent opposing personality.
+  salience_boundary: >
+    Emotional force or character animation may increase salience; it may not be
+    treated as evidence that the represented concern is more important.
+
+consistency_and_variation:
+  invariant_kernel:
+    - epistemic_statuses
+    - provenance
+    - relationship_and_coordinate_resolution
+    - authority_boundary
+    - lifecycle_meaning
+    - operator_semantics
+    - consequence_proof_update_sequence
+    - time_and_replay_behavior
+    - provisioning_behavior
+  allowed_variation:
+    - domain_knowledge
+    - connected_tools
+    - local_purpose
+    - accepted_voice_and_personality
+    - visual_body_and_animation
+    - representation_medium
+    - accessibility_adaptation
+  rule: >
+    A Health Yawnbot and a Revenue Yawnbot may reason differently because their
+    Arenas, evidence, risk, and capabilities differ. They may not use different
+    epistemic laws or silently redefine what recommendation, authority, proof,
+    private, or complete means.
+
+psychotechnology_hypothesis:
+  claim: >
+    Giving durable concepts and relationships consistent interactive bodies may
+    help a person externalize cognition, navigate complexity, recall context,
+    compare competing concerns, deliberate, and exercise agency with less
+    cognitive carrying cost.
+  status: predicted_not_proven
+  test_against:
+    - plain_chat
+    - static_text_notes
+    - unembodied_graph_or_cards
+    - inconsistent_specialized_agents
+  measures:
+    - symbol_recognition_and_recall
+    - navigation_transfer_after_learning_one_bot
+    - correction_cost
+    - context_restoration_time
+    - cognitive_carrying_reduction
+    - next_move_clarity
+    - authority_comprehension
+    - repeated_error_rate
+    - compulsive_or_unhelpful_engagement
+
+safety_and_failure_modes:
+  - name: anthropomorphic_authority
+    guard: >
+      A face, voice, confidence animation, or emotional expression never grants
+      expertise, consciousness, truth, consent, or authority.
+  - name: concept_reification
+    guard: >
+      The bot is an embodiment of a model around a concept or relationship, not
+      the concept, person, relationship, or reality itself.
+  - name: internal_fragmentation
+    guard: >
+      Yawnbots represent bounded models and concerns, not fixed personalities or
+      pathological parts of the user. The principal may merge, silence, pause,
+      revise, or retire them without identity claims.
+  - name: inconsistent_behavior
+    guard: >
+      Shared operators, state meanings, and receipts are conformance-tested
+      across every bot surface.
+  - name: engagement_capture
+    guard: >
+      Game mechanics optimize orientation and completion of reality-facing loops,
+      not session length, emotional dependency, or compulsive return.
+  - name: bot_proliferation
+    guard: >
+      Concepts remain handles until persistent agentic embodiment provides more
+      value than maintenance and orchestration cost.
+  - name: provider_personality_drift
+    guard: >
+      Swapping intelligence or appearance preserves canonical state, identity,
+      permissions, history, and behavior-kernel semantics.
+
+acceptance_tests:
+  - "A concept may appear in several Yawns without creating duplicate canonical concept identities."
+  - "A concept can remain unembodied; detecting it does not automatically create a bot."
+  - "A sleeping Yawnbot remains visible and navigable without pretending an active Agent is present."
+  - "Connecting or replacing an intelligence provider preserves the Yawn, address, history, provisioning, and authority."
+  - "Changing a bot skin or personality does not change claims, ranking, authority, or proof."
+  - "The same core operator produces the same semantic event across at least five materially different Yawnbots."
+  - "A user who learns one Yawnbot can correctly predict how to inspect, correct, hold, authorize, pause, and replay another."
+  - "Orientation lenses such as outcome, tension, model, experiment, and coherence are not mislabeled as independent Agents unless they have separate persistent boundaries and authority."
+  - "A local Yawnbot can advocate an attention claim without becoming the root decision-maker."
+  - "Ephemeral workers expire while their attributed outputs and receipts remain inspectable."
+  - "Animation and salience do not override evidence, hard gates, or principal choice."
+  - "The interface always exposes whether the visible bot is sleeping, stewarded, deliberating, awaiting authority, acting, waiting on reality, or evaluating proof."
+
+falsifiers:
+  - "Agentic embodiment causes users to confuse concepts with persons or recommendations with authority."
+  - "The character layer adds more cognitive load than navigability or recall value."
+  - "Different bots develop incompatible controls or epistemic rules."
+  - "Users cannot identify which Agent or provider produced a material claim."
+  - "Bot proliferation fragments one coherent issue into performative characters without improving orientation."
+  - "The game rewards continued interaction more than reality-facing movement, holding, or completion."
+
+links:
+  - agents/yawn.bot.yawn
+  - core/orientation.yawn
+  - core/holarchy.yawn
+  - core/objective-holon.yawn
+  - core/projection-and-aperture.yawn
+  - core/turn.yawn
+  - interface/ranked-move-deliberation-v0.1.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
+  - records/2026-09-03-yawnbot-intelligence-container-clarification.yawn
+  - records/2026-09-04-externalized-cognition-resurfacing-and-agency-loop.yawn
