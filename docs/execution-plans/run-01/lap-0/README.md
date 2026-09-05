@@ -1,6 +1,6 @@
 # Run 01 · Lap 0 — architecture truth map
 
-Status: proposal (draft PR), recorded 2026-09-05 by `agent:anthropic:claude-code` (Claude Fable 5.1) as the primary builder for YAWN Execution Run 01. Nothing here is ratified; the reviewer challenges it; Dave rules on the decision packet. Lap 1 has not started.
+Status: proposal (draft PR https://github.com/yawn-ai/.yawn/pull/30), recorded 2026-09-05 by `agent:anthropic:claude-code` (Claude Fable 5.1) as the primary builder for YAWN Execution Run 01. Nothing here is ratified; the reviewer challenges it; Dave rules on the decision packet. Lap 1 has not started.
 
 Purpose of the lap, as amended by Dave: establish where the product actually runs, where its authoritative state comes from, what already works, what is unsafe or contradictory, and the smallest next change that lets Dave entrust something to it.
 

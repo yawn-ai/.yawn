@@ -40,8 +40,8 @@ boundary_observed: >
   (source record), open turn T-074 appended to Yawns/OPEN_TURNS.yawn, one collaboration receipt (sequence
   allocated from a fresh read at write time; see the private thread), one continuity tick with --write
   (LOOP_STATE, NEEDS_YOU, RANK, runs.jsonl, the computed top-three line); (2) yawn-ai/.yawn — this folder
-  and one pointer line in docs/README.md on branch proposal/run-01-lap-0, pushed, opened as a DRAFT pull
-  request; (3) local only, not committed — two temporary reproduction test files (deleted), a regenerated
+  and one pointer line in docs/README.md on branch proposal/run-01-lap-0, pushed, opened as DRAFT pull
+  request https://github.com/yawn-ai/.yawn/pull/30 (commit a6a8c35); (3) local only, not committed — two temporary reproduction test files (deleted), a regenerated
   asset manifest (reverted), Playwright receipts, blob-less clones under Desktop/.claude-worktrees, one
   fresh yawn.bot worktree. Nothing else. The temporary tests never touched a database.
 map_update: >
@@ -99,7 +99,7 @@ run_receipt:
   tests_passed: .yawn validators and tests 9/9, hub links, contracts check; yawn.bot lint, typecheck (after manifest), build, 2091 unit tests, e2e 111+8; yawn.ai vitest 129/129; two reproduction files 7/7 (deleted)
   tests_failed: yawn.bot contract-network 2 (F-040); yawn.bot e2e 18 on the idle rerun (F-042); yawn.ai typecheck stopped at 16 min (timeout, not a failure); yawn builds fail identically at base and head (F-001)
   evidence_produced: this folder; the private record and receipt; two local e2e receipts
-  external_effects_attempted: push of one proposal branch and one draft pull request on yawn-ai/.yawn (authorized in Dave's amendments of 2026-09-05); nothing else
+  external_effects_attempted: push of branch proposal/run-01-lap-0 and draft pull request https://github.com/yawn-ai/.yawn/pull/30 on yawn-ai/.yawn (authorized in Dave's amendments of 2026-09-05); nothing else
   next_three_ranked_turns:
     - 1. Dave rules D-1, D-2, D-3 (runtime; unprotected main and the gate-breaking record; read-only migration look). Ranked first because Lap 1 cannot start or claim a baseline without them.
     - 2. The reviewer marks IMPLEMENTATION_PLAN Lap 1 SUPPORT / CHALLENGE / BLOCK and adds gpt_status to FINDINGS. Ranked second because the plan is the object under review and the run order says the reviewer challenges before implementation.
