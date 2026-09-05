@@ -1,17 +1,20 @@
 id: core/projection-and-aperture
 title: "Projection, View, lens, and aperture"
 kind: interface-boundary-contract
-status: draft-0.3
-updated: 2026-09-04
+status: draft-0.4
+updated: 2026-09-05
 
 definitions:
   projection: "what an attributed Agent actually expresses, represents, proposes, commits, or attempts into an Arena"
   view: "a purpose-specific rebuildable rendering over canonical IDs and events"
   lens: "a named View rule that foregrounds particular relations"
   aperture: "the scope, depth, time window, and salience included in a view"
+  aperture_preset: "a named user-facing binding of a versioned View, aperture parameters, presentation profile, temporal cursor, and fallback; the interface may label this simply Aperture"
+  effective_projection: "canonical state at an event cursor intersected with viewer/source grants, then filtered by the selected View and aperture and rendered through the effective presentation profile"
   orientation_map: "a time-indexed rebuildable View of attributed orientation coverage; never a second canonical state store"
   orientation_inquiry: "a question-facing View that renders one orientation_map lacuna without changing semantic state"
-  presentation_profile: "scoped and revisable View preferences for wording, order, pacing, density, medium, and accessibility"
+  presentation_profile: "scoped and revisable View preferences for wording, order, pacing, density, medium, interaction, and accessibility; never a fixed learning-style diagnosis"
+  publication: "an authorized versioned public or shared projection; never a duplicate truth store or grant to underlying private state"
 
 known_views:
   - arena
@@ -31,11 +34,27 @@ orientation_presentation_boundary:
   semantic_source: question-packets/orientation-nine.yawn
   selection_policy: core/inquiry-selection.yawn
   accepted_preference_contract: schemas/projection-preference.v1.schema.json
+  aperture_registry_contract: interface/aperture-registry-and-provisioning-v0.1.yawn
   rule: >
     question_key and answer meaning survive a change of wording, order, layout,
-    representation_medium, or answer_input_adapter. Inferred presentation fit
-    remains a proposal until accepted; measured usefulness is a separate scoped
-    claim.
+    representation_medium, answer_input_adapter, or registered aperture. Inferred
+    presentation fit remains a proposal until accepted; measured usefulness is a
+    separate scoped claim.
+
+runtime_boundary:
+  equation: >
+    effective projection = canonical semantic state at event cursor INTERSECT
+    effective viewer/source grants FILTERED by registered View and aperture
+    parameters RENDERED through the effective presentation profile.
+  user_control: >
+    A user may select Auto, choose a permitted registered aperture, temporarily
+    override it, or save an accepted preference at a declared scope. Aperture
+    selection and provisioning remain separate controls.
+  default_rule: >
+    Questions First is a strong context default for sparse private Yawns;
+    Attention Frontier may lead at a longitudinal root; anonymous viewers receive
+    only an explicitly published public projection. These are policy defaults,
+    not a closed global enum.
 
 invariants:
   - "Timeline is a view, not a Yawn kind."
@@ -43,6 +62,12 @@ invariants:
   - "Renderer, layout, color, image, and navigation state are View concerns unless an Agent expresses them into an Arena."
   - "An Agent Projection remains distinct from its Intention, another Agent's Observation, and the resulting Consequence."
   - "Aperture changes visibility and salience, not truth or permission."
+  - "An aperture may only narrow or reorganize data already available through effective grants."
+  - "Selecting an aperture never changes sharing, provisioning, semantic state, or effect authority."
+  - "Changing provisioning never silently changes the user's selected aperture."
+  - "Public and private projections are not separate canonical truth stores."
+  - "A public View exposes only explicitly provisioned fields and source-safe derivatives."
+  - "Aperture availability is registry-driven and permission-filtered, not a hard-coded UI union."
   - "Every interactive rendered object resolves to a stable canonical ID."
   - "Presentation-only events do not alter semantic state."
   - "Color and spatial position never carry semantics alone."
@@ -54,10 +79,13 @@ invariants:
   - "A forecast trace is attributed model history, not a market price or world fact."
   - "Giving a Yawn an agentic character or bot body changes embodiment and interaction, not semantic identity, consciousness, truth, authority, or proof."
   - "A Yawnbot embodiment resolves to explicit Yawn, Agent, intelligence, capability, authority, and provisioning references rather than collapsing them into one character."
+  - "Custom or executable apertures cannot bypass source, field, identity, privacy, consent, authority, or proof gates."
 
 links:
   - docs/projections/README.md
   - interface/projection-stack.yawn
+  - interface/aperture-registry-and-provisioning-v0.1.yawn
+  - schemas/projection-preference.v1.schema.json
   - interface/yawn-temporal-header-v0.1.yawn
   - interface/ranked-move-deliberation-v0.1.yawn
   - interface/yawnbot-agentic-embodiment-v0.1.yawn
