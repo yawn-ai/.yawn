@@ -24,6 +24,7 @@ known_views:
   - orientation_map
   - orientation_inquiry
   - yawn_temporal_header
+  - ranked_move_deliberation
 
 orientation_presentation_boundary:
   semantic_source: question-packets/orientation-nine.yawn
@@ -48,10 +49,13 @@ invariants:
   - "A View preference cannot hide safety, authority, privacy, provenance, semantic coverage, or proof."
   - "Selecting a historical replay moment changes temporal aperture, not canonical state."
   - "Historical replay can never widen current access rights."
+  - "Opening an advocate/challenger deliberation changes explanatory aperture, not rank, choice, authority, or proof."
+  - "A forecast trace is attributed model history, not a market price or world fact."
 
 links:
   - docs/projections/README.md
   - interface/projection-stack.yawn
   - interface/yawn-temporal-header-v0.1.yawn
+  - interface/ranked-move-deliberation-v0.1.yawn
   - interface/yawn-brand-v1.yawn
   - core/world-field-arena.yawn
