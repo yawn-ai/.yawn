@@ -4,7 +4,7 @@ Status: proposal (draft PR https://github.com/yawn-ai/.yawn/pull/30), recorded 2
 
 Purpose of the lap, as amended by Dave: establish where the product actually runs, where its authoritative state comes from, what already works, what is unsafe or contradictory, and the smallest next change that lets Dave entrust something to it.
 
-The brief this lap audits is [`../../theory-carries-builder-run-01-v0.3.md`](../../theory-carries-builder-run-01-v0.3.md) as it stands on PR #29 (`54ef77f`). The lap corrects the brief where the repositories disagree with it; it does not force the repositories to match the brief.
+The brief this lap audits is [`docs/execution-plans/theory-carries-builder-run-01-v0.3.md`](https://github.com/yawn-ai/.yawn/blob/54ef77fd8cdd222c9bbf56cbf245c367684b5291/docs/execution-plans/theory-carries-builder-run-01-v0.3.md) as it stands on PR #29 (`54ef77f`; the file is not on main, so the link points at that sha). The lap corrects the brief where the repositories disagree with it; it does not force the repositories to match the brief.
 
 ## Read in this order
 1. [`FINDINGS.yaml`](FINDINGS.yaml) — the single source: pinned references, every finding with citations, tag, evidence class, resolution, and blank reviewer fields.
