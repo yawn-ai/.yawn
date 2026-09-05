@@ -1,7 +1,7 @@
 id: core/projection-and-aperture
 title: "Projection, View, lens, and aperture"
 kind: interface-boundary-contract
-status: draft-0.4
+status: draft-0.5
 updated: 2026-09-05
 
 definitions:
@@ -13,6 +13,7 @@ definitions:
   effective_projection: "canonical state at an event cursor intersected with viewer/source grants, then filtered by the selected View and aperture and rendered through the effective presentation profile"
   orientation_map: "a time-indexed rebuildable View of attributed orientation coverage; never a second canonical state store"
   orientation_inquiry: "a question-facing View that renders one orientation_map lacuna without changing semantic state"
+  perspective_field: "a question-, claim-, expression-, relationship-, or move-facing View of attributed standpoints, answer candidates, evidence relations, disagreement, and feedback; never a vote tally or second belief store"
   presentation_profile: "scoped and revisable View preferences for wording, order, pacing, density, medium, interaction, and accessibility; never a fixed learning-style diagnosis"
   publication: "an authorized versioned public or shared projection; never a duplicate truth store or grant to underlying private state"
 
@@ -26,6 +27,7 @@ known_views:
   - world
   - orientation_map
   - orientation_inquiry
+  - perspective_field
   - yawn_temporal_header
   - ranked_move_deliberation
   - yawnbot_agentic_embodiment
@@ -35,11 +37,12 @@ orientation_presentation_boundary:
   selection_policy: core/inquiry-selection.yawn
   accepted_preference_contract: schemas/projection-preference.v1.schema.json
   aperture_registry_contract: interface/aperture-registry-and-provisioning-v0.1.yawn
+  perspective_field_contract: interface/perspective-field-and-feedback-reintegration-v0.1.yawn
   rule: >
-    question_key and answer meaning survive a change of wording, order, layout,
-    representation_medium, answer_input_adapter, or registered aperture. Inferred
-    presentation fit remains a proposal until accepted; measured usefulness is a
-    separate scoped claim.
+    question_key, answer-candidate identity, source, and meaning survive a change
+    of wording, order, layout, representation medium, answer input adapter, or
+    registered aperture. Inferred presentation fit remains a proposal until
+    accepted; measured usefulness is a separate scoped claim.
 
 runtime_boundary:
   equation: >
@@ -59,6 +62,9 @@ runtime_boundary:
 invariants:
   - "Timeline is a view, not a Yawn kind."
   - "Agent Arena is a View, not canonical state."
+  - "Perspective Field is a View over attributed answers, voices, evidence, and feedback, not a vote tally or canonical belief store."
+  - "A voice is an expression from a standpoint; it is not automatically an Agent, Yawnbot, psychological part, belief, or truth."
+  - "Question priority, answer credence, perspective relevance, popularity, conviction, salience, and move leverage remain distinguishable."
   - "Renderer, layout, color, image, and navigation state are View concerns unless an Agent expresses them into an Arena."
   - "An Agent Projection remains distinct from its Intention, another Agent's Observation, and the resulting Consequence."
   - "Aperture changes visibility and salience, not truth or permission."
@@ -72,11 +78,12 @@ invariants:
   - "Presentation-only events do not alter semantic state."
   - "Color and spatial position never carry semantics alone."
   - "Presentation preference is not a learning-style diagnosis or semantic claim."
-  - "A View preference cannot hide safety, authority, privacy, provenance, semantic coverage, or proof."
+  - "A View preference cannot hide safety, authority, privacy, provenance, semantic coverage, disagreement, or proof."
   - "Selecting a historical replay moment changes temporal aperture, not canonical state."
   - "Historical replay can never widen current access rights."
   - "Opening an advocate/challenger deliberation changes explanatory aperture, not rank, choice, authority, or proof."
   - "A forecast trace is attributed model history, not a market price or world fact."
+  - "Public feedback is an attributed input; popularity, praise, criticism, or engagement cannot directly become truth, reward, policy, authority, or proof."
   - "Giving a Yawn an agentic character or bot body changes embodiment and interaction, not semantic identity, consciousness, truth, authority, or proof."
   - "A Yawnbot embodiment resolves to explicit Yawn, Agent, intelligence, capability, authority, and provisioning references rather than collapsing them into one character."
   - "Custom or executable apertures cannot bypass source, field, identity, privacy, consent, authority, or proof gates."
@@ -85,6 +92,7 @@ links:
   - docs/projections/README.md
   - interface/projection-stack.yawn
   - interface/aperture-registry-and-provisioning-v0.1.yawn
+  - interface/perspective-field-and-feedback-reintegration-v0.1.yawn
   - schemas/projection-preference.v1.schema.json
   - interface/yawn-temporal-header-v0.1.yawn
   - interface/ranked-move-deliberation-v0.1.yawn
