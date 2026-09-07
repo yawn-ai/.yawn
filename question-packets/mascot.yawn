@@ -1,0 +1,286 @@
+id: question-packets/mascot
+title: "Mascot ranked questions"
+kind: question-packet
+status: proposed
+updated: 2026-09-07
+
+purpose: >
+  Hold the stack-ranked questions the YAWN.bot mascot system must answer, in
+  the same shape yawn.bot/frontier renders: one governing question, ranked
+  entries, each with the current answer, the case against it, the proof that
+  would settle it, and the loop status. Public entries render on the
+  unprovisioned /mascot view; every entry renders for a provisioned owner.
+
+target_contract: interface/yawn-mascot-v0.1.yawn
+render_format: "ranked details/summary list (yawn.bot/frontier pattern); only the top rank open by default"
+ranking_rule: "ranked by how much the answer changes Dave's next move; the ranking is a bet, not evidence"
+
+governing_question: "What is the YAWN.bot mascot, and how does it know what it is doing?"
+
+honesty_line: >
+  These answers are proposals with their status attached. An answer marked
+  inferred or reported has not been proved in this runtime yet.
+
+rules:
+  - "A question with no answer stays visible with answer: null."
+  - "An answer never upgrades its own epistemic status; proof does."
+  - "public_safe: false entries never render on the unprovisioned view."
+  - "loop_status uses the six-stage loop: signal | orientation | choice | move | proof | update."
+
+questions:
+  - rank: 1
+    key: universal_browser_technology
+    question: "What is the best universal browser technology for a state-driven pixel mascot in the YAWN.bot Next.js app?"
+    answer: null  # TODO-RESEARCH
+    epistemic_status: unknown
+    case_against: null
+    proof: "A header mark, a state card, and a 200-body world view run on iOS Safari, Android Chrome, and desktop with one shared ticker, crisp pixels, reduced-motion stills, and zero route-owned console errors."
+    loop_status: orientation
+    public_safe: true
+    links:
+      - { label: "Sprite manifest the runtime already detects", href: "src/domain/sprite-sheets.ts" }
+
+  - rank: 2
+    key: claude_technology
+    question: "What technology does Claude use for the pixel mascot and the animated Ultracode band?"
+    answer: null  # TODO-RESEARCH
+    epistemic_status: unknown
+    case_against: "Even a confirmed answer would describe Anthropic's stack, not ours; the useful part is the two-layer split (field plus sprite), which is already observable."
+    proof: "A primary source (Anthropic engineering post, talk, or the public package bundle) names the mechanism."
+    loop_status: orientation
+    public_safe: true
+    links: []
+
+  - rank: 3
+    key: how_state_is_known
+    question: "How does the mascot know what state it is in?"
+    answer: >
+      It does not decide; it reads. One pure function resolves the loop
+      status, worker expression state, mirror-face expression, world
+      execution state, header status, and inbox status that the runtime
+      already keeps into {state, variant, flags} plus a replayable input
+      hash. Hard-gate flags outrank needs-owner, which outranks the loop
+      status, which outranks micro-expressions. Missing inputs resolve to
+      sleeping with an unknown badge; nothing is guessed.
+    epistemic_status: inferred
+    case_against: "Six source enums drift independently; a mapping table can silently rot. The mitigation is the exhaustive state-map test that fails on any unmapped value."
+    proof: "The state-map test enumerates every value of every input enum; adding a value without a mapping fails CI."
+    loop_status: choice
+    public_safe: true
+    links:
+      - { label: "Loop statuses", href: "src/domain/yawn-state-substrate.ts" }
+      - { label: "Worker expression state", href: "src/domain/automation-registry.ts" }
+      - { label: "Mirror face expression", href: "src/domain/yawn-frame-grid.ts" }
+
+  - rank: 4
+    key: which_states
+    question: "Which states exist, and what does each one look like?"
+    answer: >
+      Ten states: sleeping, orienting, asking, moving, working (a variant of
+      moving for code, write, and read moves), proving, updating, holding,
+      blocked, closed. Four flags overlay them: needs_owner, error,
+      local_only, unknown_inputs. Two states already have sheets (sleeping
+      from the idle sheet, moving from the walk sheets); the rest fall back
+      to the nearest accepted ancestor until a sheet is promoted.
+    epistemic_status: inferred
+    case_against: "Ten states may be too many to read at 32 pixels; a swarm may only need four legible silhouettes. Keep the ten in the model, but prove legibility per size before generating ten sheets."
+    proof: "A legibility test: five people name the state of each still frame at 32, 128, and 256 pixels; states below a threshold merge visually (not semantically)."
+    loop_status: choice
+    public_safe: true
+    links:
+      - { label: "State model", href: "interface/yawn-mascot-v0.1.yawn" }
+
+  - rank: 5
+    key: how_frames_are_made
+    question: "How are the animation frames made?"
+    answer: null  # TODO-RESEARCH: provider per stage, cost, post-processing
+    epistemic_status: unknown
+    case_against: null
+    proof: "One state sheet travels reference pack -> brief hash -> approval receipt -> candidate -> post-process -> manifest -> promotion receipt, with every hash reconciling."
+    loop_status: orientation
+    public_safe: true
+    links:
+      - { label: "Image generator receipt idiom", href: "src/lib/yawn-image/generate.ts" }
+      - { label: "Art engine", href: "nestheads-art-engine/README.md" }
+
+  - rank: 6
+    key: who_approves
+    question: "Who approves generation, spend, and promotion?"
+    answer: >
+      The owner of the coordinate, per candidate, per state, with a receipt
+      that names the brief hash, adapter, candidate count, spend ceiling,
+      and expiry. Generation and promotion are separate receipts. Visual
+      quality never approves anything; a nonconforming candidate ends its
+      grant.
+    epistemic_status: observed
+    case_against: "Per-candidate approval is slow for ten states times several attempts. The answer is a bounded batch receipt (N candidates, one ceiling, one expiry), never standing authority."
+    proof: "A generation attempt without a current receipt is refused and leaves an inspectable refusal record."
+    loop_status: proof
+    public_safe: true
+    links:
+      - { label: "Owner-decision receipt precedent", href: "records/interception-statement-image-approval-2026-08-29.yawn" }
+
+  - rank: 7
+    key: header_icon
+    question: "What does the upper-left icon show, and to whom?"
+    answer: >
+      The current bot's mascot in its current state, with the state name as
+      accessible text. On the public root it shows only the root bot's
+      public state class. A signed-in owner on their coordinate sees that
+      coordinate's bot, with flags.
+    epistemic_status: inferred
+    case_against: "A moving icon in every header is attention cost; the chrome contract says default surfaces foreground one state and one next action. The mark must stay quiet: small, slow idle, no motion under reduced-motion, and no motion at all for sleeping unless the user hovers or focuses."
+    proof: "Signed-out Playwright run finds no private detail in the header DOM; reduced-motion run finds no running ticker."
+    loop_status: choice
+    public_safe: true
+    links:
+      - { label: "Chrome contract", href: "interface/yawn-chrome-v1.yawn" }
+
+  - rank: 8
+    key: holarchy_inheritance
+    question: "How do child yawns and bots inherit the mascot?"
+    answer: >
+      By default every descendant uses the same state map and manifest
+      schema, so a swarm reads consistently. Accepted projection
+      preferences at principal, arena, or yawn scope may change which
+      sheet or field pattern a state uses; exact-coordinate revisions win
+      over ancestors. Private state, reasons, and receipts never inherit
+      through nesting.
+    epistemic_status: inferred
+    case_against: "Inheritance makes a hundred identical bodies; identity may need to be per-yawn (color, hat, accessory) to stay legible. Roles and flags supply that variety without forking the state grammar."
+    proof: "Holarchy inheritance tests: a child renders the parent's accepted default, an exact-coordinate override wins, and a private parent flag never reaches a public child."
+    loop_status: choice
+    public_safe: true
+    links:
+      - { label: "Holarchy inheritance policy", href: "YAWNS/Policies/YAWN_HOLARCHY_INHERITANCE.yawn" }
+
+  - rank: 9
+    key: hats_and_accessories
+    question: "What do hats and accessories mean?"
+    answer: >
+      Hats encode role (root steward, objective steward, worker). Badges
+      encode flags (needs owner, error, local, unknown). Tools encode the
+      active move kind (terminal, pen, book, mail). Bubbles carry one short
+      text label. An accessory adds a visual role and never remaps a state.
+    epistemic_status: inferred
+    case_against: "Accessory vocabularies grow without limit and stop meaning anything. Cap the vocabulary per kind and require a text meaning for every accessory in the manifest."
+    proof: "Every accessory in a published manifest has a meaning string, and the state label still renders with the accessory hidden."
+    loop_status: orientation
+    public_safe: true
+    links: []
+
+  - rank: 10
+    key: public_vs_provisioned
+    question: "What does a public visitor see, and what does Dave see?"
+    answer: >
+      Public: the mascot in its public state, the state list with one still
+      each, and the public-safe questions, in the /frontier format with no
+      JavaScript required. Provisioned: everything public plus the full
+      ranked set with cases against and proofs, live state resolution
+      inputs, the manifest inspector, pending generation proposals with
+      dry-run cost, and accepted defaults with their scope.
+    epistemic_status: inferred
+    case_against: "Two views of one route can leak by accident when a component forgets the boundary. Render the provisioned extras from a separate server component behind the session check, never by hiding client-side."
+    proof: "Signed-out and signed-in Playwright receipts diff the DOM; the signed-out DOM contains none of the provisioned markers."
+    loop_status: choice
+    public_safe: true
+    links:
+      - { label: "Frontier page pattern", href: "src/app/frontier/page.tsx" }
+
+  - rank: 11
+    key: accessibility_and_cost
+    question: "How does this stay accessible and cheap on phones?"
+    answer: >
+      One shared ticker per page; sprites share decoded textures; off-screen
+      and hidden-tab bodies stop; every raster layer uses nearest-neighbor
+      scaling; prefers-reduced-motion shows a still frame and a still field;
+      the state name is always text; the header mark never holds a WebGL
+      context.
+    epistemic_status: inferred
+    case_against: "CSS-only sprites cannot share a ticker, and canvas cannot be styled by CSS. The layer split (CSS for the small mark, canvas for the field and swarm) is the compromise; measure before deciding."
+    proof: "A Playwright performance receipt on a throttled mobile profile: main-thread time per frame under budget with 50 bodies visible."
+    loop_status: orientation
+    public_safe: true
+    links: []
+
+  - rank: 12
+    key: training
+    question: "How do we train a model on our character?"
+    answer: null  # TODO-RESEARCH: LoRA lane vs reference conditioning
+    epistemic_status: unknown
+    case_against: null
+    proof: "A held-out state brief produces identity-stable frames against the reference pack under a fixed rubric, with cost and time recorded."
+    loop_status: orientation
+    public_safe: false
+    links:
+      - { label: "LoRA registry", href: "nestheads-art-engine/model/lora-registry.json" }
+
+  - rank: 13
+    key: truthfulness
+    question: "What proves the mascot is telling the truth about state?"
+    answer: >
+      The resolved state, its inputs, and the input hash render together in
+      the provisioned view, and the same inputs must resolve identically on
+      every device. The mascot is a View: it cannot be more true than the
+      runtime records it reads, and it cannot be less true without failing
+      the replay check.
+    epistemic_status: inferred
+    case_against: "A stale input (a worker whose status did not update) makes an honest mascot show a wrong state. Freshness must be an input: stale inputs add the unknown badge."
+    proof: "Replay test: recorded inputs replayed later resolve to the same state and hash; stale inputs older than the freshness window show the unknown badge."
+    loop_status: proof
+    public_safe: true
+    links:
+      - { label: "Projection boundary", href: "core/projection-and-aperture.yawn" }
+
+  - rank: 14
+    key: mascot_changes_pixels
+    question: "Can the mascot change the pixels of the interface, or turn them into code?"
+    answer: >
+      As expression, yes: in the working state the field tiles drain into
+      the terminal as code, and in updating the body dissolves and
+      re-resolves. As authority, no: the mascot animates a View and never
+      mutates semantic state, permissions, or records. The pixels it changes
+      are its own layers.
+    epistemic_status: inferred
+    case_against: "The metaphor invites a mascot that appears to act, which is the hidden-authority problem in costume. The rule holds only if every visible change maps to a recorded event the user can inspect."
+    proof: "Every animation transition corresponds to a state change with a source event; a transition with no source event is a test failure."
+    loop_status: orientation
+    public_safe: true
+    links: []
+
+  - rank: 15
+    key: not_allowed
+    question: "What is not allowed?"
+    answer: >
+      No writing state from the mascot. No color-only or motion-only state.
+      No generation, spend, storage, or publication without a current
+      receipt. No third-party mascot copies. No private detail on public
+      surfaces. No preference that remaps a canonical state.
+    epistemic_status: observed
+    case_against: null
+    proof: "Each rule has a test or a refusal record in the contract's proof section."
+    loop_status: proof
+    public_safe: true
+    links:
+      - { label: "Contract boundaries", href: "interface/yawn-mascot-v0.1.yawn" }
+
+  - rank: 16
+    key: first_move
+    question: "What is the smallest first move?"
+    answer: >
+      Ship the state map and the header mark with the two existing sheets
+      (sleeping from the idle sheet, moving from the walk sheet) and the
+      CSS field band behind a route flag. No generation, no spend. Then
+      generate one sheet (working) through the full receipt chain to prove
+      the pipeline before the other seven.
+    epistemic_status: inferred
+    case_against: "Shipping the mark before the states exist trains users to ignore it. Keep the mark quiet until at least three states are legible."
+    proof: "State-map test green; header mark visible with text label; reduced-motion still; public root unchanged; one promoted sheet with a reconciled receipt chain."
+    loop_status: move
+    public_safe: true
+    links: []
+
+replay:
+  next_questions:
+    - "Which two states, after sleeping and moving, most change what a viewer does next?"
+    - "Does a per-yawn body or a per-parent accessory read better in dense views?"

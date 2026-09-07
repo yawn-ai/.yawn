@@ -1,0 +1,536 @@
+id: interface/yawn-mascot-v0.1
+title: "YAWN.bot mascot and state-animation contract v0.1"
+kind: interface-contract
+status: proposed
+updated: 2026-09-07
+owner: principal:dave
+proposed_by: "@claude (externalized cognition for @dave)"
+
+definition: >
+  The mascot is the visible body of a YAWN.bot: one pixel character whose
+  animation is a rebuildable View over the bot's current state, layered on a
+  pixel-square field that expresses the same state behind it. The mascot never
+  stores or decides state. It reads the loop status, worker expression state,
+  and hard-gate flags that already exist in the runtime, resolves them through
+  one deterministic state map, and plays the accepted animation for that
+  state. Every yawn in a holarchy inherits the same system by default, so a
+  swarm of bots reads as many small bodies doing legible things.
+
+# ---------------------------------------------------------------------------
+# 1. Source signal
+# ---------------------------------------------------------------------------
+
+source_signal:
+  principal: principal:dave
+  received_on: 2026-09-07
+  medium: voice transcript plus one iPhone screen recording (20.86 s)
+  epistemic_status: reported
+  attached_reference:
+    kind: screen-recording
+    what: "Claude iOS app: Select model sheet, then Effort sheet (Low, Medium, High, Extra, Max, Ultracode)"
+    retained_in_repository: false
+    reason: "Third-party product UI and mascot; described in reference_observation, not redistributed."
+  raw_transcript_preserved: true
+  raw_transcript_excerpts:
+    - "There is a feature that I'm, like, an animation type of feature in ultracode... there's really cool pixelated animation. This matches the style that we've had with yawn dot bot."
+    - "I wanna know the technology that Claude is using for this."
+    - "Maybe it's yawn. bot slash mascot, m a s c o t. and this can be kind of the house for all of that that's owned by user Dave, um, or owned by YON at YAWN user. And, um, it's provisioned so that Dave can see that."
+    - "this is our system that should tie into our image generator, kind of that architecture."
+    - "just like we have in the yawn bot at the app, the Fabancon and the, um, like, the new yawn."
+    - "how it goes from state to state where, um, where when you see a yawn bot, you can actually see it moving, um, it's skeleton"
+    - "I think we have phaser three or phaser four in the project already"
+    - "the public view, nonprovisioned... it's gonna see kind of, like, similar as the slash frontier page, like, what is the the yawn mascot."
+    - "when the users logged in, they're seeing, um, the same kind of FAQ style stack rank questions that, um, we have the answers to that have the loops"
+    - "what is the best universal technology for any device... to use in the browser that will work in this next JS app beautifully, but enabling us to be able to have different animations for different states."
+    - "I really like the pixelated background, um, and that that can be kind of, like, the, um, expression for the state."
+    - "mascot slash states. Right? Like, this... ties into, um, the state machine that's in Yonbot, y a w n dot b o t."
+    - "our system can automatically create these, um, sprite sheets... I can give you the references for the spreadsheets for these frames because, basically, that's what it is is it's image generated frames, but we need to be able to use, like, cutting edge image models."
+    - "I already have a lot of these spreadsheets and characters for reference, um, but I need to figure out how we train that."
+    - "In the upper left, it's gonna show the icon of that Yone bought moving if that's what it's doing. You know, whatever current state it's in."
+    - "since it's a whole larky, kinda hold on a yawn bot system, any yawns that are in that whole larky by default are using the same system for the state that it's in."
+    - "it's kinda like the game lemmings. Right? Like, you might have a couple different hats and things that you put on"
+    - "what we're really trying to do is gamify this agentic swarm type of thing... this is kind of our visual foundation where we can see what these yawn bots are doing."
+    - "we have the, um, dormant view when you go to yawn dot bot already... And then, um, we have the kind of, like, walking one for this state is working... but then there's all these different states where it's like, coding."
+    - "maybe this yawn bot sits down at a computer and starts coding or does some... manipulation of the pixels, right, where it's transforming those into code."
+    - "this yawn bot is the thing that's changing the interface, the pixels on the screen."
+    - "if it's blocked, it's, like, another another image."
+    - "I want you to create the dot y a w n file for that and do the research, lay the foundation, come up with the questions in the format."
+
+  normalization:
+    contract: core/canonical-extension.yawn
+    context_basis: "YAWN.bot, its app, its repositories, and the .yawn record format were the established referents throughout."
+    corrections:
+      - raw: "Yombat"
+        normalized: "YAWN.bot"
+        rule_id: invalid-product-host-spoken
+        confidence: 0.98
+      - raw: "Yonbot, y a w n dot b o t"
+        normalized: "YAWN.bot"
+        rule_id: speaker-self-spelled
+        confidence: 1.0
+      - raw: "Yone bought"
+        normalized: "YAWN.bot"
+        rule_id: invalid-product-host-spoken
+        confidence: 0.97
+      - raw: "non dot bot slash mascot"
+        normalized: "yawn.bot/mascot"
+        rule_id: invalid-product-host-spoken
+        confidence: 0.97
+      - raw: "YON at YAWN user"
+        normalized: "the root YAWN account (@yawn) as owner"
+        rule_id: invalid-product-name-spoken
+        confidence: 0.9
+      - raw: "whole larky / hold on a yawn bot system"
+        normalized: "holarchy / holonic YAWN.bot system"
+        rule_id: domain-term-transcription
+        confidence: 0.95
+      - raw: "spreadsheets (in the frames and characters context)"
+        normalized: "sprite sheets"
+        rule_id: domain-term-transcription
+        confidence: 0.95
+        ambiguity_note: "Ordinary spreadsheets are not involved; the referent is image-generated frame sheets."
+      - raw: "Fabancon"
+        normalized: "favicon"
+        rule_id: domain-term-transcription
+        confidence: 0.75
+        ambiguity_note: "Inferred from the existing yawn.bot favicon robot mark; preserved as raw in case another referent was meant."
+      - raw: "ultra code / ultracode"
+        normalized: "Ultracode (a Claude effort level; not a YAWN term)"
+        rule_id: third-party-product-term
+        confidence: 1.0
+    authority_note: "Normalization changes no meaning and grants no authority; the raw words remain the source."
+
+# ---------------------------------------------------------------------------
+# 2. Reference observation (what became available from the recording)
+# ---------------------------------------------------------------------------
+
+reference_observation:
+  observer: "@claude"
+  epistemic_status: observed
+  observed_at: 2026-09-07
+  what_became_available:
+    - "Claude iOS app. The Effort sheet lists Low, Medium, High (Default), Extra, Max, Ultracode."
+    - "The Ultracode row is a rounded band in deep indigo (roughly #2a1b4e fading to #1e1440) with white label text at left."
+    - "Background layer: a grid of small square tiles (about 10 device pixels with 1 pixel gutters). Tiles never move; their brightness changes. A soft wave sweeps left to right and a radial bloom expands around the critter and fades, so the grid reads as a dithering pixel field that breathes."
+    - "Foreground layer: an orange pixel critter (crab-like, holding a dark tool) at the right edge, mostly static, with two or three small yellow sparkle particles above it that change position each frame at roughly 8 to 12 frames per second."
+    - "The same orange critter appears static at the top of the main screen above the greeting."
+    - "Only the row that is highlighted animates; the rest of the sheet is still."
+  observer_added:
+    - "Two layers are separable: a scalar field driving tile brightness, and a sprite with a small particle overlay. This is the same split YAWN.bot already uses for its face transition (pixel field plus sprite)."
+  remains_open:
+    - "The implementation technology is not visible in a recording; it is researched and marked inferred or reported below."
+    - "Whether the row band uses a shader, a canvas, or pre-rendered frames is not observable from pixels alone."
+  boundary: "This observation describes a third-party interface for study. It is not a license to copy Anthropic's mascot, and the YAWN.bot mascot remains the existing YAWN robot."
+
+# ---------------------------------------------------------------------------
+# 3. Coordinate, ownership, and provisioning
+# ---------------------------------------------------------------------------
+
+coordinate:
+  house: yawn.bot/mascot
+  states: yawn.bot/mascot/states
+  owner_principal: principal:yawn
+  owner_note: "The root YAWN.bot account owns the house; the mascot system is the root bot's body, not one person's avatar."
+  provisioned_viewers:
+    - principal: principal:dave
+      group: authenticated_owner
+      grant: explicit-per-view
+      may: [inspect, propose, approve-generation, approve-promotion, set-defaults]
+  public_viewers:
+    group: public_anonymous
+    may: [read-public-view, watch-public-state]
+    may_not: [inspect-private-state, see-receipts, see-pending-candidates, change-defaults]
+  fork_rule: >
+    yawn.bot/mascot is the root bot's mascot house. A principal who yawns
+    (forks) it receives {principal}/mascot with the same state map and
+    manifest schema; their sprite sheets, accepted defaults, spend, and
+    outputs belong to the fork owner. Forks inherit the state grammar, never
+    the root's private state.
+  provisioning_source: "src/domain/yawn-provisioning.ts groups and capabilities in the YAWN.bot runtime"
+
+# ---------------------------------------------------------------------------
+# 4. Layers
+# ---------------------------------------------------------------------------
+
+layers:
+  header_mark:
+    where: "upper-left YAWN.bot mark in the global chrome on every route, including the public root"
+    shows: "the current bot's mascot in its current state at 24 to 40 CSS pixels"
+    public_root_rule: "shows only the root bot's public state class; never a private coordinate's detail"
+    accessible_name: "required; the state name is always exposed as text, never by motion or color alone"
+    replaces: "the static robot-face avatar currently rendered from createYawnFaceDefaultAvatarAssetPath"
+  state_card:
+    where: "section headers and profile images for a yawn or bot (128 to 256 CSS pixels)"
+    shows: "foreground sprite over the background field, plus the state label and hard-gate badge"
+  background_field:
+    role: "state expression"
+    form: "a grid of square tiles whose brightness is driven by a per-state scalar field; tiles never move"
+    is_view: true
+    may: [breathe, sweep, bloom, jitter, dissolve, resolve]
+    may_not: [carry state without a text label, write state, imply proof]
+  foreground_sprite:
+    role: "the body"
+    identity: "the existing YAWN robot (public/nestheads/characters/yawn-idle.png and yawn-front-walk.png are the canonical reference frames)"
+    renders: "one accepted sprite sheet per state through the sprite manifest"
+  accessories:
+    role: "lemmings-style overlays that make a swarm legible"
+    kinds: [hat, badge, tool, bubble]
+    semantics: "hats encode role (root_steward, objective_steward, worker); badges encode flags (needs_owner, error, local); tools encode the active move kind (code, write, read, mail); bubbles carry one short text label"
+    rule: "an accessory adds a visual role; it never remaps the canonical state and never replaces the text label"
+  world_swarm:
+    where: "Phaser world and holarchy field views"
+    shows: "many mascots, one per yawn or bot in view, each resolving its own state; children default to the same system"
+    budget: "one shared ticker; sprites share textures; off-screen bodies do not animate"
+
+# ---------------------------------------------------------------------------
+# 5. State model (a View over existing runtime state; never a store)
+# ---------------------------------------------------------------------------
+
+state_model:
+  schema_version: yawn.mascot-state.v0.1
+  resolution_rule: >
+    resolveMascotState(inputs) is a pure function. Precedence: hard-gate flags
+    (error, blocked) outrank needs_owner, which outranks the loop status,
+    which outranks micro-expressions from the mirror face. The function
+    returns {state, variant, flags} and a replayable input hash. Unknown or
+    missing inputs resolve to sleeping with an unknown badge; they are never
+    guessed.
+  inputs:
+    loop_status: "src/domain/yawn-state-substrate.ts yawnLoopStatuses: sleeping | orienting | awaiting_choice | moving | awaiting_proof | updating | holding | closed (legacy dormant reads as sleeping)"
+    worker_expression_state: "src/domain/automation-registry.ts AutomationWorkerExpressionState: sleeping | awake | working | needs_dave | blocked"
+    mirror_face_expression: "src/domain/yawn-frame-grid.ts YawnMirrorFaceExpressionState: idle | listening | thinking | proof_ready | blocked | asking | replaying"
+    world_execution_state: "src/domain/world-coordinate-types.ts worldExecutionStates: idle | active | queued | running | waiting_context | waiting_approval | blocked | reviewing | done | error"
+    header_status: "src/components/chrome/yawn-global-chrome.tsx registration.status.state: error | local | saved | working"
+    inbox_status: "src/domain/yawn-bot-state.ts yawnBotInboxStatuses: new | claimed | answered | deferred | blocked_on_dave | handed_off | closed"
+    move_kind: "the active move's kind when known (code, write, read, mail, world, none)"
+    bot_role: "root_steward | objective_steward | worker"
+
+  states:
+    - state: sleeping
+      mapped_from: [loop:sleeping, loop:dormant(legacy), worker:sleeping, execution:idle, face:idle, worker_status:draft]
+      foreground_animation: "idle breath, 4 frames at 8 fps (existing yawn-idle sheet)"
+      background_field: "still tiles at low brightness with a slow breath (period about 500 ms, matching the idle breath period)"
+      accessory_rule: "role hat only"
+      public_safe: true
+    - state: orienting
+      mapped_from: [loop:orienting, worker:awake, execution:active, execution:queued, execution:waiting_context, face:listening, face:thinking]
+      foreground_animation: "look-around: head turns, antenna scan (to be generated)"
+      background_field: "slow left-to-right sweep, cyan tint (observation and connection role)"
+      accessory_rule: "role hat"
+      public_safe: true
+    - state: asking
+      mapped_from: [loop:awaiting_choice, face:asking, inbox:new, inbox:claimed]
+      foreground_animation: "holds up a question bubble; small bob (to be generated)"
+      background_field: "tiles pulse in place, lime tint (open or unresolved role)"
+      accessory_rule: "bubble carries the one question label"
+      public_safe: true
+    - state: moving
+      mapped_from: [loop:moving, worker:working, execution:running, header:working, move_kind:world]
+      foreground_animation: "walk cycle, 8 frames at 20 fps (existing yawn-front-walk and yawn-back-walk sheets)"
+      background_field: "faster sweep in the walking direction"
+      accessory_rule: "tool overlay for the move kind"
+      public_safe: true
+    - state: working
+      variant_of: moving
+      selected_when: "move_kind is code, write, or read"
+      mapped_from: [loop:moving, execution:running, move_kind:code, move_kind:write, move_kind:read]
+      foreground_animation: "sits at a terminal; hands move; screen glyphs change (to be generated). Pixels from the field stream into the screen as code."
+      background_field: "tiles drain toward the terminal and re-fill: the field is being turned into code"
+      accessory_rule: "tool overlay: terminal, pen, or book"
+      public_safe: true
+    - state: proving
+      mapped_from: [loop:awaiting_proof, execution:reviewing, face:proof_ready]
+      foreground_animation: "holds a magnifier over a receipt; nods (to be generated)"
+      background_field: "radial bloom that expands from the sprite and settles, green tint (verified role) only after proof passes; neutral until then"
+      accessory_rule: "badge: proof pending"
+      public_safe: true
+    - state: updating
+      mapped_from: [loop:updating, face:replaying, execution:done]
+      foreground_animation: "brief dissolve and re-resolve of the body (steps(7), reusing the face pixel-resolve timing)"
+      background_field: "tiles dissolve and re-resolve once, orange tint (source and provenance role)"
+      accessory_rule: "none"
+      public_safe: true
+    - state: holding
+      mapped_from: [loop:holding, worker_status:paused, inbox:deferred]
+      foreground_animation: "sits down; slow blink (to be generated)"
+      background_field: "very slow breath, dim"
+      accessory_rule: "badge: held, with the hold reason as text in the provisioned view"
+      public_safe: true
+    - state: blocked
+      mapped_from: [worker:blocked, execution:blocked, execution:error, face:blocked, inbox:blocked_on_dave, header:error]
+      foreground_animation: "stopped pose, arms crossed or looking at the viewer (to be generated)"
+      background_field: "tiles jitter at low amplitude, pink tint (unresolved lacuna role)"
+      accessory_rule: "badge: blocked or error; the reason is always text"
+      public_safe: true
+      public_detail_rule: "the public view shows blocked without the reason"
+    - state: closed
+      mapped_from: [loop:closed, worker_status:retired, inbox:closed, inbox:handed_off]
+      foreground_animation: "asleep with a small check mark; retired variant is desaturated (to be generated)"
+      background_field: "static, no motion"
+      accessory_rule: "badge: closed, retired, or handed off"
+      public_safe: true
+
+  flags:
+    needs_owner:
+      mapped_from: [worker:needs_dave, execution:waiting_approval, inbox:blocked_on_dave]
+      shows: "hat-level badge in the owner's color plus the text label needs owner"
+      public_rule: "public view shows waiting, not who is needed"
+    error:
+      mapped_from: [execution:error, header:error]
+      shows: "badge; the mascot state resolves to blocked"
+    local_only:
+      mapped_from: [header:local]
+      shows: "small local badge; means browser-local draft state, no persistence"
+    unknown_inputs:
+      shows: "unknown badge; state resolves to sleeping; the missing input is named in the provisioned view"
+
+  invariants:
+    - "The mascot state is derived; it is never written back to loop status, worker status, or any record."
+    - "Every rendered state carries its text label and an accessible name; motion and color are never the only carrier."
+    - "A public surface never derives a private detail from the animation (no reason strings, no coordinate names, no counts)."
+    - "The same inputs produce the same state, variant, flags, and input hash on every device."
+    - "Adding a new runtime status without a mapping fails the state-map test rather than silently rendering sleeping."
+
+# ---------------------------------------------------------------------------
+# 6. Manifest (extends the sprite manifest the runtime already detects)
+# ---------------------------------------------------------------------------
+
+manifest:
+  schema_version: yawn.mascot-manifest.v0.1
+  extends: "nestheads.sprite-sheet.v1 (src/domain/sprite-sheets.ts): alpha-column frame detection, frameBox, frames, fps, loop, pivot"
+  shape:
+    manifest_id: "mascot:{owner}:{revision}"
+    owner_principal: principal
+    identity_reference_sheets: [sha256]
+    frame_box: { width: px, height: px }
+    pivot: { x: 0.5, y: 0.86 }
+    palette: "brand tokens from interface/yawn-brand-v1.yawn plus the character's own body colors"
+    states:
+      "{state}":
+        sheet: { path: string, sha256: string, sprite_manifest: nestheads.sprite-sheet.v1 }
+        fps: number
+        loop: boolean
+        reduced_motion_frame: index
+        transitions_in: [{ from: state, frames: optional short bridge sheet }]
+        field: { pattern: still|breath|sweep|pulse|bloom|drain|dissolve|jitter, period_ms: number, tint_role: brand semantic role }
+        provenance:
+          brief_hash: sha256
+          approval_receipt: record ref
+          generation_receipt: record ref
+          promotion_receipt: record ref
+    accessories:
+      "{kind}:{name}": { sheet: path, sha256: string, anchor: { x: number, y: number }, meaning: text }
+    defaults_scope: "principal | arena | yawn (accepted projection-preference records, schemas/projection-preference.v1.schema.json, viewKind mascot)"
+  rules:
+    - "A state with no accepted sheet falls back to the nearest accepted ancestor state (working -> moving -> sleeping) and shows a badge saying which sheet is missing in the provisioned view."
+    - "Each sheet is content-addressed; changing pixels changes the hash and requires a new promotion receipt."
+    - "The manifest is a View input. It carries no authority and cannot change what a state means."
+
+# ---------------------------------------------------------------------------
+# 7. Technology (research-backed; see epistemic status per claim)
+# ---------------------------------------------------------------------------
+
+technology:
+  # TODO-RESEARCH: fill from the workflow synthesis (what_claude_uses, architecture)
+  what_claude_uses: []
+  recommended_per_layer: []
+  constraints:
+    - "prefers-reduced-motion shows the reduced_motion_frame and a still field"
+    - "hidden tabs and off-screen bodies stop their tickers"
+    - "image-rendering: pixelated (and crisp-edges fallback) on every raster layer"
+    - "iOS Safari WebGL context count is limited; the header mark must not hold a WebGL context"
+    - "one shared ticker per page; sprites share decoded textures"
+
+# ---------------------------------------------------------------------------
+# 8. Generation pipeline (approval-gated; reuses the image-generator idiom)
+# ---------------------------------------------------------------------------
+
+generation_pipeline:
+  reuses:
+    - "yawn.bot/image-generator: one candidate per explicit owner press, dry-run receipt with the exact prompt and spend estimate (src/lib/yawn-image/generate.ts)"
+    - "checked-in style contract (src/lib/yawn-image/style-contract.ts) and house reference images"
+    - "art brief and local candidate contracts (schemas/art-brief.v1.schema.json, schemas/local-art-candidate.v1.schema.json, interface/local-observation-art-v0.1.yawn)"
+    - "owner-decision receipt binding by canonical JSON sha256 (records/interception-statement-image-approval-2026-08-29.yawn)"
+    - "nestheads-art-engine model and LoRA registries, keyframe extraction and LoRA training plans (approval-gated)"
+    - "sprite_sheet media assets and alpha-column detection (src/app/api/nestheads/sprite-sheets/route.ts, src/domain/sprite-sheets.ts)"
+  stages:
+    - stage: reference_pack
+      input: "existing sheets: yawn-idle.png (4 frames), yawn-front-walk.png (8 frames), yawn-back-walk.png, robot-blank-face-transparent.png, plus any sheets Dave supplies"
+      output: "content-addressed reference pack with per-frame hashes and the frame box"
+      approval_required: false
+    - stage: state_brief
+      input: "one state from the state model, the reference pack, the brand palette, frame count, fps, pivot, negative constraints"
+      output: "deterministic brief hash (canonical JSON, sha256, explicit seed) per state"
+      approval_required: false
+    - stage: dry_run
+      output: "exact prompt, provider, candidate count, spend estimate; no call"
+      approval_required: false
+    - stage: owner_approval
+      output: "owner-decision receipt naming the brief hash, provider adapter, candidate count, spend ceiling, expiry"
+      approval_required: true
+    - stage: generate_candidates
+      # TODO-RESEARCH: provider per lane and cost
+      output: "candidate frames or a candidate strip with provider request id, seed when returned, output sha256"
+      approval_required: true
+    - stage: post_process
+      output: "background removed, palette quantized to the brand palette plus body colors, nearest-neighbor downscale to the frame box, frames aligned on pivot, packed into one horizontal strip that alpha-column detection can read"
+      approval_required: false
+      determinism: "same input hashes and parameters produce the same output hash"
+    - stage: detect_manifest
+      output: "nestheads.sprite-sheet.v1 manifest with detection confidence"
+      approval_required: false
+    - stage: review
+      output: "side-by-side preview against the reference pack in DOM and Phaser; accept, reject, or revise"
+      approval_required: true
+    - stage: promote
+      output: "append-only promotion receipt binding sheet sha256 to a state slot in the mascot manifest"
+      approval_required: true
+    - stage: publish
+      output: "the manifest revision the header mark and world read"
+      approval_required: true
+  training_lane:
+    status: planned-approval-gated
+    reason: "the art engine already plans a core style LoRA on a 20 to 40 image curated set; the mascot reference pack is that dataset's seed"
+    # TODO-RESEARCH: LoRA vs reference conditioning recommendation
+  boundaries:
+    - "no provider call, spend, storage write, or publication without a current receipt naming this brief hash"
+    - "a nonconforming candidate ends its grant; it does not authorize another"
+    - "generated frames are candidates; acceptance, promotion, and publication are separate receipts"
+    - "the character identity is the existing YAWN robot; a candidate that drifts identity fails review"
+    - "raw private source never enters a renderer prompt"
+
+# ---------------------------------------------------------------------------
+# 9. Views
+# ---------------------------------------------------------------------------
+
+views:
+  public_view:
+    route: /mascot
+    class: public_view
+    chrome: "interface/yawn-chrome-v1.yawn public_view geometry"
+    format: "the /frontier pattern: coordinate line, one governing question, one honesty line, a ranked list of native details/summary entries with only the top entry open, a boundary line; zero JavaScript required"
+    governing_question: "What is the YAWN.bot mascot?"
+    shows:
+      - "the mascot in its public state with the state name as text"
+      - "the ranked questions marked public_safe with their public answers"
+      - "the state list with names and one still frame each"
+    hides:
+      - "receipts, pending candidates, spend, reasons behind blocked or held, private coordinates"
+    fallback: "no motion: still frame and text"
+  provisioned_view:
+    route: /mascot
+    class: member
+    viewer: "principal:dave (or a fork owner on their fork)"
+    shows:
+      - "everything in the public view"
+      - "the full stack-ranked question set with answers, the case against each answer, the proof that would settle it, and its loop status"
+      - "the live state resolution: inputs, resolved state, variant, flags, input hash"
+      - "the manifest inspector: which states have accepted sheets, which fall back, hashes, receipts"
+      - "generation proposals awaiting approval with dry-run cost"
+      - "accepted defaults and their scope"
+  states_view:
+    route: /mascot/states
+    class: member
+    shows:
+      - "one row per state: mapped inputs, current sheet, field pattern, accessory rules"
+      - "controls to propose a different accepted sheet or field for a state at principal, arena, or yawn scope"
+    rule: "a change here is an accepted projection preference; it never changes what a state means or what the runtime does"
+
+# ---------------------------------------------------------------------------
+# 10. Ranked questions (the FAQ; loops stay visible)
+# ---------------------------------------------------------------------------
+
+ranked_questions:
+  packet: question-packets/mascot.yawn
+  format: "rank, question, answer, epistemic_status, case_against, proof, loop_status, public_safe"
+  # TODO-RESEARCH: merge synthesized answers
+
+# ---------------------------------------------------------------------------
+# 11. Boundaries
+# ---------------------------------------------------------------------------
+
+boundaries:
+  must:
+    - "render the state name as accessible text with every animation"
+    - "resolve state from runtime inputs through the one state map"
+    - "respect prefers-reduced-motion and hidden-tab pausing"
+    - "keep public surfaces free of private detail"
+    - "bind every generated sheet to a brief hash, approval receipt, and promotion receipt"
+  must_not:
+    - "let the mascot write, ratify, or imply any state"
+    - "let a projection preference remap a canonical state"
+    - "generate, spend, store, or publish without a current receipt"
+    - "copy a third-party mascot; the body stays the YAWN robot"
+    - "treat model confidence or visual quality as approval"
+    - "carry state by color or motion alone"
+  AI_default:
+    may: [observe, compile briefs, dry-run, propose sheets, propose state maps, test within grant]
+    may_not: [self-authorize generation, promote a candidate, change defaults, widen provisioning]
+
+# ---------------------------------------------------------------------------
+# 12. Proof
+# ---------------------------------------------------------------------------
+
+proof:
+  acceptance:
+    - "The state-map test covers every value of every input enum; adding an unmapped value fails."
+    - "For each state, the header mark renders the accepted or fallback sheet with a text label and an accessible name."
+    - "With prefers-reduced-motion, every layer shows its reduced_motion_frame and no ticker runs."
+    - "The public root header shows the root bot's public state only; a signed-out Playwright run finds no private detail in the DOM."
+    - "A manifest with a tampered sheet hash fails validation and falls back."
+    - "A generation attempt without a current receipt is refused and leaves an inspectable refusal record."
+    - "Route-owned browser console errors are zero on /mascot and /mascot/states."
+    - "A swarm of 200 bodies in the world view keeps one ticker and does not animate off-screen bodies."
+  falsifiers:
+    - "The mascot displays a state that the state map did not derive from runtime inputs."
+    - "Two devices resolve different states from the same inputs."
+    - "A public visitor can read a blocked reason, a receipt, or a private coordinate from the mascot surface."
+    - "A generated sheet reaches a state slot without a promotion receipt."
+  verifier:
+    - "unit tests for the state map and manifest"
+    - "Playwright receipts for public and provisioned /mascot"
+    - "hash reconciliation between briefs, receipts, and published sheets"
+
+# ---------------------------------------------------------------------------
+# 13. Implementation projection (where this lands in YAWN.bot)
+# ---------------------------------------------------------------------------
+
+implementation_projection:
+  repository: yawn-ai/yawn.bot
+  integration_points:
+    - "src/domain/mascot-state.ts (new): resolveMascotState over loop status, worker expression state, mirror face expression, world execution state, header status, inbox status"
+    - "src/domain/mascot-manifest.ts (new): yawn.mascot-manifest.v0.1 over nestheads.sprite-sheet.v1"
+    - "src/components/chrome/yawn-global-chrome.tsx: replace the static brandImageSrc avatar with the live header mark"
+    - "src/components/home/yawn-bot-public-home.tsx: public root uses the same header mark"
+    - "src/app/mascot/page.tsx and src/app/mascot/states/page.tsx (new): /frontier-style public view; provisioned view behind requireDaveSession and coordinate access"
+    - "src/lib/yawn-image: add a sprite-state adapter beside generateYawnImage with the same receipt idiom"
+    - "nestheads-art-engine: register the mascot reference pack as the core style dataset seed"
+    - "supabase media_assets kind sprite_sheet: add manifest_revision and state metadata"
+  first_move:
+    smallest_reversible_step: >
+      Ship the state map and the header mark using only the two existing
+      sheets (sleeping from yawn-idle, moving from yawn-front-walk) with the
+      CSS field band, behind a route flag. No generation, no spend.
+    proof: "state-map test green; header mark visible with text label; reduced-motion still frame; public root unchanged for private detail"
+
+open_lacunae:
+  # TODO-RESEARCH: merge
+  - "Which browser technology carries the header mark and field on every device without a WebGL context?"
+  - "Which provider produces identity-stable multi-frame sheets from the reference pack at acceptable cost?"
+  - "Whether a LoRA is needed once reference conditioning is available."
+  - "Whether the per-yawn mascot should be a child sprite or an accessory on the parent in dense views."
+  - "The exact accessory vocabulary for hats and tools."
+
+links:
+  brand: interface/yawn-brand-v1.yawn
+  chrome: interface/yawn-chrome-v1.yawn
+  local_art: interface/local-observation-art-v0.1.yawn
+  projection_boundary: core/projection-and-aperture.yawn
+  preference_contract: schemas/projection-preference.v1.schema.json
+  bot_runtime: agents/yawn.bot.yawn
+  bot_clarification: records/2026-09-03-yawnbot-intelligence-container-clarification.yawn
+  image_approval_precedent: records/interception-statement-image-approval-2026-08-29.yawn
+  image_result_precedent: records/interception-statement-image-result-2026-08-29.yawn
+  questions: question-packets/mascot.yawn
+
+schema_version: yawn.mascot.v0.1

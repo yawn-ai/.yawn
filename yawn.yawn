@@ -153,6 +153,7 @@ interface_links:
   projection_stack: interface/projection-stack.yawn
   new_yawn: interface/new-yawn-v0.1.yawn
   objective_compiler: interface/objective-compiler.yawn
+  mascot: interface/yawn-mascot-v0.1.yawn
 
 question_links:
   doorway: questions/node.yawn
@@ -231,6 +232,7 @@ question_packet_links:
   relationship: question-packets/relationship.yawn
   orientation_nine: question-packets/orientation-nine.yawn
   turn_close: question-packets/turn-close.yawn
+  mascot: question-packets/mascot.yawn
 
 template_links:
   basic: templates/basic.yawn

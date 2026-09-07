@@ -168,7 +168,8 @@ canonical object to inspect.
 [Brand contract →](interface/yawn-brand-v1.yawn) ·
 [Chrome contract →](interface/yawn-chrome-v1.yawn) ·
 [Observation View contract →](interface/yawn-observation-view-v1.yawn) ·
-[Desktop Homebase contract →](interface/desktop-homebase-v1.yawn)
+[Desktop Homebase contract →](interface/desktop-homebase-v1.yawn) ·
+[Mascot contract →](interface/yawn-mascot-v0.1.yawn)
 
 ## Nested agency without hidden authority
 
@@ -311,6 +312,7 @@ test failure and cannot replace a commit-bound local result.
 | Model an async dependency | [Waiting turn](examples/waiting-turn.yawn) |
 | Import a long conversation archive | [Conversation routing](examples/conversation-import-routing.yawn) |
 | Generate observation art locally | [Local observation-art contract](interface/local-observation-art-v0.1.yawn) |
+| Give a bot a visible body with legible states | [Mascot contract](interface/yawn-mascot-v0.1.yawn) · [Mascot questions](question-packets/mascot.yawn) |
 | Understand merge vs. link vs. split | [Routing example](examples/merge-split-routing.yawn) |
 | See one objective become a Yawn.bot | [Dave / good dad](examples/dave-good-dad-objective-holon.yawn) |
 | Orient before choosing a game or competition | [Participation-choice example](examples/participation-choice.yawn) |
