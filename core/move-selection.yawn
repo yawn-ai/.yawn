@@ -1,0 +1,91 @@
+id: core/move-selection
+title: "move selection"
+kind: governance-policy
+status: draft-0.1
+updated: 2026-09-01
+policy_version: yawn.move-selection.v0.1
+
+purpose: >
+  Rank candidate inquiry, holding, participation, non-participation, and action
+  proposals from one pinned Orientation Map revision without turning a score
+  into a rightful choice or an execution authorization.
+
+semantic_sources:
+  orientation: core/orientation.yawn
+  orientation_map: schemas/orientation-map.v0.1.schema.json
+  inquiry_selection: core/inquiry-selection.yawn
+  decision_template: templates/decision.yawn
+  proof_boundary: core/proof-and-boundary.yawn
+  execution_relationship: schemas/execution-relationship.v1.schema.json
+  action_receipt: schemas/action-receipt.v1.schema.json
+
+inputs:
+  required:
+    - coordinate_ref
+    - principal_ref
+    - orientation_revision_ref
+    - relationship_ref
+    - arena_ref
+    - candidate_moves
+    - hard_gate_assessments
+    - policy_version
+  when_available:
+    - objective_and_value_refs
+    - lacuna_and_dispute_refs
+    - affected_relationship_refs
+    - capability_refs
+    - authority_grant_refs
+    - resource_and_cost_refs
+    - proof_contract_refs
+    - accepted_preferences
+
+candidate_move_contract:
+  kinds: [inquiry, hold, wait, presence, exit, non_participation, direct_action, delegated_action]
+  required: [move_id, description, asserted_by, epistemic_status, source_refs, expected_consequence, reversibility, affected_relationships, authority_required, proof_or_close_condition]
+  rule: >
+    A candidate may remain unavailable, dominated, disputed, or blocked. The
+    selector preserves it and the reason it lost rather than silently deleting it.
+
+selection_passes:
+  - order: 1
+    name: hard_gates
+    priority: [immediate_safety_or_stability, authority_or_consent, privacy_visibility_or_egress, provenance_integrity, proof_or_falsifier_integrity]
+    rule: "A live or unknown material gate causes foregrounding or an explicit hold."
+  - order: 2
+    name: coherence
+    priority: [principal_goal_and_value_fit, affected_relationship_integrity, option_preservation, reversibility, expected_information_value, expected_consequence, proofability, resource_cost, lower_burden]
+  - order: 3
+    name: interaction_fit
+    priority: [explicit_current_choice, accessibility, accepted_presentation_preference, answerability, friction]
+
+result:
+  allowed: [selected_move_proposal, explicit_hold]
+  foreground_limit: 1
+  rule: >
+    The result is a proposal. A separate attributed choice event records what
+    the rightful principal selects. A separate exact grant authorizes an effect.
+
+receipt:
+  schema_ref: schemas/move-selection-receipt.v0.1.schema.json
+  canonical_semantic_state: false
+  must_explain: [why_this, why_not_others, hard_gates, authority_status, expected_consequence, proof_or_falsifier, reopen_condition]
+  boundary: >
+    The receipt may prove deterministic selection from pinned inputs. It cannot
+    prove the selected claim true, authenticate the principal's choice, mutate
+    the Orientation Map, or authorize execution.
+
+illegal_casts:
+  - "rank -> importance or truth"
+  - "recommendation -> choice"
+  - "choice -> authorization"
+  - "capability -> permission"
+  - "execution -> consequence"
+  - "consequence -> proof"
+  - "acceptance -> truth"
+
+proof:
+  status: contract-defined
+  falsifier: >
+    Equivalent effective inputs do not replay to the same proposal or hold, or
+    the policy suppresses a safer/authorized option, hides a losing candidate,
+    or allows a score to bypass a hard gate.

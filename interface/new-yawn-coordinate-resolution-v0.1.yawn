@@ -1,0 +1,188 @@
+id: interface/new-yawn-coordinate-resolution-v0.1
+title: "Coordinate-complete New Yawn projection"
+kind: interface-contract
+status: draft-0.1
+version: 0.1.0-draft
+updated: 2026-09-01
+
+purpose: >
+  Let a person begin with one unrestricted signal while the system compiles a
+  correctable Yawn coordinate, orientation View, intelligence binding, open
+  lacunae, and next inquiry without exposing the ontology as a setup form.
+  The projection makes resolution visible without turning completeness,
+  intelligence, confidence, activity, or level into human worth or authority.
+
+constitutional_sources:
+  orientation: core/orientation.yawn
+  questions: question-packets/orientation-nine.yawn
+  inquiry_selection: core/inquiry-selection.yawn
+  orientation_map: schemas/orientation-map.v0.1.schema.json
+  agency_holarchy: schemas/agency-holarchy.v0.2.schema.json
+  objective_holon: schemas/objective-holon.v0.1.schema.json
+  new_yawn: interface/new-yawn-v0.1.yawn
+  projection_and_aperture: core/projection-and-aperture.yawn
+  proof_and_boundary: core/proof-and-boundary.yawn
+
+one_model_rule: >
+  This contract is a noncanonical View and compiler over the shared YAWN
+  ontology. It does not create a parallel orientation packet, personal
+  ontology, truth store, Agent identity, authority source, or second holarchy.
+
+surface:
+  default_mode: quiet
+  top:
+    yawn_face:
+      fields: [image_or_default_identity_mark, proposed_name, proposed_coordinate, proposed_location_in_holarchy, lifecycle_state]
+      rule: >
+        Name, coordinate, placement, and identity remain proposed until an
+        explicit owner Plant or equivalent canonical event boundary.
+    signal_field:
+      prompt: "What has your attention?"
+      input_rule: "Accept the person's language without requiring ontology terms."
+  resolution_grid:
+    visual_analogy: "A light contribution-style grid of inspectable square cells."
+    default_detail: collapsed
+    interaction: >
+      Each cell shows only label, state, and whether attention is needed.
+      Activation opens its attributed answers, sources, uncertainty, candidate
+      updates, and exact ontology coordinates.
+    cells:
+      - { id: identity, label: "Identity", maps_to: [scope, perspective] }
+      - { id: intelligence, label: "Intelligence", maps_to: [provider_bindings, delegated_agents, capabilities] }
+      - { id: placement, label: "Place", maps_to: [placement, primary-parent, lateral-relations] }
+      - { id: relationship, label: "Relationship", maps_to: [placement, perspective, relationship] }
+      - { id: arena, label: "Arena", maps_to: [placement, current-state] }
+      - { id: state, label: "State", maps_to: [current-state] }
+      - { id: purpose, label: "Purpose", maps_to: [intent, objective-holon] }
+      - { id: lacuna, label: "Lacuna", maps_to: [lacuna] }
+      - { id: boundary, label: "Boundary", maps_to: [boundary, authority, privacy] }
+      - { id: movement, label: "Moves", maps_to: [movement] }
+      - { id: proof, label: "Proof", maps_to: [proof] }
+      - { id: memory, label: "Memory", maps_to: [sources, events, revisions, replay] }
+
+cell_states:
+  allowed: [unknown, proposed, reported, disputed, accepted, stale, blocked, proof_pending, evidenced]
+  rules:
+    - "Unknown is visible and is not failure."
+    - "Proposed content is visually and semantically distinct from accepted content."
+    - "A filled cell is not necessarily true, current, authorized, or sufficient."
+    - "Cell state derives from attributed records; presentation never mutates canonical state."
+
+intelligence_cell:
+  question: "What intelligence is available to this Yawn, and under which relationship?"
+  represents: [principal_and_human_participants, replaceable_model_or_provider_bindings, delegated_agents, tools_and_capabilities, accepted_inherited_policies]
+  must_show: [identity, role, source_or_provider, capability, authority_scope, freshness_or_connection_state, revocation_path]
+  boundaries:
+    - "Provider is not Agent identity."
+    - "Connection is not capability."
+    - "Capability is not permission."
+    - "Model confidence is not rightful authority."
+    - "Inherited intelligence never silently changes purpose, identity, privacy, or decision rights."
+
+resolution_ladder:
+  name: "Yawn resolution"
+  range: [0, 10]
+  status: noncanonical-derived-view
+  rule: >
+    Resolution is the highest consecutively satisfied capability band using
+    accepted or explicitly attributed evidence. It is not a score of the
+    person, consciousness, intelligence, moral worth, certainty, quality, or
+    autonomy. Missing information may be appropriate; a lower band may be safer.
+  bands:
+    - { level: 0, label: "Signal", requires: [source_signal_preserved] }
+    - { level: 1, label: "Addressed", requires: [identity_or_subject_proposed, coordinate_proposed] }
+    - { level: 2, label: "Situated", requires: [scope, placement_or_named_lacuna] }
+    - { level: 3, label: "Related", requires: [principal, perspective, relationship_or_named_lacuna, arena_or_named_lacuna] }
+    - { level: 4, label: "Directed", requires: [current_state, intent_or_purpose_status] }
+    - { level: 5, label: "Open", requires: [lacunae, disputes_and_alternatives_preserved] }
+    - { level: 6, label: "Bounded", requires: [authority, privacy, consent, effect_boundary] }
+    - { level: 7, label: "Movable", requires: [candidate_inquiry_hold_or_move, selection_reason] }
+    - { level: 8, label: "Testable", requires: [prediction, consequence_target, verifier, falsifier_or_named_absence] }
+    - { level: 9, label: "Inheritable", requires: [bounded_working_context, provenance, revision, parent_and_relationship_refs] }
+    - { level: 10, label: "Replayable", requires: [authorized_event, consequence, proof_adjudication, sourced_update, replay] }
+  anti_gaming:
+    - "No level is earned from generated text alone."
+    - "A named lacuna may satisfy structural coverage but not evidential closure."
+    - "Later levels require the earlier boundaries to remain valid and fresh."
+    - "The system must lower or mark a level stale when required evidence expires or is disputed."
+
+commands:
+  auto_lacuna:
+    label: "Find lacunae"
+    effect: proposal-only
+    operation: >
+      Compare the current Orientation Map, inherited context, hard gates,
+      objective state, and proof state. Surface the few missing, stale,
+      contradictory, or decision-relevant coordinates most likely to change a
+      rightful next choice.
+    output: [candidate_lacuna, affected_coordinate, why_it_matters, source_refs, epistemic_status, confidence, next_question_or_hold, falsifier_or_close_condition]
+    boundary: "It may not diagnose a person, invent an Agent, or convert absence into a claim."
+  auto_cohere:
+    label: "Auto-cohere"
+    effect: proposal-only
+    operation: >
+      Recompile the current coordinate against its exact record, ancestor
+      inheritance chain, lateral relationships, accepted preferences,
+      objective dependencies, and current source freshness. Produce explicit
+      patch proposals; never rewrite the holarchy in place.
+    proposal_kinds: [answer_axis, correct_axis, mark_stale, add_lacuna, propose_primary_parent, propose_lateral_relation, propose_objective_dependency, propose_agent_candidate, split_coordinate, merge_coordinates, retire_projection, request_authority, request_proof]
+    required_for_each_proposal: [proposal_id, target_coordinate, target_field_or_relation, before, after, rationale, source_refs, epistemic_status, confidence, affected_descendants, authority_required, expected_consequence, falsifier, accept_reject_or_defer_controls]
+    topology_rule: >
+      A primary-parent change is a structural proposal with descendant impact,
+      conflict analysis, and an explicit owner/governance event. Lateral
+      relevance does not create a second canonical parent.
+
+proposal_feed:
+  location: "The Yawn dialogue/event feed."
+  actions: [accept, reject, correct, defer, inspect_sources]
+  rule: >
+    Every action creates or proposes an attributed event. Rejection and
+    correction remain replayable evidence. Accepting a proposal does not prove
+    its factual claim and does not authorize an external effect unless a
+    separate authority contract explicitly does so.
+
+coordinate_complete_minimum:
+  meaning: >
+    Enough context for a fresh authorized intelligence to orient without prompt
+    archaeology while preserving unresolved uncertainty and links to deeper records.
+  required: [coordinate_and_revision, principal_and_active_roles, relationship_and_Arena, governing_purpose_or_named_lacuna, current_state_and_open_lacunae, accepted_boundaries_and_authority, available_intelligence_capabilities_and_revocation, relevant_sources_and_epistemic_states, candidate_inquiry_hold_or_movement, proof_and_update_rule, parent_child_sibling_relationship_refs, stop_sleep_escalate_merge_split_retire_conditions]
+  context_rule: >
+    Compile a bounded working View with hashes and source refs. Summaries are
+    cacheable projections; the source records remain inspectable and authoritative.
+
+new_agent_spawn:
+  default_state: candidate
+  requires_before_activation: [proposed_identity_and_coordinate, parent_relationship, objective_or_explicit_discovery_mandate, Arena, capability_manifest, authority_and_effect_boundary, context_budget, communication_and_report_back_contract, proof_contract, stop_escalate_and_retire_conditions]
+  report_back: >
+    A child returns attributed observations, artifacts, consequences, lacunae,
+    and proposals to the parent relationship. It cannot promote its own output
+    to parent truth, inherit all parent authority, or recursively spawn beyond
+    its grant.
+
+illegal_casts:
+  - "View -> ontology"
+  - "generated answer -> accepted state"
+  - "salience -> relevance"
+  - "relevance -> meaning"
+  - "confidence -> authority"
+  - "recommendation -> choice"
+  - "choice -> authorization"
+  - "capability -> permission"
+  - "movement -> proof"
+  - "provider -> Agent identity"
+  - "child grant -> parent authority"
+  - "acceptance -> truth"
+  - "resolution level -> human worth or intelligence rank"
+
+proof:
+  required_scenarios: [new_ambiguous_self_reflection_signal, new_relationship_coordinate_with_another_rightful_principal, new_delegated_software_work_Agent, existing_coordinate_receiving_contradictory_evidence, ordinary_object_or_topic_where_no_Agent_coordinate_should_be_created, proposed_reparenting_with_affected_descendants, disconnected_intelligence_provider, completed_move_with_consequence_but_insufficient_proof]
+  success: >
+    A fresh capable model can enter the resulting authorized coordinate, state
+    who and where it is, name what is known and unknown, preserve authority,
+    choose the next inquiry or explicit hold, and produce a replayable proposal
+    without bespoke prompt reconstruction or silent canonical mutation.
+  falsifier: >
+    A simpler note/task interface performs equally or better on attribution,
+    authority preservation, orientation quality, correction burden, proof
+    closure, and retained user agency—or the grid induces false completeness,
+    agent reification, compulsive filling, or topology churn.
