@@ -2,7 +2,7 @@ id: interface/new-yawn-v0.1
 title: "+ Yawn creation contract v0.1"
 kind: interface-contract
 status: active
-updated: 2026-08-27
+updated: 2026-09-07
 
 definition: >
   + Yawn preserves one signal and compiles typed provisional detections before
@@ -178,8 +178,16 @@ runtime_0_1:
     background: subtle-grid-only
     visible_taxonomy_headers: none
     circular_status_motifs: none
+  stage:
+    page_scroll: none
+    header_visibility: always
+    blank_composer_position: centered-between-header-and-keyboard
+    dialogue_scroll_region: turn-history-only
+    keyboard_behavior: stage-shrinks-to-visible-viewport
 
 invariants:
+  - the /new stage never scrolls, desktop or mobile; in dialogue only the turn history scrolls inside the strip
+  - the composer stays centered between the header and the top of the keyboard while the page is blank
   - the Yawn is the holon and the Coordinator operates inside it
   - objective detection, ratification, Yawn creation, bot binding, and bot activation remain distinct
   - original source language is preserved

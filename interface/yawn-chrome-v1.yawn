@@ -2,7 +2,7 @@ id: interface/yawn-chrome-v1
 title: "YAWN chrome contract v1"
 kind: interface-contract
 status: active
-updated: 2026-08-14
+updated: 2026-09-07
 
 types:
   lens:
@@ -67,6 +67,10 @@ public_header_geometry:
   background: "#181716"
   focus: "#2fe3f4"
   invariant: one row without horizontal overflow
+  keyboard_rule: >
+    The header stays visible while a software keyboard is open. The chrome is
+    sized to the visible viewport (the space above the keyboard) instead of
+    letting the browser pan the page under it.
 
 member_header:
   left:
@@ -153,6 +157,7 @@ invariants:
   - provider discovery never represents setup-required intelligence as available
   - target feedback preserves selected component context and human-authored intent separately
   - yawn.ai and yawn.bot public roots use the same header geometry and canonical brand tokens
+  - the header never leaves the screen when a field is focused; a software keyboard shrinks the stage, it does not pan the chrome
   - host identity and coordinate may change between applications; interaction grammar does not
   - public-root simplicity supersedes universal expanded Public View header requirements
 
