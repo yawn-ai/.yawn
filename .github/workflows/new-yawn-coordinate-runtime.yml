@@ -1,0 +1,36 @@
+name: New Yawn coordinate runtime
+
+on:
+  pull_request:
+    paths:
+      - "interface/new-yawn-coordinate-workbench-v0.1.yawn"
+      - "interface/new-yawn-coordinate-workbench-v0.1-corrections.yawn"
+      - "agents/coordinate-complete-runtime.yawn"
+      - "migrations/2026-09-01-new-yawn-coordinate-workbench.yawn"
+      - "scripts/compile-new-yawn-workbench-v0.1.mjs"
+      - "scripts/test-new-yawn-workbench-v0.1.mjs"
+      - "scripts/validate-coordinate-complete-runtime-v0.1.mjs"
+      - ".github/workflows/new-yawn-coordinate-runtime.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pinned proposal
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify deterministic New Yawn View compiler
+        run: node scripts/test-new-yawn-workbench-v0.1.mjs
+
+      - name: Verify coordinate-complete runtime composition
+        run: node scripts/validate-coordinate-complete-runtime-v0.1.mjs

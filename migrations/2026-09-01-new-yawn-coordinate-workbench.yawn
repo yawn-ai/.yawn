@@ -1,0 +1,109 @@
+id: migrations/2026-09-01-new-yawn-coordinate-workbench
+title: "New Yawn coordinate workbench projection backfill"
+kind: migration-proposal
+status: proposed
+updated: 2026-09-01
+
+purpose: >
+  Rebuild New Yawn resolution Views from attributed existing records without
+  rewriting source history, promoting inferred Agents, or creating a second
+  orientation model.
+
+source_contract: interface/new-yawn-coordinate-workbench-v0.1.yawn
+canonical_targets:
+  orientation_map: schemas/orientation-map.v0.1.schema.json
+  orientation_questions: question-packets/orientation-nine.yawn
+  inquiry_selection: core/inquiry-selection.yawn
+  holarchy: schemas/agency-holarchy.v0.2.schema.json
+  objective: schemas/objective-holon.v0.1.schema.json
+
+terminology_corrections:
+  - observed: YON
+    canonical: YAWN
+    rule: "Treat as speech/transcription alias unless an attributed source explicitly defines another term."
+  - observed: orientation_packet
+    canonical: yawn.orientation-map.v0.1
+    rule: >
+      Do not create parallel state. Informal packet language may refer only to a
+      compiled, pinned View over the Orientation Map and existing runtime
+      working/delegation contracts.
+  - observed: level
+    canonical: orientation_resolution_level
+    rule: "Project coverage/freshness only; never migrate it as rank, worth, intelligence, truth, autonomy, or authority."
+  - observed: intelligence_connected
+    canonical: intelligence_binding_status
+    rule: >
+      Distinguish unknown, unbound, available, selected,
+      connected_unverified, connected_verified, suspended, and revoked.
+
+backfill_algorithm:
+  - step: preserve_source
+    rule: "Retain every original record and exact source span with attribution and timestamp."
+  - step: resolve_coordinate
+    rule: "Use an existing accepted coordinate when exact; otherwise emit a draft coordinate proposal."
+  - step: compile_axes
+    rule: >
+      Map source material into proposed answers on the nine stable question_key
+      axes. An automated mapping remains inferred/proposed unless a valid source
+      already carries reported, observed, accepted, or verified state.
+  - step: compile_intelligence_binding
+    rule: >
+      Read only typed provider/delegate relationships. Absence becomes unknown
+      or unbound, never a guessed provider.
+  - step: compile_resolution_view
+    rule: >
+      Derive the ten cells and cumulative level from mapped state, freshness,
+      disputes, and proof. Do not write the derived cells back as canonical
+      ontology records.
+  - step: surface_lacunae
+    rule: "Run inquiry selection over the current map or emit an explicit hold."
+  - step: propose_coherence
+    rule: >
+      Emit reviewable candidate mappings, links, parentage, lateral relations,
+      objectives, Agents, splits, merges, or retirements. Apply none.
+  - step: preserve_disposition
+    rule: "Record Accept, Correct, Reject, Defer, and Inspect events append-only at the authorized scope."
+
+scope:
+  initial:
+    - "new local drafts created through /new"
+    - "explicitly selected owner coordinates"
+  excluded_until_separately_authorized:
+    - "bulk private-vault mining"
+    - "silent reparenting of accepted coordinates"
+    - "automatic Agent or objective promotion"
+    - "public projection of private records"
+    - "provider connection or external effect"
+
+idempotency:
+  key: "source_record_ref + source_revision + contract_version + compiler_version"
+  rule: >
+    Re-running the same pinned compiler against the same effective inputs yields
+    the same proposal identifiers and View state. Corrections create a new
+    revision; they do not overwrite the prior output.
+
+conflict_policy:
+  - "Preserve contradictory attributed claims."
+  - "Exact-coordinate accepted state outranks inherited presentation defaults, not constitutional invariants."
+  - "Descendants may narrow privacy or authority; widening requires a rightful exact grant."
+  - "Multiple candidate parents remain proposals until one acyclic primary parent is accepted."
+  - "Lateral relations never become extra canonical parents."
+
+proof:
+  status: untested
+  required_cases:
+    - empty_draft
+    - simple_objective
+    - existing_coordinate_update
+    - frontier_routing_candidate
+    - conflicting_parent_candidates
+    - inferred_agent_rejected
+    - provider_available_but_not_connected
+    - valid_unknown_and_not_applicable
+    - stale_or_disputed_axis_lowers_resolution
+    - no_action_hold
+  pass_condition: >
+    Backfill is deterministic, source-preserving, replayable, and produces only
+    proposals/Views unless a pre-existing accepted event already establishes
+    canonical state. No run changes identity, parentage, authority, privacy,
+    provider connectivity, proof, or external state.
