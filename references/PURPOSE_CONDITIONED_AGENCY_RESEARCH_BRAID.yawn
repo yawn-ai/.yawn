@@ -1,0 +1,121 @@
+---
+schema_version: 3.0.0
+title: Purpose-Conditioned Agency Research Braid
+type: supporting_research_map
+domain: architecture
+status: proposed
+criticality: supporting
+version: 0.1.0
+owner: dave
+created_at: 2026-09-07
+updated_at: 2026-09-07
+coordinate: yawn.ai/architecture/purpose-conditioned-agency-research-braid
+parent_coordinate: yawn.ai/architecture/agency-interface
+governing_source: core/agency-interface.yawn
+ontological_status: supporting_not_governing
+epistemic_status: reported
+epistemic_note: "a multilineage synthesis reported by the principal; each `supports` line is reported from the named work, each `protocol_extension` is inferred"
+verification_status: unverified — works are named as the 2026-09-07 synthesis named them; identifiers below were added from recall by agent:anthropic:claude-code and must be checked before public citation
+research_lineage:
+  - tradition: cybernetic self-regulation
+    authors: Charles S. Carver; Michael F. Scheier
+    work: "Control theory: a useful conceptual framework for personality–social, clinical, and health psychology"
+    year: 1982
+    doi: 10.1037/0033-2909.92.1.111
+    supports: "behavior as reference, comparator, discrepancy, action, and fed-back result"
+    protocol_extension: "the reference value itself is inspectable and revisable (core/motivation-and-purpose.yawn)"
+  - tradition: goal hierarchies
+    authors: Bettina Höchli; Adrian Brügger; Claude Messner
+    work: "How focusing on superordinate goals motivates broad, long-term goal pursuit"
+    year: 2018
+    doi: 10.3389/fpsyg.2018.00085
+    supports: "superordinate goals carry why and identity; subordinate goals carry means and evidence of progress"
+    protocol_extension: "causality also runs upward: consequence → discovery → reinterpretation; the hierarchy is bidirectionally revisable inside a relational graph"
+  - tradition: leadership framing (not a scientific theory of motivation)
+    authors: Simon Sinek
+    work: "Start with Why"
+    year: 2009
+    supports: "WHY, HOW, WHAT as distinct levels of communication"
+    limit: "broad claims are not a complete theory of motivation"
+  - tradition: self-determination
+    authors: Edward L. Deci; Richard M. Ryan
+    work: "The 'what' and 'why' of goal pursuits: human needs and the self-determination of behavior"
+    year: 2000
+    doi: 10.1207/S15327965PLI1104_01
+    supports: "autonomous versus controlled motivation; autonomy, competence, relatedness"
+    protocol_extension: "human initiation and authority are part of the cognitive architecture, not a safety add-on; leverage that pushes a principal toward a target they no longer endorse breaks the agentic loop"
+  - tradition: self-determination
+    authors: Richard M. Ryan; Edward L. Deci
+    work: "Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being"
+    year: 2000
+    doi: 10.1037/0003-066X.55.1.68
+  - tradition: active inference
+    authors: Karl Friston; Francesco Rigoli; Dimitri Ognibene; Christoph Mathys; Thomas FitzGerald; Giovanni Pezzulo
+    work: "Active inference and epistemic value"
+    year: 2015
+    doi: 10.1080/17588928.2015.1020053
+    supports: "action selection weighs pragmatic value and epistemic value together; ambiguity-resolving behavior enables later goal-directed behavior"
+    protocol_extension: "sometimes the warranted next move is ask, inspect, measure, consult, observe, test, wait, or hold (core/inquiry-selection.yawn)"
+  - tradition: extended mind
+    authors: Andy Clark; David Chalmers
+    work: "The Extended Mind"
+    year: 1998
+    doi: 10.1093/analys/58.1.7
+    supports: "under tight, reliable coupling, external structure can participate in a cognitive system"
+  - tradition: external representation
+    authors: David Kirsh; Paul Maglio
+    work: "On distinguishing epistemic from pragmatic action"
+    year: 1994
+    doi: 10.1207/s15516709cog1804_1
+    supports: "people arrange the environment to simplify perception, choice, and computation"
+    protocol_extension: "externalized structure counts as leverage only when it changes what the principal can practically do"
+  - tradition: psychological flexibility
+    authors: Steven C. Hayes; Jason B. Luoma; Frank W. Bond; Akihiko Masuda; Jason Lillis
+    work: "Acceptance and Commitment Therapy: model, processes and outcomes"
+    year: 2006
+    doi: 10.1016/j.brat.2005.06.006
+    supports: "values-consistent action while difficult internal experience is allowed to exist"
+    protocol_extension: "the reference condition is not the absence of fear (core/agency-interface.yawn#fear)"
+  - tradition: pattern perception and belief
+    authors: Jan-Willem van Prooijen; Karen M. Douglas; Clara De Inocencio
+    work: "Connecting the dots: illusory pattern perception predicts belief in conspiracies and the supernatural"
+    year: 2018
+    doi: 10.1002/ejsp.2331
+    supports: "illusory pattern perception is associated with supernatural and conspiracy belief; recognizing actual structure is a different phenomenon"
+    protocol_extension: "meaningful-coincidence reports enter as observations with listed interpretations and an open question; neither confirmed as destiny nor dismissed"
+  - tradition: self-improving agents
+    authors: Maxime Robeyns; Martin Szummer; Laurence Aitchison
+    work: "A Self-Improving Coding Agent"
+    year: 2025
+    identifier: arXiv:2504.15228
+    supports: "an agent that modifies its own implementation with a reported benchmark gain on a SWE-Bench Verified subset"
+    limit: "bounded improvement of tools, prompts, and code; not a claim of runaway self-improvement"
+  - tradition: self-improving agents (reported by the source; not verified here)
+    work: "Retrospective Harness Optimization (Microsoft, 2026); SelfMem (memory-strategy learning); AI4AI-Bench (August 2026)"
+    supports: "improvement of harness, memory strategy, and workflow from accumulated trajectories; limited results when agents must improve learning algorithms themselves"
+    status: "named by the 2026-09-07 synthesis; after this recorder's knowledge; identifiers unknown"
+  - tradition: meaningful coincidence research (reported by the source; not verified here)
+    supports: "individual differences in perceiving meaningful relationships among objectively unrelated events; associations with attention, working memory, creativity, and affect"
+    status: "the synthesis cites several studies without resolvable identifiers"
+direct_support_vs_inference:
+  direct: "each tradition supports the one sentence given under `supports`"
+  inferred: "every `protocol_extension` is a YAWN inference, not a claim the source makes"
+  not_claimed: "that any of this proves the protocol, that software agents are organisms, or that a coupled human–AI system is superintelligent"
+claim_discipline: docs/research-basis.md#claim-discipline
+---
+
+# Purpose-Conditioned Agency Research Braid
+
+The braid records why the same loop keeps reappearing across research
+traditions, as the 2026-09-07 synthesis argued: cybernetics says agency needs
+feedback; goal research says action sits inside hierarchies of means and
+reasons; self-determination says the quality and ownership of motivation
+matter; active inference says an intelligent next move can seek information
+as well as outcomes; extended cognition says external structure can change
+the cognitive work an agent can do; contemporary agent research says parts of
+an agent's memory, workflow, tools, and code can be improved from experience.
+
+The protocol's addition is that the objective, interpretation, evidence,
+relationships, authority, and proof also need to be explicit and revisable.
+That is `core/agency-interface.yawn`, and this braid is its supporting map,
+not its authority.

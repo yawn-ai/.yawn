@@ -8,6 +8,13 @@ labels and do not imply compatibility.
 
 ### Added
 
+- `core/agency-interface.yawn`, a proposed synthesis contract stating what the
+  protocol is for (a purpose-conditioned, question-driven, holonic agency
+  interface), with the purpose-conditioned question frontier, the seven kinds
+  of why, the holon as nine questions, the loop and meta-loop, and the next
+  slice; supported by `references/PURPOSE_CONDITIONED_AGENCY_RESEARCH_BRAID.yawn`
+  and a section in `docs/research-basis.md` (supplied by the principal
+  2026-09-07; adds no primitive)
 - Relationship-first Agent Arena constitutional source and its attributed
   Vervaeke/enactive/affordance/active-inference/extended-cognition research
   braid

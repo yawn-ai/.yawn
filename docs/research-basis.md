@@ -79,6 +79,39 @@ question order and representation can influence answers.
 - Stefkovics and Kmetty (2022), question-order and layout experiments:
   <https://doi.org/10.1186/s42409-022-00036-z>
 
+## Purpose, questions, and governed leverage
+
+A 2026-09-07 synthesis supplied by the principal states what the protocol is
+for in one sentence: a purpose-conditioned, question-driven, holonic agency
+system through which a human and AI jointly discover what matters, externalize
+the current model, identify what is missing, pursue warranted action with
+machine leverage, learn from consequences, and improve the process by which
+they orient and act. It is recorded as a proposed synthesis contract in
+[`core/agency-interface.yawn`](../core/agency-interface.yawn); it names what
+the governing records already say and adds no primitive.
+
+Its supporting traditions are braided with claim discipline in
+[`references/PURPOSE_CONDITIONED_AGENCY_RESEARCH_BRAID.yawn`](../references/PURPOSE_CONDITIONED_AGENCY_RESEARCH_BRAID.yawn):
+cybernetic self-regulation (a reference, a comparator, a return path), goal
+hierarchies (why and how as different levels, revisable in both directions),
+self-determination (the ownership of motivation matters), active inference
+(an intelligent next move may seek information rather than an outcome),
+extended cognition (external structure that changes what an agent can do),
+psychological flexibility (values-consistent movement while fear's information
+is kept), and bounded self-improving agents. Each `protocol_extension` in the
+braid is a YAWN inference, not a claim the source makes. Several works the
+synthesis names postdate the recorder's knowledge and are carried as
+reported, with identifiers still owed.
+
+- Carver & Scheier (1982), “Control theory: a useful conceptual framework…”:
+  <https://doi.org/10.1037/0033-2909.92.1.111>
+- Deci & Ryan (2000), “The ‘what’ and ‘why’ of goal pursuits”:
+  <https://doi.org/10.1207/S15327965PLI1104_01>
+- Friston et al. (2015), “Active inference and epistemic value”:
+  <https://doi.org/10.1080/17588928.2015.1020053>
+- Kirsh & Maglio (1994), “On distinguishing epistemic from pragmatic action”:
+  <https://doi.org/10.1207/s15516709cog1804_1>
+
 ## Presentation preference is not a learning-style diagnosis
 
 People have real presentation preferences, different aptitudes, accessibility
