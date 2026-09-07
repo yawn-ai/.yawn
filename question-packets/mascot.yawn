@@ -108,9 +108,11 @@ questions:
     answer: >
       Start from the twenty pairs that already exist (eight front walk,
       eight back walk, four idle, skin frame beside robot frame at 256 by
-      256). Train a Klein 4B LoRA or a control adapter on those pairs with
-      captions naming the state and direction, using a checked-in
-      ai-toolkit config, hosted (about USD 2 to 10) or on the local GPU.
+      256). Train a paired edit adapter on those pairs (skin frame as
+      control, robot frame as target) over an open reference-control
+      adapter, with captions naming the state and direction, using a
+      checked-in ai-toolkit config, hosted (about USD 9 to 17 per run) or
+      about one hour on a 24 GB local GPU.
       Every accepted translation adds a pair, which is how the art engine's
       20 to 40 image target fills. Reference conditioning alone is enough
       for one mascot's identity; the adapter is what makes the pipeline
@@ -209,10 +211,13 @@ questions:
       static image on /new and in the header today, with a CSS bob when
       walking. Working is the walking robot sheet (eight frames at 20 fps)
       that was translated frame for frame from the skin's walk cycle. Both
-      are the same character; the idle sheet (four frames at 8 fps) is the
-      breathing version of dormant.
+      are YAWN robots, but they are not the same design: the dormant body
+      has a rectangular monitor head, a boxy torso, and cylindrical limbs,
+      while the walking body keeps Will's round head with a CRT window and
+      a cyan body. The idle sheet (four frames at 8 fps) is the breathing
+      version of the walking body, not of the dormant one.
     epistemic_status: observed
-    case_against: "Two dormant bodies (the browser-face still and the idle breath sheet) can drift apart visually; one must be declared the header's sleeping body and the other its card body, or the still must be translated into a breathing sheet."
+    case_against: "Two dormant bodies (the browser-face still and the idle breath sheet) are different designs and will read as two characters in one header. Dave must declare the walking robot the canonical skinned body and keep the browser-face as a separate sleeping asset, or commission one dormant frame in the walking identity as the first approved translation."
     proof: "The manifest names one accepted sheet per size for sleeping and for moving, and the header, /new, and the world all read them."
     loop_status: orientation
     public_safe: true
