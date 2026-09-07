@@ -1,0 +1,186 @@
+id: core/agency-interface
+title: "purpose-conditioned recursive agency interface"
+kind: synthesis-contract
+status: proposed-0.1
+updated: 2026-09-07
+governing_sources:
+  - core/motivation-and-purpose.yawn
+  - core/world-field-arena.yawn
+  - core/orientation.yawn
+  - core/inquiry-selection.yawn
+  - core/co-orientation-loop.yawn
+  - core/movement-loop.yawn
+  - core/what-is-a-yawn.yawn
+  - core/objective-holon.yawn
+  - spec/ontology.md
+  - spec/questions.md
+  - q-space/protocol-v1.yawn
+supporting_research: references/PURPOSE_CONDITIONED_AGENCY_RESEARCH_BRAID.yawn
+ontological_status: "names what the governing sources already say; adds no primitive"
+epistemic_status: reported
+epistemic_note: "a synthesis reported by the principal from an OpenAI model; the alignment claims were checked by the recorder (observed); the extensions marked as such are inferred"
+provenance: >
+  Supplied by the principal on 2026-09-07 as a research synthesis authored by an
+  OpenAI model in his ChatGPT thread (model unrecorded). Recorded by
+  agent:anthropic:claude-code. Its claims about this protocol were checked
+  against the governing sources above; its claims about outside research are
+  reported and carried in the research braid with verification owed. The
+  principal's personal material in the source is held privately and is not in
+  this repository.
+
+purpose: >
+  State, in one place, what the protocol is for, so that apertures, selectors,
+  and stewards can be checked against it instead of rediscovering it.
+
+statement: >
+  A purpose-conditioned, question-driven, holonic agency system through which a
+  human and AI can jointly discover what matters, externalize their current
+  model, identify what is missing, pursue warranted action with machine
+  leverage, learn from consequences, and recursively improve the process by
+  which they orient and act.
+
+levels:
+  product: "a holonic reality interface"
+  cognitive: "an externalized orientation-and-agency loop"
+  ai_systems: "a governed recursive improvement architecture"
+  human: >
+    a cognitive companion that helps a person move from implicit experience to
+    explicit, revisable, actionable understanding without pretending the
+    representation is the person or reality
+
+gap_named: >
+  Conventional agents begin after the objective has been specified. A person
+  often needs intelligence because the objective is not yet known, its reason
+  is unclear, it conflicts with something deeper, or one unanswered question
+  prevents movement. core/motivation-and-purpose.yawn already lets a desire
+  exist without becoming a goal, commitment, authorization, or action. That
+  separation is the protocol's answer to the wish-granting problem: the
+  interface does not ask "what is your wish"; it supports "here is what I am
+  experiencing; help me understand what may matter; show me what you
+  inferred and what we do not know; help me choose the clarifying question;
+  let me revise the purpose; then give that intention leverage, governed".
+
+four_convergent_ideas:
+  - relationship_is_prior: "what is observable, relevant, actionable, and permitted depends on the situated agent–arena relationship (spec/ontology.md)"
+  - orientation_precedes_optimization: "observations, desires, tensions, unknowns, relationships, and questions may exist before any goal is promoted (core/motivation-and-purpose.yawn)"
+  - questions_expose_missing_structure: "Q-Space keeps attributed answers, candidate questions, probes, transitions, and proof without equating repetition or model output with truth (q-space/protocol-v1.yawn)"
+  - consequences_close_the_loop: "reality is whatever constrains consequences and can disconfirm the record; the map must not grow coherent by talking to itself (core/world-field-arena.yawn)"
+
+why_is_not_one_relation:
+  rule: "the kinds below may not share one answer; a fluent paragraph that resolves them together is a category error"
+  kinds:
+    - { id: causal, example: "why did this start?", answerable_by: "evidence and history" }
+    - { id: motivational, example: "why do I continue despite the cost?", answerable_by: "reported experience and evidence" }
+    - { id: normative, example: "why should I continue?", answerable_by: "ethical reasoning and deliberation" }
+    - { id: teleological, example: "what purpose would continuing serve?", answerable_by: "a purpose the principal ratifies" }
+    - { id: psychological, example: "what need, value, fear, identity, attachment, or conflict participates in the pull?", answerable_by: "evidence and reflection" }
+    - { id: epistemic, example: "why do I believe something important is here?", answerable_by: "evidence, falsifiers, proof" }
+    - { id: existential, example: "why am I here at all?", answerable_by: "no current empirical answer; held as a question" }
+  consistent_with: "core/orientation.yawn treats intent as one of nine axes; purpose may be chosen, inherited, imposed, requested, or unclear"
+
+purpose_conditioned_question_frontier:
+  description: >
+    Not a primitive; a description of the interaction. At any moment many
+    questions are open. The important one is not necessarily the deepest: it
+    is the one whose answer would most change orientation relative to what
+    currently matters. Purpose conditions priority without becoming
+    unquestionable.
+  inputs: [current_orientation, currently_endorsed_purposes, open_lacunae, consequence_or_risk, relationship_and_authority]
+  comparator: >
+    priority(q, t) ≈ information_gain(q) × relevance(q, purposes_t) × consequence(q)
+    × decision_impact(q) ÷ (burden(q) + risk(q) + delay(q))
+  hard_gates_in_order: [immediate_safety_or_stability, authority_or_consent_blocker, privacy_visibility_or_egress_blocker, source_or_provenance_loss, proof_or_falsifier_integrity]
+  gate_rule: "a gate that is not clear forces a foregrounded hold; no score bypasses it (core/inquiry-selection.yawn)"
+  status: "engineering formalization aligned with epistemic/pragmatic value in active inference and with core/inquiry-selection; not a psychological law"
+  consequence: >
+    the principal does not need to know an ultimate purpose first; a current
+    purpose such as "understand why this has such a hold on me and decide
+    what, if anything, deserves to happen next" is enough to orient.
+
+holon_as_nine_questions:
+  - { id: what_is_here, holds: [observations, reports, people, context, relationships] }
+  - { id: what_matters, holds: [desires, values, needs, purposes, commitments] }
+  - { id: what_do_we_think, holds: [claims, models, assumptions, perspectives, answers] }
+  - { id: what_dont_we_know, holds: [questions, lacunae, disputes, uncertainty] }
+  - { id: what_could_happen, holds: [affordances, options, predictions, candidate_moves] }
+  - { id: what_may_happen, holds: [authority, consent, privacy, boundaries] }
+  - { id: what_happened, holds: [events, consequences, feedback] }
+  - { id: what_did_that_teach_us, holds: [proof, revisions, changed_relationships] }
+  - { id: what_now, holds: [new_question, movement, hold, delegation] }
+  note: "this is core/what-is-a-yawn.yawn read as questions: a bounded orientation contract around something that matters enough to maintain continuity"
+
+steward:
+  definition: "a Yawnbot is what happens when a holon is given stewardship; activation stays distinct from authority (spec/ontology.md)"
+  may: [notice_relevant_change, retrieve_context, surface_missing_structure, ask_a_discriminating_question, commission_research, compare_perspectives, propose_movement, perform_authorized_work, watch_for_consequences, request_verification, update_the_model, resurface_when_relevant]
+  may_not: [invent_the_principals_purpose, convert_inference_into_truth, convert_ability_into_permission, declare_its_own_improvement_successful, treat_disagreement_as_pathology, treat_popularity_as_evidence]
+
+loop:
+  stages: [experience, orientation, lacunae, question_frontier, perspective_field, answer_frontier, next_warranted_turn, principal_choice, leverage, consequence_and_proof, model_update, purpose_update, next_orientation]
+  purpose_position: "above the loop, and revised by it: consequence updates the model and may update the purpose"
+  leverage: "human + AI + tools, after principal choice or authorization, never before"
+
+meta_loop:
+  question: "did the protocol itself fail?"
+  checks:
+    - context_lost
+    - wrong_question_chosen
+    - uncertainty_hidden
+    - authority_misunderstood
+    - recurring_workflow_inefficient
+    - tool_failed
+    - representation_misled
+    - principal_carried_what_the_system_should_have
+  steps: [preserve_failure, propose_improvement, implement_within_bounded_scope, independent_evaluation, did_later_cases_improve, retain_or_revert]
+  status: "the most defensible form of recursive self-improvement available to this protocol today; improvement is toward what, according to whom, with what evidence, under whose authority"
+
+coupled_system:
+  claim: >
+    the useful unit may be the principal + durable externalized cognition +
+    frontier intelligence + specialized agents + tools + reality feedback +
+    recursive process improvement, whose shared state survives conversations
+    and model generations.
+  status: inferred, not established
+  standard: >
+    externalized structure counts as cognitive leverage only when it changes
+    what the principal can practically do (a contradiction noticed, a prior
+    insight resurfaced, a constraint that follows work into a child, an
+    inquiry an agent can continue, a question visible where its answer changes
+    the next action); a large graph is not the measure.
+
+fear:
+  reference_condition: "not the absence of fear; less prevention of values-consistent, reality-testing movement while fear's information is preserved"
+  loop: [fear_exists, what_is_it_predicting, what_is_the_evidence, what_is_genuinely_protected, smallest_reversible_move, what_happens, update]
+
+reported_experience_rule:
+  rule: >
+    an experience of meaning, convergence, or coincidence enters as an
+    observation before any explanation; interpretations are listed as
+    alternatives with evidence and an open question; the record neither
+    confirms a destiny nor dismisses the experience.
+  statuses: [reported, observed, inferred, assumed, predicted, disputed, unknown]
+
+next_slice:
+  question: >
+    Can the principal enter anything, and within one continuous Yawn
+    experience, watch it become an attributed, revisable orientation that
+    helps them discover what matters, find the most consequential unanswered
+    question, and add governed AI leverage to the next warranted turn?
+  criterion:
+    - one natural expression with mixed feeling, purpose, uncertainty, relationship, claim, question, and possible action
+    - source preserved exactly
+    - provisional decomposition with the existing ontology; place in the holarchy found without the principal categorizing
+    - the smallest recognizable orientation exposed
+    - the one question most likely to alter a rightful next turn surfaced, with why it was chosen inspectable
+    - correction of any inferred relationship or purpose, visibly changing the question, model, or movement frontier
+    - an authorized child inquiry carried by a research or execution agent
+    - result, consequence, and proof preserved
+    - state restored on return without reconstruction
+    - one failure of the process becoming a bounded improvement that improves a later case
+    - no new ontology unless the existing contracts are proven insufficient by this run
+  relation: "the same slice as docs/execution-plans/theory-carries-builder-run-01-v0.3.md's first-minute Yawn, and Run 01 Lap 1"
+
+boundary: >
+  This record grants nothing and ranks nothing. It is checkable against the
+  governing sources and against the product (yawn.bot
+  src/domain/yawn-agency-interface.ts mirrors its lists and comparator). Only
+  the principal accepts it as the protocol's statement of purpose.
