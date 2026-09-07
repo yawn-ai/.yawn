@@ -2,7 +2,7 @@ id: questions/open-questions
 title: "What is still unresolved?"
 kind: lacuna-index
 status: preview
-updated: 2026-07-11
+updated: 2026-09-07
 
 purpose: >
   Keep unanswered, disputed, deferred, and decision-changing questions visible
@@ -58,6 +58,40 @@ open_questions:
     status: open
     blocks_action: true
     review_after: "before declaring production healthy"
+
+  - question: "Which translation lane produces pose-faithful YAWN robot frames from a skin cycle at 32 and 256 pixels?"
+    coordinate: "yawn.bot/mascot"
+    why_it_matters: "The lane decides cost per cycle, whether seeds make sheets reproducible, and whether the pipeline can run without a hosted provider."
+    evidence_needed:
+      - one skin cycle translated through each candidate lane with receipts
+      - pose fidelity, identity, and grid fidelity scores per lane
+      - provider terms read by the owner
+    owner: Dave
+    status: open
+    blocks_action: false
+    review_after: "before translating more than one cycle"
+
+  - question: "Is a LoRA on the twenty paired skin and robot frames worth training now, or is reference conditioning enough?"
+    coordinate: "yawn.bot/mascot/skins"
+    why_it_matters: "Training is approval-gated spend and the only path to a self-hosted, seed-reproducible pipeline."
+    evidence_needed:
+      - a held-out cycle translated with and without the adapter
+      - cost, time, and dataset hashes for the run
+    owner: Dave
+    status: open
+    blocks_action: false
+    review_after: "after the first translated cycle is reviewed"
+
+  - question: "Which runtime field supplies the move kind that selects the working variant of the moving state?"
+    coordinate: "yawn.bot/mascot/states"
+    why_it_matters: "Without a move kind the mascot cannot distinguish coding from walking, which is the state Dave named first."
+    evidence_needed:
+      - inventory of thread kinds, work order types, and bot state fields
+      - one candidate field with its provenance
+    owner: YAWN.bot
+    status: open
+    blocks_action: false
+    review_after: "before the working sheet is translated"
 
 recently_resolved:
   - question: "Which codebase is the official YAWN.bot runtime?"

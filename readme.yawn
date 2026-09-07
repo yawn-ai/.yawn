@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 7
-updated: "2026-08-27"
+revision: 8
+updated: "2026-09-07"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -38,6 +38,7 @@ signal:
     - migrations/2026-08-17-canonical-extension.yawn
     - schemas/orientation-map.v0.1.schema.json
     - core/inquiry-selection.yawn
+    - interface/yawn-mascot-v0.1.yawn
 
 orientation:
   current_state:
@@ -263,6 +264,12 @@ protocol_layers:
     interface_contract: interface/local-observation-art-v0.1.yawn
     canonical_state: false
     automatic_acceptance_publish_or_promotion: false
+  mascot_view:
+    interface_contract: interface/yawn-mascot-v0.1.yawn
+    question_packet: question-packets/mascot.yawn
+    version: "0.1-proposed"
+    canonical_state: false
+    automatic_generation_spend_or_promotion: false
   lexical_normalization:
     contract: core/canonical-extension.yawn
     normalizer: lib/canonical-extension-v1.mjs

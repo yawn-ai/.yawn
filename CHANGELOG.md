@@ -8,10 +8,12 @@ labels and do not imply compatibility.
 
 ### Added
 
-- Proposed YAWN.bot mascot and state-animation contract v0.1: a pixel body
-  and pixel-field View resolved from existing loop, worker, and expression
-  state; an approval-gated sprite-sheet generation pipeline; public and
-  provisioned `/mascot` views; and a ranked mascot question packet
+- Proposed YAWN.bot mascot, skin, and state-animation contract v0.1: a pixel
+  body and pixel-field View resolved from existing loop, worker, and
+  expression state; a skin pose library translated into the robot identity
+  through an approval-gated, receipt-bound pipeline; public and provisioned
+  `/mascot`, `/mascot/states`, and `/mascot/skins` views; a ranked mascot
+  question packet; and a contract test
 - Relationship-first Agent Arena constitutional source and its attributed
   Vervaeke/enactive/affordance/active-inference/extended-cognition research
   braid

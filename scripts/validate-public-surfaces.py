@@ -83,6 +83,8 @@ yaml_files = [
     "interface/new-yawn-v0.1.yawn",
     "question-packets/orientation-nine.yawn",
     "question-packets/turn-close.yawn",
+    "question-packets/mascot.yawn",
+    "interface/yawn-mascot-v0.1.yawn",
     "CITATION.cff",
     ".github/ISSUE_TEMPLATE/bug.yml",
     ".github/ISSUE_TEMPLATE/spec-proposal.yml",

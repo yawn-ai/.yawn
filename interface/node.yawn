@@ -2,7 +2,7 @@ id: interface/node
 title: "interface node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-08-27
+updated: 2026-09-07
 
 purpose: >
   Hold the five-command brain interface and projection stack.
@@ -22,6 +22,7 @@ holds:
   - local observation-art generation contract
   - dialogue objective compiler and correction operators
   - one-question orientation_inquiry View with source-preserving selection and answer provenance
+  - state-driven mascot body, skin, and pixel-field View with approval-gated sheet translation
 
 receives:
   - lived signals
@@ -55,6 +56,8 @@ links:
   - interface/new-yawn-v0.1.yawn
   - interface/local-observation-art-v0.1.yawn
   - interface/objective-compiler.yawn
+  - interface/yawn-mascot-v0.1.yawn
+  - question-packets/mascot.yawn
   - core/inquiry-selection.yawn
   - question-packets/orientation-nine.yawn
   - schemas/orientation-map.v0.1.schema.json
@@ -71,4 +74,5 @@ proof:
     - core/inquiry-selection.yawn
     - schemas/inquiry-selection-receipt.v0.1.schema.json
     - question-packets/orientation-nine.yawn
+    - interface/yawn-mascot-v0.1.yawn
   status: draft-backed

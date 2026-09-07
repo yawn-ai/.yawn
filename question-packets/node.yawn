@@ -2,7 +2,7 @@ id: question-packets/node
 title: "question packets node"
 kind: mental-model-node
 status: active
-updated: 2026-08-27
+updated: 2026-09-07
 
 purpose: >
   Hold simple intake contracts that let a person answer plain-language
@@ -13,6 +13,7 @@ holds:
   - relationship question packet
   - canonical nine-question orientation projection
   - turn close and replay packet
+  - mascot ranked question packet (frontier format)
 
 receives:
   - simple user answers
@@ -41,6 +42,8 @@ links:
   - question-packets/relationship.yawn
   - question-packets/orientation-nine.yawn
   - question-packets/turn-close.yawn
+  - question-packets/mascot.yawn
+  - interface/yawn-mascot-v0.1.yawn
   - core/inquiry-selection.yawn
   - templates/full.yawn
   - templates/relationship.yawn
