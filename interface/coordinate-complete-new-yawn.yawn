@@ -1,0 +1,285 @@
+id: interface/coordinate-complete-new-yawn
+title: "coordinate-complete New Yawn"
+kind: interface-contract
+status: working-draft-0.1
+updated: 2026-09-01
+
+purpose: >
+  Let a person begin with one unstructured signal while YAWN compiles an
+  inspectable, revisable View of the minimum context an intelligence needs to
+  operate at the proposed coordinate. The View teaches the ontology through use
+  without turning the ontology into a setup form.
+
+constitutional_sources:
+  - core/orientation.yawn
+  - question-packets/orientation-nine.yawn
+  - schemas/orientation-map.v0.1.schema.json
+  - core/inquiry-selection.yawn
+  - core/routing.yawn
+  - core/objective-holon.yawn
+  - schemas/agency-holarchy.v0.2.schema.json
+  - core/choice-and-move-selection.yawn
+  - core/state-transition.yawn
+  - core/proof-and-boundary.yawn
+
+entry:
+  body_question: "What has your attention?"
+  input_rule: >
+    Accept the person's source language without requiring ontology terms,
+    complete sentences, a predetermined object kind, or an already known goal.
+  blank_rule: >
+    Before a signal exists, show identity as proposed and every semantic tile as
+    open. Do not fabricate certainty merely to make the grid look complete.
+  primary_action:
+    label: "Auto-cohere"
+    meaning: >
+      Run the deterministic local orientation and placement compiler over the
+      current source, inherited coordinate context, and accepted local
+      corrections. It may propose; it cannot accept, materialize, activate,
+      publish, delegate, or execute.
+  secondary_action:
+    label: "Auto-lacuna"
+    meaning: >
+      Select the highest-priority unresolved orientation question or an explicit
+      hold through the canonical inquiry-selection policy. It does not infer an
+      answer from absence or choose a move.
+
+identity_header:
+  shows:
+    - proposed Yawn.bot image
+    - proposed name
+    - proposed coordinate/address
+    - current lifecycle status
+    - intelligence binding status
+  rule: >
+    The image, name, coordinate, and runtime provider are distinct properties.
+    A provider may run cognition for the coordinate without becoming the
+    Yawnbot's identity, rightful principal, purpose, or authority.
+
+coordinate_complete_view:
+  kind: orientation-view
+  canonical_state: false
+  projection_status: proposed
+  source_schema: schemas/orientation-map.v0.1.schema.json
+  tiles:
+    - tile_key: identity
+      label: "Identity"
+      question: "What is this coordinate?"
+      reads:
+        - proposed coordinate
+        - proposed name and slug
+        - lifecycle status
+      boundary: "An addressable proposal is not a materialized or activated Yawn."
+    - tile_key: intelligence
+      label: "Intelligence"
+      question: "What cognition is connected here?"
+      reads:
+        - deterministic local compiler
+        - optional connected model/provider bindings
+        - provider freshness and availability
+      boundary: "Intelligence binding is not Yawnbot identity, authority, truth, or autonomy."
+    - tile_key: placement
+      label: "Holarchy"
+      question: "Where does this provisionally belong?"
+      maps_to: [placement]
+      reads:
+        - proposed primary parent
+        - lateral relations
+        - routing status and confidence
+      boundary: >
+        Parentage and reparenting remain routing proposals until an authorized
+        structural-change event is accepted. One primary parent preserves an
+        acyclic backbone; lateral relationships never become extra parents.
+    - tile_key: relationship
+      label: "Relationship + Arena"
+      question: "Who or what is relating, and within which relevant field?"
+      maps_to: [placement, perspective]
+      reads:
+        - principal and participant roles
+        - observer stance
+        - relationship
+        - Arena and horizon
+      boundary: "The Arena is a provisional purpose-relevant cut, not the whole world."
+    - tile_key: purpose
+      label: "Purpose"
+      question: "What matters, is needed, wanted, or protected—and to whom?"
+      maps_to: [intent]
+      boundary: >
+        A detected want, need, value, or objective remains attributed. It does
+        not become shared agreement, obligation, terminal goal, or authority.
+    - tile_key: state
+      label: "Current state"
+      question: "What appears to be happening now?"
+      maps_to: [current-state]
+      boundary: "Reported, observed, inferred, disputed, and unknown remain distinct."
+    - tile_key: lacuna
+      label: "Lacuna"
+      question: "What decision-relevant absence, contradiction, or dependency remains?"
+      maps_to: [lacuna]
+      boundary: "Unknown is a valid state and cannot be silently auto-filled."
+    - tile_key: boundary
+      label: "Boundary"
+      question: "What must be protected, and who may decide, disclose, spend, delegate, or act?"
+      maps_to: [boundary]
+      boundary: "Confidence, placement, capability, and urgency cannot grant authority."
+    - tile_key: movement
+      label: "Choice + movement"
+      question: "What inquiry, hold, choice, or bounded move is possible next?"
+      maps_to: [movement]
+      reads:
+        - candidate inquiries
+        - candidate moves
+        - move-selection proposal or hold
+        - rightful choice status
+        - separate authority status
+      boundary: >
+        Recommendation is not choice. Choice is not authorization. Accepting an
+        inferred field cannot execute its proposed move.
+    - tile_key: proof
+      label: "Proof + update"
+      question: "What would reality have to show for this map to change?"
+      maps_to: [proof]
+      reads:
+        - predicted consequence
+        - verifier
+        - falsifier
+        - update rule
+        - close, sleep, split, merge, or retire condition
+      boundary: "Execution is not consequence; consequence is not proof; proof is not update."
+
+resolution_view:
+  label: "Resolution"
+  maximum: 10
+  calculation: >
+    One point for each tile whose current state is inspectably represented. A
+    reviewed principal answer counts as settled for this View; an attributed
+    machine or agent proposal counts as proposed; a missing, withheld, disputed,
+    stale, or gated field remains open. Identity and Intelligence are View/runtime
+    tiles; the remaining eight tiles project the canonical Orientation Map and
+    movement/proof seam.
+  display:
+    - settled count
+    - proposed count
+    - open count
+  prohibition: >
+    Resolution is not a level of human worth, consciousness, truth, importance,
+    competence, intelligence, autonomy, authorization, or ontological reality.
+    Level language, when retained for play, must expand to this definition.
+
+candidate_feed:
+  purpose: >
+    Present the exact inferences that Auto-cohere proposes so the user can
+    accept, correct, reject, defer, or inspect them one at a time.
+  candidate_kinds:
+    - field inference
+    - parent or reparent routing proposal
+    - lateral relationship proposal
+    - agent-candidate hypothesis
+    - objective candidate
+    - next orientation question
+    - move-selection proposal
+    - explicit hold
+  required_metadata:
+    - candidate id
+    - target coordinate and tile
+    - proposed value
+    - asserted by
+    - epistemic status
+    - confidence
+    - source refs
+    - expected structural consequence
+    - authority and persistence boundary
+  actions:
+    accept:
+      meaning: >
+        Accept the exact representation into the local review state or, behind
+        a separate authenticated Plant boundary, create its attributed canonical
+        event. Accept never silently chooses or authorizes a consequential move.
+    correct:
+      meaning: "Preserve the prior proposal and append the user's attributed correction."
+    reject:
+      meaning: "Retain the rejected proposal and source so it is not regenerated as truth without new evidence."
+    defer:
+      meaning: "Keep the field open and record the defer state without inferring an answer."
+
+agent_candidate_rule: >
+  Auto-cohere may suggest that a recurring or goal-directed pattern deserves an
+  Agent candidate. It may not create a stable Agent merely because a noun,
+  emotion, urge, voice, archetype, provider, or vivid experience appears in the
+  source. Graduation requires a distinguishable objective or policy, different
+  predictions or interventions, explicit boundary and provenance, and repeated
+  usefulness at a declared resolution.
+
+holarchy_coherence:
+  operation_name: "Auto-cohere"
+  allowed:
+    - inspect inherited accepted context
+    - propose existing-coordinate attachment
+    - propose one primary parent
+    - propose typed lateral relations
+    - identify duplicate or overlapping coordinates
+    - propose merge, split, reparent, or hold
+    - identify affected descendants and stale derived Views
+  forbidden:
+    - mutate parentage without structural authority and a receipt
+    - widen privacy or authority by inheritance
+    - convert recurrence into truth or importance
+    - create circular parentage
+    - erase prior placement or rejected alternatives
+    - rewrite another principal's report
+  result: >
+    A source-preserving, replayable routing proposal whose affected coordinates,
+    confidence, alternatives, and unresolved lacunae remain inspectable.
+
+progressive_disclosure:
+  default: >
+    Show the identity header, source field, Resolution summary, ten quiet square
+    tiles, Auto-cohere, Auto-lacuna, and at most the few highest-priority
+    candidates. Keep schemas, full provenance, alternate routes, and all nine
+    questions behind Inspect.
+  one_question_rule: >
+    Foreground no more than one highest-leverage orientation inquiry at a time.
+    The user may inspect all axes, select another question, or pause.
+  advanced_route: "/new?view=advanced"
+  dialogue_route: "/new?view=dialogue"
+
+materialization_boundary:
+  action: "Plant"
+  preconditions:
+    - authenticated rightful principal
+    - exact source preserved
+    - proposed coordinate visible
+    - primary-parent proposal visible or explicitly held
+    - principal and visibility resolved
+    - no live safety, authority, privacy, provenance, or proof gate hidden
+  effect: >
+    Append the accepted source and structural events required to materialize the
+    Yawn. Activation, delegated execution, public disclosure, spending, and
+    external effects remain separately governed.
+
+coordinate_complete_runtime_goal: >
+  A fresh authorized intelligence entering the coordinate can identify its
+  role, principal, inherited context, active relationship and Arena, purpose,
+  current state, lacunae, boundaries, available inquiries and moves, proof rule,
+  memory links, and report-back path without bespoke prompt archaeology. When
+  required context cannot fit the working packet, the packet retains typed refs
+  and an explicit retrieval path rather than silently omitting the boundary.
+
+falsifiers:
+  - "The grid creates more confusion or correction burden than the existing one-question dialogue."
+  - "Resolution is interpreted as personal worth, truth, or agent power despite the boundary."
+  - "Auto-cohere repeatedly proposes unstable parentage or duplicate Agents without discriminating evidence."
+  - "A fresh model cannot reproduce the same orientation from the same accepted inputs and policy versions."
+  - "Accepting a field causes a move, disclosure, delegation, or activation without the separate required events."
+  - "A simpler note plus neutral pause produces equal or better orientation, safety, agency, and proof closure."
+
+proof:
+  required:
+    - domain tests for the ten tile mappings and resolution states
+    - tests proving legacy implementation axes are translated rather than exposed as a second ontology
+    - tests proving Auto-lacuna uses canonical inquiry selection
+    - tests proving inference actions create only local proposal/correction/rejection state
+    - tests proving parent proposals remain non-mutating
+    - mobile and desktop browser proof
+    - held-out fresh-agent coordinate-completeness test
+  status: contract-defined-working-draft
