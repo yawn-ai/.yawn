@@ -72,13 +72,16 @@ questions:
       the pose, frame box, and pivot preserved, using the robot sheets as
       identity references. Two lanes: a hosted frontier editor for the
       first cycles (OpenAI image edits with the skin frame as the edited
-      image, up to sixteen references, transparent output, about USD 0.03
-      to 0.05 per frame, no seed returned), and a local deterministic lane
-      as the system of record (FLUX.2 Klein 4B, Apache-2.0, with lineart or
-      pose control from the skin frame, reference conditioning, and a LoRA
-      trained on the paired frames, run through the app's loopback ComfyUI
-      adapter with seeds recorded). Pixel-native tools and a video-driven
-      lane are fallbacks. Every lane ends in the same deterministic
+      image plus two to four existing pairs and the robot sheet as
+      references, transparent output, about USD 0.10 to 0.20 per frame once
+      reference inputs are billed, no seed returned), and a local
+      deterministic lane as the system of record (an open FLUX.2 Klein base
+      with a lineart or canny control adapter taking the skin frame as
+      structure and the robot frame as identity, plus a paired edit adapter
+      trained on the existing pairs, run through the app's loopback ComfyUI
+      adapter with seeds recorded). A seeded multi-reference edit and
+      pixel-native tools are fallbacks; video is not used for eight-frame
+      loops. Every lane ends in the same deterministic
       post-processing (background removal, palette lock, nearest-neighbor
       downscale, pivot alignment, gutters, one horizontal strip), the same
       alpha-column detection, and three scores (pose fidelity, identity,
@@ -408,7 +411,9 @@ questions:
       the walk sheet) and the CSS field band behind a route flag. No
       translation, no spend. Then translate one skin cycle (idle or sit
       into working) through the full receipt chain to prove the pipeline
-      before the other cycles.
+      before the other cycles. One approved probe cycle (front walk, eight
+      frames, ceiling USD 2) compared against the measured 0.995 overlap of
+      the existing pairs decides whether the hosted lane is trusted.
     epistemic_status: inferred
     case_against: "Shipping the mark before the states exist trains users to ignore it. Keep the mark quiet until at least three states are legible."
     proof: "State-map test green; header mark visible with text label; reduced-motion still; public root unchanged; one promoted sheet with a reconciled receipt chain."

@@ -170,11 +170,20 @@ skin_reference_observation:
     - "That gives twenty existing pairs (skin frame, robot frame) at 256 x 256: eight front walk, eight back walk, four idle."
     - "The dormant sprite shown on /new (YawnWorldBot) and in the global header is robot-blank-face-transparent.png (1254 x 1254): a browser-window-headed robot with the yawn.ai mark on its chest, rendered as a static image with a CSS bob when walking."
     - "The app already plays the robot sheets in Phaser (idle at 8 fps over 4 frames, walk at 20 fps over 8 frames) and has a CSS steps(4) idle fallback."
+    - "The dormant browser-faced robot and the walking robot are different character designs: a rectangular bezelled monitor head on a neck, a boxy torso with the yawn.ai mark and two red buttons, and cylindrical limbs, versus Will's round head with an inset CRT window, a cyan body with a blue shadow half, and a navy pack. They share only the palette family."
+  measured_by_research_agent:
+    epistemic_status: reported
+    findings:
+      - "Same-index silhouette overlap (intersection over union at alpha above 64) is 0.994 to 0.996 on all twenty pairs; bounding boxes are identical to the pixel; each frame's best cross-match is its own index."
+      - "The robot sheets use 23 opaque colors and hard one-bit alpha; the Will sheets use 583 colors with anti-aliased alpha. The robot outline is #ff2bcd and the body cyan is #1dddee, which are near but not equal to the brand tokens #fd49ac and #2fe3f4."
+      - "Alpha-column detection on the robot sheets finds about 214 px visible cells inside the 256 px frames, so the sheets are uniform strips with transparent gutters."
   observer_added:
     - "The existing pairs are a translation dataset: same pose, same box, different identity and rendering style. The pipeline that made them is the pipeline to systematize."
+    - "The identity fork between the dormant robot and the walking robot is a decision for Dave before any library-scale run: either the walking robot is the canonical skinned body and the dormant sprite is a separate sleeping asset, or one dormant frame is commissioned in the walking identity as the first approved job."
   remains_open:
     - "Which tool or model produced the existing robot sheets is not recorded in either repository; the receipts start with this contract."
     - "The full Will P library (cycles beyond walk and idle) is on Dave's machine and has not been inventoried."
+    - "Which body is canonical for the header: the dormant design or the walking design."
 
 # ---------------------------------------------------------------------------
 # 3. Coordinate, ownership, and provisioning
@@ -418,6 +427,7 @@ manifest:
     - "A skin's translated sheets are stored per state and size like the root body; dressing a skin is an accepted preference that swaps the body layer only."
     - "The manifest is a View input. It carries no authority and cannot change what a state means."
     - "Root-bot sheets that the header mark needs on every page are served as static public assets, not short-lived signed URLs."
+    - "Generated frames land in fixed cells; a strip whose detected cell count differs from the brief fails detection rather than being trusted."
 
 # ---------------------------------------------------------------------------
 # 7. Technology
@@ -534,20 +544,21 @@ skin_system:
     output: "one robot frame in the same pose, same box, transparent background, palette-locked"
     consistency: "translate a whole cycle as one job with a fixed seed where the provider returns one, an anchor frame first, then the remaining frames with the anchor as an additional reference"
     scoring:
-      pose_fidelity: "silhouette intersection over union and keypoint distance against the skin frame"
-      identity: "embedding similarity against the robot references"
-      grid_fidelity: "pixel-grid detection confidence after post-processing"
+      pose_fidelity: "silhouette intersection over union against the skin frame (ground truth on the existing pairs is 0.995; review gate at or above 0.95), bounding box equality, and edge chamfer distance; skeleton keypoints are secondary because pose detectors are unreliable on round-headed cartoons"
+      identity: "embedding similarity (DINOv2-class, on alpha-masked crops) against the accepted robot frames"
+      grid_fidelity: "palette-lock delta and pixel-grid detection confidence after post-processing"
       rule: "scores are receipt fields for review; they never approve a sheet"
+      frame_rule: "generate each frame into its own fixed 256 x 256 box; assemble the strip from known cells rather than relying on alpha-column detection of a generated strip"
   lanes:
     - lane: hosted-frontier-edit
       tools: "OpenAI gpt-image-2 edits with the skin frame as the edited image, up to 16 reference images, background transparent (preview) and png output; Google Nano Banana 2 as an alternate (no alpha output, no seed)"
-      cost: "about USD 0.03 to 0.05 per frame at 1K on gpt-image-2; no seed is returned, so receipts carry the request id, usage, and output hash"
-      fit: "fastest way to a first translated cycle; identity conditioning is strong; pixel grid must be fixed in post"
+      cost: "about USD 0.10 to 0.20 per frame when the edited skin frame, two to four in-context pairs, and the robot sheet are attached as references (the model bills image input tokens); no seed is returned, so receipts carry the request id, usage, and output hash"
+      fit: "fastest way to a first translated cycle; identity conditioning is strong; pixel grid must be fixed in post; one approved probe cycle must return real usage before the per-frame cost is trusted"
       epistemic_status: reported
     - lane: local-deterministic
-      tools: "FLUX.2 Klein 4B (Apache-2.0, about 8 GB VRAM) with reference conditioning plus a lineart, canny, or pose control from the skin frame, optionally a LoRA trained on the paired frames with ai-toolkit, run through the app's loopback ComfyUI adapter"
-      cost: "no per-frame provider cost; training about USD 2 to 10 hosted or local GPU time"
-      fit: "seed-returning, license-clean, reproducible; the lane the art engine already plans"
+      tools: "FLUX.2 Klein base with open reference-control adapters (lineart or canny map from the skin frame as the structure input, the robot frame as the identity input) plus a paired edit adapter trained on the existing pairs with ai-toolkit, run through the app's loopback ComfyUI adapter. Klein 4B is Apache-2.0 but today has only a depth control adapter; Klein 9B has lineart and canny adapters but sits under a non-commercial license that needs a legal read for an internal loopback"
+      cost: "no per-frame provider cost after training; about USD 9 to 17 per hosted training run of 1000 to 2000 steps, or about one hour on a 24 GB local GPU with quantization; roughly 35 seconds per frame on a current consumer GPU"
+      fit: "seed-returning, reproducible, the lane the art engine already plans, and the only lane whose marginal cost stays near zero across a holarchy of bots and states"
       epistemic_status: reported
     - lane: pixel-native
       tools: "Retro Diffusion image-to-image with an input palette, background removal, and a seed; PixelLab animate-with-skeleton for poses the skin lacks"
@@ -555,25 +566,28 @@ skin_system:
       fit: "grid-true output with fewer cleanup steps; commercial terms must be read by Dave before adoption"
       epistemic_status: reported
     - lane: video-driven
-      tools: "Wan 2.2 Animate (Apache-2.0) driving the robot keyframe with the skin cycle as the motion source; Veo 3.1 or Kling 3.0 with seeds as hosted alternates; never Sora 2 (API removed 2026-09-24)"
-      cost: "about USD 0.60 to 1.20 per short clip hosted; identity drift and palette cleanup are the cost"
-      fit: "cycles the skin does not have yet; second tier"
+      tools: "Wan 2.2 Animate (Apache-2.0, local) driving the robot keyframe with a motion video; hosted editors such as Runway Aleph, Kling, or Veo as alternates; never Sora 2 (API removed 2026-09-24)"
+      cost: "about USD 0.60 to 1.50 per short clip hosted with minimum durations; identity drift, missing alpha, and loop drift are the real cost"
+      fit: "not recommended for eight-frame loops; backlog only for authoring a new pose cycle when the skin library lacks a state"
       epistemic_status: reported
-  primary_recommendation: "hosted-frontier-edit for the first translated cycles, local-deterministic as the system of record once the paired-frame LoRA is trained and reviewed"
+  primary_recommendation: "hosted-frontier-edit for the first translated cycles (one approved probe cycle first, compared against the 0.995 ground truth), local-deterministic as the system of record once the paired-frame adapter is trained and reviewed; retrain after every five to ten approved cycles so the local model absorbs the library"
   recommendation_status: inferred
   training_plan:
     dataset: "the 20 existing pairs now; the art engine's registry targets 20 to 40 curated images; every accepted translation adds a pair"
-    method: "a Klein 4B LoRA (or a control adapter) trained on (skin frame, robot frame) pairs with captions naming the state and direction; ai-toolkit config checked in; seeds and dataset hashes in the receipt"
+    method: "a paired edit adapter trained on (skin frame as control, robot frame as target) pairs with ai-toolkit's control-directory layout and captions naming the state and direction, layered over an open reference-control adapter so structure comes from the skin frame and only identity and rendering are learned; config checked in; seeds, steps, and dataset hashes in the receipt; a leave-one-cycle-out evaluation gates publication on pose overlap at or above 0.95 and identity similarity at or above the hand-made sheets"
     when_worth_it: "when the pipeline must be self-hosted, seed-reproducible, and license-clean, or when holarchy variants (hats, accessories) multiply; reference conditioning alone is enough for one mascot's identity"
     status: planned-approval-gated
     epistemic_status: inferred
   costs:
-    one_cycle_eight_frames: "about USD 0.25 to 0.70 on the hosted lane including retries; near zero marginal on the local lane"
-    library_forty_cycles: "about USD 10 to 40 in hosted calls plus review time; one training run of USD 2 to 10 for the local lane"
+    one_cycle_eight_frames: "about USD 0.80 to 1.60 on the primary hosted lane (ceiling USD 2 per cycle), about USD 0.60 on a seeded multi-reference edit fallback; near zero marginal on the local lane"
+    library_forty_cycles: "about USD 32 to 64 in primary hosted calls, budgeted at three times that for rerolls (ceiling USD 200), plus review time; about USD 24 on the fallback; one training run of about USD 9 to 17 for the local lane"
     epistemic_status: inferred
+    note: "plus or minus half until one approved probe cycle returns real usage; the forty-cycle count is a placeholder until the Will P library is inventoried"
   rights:
     - "Will P is Nestheads Inc character art; a skin record names its rights holder and whether translation and publication are licensed."
     - "Third-party skins are never translated without a rights statement in the skin record."
+    - "Model licenses are part of the lane record: the non-commercial license on the larger Klein base needs a legal read before an internal loopback uses it; the 4B base is Apache-2.0."
+  palette_reconciliation: "the robot sheets' outline and body colors are near but not equal to the brand tokens; the skin manifest declares the sheet palette explicitly and the manifest records whether a sheet is brand-token-locked or sheet-palette-locked"
 
 # ---------------------------------------------------------------------------
 # 9. Generation pipeline (approval-gated; reuses the image-generator idiom)
@@ -647,6 +661,8 @@ generation_pipeline:
     - enabling a new provider string or a preview feature in the receipt union
     - accepting a provider's output license after Dave reads its terms
     - confirming rights for any skin or driving video before translation
+    - a legal read on the base model license for the local lane and on the Will P skin license for derivative robot sheets
+    - deciding the canonical body (walking robot versus dormant robot) and the palette lock before a library-scale run
     - adding a new house reference image
   boundaries:
     - "no provider call, spend, storage write, or publication without a current receipt naming this brief hash"
@@ -795,6 +811,9 @@ open_lacunae:
   - "A root principal handle for principal:yawn, since coordinate access currently resolves non-handle coordinates to the site owner."
   - "Whether the dashboard's idle fps of 4 or the motion constant of 8 is canonical for sleeping."
   - "The full inventory of Will P cycles and which state each maps to."
+  - "Whether the dormant header robot is re-authored in the walking robot's identity or kept as a separate sleeping design."
+  - "How many reference images the hosted editor accepts per call (sources disagree between ten and sixteen) and what one 1024 px reference costs in input tokens."
+  - "Whether the existing sheet palette or the brand tokens lock generated sheets."
   - "Which lane produces the best pose fidelity at 32 px targets; no benchmark exists for a non-human robot at that size."
   - "Retro Diffusion and PixelLab commercial terms and per-call prices, which were not readable from this session."
   - "Whether gpt-image-2's transparent-background preview keeps hard pixel edges or needs alpha thresholding."
