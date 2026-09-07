@@ -176,7 +176,7 @@ skin_reference_observation:
     findings:
       - "Same-index silhouette overlap (intersection over union at alpha above 64) is 0.994 to 0.996 on all twenty pairs; bounding boxes are identical to the pixel; each frame's best cross-match is its own index."
       - "The robot sheets use 23 opaque colors and hard one-bit alpha; the Will sheets use 583 colors with anti-aliased alpha. The robot outline is #ff2bcd and the body cyan is #1dddee, which are near but not equal to the brand tokens #fd49ac and #2fe3f4."
-      - "Alpha-column detection on the robot sheets finds about 214 px visible cells inside the 256 px frames, so the sheets are uniform strips with transparent gutters."
+      - "Alpha-column detection on the robot sheets finds opaque column groups 140 to 174 px wide inside the 256 px frames, so the sheets are uniform strips with transparent gutters."
   observer_added:
     - "The existing pairs are a translation dataset: same pose, same box, different identity and rendering style. The pipeline that made them is the pipeline to systematize."
     - "The identity fork between the dormant robot and the walking robot is a decision for Dave before any library-scale run: either the walking robot is the canonical skinned body and the dormant sprite is a separate sleeping asset, or one dormant frame is commissioned in the walking identity as the first approved job."
@@ -225,10 +225,10 @@ coordinate:
 layers:
   header_mark:
     where: "upper-left YAWN.bot mark in the global chrome on every route, including the public root"
-    shows: "the current bot's mascot in its current state at 24 to 40 CSS pixels (the mark is 34 px inside a 40 px control today)"
-    public_root_rule: "shows only the root bot's public state class; never a private coordinate's detail"
-    accessible_name: "required; the state name is always exposed as text, never by motion or color alone"
-    replaces: "the static robot-blank-face-transparent.png image rendered from createYawnFaceDefaultAvatarAssetPath"
+    shows: "the current bot's mascot in its current state, rendered at exactly 32 CSS pixels inside the 40 px brand control (the image is 34 px today; 34 is not an integer scale of a 32 px sheet and is dropped)"
+    public_root_rule: "shows only the root bot's public state class; never a private coordinate's detail. Until a server-written root-bot state record exists, the public mark renders sleeping and the provisioned view says no live source rather than claiming liveness"
+    accessible_name: "required; the state name goes into the surrounding control's accessible name (for example YAWN.bot home, sleeping) or a visually hidden span, the image itself stays aria-hidden, the header is never a live region, and the public class announces waiting rather than who is needed"
+    replaces: "the header brand image slot, whose default is robot-blank-face-transparent.png from createYawnFaceDefaultAvatarAssetPath and which routes may override through the brand action"
     dormant_identity: "the browser-window-faced robot from /new stays the sleeping body; the walking robot sheet is the moving body"
   state_card:
     where: "section headers and profile images for a yawn or bot (128 to 256 CSS pixels)"
@@ -280,12 +280,15 @@ state_model:
     world_execution_state: "src/domain/world-coordinate-types.ts worldExecutionStates: idle | active | queued | running | waiting_context | waiting_approval | blocked | reviewing | done | error"
     world_actor_state: "src/components/brain-console/company-world-surface.tsx WorldActorState: active | working | approval_required | blocked | draft | ready"
     axis_statement_tone: "src/domain/yawn-quick-menu.ts YawnAxisStatementTone: ready | working | attention | blocked | proof | boundary | default"
-    holarchy_lifecycle: "src/domain/yawn-holarchy-map.ts node lifecycle: root | proposed | active | accepted | unresolved | held | merged; action state: queued | active | waiting_for_proof | completed"
+    holarchy_lifecycle: "src/domain/yawn-holarchy-map.ts node lifecycle: root | proposed | active | accepted | unresolved | held | merged; action state: queued | active | waiting_for_proof | completed; the root node is a container and contributes no body of its own"
+    worker_status: "src/domain/yawn-worker-game.ts yawnWorkerStatuses: draft | active | paused | retired"
+    council_army: "src/domain/yawn-council-army-loop.ts heartbeat: active | stale | disconnected; compute: active | approval_required | gated"
     coordinate_frame_status: "src/components/yawn-coordinate/yawn-coordinate-frame.tsx headerProvisioning.status: sleeping | draft | awake"
     header_status: "src/components/chrome/yawn-global-chrome.tsx registration.status.state: error | local | saved | working"
     inbox_status: "src/domain/yawn-bot-state.ts yawnBotInboxStatuses: new | claimed | answered | deferred | blocked_on_dave | handed_off | closed"
     objective_bot_lifecycle: "schemas/objective-holon.v0.1.schema.json lifecycleState: sleeping | orienting | active | waiting | blocked | paused | retired (protocol; not yet wired in the app)"
-    move_kind: "the active move's kind when known (code, write, read, mail, world, none); no runtime enum supplies this yet, see open_lacunae"
+    move_kind: "the active move's kind when known (code, write, read, mail, world, none); the candidate carrier is the free-text moveKind on world threads (src/domain/world-coordinate-types.ts) narrowed to this vocabulary, or a new optional field on the bot state; the dave-moves and master-ontology move kinds are different vocabularies and are not reused"
+    no_contribution: "tone:default and heartbeat:active carry no state and no flag"
     bot_role: "root_steward | objective_steward | worker"
     freshness: "age of the newest input; inputs older than the freshness window add the unknown badge"
 
@@ -297,7 +300,7 @@ state_model:
       accessory_rule: "role hat only"
       public_safe: true
     - state: orienting
-      mapped_from: [loop:orienting, worker:awake, execution:active, execution:queued, execution:waiting_context, face:listening, face:thinking, frame:awake, actor:active, holarchy_action:queued, bot:orienting]
+      mapped_from: [loop:orienting, worker:awake, execution:active, execution:queued, execution:waiting_context, face:listening, face:thinking, frame:awake, actor:active, holarchy:active, holarchy_action:queued, worker_status:active, bot:orienting]
       foreground_animation: "look-around: head turns, antenna scan (to be translated from the skin's look or idle-variant cycle)"
       background_field: "slow left-to-right sweep, cyan tint (observation and connection role)"
       accessory_rule: "role hat"
@@ -311,7 +314,7 @@ state_model:
     - state: moving
       mapped_from: [loop:moving, worker:working, execution:running, header:working, actor:working, tone:working, holarchy_action:active, bot:active, move_kind:world]
       foreground_animation: "walk cycle, 8 frames at 20 fps (existing yawn-front-walk and yawn-back-walk sheets, translated from the skin walk cycle)"
-      background_field: "faster sweep in the walking direction"
+      background_field: "faster sweep in the walking direction, cyan on ink; never green while nothing is verified"
       accessory_rule: "tool overlay for the move kind"
       public_safe: true
     - state: working
@@ -335,13 +338,13 @@ state_model:
       accessory_rule: "none"
       public_safe: true
     - state: holding
-      mapped_from: [loop:holding, worker_status:paused, inbox:deferred, holarchy:held, bot:paused, tone:boundary]
+      mapped_from: [loop:holding, worker_status:paused, inbox:deferred, holarchy:held, bot:paused, tone:boundary, compute:gated]
       foreground_animation: "sits down; slow blink (to be translated)"
       background_field: "very slow breath, dim"
       accessory_rule: "badge: held, with the hold reason as text in the provisioned view"
       public_safe: true
     - state: blocked
-      mapped_from: [worker:blocked, execution:blocked, execution:error, face:blocked, inbox:blocked_on_dave, header:error, actor:blocked, tone:blocked, bot:blocked]
+      mapped_from: [worker:blocked, execution:blocked, execution:error, face:blocked, inbox:blocked_on_dave, header:error, actor:blocked, tone:blocked, bot:blocked, heartbeat:disconnected]
       foreground_animation: "stopped pose, arms crossed or looking at the viewer (to be translated)"
       background_field: "cells jitter at low amplitude, pink tint (unresolved lacuna role)"
       accessory_rule: "badge: blocked or error; the reason is always text"
@@ -356,7 +359,7 @@ state_model:
 
   flags:
     needs_owner:
-      mapped_from: [worker:needs_dave, execution:waiting_approval, inbox:blocked_on_dave, actor:approval_required, tone:attention]
+      mapped_from: [worker:needs_dave, execution:waiting_approval, inbox:blocked_on_dave, actor:approval_required, tone:attention, compute:approval_required, compute:gated]
       shows: "hat-level badge in the owner's color plus the text label needs owner"
       public_rule: "public view shows waiting, not who is needed"
     error:
@@ -366,7 +369,7 @@ state_model:
       mapped_from: [header:local]
       shows: "small local badge; means browser-local draft state, no persistence"
     unknown_inputs:
-      mapped_from: [missing input, stale input beyond the freshness window]
+      mapped_from: [missing input, stale input beyond the freshness window, heartbeat:stale]
       shows: "unknown badge; state resolves to sleeping; the missing input is named in the provisioned view"
 
   invariants:
@@ -376,6 +379,7 @@ state_model:
     - "The same inputs produce the same state, variant, flags, and input hash on every device."
     - "Adding a new runtime status without a mapping fails the state-map test rather than silently rendering sleeping."
     - "Every animation transition corresponds to a state change with a source event; a transition with no source event is a test failure."
+    - "No layer alternates luminance faster than three times per second (one per second preferred) and flashing areas stay small; reduced motion removes jitter, ripple, and scan lines entirely."
 
 # ---------------------------------------------------------------------------
 # 6. Manifest (extends the sprite manifest the runtime already detects)
@@ -391,9 +395,14 @@ manifest:
     sizes:
       - { id: icon, frame_px: 32, targets: [24, 32, 40] }
       - { id: card, frame_px: 128, targets: [96, 128, 160] }
-      - { id: world, frame_px: 256, targets: [176, 256] }
+      - { id: network, frame_px: 88, targets: [176] }
+      - { id: world, frame_px: 256, targets: [256] }
+    size_rule: "every target is an integer multiple of its sheet's frame size; the world runtime may render 256 px art at 176 px only inside the WebGL scene with nearest filtering, and the manifest says which applies"
     pivot: { x: 0.5, y: 0.86 }
-    palette: "brand tokens from interface/yawn-brand-v1.yawn plus the character's own body colors"
+    palette:
+      brand: "tokens from interface/yawn-brand-v1.yawn"
+      sheet: "the 23 opaque colors of the existing robot sheets"
+      lock: "sheet | brand, declared per manifest revision and named in every approval receipt as paletteId"
     states:
       "{state}":
         sheets:
@@ -448,10 +457,12 @@ technology:
         UltraRippleText: each character's background color comes from a radial
         cosine wave over an eight-step violet ramp from rgb(62,22,118) to
         rgb(140,80,240), wavelength 20 cells, ticking every 80 ms at 0.03
-        cells per millisecond, label color #d0b4ff. No dither, shader, sprite,
-        or image asset is involved; ultracode itself is a session setting, not
-        a visual mode.
+        cells per millisecond, only while the row is highlighted and reduced
+        motion is off; the wave covers all three slider rows and dimmed text
+        under it is tinted #d0b4ff. No dither, shader, sprite, or image asset
+        is involved; ultracode itself is a session setting, not a visual mode.
       source: "package tarball and platform binary inspected on 2026-09-07; https://code.claude.com/docs/en/model-config"
+      disputed_detail: "two reads of the same binary disagree on the row label's own color (#d0b4ff versus rgb(140,80,240) unselected and white on rgb(140,80,240) selected); recorded as disputed until the label renderer's constants are read"
     - surface: "Claude iOS app (the recording)"
       epistemic_status: unknown
       finding: >
@@ -481,8 +492,8 @@ technology:
 
   recommended_per_layer:
     - layer: header_mark
-      technology: "CSS sprite strip: a span with role img and an accessible state name, an inner strip translated by steps(N) (compositor-only), image-rendering pixelated, data-mascot-state attribute, keyframes generated from the manifest; the Web Animations API for one-shot transitions"
-      why: "renders in server HTML with the right first frame, zero JavaScript on the hot path, no WebGL context, honors prefers-reduced-motion by freezing on the reduced_motion_frame"
+      technology: "CSS sprite strip: an aria-hidden strip element inside the brand control, translated by steps(N) (compositor-only) with one generic keyframe driven by inline custom properties (frame count, duration) set from the manifest at render time, image-rendering pixelated, a data-mascot-state attribute, the state in the control's accessible name; the Web Animations API for one-shot transitions; cells drawn as boxes, never as Unicode block glyphs, because no shipped font guarantees their coverage on Android"
+      why: "renders in server HTML with the right first frame, zero JavaScript on the hot path, no WebGL context, no build-time CSS generation the app lacks, honors prefers-reduced-motion by freezing on the reduced_motion_frame"
       epistemic_status: inferred
     - layer: state_card
       technology: "the same CSS sprite with layered strips (body, hat, accessory, fx) bound to one duration so overlays stay in sync; escalate to a Canvas 2D player on the shared ticker only when tinting or per-instance composition is needed"
@@ -510,7 +521,9 @@ technology:
     - "image-rendering pixelated (with crisp-edges as the fallback declaration) on every raster layer"
     - "the header mark never holds a WebGL context; WebKit limits active contexts to 16 per page"
     - "iOS caps total canvas backing memory (about 224 to 384 MB); reuse a few shared canvases"
-    - "sheets are size-native; the 32 px icon sheet is generated from the accepted 256 px sheet as a reference, never scaled from it"
+    - "sheets are size-native; the 32 px icon sheet is generated from the accepted 256 px sheet as a reference, never scaled from it, and the header renders it at exactly 32 px"
+    - "CSS animations restart on visibilitychange so the strip and the canvas field resynchronize when a tab returns"
+    - "the flash bound above applies to every layer, including the needs-owner ripple"
     - "the frame-consistency validator (uniform frame width, pivot drift under 1 px, alpha-column count equal to the brief) runs before any sheet is promoted"
 
 # ---------------------------------------------------------------------------
@@ -551,8 +564,8 @@ skin_system:
       frame_rule: "generate each frame into its own fixed 256 x 256 box; assemble the strip from known cells rather than relying on alpha-column detection of a generated strip"
   lanes:
     - lane: hosted-frontier-edit
-      tools: "OpenAI gpt-image-2 edits with the skin frame as the edited image, up to 16 reference images, background transparent (preview) and png output; Google Nano Banana 2 as an alternate (no alpha output, no seed)"
-      cost: "about USD 0.10 to 0.20 per frame when the edited skin frame, two to four in-context pairs, and the robot sheet are attached as references (the model bills image input tokens); no seed is returned, so receipts carry the request id, usage, and output hash"
+      tools: "OpenAI gpt-image-2 edits with the skin frame as the edited image, up to 16 input images (confirmed by the SDK), background transparent (preview) and png output; Google Nano Banana 2 as an alternate (no alpha output, best-effort seed only, watermark)"
+      cost: "token-priced; at high quality about USD 0.13 to 0.25 per frame once the edited skin frame, two to four in-context pairs, and the robot sheet are billed as image input (per-image figures published by resellers put a high-quality 1024 px edit near USD 0.21); no seed is returned, so receipts carry the request id, usage, and output hash"
       fit: "fastest way to a first translated cycle; identity conditioning is strong; pixel grid must be fixed in post; one approved probe cycle must return real usage before the per-frame cost is trusted"
       epistemic_status: reported
     - lane: local-deterministic
@@ -564,6 +577,11 @@ skin_system:
       tools: "Retro Diffusion image-to-image with an input palette, background removal, and a seed; PixelLab animate-with-skeleton for poses the skin lacks"
       cost: "about USD 0.03 to 0.25 per call"
       fit: "grid-true output with fewer cleanup steps; commercial terms must be read by Dave before adoption"
+      epistemic_status: reported
+    - lane: line-art-colorization
+      tools: "open reference-based sketch colorization models that take a line-art frame plus a colored reference character and return the colored frame with the lines preserved (AniDoc for whole-cycle consistency, MangaNinja for per-frame point control), run on the loopback"
+      cost: "no provider cost; local GPU time"
+      fit: "closest fit to translating a pose-locked line-art cycle; the head redesign (round head to CRT window) exceeds pure colorization, so this lane may need the house adapter for identity; evaluate on the same probe cycle and gates"
       epistemic_status: reported
     - lane: video-driven
       tools: "Wan 2.2 Animate (Apache-2.0, local) driving the robot keyframe with a motion video; hosted editors such as Runway Aleph, Kling, or Veo as alternates; never Sora 2 (API removed 2026-09-24)"
@@ -579,8 +597,8 @@ skin_system:
     status: planned-approval-gated
     epistemic_status: inferred
   costs:
-    one_cycle_eight_frames: "about USD 0.80 to 1.60 on the primary hosted lane (ceiling USD 2 per cycle), about USD 0.60 on a seeded multi-reference edit fallback; near zero marginal on the local lane"
-    library_forty_cycles: "about USD 32 to 64 in primary hosted calls, budgeted at three times that for rerolls (ceiling USD 200), plus review time; about USD 24 on the fallback; one training run of about USD 9 to 17 for the local lane"
+    one_cycle_eight_frames: "about USD 1 to 2 on the primary hosted lane at high quality (ceiling USD 2.50 per cycle), about USD 0.60 on a seeded multi-reference edit fallback; near zero marginal on the local lane"
+    library_forty_cycles: "about USD 40 to 80 in primary hosted calls, budgeted at three times that for rerolls (ceiling USD 250), plus review time; about USD 24 on the fallback; one training run of about USD 9 to 17 for the local lane"
     epistemic_status: inferred
     note: "plus or minus half until one approved probe cycle returns real usage; the forty-cycle count is a placeholder until the Will P library is inventoried"
   rights:
@@ -595,7 +613,8 @@ skin_system:
 
 generation_pipeline:
   reuses:
-    - "yawn.bot/image-generator: one candidate per explicit owner press, dry-run receipt with the exact prompt and spend estimate (src/lib/yawn-image/generate.ts, gpt-image-1 edits with the two house references)"
+    - "yawn.bot/image-generator: one candidate per explicit owner press, dry-run receipt with the exact prompt and spend estimate (src/lib/yawn-image/generate.ts, gpt-image-1 edits with the two house references). The provider has scheduled gpt-image-1 for removal on 2026-10-23 with gpt-image-2 as the replacement (reported), so the translate-frames adapter targets gpt-image-2 from the start and the existing generator migrates before that date"
+    - "the house reference images in that generator anchor on the dormant body (robot-blank-face-transparent.png and the brand square); translation of walking-body cycles anchors on the walking sheets instead, chosen per body in the brief"
     - "checked-in style contract (src/lib/yawn-image/style-contract.ts) and house reference images"
     - "art brief and local candidate contracts (schemas/art-brief.v1.schema.json, schemas/local-art-candidate.v1.schema.json, interface/local-observation-art-v0.1.yawn)"
     - "owner-decision receipt binding by canonical JSON sha256 (records/interception-statement-image-approval-2026-08-29.yawn)"
@@ -662,7 +681,7 @@ generation_pipeline:
     - accepting a provider's output license after Dave reads its terms
     - confirming rights for any skin or driving video before translation
     - a legal read on the base model license for the local lane and on the Will P skin license for derivative robot sheets
-    - deciding the canonical body (walking robot versus dormant robot) and the palette lock before a library-scale run
+    - deciding the canonical body (walking robot versus dormant robot), the reference images per body, and the palette lock before a library-scale run
     - adding a new house reference image
   boundaries:
     - "no provider call, spend, storage write, or publication without a current receipt naming this brief hash"
@@ -790,9 +809,11 @@ implementation_projection:
     - "src/domain/mascot-defaults.ts (new): nearest-ancestor resolver for accepted projection preferences with viewKind mascot (YAWNS/Policies/YAWN_HOLARCHY_INHERITANCE.yawn rules)"
     - "src/components/chrome/yawn-global-chrome.tsx: add a brandVisual slot to the brand action and header props, and replace the three static brandImage sites (lines 1116 to 1150 at audit time) with a YawnMascotMark client component that falls back to the image"
     - "src/components/bot/yawn-world-bot.tsx: the /new world bot reads the same state store instead of a walking boolean"
+    - "src/app/layout.tsx: a server component reads a server-written root-bot state record (or the promoted living snapshot) and passes {loopStatus, since} into the chrome; public_anonymous receives only the state class; no such record exists today"
+    - "the dormant asset path has about fifteen consumers (account shell, coordinate frames, local-art studio, alignment page, two outbound emails, the image generator's reference list, the service worker cache); the first move touches only the chrome and /new, promoted sheets get versioned filenames or a cache-name bump recorded as the promotion receipt's rollback point, and emails keep the static asset"
     - "src/components/home/yawn-consent-avatar-runtime.tsx and src/components/brain-console/company-world-surface.tsx: replace the local executionState -> working|idle mapping with resolveMascotState"
     - "src/app/mascot/page.tsx, src/app/mascot/states/page.tsx, src/app/mascot/skins/page.tsx (new): frontier-style public view; provisioned views behind the session check following src/app/dave/page.tsx"
-    - "src/lib/yawn-image: add a translate-frames adapter beside generateYawnImage with the same receipt idiom, extended by the receipt_fields above"
+    - "src/lib/yawn-image: add a translate-frames adapter beside generateYawnImage with the same receipt idiom, extended by the receipt_fields above, targeting gpt-image-2 and estimating cost from a checked-in price table rather than a provider call"
     - "nestheads-art-engine: register the reference pack and the 20 pairs as the core style dataset seed; add the paired-frame LoRA plan to the LoRA registry"
     - "supabase media_assets kind sprite_sheet: metadata {mascotState, size, skinId, manifestRevision, briefSha256, promotionReceipt}"
     - "protocol/dot-yawn.lock.json: vendor interface/yawn-mascot-v0.1.yawn and question-packets/mascot.yawn once accepted"
@@ -807,12 +828,14 @@ implementation_projection:
     proof: "state-map test green; header mark visible with text label; reduced-motion still; public root unchanged for private detail; one promoted sheet with a reconciled receipt chain"
 
 open_lacunae:
-  - "Which existing runtime field supplies move_kind (thread kind, work order type, or a new field on the bot state) so the working variant can be selected."
+  - "Whether the free-text moveKind on world threads is narrowed to the mascot vocabulary or a new optional field on the bot state carries move_kind for the working variant."
+  - "A server-written root-bot state record the public header can read; until it exists the public mark is sleeping with no live source."
   - "A root principal handle for principal:yawn, since coordinate access currently resolves non-handle coordinates to the site owner."
-  - "Whether the dashboard's idle fps of 4 or the motion constant of 8 is canonical for sleeping."
+  - "Three idle cadences ship today (the motion constant 8 fps, the dashboard card 4 fps, the CSS fallback about 6.5 fps); the proposal declares 8 fps canonical and aligns the other two."
   - "The full inventory of Will P cycles and which state each maps to."
   - "Whether the dormant header robot is re-authored in the walking robot's identity or kept as a separate sleeping design."
-  - "How many reference images the hosted editor accepts per call (sources disagree between ten and sixteen) and what one 1024 px reference costs in input tokens."
+  - "What one 1024 px reference image costs in input tokens on the hosted editor (the sixteen-image limit is confirmed by the SDK; whether the input_fidelity parameter is accepted is disputed and is tested on the probe)."
+  - "Whether identity similarity scores are meaningful on 23-color pixel art; thresholds are uncalibrated until the probe cycle."
   - "Whether the existing sheet palette or the brand tokens lock generated sheets."
   - "Which lane produces the best pose fidelity at 32 px targets; no benchmark exists for a non-human robot at that size."
   - "Retro Diffusion and PixelLab commercial terms and per-call prices, which were not readable from this session."

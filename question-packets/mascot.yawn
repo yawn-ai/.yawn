@@ -73,8 +73,9 @@ questions:
       identity references. Two lanes: a hosted frontier editor for the
       first cycles (OpenAI image edits with the skin frame as the edited
       image plus two to four existing pairs and the robot sheet as
-      references, transparent output, about USD 0.10 to 0.20 per frame once
-      reference inputs are billed, no seed returned), and a local
+      references, transparent output, token-priced at roughly USD 0.13 to
+      0.25 per frame at high quality once reference inputs are billed, no
+      seed returned), and a local
       deterministic lane as the system of record (an open FLUX.2 Klein base
       with a lineart or canny control adapter taking the skin frame as
       structure and the robot frame as identity, plus a paired edit adapter
@@ -133,6 +134,26 @@ questions:
       - { label: "Paired frames", href: "public/nestheads/characters/" }
 
   - rank: 4
+    key: generator_migration
+    question: "When must the image generator move off its current model, and to what?"
+    answer: >
+      The app calls gpt-image-1 today. The provider has scheduled that model
+      for removal on 2026-10-23, with gpt-image-2 as the documented
+      replacement, and the smaller and mid models follow on 2026-12-01. The
+      translate-frames adapter therefore targets gpt-image-2 from its first
+      line, and the existing one-press generator migrates before the
+      removal date. gpt-image-2 is token-priced, accepts up to sixteen
+      input images, and returns real alpha in preview.
+    epistemic_status: reported
+    case_against: "Provider dates move, and this one was read from trackers rather than the provider's own page, which the session could not reach. Confirm on the provider's deprecations page before planning the cutover week."
+    proof: "A dry run against gpt-image-2 returns the same receipt shape with real usage, and the old model string is gone from the generator before the removal date."
+    loop_status: move
+    public_safe: true
+    links:
+      - { label: "Generator to migrate", href: "src/lib/yawn-image/generate.ts" }
+      - { label: "Provider deprecations", href: "https://developers.openai.com/api/docs/deprecations" }
+
+  - rank: 5
     key: claude_technology
     question: "What technology does Claude use for the pixel mascot and the animated Ultracode band?"
     answer: >
@@ -160,7 +181,7 @@ questions:
       - { label: "Mascot glyph grid reported by users", href: "https://github.com/anthropics/claude-code/issues/24926" }
       - { label: "Web mascot recreated with SVG and GSAP", href: "https://tympanus.net/codrops/2026/05/05/reverse-engineering-claude-ais-mascot-animations-with-svg-and-gsap/" }
 
-  - rank: 5
+  - rank: 6
     key: how_state_is_known
     question: "How does the mascot know what state it is in?"
     answer: >
@@ -183,7 +204,7 @@ questions:
       - { label: "Mirror face expression", href: "src/domain/yawn-frame-grid.ts" }
       - { label: "World execution states", href: "src/domain/world-coordinate-types.ts" }
 
-  - rank: 6
+  - rank: 7
     key: which_states
     question: "Which states exist, and what does each one look like?"
     answer: >
@@ -202,7 +223,7 @@ questions:
     links:
       - { label: "State model", href: "interface/yawn-mascot-v0.1.yawn" }
 
-  - rank: 7
+  - rank: 8
     key: dormant_and_working_bodies
     question: "What is the dormant sprite, and what is the working one?"
     answer: >
@@ -215,7 +236,9 @@ questions:
       has a rectangular monitor head, a boxy torso, and cylindrical limbs,
       while the walking body keeps Will's round head with a CRT window and
       a cyan body. The idle sheet (four frames at 8 fps) is the breathing
-      version of the walking body, not of the dormant one.
+      version of the walking body, not of the dormant one. The image
+      generator's house references anchor on the dormant body today, so
+      translation of walking cycles must anchor on the walking sheets.
     epistemic_status: observed
     case_against: "Two dormant bodies (the browser-face still and the idle breath sheet) are different designs and will read as two characters in one header. Dave must declare the walking robot the canonical skinned body and keep the browser-face as a separate sleeping asset, or commission one dormant frame in the walking identity as the first approved translation."
     proof: "The manifest names one accepted sheet per size for sleeping and for moving, and the header, /new, and the world all read them."
@@ -225,7 +248,7 @@ questions:
       - { label: "Dormant body on /new", href: "src/components/bot/yawn-world-bot.tsx" }
       - { label: "Walking sheet", href: "public/nestheads/characters/yawn-front-walk.png" }
 
-  - rank: 8
+  - rank: 9
     key: skins_over_a_bot
     question: "How does a skin go over a yawn.bot?"
     answer: >
@@ -246,7 +269,7 @@ questions:
       - { label: "Skin system", href: "interface/yawn-mascot-v0.1.yawn" }
       - { label: "Preference contract", href: "schemas/projection-preference.v1.schema.json" }
 
-  - rank: 9
+  - rank: 10
     key: who_approves
     question: "Who approves translation, spend, training, and promotion?"
     answer: >
@@ -264,12 +287,16 @@ questions:
       - { label: "Owner-decision receipt precedent", href: "records/interception-statement-image-approval-2026-08-29.yawn" }
       - { label: "Art engine boundary", href: "nestheads-art-engine/AGENTS.md" }
 
-  - rank: 10
+  - rank: 11
     key: header_icon
     question: "What does the upper-left icon show, and to whom?"
     answer: >
       The current bot's mascot in its current state, with the state name as
-      accessible text, in the 34 pixel slot the header already has. On the
+      accessible text, at exactly 32 pixels inside the 40 pixel brand
+      control the header already has (the state name goes into the
+      control's accessible name; the image stays hidden from assistive
+      technology). Until a server-written root-bot state record exists,
+      the public mark shows sleeping and says so. On the
       public root it shows only the root bot's public state class. A
       signed-in owner on their coordinate sees that coordinate's bot, with
       flags.
@@ -282,7 +309,7 @@ questions:
       - { label: "Chrome contract", href: "interface/yawn-chrome-v1.yawn" }
       - { label: "Header brand slot", href: "src/components/chrome/yawn-global-chrome.tsx" }
 
-  - rank: 11
+  - rank: 12
     key: holarchy_inheritance
     question: "How do child yawns and bots inherit the mascot?"
     answer: >
@@ -301,7 +328,7 @@ questions:
     links:
       - { label: "Holarchy inheritance policy", href: "YAWNS/Policies/YAWN_HOLARCHY_INHERITANCE.yawn" }
 
-  - rank: 12
+  - rank: 13
     key: hats_and_accessories
     question: "What do hats and accessories mean?"
     answer: >
@@ -317,7 +344,7 @@ questions:
     public_safe: true
     links: []
 
-  - rank: 13
+  - rank: 14
     key: public_vs_provisioned
     question: "What does a public visitor see, and what does Dave see?"
     answer: >
@@ -338,7 +365,7 @@ questions:
       - { label: "Frontier page pattern", href: "src/app/frontier/page.tsx" }
       - { label: "Public plus owner on one route", href: "src/app/dave/page.tsx" }
 
-  - rank: 14
+  - rank: 15
     key: accessibility_and_cost
     question: "How does this stay accessible and cheap on phones?"
     answer: >
@@ -346,8 +373,9 @@ questions:
       and hidden-tab bodies stop; every raster layer uses nearest-neighbor
       scaling; prefers-reduced-motion shows a still frame and a still
       field; the state name is always text; the header mark never holds a
-      WebGL context; a user pause control is proposed for loops longer than
-      five seconds.
+      WebGL context; no layer flashes faster than three times a second and
+      reduced motion removes jitter and ripples entirely; a user pause
+      control is proposed for loops longer than five seconds.
     epistemic_status: inferred
     case_against: "Reduced motion is an OS query many users never set, and a pause control takes a chrome slot the contract keeps minimal. Measure attention cost before deciding which one carries the duty."
     proof: "A Playwright performance receipt on a throttled mobile profile: main-thread time per frame under budget with 50 bodies visible, and a reduced-motion run with no running ticker."
@@ -356,7 +384,7 @@ questions:
     links:
       - { label: "Pause, Stop, Hide", href: "https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html" }
 
-  - rank: 15
+  - rank: 16
     key: truthfulness
     question: "What proves the mascot is telling the truth about state?"
     answer: >
@@ -373,7 +401,7 @@ questions:
     links:
       - { label: "Projection boundary", href: "core/projection-and-aperture.yawn" }
 
-  - rank: 16
+  - rank: 17
     key: mascot_changes_pixels
     question: "Can the mascot change the pixels of the interface, or turn them into code?"
     answer: >
@@ -389,7 +417,7 @@ questions:
     public_safe: true
     links: []
 
-  - rank: 17
+  - rank: 18
     key: not_allowed
     question: "What is not allowed?"
     answer: >
@@ -407,7 +435,7 @@ questions:
     links:
       - { label: "Contract boundaries", href: "interface/yawn-mascot-v0.1.yawn" }
 
-  - rank: 18
+  - rank: 19
     key: first_move
     question: "What is the smallest first move?"
     answer: >
