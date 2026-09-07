@@ -1,0 +1,50 @@
+id: records/yawn.bot-feedback-loop-closure-2026-09-07
+title: "yawn.bot feedback loop closure receipt"
+kind: record-receipt
+status: reported-pending-owner-proof
+updated: 2026-09-07
+
+purpose: >
+  Record that the interface feedback loop inside YAWN.bot was closed into one
+  owner email on 2026-09-07, what Dave ruled, what changed, what was proved,
+  and what still waits for production.
+
+source:
+  actor: "Dave"
+  channel: "voice, with a screenshot of the receipt on yawn.bot/dave at 17:15:51Z"
+  verbatim:
+    - "when I select an aperture view, going from, like, private to public, it doesn't change the view at all"
+    - "when I pressed, um, like, the open feedback or the other button, um, it didn't do anything. Like, it took me to a four zero four page"
+    - "after I submit the feedback, then all I do is wait for an email to the user's email"
+
+ruling:
+  aperture: "selecting a view of a coordinate changes what renders; the view rides on the route"
+  receipt: "a feedback packet is its own receipt; the work order is read from the packet, never from a thread that may not exist"
+  autonomy: "propose, approve, release are three owner switches, on by default for the owner who ruled it"
+
+changes:
+  repository: "yawn-ai/yawn.bot"
+  branch: "claude/aperture-feedback-loop-e0lbhg"
+  observation: "YAWNS/Observations/YAWN_DAVE_APERTURE_VIEW_AND_FEEDBACK_AUTONOMY_2026_09_07.yawn"
+  session: "YAWNS/Sessions/CLAUDE_APERTURE_FEEDBACK_AUTONOMY_2026_09_07.yawn"
+
+proof:
+  local:
+    - "typecheck and lint clean on the changed tree"
+    - "focused unit suites passed (feedback route, build lane, merge authority, merge email, frame, Feedback Yawn, receipt)"
+    - "browser: Aperture private to public renders the public projection and back; Work order opens the packet's work order"
+  not_proved_here:
+    - "the production 404 trace (this sandbox cannot reach yawn.bot or the canonical database)"
+    - "a filing under a @yawn account (only the dave owner may file today)"
+    - "the real Fixed: email (needs Resend, the GitHub webhook secret, the read token, and a paired worker on Dave's PC)"
+
+next_move: >
+  Dave files one packet on production, opens Work order, lets the paired PC
+  build it, and receives the first "Fixed:" email; that email is the receipt
+  that closes this record.
+
+links:
+  - automation/yawn.bot.feedback-loop.yawn
+  - automation/yawn.bot.pr-notification.yawn
+  - records/feedback-log.yawn
+  - core/projection-and-aperture.yawn

@@ -1,12 +1,43 @@
 id: automation/yawn.bot.feedback-loop
 title: "yawn.bot feedback loop"
 kind: automation-gate
-status: active-seed
-updated: 2026-08-17
+status: active
+updated: 2026-09-07
 
 purpose: >
   Define how yawn.bot turns feedback into a thesis, weighs risk, and decides
-  whether a contribution is ready to be committed.
+  whether a contribution is ready to be committed; and, since 2026-09-07, how
+  an interface feedback packet filed inside YAWN.bot closes on its own into
+  one email to the owner.
+
+closed_loop:
+  ruled_by: "Dave, 2026-09-07 (voice): after I submit the feedback, all I do is wait for an email"
+  implementation: "https://github.com/yawn-ai/yawn.bot — YAWNS/Observations/YAWN_DAVE_APERTURE_VIEW_AND_FEEDBACK_AUTONOMY_2026_09_07.yawn"
+  stages:
+    - id: filed
+      surface: "yawn.bot header feedback control (select a surface, say what is wrong, file)"
+      record: "yawn.feedback_event.v1 at yawn.bot/feedback, routed to yawn.bot/the-yawn-company/target-inspector-yawn"
+      receipt: "Open in Feedback (the packet) · Work order (the packet with its work order open) · build lane"
+    - id: proposed
+      switch: propose
+      effect: "one build proposal per packet, id derived from owner and packet; a replayed save reports the same run"
+    - id: granted
+      switch: approve
+      effect: "the exact revision is granted; the paired local worker claims, builds, verifies, opens a pull request"
+    - id: released
+      switch: release
+      effect: "the merge plane takes automatic_when_green for the exact proven head when every required check and coherence axis is green"
+    - id: emailed
+      recipient: "dave@yawn.ai (the owner of the yawn.bot)"
+      subject_shape: "Fixed: <title> — yawn.bot<route>"
+      body: "the feedback text, a link to the packet's work order, the live route, the pull request"
+  switches:
+    location: "owner coding state, Build YAWN panel → Feedback autonomy"
+    default: "on for the owner who ruled it; each switch separately revocable"
+  boundary:
+    - "a lane that cannot open (disabled, unavailable, off) is named on the receipt; the packet is never lost"
+    - "release never widens the worker sandbox, spends, or accepts a head the merge plane would refuse"
+    - "the aperture of a coordinate changes what renders (route-carried view), never truth or permission"
 
 loop:
   - collect feedback and repo signals
@@ -91,6 +122,7 @@ proof:
   source:
     - core-loop.yawn
     - records/yawn.bot-verification-2026-07-01.yawn
+    - records/yawn.bot-feedback-loop-closure-2026-09-07.yawn
     - agents/yawn.bot.yawn
     - automation/yawn.bot.daily.yawn
     - automation/yawn.bot.pr-notification.yawn

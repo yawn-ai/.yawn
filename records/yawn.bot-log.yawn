@@ -2,7 +2,7 @@ id: records/yawn.bot-log
 title: "yawn.bot log"
 kind: record-log
 status: active-seed
-updated: 2026-07-04
+updated: 2026-09-07
 
 purpose: >
   Track the yawn.bot service identity, daily Codex automation, and future bot
@@ -18,6 +18,13 @@ entry_shape:
   linked_yawn: ""
 
 current_entries:
+  - timestamp: "2026-09-07"
+    actor: "claude"
+    event: "closed the yawn.bot interface feedback loop into one owner email under Dave's autonomy ruling; the Aperture opens views through the route; the work-order receipt is the packet"
+    evidence: "yawn-ai/yawn.bot branch claude/aperture-feedback-loop-e0lbhg; records/yawn.bot-feedback-loop-closure-2026-09-07.yawn"
+    next_move_effect: "a filed packet proposes, grants, builds, merges when green, and emails dave@yawn.ai without another press; each stage is a revocable owner switch"
+    boundary: "no merge, deploy, mail, spend, or database write happened in the session; production rehearsal and the real email remain Dave's"
+    linked_yawn: "automation/yawn.bot.feedback-loop.yawn"
   - timestamp: "2026-07-04"
     actor: "codex"
     event: "made yawn.bot private PR and Dave notification loop explicit"

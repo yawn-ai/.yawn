@@ -25,6 +25,7 @@ holds:
   - github access
   - backup log
   - feedback log
+  - yawn.bot feedback loop closure receipt
   - next-move ledger
   - YAWN.bot runtime promotion receipt
   - cold-start orientation proof
