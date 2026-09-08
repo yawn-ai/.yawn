@@ -817,6 +817,13 @@ implementation_projection:
     - "nestheads-art-engine: register the reference pack and the 20 pairs as the core style dataset seed; add the paired-frame LoRA plan to the LoRA registry"
     - "supabase media_assets kind sprite_sheet: metadata {mascotState, size, skinId, manifestRevision, briefSha256, promotionReceipt}"
     - "protocol/dot-yawn.lock.json: vendor interface/yawn-mascot-v0.1.yawn and question-packets/mascot.yawn once accepted"
+  shipped:
+    - date: 2026-09-08
+      pull_request: "yawn-ai/yawn.bot#127"
+      merge_commit: 98765da52ee37fe110261d14cef800efe07b7649
+      what: "yawn.bot/mascot public and provisioned views, /mascot/states, /mascot/skins; both records vendored under protocol/vendor and pinned by blob hash; resolveMascotState over every runtime enum with the exhaustive test; stills from the two accepted sheets with ancestor fallback"
+      not_yet: "header mark, pixel field, live root-bot state record, skin translation pipeline"
+      epistemic_status: observed
   first_move:
     smallest_reversible_step: >
       Ship the state map and the header mark using only the existing sheets
