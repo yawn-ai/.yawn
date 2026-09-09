@@ -1,0 +1,116 @@
+id: mental-model:dave:number-sense
+title: "Dave / number sense"
+kind: mental-model
+status: draft-0.1
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+principal_ref: principal:dave
+arena: "Kindergarten math at home with Dave's daughter"
+updated: 2026-09-09
+
+questions:
+  - key: role
+    answer: "A dad who shows one thing, waits, then asks. Not a teacher who tells."
+  - key: relevance
+    answer: >
+      She meets how-many every day: snacks, stairs, fingers. If I can see what
+      she sees, I can meet her where she is instead of where the worksheet is.
+  - key: definition
+    answer: "Feeling how many before saying the counting words."
+  - key: inside
+    answer: "Eight small skills that hide inside one word."
+  - key: show
+    answer: "Six ordinary objects, each with one question."
+  - key: assumptions
+    answer: "What I am taking for granted, marked so I can correct it."
+  - key: proof
+    answer: "What she does, not what I explain."
+  - key: lacuna
+    answer: "Where she actually is on each piece is unknown until I look."
+
+concept:
+  name: Number sense
+  one_line: "Knowing how many, and how much more, without needing to count every time."
+  inside:
+    - name: Subitize
+      glyph: "• •  •"
+      one_line: "See one to four at a glance."
+    - name: One-to-one
+      glyph: "| | |"
+      one_line: "One touch, one counting word."
+    - name: Stable order
+      glyph: "1 2 3"
+      one_line: "The words always come in the same order."
+    - name: Cardinality
+      glyph: "= 4"
+      one_line: "The last word says how many."
+    - name: Compare
+      glyph: "••• < •••••"
+      one_line: "More, fewer, same."
+    - name: Part and whole
+      glyph: "2 + 3"
+      one_line: "Five hides inside as two and three."
+    - name: Invariance
+      glyph: "• • • • •"
+      one_line: "Spread out, still five."
+    - name: Order
+      glyph: "3 → 4"
+      one_line: "Comes before, comes after."
+
+show:
+  - icon: Dice
+    do: "Roll one die. Cover it fast."
+    say: "How many? Don't count, just look."
+  - icon: Fingers
+    do: "Hold up a hand."
+    say: "Show me four. Now show me four a different way."
+  - icon: Two piles
+    do: "Make piles of three and five crackers."
+    say: "Which pile has more? How do you know?"
+  - icon: Five frame
+    do: "Draw five boxes, fill three."
+    say: "How many are missing?"
+  - icon: Spread row
+    do: "Count five blocks, then spread them apart."
+    say: "Still five? Or did it change?"
+  - icon: Sharing
+    do: "Give two to her, two to me."
+    say: "How many altogether? What if I give you one of mine?"
+
+embody:
+  - "Ask first, tell last."
+  - "She says the number. I say what I noticed."
+  - "Show one thing. Wait. Then the question."
+  - "A wrong answer is an observation, not a failure: 'You said six. Let's look together.'"
+
+assumptions:
+  - text: "She is five or six and already knows the counting words to ten."
+    epistemic_status: assumed
+  - text: "She learns by handling things, not by hearing about them."
+    epistemic_status: assumed
+  - text: "Ten minutes of play beats thirty minutes of drill."
+    epistemic_status: assumed
+  - text: "Number sense is partly innate approximate magnitude and partly built through language and practice."
+    epistemic_status: inferred
+    epistemic_note: "From the sources below, not from observing her."
+
+proof:
+  signals:
+    - "She says 'four' for a dice face without counting."
+    - "She counts a row, hears 'how many?', and answers without recounting."
+    - "She picks the bigger pile at a glance and can say why."
+    - "She says 'still five' after I spread them out."
+  falsifier: "If she counts every time, she is not subitizing yet. Go smaller, go slower."
+
+lacunae:
+  - "Where is she right now on each of the eight pieces?"
+  - "Which objects does she reach for on her own?"
+  - "Does it carry from snacks to blocks to stairs?"
+
+sources:
+  - text: "Gelman and Gallistel, The Child's Understanding of Number (1978): counting principles."
+    epistemic_status: reported
+  - text: "Clements and Sarama, Learning and Teaching Early Math: learning trajectories."
+    epistemic_status: reported
+  - text: "Dehaene, The Number Sense (1997): approximate number system."
+    epistemic_status: reported

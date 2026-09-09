@@ -38,6 +38,9 @@ html_files = [
     "404.html",
     "agency-declaration/index.html",
     "feedback/index.html",
+    "dave/index.html",
+    "dave/number-sense/index.html",
+    "dave/prenumerical-thinking/index.html",
 ]
 
 for relative_path in html_files:
@@ -83,6 +86,10 @@ yaml_files = [
     "interface/new-yawn-v0.1.yawn",
     "question-packets/orientation-nine.yawn",
     "question-packets/turn-close.yawn",
+    "templates/mental-model.yawn",
+    "dave/node.yawn",
+    "dave/number-sense/model.yawn",
+    "dave/prenumerical-thinking/model.yawn",
     "CITATION.cff",
     ".github/ISSUE_TEMPLATE/bug.yml",
     ".github/ISSUE_TEMPLATE/spec-proposal.yml",

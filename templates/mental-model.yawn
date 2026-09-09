@@ -1,0 +1,91 @@
+id: templates/mental-model
+title: "Mental model template (questions first)"
+kind: template
+status: draft-0.1
+spec_version: mental-model.v0.1
+updated: 2026-09-09
+
+purpose: >
+  One formula for a mental model a principal can hand to a person or a bot.
+  A mental model is a "why" made inspectable: what this is, why it matters
+  from whose perspective, what is inside it, what to show, what was assumed,
+  and what reality would have to show. The questions come first; the answers
+  are attributed; unknowns stay lacunae.
+
+communication_rule: >
+  Talk at the level of the model, not the surface sentence. "I want money
+  from you" is a sentence; "why do you want money from me, and did you even
+  say it or did I infer it" is the model. Every page that uses this shape
+  makes the why, the perspective, and the inference status visible before it
+  asserts anything.
+
+question_order_rule: >
+  Ranked order is a View choice; question keys are stable. `role` (what am I
+  to be here) is first. `relevance` (why do I need to know this) is next,
+  and stays visible even when it is not asked out loud.
+
+question_keys:
+  - key: role
+    prompt: "What am I to be here?"
+    maps_to: perspective
+  - key: relevance
+    prompt: "Why do I need to know this?"
+    maps_to: intent
+  - key: definition
+    prompt: "What is it?"
+    maps_to: scope
+  - key: inside
+    prompt: "What is inside it?"
+    maps_to: scope
+  - key: show
+    prompt: "What do I show?"
+    maps_to: movement
+  - key: assumptions
+    prompt: "What am I assuming?"
+    maps_to: current-state
+  - key: proof
+    prompt: "What would reality show me?"
+    maps_to: proof
+  - key: lacuna
+    prompt: "What is still unknown?"
+    maps_to: lacuna
+
+shape:
+  id: mental-model:<principal>:<slug>
+  kind: mental-model
+  principal_ref: principal:<name>
+  arena: "<where this model is used>"
+  questions:
+    - key: role
+      answer: "<one or two lines>"
+  concept:
+    name: "<name>"
+    one_line: "<the model in one sentence>"
+    inside:
+      - name: "<part>"
+        glyph: "<small mark a child could read>"
+        one_line: "<what it is>"
+  show:
+    - icon: "<object or gesture>"
+      do: "<what to do>"
+      say: "<what to say, as a question>"
+  embody:
+    - "<how a person or bot carries this in their communication style>"
+  assumptions:
+    - text: "<assumption>"
+      epistemic_status: assumed
+  proof:
+    signals:
+      - "<what reality shows when it is working>"
+    falsifier: "<what would show it is not working>"
+  lacunae:
+    - "<what stays unknown until observed>"
+  sources:
+    - text: "<named source>"
+      epistemic_status: reported
+
+projection_rule: >
+  The .yawn record is the source. An HTML page under dave/<slug>/ is a View
+  of it, uses only assets/site.css tokens, carries data-model and data-q
+  markers in the record's question order, and is checked by
+  scripts/validate-mental-models.mjs.

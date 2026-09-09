@@ -1,0 +1,112 @@
+id: mental-model:dave:prenumerical-thinking
+title: "Dave / prenumerical thinking"
+kind: mental-model
+status: draft-0.1
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+principal_ref: principal:dave
+arena: "Kindergarten math at home with Dave's daughter, before and underneath counting"
+updated: 2026-09-09
+
+questions:
+  - key: role
+    answer: "The person who notices what she already does with how-much before any number word."
+  - key: relevance
+    answer: >
+      Numbers land on top of this. If it is thin, counting to ten is a song
+      without meaning. If it is solid, the numbers have somewhere to sit.
+  - key: definition
+    answer: "Handling how much with no number words: same, different, match, more, less, order, pattern."
+  - key: inside
+    answer: "Seven moves she can make with her hands."
+  - key: show
+    answer: "Six household moments, each with one question."
+  - key: assumptions
+    answer: "What I am taking for granted, marked so I can correct it."
+  - key: proof
+    answer: "What she does with objects, not what she says about them."
+  - key: lacuna
+    answer: "Which of these she already has is unknown until I watch."
+
+concept:
+  name: Prenumerical thinking
+  one_line: "Reasoning about quantity, order, and pattern before the counting words carry meaning."
+  inside:
+    - name: Sort
+      glyph: "● ● | ▲ ▲"
+      one_line: "Same and different. This goes with that."
+    - name: Match
+      glyph: "● – ○"
+      one_line: "One cup for each plate."
+    - name: Compare
+      glyph: "●● ●●●●"
+      one_line: "More, less, enough, too many."
+    - name: Order
+      glyph: "▪ ■ ◼"
+      one_line: "Small to big. First, next, last."
+    - name: Pattern
+      glyph: "● ▲ ● ▲"
+      one_line: "What comes next."
+    - name: Conserve
+      glyph: "●●●  → ● ● ●"
+      one_line: "Moved around, still the same pile."
+    - name: Quantity words
+      glyph: "all / some / none"
+      one_line: "All, some, none, more, gone."
+
+show:
+  - icon: Sock pile
+    do: "Dump the clean socks out."
+    say: "Find its match. How did you know?"
+  - icon: Table
+    do: "Hand her the spoons at dinner."
+    say: "One spoon for every bowl. Any left over?"
+  - icon: Cups
+    do: "Give her three nested cups, then five."
+    say: "Line them up, smallest to biggest."
+  - icon: Clap
+    do: "Clap, clap, stomp. Repeat it twice."
+    say: "What comes next?"
+  - icon: Two juices
+    do: "Pour two different amounts."
+    say: "Which has more? Which one do you want?"
+  - icon: Blocks in a bag
+    do: "Let her feel a bag without looking."
+    say: "A lot, or a little?"
+
+embody:
+  - "Use the quantity words in ordinary moments. Do not call it a lesson."
+  - "Hand her the objects. She does; I narrate what she did."
+  - "When she sorts by a rule I did not expect, ask for her rule before offering mine."
+  - "Notice what is already there before trying to install anything."
+
+assumptions:
+  - text: "These moves come before and underneath counting."
+    epistemic_status: assumed
+    epistemic_note: "Piaget's ordering. Later work disputes how strict the prerequisite is."
+  - text: "She already does most of this in play; my job is to notice, not to teach."
+    epistemic_status: assumed
+  - text: "Household objects beat printed worksheets at this age."
+    epistemic_status: assumed
+
+proof:
+  signals:
+    - "She matches one-to-one without being told to."
+    - "She orders three cups by size, then five."
+    - "She continues an AB pattern, then an ABB pattern."
+    - "She says 'more' and 'all gone' about the right piles."
+  falsifier: "If she can chant to ten but cannot hand one cracker to each person, the words are ahead of the sense."
+
+lacunae:
+  - "Which of the seven moves does she already have?"
+  - "Must conservation come before counting, or does it grow alongside it?"
+  - "Which moments does she start on her own?"
+
+sources:
+  - text: "Piaget, The Child's Conception of Number (1952): classification, seriation, conservation."
+    epistemic_status: reported
+  - text: "Gelman and Gallistel (1978): counting competence earlier than Piaget's prerequisites."
+    epistemic_status: disputed
+    epistemic_note: "The two sources disagree on ordering; this model keeps both visible."
+  - text: "Clements and Sarama, learning trajectories for early math."
+    epistemic_status: reported
