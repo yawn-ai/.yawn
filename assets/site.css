@@ -543,6 +543,14 @@
   .model-ledger .unknown span { color: var(--pink); }
   .model-ledger small { display: block; grid-column: 2; color: var(--muted); font-size: .8rem; }
 
+  /* Aperture door (sophia/<slug>/<question>/): one centered link, one account boundary */
+  .door { display: grid; min-height: 100vh; place-content: center; gap: 22px; justify-items: center; text-align: center; }
+  .door .lacuna { color: var(--pink); font-family: var(--mono); font-size: clamp(1.4rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -.04em; text-decoration: none; }
+  .door .lacuna:hover { text-decoration: underline; text-underline-offset: 6px; }
+  .door .aperture-link { color: var(--acid); font-family: var(--mono); font-size: .76rem; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; }
+  .door .aperture-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .door .button { cursor: pointer; }
+
   .error-page { display: grid; min-height: 100vh; place-items: center; }
   .error-object { width: min(100% - 40px, 900px); padding-block: 70px; }
   .error-code { margin-top: 90px; color: var(--pink); }

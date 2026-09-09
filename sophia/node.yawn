@@ -1,0 +1,71 @@
+id: sophia/node
+title: "sophia node"
+kind: mental-model-node
+status: active
+updated: 2026-09-09
+
+purpose: >
+  Hold the apertures provisioned to Sophia: the small, bounded views through
+  which she can work on Daddy's computer and learn the things she is being
+  asked to learn, in the way she asked to learn them.
+
+principal_ref: principal:sophia
+guardian_ref: principal:dave
+account: "sophie@yawn.yawn.bot"
+home: "yawn.bot/sophia"
+relationship_ref: relationship:dave:sophia
+
+holds:
+  - number-sense
+
+receives:
+  - dave/number-sense/model.yawn
+  - dave/prenumerical-thinking/model.yawn
+  - templates/mental-model.yawn
+  - core/projection-and-aperture.yawn
+
+produces:
+  - provisioned apertures with minimal chrome and no way to get lost
+  - a game that grows by adding structure, not memory
+  - a reading bridge from felt quantity to written words
+
+observation:
+  id: observation:dave:sophia:2026-09-09:can-i-work-on-your-computer
+  asserted_by: principal:dave
+  epistemic_status: reported
+  arena: "Home, Dave's computer, an ordinary evening"
+  dialogue:
+    - who: sophia
+      said: "Daddy, can I work on your computer?"
+    - who: dave
+      said: "Why do you want to work on my computer, sweetie?"
+    - who: sophia
+      said: "I want to learn more."
+    - who: dave
+      said: "You want to learn more about how to use a computer? What are you excited to learn?"
+    - who: sophia
+      said: "I just wanna spell stuff so I can read."
+    - who: dave
+      said: "You just keep practicing and you get it. When we read this book, we're gonna try to read, and you just keep practicing."
+  why_this_matters: >
+    The question is the aperture. "Can I work on your computer" asked at the
+    level of the sentence is a request for a device. Asked at the level of the
+    model it is "let me do it myself, on the real thing, and let the letters
+    mean something." That is the interface Dave wants to learn from too.
+
+inferred_preferences:
+  epistemic_status: inferred
+  epistemic_note: >
+    A presentation preference, not a learning-style diagnosis
+    (core/projection-and-aperture.yawn). Proposed by Dave from one exchange;
+    corrected by what she does.
+  confidence: 0.7
+  items:
+    - "Do it herself on the real thing, not a toy version."
+    - "Letters and words should mean something she can feel."
+    - "Practice as play, repeated, with Daddy nearby but not driving."
+
+questions:
+  - what is she being asked to learn, and by whom
+  - which aperture lets her practice it herself without getting lost
+  - how do the words she wants to spell connect to the quantities she is learning to feel

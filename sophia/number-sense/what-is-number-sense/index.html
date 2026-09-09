@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>what is number sense — sophia</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../../../assets/site.css">
+  </head>
+  <body class="door" data-aperture="aperture:sophia:number-sense" data-route="what-is-number-sense">
+    <a class="lacuna" href="https://yawn.bot/lacuna">lacuna</a>
+    <button class="button" id="account" type="button" aria-live="polite">log in</button>
+    <a class="aperture-link" id="game" href="./game/" hidden>game →</a>
+    <script>
+      // Provisioning stub for the static projection. Real provisioning lives in yawn.bot accounts.
+      // Local only: nothing leaves this browser. See sophia/number-sense/aperture.yawn.
+      (function () {
+        var KEY = "yawn.aperture.sophia.number-sense";
+        var button = document.getElementById("account");
+        var game = document.getElementById("game");
+        function read() { try { return localStorage.getItem(KEY) === "provisioned"; } catch (e) { return false; } }
+        function write(on) { try { on ? localStorage.setItem(KEY, "provisioned") : localStorage.removeItem(KEY); } catch (e) {} }
+        function render() { var on = read(); button.textContent = on ? "log out" : "log in"; game.hidden = !on; }
+        button.addEventListener("click", function () { write(!read()); render(); });
+        render();
+      })();
+    </script>
+  </body>
+</html>
