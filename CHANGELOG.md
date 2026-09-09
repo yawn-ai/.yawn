@@ -8,6 +8,9 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Questions-first mental-model template, the `dave/` node with number sense and
+  prenumerical thinking models and pages, and a dependency-free self-scan that
+  fails closed on record/page/node drift
 - Relationship-first Agent Arena constitutional source and its attributed
   Vervaeke/enactive/affordance/active-inference/extended-cognition research
   braid

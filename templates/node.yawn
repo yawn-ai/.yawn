@@ -29,6 +29,7 @@ holds:
   - structural routing proposal template
   - structural change receipt template
   - objective holon template
+  - mental model template (questions first)
   - orientation_inquiry projection fields over an independent orientation_map
 
 receives:

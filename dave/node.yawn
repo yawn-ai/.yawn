@@ -1,0 +1,36 @@
+id: dave/node
+title: "dave node"
+kind: mental-model-node
+status: active
+updated: 2026-09-09
+
+purpose: >
+  Hold Dave's public mental models: small, questions-first records of what
+  a thing is and why it matters from Dave's perspective, projected as pages
+  under dave/<slug>/ so a person or a Yawn.bot can carry the same model.
+
+principal_ref: principal:dave
+template_ref: templates/mental-model.yawn
+validator_ref: scripts/validate-mental-models.mjs
+
+holds:
+  - number-sense
+  - prenumerical-thinking
+
+receives:
+  - lived situations where Dave needs a shared model with a person or a bot
+  - the mental-model template and its question keys
+
+produces:
+  - inspectable why-first pages
+  - a record of assumptions and what reality would have to show
+  - a shape a Yawn.bot can embody in its communication style
+
+self_scan: >
+  npm run validate walks this node: every entry in holds must have a
+  dave/<slug>/model.yawn and a dave/<slug>/index.html that mirrors the record's
+  question order, uses only global site tokens, and declares no new dependency.
+
+questions:
+  - what is this, and why does it matter from Dave's perspective
+  - which mental model is missing next
