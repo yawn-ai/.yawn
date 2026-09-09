@@ -1,0 +1,604 @@
+# YAWN Execution Run 01 · Lap 0 · findings — the single source; every .md in this folder is a view of this file
+# Status: proposal. Nothing here is ratified. The reviewer (GPT) writes only gpt_status / gpt_note, or adds G-NNN entries; neither party overwrites the other.
+#
+# Vocabulary
+#   tag:        PRESERVE | CORRECT | CHALLENGE | UNKNOWN | TEST | DEFER        (the brief's truth posture, §3)
+#   priority:   access-identity | authoritative-state | first-interaction | continuity | presentation-reuse | terminology
+#   resolution: RESOLVED | DEFERRED | UNKNOWN | RULING_REQUIRED
+#   evidence_class (for behavior claims): SUSPICIOUS_PATTERN | REACHABLE_BEHAVIOR | REPRODUCED | UNKNOWN_DEPLOYMENT_CONDITION
+#   role:       source_report | observation | inference | assumption | proposal
+#   ladder (seven states, per capability, each true|false|unknown):
+#     code_present · entry_path_found · enabled_in_inspected_config · executed_successfully · deployed · effective_authorization_verified · user_value_evidence
+#   citation:   <repo>@<sha>:<path>:<line> | record:<path or id> | brief:§N | gh:<url> | log:<file in TEST_ENVIRONMENT_RECEIPT>
+#   sha short forms used below: bot=yawn.bot@87e84c4 · bot117=yawn.bot@d3239eb (open PR #117, NOT main) · ai=yawn.ai@b3333db · yawn=yawn@21b973c · dot=.yawn@54ef77f (PR #29 head)
+
+run:
+  id: run-01-lap-0
+  recorded: 2026-09-05
+  actor: agent:anthropic:claude-code
+  model: claude-fable-5-1
+  brief: dot:docs/execution-plans/theory-carries-builder-run-01-v0.3.md
+  amendments_source: chat:claude-code:2026-09-05 (Dave); recorded privately as record:dave.yawn/Yawns/execution-runs/run-01-lap-0-2026-09-05.yawn (private evidence and personal references stay there)
+  boundary: audit artifacts, attributed continuity records, one sanitized draft PR; no product behavior change, production mutation, deploy, merge, invitation, paid model call, mail, or database write
+  stopping_rule: owner, data path, safety boundary, relevant existing work, and falsifying tests for the first operational slice identified and receipted; remaining archaeology in the backlog
+
+pins:
+  inspection_time_utc: 2026-09-05T22:26:57Z
+  repos:
+    - repo: yawn-ai/yawn.bot
+      role: operational application (serves https://yawn.bot); provisional Lap 1 target
+      inspected_commit: 87e84c4870d9e4da791ba6d6ccdb43a68f80498e
+      remote_main: 87e84c4870d9e4da791ba6d6ccdb43a68f80498e (2026-09-03T17:59:00Z)
+      deployed_production: 87e84c4870d9e4da791ba6d6ccdb43a68f80498e (deployment 2026-09-03T18:01:02Z, gh api deployments)
+      prs: { "117": { head: d3239ebea9d6328c0d974876141667ff9f0b6f00, base: a14d3584d9b921f04759618af88ccb9c35f251b7, state: OPEN }, "112": DRAFT, "118": DRAFT, "109": MERGED 2026-09-03T02:04:26Z, "113": MERGED 2026-09-03T02:04:46Z }
+      local: fresh worktree off origin/main, real npm ci (962 packages), no .env files, no provider or mail secrets in the shell
+      node: v24.11.1
+    - repo: yawn-ai/yawn.ai
+      role: earlier application holding the voice / answer / expression / feedback mechanisms the brief audits (serves https://yawn.ai); lineage and possible reuse, not a resumption target
+      inspected_commit: b3333db68bf33da0a8aab7f478ef1da149788180
+      remote_main: b3333db68bf33da0a8aab7f478ef1da149788180 (2026-08-17T16:04:48Z)
+      deployed_production: 81df6816e1f1c64ee6c4e98e72affeaaf05f97c5 (2026-08-28T03:59:12Z) — not on the inspected main history; parity UNKNOWN (F-021)
+      issues: [29, 30, 31, 32, 33]
+      local: blob-less clone, read-only, never pushed; root install with --ignore-scripts (746 packages, 37 s); mcp-server/ NOT_INSTALLED (out of scope)
+    - repo: yawn-ai/yawn
+      role: dormant application (July 2025 "AI Workspace Network"); received the temporal-header PR
+      inspected_commit: 21b973cbf8574d2d80aa6fc42991e27a7f1e9b2e (main, 2025-07-04)
+      prs: { "1": { head: 9468bf266d091c55a3ac9a4697b4130c4d122b64, base: 21b973cbf8574d2d80aa6fc42991e27a7f1e9b2e, files: [web/components/UnifiedHeader.tsx, web/components/YawnTemporalHeaderMeta.tsx] } }
+      deployments: preview 9468bf2 2026-09-05T00:44:01Z FAILED; last production 21b973c 2025-07-04
+      local: blob-less clone, pr1-head fetched, read-only; web/ installed with --ignore-scripts
+    - repo: yawn-ai/.yawn
+      role: public protocol repository (contracts, records, this audit)
+      inspected_commit: 467facb0c2ab98b30fe1205c64701f77f58d81b8 (main, 2026-09-03T17:58:49Z)
+      prs: { "29": { head: 54ef77fd8cdd222c9bbf56cbf245c367684b5291, base: 467facb0c2ab98b30fe1205c64701f77f58d81b8, state: OPEN, mergeable: true, ci: green } }
+      branch_for_this_audit: proposal/run-01-lap-0 (cut from main 467facb; references PR #29 by sha; not stacked)
+    - repo: dave.yawn (private holarchy, local only; not published)
+      thread_last_sequence_at_start: 307
+      open_turn_allocated: T-074
+      loop_level: D
+      last_tick_before_run: 2026-09-03T12:30:01.917Z
+  contracts_diffed: [core/projection-and-aperture.yawn (draft-0.5), interface/aperture-registry-and-provisioning-v0.1, interface/perspective-field-and-feedback-reintegration-v0.1, interface/ranked-move-deliberation-v0.1, interface/yawn-temporal-header-v0.1, interface/yawnbot-agentic-embodiment-v0.1, interface/yawnbot-capacity-continuum-v0.1]
+
+# ─────────────────────────────────────────────────────────────────────────────
+findings:
+
+  # ── authoritative state ────────────────────────────────────────────────────
+
+  - id: F-000
+    title: The brief targets yawn.ai; the operational product is yawn.bot; the temporal-header PR sits on a third, dormant repo
+    class: data-source
+    priority: authoritative-state
+    tag: CHALLENGE
+    role: observation
+    claim_a: { source: "brief:§25, §29; gh:https://github.com/yawn-ai/yawn.ai/issues/32", text: "audit and reconcile components/yawn/view-switcher.tsx, lib/agents/feed/*, lib/voices/*, answer-agent/**, expression/** (files that exist only in yawn-ai/yawn.ai)" }
+    claim_b: { source: "record:dave.yawn root (canonicalProjections operational=yawn.bot/dave, semantic=yawn.ai/dave); record:Yawns/OPEN_DECISIONS D-022 (open); gh:yawn-ai/yawn.bot PRs #100–#119", text: "operational projection is https://yawn.bot; all product work since 2026-08-18 landed in yawn.bot; D-022 'yawn.ai = semantic, yawn.bot = operational, one Next.js app, two hosts' was opened and never ruled" }
+    observed: "bot: none of the brief's audit files exist (grep view-switcher, surface-voice-generator, feedback-reintegration, lib/voices, answer-agent → 0). ai: all exist. yawn PR #1 touches only two header files. The root record's developmentRoot still names the yawn.ai folder while every live ledger item is a yawn.bot PR (records cross-check F1)."
+    resolution: RULING_REQUIRED
+    resolution_basis: "Recommended: yawn.bot is the Lap 1 runtime (operational, deployed at the inspected sha, merge plane, 416 test files, recent rulings). yawn.ai mechanisms are lineage/reuse (F-022–F-024). The ruling does not settle N-026 or D-022 (semantic coordinates); those stay separate."
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-001
+    title: yawn-ai/yawn#1 fails on a baseline prerender error; base and head fail identically; the build skips types and lint
+    class: build
+    priority: continuity
+    tag: CORRECT
+    role: observation
+    evidence_class: REPRODUCED
+    claim_a: { source: "brief:§25 'Temporal header'", text: "the temporal-header PR is failing; do not merge until it passes" }
+    claim_b: { source: "log:yawn-build-main.log, yawn-build-pr1.log, yawn-tsc-main.log, yawn-tsc-pr1.log", text: "local build at base 21b973c and head 9468bf2 under identical conditions (node v24.11.1, npm ci --ignore-scripts, no env): both '✓ Compiled successfully', both 'Skipping validation of types' / 'Skipping linting', both fail prerendering /yawns with ReferenceError: taskSupabaseClient is not defined; tsc --noEmit reports 153 errors on both with an empty diff" }
+    observed: "yawn:web/next.config.js:11 typescript.ignoreBuildErrors: true; :15 eslint.ignoreDuringBuilds: true. The /yawns page is not in the PR."
+    resolution: RESOLVED
+    resolution_basis: "Baseline failure. The header change introduces no new type errors; that is not evidence the header is correct (no runtime, browser, or replay-source test exists). Dormant repo: no repair in this run."
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-010
+    title: Two Supabase migration trees; the runtime reads the canonical tree; which tree the live project applied is unreadable from the repo
+    class: data-source
+    priority: authoritative-state
+    tag: UNKNOWN
+    role: observation
+    evidence_class: UNKNOWN_DEPLOYMENT_CONDITION
+    claim_a: { source: "bot:supabase/migrations/ (33 files, 0001 → 20260826015555) and bot:supabase-canonical/supabase/migrations/ (15 files, 20260813032939 → 20260827112500)", text: "both trees define yawns and yawn_events (supabase/migrations/20260723033117_canonical_yawn_data_plane.sql:106; supabase-canonical/.../20260813032939_yawn_canonical_homebase_v1.sql:319)" }
+    claim_b: { source: "bot:src/lib/yawn-canonical/homebase-store.ts:149-279", text: "loadDaveCanonicalSnapshot reads yawn_principals, yawn_agent_spaces, yawn_memberships, yawn_arenas, yawn_change_proposals, yawns, yawn_materialized_states, yawn_run_budgets, yawn_proof_receipts, yawn_capabilities — all created in the canonical tree" }
+    observed: "the signals store degrades to pending_store on SQLSTATE 42P01 (bot:src/lib/yawn-signals/store.ts:77-79), i.e. the code itself does not assume the table exists. Records: N-011 (connect the CLI to the correct project before any apply) and N-016 (apply the signal-store migration via the dashboard) are both pending."
+    resolution: RULING_REQUIRED
+    resolution_basis: "needs a read-only look at the live project's schema_migrations under Dave's grant; files on disk are not evidence of what was applied"
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-021
+    title: yawn.ai deployed production sha (2026-08-28) is not the inspected main head (2026-08-17)
+    class: data-source
+    priority: authoritative-state
+    tag: UNKNOWN
+    role: observation
+    claim_a: { source: "gh api repos/yawn-ai/yawn.ai/deployments", text: "Production 2026-08-28T03:59:12Z sha 81df6816" }
+    claim_b: { source: "gh api repos/yawn-ai/yawn.ai/commits/main", text: "main 2026-08-17T16:04:48Z sha b3333db" }
+    observed: "likely a branch deployment (PR #28 codex/yawn-ai-manifesto-20260828 is open); not resolvable from the repository"
+    resolution: UNKNOWN
+    resolution_basis: "Vercel dashboard for the yawn.ai project; recorded as a missing observation, not requested as a grant in this lap"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  # ── access and identity ────────────────────────────────────────────────────
+
+  - id: F-005
+    title: The development Dave-owner fallback is enabled by default outside production and also promotes an authenticated user with no resolved identity
+    class: authority
+    priority: access-identity
+    tag: CHALLENGE
+    role: observation
+    evidence_class: REPRODUCED
+    ladder: { code_present: true, entry_path_found: true, enabled_in_inspected_config: true, executed_successfully: true, deployed: unknown, effective_authorization_verified: false, user_value_evidence: false }
+    claim_a: { source: "record:Yawns/OPEN_TURNS T-065 (intention, 2026-09-02)", text: "the 'dave' fallbacks removed from thread-routing, the account shell, the local root writer; offline first" }
+    claim_b: { source: "bot:src/lib/env.ts:52-55; bot:src/lib/auth/development-fallback-policy.ts:13; bot:src/lib/auth/require-dave.ts:25-53", text: "NESTHEADS_DEV_DAVE_FALLBACK unset ⇒ enabled when NODE_ENV !== 'production'; set ⇒ only the literal 'true'. Policy adds NODE_ENV !== 'production' && VERCEL !== '1'. requireSession returns createDevelopmentDaveSession() when Supabase is unconfigured (:31-33), when there is no user (:46), and when a real user resolves to no identity (:52)" }
+    observed: "REPRODUCED via vitest (log:bot-lap0-repro): policy truth table matches; getAppEnv().devDaveFallbackEnabled is true with the var unset and NODE_ENV=development, false in production, false for the value '1'. Reachable from every caller of requireNestheadsSession / requireDaveSession / requireYawnImportSession (~50 API routes plus /dave, /new, /agent). Playwright's webServer sets the var to 'true' explicitly (bot:playwright.config.ts). bot:src/app/auth/development-dave/route.ts:8 uses a weaker gate (omits NODE_ENV) but only clears cookies."
+    resolution: DEFERRED
+    resolution_basis: "Not exploitable on Vercel production (double gate). It is the reason every local proof of 'owner-gated' is weak: the gate that blocks also auto-grants. First slice must make the fallback opt-in (literal 'true') or the receipts cannot distinguish owner from anonymous locally."
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-006
+    title: Ownership is the username literal "dave"; the identity resolver emits exactly one owner-role identity
+    class: authority
+    priority: access-identity
+    tag: CHALLENGE
+    role: observation
+    evidence_class: REPRODUCED
+    claim_a: { source: "record:Yawns/OPEN_TURNS T-073 (PR #117)", text: "private access is bound to coordinate ownership rather than account role" }
+    claim_b: { source: "bot:src/lib/auth/require-dave.ts:66-68; bot:src/lib/auth/account-identity-resolver.ts:39-105", text: "isDaveOwnerSession = role === 'owner' && username === 'dave'; all other identities (network grants and named collaborator accounts) are role 'member'" }
+    observed: "REPRODUCED via vitest: an owner-role session with another username is refused; a member-role 'dave' is refused. Member accounts reach requireNestheadsSession / requireYawnImportSession routes with their own session.id as ownerId; two named member accounts also pass isDaveCouncilSession (bot:src/lib/auth/approved-network-access.ts:47-56)."
+    resolution: DEFERRED
+    resolution_basis: "Consistent with a single-principal product today. Blocks 'any username is a root' (T-065) and the first slice for anyone but Dave; the slice may legitimately be Dave-only, but the receipt must say so."
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-007
+    title: canRenderYawnVisibility returns true for an absent contract, and persisted world entities never carry one
+    class: authority
+    priority: access-identity
+    tag: TEST
+    role: observation
+    evidence_class: SUSPICIOUS_PATTERN
+    claim_a: { source: "dot:core/projection-and-aperture.yawn invariants (aperture only narrows; default private)", text: "deny by default" }
+    claim_b: { source: "bot:src/domain/yawn-world-actors.ts:47-56", text: "if (!contract) return true" }
+    observed: "REPRODUCED at function level via vitest: undefined contract renders for anonymous, participant, owner; canRenderWorldEntityForViewer({metadata:{}}) renders for anonymous. Callers: canRenderWorldEntityForViewer (:62) and useCompanyWorldActors (bot:src/components/brain-console/company-world-surface.tsx:318) over world_entities rows; the row writer (bot:src/adapters/supabase-repository.ts:565) never sets metadata.visibility. Mitigation: it is a client-side filter over a snapshot fetched under owner-scoped RLS (bot:supabase/migrations/20260512100000_world_coordinate_map.sql:170-175); no server decision rests on it."
+    resolution: DEFERRED
+    resolution_basis: "not a cross-tenant read today; becomes one the moment a non-owner viewer receives the snapshot. Invert to deny-by-default before any shared aperture ships."
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-008
+    title: PR #117's static public view is allowed to any anonymous viewer for any coordinate; it exposes coordinate and owner handle only, and adds a third visibility vocabulary
+    class: authority
+    priority: access-identity
+    tag: TEST
+    role: observation
+    evidence_class: REACHABLE_BEHAVIOR
+    claim_a: { source: "record:message 0307 / T-073", text: "deny-by-default record policy; private access bound to coordinate ownership" }
+    claim_b: { source: "bot117:src/domain/yawn-record-access.ts:64-67, :204-206; bot117:src/app/api/yawn-record/route.ts:31,49,57", text: "defaultYawnRecordViews is a static two-view list; decideYawnRecordAccess allows visibility 'public' for any viewer including public_anonymous; the decision takes no coordinate" }
+    observed: "REPRODUCED via vitest in the PR worktree: anonymous read_view and download_record on the public view both allowed; private denied. What the document builder emits for that request is coordinate, owner handle, view id/label, timestamps, and boilerplate prose (bot117:src/lib/yawn-record/coordinate-record-document.ts:19-64) — the file states there is no per-coordinate store yet. Ownership for private views IS derived server-side from the session username (bot117:src/lib/yawn-record/coordinate-record-access.ts:46-70)."
+    resolution: DEFERRED
+    resolution_basis: "low consequence now (existence oracle); high once a real record store sits behind the same static list. Key the public view to the coordinate's own visibility before a store lands. Vocabulary: private/participants/public × read_view/download_record/add_view is disjoint from F-009's two."
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-009
+    title: Three visibility vocabularies on the same product, and the derived contract defaults to participant-world / root-public
+    class: contract-vs-code
+    priority: access-identity
+    tag: CHALLENGE
+    role: observation
+    evidence_class: SUSPICIOUS_PATTERN
+    claim_a: { source: "dot:interface/aperture-registry-and-provisioning-v0.1 (default owner private; provisioning default deny)", text: "new Yawns and unresolved rights default private/deny" }
+    claim_b: { source: "bot:src/domain/yawn-visibility.ts:6-30,64-83; bot:src/domain/yawn-provisioning.ts:1-39,87-120; bot117:src/domain/yawn-record-access.ts:22-25", text: "full/summary_only/hidden × owner/participant/anonymous; provisioning groups × capabilities with CTAs; private/participants/public × read_view/download_record/add_view — nothing maps between them. deriveYawnVisibilityContract falls through to createParticipantWorldYawnVisibility() and root defaults to public" }
+    observed: "contract-vs-code: APR#default-owner-private CONTRADICTED; APR#provisioning-default-deny PARTIAL (deny is per capability, not per resource); publishing sits in hardBoundaryCapabilities (approval required) — PRESERVE"
+    resolution: DEFERRED
+    resolution_basis: "first slice needs one deny-by-default decision function that the route, the world renderer, and the record view all call; adapters keep the two older shapes readable (COMPATIBILITY_MIGRATION_PLAN)"
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-011
+    title: The signal store writes with the service-role client; the only gate on that write is the owner session check
+    class: authority
+    priority: access-identity
+    tag: TEST
+    role: observation
+    evidence_class: REACHABLE_BEHAVIOR
+    claim_a: { source: "bot:src/app/api/yawn-signals/append/route.ts:18-45", text: "requireDaveSession() then append; actor set server-side as user:<session.username>" }
+    claim_b: { source: "bot:src/lib/yawn-signals/store.ts:62-83; bot:supabase-canonical/.../20260826150000_yawn_signal_records_v1.sql:35", text: "createSupabaseAdminClient (RLS bypassed); yawn_signal_records has RLS enabled with no policy (locked to service role)" }
+    observed: "consistent design (service role + route gate) but the gate is F-005/F-006: locally the fallback grants it to anyone; in production only Dave. Admin-client reads also exist on a few owner-gated settings/media routes (UNKNOWN_DEPLOYMENT_CONDITION: depends on SUPABASE_SERVICE_ROLE_KEY presence)."
+    resolution: DEFERRED
+    resolution_basis: "acceptable for a Dave-only slice if the fallback is opt-in; not acceptable for a second principal"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-015
+    title: Unauthenticated POST /api/yawn-network/applications writes a row and sends mail behind a same-origin check and an internal rate limit
+    class: authority
+    priority: access-identity
+    tag: TEST
+    role: observation
+    evidence_class: REACHABLE_BEHAVIOR
+    claim_a: { source: "bot:src/app/api/yawn-network/applications/route.ts:12,26,46-48", text: "no session; Origin check; rate_limited path; writes yawn_network_applications; Resend send" }
+    claim_b: { source: "record:N-012 (enable the optional notification email for each newly submitted pending network application)", text: "the mail is an intended, opt-in effect" }
+    observed: "intended public intake; the only anonymous route with a persisted write and an external effect. Two other anonymous routes (yawn-mirror/compile, yawn-question-source-match/propose) are pure."
+    resolution: DEFERRED
+    resolution_basis: "out of the first slice; note for the effect-authority map"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-020
+    title: Service-role client on a few owner-gated user-facing reads
+    class: authority
+    priority: access-identity
+    tag: UNKNOWN
+    role: observation
+    evidence_class: UNKNOWN_DEPLOYMENT_CONDITION
+    claim_a: { source: "bot:src/app/api/nestheads/sprite-sheets, settings/department-settings, settings/header-actions, media/intake", text: "createSupabaseAdminClient() ?? server client, behind requireDaveSession / requireNestheadsSession" }
+    claim_b: { source: "bot:src/lib/yawn-canonical/homebase-store.ts:144", text: "the /dave and /new record reads use the user-scoped server client (RLS enforced)" }
+    observed: "correctness of those four reads rests on the route gate alone; depends on whether the service key is set in the deployment"
+    resolution: UNKNOWN
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  # ── first useful interaction ───────────────────────────────────────────────
+
+  - id: F-004
+    title: /new preserves the expression only in the browser for visitors; for the owner it appends a signal under a hard-coded coordinate that nothing reads back; no addressable Yawn is minted
+    class: data-source
+    priority: first-interaction
+    tag: CHALLENGE
+    role: observation
+    evidence_class: REACHABLE_BEHAVIOR
+    ladder: { code_present: true, entry_path_found: true, enabled_in_inspected_config: true, executed_successfully: unknown, deployed: true, effective_authorization_verified: false, user_value_evidence: false }
+    claim_a: { source: "brief:§25 'Strong substrate'", text: "/new already preserves a signal, supports natural input, foregrounds one useful question, and treats skipped answers as lacunae" }
+    claim_b: { source: "bot:src/components/bot/new-yawn-imprint.tsx:28-30,138-212,252-268; bot:src/app/api/yawn-signals/append/route.ts; bot:src/lib/yawn-signals/store.ts:96; bot:src/components/yawn-canonical/dave-correction-flywheel.tsx:72", text: "text goes to localStorage key yawn:new:chat-aperture:v1 (capped 40 turns / 30 sources, older dropped); if hasSession, a fire-and-forget POST appends to yawn_signal_records with coordinate 'dave/operating-map/cognition-ranker'; the only reader lists coordinate 'dave/operating-map' with an exact match — the /new turns are never rendered back" }
+    observed: "the first question is chosen deterministically in the browser by compileYawnCognitionEntry + selectNextQuestion (bot:src/domain/yawn-cognition-ranker.ts); no model call is reachable from /new; the 'orienting' delay is three setTimeouts (:197-201). Q-Space is not reachable from /new. No route is created, no row in yawns; the VIEW path (/dave/<slug>) can only reopen Yawns that arrived another way. Anonymous visitors write nothing."
+    resolution: RESOLVED
+    resolution_basis: "the brief's claim held for yawn.ai's /new, not yawn.bot's. This is the exact gap the first slice closes: mint a per-user coordinate, write the source event under it, read it back on return."
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-013
+    title: Questions and ranking exist twice; Q-Space persistence is off by default and its ranker uses literal scores; /frontier is static prose
+    class: data-source
+    priority: first-interaction
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "record:Yawns/OPEN_DECISIONS D-035 (ruled 2026-09-02)", text: "rank is shown with its components and is never self-authorizing; only Dave closes turns" }
+    claim_b: { source: "bot:src/lib/q-space/config.ts:1-20; bot:src/lib/q-space/q-space-intelligence-provider.ts:208-218; bot:src/domain/yawn-frontier.ts; bot:src/app/frontier/page.tsx", text: "Q_SPACE_V1_ENABLED default true; Q_SPACE_PERSISTENCE_ENABLED default false (in-memory, lost on restart); Q_SPACE_PAID_COMPUTE_ENABLED default false; eleven score inputs collapse into one frontier rank from hard-coded literals; /frontier renders editorial content from a static module" }
+    observed: "contract-vs-code: CORE#distinct-quantities and PF#separation-rule CONTRADICTED; PF#output-shows-dissent ABSENT (recommendedCandidateId only). Strong primitives to keep: stableIdSchema, proofEventV1Schema with weakens/inconclusive, transition events (bot:src/domain/q-space.ts:32-68)."
+    resolution: DEFERRED
+    resolution_basis: "first slice does not need a ranker; it needs one question-or-hold with an inspectable reason. Reuse the deterministic browser ranker's inputs as the visible reason; leave Q-Space and /frontier untouched."
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-033
+    title: A first-minute Yawn already has prior records and one undecided shape question
+    class: data-source
+    priority: first-interaction
+    tag: PRESERVE
+    role: observation
+    claim_a: { source: "record:Preferences/new-yawn-minimal-seed-moves-replay-2026-08-19 (pending); record:Yawns/OPEN_DECISIONS D-032 (open); record:Yawns/OPEN_TURNS T-069 (intention)", text: "new yawns are born as one-screen seeds (id, name, orientation, input, links-not-content) that the system individuates; provisioning=auto default; 'New from anywhere' seeded by placeSignalInHolarchy({username})" }
+    claim_b: { source: "same preference set, open question", text: "does the minimal seed replace the nine-question packet on the draft screen, or does the packet collapse to a '0/9 answered' line?" }
+    observed: "the phrases 'first useful loop' and 'one sentence' entry appear in no record before this run"
+    resolution: RULING_REQUIRED
+    resolution_basis: "Lap 1 adopts the minimal seed and answers the open question by default (packet collapses to a line, never an interview); Dave may override"
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  # ── continuity ─────────────────────────────────────────────────────────────
+
+  - id: F-012
+    title: The replay function has no caller; yawn_events is defined in both trees and read by nothing; no per-Yawn history surface
+    class: data-source
+    priority: continuity
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "brief:§18, §29 Lap 7; dot:interface/yawn-temporal-header-v0.1", text: "replay reads recorded moments; historical replay uses persisted events" }
+    claim_b: { source: "bot:src/domain/yawn-event-replay.ts:15-29 (no caller outside tests); yawn_events in both migration trees; bot:src/app/api/yawn-signals/route.ts (GET, limit ≤ 200)", text: "hash-chained append-only verifier exists as a tested domain function with no wiring; the only history UI lists signals for one coordinate (bot:src/components/yawn-canonical/dave-correction-flywheel.tsx)" }
+    observed: "contract-vs-code: TH#replay-source-rule and TH#deterministic-ordering IMPLEMENTED at the function level; CORE#replay-never-widens-access ABSENT (no viewer parameter); TH#effective-vs-storage-time CONTRADICTED (no effectiveTime field anywhere; ordering uses createdAt/updatedAt)"
+    resolution: DEFERRED
+    resolution_basis: "the first slice's 'leave and return' is satisfied by reading signals back under the minted coordinate; replay wiring and effective time are Lap 7"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-026
+    title: Deletion is a hard delete with a protected set; no tombstone or cold-provenance path
+    class: contract-vs-code
+    priority: continuity
+    tag: DEFER
+    role: observation
+    claim_a: { source: "record:Yawns/LEXICON 'digital compost' (ACTIVE → LOW-SALIENCE → COLD PROVENANCE → REACTIVATED | DELETED); brief:§19", text: "no digital trash; erasure rights preserved with lineage" }
+    claim_b: { source: "bot:src/domain/homebase-yawn-deletion.ts; bot:supabase/migrations/20260527120000_delete_homebase_user_yawns.sql", text: "preview/confirm hard delete; 0 hits for tombstone" }
+    observed: "doctrine recorded, nothing ruled; deleted Yawns leave no replayable trace"
+    resolution: DEFERRED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-003
+    title: NEEDS_YOU N-023 and T-064 still ask Dave to press #109; it merged 2026-09-03
+    class: guidance-stale
+    priority: continuity
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "record:Yawns/continuity-loop/NEEDS_YOU.json N-023; record:Yawns/OPEN_TURNS T-064 (updated_at 2026-09-03T03:40Z, after the merge)", text: "Press: merge yawn.bot PR #109 … then #113 → #112 → …" }
+    claim_b: { source: "gh pr view 109, 113 -R yawn-ai/yawn.bot", text: "MERGED 2026-09-03T02:04:26Z and 02:04:46Z" }
+    observed: "no record before this run acknowledges the merge; the coordinate-mail worktree HEAD is an ancestor of main (empty diff)"
+    resolution: RESOLVED
+    resolution_basis: "recorded in the lap record and the receipt; only Dave closes needs-you items and turns, so the ledger is not edited"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-036
+    title: Provider binding: #110 (Fable 5.1 binding) is held; T-066 'provider as a record' has produced no contract or PR; the per-owner vault is OpenAI-only
+    class: authority
+    priority: continuity
+    tag: DEFER
+    role: observation
+    claim_a: { source: "record:N-023 ('#110 is HELD for your ruling: merge target, or superseded by W4's provider-as-record'); record:T-066", text: "bring your own intelligence — provider as a record, adapter registry by kind" }
+    claim_b: { source: "bot:src/domain/yawn-capture-model-catalog.ts; bot:supabase/migrations/20260811184949_yawn_provider_vault.sql (CHECK provider in ('openai')); bot:src/lib/yawn-import/provider-connection-store.ts", text: "catalog = gpt-5.6-sol-ultra | claude-fable-5, no paid default; Anthropic has only the process env key; areYawnCaptureModelCallsEnabled is default-off (literal 'true' required)" }
+    observed: "the first slice needs no model call (F-004); provider swap is Lap 8"
+    resolution: DEFERRED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  # ── presentation and reuse ─────────────────────────────────────────────────
+
+  - id: F-022
+    title: yawn.ai legacy mechanisms — most have an execution path from a live route; the voice UI is orphaned; the classifier subgraph has no path
+    class: data-source
+    priority: presentation-reuse
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "brief:§25 'Strong substrate'", text: "existing feed code contains voices, questions, challenges, moves, evidence, comments, public-answer processing, expression synthesis, and feedback reintegration" }
+    claim_b: { source: "ai reachability (S3): entry points = every app/**/route.ts and page.tsx, middleware.ts, nine vercel.json crons; no worker/queue consumers; LangGraph builders are per-module, not string-keyed registries", text: "T1 surface-voice-generator ← app/api/triggers/surface/route.ts (1 hop, no flag) · T2 voice-classifier-subgraph: barrel only, barrel has zero importers → no execution path found within the inspected entry points and configuration · T3 feedback-reintegration-graph ← app/api/feedback/ui and app/api/yawns/[id]/recohere · T4 control-level-detector via T1; voices/generator ← moves/[moveId]/react and lib/feed/compute-feed (placeholder template, no model call) · T5 answer-agent ← app/api/yawn/[yawnId]/answer · T6 expression ← synthesize-expression route and lib/yawn/coherence-write-through (≥ 8 routes) · T7 surface-phase-container + voice-card ← TriggerYawnContainer, which is exported and never imported (comments only; no dynamic import) → orphaned one hop up · T8 view-switcher/visibility/participants/visibility-access ← app/[slug]/page.tsx, app/yawns/[yawnId]/page.tsx, app/[slug]/feed/page.tsx · T9 dave-canonical-homebase ← app/[slug]/page.tsx behind slug==='dave' && owner principal && view!=='public'" }
+    observed: "no cron reaches any target; no env flag guards any of the six target-adjacent routes. Whether these routes are exercised by real traffic is UNKNOWN (no telemetry read)."
+    resolution: RESOLVED
+    resolution_basis: "the brief's substrate claim holds for the server paths in yawn.ai and fails for the voice UI; none of it is in yawn.bot"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-023
+    title: The brief's nine 'verified drift' claims about yawn.ai are confirmed at file:line (one partially different)
+    class: contract-vs-code
+    priority: presentation-reuse
+    tag: PRESERVE
+    role: observation
+    claim_a: { source: "brief:§25; gh:yawn-ai/yawn.ai issues #32, #33", text: "closed ViewMode union; public default visibility; forced voice pairs with bias/need/emotion/IFS; acknowledgment required; heuristic feedback classification with direct artifact writes; positive coherence fallback after failure; single coherent expression; hard-coded AgentType; stale AGENTS.md" }
+    claim_b: { source: "ai:components/yawn/view-switcher.tsx:8,96-98 · ai:components/shared/visibility-dropdown.tsx:11,32 · ai:lib/agents/feed/surface-voice-generator.ts:92-105,123,154 · ai:lib/voices/control-level-detector.ts:28-131 · ai:components/feed/surface-phase-container.tsx:79,198-205 · ai:components/feed/cards/voice-card.tsx:12,117 · ai:lib/agents/feed/feedback-reintegration-graph.ts:83-99,199-215,242-244 · ai:lib/agents/answer-agent/answer-processor.ts (catch → coherence_delta 0.01) · ai:lib/agents/expression/expression-graph.ts:4-6,33 · ai:components/yawn/agent-conversation-panel.tsx:9,39-89 · ai:AGENTS.md:41,46", text: "all CONFIRMED; C3 partially DIFFERENT: IFS/CBT/active-inference labels live in the optional type layer (lib/voices/types.ts:75-98 FrameNotes), the generator's own schema attaches protected_need, bias_tag, emotion" }
+    observed: "the positive fallback is specific to the processing-failure branch; the validation-failure branch returns 0"
+    resolution: RESOLVED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-024
+    title: Reusable contracts from yawn.ai for a Perspective Field, with the psychologizing already isolated
+    class: contract-vs-code
+    priority: presentation-reuse
+    tag: PRESERVE
+    role: proposal
+    claim_a: { source: "ai:lib/voices/types.ts:66-100,258-364; ai:lib/agents/answer-agent/types.ts:15-75; ai:lib/agents/expression/types.ts:14-45; ai:lib/agents/feed/feedback-reintegration-graph.ts:22,50,169-187", text: "VoiceAcknowledgment ('agree'|'disagree'|null) and SliderAcknowledgment (number|null) are neutral; VoiceMetadata / FrameNotes (IFS, CBT, active inference, threat prediction) are already optional; SurfaceVoice requires protected_need, bias_tag, archetype_name; PublicAnswer, AnswerImpact, QuestionAnswerPair, ExpressionSynthesisResult, FeedbackClassification ('support'|'objection'|'request'|'confusion'), ArtifactType are neutral" }
+    claim_b: { source: "dot:interface/perspective-field-and-feedback-reintegration-v0.1 (answer candidate 15 required fields; feedback kinds 11; reactions as separate signals)", text: "recognition, endorsement, preference, salience, evidence quality recorded separately; feedback kinds are proposals" }
+    observed: "cleanest seam: make protected_need / bias_tag / archetype_name optional, keep voice_text + risk_level + the acknowledgment types; rename the four-slot lacuna response (acknowledgement/reframe/micro_step/evidence_pointer) to non-therapeutic names; none of this is needed for Lap 1"
+    resolution: DEFERRED
+    resolution_basis: "Lap 3 input; recorded so the reuse is not rediscovered"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-025
+    title: Contract-vs-code on yawn.bot main — 168 contract items; 19 IMPLEMENTED, 52 PARTIAL, 88 ABSENT, 9 CONTRADICTED
+    class: contract-vs-code
+    priority: presentation-reuse
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "dot: seven contracts on PR #29", text: "per-contract counts (IMPL/PARTIAL/ABSENT/CONTRA): core 3/9/16/1 · aperture-registry 3/13/27/1 · perspective-field 1/7/11/3 · ranked-move 0/4/13/1 · temporal-header 4/6/4/2 · agentic-embodiment 4/7/10/1 · capacity-continuum 4/6/7/0" }
+    claim_b: { source: "bot (main) and bot117 (reported separately as 'in open PR')", text: "IMPLEMENTED anchors worth building on: yawn-projection-preferences.ts (schema parity with projection-preference.v1, protected roots throw), yawn-event-replay.ts (hash-chained append-only revisions), q-space.ts proofEventV1Schema and transition events, provisioning hardBoundaryCapabilities (publishing requires approval). CONTRADICTED: distinct-quantities (one score), default-owner-private, effective-vs-storage-time, reactions-as-separate-signals (vote/acceptance flat, untyped payload), feedback → work order skipping classification/consequence/proof, shared-count-no-identity-leak (PR #117 renders participant handles)" }
+    observed: "the ten gaps that block a first loop, in order: answer-candidate attribution fields; effectiveTime; default private; feedback-kernel skipping; reaction separation; no hold/correct/replay operators; no grant object; replay takes no viewer; no update-target distinction; no aperture registry (Questions First is a hard-coded page component)"
+    resolution: DEFERRED
+    resolution_basis: "IMPLEMENTATION_PLAN maps each gap to a lap; Lap 1 takes only 'default private', 'source event with attribution', and 'correction as an attributed event'"
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-027
+    title: Phaser mints a second coordinate namespace for an undefined domain; no test targets Phaser
+    class: naming
+    priority: presentation-reuse
+    tag: DEFER
+    role: observation
+    claim_a: { source: "record:N-006, N-007, T-057", text: "yawn.city and yawn.company are undefined domains until Dave says what they are" }
+    claim_b: { source: "bot:src/components/world/nestville-west-phaser.ts:288,325-333", text: "reads yawnId/coordinatePath into DOM data attributes; falls back to 'yawn.company/index/object/<id>'" }
+    observed: "0 Phaser test files; the game world is a possible aperture per the contracts and is not expanded in this run"
+    resolution: DEFERRED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-029
+    title: About 55 static route segments permanently shadow the username root; no reserved-handle list
+    class: naming
+    priority: presentation-reuse
+    tag: DEFER
+    role: observation
+    claim_a: { source: "record:T-065", text: "any username is a root yawn bot" }
+    claim_b: { source: "bot:src/app/ (static segments) vs bot:src/app/[companySlug]/[...coordinatePath]/page.tsx", text: "a user whose handle equals a static segment is unreachable" }
+    resolution: DEFERRED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  # ── terminology and guidance ───────────────────────────────────────────────
+
+  - id: F-002
+    title: yawn.ai AGENTS.md says .claude/ does not exist; it exists
+    class: guidance-stale
+    priority: terminology
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "ai:AGENTS.md:41,46 (v2.11.0, 2026-08-14)", text: "The .claude/ directory does not exist yet … PLANNED" }
+    claim_b: { source: "ai tree", text: ".claude/agents/{devops-supabase,e2e-testing,fulfillment-checker,human-communicator,orchestrator,yawn-processor}.agent.md and .claude/commands.json" }
+    observed: "yawn.bot has no .claude/; its AGENTS.md is 2026-08-26, CLAUDE.md 2026-08-18, README 2026-08-13, docs/project-brain.md current"
+    resolution: RESOLVED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-014
+    title: mutationAuthorized / externalEffectsAuthorized are mostly payload assertions; two genuine readers exist
+    class: authority
+    priority: terminology
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "brief:§ truth protocol; record:YAWNS/Policies/PUBLIC_ZERO_MUTATION_POLICY (yawn.bot)", text: "no effect follows from a record; fields declare the boundary" }
+    claim_b: { source: "bot:src/app/api/lacuna-matata/daily-image/route.ts:40 (rejects truthy); bot:src/app/api/nestheads/threads/route.ts:69 (server-computed decision) vs bot:src/app/api/nestheads/schemas.ts:123-124 and bot:src/app/api/yawn-agency/playback/route.ts:41 (z.literal(false) — the caller must declare false), bot:src/components/bot/new-yawn-imprint.tsx:309-312 (inert DOM attributes)", text: "enforcement is the session gate plus per-route checks, not the fields" }
+    observed: "the convention is honest as a declaration; it must not be cited as proof of enforcement"
+    resolution: RESOLVED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-016
+    title: The brief assigns the contradiction register to Fable (§29, §35) and to GPT (§36, §38)
+    class: naming
+    priority: terminology
+    tag: CORRECT
+    role: observation
+    claim_a: { source: "brief:§29, §35", text: "Fable delivers CONTRADICTION_REGISTER.md" }
+    claim_b: { source: "brief:§36, §38 step 3", text: "GPT produces the contradiction and risk register" }
+    observed: "resolved by amendment: Fable maintains the factual register (this file); the reviewer adds attributed assessments in gpt_status/gpt_note or as G-NNN entries"
+    resolution: RESOLVED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-017
+    title: GPT review is authorized in conversation; no agent record exists for GPT in the holarchy
+    class: authority
+    priority: terminology
+    tag: UNKNOWN
+    role: observation
+    claim_a: { source: "chat:claude-code:2026-09-05 (Dave)", text: "Dave has already requested an independent GPT review in this workflow" }
+    claim_b: { source: "record:AgentSpace/Agents/ (claude, codex, dave only)", text: "the recorded reviewer role belongs to Codex" }
+    observed: "review authorization (read-only critique) is distinct from runtime-role registration, production access, merge authority, and the Codex actor identity; the gap is recorded, not a blocker"
+    resolution: RULING_REQUIRED
+    resolution_basis: "Dave: is a durable agent entry required before GPT's attributed entries enter this register? Default if unruled: accepted as attributed review with no other authority."
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-018
+    title: The voice-system lineage exists only in the unmined conversation export
+    class: data-source
+    priority: terminology
+    tag: UNKNOWN
+    role: observation
+    claim_a: { source: "brief:§25", text: "the earlier voice system is the seed of the Perspective Field" }
+    claim_b: { source: "record:dave.yawn AGENTS.md (no recursive reads of the export); holarchy grep for the voice vocabulary: 0 records", text: "original intent is unrecorded" }
+    observed: "not a blocker: the brief, the contracts on PR #29, and Dave's amendments define the proposed design; original intent stays UNKNOWN"
+    resolution: UNKNOWN
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-019
+    title: LEXICON lacks Yawnbot, voice, perspective, lens, move; provisioning is an alias of access; the open 'missing words' question names a different set
+    class: naming
+    priority: terminology
+    tag: DEFER
+    role: observation
+    claim_a: { source: "dot: interface contracts (load-bearing terms)", text: "Yawnbot, voice, perspective, aperture preset, provisioning, move" }
+    claim_b: { source: "record:Yawns/LEXICON (81 entries, pending acceptance; L-lexicon-3 open)", text: "only 'aperture' present of the seven checked" }
+    observed: "only the terms the first slice touches need to be consistent: source event, question, hold, correction event, aperture, provisioning"
+    resolution: DEFERRED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-028
+    title: The required .yawn contract list is duplicated between the validator and its test
+    class: guidance-stale
+    priority: terminology
+    tag: DEFER
+    role: observation
+    claim_a: { source: "bot:src/yawn/validate-yawn-network.ts", text: "required contract identities" }
+    claim_b: { source: "bot:tests/unit/yawn-contract-network.test.ts", text: "the same ~50 titles hard-coded again" }
+    resolution: DEFERRED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  # ── governance and test environment ───────────────────────────────────────
+
+  - id: F-040
+    title: The deployed yawn.bot main sha was pushed directly to an unprotected main by the org account, bypassed the merge plane, and fails the product's own contract gate
+    class: authority
+    priority: authoritative-state
+    tag: CHALLENGE
+    role: observation
+    evidence_class: REPRODUCED
+    claim_a: { source: "bot:AGENTS.md 'the door' §4-5; record:yawn-conventions (every PR carries YAWN-Bot:, the plane sees only PRs); gh api repos/yawn-ai/yawn.bot/branches/main/protection", text: "changes reach main through a PR the merge plane can see; main is NOT branch-protected (404)" }
+    claim_b: { source: "gh api repos/yawn-ai/yawn.bot/commits/87e84c4 (author_login yawn-ai, one parent, no PR); check-runs: only 'Reconcile exact-head merge requests'; gh api repos/yawn-ai/.yawn/commits/467facb (same account, same minute)", text: "commit 'Backfill Yawn.bot intelligence-container architecture clarification' (2026-09-03T17:59Z) was a direct push; Vercel deployed it to production at 18:01Z; the .yawn main received 'Record Yawn.bot intelligence-container clarification' the same way (its CI ran and passed)" }
+    observed: "log:bot-yawncheck.log and bot-test-rerun.log — tests/unit/yawn-contract-network.test.ts fails on main with six errors, all for YAWNS/Sessions/YAWNBOT_INTELLIGENCE_CONTAINER_CLARIFICATION_2026_09_03.yawn: missing stable coordinate; missing Agent Orientation Elevation; missing the 'You are here' first-answer invariant; missing the visible-inference role invariant; must declare mutationAuthorized: false; must declare externalEffectsAuthorized: false. npm run yawn:check exit 1 on the deployed sha."
+    resolution: RULING_REQUIRED
+    resolution_basis: "Two decisions are Dave's: (1) whether the org account's direct pushes are sanctioned outside the plane, and whether main gets branch protection with yawn:check required; (2) whether the record is repaired (add the six invariants) or reverted. Lap 1 cannot claim a green baseline until one of them lands."
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-041
+    title: yawn.bot typecheck and four unit suites depend on a generated asset manifest that a fresh checkout lacks
+    class: build
+    priority: continuity
+    tag: CORRECT
+    role: observation
+    evidence_class: REPRODUCED
+    claim_a: { source: "bot:package.json ('build': 'npm run assets:nestville-west && next build'); bot:src/domain/nestville-west-runtime-assets.ts:1", text: "the manifest is generated, imported statically, and git-ignored" }
+    claim_b: { source: "log:bot-typecheck.log (1 error: cannot find ../generated/nestville-west-runtime-assets-manifest.json); log:bot-test.log (4 files fail to transform on the same import)", text: "on a fresh worktree with real npm ci, typecheck and vitest are red until npm run assets:nestville-west runs; afterwards typecheck is clean and the four suites pass (log:bot-typecheck2.log, bot-test-rerun.log)" }
+    observed: "the script also rewrites the tracked public/nestheads/runtime/nestville-west/v1/manifest.json (revert before committing). Not a product defect; a receipt hazard: any 'typecheck 0' claim must state the manifest step ran."
+    resolution: RESOLVED
+    lap_blocked: none
+    gpt_status: ""
+    gpt_note: ""
+
+  - id: F-042
+    title: The Playwright suite is red on the deployed main sha; 18 specs fail on an idle machine, several on the surfaces of the first slice
+    class: build
+    priority: first-interaction
+    tag: CHALLENGE
+    role: observation
+    evidence_class: REPRODUCED
+    claim_a: { source: "bot:AGENTS.md 'the door' §5 (browser proof for anything the preview renders); record:message 0307 (PR #117 proof: vitest 2141 passed, focused browser proofs)", text: "the product's own gate expects browser proof; recent proofs cite focused specs, not the whole suite" }
+    claim_b: { source: "log:bot-e2e.log (137 specs: 111 passed, 26 unexpected, contaminated by concurrent load); log:bot-e2e-rerun.log (--last-failed on an idle machine: 18 failed, 8 passed); receipts under automation-artifacts/e2e-receipts/2026-09-05T22-41-58-581Z and 2026-09-05T23-00-41-157Z, git head 87e84c4", text: "18 assertion-level failures (element not found, attribute, visibility, click timeouts) with no environment errors; failing files include interface-field (signed-out root, /dave public mission, owner New Yawn), yawn-coordinate-frame (/new questions, /dave through the frame), yawn-index-auth-state (public /new ranker, development owner), v1-happy-path, yawn-holarchy-field, yawn-moves" }
+    observed: "conditions: local dev server on 127.0.0.1:3121 with the config's NESTHEADS_DEV_DAVE_FALLBACK=true, no Supabase env, no secrets; whether the same specs fail in the repository's CI is UNKNOWN (no CI run reads were made for e2e). Not diagnosed in this lap."
+    resolution: DEFERRED
+    resolution_basis: "Lap 1's first task is to diagnose the /new, /dave, coordinate-frame, and auth-state failures on main before changing anything, because they are the slice's own surfaces; a slice built on a red suite cannot show a before/after."
+    lap_blocked: 1
+    gpt_status: ""
+    gpt_note: ""
+
+# End of Lap 0 findings. Test rows live in TEST_ENVIRONMENT_RECEIPT.md; every write of this lap is listed in RUN_RECEIPT.yawn.

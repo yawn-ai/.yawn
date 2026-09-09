@@ -1,0 +1,117 @@
+id: run-01-lap-0-receipt-2026-09-05
+title: Execution Run 01 · Lap 0 · run receipt
+kind: proof-receipt
+date: 2026-09-05
+recorded_by: agent:anthropic:claude-code
+model: claude-fable-5-1
+status: proposal — a receipt of what was done; nothing here ratifies a decision
+
+linked_yawn: docs/execution-plans/theory-carries-builder-run-01-v0.3.md (yawn-ai/.yawn PR #29, head 54ef77f)
+claim_tested: >
+  That the repositories, not the brief, establish where YAWN runs, where its authoritative state lives,
+  what already works, what is unsafe or contradictory, and the smallest next change that lets Dave
+  entrust one concern to it.
+bounded_move: >
+  Read-only cartography of three application repositories and the protocol repository, reproduction of
+  the access findings under the existing test harnesses with synthetic inputs, a base-versus-head build
+  of the dormant repository, a test-environment receipt per repository, and eight documents rendered
+  from one findings file. No product code changed. Lap 1 not started.
+expected_signal: >
+  Either the brief's premises hold (yawn.ai is the target, the header PR is broken by the header) or the
+  evidence corrects them.
+evidence_collected:
+  - FINDINGS.yaml (43 findings, pinned references, seven-state ladder where applicable, blank reviewer fields)
+  - ARCHITECTURE_MAP.md · SOURCE_OF_TRUTH_MAP.md · CONTRADICTION_REGISTER.md · DATA_AND_AUTHORITY_FLOW.md
+  - COMPATIBILITY_MIGRATION_PLAN.md · IMPLEMENTATION_PLAN.md · DECISION_PACKET.md · TEST_ENVIRONMENT_RECEIPT.md
+  - e2e receipts on the yawn.bot worktree (untracked, local): 2026-09-05T22-41-58-581Z, 2026-09-05T23-00-41-157Z
+result: >
+  The brief's premises were corrected. yawn-ai/yawn.bot at 87e84c4 is the deployed operational product;
+  yawn-ai/yawn.ai holds the audited mechanisms as lineage; yawn-ai/yawn is dormant and its main already
+  fails to build, so the header PR is unevaluable rather than broken. On yawn.bot a sentence at /new never
+  becomes an addressable Yawn and is never read back. The deployed main sha was pushed directly to an
+  unprotected main and fails the product's contract gate; 18 browser specs fail on it. Five decisions are
+  Dave's (DECISION_PACKET). Lap 1 is specified and blocked on them.
+cost: >
+  Seven bounded read-only subagent runs (about 260 tool calls total) and one planning agent; local
+  installs of three repositories; one 18-minute and one 7-minute Playwright run; no paid model call, no
+  mail, no database write, no deploy, no merge.
+boundary_observed: >
+  Writes performed (each an effect): (1) dave.yawn — Yawns/execution-runs/run-01-lap-0-2026-09-05.yawn
+  (source record), open turn T-074 appended to Yawns/OPEN_TURNS.yawn, one collaboration receipt (sequence
+  allocated from a fresh read at write time; see the private thread), one continuity tick with --write
+  (LOOP_STATE, NEEDS_YOU, RANK, runs.jsonl, the computed top-three line); (2) yawn-ai/.yawn — this folder
+  and one pointer line in docs/README.md on branch proposal/run-01-lap-0, pushed, opened as DRAFT pull
+  request https://github.com/yawn-ai/.yawn/pull/30 (commit a6a8c35); (3) local only, not committed — two temporary reproduction test files (deleted), a regenerated
+  asset manifest (reverted), Playwright receipts, blob-less clones under Desktop/.claude-worktrees, one
+  fresh yawn.bot worktree. Nothing else. The temporary tests never touched a database.
+map_update: >
+  The brief's §25 substrate claim is now split: true for yawn.ai's server paths, false for its voice UI,
+  absent from yawn.bot. The header failure is a baseline failure. N-023 is stale (#109 merged). D-022 is
+  the open ruling behind the runtime question; N-026 stays separate.
+next_lacuna: >
+  Dave's rulings D-1 (runtime), D-2 (unprotected main and the gate-breaking record), D-3 (read-only look at
+  applied migrations); the reviewer's SUPPORT / CHALLENGE / BLOCK on IMPLEMENTATION_PLAN Lap 1; diagnosis
+  of the 18 failing browser specs on main.
+
+replay:
+  before: >
+    Brief v0.3 on PR #29 directs implementation against yawn.ai file paths and calls the temporal-header
+    PR "failing"; dave.yawn has no record of Run 01; LOOP_STATE thread next sequence 308, last turn T-073.
+  after: >
+    Pinned references for four repositories; 43 findings; Lap 1 specified against yawn.bot with four named
+    prerequisites; T-074 open; one receipt appended; the draft PR open and unmerged.
+  changed:
+    - the implementation target moves from "yawn.ai as the brief says" to "yawn.bot, pending ruling"
+    - the temporal-header item moves from "failing PR" to "unevaluable on a dormant repo"
+    - the first slice moves from "reconcile voices" to "mint, preserve, correct, and return one sentence"
+  still_open:
+    - D-1 · D-2 · D-3 · D-4 · D-5 (DECISION_PACKET)
+    - which yawn.bot migration tree the live project applied
+    - whether the yawn.ai routes that reach the legacy mechanisms see any traffic
+    - the 18 failing browser specs on main
+    - N-026 and D-022 (semantic coordinates)
+
+run_receipt:
+  current_coordinate: dave/execution-runs/run-01/lap-0
+  current_inquiry: where does the product run, and what is the smallest change that lets Dave entrust one concern to it
+  sources_inspected:
+    - yawn-ai/yawn.bot@87e84c4 (main = production), PR #117 head d3239eb, PRs #109 #112 #113 #118 states
+    - yawn-ai/yawn.ai@b3333db (main), production deployment 81df681, issues #29–#33
+    - yawn-ai/yawn@21b973c (main) and PR #1 head 9468bf2, Vercel log dpl_N3WLMNhme2ESc3VujvWKTQJBrXR5
+    - yawn-ai/.yawn@467facb (main) and PR #29 head 54ef77f (brief, six interface contracts, core/projection-and-aperture draft-0.5)
+    - dave.yawn (private): root record, RESUME, AGENTS.md, LOOP_STATE, NEEDS_YOU, OPEN_DECISIONS, OPEN_TURNS, LEXICON, messages 0002/0003/0303–0307, capability-plane realms, new-yawn preferences; the conversation export was not read
+  invariants_preserved:
+    - no product behavior changed; no merge, deploy, publication, invitation, mail, paid model call, or database write
+    - main, open PR, and deployed states reported separately; a green protocol CI never cited as product proof
+    - sequence and turn ids allocated from fresh reads; only the Claude cursor advanced; nothing written on GPT's behalf
+    - private material (personal relationships, secrets, raw records) kept out of the public folder
+    - append-only: no existing record edited except the one line the tick itself rewrites by rule (D-035)
+  assumptions:
+    - yawn.bot is the runtime unless Dave rules otherwise (stated as a recommendation, not applied)
+    - the --ignore-scripts installs are a distinct environment; their results are labeled as such
+    - the e2e rerun on an idle machine is closer to the truth than the loaded run; neither was diagnosed
+  open_lacunae: see still_open
+  decisions: none taken by this actor beyond scope choices recorded in DECISION_PACKET "Not asked"
+  files_changed:
+    - yawn-ai/.yawn (branch proposal/run-01-lap-0): docs/execution-plans/run-01/lap-0/{README.md, FINDINGS.yaml, ARCHITECTURE_MAP.md, SOURCE_OF_TRUTH_MAP.md, CONTRADICTION_REGISTER.md, DATA_AND_AUTHORITY_FLOW.md, COMPATIBILITY_MIGRATION_PLAN.md, IMPLEMENTATION_PLAN.md, DECISION_PACKET.md, TEST_ENVIRONMENT_RECEIPT.md, RUN_RECEIPT.yawn}; docs/README.md (+1 line)
+    - dave.yawn (private, uncommitted like the rest of that root): Yawns/execution-runs/run-01-lap-0-2026-09-05.yawn; Yawns/OPEN_TURNS.yawn (+T-074, computed top line); AgentSpace/Collaboration/messages/<seq>-claude-run01-lap0-2026-09-05.json; AgentSpace/Collaboration/homebase-history.yawn (+1 block, claude cursor); Yawns/continuity-loop/{LOOP_STATE.json, NEEDS_YOU.json, RANK.json, runs.jsonl}
+  tests_run: TEST_ENVIRONMENT_RECEIPT.md (every command with its exit code)
+  tests_passed: .yawn validators and tests 9/9, hub links, contracts check; yawn.bot lint, typecheck (after manifest), build, 2091 unit tests, e2e 111+8; yawn.ai vitest 129/129; two reproduction files 7/7 (deleted)
+  tests_failed: yawn.bot contract-network 2 (F-040); yawn.bot e2e 18 on the idle rerun (F-042); yawn.ai typecheck stopped at 16 min (timeout, not a failure); yawn builds fail identically at base and head (F-001)
+  evidence_produced: this folder; the private record and receipt; two local e2e receipts
+  external_effects_attempted: push of branch proposal/run-01-lap-0 and draft pull request https://github.com/yawn-ai/.yawn/pull/30 on yawn-ai/.yawn (authorized in Dave's amendments of 2026-09-05); nothing else
+  next_three_ranked_turns:
+    - 1. Dave rules D-1, D-2, D-3 (runtime; unprotected main and the gate-breaking record; read-only migration look). Ranked first because Lap 1 cannot start or claim a baseline without them.
+    - 2. The reviewer marks IMPLEMENTATION_PLAN Lap 1 SUPPORT / CHALLENGE / BLOCK and adds gpt_status to FINDINGS. Ranked second because the plan is the object under review and the run order says the reviewer challenges before implementation.
+    - 3. Claude diagnoses the 18 failing browser specs on main (F-042), read-only, before any slice code. Ranked third because it depends on nothing above and the slice's before/after needs a green or explained suite.
+  what_would_change_the_ranking: a ruling that Lap 1 builds in yawn.ai (turn 3 changes repositories); a reviewer BLOCK on the slice (turn 3 is replaced by revision); evidence that the 18 specs also fail in the repository's CI (turn 3 rises above turn 2)
+  restart_instructions: >
+    Read README.md in this folder, then FINDINGS.yaml, then DECISION_PACKET.md. Do not read the
+    conversation that produced them. Pins are in FINDINGS.yaml; if any sha has moved, re-pin before
+    comparing. The private twin is dave.yawn/Yawns/execution-runs/run-01-lap-0-2026-09-05.yawn and the
+    thread receipt it names. Lap 1 starts only after D-1 to D-3 and the reviewer's verdict.
+
+source:
+  template: templates/proof-receipt.yawn
+  brief: docs/execution-plans/theory-carries-builder-run-01-v0.3.md@54ef77f
+  amendments: Dave, chat, 2026-09-05 (recorded privately)
