@@ -550,6 +550,7 @@
   .door .aperture-link { color: var(--acid); font-family: var(--mono); font-size: .76rem; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; }
   .door .aperture-link:hover { text-decoration: underline; text-underline-offset: 4px; }
   .door .button { cursor: pointer; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .error-page { display: grid; min-height: 100vh; place-items: center; }
   .error-object { width: min(100% - 40px, 900px); padding-block: 70px; }

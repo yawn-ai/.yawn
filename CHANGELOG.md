@@ -8,6 +8,9 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Sophia's number-sense aperture: an attributed observation, a lacuna door with a
+  local provisioning stub, a never-ending browser game that grows by structure
+  rather than memory, and self-scan rules that keep apertures unlisted and bounded
 - Questions-first mental-model template, the `dave/` node with number sense and
   prenumerical thinking models and pages, and a dependency-free self-scan that
   fails closed on record/page/node drift

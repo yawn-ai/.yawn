@@ -18,6 +18,7 @@ examples/ + fixtures/      explanatory and executable evidence
 docs/                      guides, status, projections, research boundary
 interface/ + q-space/      presentation contracts and projections
 dave/                      principal mental models: questions-first records and their page views
+sophia/                    provisioned apertures: a door, a game, and the record that binds them
 agents/                    runtime identities and bounded bot-role contracts
 rfcs/ + adr/               proposed and accepted change rationale
 migrations/                source-preserving structural receipts

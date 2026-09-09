@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>number sense game — sophia</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../../../../assets/site.css">
+    <style>
+      /* Kid layer: a View over the global tokens. Color never carries state alone (text or shape always does too). */
+      body.game { display: grid; min-height: 100vh; grid-template-rows: auto 1fr; overflow: hidden; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+      .top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 12px; border-bottom: 1px solid var(--line); background: rgba(0,0,0,.9); transition: transform .35s ease, opacity .35s ease; }
+      .top.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+      .top .coord { color: var(--muted); font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+      .top .coord b { color: var(--pink); }
+      .reveal { position: fixed; top: 0; left: 0; right: 0; z-index: 4; height: 22px; background: transparent; border: 0; }
+      .stage { display: grid; grid-template-rows: auto 1fr auto auto; gap: clamp(10px, 2vh, 22px); width: min(100% - 24px, 900px); margin-inline: auto; padding-block: clamp(8px, 2vh, 18px); }
+      .word { display: flex; align-items: baseline; justify-content: center; gap: 14px; min-height: 64px; border: 0; background: none; color: var(--text); font-family: var(--mono); font-size: clamp(2rem, 7vw, 3.6rem); font-weight: 700; letter-spacing: -.04em; cursor: pointer; }
+      .word em { color: var(--acid); font-style: normal; text-decoration: underline; text-underline-offset: .12em; }
+      .word small { color: var(--muted); font-size: .3em; letter-spacing: .1em; }
+      .ask { min-height: 2.4em; color: #ecece8; font-size: clamp(1.15rem, 3.4vw, 1.7rem); line-height: 1.3; text-align: center; }
+      .ask.noticed { color: var(--green); }
+      .board { position: relative; display: grid; min-height: clamp(180px, 34vh, 340px); place-items: center; border: 1px solid var(--line); background: rgba(8,8,7,.7); }
+      .dots { display: grid; gap: clamp(10px, 2.5vw, 22px); padding: clamp(14px, 3vw, 28px); justify-items: center; align-items: center; }
+      .dot { display: grid; width: clamp(40px, 8vw, 66px); height: clamp(40px, 8vw, 66px); place-items: center; border: 2px solid var(--cyan); border-radius: 50%; background: rgba(47,227,244,.16); color: #000; font-family: var(--mono); font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: background .15s ease, border-color .15s ease, opacity .4s ease; }
+      .dot.hidden-dot { visibility: hidden; }
+      .dot.counted { background: var(--acid); border-color: var(--acid); }
+      .dot.b { border-color: var(--pink); background: rgba(253,73,172,.18); }
+      .dot.shape-tri { clip-path: polygon(50% 4%, 96% 96%, 4% 96%); border-radius: 0; background: var(--cyan); border: 0; }
+      .dot.shape-sq { border-radius: 0; }
+      .dot.size-s { transform: scale(.55); }
+      .dot.size-m { transform: scale(.8); }
+      .dot.ghost { opacity: .18; }
+      .dot.look, .group.look, .card.look, .choice.look { outline: 3px dashed var(--pink); outline-offset: 4px; }
+      .groups { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; padding: 12px; }
+      .group { display: grid; min-height: 160px; place-items: center; border: 2px solid var(--line-hot); background: rgba(24,23,22,.5); cursor: pointer; }
+      .group:hover, .group:focus-visible { border-color: var(--acid); }
+      .group.yes { border-color: var(--acid); background: rgba(232,255,3,.12); }
+      .group .dots { padding: 10px; }
+      .frame { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 18px; }
+      .cell { width: clamp(44px, 9vw, 70px); height: clamp(44px, 9vw, 70px); border: 2px solid var(--line-hot); background: rgba(0,0,0,.4); cursor: pointer; }
+      .cell.on { background: var(--cyan); border-color: var(--cyan); }
+      .line { display: flex; flex-wrap: wrap; gap: 8px; padding: 18px; justify-content: center; }
+      .tick { display: grid; min-width: clamp(44px, 8vw, 64px); height: clamp(44px, 8vw, 64px); place-items: center; border: 2px solid var(--line-hot); color: var(--text); font-family: var(--mono); font-size: 1.4rem; font-weight: 700; }
+      .tick.gap { border-color: var(--pink); border-style: dashed; color: var(--pink); }
+      .card { display: grid; min-width: 120px; min-height: 120px; place-items: center; border: 2px solid var(--line-hot); color: var(--text); font-family: var(--mono); font-size: 3rem; font-weight: 700; cursor: pointer; }
+      .card small { font-size: .3em; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+      .card.yes { background: var(--acid); border-color: var(--acid); color: #000; }
+      .bag { border-color: var(--orange); background: rgba(255,115,0,.12); }
+      .rod { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; padding: 4px; border: 2px solid var(--cyan); cursor: pointer; }
+      .rod.counted { border-color: var(--acid); background: rgba(232,255,3,.15); }
+      .rod i { width: clamp(10px, 2vw, 16px); height: clamp(10px, 2vw, 16px); border-radius: 50%; background: var(--cyan); }
+      .rods { display: grid; gap: 8px; padding: 14px; justify-items: center; }
+      .cover { position: absolute; inset: 0; display: grid; place-items: center; border: 0; background: rgba(0,0,0,.92); color: var(--cyan); font-family: var(--mono); font-size: 1.6rem; font-weight: 700; letter-spacing: .1em; cursor: pointer; }
+      .cover::before { content: "◉"; display: block; margin-bottom: 8px; font-size: 2.4rem; text-align: center; }
+      .choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .choice { display: grid; min-height: clamp(76px, 12vh, 110px); place-items: center; border: 2px solid var(--line-hot); background: rgba(24,23,22,.7); color: var(--text); font-family: var(--mono); font-size: clamp(1.8rem, 6vw, 3rem); font-weight: 700; cursor: pointer; transition: border-color .12s ease, background .12s ease; }
+      .choice small { display: block; margin-top: 2px; color: var(--muted); font-size: .28em; letter-spacing: .1em; text-transform: uppercase; }
+      .choice small em { color: var(--acid); font-style: normal; text-decoration: underline; }
+      .choice:hover, .choice:focus-visible { border-color: var(--acid); }
+      .choice.yes { background: var(--acid); border-color: var(--acid); color: #000; }
+      .choice.yes small { color: #000; }
+      .choice.dim { opacity: .45; }
+      .choice[disabled] { cursor: default; }
+      .again { justify-self: center; min-height: 40px; padding: 0 18px; border: 1px solid var(--line-hot); background: none; color: var(--muted); font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+      .notice { width: min(100% - 24px, 720px); margin: 0 auto 8px; padding: 12px 14px; border-left: 2px solid var(--orange); color: var(--muted); font-size: .9rem; }
+      .parent { position: fixed; inset: auto 12px 12px; z-index: 6; display: grid; gap: 12px; max-width: 420px; margin-inline: auto; padding: 18px; border: 1px solid var(--line-hot); background: rgba(8,8,7,.97); font-family: var(--mono); font-size: .8rem; }
+      .parent label { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .parent input[type=range] { width: 55%; }
+      .parent .row { display: flex; flex-wrap: wrap; gap: 8px; }
+      .start { position: fixed; inset: 0; z-index: 7; display: grid; place-items: center; border: 0; background: rgba(0,0,0,.94); color: var(--acid); font-family: var(--mono); font-size: clamp(2rem, 8vw, 4rem); font-weight: 700; letter-spacing: -.04em; cursor: pointer; }
+      .start small { display: block; margin-top: 14px; color: var(--muted); font-size: .3em; letter-spacing: .1em; text-transform: uppercase; }
+      @media (max-width: 680px) { .choices { gap: 6px; } .card { min-width: 90px; min-height: 90px; font-size: 2.2rem; } }
+      @media (prefers-reduced-motion: reduce) { .top { transition: none; } }
+    </style>
+  </head>
+  <body class="game" data-aperture="aperture:sophia:number-sense" data-route="game" data-teaches="mental-model:dave:number-sense mental-model:dave:prenumerical-thinking">
+    <button class="start" id="start" type="button">tap to start<small>it shows. it waits. it asks.</small></button>
+    <button class="reveal" id="reveal" type="button" aria-label="Show the top bar"></button>
+    <header class="top" id="top">
+      <span class="wordmark" id="mark" role="button" tabindex="0" aria-label="Hold for parent settings"><span class="mark" aria-hidden="true"></span><span>.yawn</span></span>
+      <span class="coord">sophia / number sense / <b id="tier-name">look</b></span>
+      <button class="again" id="notice-toggle" type="button" aria-expanded="false" aria-controls="notice">notice</button>
+    </header>
+
+    <main class="stage" id="stage" aria-live="polite">
+      <h1 class="sr">number sense game</h1>
+      <p class="notice" id="notice" hidden>Sophia asked Daddy: "Can I work on your computer? I want to learn more. I just wanna spell stuff so I can read." Those are her words. Kindergarten will check whether she can feel how many, so Daddy made this for her to do by herself, on the real computer. It shows one thing. It waits. It asks. She taps what she sees, and it says what it noticed. Nobody keeps score, and nothing can be lost. Daddy's guess, not her words: she likes to do it herself and wants the letters to mean something. If that guess is wrong, she gets to say so. It never ends; when she is ready, it adds a little more.</p>
+      <button class="word" id="word" type="button" aria-label="Hear the word"><span id="word-text"></span><small>tap to hear</small></button>
+      <div class="board" id="board"></div>
+      <p class="ask" id="ask"></p>
+      <div class="choices" id="choices"></div>
+    </main>
+
+    <div class="parent" id="parent" hidden role="dialog" aria-label="Parent settings">
+      <label>voice <input type="checkbox" id="voice" checked></label>
+      <label>level <span id="level-readout"></span><input type="range" id="level" min="0" max="80" step="1"></label>
+      <p class="coord">first tap right: <span id="firsttap">0 / 0</span> · peeks <span id="peeks">0</span> · wobbles <span id="wobbles">0</span> this sitting</p>
+      <p class="coord">away from the screen, did she say more, same, still five, all gone? ______</p>
+      <div class="row">
+        <button class="again" id="reset" type="button">start over</button>
+        <button class="again" id="close" type="button">close</button>
+        <a class="again" id="exit" href="../">leave the game</a>
+        <a class="again" href="https://yawn.bot/lacuna">lacuna</a>
+      </div>
+      <p class="coord">record: sophia/number-sense/aperture.yawn</p>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+        var PROVISION = "yawn.aperture.sophia.number-sense";
+        var LEVEL_KEY = "yawn.game.sophia.number-sense.level";
+        var $ = function (id) { return document.getElementById(id); };
+
+        // Provision gate: without the aperture, the page is the door and nothing else.
+        var provisioned = false;
+        try { provisioned = localStorage.getItem(PROVISION) === "provisioned"; } catch (e) {}
+        if (!provisioned) {
+          document.body.className = "door";
+          document.body.innerHTML = '<a class="lacuna" href="https://yawn.bot/lacuna">lacuna</a><a class="aperture-link" href="../">log in →</a>';
+          return;
+        }
+
+        // ---------- words: the reading bridge. A word is the caption for something she just felt. ----------
+        var NUM_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+        var TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+        function numWord(n) { if (n <= 20) return NUM_WORDS[n]; if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? "-" + NUM_WORDS[n % 10] : ""); return n === 100 ? "one hundred" : String(n); }
+        // onset: leading consonant cluster, digraph aware; teen and decade words light the chunk that carries the math
+        function lit(word) {
+          var w = word.toUpperCase();
+          if (/TEEN$/.test(w)) return w.replace(/TEEN$/, "<em>TEEN</em>");
+          if (/TY$/.test(w)) return w.replace(/TY$/, "<em>TY</em>");
+          var m = w.match(/^(TH|SH|CH|ST|TW|TR|FR|FL|SP|SM|SW|[BCDFGHJKLMNPQRSTVWXZ])/);
+          return m ? "<em>" + m[1] + "</em>" + w.slice(m[1].length) : "<em>" + w[0] + "</em>" + w.slice(1);
+        }
+        function wordCard(word) { $("word-text").innerHTML = word.split(" ").map(lit).join(" "); $("word").dataset.say = word; }
+        var voiceOn = true;
+        function say(text, keep) {
+          if (!voiceOn || !("speechSynthesis" in window)) return;
+          try { if (!keep) window.speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(text); u.rate = 0.85; window.speechSynthesis.speak(u); } catch (e) {}
+        }
+
+        // ---------- level: one persisted number. Structure grows; memory does not. ----------
+        var level = 0, coldStart = true, streak = 0, firstRight = 0, firstTotal = 0, peeks = 0, wobbles = 0, seen = {};
+        try { level = Math.max(0, parseFloat(localStorage.getItem(LEVEL_KEY)) || 0); } catch (e) {}
+        function saveLevel() {
+          try { localStorage.setItem(LEVEL_KEY, String(level)); } catch (e) {}
+          $("level").value = Math.round(level); $("level-readout").textContent = Math.round(level);
+          $("firsttap").textContent = firstRight + " / " + firstTotal; $("peeks").textContent = peeks; $("wobbles").textContent = wobbles;
+        }
+        function rnd(n) { return Math.floor(Math.random() * n); }
+        function pick(a) { return a[rnd(a.length)]; }
+        function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = rnd(i + 1); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+        function maxN() { return level < 5 ? 3 : level < 10 ? 5 : level < 15 ? 8 : level < 34 ? 10 : 20; }
+        function scatter() { return level >= 15; }
+        // beyond the last row nothing new arrives; the range grows one decade every four levels, forever
+        function decadeTop() { return level < 43 ? 20 : Math.min(100, 10 * (2 + Math.floor((level - 43) / 4))); }
+
+        // The ladder. Order follows the trajectory design: prenumerical moves first, then the eight skills, then what sits on top.
+        var SKILLS = [
+          { key: "match", at: 0, word: "same", tier: "one for each" },
+          { key: "compare", at: 1, word: "more", tier: "more" },
+          { key: "pattern", at: 2, word: "next", tier: "pattern" },
+          { key: "sort", at: 3, word: "different", tier: "different" },
+          { key: "subitize", at: 4, word: "look", tier: "just look" },
+          { key: "one-to-one", at: 5, word: "count", tier: "touch and count" },
+          { key: "size-order", at: 7, word: "biggest", tier: "small to big" },
+          { key: "make", at: 8, word: "make", tier: "make it" },
+          { key: "frame", at: 10, word: "five", tier: "five frame" },
+          { key: "invariance", at: 13, word: "still", tier: "still the same" },
+          { key: "order", at: 16, word: "after", tier: "number path" },
+          { key: "fewer", at: 17, word: "fewer", tier: "fewer" },
+          { key: "part-whole", at: 18, word: "missing", tier: "parts" },
+          { key: "ten-frame", at: 21, word: "ten", tier: "ten frame" },
+          { key: "add", at: 23, word: "now", tier: "some came" },
+          { key: "subtract", at: 26, word: "all gone", tier: "some left" },
+          { key: "count-on", at: 31, word: "altogether", tier: "count on" },
+          { key: "teen", at: 34, word: "ten", tier: "ten and some" },
+          { key: "tens", at: 38, word: "ten", tier: "tens" },
+          { key: "tens-and-ones", at: 43, word: "ten", tier: "tens and ones" },
+          { key: "compare-numerals", at: 45, word: "more", tier: "which number" }
+        ];
+        var lastKey = "";
+        // Round draw: 60% her edge, 30% review of what she already has, 10% a probe of what comes next.
+        function draw() {
+          var open = SKILLS.filter(function (s) { return s.at <= level; });
+          var edge = open[open.length - 1], r = Math.random(), out;
+          if (r < 0.6 || open.length === 1) out = { skill: edge, mode: "edge" };
+          else if (r < 0.9) out = { skill: pick(open.slice(0, -1)), mode: "review" };
+          else { var nxt = SKILLS[open.length]; out = nxt ? { skill: nxt, mode: "probe" } : { skill: edge, mode: "edge" }; }
+          if (out.skill.key === lastKey && open.length > 1) out = { skill: pick(open), mode: out.mode === "edge" ? "edge" : "review" };
+          lastKey = out.skill.key;
+          return out;
+        }
+
+        // ---------- rendering helpers ----------
+        var board = $("board"), ask = $("ask"), choices = $("choices");
+        function dotsEl(n, opts) {
+          opts = opts || {};
+          var wrap = document.createElement("div"); wrap.className = "dots";
+          var loose = scatter() && !opts.regular;
+          var cols = opts.cols || (loose ? Math.min(5, Math.max(2, Math.ceil(Math.sqrt(n * 1.6)))) : n <= 3 ? n : n <= 6 ? 3 : 5);
+          wrap.style.gridTemplateColumns = "repeat(" + cols + ", auto)";
+          var slots = loose ? cols * Math.ceil(n / cols) + rnd(cols) : n;
+          var positions = [];
+          for (var i = 0; i < slots; i++) positions.push(i < n);
+          if (loose) shuffle(positions);
+          positions.forEach(function (on) { var d = document.createElement("span"); d.className = "dot" + (opts.cls ? " " + opts.cls : ""); if (!on) d.classList.add("hidden-dot"); wrap.appendChild(d); });
+          return wrap;
+        }
+        function liveDots(container) { return [].slice.call(container.querySelectorAll(".dot:not(.hidden-dot):not(.ghost)")); }
+        function label(v, chunk) { var w = numWord(v); return String(v) + "<small>" + (chunk ? lit(w) : w) + "</small>"; }
+        // Exactly three cards, ascending, so order is a stable-order object. The answer sits left, middle, or right with equal chance.
+        function cards(answer, unit, chunk) {
+          unit = unit || 1;
+          var pair = pick([[-2, -1], [-1, 1], [1, 2]]);
+          if (answer + pair[0] * unit < 0) pair = [1, 2];
+          var vals = [answer, answer + pair[0] * unit, answer + pair[1] * unit].sort(function (a, b) { return a - b; });
+          return vals.map(function (v) { return { label: label(v, chunk), said: numWord(v), value: v }; });
+        }
+        function choiceButtons(list, onPick) {
+          choices.innerHTML = "";
+          list.forEach(function (c) {
+            var b = document.createElement("button"); b.className = "choice"; b.type = "button";
+            b.innerHTML = c.label; b.dataset.value = String(c.value); b.dataset.said = c.said || "";
+            b.addEventListener("click", function () { onPick(c, b); });
+            choices.appendChild(b);
+          });
+        }
+        function numberCards(answer, unit, chunk) { choiceButtons(cards(answer, unit, chunk), function (c, b) { answerWith(c.said, c.value === answer, b); }); }
+        function region(el, said, correct) { el.tabIndex = 0; el.addEventListener("click", function () { answerWith(said, correct, el); }); return el; }
+        function frameEl(cells, on, clickable) {
+          var f = document.createElement("div"); f.className = "frame";
+          for (var i = 0; i < cells; i++) { var c = document.createElement("span"); c.className = "cell" + (i < on ? " on" : ""); if (clickable) c.addEventListener("click", function () { this.classList.toggle("on"); say(this.classList.contains("on") ? "in" : "out"); }); f.appendChild(c); }
+          return f;
+        }
+
+        // ---------- the round ----------
+        var round = null, tries = 0, busy = false, peeked = false, idleTimer, nudged = false;
+        function next() {
+          busy = false; tries = 0; peeked = false; nudged = false; ask.className = "ask";
+          var d = draw(); round = null;
+          $("tier-name").textContent = d.skill.tier;
+          wordCard(d.skill.word);
+          board.innerHTML = ""; choices.innerHTML = "";
+          var announce = d.mode === "edge" && !seen[d.skill.key] && level > 0;
+          seen[d.skill.key] = true;
+          round = GEN[d.skill.key](); round.mode = d.mode;
+          ask.textContent = round.ask;
+          say((announce ? "Let's try a bigger one. " : "") + round.ask);
+          if (round.cover) setTimeout(cover, 1200);
+          clearTimeout(idleTimer); idleTimer = setTimeout(function () { if (!nudged && !busy && round && round.showCount) { nudged = true; say("Tap the dots to count them."); } }, 20000);
+        }
+        // Just look: a constant exposure, then a LOOK invitation. A peek is allowed always and never a failure;
+        // it is recorded as "counted it", so that tap cannot raise the level (the record's falsifier).
+        function cover() {
+          if (!round || !round.cover || busy) return;
+          var c = document.createElement("button"); c.className = "cover"; c.type = "button"; c.textContent = "LOOK";
+          c.addEventListener("click", function () { peeks += 1; peeked = true; saveLevel(); c.remove(); say("Look again."); setTimeout(cover, 1200); });
+          board.appendChild(c);
+        }
+        function noticed(text) { ask.textContent = text; ask.className = "ask noticed"; say(text, true); }
+        // Staircase: only the first tap of a round is scored. Cold start climbs one per hit until her first not-yet;
+        // then two hits up, one not-yet down. Review misses are wobbles for the parent, never a demotion. Probes are free.
+        function stair(hit) {
+          if (round.mode === "probe") { if (hit) step(); return; }
+          if (round.mode === "review") { if (!hit) wobbles += 1; saveLevel(); return; }
+          if (hit) { if (peeked) return; if (coldStart) level += 1; else step(); }
+          else { coldStart = false; streak = 0; level = Math.max(0, level - 1); }
+          saveLevel();
+        }
+        function step() { streak += 1; if (streak >= 2) { streak = 0; level += 1; } saveLevel(); }
+        function answerWith(said, correct, el) {
+          if (busy) return;
+          var first = tries === 0;
+          if (first) { firstTotal += 1; if (correct) firstRight += 1; }
+          say("You said " + said + ".");
+          if (correct) {
+            busy = true; clearTimeout(idleTimer);
+            if (el) el.classList.add("yes");
+            [].forEach.call(choices.children, function (b) { b.disabled = true; });
+            if (first) stair(true);
+            noticed(first ? round.yes : round.answerWord + ". There it is.");
+            setTimeout(next, 2100);
+          } else {
+            if (first) stair(false);
+            tries += 1;
+            if (el) el.classList.add("dim");
+            noticed(round.look(said));
+            busy = true;
+            setTimeout(function () {
+              var ms = round.replay ? round.replay() : countTogether();
+              setTimeout(function () { busy = false; raiseTrue(); noticed("Tap " + round.answerWord + " with me."); }, ms);
+            }, 1200);
+          }
+        }
+        function raiseTrue() {
+          if (round.raise) return round.raise();
+          [].forEach.call(choices.children, function (b) { if (b.dataset.value === String(round.answer)) b.classList.add("look"); });
+        }
+        // Look together: light each dot in turn with its number. One touch, one word.
+        function countTogether() {
+          var ds = liveDots(board), i = 0;
+          ds.forEach(function (d) { d.style.visibility = ""; d.classList.remove("counted"); d.textContent = ""; });
+          (function tick() { if (i >= ds.length) return; ds[i].classList.add("counted"); ds[i].textContent = i + 1; say(NUM_WORDS[i + 1] || String(i + 1), true); i += 1; setTimeout(tick, 550); })();
+          return ds.length * 550 + 500;
+        }
+        // Dots always talk: tapping any dot counts it out loud (one-to-one), never wrong.
+        board.addEventListener("click", function (e) {
+          var d = e.target.closest && e.target.closest(".dot"); if (!d || !round || !round.showCount || d.classList.contains("ghost")) return;
+          if (d.classList.contains("counted")) { say("That one is already counted."); return; }
+          var ds = liveDots(d.closest(".dots") || board);
+          var n = ds.filter(function (x) { return x.classList.contains("counted"); }).length;
+          d.classList.add("counted"); d.textContent = n + 1; say(NUM_WORDS[n + 1] || String(n + 1));
+        });
+        function lookN(n) { return function (v) { return "You said " + v + ". Let's look together."; }; }
+        function base(n, ask, yes, extra) { var r = { ask: ask, yes: yes, look: lookN(n), answer: n, answerWord: numWord(n), showCount: true }; for (var k in extra) r[k] = extra[k]; return r; }
+
+        var GEN = {
+          "match": function () {
+            var plates = 2 + rnd(Math.min(maxN(), 6) - 1);
+            var wrong = plates + pick(level < 6 ? [-2, 2, -1, 1] : [-1, 1]); if (wrong < 1) wrong = plates + 1;
+            var top = document.createElement("div"); top.className = "dots"; top.style.gridTemplateColumns = "repeat(" + plates + ", auto)";
+            for (var i = 0; i < plates; i++) { var p = document.createElement("span"); p.className = "dot shape-sq"; top.appendChild(p); }
+            var g = document.createElement("div"); g.className = "groups"; var right;
+            shuffle([plates, wrong]).forEach(function (n) {
+              var t = document.createElement("div"); t.className = "group"; t.appendChild(dotsEl(n, { regular: true, cols: Math.min(n, 5), cls: "b" }));
+              region(t, "this tray", n === plates); if (n === plates) right = t; g.appendChild(t);
+            });
+            var wrap = document.createElement("div"); wrap.style.width = "100%"; wrap.appendChild(top); wrap.appendChild(g); board.appendChild(wrap);
+            return { ask: "One pink cup for every blue plate. Which tray?", yes: "One for each. Same.", look: function () { return "Let's match them. One cup, one plate."; }, answerWord: "the tray", showCount: true, raise: function () { right.classList.add("look"); } };
+          },
+          "compare": function () { return compareRound("more"); },
+          "fewer": function () { return compareRound("fewer"); },
+          "pattern": function () {
+            var unit = level < 9 ? ["a", "b"] : level < 27 ? pick([["a", "b"], ["a", "b", "b"], ["a", "a", "b"]]) : pick([["a", "b", "b"], ["a", "b", "c"]]);
+            var kinds = { a: "", b: "shape-sq b", c: "shape-tri" }, names = { a: "circle", b: "square", c: "triangle" };
+            var seq = unit.concat(unit).concat(unit.slice(0, 1 + rnd(unit.length - 1)));
+            var answer = unit[seq.length % unit.length];
+            var wrap = document.createElement("div"); wrap.className = "dots"; wrap.style.gridTemplateColumns = "repeat(" + (seq.length + 1) + ", auto)";
+            seq.forEach(function (k) { var d = document.createElement("span"); d.className = "dot " + kinds[k]; wrap.appendChild(d); });
+            var q = document.createElement("span"); q.className = "tick gap"; q.textContent = "?"; wrap.appendChild(q);
+            board.appendChild(wrap);
+            var opts = unit.indexOf("c") >= 0 ? ["a", "b", "c"] : ["a", "b"];
+            choiceButtons(shuffle(opts).map(function (k) { return { label: '<span class="dot ' + kinds[k] + '" style="display:inline-grid"></span>', said: names[k], value: k }; }), function (c, b) { answerWith(c.said, c.value === answer, b); });
+            return { ask: "What comes next?", yes: names[answer] + ". " + seq.map(function (k) { return names[k]; }).join(", ") + ", " + names[answer] + ".", look: function () { return "Let's say the pattern out loud."; }, answer: answer, answerWord: "the " + names[answer], replay: function () { var ds = [].slice.call(wrap.querySelectorAll(".dot")); ds.forEach(function (d, i) { setTimeout(function () { d.classList.add("counted"); say(names[seq[i]], true); }, i * 500); }); return ds.length * 500 + 400; } };
+          },
+          "sort": function () {
+            var n = 3 + rnd(2), odd = rnd(n), oddKind = pick(["shape-tri", "shape-sq b", "size-s"]);
+            var wrap = document.createElement("div"); wrap.className = "dots"; wrap.style.gridTemplateColumns = "repeat(" + n + ", auto)"; var oddEl;
+            for (var i = 0; i < n; i++) { var d = document.createElement("span"); d.className = "dot" + (i === odd ? " " + oddKind : ""); region(d, "that one", i === odd); if (i === odd) oddEl = d; wrap.appendChild(d); }
+            board.appendChild(wrap);
+            return { ask: "Which one is different? Tap it.", yes: "Different. The others are the same.", look: function () { return "Look at each one. Same, same, different?"; }, answerWord: "the different one", replay: function () { return 400; }, raise: function () { oddEl.classList.add("look"); } };
+          },
+          "subitize": function () {
+            var n = 1 + rnd(Math.min(maxN(), level < 12 ? 4 : 6));
+            board.appendChild(dotsEl(n, { regular: level < 20 }));
+            numberCards(n);
+            return base(n, level < 12 ? "How many? Don't count. Just look." : "How many?", NUM_WORDS[n] + ". You saw " + NUM_WORDS[n] + ".", { cover: level >= 4 });
+          },
+          "one-to-one": function () {
+            var n = 3 + rnd(Math.min(maxN(), 10) - 2);
+            board.appendChild(dotsEl(n, { regular: level < 15 }));
+            numberCards(n);
+            return base(n, "Tap each one and count. How many?", NUM_WORDS[n] + ". The last word says how many.");
+          },
+          "size-order": function () {
+            var want = pick(["biggest", "smallest"]); wordCard(want);
+            var wrap = document.createElement("div"); wrap.className = "dots"; wrap.style.gridTemplateColumns = "repeat(3, auto)"; var right;
+            shuffle(["size-s", "size-m", ""]).forEach(function (s) { var d = document.createElement("span"); d.className = "dot " + s; var ok = s === (want === "biggest" ? "" : "size-s"); region(d, "that one", ok); if (ok) right = d; wrap.appendChild(d); });
+            board.appendChild(wrap);
+            return { ask: "Tap the " + want + ".", yes: "The " + want + ". Small, medium, big.", look: function () { return "Look at all three. Which is the " + want + "?"; }, answerWord: "the " + want, replay: function () { return 400; }, raise: function () { right.classList.add("look"); } };
+          },
+          "make": function () {
+            var cellsN = level < 14 ? 6 : level < 21 ? 5 : 10, n = 1 + rnd(Math.min(cellsN, level < 21 ? 5 : 10));
+            var card = document.createElement("span"); card.className = "card"; card.innerHTML = n + "<small>" + numWord(n) + "</small>";
+            var f = frameEl(cellsN, 0, true); var wrap = document.createElement("div"); wrap.style.display = "grid"; wrap.style.justifyItems = "center"; wrap.appendChild(card); wrap.appendChild(f); board.appendChild(wrap);
+            function filled() { return f.querySelectorAll(".cell.on").length; }
+            card.addEventListener("click", function () { answerWith(numWord(filled()), filled() === n, card); });
+            return { ask: "Make " + NUM_WORDS[n] + ". Tap the boxes. Then tap the number.", yes: "You made " + NUM_WORDS[n] + ".", look: function (v) { return "You made " + v + ". Let's make " + NUM_WORDS[n] + " together."; }, answerWord: numWord(n), replay: function () { var cs = [].slice.call(f.children); cs.forEach(function (c, i) { setTimeout(function () { c.classList.toggle("on", i < n); if (i < n) say(NUM_WORDS[i + 1], true); }, i * 450); }); return cs.length * 450 + 300; }, raise: function () { card.classList.add("look"); } };
+          },
+          "frame": function () { return frameRound(5); },
+          "ten-frame": function () { return frameRound(10); },
+          "invariance": function () {
+            var n = 3 + rnd(Math.min(maxN(), 8) - 2), change = level >= 19 ? pick([0, 0, 0, 1, -1]) : 0, answer = n + change;
+            var wrap = dotsEl(n, { regular: true, cols: n }); board.appendChild(wrap);
+            var ds = [].slice.call(wrap.children);
+            ds.forEach(function (d, i) { setTimeout(function () { d.classList.add("counted"); d.textContent = i + 1; say(NUM_WORDS[i + 1], true); }, 350 * (i + 1)); });
+            setTimeout(function () {
+              ds.forEach(function (d) { d.classList.remove("counted"); d.textContent = ""; });
+              wrap.style.gap = "clamp(24px, 6vw, 60px)"; wrap.style.gridTemplateColumns = "repeat(" + Math.min(n, 3) + ", auto)";
+              if (change === -1) { ds[n - 1].classList.add("ghost"); say("one left"); }
+              if (change === 1) { var extra = document.createElement("span"); extra.className = "dot b"; wrap.appendChild(extra); say("one came"); }
+            }, 350 * n + 1200);
+            numberCards(answer);
+            return base(answer, "Watch them. Still " + NUM_WORDS[n] + "? How many now?", change === 0 ? "Still " + NUM_WORDS[n] + ". Moved around, still " + NUM_WORDS[n] + "." : change === 1 ? NUM_WORDS[answer] + " now. One came, so " + NUM_WORDS[answer] + "." : NUM_WORDS[answer] + " now. One left, so " + NUM_WORDS[answer] + ".");
+          },
+          "order": function () {
+            var lo = level >= 36 ? 10 : level >= 29 ? 2 + rnd(5) : 1, len = level >= 29 ? 5 : 10, top = Math.min(lo + len - 1, 20);
+            var kinds = level < 22 ? ["after"] : ["after", "before", "missing"], kind = pick(kinds);
+            var gap = kind === "after" ? 1 + rnd(top - lo) : kind === "before" ? rnd(top - lo) : rnd(top - lo + 1);
+            var answer = lo + gap, line = document.createElement("div"); line.className = "line";
+            for (var v = lo; v <= top; v++) { var t = document.createElement("span"); t.className = "tick" + (v === answer ? " gap" : ""); t.textContent = v === answer ? "?" : v; line.appendChild(t); }
+            board.appendChild(line); wordCard(kind === "missing" ? "missing" : kind);
+            numberCards(answer);
+            var askText = kind === "after" ? "What comes after " + numWord(answer - 1) + "?" : kind === "before" ? "What comes before " + numWord(answer + 1) + "?" : "Which one is missing?";
+            var yesText = kind === "before" ? numWord(answer) + ". Before " + numWord(answer + 1) + " comes " + numWord(answer) + "." : numWord(answer) + ". After " + numWord(answer - 1) + " comes " + numWord(answer) + ".";
+            return base(answer, askText, yesText, { showCount: false, replay: function () { var ts = [].slice.call(line.children); ts.forEach(function (t, i) { setTimeout(function () { if (lo + i <= answer) { t.style.color = "#e8ff03"; say(numWord(lo + i), true); } }, i * 450); }); return (answer - lo + 1) * 450 + 300; } });
+          },
+          "part-whole": function () {
+            var whole = level < 28 ? 5 : level < 32 ? pick([6, 7]) : 10, a = 1 + rnd(whole - 1), b = whole - a;
+            var wrap = document.createElement("div"); wrap.className = "dots"; wrap.style.gridTemplateColumns = "repeat(" + Math.min(whole, 5) + ", auto)";
+            for (var i = 0; i < whole; i++) { var d = document.createElement("span"); d.className = "dot" + (i >= a ? " b" : ""); if (i >= a) d.style.visibility = "hidden"; wrap.appendChild(d); }
+            board.appendChild(wrap);
+            numberCards(b);
+            return base(b, NUM_WORDS[whole] + " in all. " + NUM_WORDS[a] + " out. How many under the cup?", NUM_WORDS[a] + " and " + NUM_WORDS[b] + " make " + NUM_WORDS[whole] + ".", { showCount: false, replay: function () { var ds = [].slice.call(wrap.children); ds.forEach(function (d, i) { setTimeout(function () { d.style.visibility = ""; d.classList.add("counted"); d.textContent = i + 1; say(NUM_WORDS[i + 1], true); }, i * 500); }); return ds.length * 500 + 300; } });
+          },
+          "add": function () {
+            var top = level < 30 ? 5 : 10, a = 1 + rnd(top - 1), b = 1 + rnd(top - a), sum = a + b;
+            var wrap = dotsEl(a, { regular: true, cols: Math.min(a, 5) }); board.appendChild(wrap);
+            setTimeout(function () { for (var i = 0; i < b; i++) { var d = document.createElement("span"); d.className = "dot b"; wrap.appendChild(d); } wrap.style.gridTemplateColumns = "repeat(" + Math.min(sum, 5) + ", auto)"; say(NUM_WORDS[b] + " more came."); }, 1300);
+            numberCards(sum);
+            return base(sum, NUM_WORDS[a] + ". Watch. How many now?", NUM_WORDS[a] + " and " + NUM_WORDS[b] + " more is " + NUM_WORDS[sum] + ".");
+          },
+          "subtract": function () {
+            var top = level < 30 ? 5 : 10, whole = 2 + rnd(top - 1), take = 1 + rnd(whole - 1), left = whole - take;
+            var wrap = dotsEl(whole, { regular: true, cols: Math.min(whole, 5) }); board.appendChild(wrap);
+            setTimeout(function () { [].slice.call(wrap.children).slice(0, take).forEach(function (d) { d.classList.add("ghost"); }); say(left === 0 ? "All gone." : NUM_WORDS[take] + " left."); }, 1300);
+            numberCards(left);
+            return base(left, NUM_WORDS[whole] + ". Watch. How many now?", left === 0 ? "All gone. Zero." : NUM_WORDS[whole] + ", take away " + NUM_WORDS[take] + ", " + NUM_WORDS[left] + " left.");
+          },
+          "count-on": function () {
+            var bag = level < 35 ? 3 + rnd(4) : 10, k = level < 35 ? 1 + rnd(3) : 1 + rnd(9), total = bag + k;
+            var g = document.createElement("div"); g.className = "groups";
+            var x = document.createElement("div"); x.className = "group"; var card = document.createElement("span"); card.className = "card bag"; card.innerHTML = bag + "<small>in the bag</small>"; x.appendChild(card);
+            card.addEventListener("click", function () { say(numWord(bag)); });
+            var y = document.createElement("div"); y.className = "group"; var outside = dotsEl(k, { regular: true, cols: Math.min(k, 5), cls: "b" }); y.appendChild(outside);
+            g.appendChild(x); g.appendChild(y); board.appendChild(g);
+            outside.addEventListener("click", function (e) { var d = e.target.closest(".dot"); if (!d || d.classList.contains("counted")) return; var n = outside.querySelectorAll(".counted").length; d.classList.add("counted"); d.textContent = bag + n + 1; say(numWord(bag + n + 1)); e.stopPropagation(); });
+            numberCards(total);
+            var words = []; for (var i = 1; i <= k; i++) words.push(numWord(bag + i));
+            return base(total, numWord(bag) + " are in the bag. How many altogether?", numWord(bag) + "... " + words.join(", ") + ". " + numWord(total) + " altogether.", { showCount: false, replay: function () { var ds = [].slice.call(outside.children); say(numWord(bag), true); ds.forEach(function (d, i) { setTimeout(function () { d.classList.add("counted"); d.textContent = bag + i + 1; say(numWord(bag + i + 1), true); }, (i + 1) * 550); }); return (ds.length + 1) * 550 + 300; } });
+          },
+          "teen": function () {
+            var ones = level < 37 ? 1 + rnd(5) : 6 + rnd(4), n = 10 + ones;
+            var g = document.createElement("div"); g.className = "groups";
+            var x = document.createElement("div"); x.className = "group"; x.appendChild(frameEl(10, 10));
+            var y = document.createElement("div"); y.className = "group"; y.appendChild(dotsEl(ones, { regular: true, cols: Math.min(ones, 5), cls: "b" }));
+            g.appendChild(x); g.appendChild(y); board.appendChild(g);
+            numberCards(n, 1, true);
+            return base(n, "Ten and " + NUM_WORDS[ones] + ". How many?", "Ten and " + NUM_WORDS[ones] + ". " + NUM_WORDS[n] + ".", { showCount: false, replay: function () { say("ten", true); var ds = [].slice.call(y.querySelectorAll(".dot")); ds.forEach(function (d, i) { setTimeout(function () { d.classList.add("counted"); d.textContent = 11 + i; say(NUM_WORDS[11 + i], true); }, (i + 1) * 550); }); return (ds.length + 1) * 550 + 300; } });
+          },
+          "tens": function () { return rodsRound(level < 40 ? 1 + rnd(5) : 6 + rnd(5), 0); },
+          "tens-and-ones": function () { return rodsRound(2 + rnd(Math.max(1, decadeTop() / 10 - 2)), 1 + rnd(9)); },
+          "compare-numerals": function () {
+            var top = decadeTop(), a = 1 + rnd(top), b = 1 + rnd(top); if (a === b) b = a < top ? a + 1 : a - 1;
+            var g = document.createElement("div"); g.className = "groups"; var right;
+            [a, b].forEach(function (v) { var c = document.createElement("div"); c.className = "group"; var card = document.createElement("span"); card.className = "card"; card.innerHTML = v + "<small>" + numWord(v) + "</small>"; c.appendChild(card); region(c, numWord(v), v === Math.max(a, b)); if (v === Math.max(a, b)) right = c; g.appendChild(c); });
+            board.appendChild(g);
+            return { ask: "Which number is more? Tap it.", yes: numWord(Math.max(a, b)) + " is more than " + numWord(Math.min(a, b)) + ".", look: function () { return "Which comes later when you count? That one is more."; }, answerWord: numWord(Math.max(a, b)), replay: function () { return 400; }, raise: function () { right.classList.add("look"); } };
+          }
+        };
+
+        function compareRound(kind) {
+          var top = Math.min(maxN(), 10), a = 1 + rnd(top), b = 1 + rnd(top);
+          if (a === b && level < 16) b = a === top ? a - 1 : a + 1;
+          if (level >= 17 && level < 25 && a !== b && Math.abs(a - b) < 2) b = b > a ? Math.min(top, b + 1) : Math.max(1, b - 1);
+          var g = document.createElement("div"); g.className = "groups";
+          var l = document.createElement("div"); l.className = "group"; l.appendChild(dotsEl(a, { regular: level < 11, cols: level < 11 ? Math.min(a, 5) : 0 }));
+          var r = document.createElement("div"); r.className = "group"; r.appendChild(dotsEl(b, { regular: level < 11, cols: level < 11 ? Math.min(b, 5) : 0 }));
+          g.appendChild(l); g.appendChild(r); board.appendChild(g);
+          var answer = a === b ? "same" : (kind === "more" ? (a > b ? "left" : "right") : (a < b ? "left" : "right"));
+          region(l, "the left side", answer === "left"); region(r, "the right side", answer === "right");
+          if (level >= 16) choiceButtons([{ label: '<span style="font-size:.6em">same</span>', said: "same", value: "same" }], function (c, btn) { answerWith("same", answer === "same", btn); });
+          return { ask: "Which side has " + kind + "?" + (level >= 16 ? " Or same." : " Tap it."), yes: answer === "same" ? "Same. " + NUM_WORDS[a] + " and " + NUM_WORDS[b] + ". One for each." : kind + " here. " + NUM_WORDS[kind === "more" ? Math.max(a, b) : Math.min(a, b)] + " is " + kind + " than " + NUM_WORDS[kind === "more" ? Math.min(a, b) : Math.max(a, b)] + ".", look: function () { return "Let's count each side."; }, answer: answer, answerWord: answer === "same" ? "same" : "the side with " + kind, showCount: true, raise: function () { (answer === "left" ? l : answer === "right" ? r : choices.firstChild).classList.add("look"); } };
+        }
+        function frameRound(cellsN) {
+          var on = 1 + rnd(cellsN - 1), missing = cellsN - on, askMissing = level >= 12;
+          board.appendChild(frameEl(cellsN, on));
+          var answer = askMissing ? missing : on;
+          numberCards(answer);
+          wordCard(askMissing ? "missing" : cellsN === 10 ? "ten" : "five");
+          return base(answer, askMissing ? NUM_WORDS[cellsN] + " boxes. How many are missing?" : "How many are filled in?", askMissing ? NUM_WORDS[on] + " and " + NUM_WORDS[missing] + " make " + NUM_WORDS[cellsN] + "." : NUM_WORDS[on] + ". You saw " + NUM_WORDS[on] + ".", { showCount: false, replay: function () { var cs = [].slice.call(board.querySelectorAll(".cell")); var seq = askMissing ? cs.slice(on) : cs.slice(0, on); seq.forEach(function (c, i) { setTimeout(function () { c.style.background = "#e8ff03"; say(NUM_WORDS[i + 1], true); }, i * 450); }); return seq.length * 450 + 300; } });
+        }
+        function rodsRound(tens, ones) {
+          var n = tens * 10 + ones, wrap = document.createElement("div"); wrap.className = "rods";
+          for (var t = 0; t < tens; t++) { var rod = document.createElement("div"); rod.className = "rod"; for (var k = 0; k < 10; k++) rod.appendChild(document.createElement("i")); rod.addEventListener("click", function () { if (this.classList.contains("counted")) return; this.classList.add("counted"); say(numWord(10 * (wrap.querySelectorAll(".rod.counted").length))); }); wrap.appendChild(rod); }
+          if (ones) wrap.appendChild(dotsEl(ones, { regular: true, cols: Math.min(ones, 5), cls: "b" }));
+          board.appendChild(wrap);
+          numberCards(n, ones ? 1 : 10, true);
+          var tensWords = []; for (var i = 1; i <= tens; i++) tensWords.push(numWord(i * 10));
+          return base(n, ones ? "Rods of ten, and some more. How many?" : "Rods of ten. How many?", tensWords.join(", ") + (ones ? "... " + numWord(n) : "") + ". " + numWord(n) + ".", { showCount: !!ones, replay: function () { var rods = [].slice.call(wrap.querySelectorAll(".rod")); rods.forEach(function (r, i) { setTimeout(function () { r.classList.add("counted"); say(numWord((i + 1) * 10), true); }, i * 500); }); var ds = liveDots(wrap); ds.forEach(function (d, i) { setTimeout(function () { d.classList.add("counted"); d.textContent = tens * 10 + i + 1; say(numWord(tens * 10 + i + 1), true); }, rods.length * 500 + i * 500); }); return (rods.length + ds.length) * 500 + 300; } });
+        }
+
+        // ---------- chrome: auto-collapsing header, parent long-press, voice ----------
+        var top = $("top"), hideTimer;
+        function armHide() { clearTimeout(hideTimer); top.classList.remove("hidden"); hideTimer = setTimeout(function () { top.classList.add("hidden"); }, 4000); }
+        $("reveal").addEventListener("click", armHide);
+        armHide();
+        $("notice-toggle").addEventListener("click", function () { var n = $("notice"); n.hidden = !n.hidden; this.setAttribute("aria-expanded", String(!n.hidden)); armHide(); if (!n.hidden) say(n.textContent); });
+        $("word").addEventListener("click", function () { say(this.dataset.say || ""); });
+        var pressTimer;
+        function startPress() { pressTimer = setTimeout(function () { $("parent").hidden = false; }, 1500); }
+        function endPress() { clearTimeout(pressTimer); }
+        ["mousedown", "touchstart"].forEach(function (ev) { $("mark").addEventListener(ev, startPress, { passive: true }); });
+        ["mouseup", "mouseleave", "touchend", "touchcancel"].forEach(function (ev) { $("mark").addEventListener(ev, endPress); });
+        $("mark").addEventListener("keydown", function (e) { if (e.key === "Enter") $("parent").hidden = false; });
+        $("close").addEventListener("click", function () { $("parent").hidden = true; });
+        $("voice").addEventListener("change", function () { voiceOn = this.checked; });
+        $("level").addEventListener("input", function () { level = Number(this.value); coldStart = false; streak = 0; saveLevel(); next(); });
+        $("reset").addEventListener("click", function () { level = 0; coldStart = true; streak = 0; saveLevel(); $("parent").hidden = true; next(); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") $("parent").hidden = true; });
+
+        // First tap starts the game and primes speech (iOS needs a gesture before the first utterance).
+        $("start").addEventListener("click", function () {
+          this.remove();
+          try { if ("speechSynthesis" in window) window.speechSynthesis.speak(new SpeechSynthesisUtterance("")); } catch (e) {}
+          next();
+        });
+        saveLevel();
+      })();
+    </script>
+  </body>
+</html>

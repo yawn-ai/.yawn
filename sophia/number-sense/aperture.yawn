@@ -1,0 +1,288 @@
+id: aperture:sophia:number-sense
+title: "Sophia / number sense aperture"
+kind: aperture
+status: draft-0.1
+spec_version: aperture.v0.1
+updated: 2026-09-09
+
+principal_ref: principal:sophia
+guardian_ref: principal:dave
+account: "sophie@yawn.yawn.bot"
+home: "yawn.bot/sophia"
+node_ref: sophia/node.yawn
+
+purpose: >
+  The bounded view through which Sophia works on Daddy's computer to learn
+  number sense, in the way she asked to learn: by herself, on the real thing,
+  with the letters meaning something. Aperture changes visibility and
+  salience, not truth or permission (core/projection-and-aperture.yawn).
+
+asked_by:
+  who: principal:sophia
+  said: "Daddy, can I work on your computer? I want to learn more. I just wanna spell stuff so I can read."
+  epistemic_status: reported
+  observation_ref: observation:dave:sophia:2026-09-09:can-i-work-on-your-computer
+required_by:
+  who: "kindergarten assessment"
+  what: "counting and cardinality, comparison, compose and decompose within 10, add and subtract within 5"
+  epistemic_status: reported
+  epistemic_note: "Common Core K.CC, K.OA, K.NBT.1 as Dave understands the school's check; not yet confirmed with the teacher."
+
+teaches:
+  - mental-model:dave:number-sense
+  - mental-model:dave:prenumerical-thinking
+
+provisioned_to:
+  - principal:sophia
+  - principal:dave
+provisioning_rule: >
+  The only way to reach the game is to be provisioned to this aperture. The
+  routes are not linked from the hub, are noindex, and are not in the sitemap.
+  In the static projection on yawn-ai.github.io the log in button is a local
+  stub (a browser-only flag) that stands in for yawn.bot account provisioning;
+  nothing leaves the browser. Real provisioning is a yawn.bot account concern.
+provisioning_stub_status: assumed
+
+routes:
+  - route: what-is-number-sense
+    path: "yawn.bot/sophia/number-sense/what-is-number-sense"
+    surface: door
+    rule: >
+      One centered text link, "lacuna", to yawn.bot/lacuna. No expression, no
+      aperture, no header, no copy. One account boundary button under it: "log
+      in" when out, "log out" when in. When provisioned, one small link to the
+      game appears. Nothing else.
+  - route: what-is-number-sense/game
+    path: "yawn.bot/sophia/number-sense/what-is-number-sense/game"
+    surface: game
+    rule: >
+      The thing she can play to learn what she is being asked to learn. Opens
+      with a single "tap to start" (also primes speech). Shows one thing, waits,
+      asks. She says the number by tapping it. The game says what it noticed.
+      The only ways out are the lacuna link and "leave the game", both behind
+      the parent long-press.
+
+notice: >
+  Sophia asked Daddy: "Can I work on your computer? I want to learn more. I
+  just wanna spell stuff so I can read." Those are her words. Kindergarten will
+  check whether she can feel how many, so Daddy made this for her to do by
+  herself, on the real computer. It shows one thing. It waits. It asks. She
+  taps what she sees, and it says what it noticed. Nobody keeps score, and
+  nothing can be lost. Daddy's guess, not her words: she likes to do it herself
+  and wants the letters to mean something. If that guess is wrong, she gets to
+  say so. It never ends; when she is ready, it adds a little more.
+
+chrome:
+  header: "auto-collapses four seconds after the last touch; a thin strip at the top reveals it"
+  buttons_on_screen: "the word card (tap to hear), the board, at most three answer cards, LOOK on a covered card"
+  navigation: "none for the child; parent settings open on a 1.5 s long-press of the wordmark"
+  parent_settings: [voice on/off, level slider, start over, leave the game, lacuna, first-tap rate, peeks, wobbles, a blank line for carry-over]
+  tokens: "assets/site.css only; the kid layer is a View over the global tokens"
+  color_rule: "color never carries state alone; text, shape, or a spoken word always carries it too"
+  never_shown_or_said: [wrong, no, oops, try again, incorrect, a red X, a buzzer, a score, a streak, a timer, a win screen]
+  dependencies: none
+  storage: "one localStorage key for the level, one for the provisioning stub; nothing leaves the browser"
+
+game:
+  design_basis:
+    method: "three independent designs (learning-trajectory, one-generator elegance, five-year-old first) judged and grafted"
+    winner: learning-trajectory
+    epistemic_status: inferred
+    epistemic_note: "Proposed by AI from the two models and Dave's brief; Dave verifies; Sophia corrects by what she does."
+  principle: "complexity grows by adding structure, never memory. Every round is self-contained. Nothing carries over."
+  difficulty:
+    state: "one number, level, persisted"
+    draw: "60% her edge (newest unlocked skill), 30% review of older skills, 10% a probe of the next skill"
+    staircase: >
+      Only the first tap of a round is scored. Cold start climbs one per hit until
+      her first not-yet; after that two hits up, one not-yet down. Review misses
+      are wobbles for the parent, never a demotion. Probes are free. A peek on a
+      covered card counts as "counted it": that tap cannot raise the level.
+    tail: "beyond level 43 nothing new arrives; the range grows one decade every four levels, forever"
+  round_anatomy:
+    - show one thing
+    - wait
+    - ask, with the key word on the word card
+    - "she taps; the game says: You said N."
+    - "hit: the game says what it noticed and moves on"
+    - "not-yet: You said X. Let's look together. Then the modeled count, then the true card rises: Tap N with me. Her tap closes the round: N. There it is."
+  answer_cards: "exactly three, ascending, numeral over word; the answer is left, middle, or right with equal chance"
+  ladder:
+    - at: 0
+      key: match
+      tier: one for each
+      skill_keys: [match, one-to-one, compare, quantity-words]
+      mechanic: "plates on top, two trays of cups below; tap the tray with one cup for every plate"
+      grows_by: "plates 2 to 6; the wrong tray gets closer (off by 2, then off by 1)"
+    - at: 1
+      key: compare
+      tier: more
+      skill_keys: [compare, cardinality, one-to-one]
+      mechanic: "two sides; tap the side with more. Aligned rows first, unaligned later, a SAME card from level 16"
+      grows_by: "max 3 to 10; aligned to scattered; difference 2 then 1; same allowed"
+    - at: 2
+      key: pattern
+      tier: pattern
+      skill_keys: [pattern, sort, order, stable-order]
+      mechanic: "a strip repeats a unit; tap what comes next. Shapes differ by shape, never by color alone"
+      grows_by: "AB, then ABB or AAB, then ABC"
+    - at: 3
+      key: sort
+      tier: different
+      skill_keys: [sort]
+      mechanic: "three to four objects, one differs; tap the different one"
+      grows_by: "differs by shape, then by size"
+    - at: 4
+      key: subitize
+      tier: just look
+      skill_keys: [subitize, cardinality]
+      mechanic: "dots appear; after 1200 ms a LOOK cover slides over; how many? A peek re-shows for 1200 ms, always allowed"
+      grows_by: "max 3 to 6; dice to scatter; the exposure never shortens"
+    - at: 5
+      key: one-to-one
+      tier: touch and count
+      skill_keys: [one-to-one, stable-order, cardinality]
+      mechanic: "tap each dot; each tap stamps its numeral and says the next word; then how many?"
+      grows_by: "3 to 10; row to scatter"
+    - at: 7
+      key: size-order
+      tier: small to big
+      skill_keys: [order]
+      mechanic: "three sizes; tap the biggest or the smallest"
+      grows_by: "nothing; stays in review"
+    - at: 8
+      key: make
+      tier: make it
+      skill_keys: [cardinality, one-to-one, part-whole]
+      mechanic: "a number card and empty boxes; tap boxes to fill, tap the number when done"
+      grows_by: "row of six, then five frame, then ten frame; n 5 to 10"
+    - at: 10
+      key: frame
+      tier: five frame
+      skill_keys: [part-whole, cardinality, subitize]
+      mechanic: "five boxes, some filled; how many filled, later how many missing"
+      grows_by: "filled to missing"
+    - at: 13
+      key: invariance
+      tier: still the same
+      skill_keys: [invariance, conserve, cardinality]
+      mechanic: "the game counts n aloud, then they spread; how many now?"
+      grows_by: "3 to 8; from level 19 one may visibly come or leave, so always-the-same cannot be gamed"
+    - at: 16
+      key: order
+      tier: number path
+      skill_keys: [order, stable-order, count-on]
+      mechanic: "a path with one tile missing; what comes after, before, which is missing"
+      grows_by: "after only, then before and missing; path from 1, then from k, then 10 to 20"
+    - at: 17
+      key: fewer
+      tier: fewer
+      skill_keys: [compare, quantity-words]
+      mechanic: "two sides; tap the side with fewer"
+      grows_by: "as compare"
+    - at: 18
+      key: part-whole
+      tier: parts
+      skill_keys: [part-whole, cardinality, compose-10]
+      mechanic: "n in all, a out, the rest under the cup; how many under the cup?"
+      grows_by: "5, then 6 to 7, then 10"
+    - at: 21
+      key: ten-frame
+      tier: ten frame
+      skill_keys: [part-whole, cardinality, compose-10]
+      mechanic: "ten boxes; how many missing"
+      grows_by: "as frame"
+    - at: 23
+      key: add
+      tier: some came
+      skill_keys: [add-within-5, part-whole, cardinality]
+      mechanic: "a dots, then b more come in; how many now?"
+      grows_by: "totals within 5, then within 10"
+    - at: 26
+      key: subtract
+      tier: some left
+      skill_keys: [subtract-within-5, part-whole, quantity-words]
+      mechanic: "n dots, then b fade to ghosts that stay on screen; how many now? all gone when zero"
+      grows_by: "totals within 5, then within 10"
+    - at: 31
+      key: count-on
+      tier: count on
+      skill_keys: [count-on, cardinality, stable-order]
+      mechanic: "a bag shows a numeral; k dots outside; tapping an outside dot says the next word from the bag; how many altogether?"
+      grows_by: "bag 3 to 6 with 1 to 3 outside; then bag 10 with 1 to 9 outside"
+    - at: 34
+      key: teen
+      tier: ten and some
+      skill_keys: [teen-ten-and-ones, part-whole, cardinality]
+      mechanic: "a full ten frame beside some ones; ten and k, how many? Cards light the TEEN chunk"
+      grows_by: "ones 1 to 5, then 6 to 9"
+    - at: 38
+      key: tens
+      tier: tens
+      skill_keys: [count-by-tens, stable-order, cardinality]
+      mechanic: "rods of ten; tapping a rod says ten, twenty, thirty; how many? Cards light the TY chunk"
+      grows_by: "1 to 5 rods, then 6 to 10"
+    - at: 43
+      key: tens-and-ones
+      tier: tens and ones
+      skill_keys: [count-by-tens, part-whole, cardinality]
+      mechanic: "rods of ten and some ones; how many?"
+      grows_by: "one more decade every four levels, forever"
+    - at: 45
+      key: compare-numerals
+      tier: which number
+      skill_keys: [compare, order]
+      mechanic: "two numerals; tap the one that is more"
+      grows_by: "range follows the decade"
+  reading_bridge:
+    rule: "a word is the caption for something she just felt, never the puzzle"
+    word_card: "one key word per round, uppercase mono, onset underlined and lit; tap to hear"
+    onset: "leading consonant cluster by one regex (TH, SH, ST, TW aware); teen words light TEEN, decade words light TY"
+    answer_cards: "numeral over its word, so the numeral, the word, and the felt quantity line up on every hit"
+    voice: "browser speechSynthesis, optional; every spoken line is also on screen"
+  feedback_language:
+    every_first_tap: "You said N."
+    hit: ["N. You saw N.", "N. The last word says how many.", "More here. N is more than M.", "Same. One for each.", "Still N. Moved around, still N.", "A and B make N.", "All gone. Zero.", "Ten and K. TEEN."]
+    not_yet: ["You said X. Let's look together.", "Tap N with me.", "N. There it is."]
+    new_tier: "Let's try a bigger one."
+    idle_once: "Tap the dots to count them."
+
+embody:
+  - "Ask before assert. The picture comes before the word; the word comes before the answer."
+  - "She does; the game narrates. Tapping a dot always counts it. Nothing she taps is wrong."
+  - "A not-yet is an observation: it says what she said, looks together, and ends in a hit."
+  - "Going bigger is announced; going smaller is silent."
+
+assumptions:
+  - text: "She already knows the counting words to ten."
+    epistemic_status: assumed
+    epistemic_note: "Carried from mental-model:dave:number-sense. If not, levels 0 to 4 are where she sits."
+  - text: "Two up, one down keeps her near seventy percent first-tap success, which is her edge."
+    epistemic_status: inferred
+  - text: "The LOOK cover reads as an invitation, not a timer."
+    epistemic_status: assumed
+  - text: "Prenumerical moves can be interleaved with counting rather than gated before it."
+    epistemic_status: disputed
+    epistemic_note: "Piaget versus Gelman and Gallistel, kept visible in mental-model:dave:prenumerical-thinking."
+
+proof:
+  signals:
+    - "First-tap rate in the parent panel sits near seventy percent and the level climbs across sittings."
+    - "She reaches for the dots to count before she taps a card."
+    - "She says a number word at the same moment she taps its card."
+    - "Away from the screen she says more, same, still five, all gone about real piles."
+  falsifier: "If she peeks on nearly every covered card, she is counting, not subitizing; the level drifts down on its own and the tier gets smaller."
+  assessment_readiness: "Levels 0 to 34 cover K.CC and K.OA as listed above; level 34 and up cover K.NBT.1 and counting by tens."
+
+lacunae:
+  - "Does she know the counting words to ten today?"
+  - "Does a level drop ever feel like punishment to her, or is the review pool enough to keep it warm?"
+  - "Which speech voices exist on the device she uses, and is voice-off with Daddy narrating the better default?"
+  - "Does she show still-the-same before or after she counts reliably?"
+  - "Does it carry over: snacks, stairs, socks, with no screen?"
+  - "What does the teacher actually check, and when?"
+
+views:
+  - sophia/number-sense/what-is-number-sense/index.html
+  - sophia/number-sense/what-is-number-sense/game/index.html
+validator_ref: scripts/validate-mental-models.mjs
