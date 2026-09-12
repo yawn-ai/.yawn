@@ -94,7 +94,7 @@ question_queue:
     decision_ref: decisions/006-runtime-dependence.yawn
     leverage: 26.4
     split: genuinely-split
-    question: "On runtime dependence — whether an artifact can be read and checked with nothing installed, or requires a particular parser, runtime, host or vendor — the records assert both tool and vendor binding (9 judgments, 0 authored) and zero dependency portability (13 judgments, 11 authored). Which should be the stated rule, and where is the exception?"
+    question: "Must a .yawn stay readable and checkable with nothing installed, or is it enough that the record reads with nothing while checking it needs Node and ajv and running it needs Dave's Windows desktop — and is that three-way split written anywhere?"
   - rank: 7
     decision_ref: decisions/007-closed-until-opened.yawn
     leverage: 26
@@ -109,7 +109,7 @@ question_queue:
     decision_ref: decisions/009-audience-primacy.yawn
     leverage: 24
     split: genuinely-split
-    question: "On audience primacy — which reader the artifact is shaped for when the two conflict: a person reading it, or a parser consuming it — the records assert both machine addressability first (8 judgments, 0 authored) and human readability first (12 judgments, 7 authored). Which should be the stated rule, and where is the exception?"
+    question: "Is 'human-readable first, machine-addressable second' a rule about how a .yawn reads and what leads it, or also about where proof effort and currency go — and if only the first, does any record say so?"
   - rank: 10
     decision_ref: decisions/010-list-order-semantics.yawn
     leverage: 24

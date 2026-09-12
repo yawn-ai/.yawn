@@ -1,5 +1,5 @@
 id: decisions/022-claim-boundedness
-title: "bounded claim or unbounded claim"
+title: "A record that asserts says what it does not claim"
 kind: decision-frame
 record_shape: header
 status: draft
@@ -16,21 +16,24 @@ poles:
   a: bounded-claim
   b: unbounded-claim
 split: lone-exception
-draft_status: axis-only
+draft_status: full
 leverage: 12
 leverage_formula: "judgments_resolved(25) x split_weight(0.4) x authored_conflict_bonus(1.2)"
 
 question: >
-  On claim boundedness — whether a claim states the limits of what it covers, or
-  is asserted without any declared boundary — the records assert both bounded
-  claim (24 judgments, 16 authored) and unbounded claim (1 judgments, 0
-  authored). Which should be the stated rule, and where is the exception?
+  When a record asserts something that reaches outside the tree — a licence, a
+  determinism guarantee, a runtime identity, a research frame — must it also
+  carry a boundary naming what must not be assumed, and which kinds of record
+  are exempt?
 
 why_it_matters: >
-  Until this is answered, a record below Dave inherits whichever side it happens
-  to copy. Full draft pending: the proposal batch for this axis did not
-  complete; the axis, poles, counts and evidence are real, the options below are
-  the generic form.
+  A claim with no boundary is read by a bot as covering everything, which is how
+  a licence line becomes legal advice, a deterministic: true becomes a replay
+  guarantee across schema upgrades, and a fluent agent becomes a person; today
+  43 of 194 records carry a boundary and nothing says which ones must. Once
+  answered, every child Yawn and bot below Dave inherits the habit of writing
+  reach beside assertion, so a downstream reader can tell what a record claims
+  from what it merely mentions.
 
 state_snapshot:
   description: >
@@ -45,50 +48,81 @@ state_snapshot:
 lacuna:
   kind: unselected_choice
   description: >
-    The full proposal.
+    Which kinds Dave regards as claim-bearing; whether a template's placeholder
+    boundary: "" counts as present; and whether the twelve must-not-claim items in
+    RELATIONSHIP_FIRST section 17 should become the default boundary for every bot
+    record.
 
 options:
   - name: A
     description: >
-      bounded claim becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Every active record carries a top-level `boundary:` block naming what it
+      does not claim. A record without one is a draft. Guarantees that hold only
+      under conditions (determinism, replay) state the condition under boundary, not
+      as a neutral requirements list.
+    cost: "151 records lack boundary today; a shrink-only grandfather ledger on the status-vocabulary pattern is needed or the suite goes red for weeks; node indexes and templates would carry boundaries that say nothing."
+    risk: "Boundary blocks get pasted mechanically ('this record does not claim anything it does not say'), which is worse than absence because it looks like discipline."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "tests/claim-boundary.test.mjs on the status-vocabulary pattern: every .yawn record outside a by-file grandfather ledger carries a top-level boundary: with at least one non-empty item; the ledger has a ceiling and may only shrink."
     evidence_for:
       - "J0008"
-      - "J0138"
       - "J0150"
       - "J0154"
       - "J0167"
       - "J0168"
+      - "J0138"
   - name: B
     description: >
-      unbounded claim becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: A record may assert without a boundary. boundary: stays optional; a
+      reader infers the limits of a claim from its kind and context, and absence of
+      a boundary is not read as a claim of completeness.
+    cost: "Nothing to change; the ownership-and-license record stays as it is. The twelve enumerated must-not-claim items in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 17 become style, not rule."
+    risk: "An automation reads references/ownership-and-license.yawn public_use as covering the YAWN name, the domain and the private ledgers; the license audit's own boundary (report risk, never legal advice) has no counterpart on the record it audits."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "None can enforce this; the record would be a line in core/proof-and-boundary.yawn saying boundary: is optional."
     evidence_for:
       - "J0728"
   - name: C
     description: >
-      One pole is the rule; the other is a written carve-out for a named case.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: A record whose claims reach outside the tree must carry `boundary:` —
+      kinds reference, safety-protocol, automation, contract, receipt, record-log,
+      publication, and any record with a license, guarantee, deterministic, identity
+      or runtime_status key. carve-out, written down: folder nodes, templates and
+      pure indexes may omit boundary because they assert nothing; a record that
+      omits it under this exemption is one of those kinds by declaration. A
+      conditional guarantee (replay_requires) is restated under boundary as the
+      condition under which it fails.
+    cost: "Add boundary: to references/ownership-and-license.yawn (MIT covers repository content, not the YAWN name, the yawn.ai domain, private ledgers, or cited third-party works); move core/event-reduction.yawn replay_requires into a boundary line; audit the automation/ and records/ kinds for missing blocks with a shrink-only ledger."
+    risk: "The kind list is the enforcement surface, and kind: is itself an open vocabulary (see vocabulary-closure), so a record can dodge the rule by coining a kind."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "tests/claim-boundary.test.mjs: for a named kind list plus a named key list (license, deterministic, guarantee, runtime_status, identity), every matching record carries boundary: with a non-empty item, outside a shrink-only by-file ledger; a second assertion that core/event-reduction.yawn states its replay condition under boundary."
     evidence_for:
-      []
+      - "J0008"
+      - "J0150"
+      - "J0167"
+      - "J0168"
+      - "J0138"
+      - "J0728"
 
 recommendation:
-  option_ref: 
-  confidence: 0
+  option_ref: C
+  confidence: 0.8
   epistemic_status: inferred
   authority: none
   reasoning: >
-    Not drafted. Re-run the decision-proposal workflow for this axis; the
-    recommendation must be argued from the evidence, not defaulted.
+    Twenty-four judgments sit on the bounded side, sixteen of them authored,
+    including the two lists that define the protocol's posture (twelve failure
+    modes, twelve things the system must not claim). The single exception is
+    REVEALED: references/ownership-and-license.yawn asserts licence, holder and
+    public use with no boundary while its two siblings end in six-item boundary
+    lists. Nothing in the tree says legal claims are exempt, so the asymmetry is
+    an omission, not a preference. A is the honest reading of the authored side
+    but would put a boundary on 151 records, most of which assert nothing; C
+    scopes the rule to records whose claims reach outside the tree, which is where
+    every authored judgment on side A sits. The mechanism already exists for proof
+    (validate-proof-refs.mjs covers/not_covered); this extends the same honesty
+    from proof scope to claim scope. Not close on direction; only the scope is a
+    judgment call.
 
 target_condition:
   mode: decide
@@ -97,8 +131,9 @@ target_condition:
     - principal:dave
   ratification_status: proposed
   sufficient_when:
-    - "a full draft replaces this stub"
-    - "a test in tests/ rejects records outside the chosen rule and passes"
+    - "references/ownership-and-license.yawn carries a boundary: block naming what the MIT licence does not cover."
+    - "core/event-reduction.yawn states under boundary that determinism holds only while schema version, reducer version, source refs and authority status are unchanged."
+    - "A test in tests/ rejects a record of a named kind, or carrying a named claim key, that has no boundary:, and passes with a ledger that may only shrink."
 
 choice:
   selected_by: ""
@@ -110,7 +145,9 @@ proof:
     - target_condition
     - options
   falsifier: >
-    A surface treats this stub's generic options as a recommendation.
+    A new record under references/ or automation/ asserts a licence, a guarantee
+    or a runtime identity with no boundary: and npm test stays green; or a
+    boundary: block appears whose only item restates the title.
   status: proposed
 
 resolves:

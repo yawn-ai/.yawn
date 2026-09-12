@@ -1,5 +1,5 @@
 id: decisions/021-status-dimensionality
-title: "multi axis status or single scalar status"
+title: "Standing is several keys, each closed, lifecycle required"
 kind: decision-frame
 record_shape: header
 status: draft
@@ -16,21 +16,23 @@ poles:
   a: multi-axis-status
   b: single-scalar-status
 split: leaning
-draft_status: axis-only
+draft_status: full
 leverage: 13.4
 leverage_formula: "judgments_resolved(16) x split_weight(0.7) x authored_conflict_bonus(1.2)"
 
 question: >
-  On status dimensionality — whether a record's standing is reported as several
-  orthogonal axes, or collapsed into one value — the records assert both multi
-  axis status (12 judgments, 8 authored) and single scalar status (4 judgments,
-  0 authored). Which should be the stated rule, and where is the exception?
+  Is a record's standing one lifecycle word, or several independent axes — and
+  if several, must each be its own top-level key with its own closed list, or is
+  the eight-dimension statuses.v1 object the shape every record must carry?
 
 why_it_matters: >
-  Until this is answered, a record below Dave inherits whichever side it happens
-  to copy. Full draft pending: the proposal batch for this axis did not
-  complete; the axis, poles, counts and evidence are real, the options below are
-  the generic form.
+  A bot that asks 'what is active?' or 'what is proved?' cannot get an answer
+  from the tree today, because one status: word carried four meanings across 176
+  files, the eight-dimension contract has zero users, and the six-member labels
+  list in core/proof-and-boundary.yawn mixes modal, motivational and epistemic
+  terms in a single line. Once answered, every record and bot below Dave reads
+  standing from a fixed set of keys, so a child Yawn's ratified, observed and
+  moving can never be confused for one another.
 
 state_snapshot:
   description: >
@@ -46,30 +48,41 @@ state_snapshot:
 lacuna:
   kind: unselected_choice
   description: >
-    The full proposal.
+    Whether Dave wants authority_status or ratification_status as the canonical
+    key name (both are in use); and whether presentation_status and
+    axis_resolution_status belong on records at all or only on Views and receipts.
 
 options:
   - name: A
     description: >
-      multi axis status becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Every canonical record carries all eight status dimensions as separate
+      top-level snake_case keys — status (lifecycle), epistemic_status,
+      authority_status, loop_status, modal_role, motivational_role,
+      axis_resolution_status, presentation_status — each drawn from statuses.v1's
+      enum. The labels list in core/proof-and-boundary.yawn is split into the three
+      dimensions it mixes (known, proved, unproven are epistemic; imagined is modal;
+      desired is motivational).
+    cost: "176 records gain up to seven keys; statuses.v1's epistemicStatus enum (eight values) must first be reconciled with the seven-value canonical the test enforces (GROUND_TRUTH fact 1); most records have no honest value for presentation_status or axis_resolution_status."
+    risk: "Seven mandatory keys get filled with neutral or unknown to satisfy a test, which is the same uncomputable noise as free text, now typed."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "Extend tests/status-vocabulary.test.mjs to require all eight keys on records outside a shrink-only ledger and validate each against statuses.v1 after its epistemicStatus enum is aligned to the seven canonical values; a test that core/proof-and-boundary.yawn labels no longer mixes dimensions."
     evidence_for:
-      - "J0122"
-      - "J0190"
       - "J0304"
       - "J0452"
       - "J0519"
       - "J0671"
+      - "J0122"
+      - "J0190"
   - name: B
     description: >
-      single scalar status becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
-    reversibility: true
-    proof_needed: "not yet drafted"
+      rule: status: is the only standing field a record carries. Other dimensions
+      are expressed in prose or dropped; statuses.v1.schema.json is archived;
+      status_rule in schemas/node.yawn and separate_status_dimensions in
+      core/proof-and-boundary.yawn are struck.
+    cost: "Strikes three authored records (schemas/node.yawn status_rule, interface/meaning.yawn status_dimensions, question-packets/orientation-nine.yawn separate_metrics); the routing contract's three confidences and the objective-holon ratification flow lose their vocabulary."
+    risk: "epistemic_status: proposed (J0768) becomes normal again — authority words drift back into the epistemic field because there is nowhere else to put them."
+    reversibility: false
+    proof_needed: "The existing tests/status-vocabulary.test.mjs as-is; archive schemas/statuses.v1.schema.json; delete the epistemic_status test."
     evidence_for:
       - "J0129"
       - "J0263"
@@ -77,22 +90,47 @@ options:
       - "J0768"
   - name: C
     description: >
-      One pole is the rule; the other is a written carve-out for a named case.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Standing is multi-axis, each dimension its own top-level key with its
+      own closed vocabulary, and only lifecycle (status:) is required on every
+      record. The other seven are optional; when present they are validated against
+      statuses.v1, whose `required` is relaxed to lifecycleStatus alone and whose
+      epistemicStatus enum is aligned to the seven canonical values. Consumers must
+      not infer one dimension from another. The labels list in
+      core/proof-and-boundary.yawn is rewritten as three short lists under
+      separate_status_dimensions.
+    cost: "Edit statuses.v1.schema.json (required, epistemicStatus); extend one test with per-key enums for authority_status/ratification_status, loop_status, modal_role, motivational_role; rewrite one list in core/proof-and-boundary.yawn; migrate readme.yawn's two epistemic_status: proposed tags to authority_status: proposed."
+    risk: "Optional keys stay absent almost everywhere, so multi-axis standing exists in the vocabulary but not in the corpus, and a bot still cannot ask 'what is ratified?' across records that never say."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "Extend tests/status-vocabulary.test.mjs: wherever authority_status, ratification_status, loop_status, modal_role or motivational_role appears, its value is in statuses.v1's enum; statuses.v1 epistemicStatus equals the CANONICAL set in tests/epistemic-status-vocabulary.test.mjs; core/proof-and-boundary.yawn labels are a subset of the union of the dimension enums and each maps to exactly one dimension."
     evidence_for:
-      []
+      - "J0304"
+      - "J0452"
+      - "J0519"
+      - "J0122"
+      - "J0768"
+      - "J0263"
 
 recommendation:
-  option_ref: 
-  confidence: 0
+  option_ref: C
+  confidence: 0.8
   epistemic_status: inferred
   authority: none
   reasoning: >
-    Not drafted. Re-run the decision-proposal workflow for this axis; the
-    recommendation must be argued from the evidence, not defaulted.
+    The passing suite already implements C's spine and says so in its own error
+    message: tests/status-vocabulary.test.mjs closes top-level status: to the five
+    lifecycle values and tells the writer to put version in spec_version,
+    authority in ratification_status, loop position in loop_status — separate
+    keys, one scalar each. tests/epistemic-status-vocabulary.test.mjs closes the
+    second key. Side A is authored (eight of twelve) and states independence as a
+    rule three times (schemas/node.yawn, interface/meaning.yawn,
+    orientation-nine); side B is entirely REVEALED and mostly drift, though J0768
+    (proposed used as an epistemic value in the root orientation card) shows the
+    confusion is real, not cosmetic. A's eight mandatory keys is what statuses.v1
+    literally requires and what zero records satisfy — GROUND_TRUTH fact 2 — so A
+    would be a rule the corpus has already voted against by never using it. What
+    remains after C is the three-vocabulary split in fact 1, which C's proof
+    reconciles. Not close on direction; the only judgment call is
+    required-versus-optional for the seven non-lifecycle keys.
 
 target_condition:
   mode: decide
@@ -101,8 +139,10 @@ target_condition:
     - principal:dave
   ratification_status: proposed
   sufficient_when:
-    - "a full draft replaces this stub"
-    - "a test in tests/ rejects records outside the chosen rule and passes"
+    - "schemas/statuses.v1.schema.json requires only lifecycleStatus and its epistemicStatus enum equals the seven-value canonical set; tests/epistemic-status-vocabulary.test.mjs asserts the equality."
+    - "core/proof-and-boundary.yawn labels: is split into three lists under separate_status_dimensions and no list mixes dimensions."
+    - "readme.yawn's orientation card carries no epistemic_status: proposed; authority words live under authority_status or ratification_status."
+    - "A test in tests/ rejects an out-of-enum value in any of the eight dimension keys wherever it appears, and passes."
 
 choice:
   selected_by: ""
@@ -114,7 +154,9 @@ proof:
     - target_condition
     - options
   falsifier: >
-    A surface treats this stub's generic options as a recommendation.
+    A record carries authority_status: proposed under epistemic_status, or a loop
+    word under status:, and npm test stays green; or statuses.v1 keeps requiring
+    all eight dimensions while no record satisfies it.
   status: proposed
 
 resolves:

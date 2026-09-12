@@ -1,5 +1,5 @@
 id: decisions/009-audience-primacy
-title: "machine addressability first or human readability first"
+title: "Human-readable first is about the record, proof goes where effects are"
 kind: decision-frame
 record_shape: header
 status: draft
@@ -16,22 +16,24 @@ poles:
   a: machine-addressability-first
   b: human-readability-first
 split: genuinely-split
-draft_status: axis-only
+draft_status: full
 leverage: 24
 leverage_formula: "judgments_resolved(20) x split_weight(1) x authored_conflict_bonus(1.2)"
 
 question: >
-  On audience primacy — which reader the artifact is shaped for when the two
-  conflict: a person reading it, or a parser consuming it — the records assert
-  both machine addressability first (8 judgments, 0 authored) and human
-  readability first (12 judgments, 7 authored). Which should be the stated rule,
-  and where is the exception?
+  Is 'human-readable first, machine-addressable second' a rule about how a .yawn
+  reads and what leads it, or also about where proof effort and currency go —
+  and if only the first, does any record say so?
 
 why_it_matters: >
-  Until this is answered, a record below Dave inherits whichever side it happens
-  to copy. Full draft pending: the proposal batch for this axis did not
-  complete; the axis, poles, counts and evidence are real, the options below are
-  the generic form.
+  The first principle in core/design-principles.yawn says human-readable first,
+  yet the root file opens with a runtime identity block before its summary, the
+  machine selector is 218 lines against 33 for the human entry path, the
+  contracts reached v1 while the unified human document is not-yet-specified,
+  and the one human onboarding record is two months stale. Once answered, every
+  child Yawn below Dave knows whether its human summary must lead and stay
+  current with its contracts, or whether the contracts may run ahead so long as
+  the record still reads.
 
 state_snapshot:
   description: >
@@ -47,16 +49,22 @@ state_snapshot:
 lacuna:
   kind: unselected_choice
   description: >
-    The full proposal.
+    Whether Dave meant the first principle as a rule about text or about effort;
+    and which human record (readme.yawn, start/, or the unspecified unified human
+    document) is the one the contracts must point at.
 
 options:
   - name: A
     description: >
-      machine addressability first becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
-    reversibility: true
-    proof_needed: "not yet drafted"
+      rule: Machine-addressable first. core/design-principles.yawn reorders its
+      first two principles; the root file may lead with official_runtime and
+      core_loop refs; the human onboarding path is a derived view refreshed when
+      contracts change; normative lists are encoded as YAML an agent can read, with
+      prose as commentary.
+    cost: "Strikes an authored first principle repeated in four records (design-principles, yawn-spine-dogfood, orientation-shape, value-proposition); the yawn.ai public voice rule and start/ folder lose their basis."
+    risk: "The protocol becomes another schema project; the leading question in references/july-01-lock.yawn (how a human moves from implicit pattern to explicit agency) is no longer what the tree is for."
+    reversibility: false
+    proof_needed: "None new; strike the principle and let the existing schema tests stand as the only proof."
     evidence_for:
       - "J0186"
       - "J0238"
@@ -66,36 +74,63 @@ options:
       - "J1036"
   - name: B
     description: >
-      human readability first becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Human-readable first for both text and effort. The root file leads with
+      summary; every machine contract that reaches v1 has a human record of equal
+      currency updated in the same change; core/human-use.yawn may not be older than
+      the contracts it explains; boundaries and failure tests are encoded in the
+      same form as invariants so a person and an agent read the same list.
+    cost: "Reorder yawn.yawn; rewrite or refresh core/human-use.yawn and the unified human document before any further contract advances; encode section 17 and 18 of RELATIONSHIP_FIRST_AGENT_ARENA as YAML; a currency check that ties every schema change to a prose change."
+    risk: "Currency-by-timestamp is gamed by touching updated: without changing content; human records get edited for a test rather than for a reader."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "tests/human-currency.test.mjs: yawn.yawn's first top-level key after id/title/kind/status/updated is summary:; for every schemas/*.schema.json at v1 named by a core/ or interface/ record, that record's updated: is not older than the schema's last git change; core/human-use.yawn updated: is not older than core/inquiry-selection.yawn."
     evidence_for:
       - "J0201"
-      - "J0330"
       - "J0377"
       - "J0554"
       - "J0559"
       - "J0690"
+      - "J0330"
   - name: C
     description: >
-      One pole is the rule; the other is a written carve-out for a named case.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Human-readable first governs the record: a human sentence leads every
+      .yawn (summary before runtime identity), normative lists read the same way for
+      a person and an agent, and a machine block never replaces the human one.
+      carve-out, written down: proof effort goes where effects are — the machine
+      layer may run ahead in validators, schemas and tests, stated as 'proof-bound
+      when promoted' (examples/yawn-spine-dogfood.yawn). One obligation ties the
+      layers: a contract that reaches v1 names the human record that explains it,
+      and that record is not older than the contract.
+    cost: "Move summary above official_runtime in yawn.yawn; add a `explained_by:` pointer to each v1 schema's index entry in schemas/node.yawn; refresh core/human-use.yawn once; write the carve-out into core/design-principles.yawn as a third line."
+    risk: "The carve-out becomes the rule in practice and the human layer stays the one that is always 'next'; the explained_by pointer resolves to a stale record."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "Extend scripts/validate-hub-links.mjs: every v1 schema listed in schemas/node.yawn holds carries explained_by resolving to a core/ or interface/ record whose updated: is not older than the schema's last git change; a test that yawn.yawn leads with summary; keep the existing contract tests as the machine side's proof."
     evidence_for:
-      []
+      - "J0201"
+      - "J0377"
+      - "J0554"
+      - "J0238"
+      - "J0769"
+      - "J1036"
 
 recommendation:
-  option_ref: 
-  confidence: 0
+  option_ref: C
+  confidence: 0.65
   epistemic_status: inferred
   authority: none
   reasoning: >
-    Not drafted. Re-run the decision-proposal workflow for this axis; the
-    recommendation must be argued from the evidence, not defaulted.
+    The authored side is unanimous on the principle (seven authored judgments,
+    none against) but J0201 gives no reason and the six REVEALED judgments show
+    where the repository actually spends: validators, schemas and tests all sit on
+    the machine side, the human entry record is the oldest file in core/, and the
+    manifest's own file_priority is contradicted by its own key order.
+    GROUND_TRUTH fact 9 corroborates: where the repo bought proof it paid in
+    human-readability. The reconciling formula is already authored — J0377's
+    'human-readable first, machine-addressable second, proof-bound when promoted'
+    — and C is that formula written as a rule with one obligation that stops the
+    human layer from being permanently 'next'. B is what the authored records
+    literally say and would be right if Dave means effort, not text; A contradicts
+    four authored records. Close between B and C; C is what the passing suite
+    already implements plus one link.
 
 target_condition:
   mode: decide
@@ -104,8 +139,10 @@ target_condition:
     - principal:dave
   ratification_status: proposed
   sufficient_when:
-    - "a full draft replaces this stub"
-    - "a test in tests/ rejects records outside the chosen rule and passes"
+    - "yawn.yawn: summary: is the first top-level key after the header, ahead of official_runtime and core_loop refs."
+    - "Every v1 schema listed in schemas/node.yawn names the human record that explains it, and scripts/validate-hub-links.mjs resolves the pointer."
+    - "core/human-use.yawn is refreshed and not older than core/inquiry-selection.yawn, and a test in tests/ fails if that inverts again."
+    - "core/design-principles.yawn carries the carve-out as a stated line, so 'human-readable first' is no longer contradicted by where the proofs sit."
 
 choice:
   selected_by: ""
@@ -117,7 +154,8 @@ proof:
     - target_condition
     - options
   falsifier: >
-    A surface treats this stub's generic options as a recommendation.
+    yawn.yawn still leads with official_runtime, core/human-use.yawn stays at
+    2026-06-30 while contracts advance to v1, and nothing in npm test notices.
   status: proposed
 
 resolves:

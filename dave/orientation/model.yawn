@@ -80,8 +80,8 @@ show:
     do: "Open decisions/005-field-obligation.yawn and choose A, B or C."
     say: "When a record leaves a field off, does that mean the field was optional or that the record is incomplete, and should every contract say which fields are which?"
   - icon: "#006"
-    do: "Open decisions/006-runtime-dependence.yawn and choose A, B or C — full draft pending."
-    say: "On runtime dependence — whether an artifact can be read and checked with nothing installed, or requires a particular parser, runtime, host or vendor — the records assert both tool and vendor binding (9 judgments, 0 authored) and zero dependency portability (13 judgments, 11 authored). Which should be the stated rule, and where is the exception?"
+    do: "Open decisions/006-runtime-dependence.yawn and choose A, B or C."
+    say: "Must a .yawn stay readable and checkable with nothing installed, or is it enough that the record reads with nothing while checking it needs Node and ajv and running it needs Dave's Windows desktop — and is that three-way split written anywhere?"
 
 embody:
   - "When 'what am I to be?' resurfaces, answer from the record first: last time we checked, steward of yawn.bot, so that you stay flexible with the bills paid and leverage high. Then ask whether it still holds."

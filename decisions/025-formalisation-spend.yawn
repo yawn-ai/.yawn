@@ -1,5 +1,5 @@
 id: decisions/025-formalisation-spend
-title: "minimum sufficient commitment or heavy specification"
+title: "Light until it can cause an effect, full once it can"
 kind: decision-frame
 record_shape: header
 status: draft
@@ -16,22 +16,25 @@ poles:
   a: minimum-sufficient-commitment
   b: heavy-specification
 split: leaning
-draft_status: axis-only
+draft_status: full
 leverage: 11.8
 leverage_formula: "judgments_resolved(14) x split_weight(0.7) x authored_conflict_bonus(1.2)"
 
 question: >
-  On formalisation spend — whether a concept is given a full formal apparatus
-  before use, or the smallest commitment that lets work proceed — the records
-  assert both minimum sufficient commitment (3 judgments, 0 authored) and heavy
-  specification (11 judgments, 1 authored). Which should be the stated rule, and
-  where is the exception?
+  Before a concept is used in a record, how much formal apparatus does it need —
+  the smallest commitment that lets the next move be checked, or the full field
+  set, schema, provenance attributes and tie-break ladder — and what decides
+  which a record gets?
 
 why_it_matters: >
-  Until this is answered, a record below Dave inherits whichever side it happens
-  to copy. Full draft pending: the proposal batch for this axis did not
-  complete; the axis, poles, counts and evidence are real, the options below are
-  the generic form.
+  The corpus spends 275 lines on a loopback-only art pipeline no user can reach
+  and four rules with no proof on the public capability tags, ships six
+  mandatory provenance attributes on relations whose eight types are never
+  defined, and leaves ten primitive vocabularies as empty key skeletons — and no
+  record says why one concept got the full apparatus and its sibling got a
+  sketch. Once answered, every bot below Dave knows how much to write before it
+  acts, and a child Yawn copying a template knows whether it is copying the norm
+  or the exception.
 
 state_snapshot:
   description: >
@@ -47,27 +50,39 @@ state_snapshot:
 lacuna:
   kind: unselected_choice
   description: >
-    The full proposal.
+    Whether Dave regards the braid's empty vocabularies as deliberate scaffolding
+    to be filled by use or as premature specification; and whether the loopback
+    art pipeline is expected to reach production, which would justify its weight
+    under the carve-out.
 
 options:
   - name: A
     description: >
-      minimum sufficient commitment becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Minimum sufficient commitment. A concept enters a record with the fewest
+      fields that let its claim be checked — a name, an owner, a proof condition.
+      Fields, invariants, schemas and tie-break stages are added only when a test,
+      receipt or replay needs them. Empty key skeletons are not shipped; an
+      unweighted score is acceptable until a receipt shows the weights matter.
+    cost: "Fill or remove ten empty vocabulary blocks in references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn; decide which of the twenty-four per-turn provenance fields in interface/new-yawn-v0.1.yawn a receipt actually reads; state in templates/node.yawn that a new field needs a named consumer."
+    risk: "The records that can spend or publish are held to the same light standard as a note, and the interception governance that today is test-enforced would have been 'added later'."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "A test that no tracked template or reference carries a top-level key whose value is an empty map or list skeleton with no comment or lacuna line, seeded with a shrink-only ledger from the braid's ten blocks; a line in templates/node.yawn requiring every template field to name a test, receipt or View that reads it."
     evidence_for:
       - "J0117"
       - "J0473"
       - "J1043"
   - name: B
     description: >
-      heavy specification becomes the stated rule across its scope.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Heavy specification. Every primitive is fully specified before use —
+      full field set, provenance attributes on every relation, a schema in schemas/,
+      a deterministic tie-break — so downstream records cannot drift. Q-Space's
+      shape (schemaVersion, protocolRevision, named object types, required fields on
+      every object, dedicated templates) is the norm; question packets get a schema;
+      the capability tags get invariants and a proof block.
+    cost: "A schema and test for question packets; invariants and proof for interface/yawn-capability-tags-v1.yawn; definitions for the eight lateral relation types; a filled instance for each of the braid's ten empty vocabularies; the next-move score gets calibrated weights nobody has data for."
+    risk: "Specification outruns use — the braid already declares ten vocabularies with no worked instance — and 'small moves over grand claims' in core/design-principles.yawn is contradicted by the tree's own habit."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "schemas/question-packet.v1.schema.json with a test; a test that every core/ primitive named in a schema has all its fields defined in prose; every interface/ contract carries invariants and a proof block."
     evidence_for:
       - "J0161"
       - "J0258"
@@ -77,22 +92,49 @@ options:
       - "J0702"
   - name: C
     description: >
-      One pole is the rule; the other is a written carve-out for a named case.
-    cost: "not yet drafted"
-    risk: "not yet drafted"
+      rule: Minimum sufficient commitment is the default. carve-out, written down: a
+      record that can spend, publish, mutate an external store, or be replayed as a
+      receipt gets the full apparatus — schema, closed enums, provenance on every
+      field, deterministic tie-break — because there the cost of drift is an effect.
+      Everything else enters light and earns fields through receipts that read them.
+      Where the heavy form already exists (q-space, local-observation-art,
+      orientation-map, execution-relationship) it stays and names the effect that
+      justifies it; a heavy record that reaches no effect (the 275-line loopback
+      pipeline) says so in its own lacuna. An empty key skeleton is either filled
+      with one worked instance or replaced by a lacuna line.
+    cost: "One line in core/design-principles.yawn naming the carve-out; a `justified_by:` effect or receipt reference on each schema-backed contract; fill or lacuna the braid's ten empty blocks; no new schemas."
+    risk: "'Can cause an effect' is read generously and everything becomes heavy anyway; or the loopback pipeline keeps its 275 lines on the argument that it will reach production."
     reversibility: true
-    proof_needed: "not yet drafted"
+    proof_needed: "A test that every schemas/*.schema.json is named by a record of kind receipt, contract or automation that declares an effect or a replay, and that every empty skeleton block in references/ and templates/ is filled or carries a lacuna line, with a shrink-only ledger; keep tests/interception-statement-image-governance.test.mjs as the exemplar of full apparatus at the effect boundary."
     evidence_for:
-      []
+      - "J0117"
+      - "J0473"
+      - "J1043"
+      - "J0161"
+      - "J0258"
+      - "J0702"
 
 recommendation:
-  option_ref: 
-  confidence: 0
+  option_ref: C
+  confidence: 0.65
   epistemic_status: inferred
   authority: none
   reasoning: >
-    Not drafted. Re-run the decision-proposal workflow for this axis; the
-    recommendation must be argued from the evidence, not defaulted.
+    This one is close because almost nothing here is authored: one authored
+    judgment on the heavy side (J0161, time as a fifteen-field primitive, and it
+    argues its case) and none on the light side, so the axis is mostly the
+    artifacts disagreeing with each other about proportion. Two things break the
+    tie. First, the authored principle 'small moves over grand claims' in
+    core/design-principles.yawn sits with A even though the inventory did not file
+    it here. Second, GROUND_TRUTH fact 17(a) shows where the repository actually
+    spends its heaviest apparatus: the only automation that can generate images,
+    spend money or publish is the only one deliberately unscheduled and the one
+    with a governance test — full apparatus exactly at the effect boundary, light
+    elsewhere. That is C, already practised and never written. The revealed heavy
+    cases the inventory flagged (275 lines for a loopback pipeline, twenty-four
+    provenance fields per turn, ten empty skeletons) are the cost of not saying
+    so. Confidence is moderate; Dave may regard the braid's skeletons as
+    deliberate scaffolding.
 
 target_condition:
   mode: decide
@@ -101,8 +143,9 @@ target_condition:
     - principal:dave
   ratification_status: proposed
   sufficient_when:
-    - "a full draft replaces this stub"
-    - "a test in tests/ rejects records outside the chosen rule and passes"
+    - "core/design-principles.yawn states the carve-out: full apparatus where a record can spend, publish, mutate or be replayed as a receipt; light elsewhere."
+    - "Every schema in schemas/ is named by a record that declares the effect or replay justifying it, and a test in tests/ checks the link."
+    - "references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn carries either one worked instance or a lacuna line for each of its ten empty vocabulary blocks, and a test with a shrink-only ledger rejects new empty skeletons."
 
 choice:
   selected_by: ""
@@ -114,7 +157,9 @@ proof:
     - target_condition
     - options
   falsifier: >
-    A surface treats this stub's generic options as a recommendation.
+    A new reference ships empty key skeletons with no lacuna, or a new
+    effect-capable contract ships with four rules and no proof block, and npm test
+    stays green.
   status: proposed
 
 resolves:

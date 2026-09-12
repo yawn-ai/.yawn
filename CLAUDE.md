@@ -53,11 +53,13 @@ If `generate-manifest.mjs` fails, run it with `--write`; it only appends.
   for claims it does not. A proof that covers a different claim than the one
   above it is worse than none.
 - **Naming.** The product is `YAWN`; the extension is `.yawn`, lowercase.
+  <!-- yawn-invalid-alias-guard:start -->
   `.ion`, `.yon`, `.ywn` are invalid aliases and speech-to-text errors;
   `scripts/validate-canonical-extension.mjs` rejects them in tracked content
-  outside a `yawn-invalid-alias-guard:start/end` block. If a spoken name
-  collides with the guard, do not normalize and do not create: write it inside
-  a guard block and open a decision (see `decisions/053`).
+  <!-- yawn-invalid-alias-guard:end -->
+  outside an alias-guard block (the marker pair used in `CONTRIBUTING.md`). If a
+  spoken name collides with the guard, do not normalize and do not create:
+  write it inside a guard block and open a decision (see `decisions/053`).
 - **Folders carry `node.yawn`.** `dave/<slug>/` carries `model.yawn` and
   `index.html` instead, and `scripts/validate-mental-models.mjs` checks that
   the page mirrors the record.
