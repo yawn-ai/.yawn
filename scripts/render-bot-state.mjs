@@ -67,7 +67,7 @@ for (const f of (await readdir(decDir)).filter((f) => /^\d{3}-.*\.yawn$/.test(f)
   const lev = scalar(t, "leverage");
   decs.push({
     file: `decisions/${f}`, id: scalar(t, "id"), title: scalar(t, "title"),
-    question: folded(t, "question"), leverage: lev === "held" ? null : Number(lev),
+    question: folded(t, "question"), why: folded(t, "why_it_matters"), leverage: lev === "held" ? null : Number(lev),
     split: scalar(t, "split"), axis: scalar(t, "axis"),
     ratification: (t.match(/ratification_status:\s*(\S+)/) ?? [])[1] ?? "proposed",
     selected: scalar(t, "  selected_by") ?? "",
@@ -133,6 +133,8 @@ next_question:
   title: ${q(next?.title)}
   question: >
 ${fold(next?.question, "    ")}
+  why: >
+${fold(next?.why, "    ")}
   leverage: ${next?.leverage ?? "n/a"}
   leverage_formula: "judgments_resolved x split_weight(genuinely-split 1.0 | leaning 0.7 | lone-exception 0.4) x authored_conflict_bonus(both sides authored 1.5 | one side 1.2 | neither 1.0)"
   rule: >
@@ -141,7 +143,7 @@ ${fold(next?.question, "    ")}
     importance, truth, obligation, or permission (core/inquiry-selection.yawn).
 
 question_queue:
-${open.slice(0, 12).map((d, i) => `  - rank: ${i + 1}\n    decision_ref: ${d.file}\n    leverage: ${d.leverage}\n    split: ${d.split}\n    question: ${q(d.question)}`).join("\n")}
+${open.slice(0, 12).map((d, i) => `  - rank: ${i + 1}\n    decision_ref: ${d.file}\n    leverage: ${d.leverage}\n    split: ${d.split}\n    question: ${q(d.question)}\n    why: ${q(d.why)}`).join("\n")}
 
 held:
 ${held.map((d) => `  - decision_ref: ${d.file}\n    reason: "held by core/canonical-extension.yawn creation_gate.on_ambiguity; not ranked"`).join("\n") || "  []"}
