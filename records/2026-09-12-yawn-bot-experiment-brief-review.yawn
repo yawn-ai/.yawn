@@ -1,0 +1,133 @@
+id: records/2026-09-12-yawn-bot-experiment-brief-review
+title: "Review of the yawn.bot experiment brief against the codebase"
+kind: review-record
+status: proposed
+recorded: 2026-09-12
+recorded_by: agent:anthropic:claude-code
+epistemic_status: inferred
+epistemic_note: >
+  Facts about the repositories below were observed and reproduced; the
+  judgments about what to do next are the agent's inference and remain a
+  proposal until Dave rules on them.
+
+source:
+  brief:
+    title: "yawn.bot — The Experiment, Its Expectations, and How It Proves Itself"
+    written: 2026-09-12
+    coordinate: dave/yawn.bot
+    sha256: 8377bfee78241f285043e29df2df85ced7bdd75b2cd8fb8b86dc8ac55c11546f
+    utf8_bytes: 15821
+    published_here: false
+  ask: "look at the codebase and say what you think of this for yawn.bot, and what we should do based on where the codebase is"
+  repositories:
+    - yawn-ai/.yawn at 09933cb (194 .yawn records, npm test 128/128)
+    - yawn-ai/yawn.bot at a0ff2f4 (the product; the header the brief names lives here)
+
+method:
+  - eight parallel readers, one dimension each, over both repositories
+  - forty raw findings merged to twenty-nine
+  - the nine blocking findings each tried by three refuters (evidence, charitable reading, materiality); none refuted, three reworded
+  - twenty further findings carried as unverified leads
+  - one steelman of the brief and one completeness critic
+  - first-hand reproduction of every number below
+
+where_the_codebase_is:
+  - "194 records; 128 executable tests, all proving same-commit self-consistency of lib/ and schemas; none uses held-out human ground truth."
+  - "About one hundred proof blocks: 71 seed-backed, 8 draft-backed, 8 contract-defined; three carry a real run (cold-start proof 2026-07-11, the interception approval and result pair 2026-08-29, one manual yawn.bot verification 2026-07-01)."
+  - "Over forty distinct top-level status values and four epistemic or proof vocabularies: statuses.v1 (8 values), the seven-value lock of PR #21, proof-and-boundary labels, and q-space question and proof states."
+  - "No CLAUDE.md, AGENTS.md, or agent-instruction file; agents/yawn.bot.policy.yawn classes .yawn text as untrusted data and forbids treating it as instruction."
+  - "Eight automation contracts marked active with daily or hourly schedules; their ledgers hold creation receipts from July and no receipt of a scheduled run."
+  - "The last commit authored by Dave is 2026-08-17; of the last thirty commits most add contracts, schemas, and tests born together, and three add receipts."
+  - "The interception pair of records is the brief's whole loop already run once: a hash-bound owner decision, a conformance gate as falsifier, and an externally observed proof receipt."
+  - "yawn.yawn still names yawn-ai/web-game as the official runtime; the org has no such repository; the header, the tests, and yawn.bot/test live in yawn-ai/yawn.bot."
+
+what_the_brief_gets_right:
+  - "The repo is contract-rich and evidence-poor by its own accounting, and section 8 names that pattern exactly; stopping to get a number is the right response."
+  - "Computed proof state is the graduation ladder the drift ledger of 2026-08-28 asked for; hand-set proof.status is what it replaces."
+  - "Three admissible evidence kinds narrow the eight in core/proof-and-boundary.yawn to the ones that can test claims (a) to (c)."
+  - "Propose-then-sleep is already canon in spec/holarchy.md and agents/yawn.bot.yawn."
+  - "E1 is the right first experiment: minimal, binary, and the case that has cost the most."
+
+confirmed_findings:
+  - id: path
+    claim: "E1's record cannot be filed at dave/yawn.bot/header: scripts/validate-mental-models.mjs treats every dave/<slug>/ as a mental model, so the directory fails npm run validate, npm test, and CI, and cannot hold kind: boundary. No kind: boundary exists in any record."
+    recommendation: "File under records/ with a coordinate: field today (fourteen records already do); change the validator only if the brief's paths are wanted."
+  - id: channel
+    claim: "In this repository no channel carries a boundary record to a coding agent before it acts; CI checks diffs after the fact and never checks header bytes. In yawn.bot the channel exists: AGENTS.md sends agents to accepted records whose affected_paths intersect the task, and YAWN_HOLARCHY_INHERITANCE lets accepted preferences inherit while proposals do not. The existing header rule in PUBLIC_ROOT_YAWN_ENTRY.yawn carries no affected_paths, which is one reason it never reached an agent editing the component."
+    recommendation: "E1's plumbing is one Dave-accepted record with affected_paths naming yawn-global-chrome.tsx and yawn-coordinate-frame.tsx, not a generator in this repository."
+  - id: e1-design
+    claim: "E1 is single-arm with pass = byte-identical, so a pass cannot separate 'the record constrained the agent' from 'the agent would not have touched it', and the fail branch asks whether the record was read, which nothing instruments. E2 and E5 are two-arm; E1 is not."
+    recommendation: "Run E1 as two arms, record present versus absent, on tasks that do not name the header; log the read; a new header added beside the old one must count as touched."
+  - id: bot-is-record
+    claim: "Section 4's 'a bot is a record being executed, file and process are the same object' collapses Yawn, Yawn.bot, and agent; agents/yawn.bot.yawn, spec/objective-holons.md, and the 2026-09-03 clarification all keep them distinct. It is not existing repo vocabulary."
+    recommendation: "One sentence: the bot is the record at a path; Yawn.bot is the runtime executing it; the agent is the intelligence operating through the runtime."
+  - id: inheritance
+    claim: "Section 4's 'a child inherits every parent judgment by default' reverses spec/holarchy.md, core/holarchy.yawn, and a passing test: inheritance is explicit and field-specific, only authority narrowing and privacy inherit automatically. The most-specific-scope-wins model exists for View preferences (preference_precedence) and, in yawn.bot, for accepted preferences."
+    recommendation: "Say a judgment is an accepted scoped preference; then it inherits by the rule that already exists and a proposed judgment inherits nowhere."
+  - id: ladder
+    claim: "The proof ladder and the A/BP/RU tags have no field, no validator, and no derivation; epistemic_status is locked to seven values, proof.status is hand-set free text in every block, and section 7's proposed state is absent from section 5's ladder."
+    recommendation: "Compute the ladder from fields that exist: differentiator present, falsifier accepted by the person, receipts. Do not add a fifth stored vocabulary; the repo spent PR #21 shrinking one."
+  - id: claim-a-demo
+    claim: "Section 3's demonstration of claim (a) overstates: the gap was written down in at least four places, the 'only two non-human-readable files' premise is false in its 'only', and it was surfaced by an agent reading, which section 5 rules inadmissible. The repo's contradiction mechanism, conflicts_with, is empty everywhere and has never fired."
+    recommendation: "Call it observed, not demonstrated; claim (a) is untested until two records in the same format are found to conflict by a mechanism."
+  - id: e2
+    claim: "'Already running', 'sha256(path)', '1,249', and '155' have no artifact in either repository, and the held-out 'stated judgments' are outputs of an extraction, which the brief's own table tags RU and firewall 1 bars as ground truth."
+    recommendation: "Publish the holdout manifest and say what makes a held-out judgment A rather than RU before reading E2's number."
+  - id: automation
+    claim: "The automation lane is already the section 8 pattern: eight scheduled contracts, ten weeks, zero scheduled-run receipts. It is also claim (c)'s negative result, unrun."
+    recommendation: "Mark the lane superseded or make its first real ledger entry E1."
+
+leads_not_yet_verified:
+  - "'The header' has three referents; the one that cost the corrections is YawnGlobalChrome in yawn.bot, and nothing tests its bytes."
+  - "Section 1 assigns the format to yawn.bot; README and readme.yawn assign the format to .yawn and the surfaces to yawn.bot."
+  - "The brief nests dave/yawn.bot/...; the product nests yawn.bot/dave/...; and the brief spells a scope 'lauren' that the product spells 'lauran' 164 times, which is a claim (a) instance."
+  - "Section 4's 'no timer, no decay' contradicts the eight schedules and the brief's own section 5 decay rule."
+  - "'Five operations' lists six, none carries a proof condition, and tie_break and preference_precedence are inquiry-ranking fields, not judgment operations."
+  - "'An agent spawns at testable' conflicts with sleeping-until-activation; the legal form is a standing owner-accepted policy per experiment."
+  - "Pass thresholds sit below the brief's own luck line: at ten pairs nothing under eight is distinguishable from chance; E5's ten-point delta at twenty forks is noise."
+  - "q-space/protocol-v1.yawn already has question states, proof outcomes, and a frontier scheduler, and q-space/node.yawn says only a human acceptance creates a durable next question, against section 7's automatic child question."
+  - "E5 cannot run as written: no export exists here, bulk ingestion is a stated non-goal, and the import shape strips the assistant text the concordance gate needs."
+  - "Section 9's five open judgments: 2 and 4 are answered by prior art (record is source, index is a View; edit freely, hash-pin what is scored); 1 and 3 are routing and classification questions, not file-layout ones; 5 has no selection rule anywhere."
+
+already_done_in_yawn_bot_today:
+  - "yawn.bot/test exists, classified as a tool, with a two-arm predictor and Claude-authored placeholder pairs that no published number may rest on."
+  - "The brief's judgments are in the header's participants container as a computed-state standard at scope yawn.bot, record lifecycle_status proposed, branch claude/header-participants-standard-20260912."
+
+judgment:
+  summary: >
+    The brief is right about the disease and the cure and wrong about the
+    anatomy. The repository is asserted almost everywhere, proven in three
+    places, and adds contracts faster than receipts; running a number before
+    building more is the correct move. But the brief's ontology is not the
+    repo's vocabulary named, it is a new proposal in four places (bot equals
+    record, default inheritance, a fifth status vocabulary, a comparison
+    record type), and E1 as designed cannot run here and cannot interpret its
+    own result.
+  order:
+    - "Rule on the eleven rows already in the header, and on the brief's four ontology sentences, as accepted, corrected, or rejected. Nothing inherits until then."
+    - "Give the header rule its affected_paths and accept it. That is E1's plumbing, in the repo where the header is."
+    - "Run E1 two-arm in yawn.bot on tasks that do not name the header, with the read logged. Expect the absent arm to touch it sometimes; the delta is the finding."
+    - "Rewrite sections 3 to 5 of the brief as proposals over existing fields: judgment is an accepted scoped preference; proof state is computed; provenance is derived from author and evidence."
+    - "Publish E2's holdout manifest, or drop 'already running'."
+    - "Leave E5 until an import shape keeps assistant option spans and Dave supplies the months."
+  not_this:
+    - "Do not file under dave/<new folder>/ until the validator's scope is widened on purpose."
+    - "Do not add a stored proof-state enum."
+    - "Do not run E1 single-arm and read a pass as proof of claim (c)."
+
+boundary:
+  - "This record is an agent's proposal; it authors no judgment for Dave."
+  - "The brief is not published here; it is named by title and hash."
+  - "No repository was mutated by this review beyond this record and the yawn.bot branch named above."
+
+proof:
+  source:
+    - scripts/validate-mental-models.mjs
+    - agents/yawn.bot.policy.yawn
+    - spec/holarchy.md
+    - tests/epistemic-status-vocabulary.test.mjs
+    - records/2026-09-03-yawnbot-intelligence-container-clarification.yawn
+    - records/interception-statement-image-approval-2026-08-29.yawn
+    - records/interception-statement-image-result-2026-08-29.yawn
+    - q-space/protocol-v1.yawn
+  status: reproduced-on-both-trees
