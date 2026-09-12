@@ -1,0 +1,144 @@
+id: interface/bot-surfaces-v0.1
+title: "yawn.bot index and entrance flow contract v0.1"
+kind: interface-contract
+status: draft-0.1
+updated: 2026-09-12
+epistemic_status: inferred
+epistemic_note: >
+  The components, ranking signal, and prompts named here are observed in
+  yawn.bot source. The contract they are assembled into is inferred and
+  carries no proof.
+
+purpose: >
+  Restructure the flow of two yawn.bot surfaces without touching the skin, the
+  header, or any container. The index gains the ranking receipt it already had
+  the inputs for, and the entrance prompts gain a paged flow in which the page
+  is the address.
+
+reuses_without_change:
+  chrome: YawnGlobalChrome
+  frame: YawnCoordinateFrame
+  view: YawnQuestionView
+  disclosure: YawnQuestionDisclosure
+  compute_press: YawnQuestionCompute
+  skin: the existing pixel-heading, cyan-control reference skin
+  rule: >
+    No new header, breadcrumb, coordinate, or container. Every change happens
+    inside components these surfaces already render.
+
+# ---------------------------------------------------------------------------
+# INDEX — yawn.bot/
+# ---------------------------------------------------------------------------
+
+index:
+  subject: the product
+  questions:
+    count: 9
+    source: src/domain/yawn-mental-model-network.ts
+    unchanged: authored text, the accordion, the collapsed default
+  ranking:
+    ranker: rankIndexQuestions
+    signal: recorded opens, from yawn_index_question_counts
+    pinned: the first two questions, so the entry point cannot move under measurement
+    tie_break: authored order
+    receipt_required: true
+    defect_fixed: >
+      the view's fallback printed "Source order · no numerical ranking receipt
+      supplied" on every row of a list that was in fact ranked by measured
+      opens. Each question now carries the policy that placed it, the count
+      behind it, the tie-break, and what the count does not mean.
+    degradation: >
+      with no counts available the receipt reads "no opens recorded yet" and
+      the authored order stands. A missing count is never a zero ranking.
+    limits_always_shown:
+      - an open count measures attention, not truth, trust, or whether the answer helped
+      - counted once per consented browser session, from no personal capture text
+  kept:
+    - the "No purpose vector found" indicator
+    - the compute press on every question row
+  compute_press_rule: >
+    The repeated icon is an affordance, not decoration: it compiles the
+    question against the cognition axes and opens the lacunae they report
+    missing. It is never removed to reduce repetition. Its stateIcon prop is
+    reserved for a source-backed state renderer and stays unsupplied while no
+    per-question runtime state exists.
+
+# ---------------------------------------------------------------------------
+# ENTRANCE — yawn.bot/new
+# ---------------------------------------------------------------------------
+
+new:
+  route_owner: interface/new-yawn-v0.1.yawn
+  opening_prompt: "What is pulling your attention?"
+  entrance_prompts:
+    count: 12
+    source: src/domain/yawn-entrance-questions.ts
+    order: [become, identity, purpose, attention, direction, emotion, relationship, constraint, uncertainty, options, next, proof]
+    order_unchanged: true
+    first: questions/what-am-i-to-be.yawn
+  judgments:
+    required_per_prompt: at least one
+    shape: [chosen, rejected, differentiator]
+    rendered_in: the existing "How is this answer supported?" disclosure
+    epistemic_status: inferred
+    rule: >
+      A judgment is a comparison, never a proof. Each records the rejected
+      alternative so the wording stays contestable instead of inherited.
+
+# ---------------------------------------------------------------------------
+# FLOW — PAGINATION
+# ---------------------------------------------------------------------------
+
+flow:
+  model: pagination
+  not: columns
+  definition: >
+    One question per page. Every other question stays reachable as its own
+    page rather than collapsing out of the record.
+  address_rule: >
+    The page travels in the address as ?q=<question id>. Each page is a real
+    href, so a position in a sequence stays shareable, the back button means
+    what it looks like, and the page can be server-rendered. Never a carousel
+    over client-side state, and never query state that cannot be linked to.
+  controls:
+    strip: numbered links, one per question, current page marked with aria-current
+    pager: previous and next, each labelled with the question it leads to, and the position
+    minimum_target: 2.75rem
+  active_question: opened on arrival, because on a paged flow the question is the page
+  availability: opt-in by address; the accordion remains the default on both surfaces
+  availability_reason: >
+    The twelve-prompt entrance carries behaviour worth keeping — per-prompt
+    drafts, switching between prompts, focus return — that three existing tests
+    encode. Making the paged flow the default is a separate decision for dave,
+    not a side effect of building it.
+
+invariants:
+  - no surface introduces a header, breadcrumb, coordinate, or container of its own
+  - the page is an address, never hidden state
+  - a ranked list carries its receipt; an unranked one says so honestly
+  - orientation coverage, claim confidence, and attention counts stay separate
+  - an open count never becomes a claim about truth or helpfulness
+  - a judgment is a comparison and carries its rejected pole
+  - a self-binding answer is never promoted by the ordinary proof ladder
+  - the compute press is never removed to reduce visual repetition
+  - a missing count degrades to the authored order, never to a zero ranking
+
+proof:
+  required:
+    - no row of a ranked list states that no ranking receipt was supplied
+    - every paged question is reachable at its own address
+    - every entrance prompt shows at least one judgment with its rejected pole
+    - the default accordion behaviour is unchanged on both surfaces
+    - semantic tokens work without color
+    - no horizontal overflow at 390 wide
+  human_review_required:
+    - whether the paged flow should become the default
+    - whether arriving at a paged prompt should also select it
+
+boundary:
+  canonicalMutationAuthorized: false
+  deploymentAuthorized: false
+  publicationAuthorized: false
+  externalEffectsAuthorized: false
+
+schema_version: yawn.bot.surfaces.v0.1

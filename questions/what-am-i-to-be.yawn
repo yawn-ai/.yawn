@@ -1,0 +1,104 @@
+id: questions/what-am-i-to-be
+title: "What am I to be?"
+kind: orientation-question
+status: preview
+updated: 2026-09-12
+epistemic_status: inferred
+epistemic_note: >
+  The prompt and its position are observed in yawn.bot source. The judgments
+  below are inferred from that source and from an attributed handoff; each is
+  a comparison with no proof, and `proof: none` is stated per judgment.
+
+# ---------------------------------------------------------------------------
+# This prompt is not new. It is the first of twelve authored entrance prompts
+# on yawn.bot/new, defined in src/domain/yawn-entrance-questions.ts of
+# yawn-ai/yawn.bot. This record holds its default judgments and the one thing
+# about it the ordinary proof ladder gets wrong.
+# ---------------------------------------------------------------------------
+
+surface:
+  route: yawn.bot/new
+  position: 1 of 12
+  prompt_id: become
+  authored_helper: "Describe what you want this Yawn to help you become, understand, or do."
+  contract: interface/new-yawn-v0.1.yawn
+  source_of_truth: src/domain/yawn-entrance-questions.ts
+
+what_it_is_asking: >
+  Not what this Yawn is about, and not why it matters — both of those are
+  separate prompts two and three. This one asks what the person wants to
+  become, understand, or do. Its answer is a commitment rather than a claim,
+  which is what makes it different from every other prompt in the set.
+
+answer_state:
+  answer_status: unknown
+  mapping_status: proposed
+  rule: >
+    The answer is source, not an accepted purpose. Silence is never inferred
+    into an answer, and typing something here does not ratify it.
+
+proof_kind:
+  kind: self-binding
+  contrast: world-falsifiable
+  falsifier: "the person's own next move contradicts the stated to-be"
+  verifier: "a run of moves consistent with it, with receipts"
+  boundary: >
+    No observation of the world refutes "I am to be a good dad." Only
+    behaviour does. A self-binding answer must never be promoted by the
+    ordinary proof ladder, because the ladder assumes reality can disconfirm
+    the claim — so it would collect evidence that never touched it. Promote it
+    only against behavioural evidence.
+
+judgments:
+
+  - id: become-before-subject
+    chosen: a question about what to become, asked first
+    rejected: naming the subject first
+    differentiator: >
+      someone arriving at /new has a pull, not a subject. naming the subject
+      first forces a classification before there is anything to classify, and
+      that classification then constrains every answer after it.
+    proof: none
+
+  - id: source-not-purpose
+    chosen: the answer stays revisable source
+    rejected: the first answer becomes the record's purpose
+    differentiator: >
+      a purpose that arrives by being typed first has no receipt. this is the
+      prompt most easily mistaken for a commitment, so the separation between
+      source and accepted purpose has to hold hardest here.
+    proof: none
+
+  - id: self-binding-over-falsifiable
+    chosen: the next move falsifies a to-be answer
+    rejected: the ordinary proof ladder
+    differentiator: >
+      no observation refutes "I am to be a good dad". only behaviour does.
+      scored like an ordinary claim, an unfalsifiable sentence collects
+      evidence that never touched it.
+    proof: none
+
+sibling_prompts:
+  note: >
+    The other eleven entrance prompts each carry their own default judgment,
+    recorded in the same source file. The full set and its reasoning is in
+    records/2026-09-12-bot-index-and-new-restructure.yawn.
+  order: [become, identity, purpose, attention, direction, emotion, relationship, constraint, uncertainty, options, next, proof]
+
+open_questions:
+  - id: to-be-hard-gate
+    question: >
+      should an unanswered to-be gate objective ratification, or would that
+      block every first move a person could make?
+    status: unanswered
+  - id: behavioural-verifier-source
+    question: >
+      what supplies the run of moves that verifies a to-be — the turn log, an
+      explicit human review, or both?
+    status: unanswered
+
+boundary:
+  - "A stated to-be is not authority."
+  - "A stated to-be is not proof of character."
+  - "Answering this prompt does not set an accepted purpose."
+  - "A judgment here is a comparison, not a proof."

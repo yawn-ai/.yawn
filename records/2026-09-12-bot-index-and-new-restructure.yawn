@@ -1,0 +1,238 @@
+id: records/2026-09-12-bot-index-and-new-restructure
+title: "Restructuring yawn.bot/ and yawn.bot/new"
+kind: design-reasoning-record
+status: owner-review-required
+updated: 2026-09-12
+coordinate: yawn.bot/index-and-new
+epistemic_status: inferred
+epistemic_note: >
+  Drawn from reading yawn.bot at 8800afc plus an attributed handoff and a
+  mid-session correction from dave. Every judgment is a comparison with no
+  proof.
+
+source:
+  - dave/yawn.bot/index-and-new (attributed private handoff, 2026-09-12)
+  - dave, mid-session correction, 2026-09-12
+  - yawn-ai/yawn.bot at 8800afc (read directly)
+
+# ---------------------------------------------------------------------------
+# Every judgment here is `asserted`. None has proof.
+#
+# This record supersedes a first pass that was wrong in three ways. The
+# corrections are kept in `corrected` rather than deleted, because the wrong
+# version is the only evidence of what the handoff alone could not settle.
+# ---------------------------------------------------------------------------
+
+brief_as_received:
+  asked:
+    - restructure yawn.bot/ and yawn.bot/new
+    - do not lose the design; the look is close to right
+    - find the best flow for the user
+    - reason on the current questions /new is trying to answer, like "What am I to be?", with their default judgments
+  corrected_mid_session:
+    - the current site's design and header are correct; reuse those elements
+    - there are no columns; the pagination is the columns and the flow
+
+corrected:
+  - was: the index renders the nine orientation axes with yawn.bot as the subject
+    is: >
+      the index renders nine product questions authored in
+      src/domain/yawn-mental-model-network.ts — "What is Yawn.bot?", "What can
+      I do here?", "What is the value of Yawn.bot?", "Who can see my model?",
+      "What can I trust?", "What is underneath the interface?", "How does this
+      connect to Nestheads?", "What does Graves' model contribute?", "Why do
+      these questions change order?"
+    cost: >
+      a whole pass of reasoning about axis coverage and a tenth question_key,
+      none of which the surface was ever asking.
+  - was: the prompt "What am I to be?" is new and needs a home
+    is: >
+      it already exists, as the first of twelve entrance prompts in
+      src/domain/yawn-entrance-questions.ts, on /new. The ask was to reason
+      about the prompts already there, not to invent one.
+  - was: descent is Miller columns, side by side, one column per scope
+    is: >
+      descent is pagination. One question per page, every other question
+      reachable as its own address. No column layout exists or should.
+  - was: every record carries epistemic_status asserted, as the handoff does
+    is: >
+      the canon repository locks epistemic_status to seven values — observed,
+      reported, inferred, assumed, predicted, disputed, unknown — in
+      tests/epistemic-status-vocabulary.test.mjs, whose grandfather ledger may
+      only shrink. "asserted" is not one of them, so these records use
+      `inferred` with the nuance moved to `epistemic_note`. The handoff file
+      itself uses `asserted` throughout and would fail this test if committed
+      as written.
+  - was: a new header, breadcrumb and container set was needed
+    is: >
+      YawnGlobalChrome and YawnCoordinateFrame already provide the header,
+      coordinate, copyable address and record access. They are correct. The
+      restructure happens inside YawnQuestionView, which every one of these
+      surfaces already renders.
+
+# ---------------------------------------------------------------------------
+# WHAT THE INDEX IS ACTUALLY TRYING TO ANSWER
+# ---------------------------------------------------------------------------
+
+index_reasoning:
+  subject: the product, not the agent
+  finding: >
+    The nine questions are a first visitor's questions about Yawn.bot, and they
+    are already ranked — rankIndexQuestions orders questions three through nine
+    by recorded opens from yawn_index_question_counts, pinning the first two so
+    the entry point cannot move. The ninth question even explains this to the
+    reader.
+  the_actual_defect: >
+    YawnQuestionView's "Why is this question here?" disclosure falls back to
+    "Source order · no numerical ranking receipt supplied" whenever an entry
+    supplies no ranking, and the index supplied none. So the surface was
+    ranking by measured attention while telling every reader, on every row,
+    that no ranking receipt existed. That was true before opens were counted
+    and is now a false disclaimer printed on a ranked list.
+  fix: >
+    rankIndexQuestions emits the receipt it already has the inputs for: the
+    policy that placed each question, the count behind it, the tie-break, and
+    what the count does not mean. Absent counts degrade to "no opens recorded
+    yet" rather than to a claim of measurement.
+  kept_unchanged:
+    - the nine questions and their authored text
+    - the accordion and its collapsed default
+    - the "No purpose vector found" indicator
+    - the header, coordinate frame, and every container
+
+# ---------------------------------------------------------------------------
+# PAGINATION IS THE FLOW
+# ---------------------------------------------------------------------------
+
+pagination:
+  claim: >
+    The descent that the handoff described as columns is pagination. A column
+    view asks the reader to hold three scopes at once and costs a layout the
+    site does not have; a page asks them to hold one and costs nothing.
+  judgments:
+    - id: pagination-over-columns
+      chosen: one question per page, with every other page addressable
+      rejected: side-by-side columns
+      differentiator: >
+        the property the handoff cared about was that the trail is the address.
+        pagination keeps that exactly — each page is a real href, so a position
+        in a sequence stays shareable and the back button means what it looks
+        like — and drops the layout, the breadcrumb mitigation, and the mobile
+        swipe that columns require to be usable at all.
+      proof: none
+    - id: address-over-hidden-state
+      chosen: the page is a URL
+      rejected: a carousel over client-side state
+      differentiator: >
+        a carousel cannot be linked to, cannot be returned to, and cannot be
+        server-rendered. the pagination strip is links for the same reason the
+        coordinate is copyable.
+      proof: none
+    - id: opt-in-before-default
+      chosen: the paged flow arrives as ?q=<question>, leaving the accordion the default
+      rejected: replacing the accordion in the same change
+      differentiator: >
+        the twelve-prompt entrance already carries behaviour worth keeping —
+        separate drafts per question, switching between them, focus return —
+        and three existing tests encode it. Shipping the flow behind an address
+        makes it inspectable without asserting that the new flow wins on
+        behaviour nobody has watched a person use yet.
+      proof: none
+      status: >
+        this is a deliberate hold, not the finished restructure. Making the
+        paged flow the default is dave's call, and the behaviour it changes is
+        listed under still_open.
+
+# ---------------------------------------------------------------------------
+# THE /NEW QUESTIONS
+# ---------------------------------------------------------------------------
+
+new_reasoning:
+  surface: twelve authored entrance prompts, currently all rendered at once
+  contract: interface/new-yawn-v0.1.yawn
+  contract_says: default_foreground_questions is 1, all_questions_default is collapsed
+  observed: twelve collapsed doors, which is neither one foregrounded question nor a flow
+  restructure: the twelve become twelve pages, "What am I to be?" first
+  order_reasoning: >
+    The authored order already runs become → identity → purpose → attention →
+    direction → emotion → relationship → constraint → uncertainty → options →
+    next → proof. That is a defensible sequence and it is left alone: it moves
+    from what someone wants to become, through what is actually happening, to
+    one bounded move and its evidence. What it lacked was any statement of why
+    each prompt is worded the way it is, which is what the judgments supply.
+  judgments_added: >
+    Each of the twelve prompts now carries its own default judgments —
+    chosen, rejected, differentiator — rendered in the existing "How is this
+    answer supported?" disclosure. Seventeen judgments across twelve prompts,
+    all asserted, none with proof. The first prompt carries three because it is
+    the one most easily mistaken for a commitment.
+  no_route_conflict: >
+    An earlier pass claimed the handoff's cold-start pairing test collided with
+    the active /new contract. It does not. The contract matches the shipped
+    route, and the pairing test is simply not built. It stays a proposal.
+
+not_done:
+  - item: the handoff's ten-pairs-then-five-predictions cold-start test
+    reason: >
+      it is a different surface from the twelve entrance prompts, not a
+      replacement for them. Building it inside /new without watching someone
+      use the prompts first would displace working behaviour on a guess.
+    status: proposal retained
+  - item: removing the repeated mascot glyph from every index row
+    reason: >
+      repo wins. The glyph is YawnQuestionCompute's press — it compiles the
+      question against the cognition axes and opens the lacunae they say are
+      missing. It reads as decoration and is an affordance, so removing it
+      would delete the lacuna compiler. The honest fix is a source-backed
+      stateIcon, which the component already reserves a prop for and for which
+      no per-question runtime state exists yet.
+  - item: per-row probability on the index
+    reason: >
+      claim confidence per answer has no source. The order has a receipt now;
+      a number per answer would fabricate one.
+
+still_open:
+  - id: paged-flow-as-default
+    question: >
+      should /new default to the paged flow? It changes switching between
+      prompts, per-prompt drafts, and focus return, all of which existing tests
+      encode.
+    status: unanswered
+  - id: arriving-at-a-page-selects-it
+    question: >
+      when a paged prompt is its own page, should arriving there select it and
+      open the answer drawer, or should answering stay a separate press?
+    status: unanswered
+    note: currently a separate press, which is the smaller change
+  - id: index-flow-default
+    question: does the index want the paged flow at all, or is the accordion right for nine?
+    status: unanswered
+  - id: stateicon-source
+    question: what real per-question condition could a derived state icon read?
+    status: unanswered
+
+changed_files:
+  repository: yawn-ai/yawn.bot
+  surfaces:
+    - src/domain/yawn-entrance-questions.ts — default judgments on all twelve prompts
+    - src/domain/yawn-mental-model-network.ts — the ranking receipt
+    - src/domain/yawn-concept-definition.ts — the receipt on the concept adapter
+    - src/components/yawn-question-view/yawn-question-view.tsx — the paged flow
+    - src/components/yawn-question-view/yawn-question-view.module.css — pagination in the existing skin
+    - src/components/yawn-question-view/yawn-question-disclosure.tsx — an initial open state
+    - src/components/yawn-question-view/public-concept-default.tsx — forwards receipt and flow
+    - src/components/bot/new-yawn-imprint.tsx — judgments and the flow on /new
+    - src/app/page.tsx, src/app/new/page.tsx — the page id travels in the address
+  verification:
+    - npm run lint — 0 errors, 8 warnings, all pre-existing and none in changed files
+    - npm run typecheck — clean; one pre-existing error from a missing generated asset manifest
+    - npx vitest run — 2911 passed, 2 failed, 5 files failed to load; all 7 failures reproduce on the unchanged tree
+    - rendered at 1280 and 390 wide; no page errors, no horizontal overflow
+    - the false disclaimer no longer appears anywhere on the index
+
+boundary:
+  canonicalMutationAuthorized: false
+  deploymentAuthorized: false
+  publicationAuthorized: false
+  externalEffectsAuthorized: false
+  pushedToYawnBot: false

@@ -84,6 +84,8 @@ yaml_files = [
     "examples/participation-choice.yawn",
     "interface/objective-compiler.yawn",
     "interface/new-yawn-v0.1.yawn",
+    "interface/bot-surfaces-v0.1.yawn",
+    "questions/what-am-i-to-be.yawn",
     "question-packets/orientation-nine.yawn",
     "question-packets/turn-close.yawn",
     "templates/mental-model.yawn",
