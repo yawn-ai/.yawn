@@ -16,11 +16,15 @@ canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
 
 official_runtime:
   identity: YAWN.bot
-  repository: https://github.com/yawn-ai/web-game
+  repository: https://github.com/yawn-ai/yawn.bot
   status: official
   promoted_by: Dave
   promotion_receipt: records/yawn-bot-runtime-promotion-2026-07-11.yawn
   repository_slug_status: current-address
+  repository_corrected: 2026-09-12
+  superseded_repository: https://github.com/yawn-ai/web-game
+  superseded_note: "older address of the same runtime; to be archived, per Dave 2026-09-12"
+  correction_receipt: migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn
 
 summary: >
   .yawn is an open protocol for inspectable orientation and agency: attributed

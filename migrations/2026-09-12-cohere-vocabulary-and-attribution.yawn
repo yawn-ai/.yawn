@@ -64,6 +64,15 @@ what_changed:
       why: "a surface needs one record to read; the contracts said daily while the newest ledger entry was 2026-07-04"
     - added: dave/orientation/
       why: "the settled role drops from the top slot; the next highest-leverage question takes it"
+  runtime_pointer:
+    - change: "official_runtime.repository and agents/yawn.bot.yawn identity.repository corrected from yawn-ai/web-game to yawn-ai/yawn.bot"
+      why: >
+        Dave stated on 2026-09-12 that web-game is the older repository and is to
+        be archived, and that yawn.bot with its Supabase database is the runtime.
+        At the time of the change both repositories were at the same commit
+        (a0ff2f4), so the correction is one of address, not content.
+      epistemic_status: reported
+      old_address_kept_as: superseded_repository
   entry:
     - added: CLAUDE.md
       why: "one file that is true on landing, for agents"
