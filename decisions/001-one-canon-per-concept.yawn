@@ -1,0 +1,169 @@
+id: decisions/001-one-canon-per-concept
+title: "One governing record per concept, lenses marked"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'canonical-multiplicity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: canonical-multiplicity
+axis_gloss: "whether one blessed artifact (schema, template, root, entry point, memory) governs, or several coexist in parallel"
+poles:
+  a: single-canonical-artifact
+  b: plural-parallel-artifacts
+split: genuinely-split
+draft_status: full
+leverage: 57
+leverage_formula: "judgments_resolved(38) x split_weight(1) x authored_conflict_bonus(1.5)"
+
+question: >
+  When two records define the same thing (lacuna, the loop, the objective
+  lifecycle, a promotion gate, a read order), does one of them govern, and does
+  it say so?
+
+why_it_matters: >
+  core/orientation.yawn already says one model with non-canonical lenses, yet
+  the corpus ships two lacuna definitions, a five-stage and a nine-stage
+  objective lifecycle, and gate definitions that have drifted apart, so a reader
+  cannot tell which binds. Once answered, a bot reading core/ inherits exactly
+  one definition per concept, and a child Yawn that coins its own phrasing knows
+  it must point at the canon rather than become a second one.
+
+state_snapshot:
+  description: >
+    14 judgments sit at single-canonical-artifact (10 authored) and 24 at
+    plural-parallel-artifacts (6 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Which of the two lifecycles (five stages or nine) and which loop (six
+    relations or eight stages) Dave regards as canon; and whether the
+    friendly/technical name pairs and the two first_read_orders are lenses he
+    wants kept or second canons he wants removed.
+
+options:
+  - name: A
+    description: >
+      rule: Each concept has exactly one canonical record. A second record that
+      restates it is merged into the first or removed; friendly names and alternate
+      loop phrasings are dropped in favour of the technical one.
+    cost: "Merging core/lacuna.yawn into core/target-and-lacuna.yawn, reconciling the two lifecycles, collapsing formal/human/north-star loop phrasings and the two first_read_orders; loses the friendly-name layer the repo uses for outsiders."
+    risk: "Merges erase attribution and disagreement, which core/holarchy.yawn forbids ('Merge never erases source records or disagreement')."
+    reversibility: false
+    proof_needed: "A test in tests/ that, for a named list of concept keys (lacuna.kinds, objective lifecycle, movement loop, promotion gates, first_read_order), fails when more than one active record defines the key."
+    evidence_for:
+      - "J0029"
+      - "J0051"
+      - "J0074"
+      - "J0093"
+      - "J0099"
+      - "J0114"
+  - name: B
+    description: >
+      rule: Parallel definitions may coexist. No record is required to name another
+      as canonical; readers reconcile drift themselves.
+    cost: "The gate definitions in the feedback loop keep drifting; the five- and nine-stage lifecycles stay unreconciled; one_model_rule in core/orientation.yawn is contradicted and must be softened."
+    risk: "A bot that reads the five-stage lifecycle and a bot that reads the nine-stage one act on different contracts with nothing to detect it."
+    reversibility: true
+    proof_needed: "None can enforce this; the only record would be striking one_model_rule from core/orientation.yawn."
+    evidence_for:
+      - "J0047"
+      - "J0049"
+      - "J0067"
+      - "J0115"
+      - "J0241"
+      - "J0253"
+  - name: C
+    description: >
+      rule: Each concept has one canonical record. Any other record that restates or
+      rephrases it must carry a typed pointer to the canon (same_as, derived_from,
+      supersedes, or projection_of, as core/holarchy.yawn already defines) and must
+      not contradict it. Friendly names and loop rephrasings are allowed only as
+      marked lenses over the canon.
+    cost: "Add pointers to core/lacuna.yawn or core/target-and-lacuna.yawn, core/motivation-and-purpose.yawn, automation/yawn.bot.feedback-loop.yawn and its sibling; decide which lifecycle and which loop are canon."
+    risk: "Pointers get added mechanically without reconciling the content, so drift is now labelled but not fixed."
+    reversibility: true
+    proof_needed: "A test in tests/ that, for the named concept list, finds exactly one record without a pointer and requires every other occurrence to carry same_as/derived_from/supersedes/projection_of to it; extend scripts/validate-hub-links.mjs to resolve those pointers."
+    evidence_for:
+      - "J0093"
+      - "J0099"
+      - "J0029"
+      - "J0074"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Side A is where the authored rules live (10 authored of 14): one_model_rule,
+    the folder-node rule, the canonical memory root. The six side-B judgments
+    shown are all revealed, and four of them are plain drift (gates restated and
+    already diverged, lacuna copied verbatim with no cross-reference, two
+    lifecycles of different length). The repo already holds the C mechanism:
+    core/orientation.yawn declares lenses non-canonical and core/holarchy.yawn
+    defines supersedes and same_as, which J0241 notes are unused. So C writes down
+    what the authored side already says while keeping the friendly-name and
+    dual-read-order artifacts as marked lenses. Close on the lifecycle and loop:
+    the inventory counts six authored judgments on side B beyond the sample, so
+    some parallelism is intended.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/lacuna.yawn and core/target-and-lacuna.yawn: one carries supersedes or same_as to the other, or one is removed."
+    - "core/objective-holon.yawn and core/motivation-and-purpose.yawn publish one lifecycle, or the shorter one carries derived_from and matches it stage for stage."
+    - "A test in tests/ fails when a concept on the named list is defined in two active records with neither pointing at the other, and passes."
+    - "The promotion-gate definitions in automation/yawn.bot.feedback-loop.yawn and its sibling match, or one references the other."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new record restates lacuna.kinds or the objective lifecycle with no
+    same_as/derived_from pointer and npm test stays green.
+  status: proposed
+
+resolves:
+  - "J0029"
+  - "J0051"
+  - "J0074"
+  - "J0093"
+  - "J0099"
+  - "J0114"
+  - "J0047"
+  - "J0049"
+  - "J0067"
+  - "J0115"
+  - "J0241"
+  - "J0253"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

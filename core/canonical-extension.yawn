@@ -106,6 +106,28 @@ migration:
     wording is not mechanically promoted into current canon.
 
 proof:
+  covers:
+    - canonical.product_name
+    - canonical.file_extension
+    - invalid_schema_aliases
+    - invalid_product_aliases
+    - common_speech_to_text_substitutions
+    - normalization
+    - creation_gate
+  not_covered:
+    - claim: canonical.media_role
+      status: asserted-unverified
+      note: >-
+        Nothing validates that a .yawn file is human-readable. Two tracked
+        templates (templates/art-brief.v1.yawn, templates/question-proposal.v1.yawn)
+        are JSON. Whether the extension identifies one grammar is an open
+        decision; see decisions/.
+    - claim: canonical.case
+      status: asserted-unverified
+      note: >-
+        The validator does not check extension case. Six active records name a
+        workspace root with an uppercase extension. Whether to enforce case, and
+        how to treat external workspace paths, is an open decision; see decisions/.
   validator: "scripts/validate-canonical-extension.mjs"
   normalizer: "lib/canonical-extension-v1.mjs"
   tests: "tests/canonical-extension-v1.test.mjs"

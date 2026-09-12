@@ -1,0 +1,79 @@
+id: decisions/node
+title: "decisions node"
+kind: knowledge-node
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12"
+updated: 2026-09-12
+
+purpose: >
+  Hold the decisions Dave has not yet made, as records he can ratify, reject,
+  or correct. Each one is an axis on which the repository asserts both
+  directions — some records prefer A, others prefer B — turned into one plain
+  question, its options, the evidence on each side, an attributed
+  recommendation, and what proof would show it is decided. Nothing here is
+  decided by being written down.
+
+principal_ref: principal:dave
+template_ref: templates/decision.yawn
+inventory_ref: JUDGMENTS.md
+axis_ref: TAXONOMY.md
+
+ranking_rule: >
+  Records are numbered by leverage, highest first. leverage =
+  judgments_resolved x split_weight x authored_conflict_bonus, where
+  split_weight is 1.0 for a genuinely split axis, 0.7 leaning, 0.4 for a lone
+  exception, and the bonus is 1.5 when both sides carry authored judgments (the
+  repository contradicts itself in writing), 1.2 when one side does. The top
+  record is next_question in records/yawn.bot-state.yawn. The formula is stated
+  in every record so the rank can be argued with; rank is not importance,
+  truth, obligation, or permission.
+
+holds:
+  - one decision-frame record per reversal axis, numbered by leverage
+  - the container-intelligence naming question, held under the alias guard
+
+receives:
+  - the judgment inventory and its taxonomy
+  - corrections and ratifications from Dave
+  - new reversal axes when the inventory is rerun
+
+produces:
+  - next_question for the bot-state record and the Dave orientation page
+  - a ratified decision, when Dave selects an option and names his authority
+  - a stated rule or a written carve-out in the record the decision governs
+
+lifecycle: >
+  proposed -> Dave sets choice.selected_by, choice.option_ref, and
+  choice.authority_ref -> the governing record is changed and the test named in
+  proof_needed is added -> this record's status becomes superseded and points
+  at the receipt. A decision Dave rejects stays here with status superseded and
+  a one-line reason, so the question is not asked again fresh.
+
+questions:
+  - which decision, if answered, changes the most below it
+  - which side of each axis do the tests already implement
+  - what would it cost to write the exception down instead of removing it
+
+boundary:
+  - "desire cannot authorize action"
+  - "confidence cannot ratify an objective"
+  - "ai output is not authority"
+  - "a REVEALED judgment cited as evidence describes an artifact's behaviour, not Dave's choice"
+
+proof:
+  covers:
+    - ranking_rule
+    - lifecycle
+  condition: >
+    Every record in this folder carries authored_by, ratification_status,
+    leverage with its formula, and an empty choice until Dave fills it;
+    tests/authored-by.test.mjs and tests/status-vocabulary.test.mjs pass over
+    this folder.
+  source:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+    - templates/decision.yawn
+    - core/entity-and-coupling.yawn
+  status: contract-defined

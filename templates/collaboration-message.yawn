@@ -1,3 +1,4 @@
+record_shape: fragment
 schemaVersion: yawn.collaboration-message.v1
 messageId: message:replace-me
 threadId: thread:replace-me

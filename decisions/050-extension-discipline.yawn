@@ -1,0 +1,140 @@
+id: decisions/050-extension-discipline
+title: "One extension bag, always namespaced"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'extension-discipline'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: extension-discipline
+axis_gloss: "whether extension points must be namespaced and bounded, or records may add arbitrary keys wherever they like"
+poles:
+  a: namespaced-bounded-extension
+  b: free-key-extension
+split: lone-exception
+draft_status: full
+leverage: 1.9
+leverage_formula: "judgments_resolved(4) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must every extension key be namespaced, including in the stable observation
+  record, or may observation.v1 keep its looser key pattern?
+
+why_it_matters: >
+  Two written rules and one passing test say extension keys are reverse-DNS
+  namespaced so they can never be mistaken for core fields or carry authority;
+  observation.v1, the one stable schema, accepts a bare key like audit. A bot
+  writing observations inherits either the namespaced bag or a loophole in the
+  most-used record; a child Yawn learns which pattern to copy.
+
+state_snapshot:
+  description: >
+    3 judgments sit at namespaced-bounded-extension (2 authored) and 1 at
+    free-key-extension (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether a schema marked v1 may be tightened in place or only by shipping v2;
+    the repo has no written versioning policy for schemas.
+
+options:
+  - name: A
+    description: >
+      Every extensions map in schemas/ uses one shared ExtensionBag definition: keys
+      must be namespaced (at least one dot- or dash-separated segment) and
+      extensions may never widen authority, privacy, proof or append-only
+      invariants.
+    cost: "Changing one propertyNames pattern in schemas/observation.v1.schema.json (or $ref-ing the holarchy ExtensionBag); fixtures/observation.v1.json has extensions: {} so nothing breaks."
+    risk: "A downstream writer of observation.v1 with bare keys would fail on upgrade; none exists in the repo."
+    reversibility: true
+    proof_needed: "Extend tests/observation-state-v1.test.mjs with the same two cases tests/agency-holarchy-v0.2.test.mjs already runs: org.example.audit accepted, not_namespaced rejected."
+    evidence_for:
+      - "J0826"
+      - "J1062"
+      - "J1206"
+  - name: B
+    description: >
+      Extension keys are any token up to 200 characters; namespacing is advice in a
+      $comment.
+    cost: "Loosening the holarchy ExtensionBag pattern and deleting the not_namespaced rejection test."
+    risk: "An extension key shadows a core field name in a later schema version; extension data carries permission, which J0826 forbids in five templates."
+    reversibility: true
+    proof_needed: "None; B is honoured by removing a passing test."
+    evidence_for:
+      - "J1063"
+  - name: C
+    description: >
+      Option A for every draft schema; observation.v1 keeps its pattern as versioned
+      legacy until observation.v2, named in a shrink-only ledger with a date.
+    cost: "One ledger entry; the same test as A with observation.v1 excluded."
+    risk: "The most-used stable record is the one with the loophole, for as long as v2 does not ship."
+    reversibility: true
+    proof_needed: "Same test as A with a one-entry GRANDFATHERED set."
+    evidence_for:
+      - "J0826"
+      - "J1062"
+      - "J1206"
+      - "J1063"
+
+recommendation:
+  option_ref: A
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Two authored judgments and one proof-attached test are on A; the lone
+    exception is a schema pattern nobody argued for, in a record whose only
+    fixture has an empty extensions map, so tightening it costs one line and
+    breaks nothing that exists. C only earns its keep if Dave holds that a v1
+    schema may never be tightened in place, which no record states.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "schemas/observation.v1.schema.json extensions propertyNames pattern equals the holarchy ExtensionBag pattern or $refs a shared definition"
+    - "tests/observation-state-v1.test.mjs rejects a bare extension key and accepts a namespaced one, and passes"
+    - "npm test stays green on the existing observation fixture"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record or fixture with a bare extension key under an observation passes
+    validation.
+  status: proposed
+
+resolves:
+  - "J0826"
+  - "J1062"
+  - "J1206"
+  - "J1063"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

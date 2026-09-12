@@ -1,0 +1,166 @@
+id: decisions/013-record-spine
+title: "A fixed spine every record must carry"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'record-shape-uniformity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: record-shape-uniformity
+axis_gloss: "whether every record in the corpus takes the same shape, or each kind of record gets its own"
+poles:
+  a: per-kind-record-shape
+  b: uniform-record-shape
+split: leaning
+draft_status: full
+leverage: 23.1
+leverage_formula: "judgments_resolved(22) x split_weight(0.7) x authored_conflict_bonus(1.5)"
+
+question: >
+  Is there a small set of keys (id, kind, status, proof, boundary) that every
+  .yawn record must carry, with kind-specific fields on top, or does each kind
+  of record get its own shape?
+
+why_it_matters: >
+  templates/ ships four incompatible shapes with nothing ranking them, and the
+  advertised first template omits id, kind and status even though 182, 180 and
+  176 of 194 files carry them. Once answered, a bot that validates or ranks
+  records knows which keys it may rely on across the corpus, and a child Yawn
+  inherits a spine it can extend rather than a shape it must guess from
+  siblings.
+
+state_snapshot:
+  description: >
+    17 judgments sit at per-kind-record-shape (1 authored) and 5 at
+    uniform-record-shape (1 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether boundary belongs in the spine (the micro examples keep it, the
+    objective-holon example replaces it with guardrails), and whether the two JSON
+    templates are a second grammar or just another kind.
+
+options:
+  - name: A
+    description: >
+      rule: Each kind of record defines its own shape. templates/ holds one template
+      per kind; no top-level key is required of every record, and the questions:,
+      boundary: and proof: blocks appear only where the kind needs them.
+    cost: "templates/node.yawn must list the kinds and their shapes; the 66 files without proof: and the templates without id/kind/status stay as they are."
+    risk: "No corpus-wide checker is possible; a bot must know every kind before it can read any record."
+    reversibility: true
+    proof_needed: "Per-kind validators only (the model validate-mental-models.mjs already follows); nothing corpus-wide."
+    evidence_for:
+      - "J0194"
+      - "J0331"
+      - "J0348"
+      - "J0405"
+      - "J0447"
+      - "J0527"
+  - name: B
+    description: >
+      rule: Every .yawn record takes one shape: the same top-level keys in the same
+      order, as the micro examples (move, boundary, proof, replay) and the two
+      mental models (eight fixed questions) already do. Kind-specific content lives
+      under those keys, not beside them.
+    cost: "Rewrite every template into one shape; the JSON templates and the q-space templates cannot conform without changing grammar."
+    risk: "Records that need a different shape (an intake form, a receipt with hashes) get forced into keys that do not fit, and the uniformity becomes cosmetic."
+    reversibility: false
+    proof_needed: "A test in tests/ that every active .yawn has exactly the fixed key set at top level."
+    evidence_for:
+      - "J0300"
+      - "J0319"
+      - "J0414"
+      - "J0801"
+      - "J0932"
+  - name: C
+    description: >
+      rule: Every active .yawn record carries a spine: id, kind, status, updated,
+      proof, and boundary. Each kind may add its own keys beyond the spine.
+      templates/node.yawn names the spine and says which of the four template shapes
+      is canonical for which kind. Files that cannot carry the spine (the two JSON
+      templates) are listed by name.
+    cost: "Add proof: to 66 files or list them; add id/kind/status to templates/basic.yawn and the other spine-less templates; write the ranking into templates/node.yawn."
+    risk: "The spine is added as empty placeholders that satisfy the test and say nothing."
+    reversibility: true
+    proof_needed: "A test in tests/ (tests/record-spine.test.mjs) that every active .yawn outside a named exclusion list carries the spine keys, modelled on scripts/validate-mental-models.mjs."
+    evidence_for:
+      - "J0300"
+      - "J0319"
+      - "J0414"
+      - "J0801"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Per-kind shape is the actual practice (17 revealed judgments) and uniform
+    shape is enforced in exactly one place (scripts/validate-mental-models.mjs,
+    proof-attached J0319). Neither pole is authored beyond one judgment each. But
+    GROUND_TRUTH FACT 13 shows the corpus already has a de facto spine: id in
+    182/194, kind in 180, status in 176, proof in 128. C writes that spine down
+    and leaves per-kind extension free, which is what the outcome-attached
+    judgments (the declaration written in protocol shape, the five-section commit
+    body) show the repo does when it means it. B would break the JSON and q-space
+    templates; A gives up the keys that already exist.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/node.yawn names the spine keys and states which template shape is canonical for which kind."
+    - "A test in tests/ fails on an active .yawn missing a spine key unless the file is on a named exclusion list, and passes."
+    - "The 66 files without proof: either carry one or are on that list by name."
+    - "templates/basic.yawn carries id, kind and status."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new template lands with a fifth top-level shape and nothing in tests/
+    notices.
+  status: proposed
+
+resolves:
+  - "J0194"
+  - "J0331"
+  - "J0348"
+  - "J0405"
+  - "J0447"
+  - "J0527"
+  - "J0300"
+  - "J0319"
+  - "J0414"
+  - "J0801"
+  - "J0932"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

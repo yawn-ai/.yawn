@@ -1,0 +1,155 @@
+id: decisions/019-failure-posture
+title: "Unknown means closed; not every question is a gate"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'failure-posture'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: failure-posture
+axis_gloss: "what a check does when it cannot decide: it blocks and stops the work, or it records a warning and lets the work continue"
+poles:
+  a: fail-closed
+  b: warn-and-proceed
+split: leaning
+draft_status: full
+leverage: 13.7
+leverage_formula: "judgments_resolved(13) x split_weight(0.7) x authored_conflict_bonus(1.5)"
+
+question: >
+  When a check cannot decide, does the work stop or does it note the doubt and
+  go on, and which open questions count as checks?
+
+why_it_matters: >
+  Six written rules say a gate that cannot decide stays closed and foregrounded,
+  and the tests enforce it; one written rule says an open question blocks only
+  when it would change a decision, and the arena document owes revision only
+  when a failure recurs, with no counter anywhere. A bot inherits whether an
+  unanswered question in questions/ halts its move; a child Yawn inherits
+  whether unknown is a stop or a note.
+
+state_snapshot:
+  description: >
+    11 judgments sit at fail-closed (6 authored) and 2 at warn-and-proceed (1
+    authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Who may set blocks_action on a new question: its author, a bot, or only Dave.
+
+options:
+  - name: A
+    description: >
+      Every check fails closed. An unknown, disputed or missing assessment leaves
+      the gate closed and foregrounded; every open question is a gate until
+      answered.
+    cost: "questions/open-questions.yawn loses its need-not-block rule; the repository-rename question (blocks_action: false) becomes a blocker."
+    risk: "Delay without safety on questions that cannot change a decision, which is the reason J0543 gives against it."
+    reversibility: true
+    proof_needed: "tests/orientation-map-v0.1.test.mjs 'machine inference cannot clear any hard gate' and 'typed holds and selector options fail closed' already cover gates; A would add a check that no open question carries blocks_action: false."
+    evidence_for:
+      - "J0016"
+      - "J0228"
+      - "J0544"
+      - "J0575"
+      - "J0603"
+      - "J0648"
+  - name: B
+    description: >
+      Checks warn and proceed. A blocker is recorded as state and the move
+      continues; a rule is revised when its failure has been seen more than once.
+    cost: "Rewriting the negative_assessment_boundary in core/inquiry-selection.yawn and the sender_rule in automation/yawn.bot.pr-notification.yawn; deleting three fail-closed tests."
+    risk: "A confident model assessment clears a gate; a notification is routed around an unapproved sender; both are exactly what the authored rules forbid."
+    reversibility: false
+    proof_needed: "None on this side; B is the absence of the fail-closed tests."
+    evidence_for:
+      - "J0185"
+      - "J0543"
+  - name: C
+    description: >
+      Gates fail closed: unknown, disputed or missing evidence leaves a gate closed
+      and foregrounded, and machine inference never clears one. An open question is
+      a gate only when it carries blocks_action: true and a why_it_matters; a
+      question marked blocks_action: false does not stop movement. Any rule that
+      fires on recurrence names the ledger that counts.
+    cost: "Two sentences in questions/open-questions.yawn rules; a blocks_action flag on every open question (three of four already carry it); a ledger reference in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 18."
+    risk: "Whoever sets blocks_action decides what can be skipped; if a bot sets it, the carve-out becomes a bypass."
+    reversibility: true
+    proof_needed: "Keep the three fail-closed tests; add to tests/ a check that every entry in questions/open-questions.yawn carries blocks_action and why_it_matters, and that any .yawn using recurrence as a trigger names a ledger path that exists."
+    evidence_for:
+      - "J0016"
+      - "J0228"
+      - "J0543"
+      - "J0544"
+      - "J0603"
+      - "J0648"
+
+recommendation:
+  option_ref: C
+  confidence: 0.85
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Fail-closed has six authored judgments, one proof-attached (J0228, enforced by
+    'unknown hard-gate evidence is foregrounded and never rewritten as clear') and
+    one outcome-attached (J0603). The only authored warn-and-proceed judgment
+    (J0543) is not about gates at all; it is about which questions are gates, and
+    J0544 shows the artifacts already implement it with blocks_action flags. The
+    two rules do not collide once written together. The one real warn-and-proceed
+    is J0185's recurrence threshold with no counter, which C closes by requiring
+    the ledger. This is nearly decided already; it needs one paragraph where the
+    two rules meet.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "questions/open-questions.yawn rules say a question blocks when and only when blocks_action: true, and every open question carries the flag with a why_it_matters"
+    - "core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 18 names the ledger that counts recurrences"
+    - "The fail-closed tests in tests/orientation-map-v0.1.test.mjs and tests/inquiry-selection-receipt-v0.1.test.mjs keep passing and a new test checks the blocks_action flag"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A bot proceeds past a question marked blocks_action: true, or a gate assessed
+    unknown is rendered clear, and no test fails.
+  status: proposed
+
+resolves:
+  - "J0016"
+  - "J0228"
+  - "J0544"
+  - "J0575"
+  - "J0603"
+  - "J0648"
+  - "J0185"
+  - "J0543"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

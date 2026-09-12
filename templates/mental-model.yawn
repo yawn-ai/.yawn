@@ -1,6 +1,8 @@
 id: templates/mental-model
 title: "Mental model template (questions first)"
 kind: template
+record_shape: header
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
 status: draft-0.1
 spec_version: mental-model.v0.1
 updated: 2026-09-09

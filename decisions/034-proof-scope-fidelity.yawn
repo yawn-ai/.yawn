@@ -1,0 +1,160 @@
+id: decisions/034-proof-scope-fidelity
+title: "A proof names the claim it covers"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'proof-scope-fidelity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: proof-scope-fidelity
+axis_gloss: "whether the attached proof actually covers the claim it sits under, or covers a narrower or different claim than the one advertised"
+poles:
+  a: proof-overreach
+  b: scope-matched-proof
+split: leaning
+draft_status: full
+leverage: 7.6
+leverage_formula: "judgments_resolved(9) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must every proof block say exactly which claim it covers, so that a passing
+  check can never be read as proving the whole record?
+
+why_it_matters: >
+  Five written rules scope proof narrowly (a passing proof does not retire
+  intent or cost; a receipt proves equivalence, not origin; no cited study tests
+  interception as defined), but core/canonical-extension.yawn carries a green
+  proof block whose validator checks only the extension name while the same
+  record's media_role claim is falsified by two JSON .yawn files nobody checks.
+  A bot inherits whether a passing proof on a record means every line is proven;
+  a child Yawn learns whether to write proof.covers.
+
+state_snapshot:
+  description: >
+    3 judgments sit at proof-overreach (0 authored) and 6 at scope-matched-proof
+    (5 authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants the two JSON templates
+    (templates/question-proposal.v1.yawn, templates/art-brief.v1.yawn) recognised
+    as a second grammar or removed; that decides whether media_role is a claim to
+    prove or to drop.
+
+options:
+  - name: A
+    description: >
+      A proof block sits at the top of a record and stands for the record. A passing
+      check makes the record proven.
+    cost: "Nothing changes."
+    risk: "Every claim in the 128 proof-bearing files inherits the strength of whatever narrow check happens to sit under proof:, which is how media_role reads as proven today (FACT 10)."
+    reversibility: true
+    proof_needed: "None; A is the status quo."
+    evidence_for:
+      - "J0187"
+      - "J0718"
+      - "J0727"
+  - name: B
+    description: >
+      Every proof block names the claims it covers under proof.covers: as key paths
+      in the same record. Any claim not listed is unproven by default. A checklist's
+      checked box counts only for the claim it names.
+    cost: "A covers: line in 128 proof blocks, phased through a shrink-only ledger; core/canonical-extension.yawn either adds a media_role check to its validator or lists media_role as uncovered; references/source-index.yawn proof.source matched to its sources; fixtures/node.yawn and schemas/node.yawn agree on the strength of npm test."
+    risk: "covers: lines written broadly (covers: all) defeat the rule; needs a lint that covers: names existing keys."
+    reversibility: true
+    proof_needed: "Extend tests/canonical-extension-v1.test.mjs to assert each acceptance condition in the core/canonical-extension.yawn proof block corresponds to a pattern in scripts/validate-canonical-extension.mjs (today media_role has none); a new test that every proof block with a command or verifier carries covers: naming keys that exist in the same record, with a grandfather map."
+    evidence_for:
+      - "J0210"
+      - "J0328"
+      - "J0541"
+      - "J0600"
+      - "J0688"
+      - "J1117"
+  - name: C
+    description: >
+      Option B for every record whose proof names a command, test, verifier or
+      validator (the executable layer) and every record with status active or v1.
+      Seed-backed source lists are exempt and are lineage, not proof (see the
+      what-counts-as-proof decision).
+    cost: "covers: on roughly twenty executable proof blocks and the 37 active or v1 files; the same three fixes as B."
+    risk: "The exemption leaves the majority of proof blocks unscoped; readers must know the two regimes."
+    reversibility: true
+    proof_needed: "Same tests as B, scoped to records whose proof block names something runnable or whose status is active or v1."
+    evidence_for:
+      - "J0210"
+      - "J0328"
+      - "J0600"
+      - "J1117"
+
+recommendation:
+  option_ref: B
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Five of six scope-matched judgments are authored, one proof-attached (J0600)
+    and one contract-defined (J1117, where the receipt schema writes its limit
+    into its own description). The overreach cases are unauthored readings, and
+    GROUND_TRUTH FACT 10 finds the sharpest instance in the flagship validator:
+    the proof block covers the name and the record wears it over media_role, which
+    FACT 9 falsifies. B is the honest rule and its cost is one line per proof
+    block, which the grandfather pattern can phase; C is B minus the seed-backed
+    majority, which only makes sense if the what-counts-as-proof decision has
+    already turned those into lineage.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/canonical-extension.yawn proof block lists media_role under covers: with a check in scripts/validate-canonical-extension.mjs, or lists it as uncovered"
+    - "references/source-index.yawn proof.source equals its sources list or states why it differs"
+    - "fixtures/node.yawn and schemas/node.yawn either claim the same strength for npm test or state the difference"
+    - "A test in tests/ asserts every executable proof block carries covers: naming keys that exist in that record, and passes"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record's proof passes while a claim in the same record is false and no field
+    distinguishes the two; media_role in core/canonical-extension.yawn is the live
+    instance.
+  status: proposed
+
+resolves:
+  - "J0187"
+  - "J0718"
+  - "J0727"
+  - "J0210"
+  - "J0328"
+  - "J0541"
+  - "J0600"
+  - "J0688"
+  - "J1117"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

@@ -1,0 +1,140 @@
+id: decisions/017-vocabulary-closure
+title: "open vocabulary or closed vocabulary"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'vocabulary-closure'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: vocabulary-closure
+axis_gloss: "whether a term set is fixed and enumerable, or may grow freely as records need new words"
+poles:
+  a: open-vocabulary
+  b: closed-vocabulary
+split: genuinely-split
+draft_status: axis-only
+leverage: 14.4
+leverage_formula: "judgments_resolved(12) x split_weight(1) x authored_conflict_bonus(1.2)"
+
+question: >
+  On vocabulary closure — whether a term set is fixed and enumerable, or may
+  grow freely as records need new words — the records assert both open
+  vocabulary (5 judgments, 0 authored) and closed vocabulary (7 judgments, 3
+  authored). Which should be the stated rule, and where is the exception?
+
+why_it_matters: >
+  Until this is answered, a record below Dave inherits whichever side it happens
+  to copy. Full draft pending: the proposal batch for this axis did not
+  complete; the axis, poles, counts and evidence are real, the options below are
+  the generic form.
+
+state_snapshot:
+  description: >
+    5 judgments sit at open-vocabulary (0 authored) and 7 at closed-vocabulary (3
+    authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    The full proposal.
+
+options:
+  - name: A
+    description: >
+      open vocabulary becomes the stated rule across its scope.
+    cost: "not yet drafted"
+    risk: "not yet drafted"
+    reversibility: true
+    proof_needed: "not yet drafted"
+    evidence_for:
+      - "J0271"
+      - "J0630"
+      - "J0911"
+      - "J0936"
+      - "J0952"
+  - name: B
+    description: >
+      closed vocabulary becomes the stated rule across its scope.
+    cost: "not yet drafted"
+    risk: "not yet drafted"
+    reversibility: true
+    proof_needed: "not yet drafted"
+    evidence_for:
+      - "J0421"
+      - "J0681"
+      - "J0886"
+      - "J0907"
+      - "J1088"
+      - "J1177"
+  - name: C
+    description: >
+      One pole is the rule; the other is a written carve-out for a named case.
+    cost: "not yet drafted"
+    risk: "not yet drafted"
+    reversibility: true
+    proof_needed: "not yet drafted"
+    evidence_for:
+      []
+
+recommendation:
+  option_ref: 
+  confidence: 0
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Not drafted. Re-run the decision-proposal workflow for this axis; the
+    recommendation must be argued from the evidence, not defaulted.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "a full draft replaces this stub"
+    - "a test in tests/ rejects records outside the chosen rule and passes"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A surface treats this stub's generic options as a recommendation.
+  status: proposed
+
+resolves:
+  - "J0271"
+  - "J0630"
+  - "J0911"
+  - "J0936"
+  - "J0952"
+  - "J0421"
+  - "J0681"
+  - "J0886"
+  - "J0907"
+  - "J1088"
+  - "J1177"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

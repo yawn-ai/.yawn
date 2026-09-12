@@ -10,6 +10,12 @@ const requiredFiles = [
 ];
 
 const contentExemptFiles = new Set([
+  // Inventory documents that QUOTE the corpus, including its own alias guards.
+  // They describe the invariant; they do not create artifacts under an alias.
+  "JUDGMENTS.md",
+  "TAXONOMY.md",
+  "HOLDOUT.md",
+  "HOLDOUT_METHOD.md",
   "core/canonical-extension.yawn",
   "migrations/2026-08-17-canonical-extension.yawn",
   "lib/canonical-extension-v1.mjs",

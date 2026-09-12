@@ -95,6 +95,8 @@ core_links:
   objective_holon: core/objective-holon.yawn
   projection_and_aperture: core/projection-and-aperture.yawn
   inquiry_selection: core/inquiry-selection.yawn
+  relationship_first_agent_arena: core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+  entity_and_coupling: core/entity-and-coupling.yawn
 
 schema_links:
   node: schemas/node.yawn
@@ -113,6 +115,21 @@ schema_links:
   orientation_map_draft_0_1: schemas/orientation-map.v0.1.schema.json
   inquiry_selection_receipt_draft_0_1: schemas/inquiry-selection-receipt.v0.1.schema.json
   contracts_v1: contracts/schemas/yawn-contracts-v1.schema.json
+  action_policy_v1: schemas/action-policy.v1.schema.json
+  action_receipt_v1: schemas/action-receipt.v1.schema.json
+  action_signature_v1: schemas/action-signature.v1.schema.json
+  art_brief_v1: schemas/art-brief.v1.schema.json
+  collaboration_message_v1: schemas/collaboration-message.v1.schema.json
+  execution_relationship_v1: schemas/execution-relationship.v1.schema.json
+  local_art_candidate_v1: schemas/local-art-candidate.v1.schema.json
+  observation_v1: schemas/observation.v1.schema.json
+  projection_preference_v1: schemas/projection-preference.v1.schema.json
+  question_proposal_v1: schemas/question-proposal.v1.schema.json
+  reconciliation_batch_v1: schemas/reconciliation-batch.v1.schema.json
+  record_event_v1: schemas/record-event.v1.schema.json
+  record_proof_receipt_v1: schemas/record-proof-receipt.v1.schema.json
+  record_ref_v1: schemas/record-ref.v1.schema.json
+  view_feedback_v1: schemas/view-feedback.v1.schema.json
 
 spec_links:
   root: spec/README.md
@@ -153,6 +170,12 @@ interface_links:
   projection_stack: interface/projection-stack.yawn
   new_yawn: interface/new-yawn-v0.1.yawn
   objective_compiler: interface/objective-compiler.yawn
+  desktop_homebase_v1: interface/desktop-homebase-v1.yawn
+  local_observation_art_v0_1: interface/local-observation-art-v0.1.yawn
+  yawn_brand_v1: interface/yawn-brand-v1.yawn
+  yawn_capability_tags_v1: interface/yawn-capability-tags-v1.yawn
+  yawn_chrome_v1: interface/yawn-chrome-v1.yawn
+  yawn_observation_view_v1: interface/yawn-observation-view-v1.yawn
 
 question_links:
   doorway: questions/node.yawn
@@ -224,6 +247,10 @@ record_links:
   next_move_ledger: records/next-move-ledger.yawn
   yawn_bot_runtime_promotion: records/yawn-bot-runtime-promotion-2026-07-11.yawn
   cold_start_proof: records/cold-start-proof-2026-07-11.yawn
+  yawnbot_intelligence_container_clarification: records/2026-09-03-yawnbot-intelligence-container-clarification.yawn
+  epistemic_status_drift_ledger: records/epistemic-status-drift-ledger-2026-08-28.yawn
+  inquiry_aperture_one_question_face: records/inquiry-aperture-one-question-face.yawn
+  yawn_bot_state: records/yawn.bot-state.yawn
 
 question_packet_links:
   node: question-packets/node.yawn
@@ -251,6 +278,19 @@ template_links:
   routing_proposal: templates/routing-proposal.yawn
   structural_change_receipt: templates/structural-change-receipt.yawn
   objective_holon: templates/objective-holon.yawn
+  art_brief_v1: templates/art-brief.v1.yawn
+  collaboration_message: templates/collaboration-message.yawn
+  conversation_import_draft: templates/conversation-import-draft.yawn
+  mental_model: templates/mental-model.yawn
+  observation_question_art: templates/observation-question-art.yawn
+  observation: templates/observation.yawn
+  q_space_answer_event: templates/q-space-answer-event.yawn
+  q_space_frontier_candidate: templates/q-space-frontier-candidate.yawn
+  q_space_pattern_candidate: templates/q-space-pattern-candidate.yawn
+  q_space_proof_event: templates/q-space-proof-event.yawn
+  q_space_question_node: templates/q-space-question-node.yawn
+  q_space_transition_event: templates/q-space-transition-event.yawn
+  question_proposal_v1: templates/question-proposal.v1.yawn
 
 example_links:
   stuck: examples/stuck.yawn
@@ -279,6 +319,10 @@ fixture_links:
   dave_good_dad_objective_holon_draft_0_1: fixtures/dave-good-dad-objective-holon.v0.1.json
   orientation_map_draft_0_1: fixtures/orientation-map.v0.1.json
   inquiry_selection_receipt_draft_0_1: fixtures/inquiry-selection-receipt.v0.1.json
+  collaboration_message_v1: fixtures/collaboration-message.v1.json
+  delegated_execution_v1: fixtures/delegated-execution.v1.json
+  observation_question_art_v1: fixtures/observation-question-art.v1.json
+  observation_v1: fixtures/observation.v1.json
 
 governance_links:
   governance: GOVERNANCE.md
@@ -300,6 +344,9 @@ agent_links:
   yawn_bot: agents/yawn.bot.yawn
   repo_contributor: agents/repo-contributor.yawn
   repo_contributor_policy: agents/yawn.bot.policy.yawn
+  collaboration_history: agents/collaboration-history.yawn
+  contributor_agent: agents/contributor-agent.yawn
+  contributor_architecture: agents/contributor-architecture.yawn
 
 reference_links:
   interception: references/interception.yawn
@@ -307,9 +354,71 @@ reference_links:
   ownership_and_license: references/ownership-and-license.yawn
   scientific_frame: references/scientific-frame.yawn
   july_01_lock: references/july-01-lock.yawn
+  relationship_first_research_braid: references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn
 
 migration_links:
   canonical_extension_2026_08_17: migrations/2026-08-17-canonical-extension.yawn
+  cohere_vocabulary_and_attribution: migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn
+
+decision_links:
+  r_053_container_intelligence_name: decisions/053-container-intelligence-name.yawn
+  r_001_one_canon_per_concept: decisions/001-one-canon-per-concept.yawn
+  r_002_coverage_allocation: decisions/002-coverage-allocation.yawn
+  r_003_rules_that_can_fail: decisions/003-rules-that-can-fail.yawn
+  r_004_when_a_concern_earns_a_record: decisions/004-when-a-concern-earns-a-record.yawn
+  r_005_field_obligation: decisions/005-field-obligation.yawn
+  r_006_runtime_dependence: decisions/006-runtime-dependence.yawn
+  r_007_closed_until_opened: decisions/007-closed-until-opened.yawn
+  r_008_public_repo_privacy: decisions/008-public-repo-privacy.yawn
+  r_009_audience_primacy: decisions/009-audience-primacy.yawn
+  r_010_list_order_semantics: decisions/010-list-order-semantics.yawn
+  r_011_label_first_prove_before_promote: decisions/011-label-first-prove-before-promote.yawn
+  r_012_shared_key_vocabulary: decisions/012-shared-key-vocabulary.yawn
+  r_013_record_spine: decisions/013-record-spine.yawn
+  r_014_gap_disclosure: decisions/014-gap-disclosure.yawn
+  r_015_maturity_claim_honesty: decisions/015-maturity-claim-honesty.yawn
+  r_016_migration_mode: decisions/016-migration-mode.yawn
+  r_017_vocabulary_closure: decisions/017-vocabulary-closure.yawn
+  r_018_who_may_authorise: decisions/018-who-may-authorise.yawn
+  r_019_failure_posture: decisions/019-failure-posture.yawn
+  r_020_break_grammar_alias_addresses: decisions/020-break-grammar-alias-addresses.yawn
+  r_021_status_dimensionality: decisions/021-status-dimensionality.yawn
+  r_022_claim_boundedness: decisions/022-claim-boundedness.yawn
+  r_023_state_ownership_in_interface: decisions/023-state-ownership-in-interface.yawn
+  r_024_tie_break_basis: decisions/024-tie-break-basis.yawn
+  r_025_formalisation_spend: decisions/025-formalisation-spend.yawn
+  r_026_what_counts_as_proof: decisions/026-what-counts-as-proof.yawn
+  r_027_structural_topology: decisions/027-structural-topology.yawn
+  r_028_consent_before_crossing_a_boundary: decisions/028-consent-before-crossing-a-boundary.yawn
+  r_029_handoff_is_dated: decisions/029-handoff-is-dated.yawn
+  r_030_first_move_conformance: decisions/030-first-move-conformance.yawn
+  r_031_typed_ids_one_hash_form: decisions/031-typed-ids-one-hash-form.yawn
+  r_032_which_layer_adapts: decisions/032-which-layer-adapts.yawn
+  r_033_attribution_granularity: decisions/033-attribution-granularity.yawn
+  r_034_proof_scope_fidelity: decisions/034-proof-scope-fidelity.yawn
+  r_035_enforcement_locus: decisions/035-enforcement-locus.yawn
+  r_036_proof_reaches_outside: decisions/036-proof-reaches-outside.yawn
+  r_037_every_record_names_its_shape_source: decisions/037-every-record-names-its-shape-source.yawn
+  r_038_absence_representation: decisions/038-absence-representation.yawn
+  r_039_scoring_record_points_at_receipt: decisions/039-scoring-record-points-at-receipt.yawn
+  r_040_one_naming_rule_with_a_ledger: decisions/040-one-naming-rule-with-a-ledger.yawn
+  r_041_dot_yawn_is_the_human_grammar: decisions/041-dot-yawn-is-the-human-grammar.yawn
+  r_042_numbers_on_inferred_only: decisions/042-numbers-on-inferred-only.yawn
+  r_043_automation_cadence: decisions/043-automation-cadence.yawn
+  r_044_verdict_arity: decisions/044-verdict-arity.yawn
+  r_045_rule_versus_carve_out: decisions/045-rule-versus-carve-out.yawn
+  r_046_proof_a_reader_can_open: decisions/046-proof-a-reader-can-open.yawn
+  r_047_unknown_stays_unknown: decisions/047-unknown-stays-unknown.yawn
+  r_048_closed_status_field: decisions/048-closed-status-field.yawn
+  r_049_source_admissibility: decisions/049-source-admissibility.yawn
+  r_050_extension_discipline: decisions/050-extension-discipline.yawn
+  r_051_closed_with_named_openings: decisions/051-closed-with-named-openings.yawn
+  r_052_credit_the_whole_lineage: decisions/052-credit-the-whole-lineage.yawn
+
+dave_links:
+  number_sense: dave/number-sense/model.yawn
+  prenumerical_thinking: dave/prenumerical-thinking/model.yawn
+  orientation: dave/orientation/model.yawn
 
 usage_frame: >
   YAWN is an orientation shape for inference before action. Use it by naming
@@ -399,6 +508,13 @@ folder_node_links:
   references: references/node.yawn
   agents: agents/node.yawn
   scripts: scripts/node.yawn
+  agency_declaration: agency-declaration/node.yawn
+  dave: dave/node.yawn
+  declaration_of_agency: declaration-of-agency/node.yawn
+  migrations: migrations/node.yawn
+  q_space: q-space/node.yawn
+  schemas: schemas/node.yawn
+  decisions: decisions/node.yawn
 
 boundary:
   - signal is not instruction

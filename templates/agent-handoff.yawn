@@ -1,6 +1,7 @@
 id: ""
 title: ""
 kind: agent-handoff
+record_shape: header
 updated: ""
 
 handoff:

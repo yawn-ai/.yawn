@@ -18,10 +18,19 @@ examples/ + fixtures/      explanatory and executable evidence
 docs/                      guides, status, projections, research boundary
 interface/ + q-space/      presentation contracts and projections
 dave/                      principal mental models: questions-first records and their page views
+decisions/                 proposed decisions for the principal, one per open axis, ranked by leverage
 agents/                    runtime identities and bounded bot-role contracts
 rfcs/ + adr/               proposed and accepted change rationale
 migrations/                source-preserving structural receipts
 ```
+
+## Agent entry
+
+[`CLAUDE.md`](../CLAUDE.md) is the one file an agent reads first: the test
+command, the closed vocabularies, the record shapes, the proof rule, and where
+the decisions and the bot's state live. [`records/yawn.bot-state.yawn`](../records/yawn.bot-state.yawn)
+is generated from the ledgers and [`decisions/`](../decisions/node.yawn) by
+`scripts/render-bot-state.mjs`; surfaces read it rather than the contracts.
 
 ## Retired numbered generation
 

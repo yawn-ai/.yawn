@@ -1,0 +1,171 @@
+id: decisions/028-consent-before-crossing-a-boundary
+title: "Consent before any effect crosses a boundary"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'consent-timing'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: consent-timing
+axis_gloss: "whether agreement is obtained before the effect lands, or the effect lands first and is reviewed or corrected afterwards"
+poles:
+  a: consent-before-effect
+  b: act-then-audit
+split: leaning
+draft_status: full
+leverage: 10.1
+leverage_formula: "judgments_resolved(12) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must agreement come before an effect lands in every case, or may work be
+  staged first — a browser-local draft, a private draft PR, a local render, a
+  database row flagged for review — as long as nothing crosses to another
+  person, the public or canonical state without consent?
+
+why_it_matters: >
+  The three authored rules (normalize before a record exists, partner review
+  before relationship moves, offer before installing) all guard an effect that
+  reaches someone else, while every act-first artifact stages inside a private
+  or local boundary and pauses before promotion; two sibling interface contracts
+  even disagree on whether browser-local autosave counts as forbidden
+  persistence. Once answered, a bot knows which of its steps may run unattended
+  and exactly which step is the gate, instead of reading 'human review' as
+  either always-first or always-after.
+
+state_snapshot:
+  description: >
+    8 judgments sit at consent-before-effect (3 authored) and 4 at act-then-audit
+    (0 authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave counts a browser-local draft or a private draft PR as an effect
+    at all, and whether a needs-review row in the feedback database is already
+    canonical to him.
+
+options:
+  - name: A
+    description: >
+      rule: No effect of any kind lands before consent. Nothing is saved, staged,
+      rendered or inserted until a human has agreed; review is the first step, not
+      the ninth.
+    cost: "Removes autosave from interface/new-yawn-v0.1.yawn, reorders database/feedback-intake.yawn status_flow, moves the human pause in interface/local-observation-art-v0.1.yawn before rendering, and contradicts the outcome-attached feedback loop that stages a private draft PR before notifying Dave."
+    risk: "Every loop blocks on a human before it has anything to show; the local art contract's 'render under a bounded grant, promote separately' design is lost."
+    reversibility: true
+    proof_needed: "Extend tests/local-observation-art-contract.test.mjs to assert pause-for-human-review precedes render-through-local-comfyui; today the reverse is asserted and passes."
+    evidence_for:
+      - "J0077"
+      - "J0380"
+      - "J0425"
+      - "J0444"
+      - "J0506"
+      - "J0620"
+  - name: B
+    description: >
+      rule: Effects land first and are audited after. Review is a stage that follows
+      staging, insertion or rendering, and consent is corrective rather than prior.
+    cost: "Contradicts examples/relationship-commitment-conversation.yawn (partner review blocks the move, stated three times) and interface/desktop-homebase-v1.yawn (offer, never silent install)."
+    risk: "A relationship-impacting move or a shell install lands before the other person has agreed; 'no hidden agent authority' in core/design-principles.yawn v0_lock is breached."
+    reversibility: false
+    proof_needed: "None can enforce audit-after; the record would be striking must_ask_first from the relationship example and the update-offer line from desktop-homebase."
+    evidence_for:
+      - "J0341"
+      - "J0486"
+      - "J1044"
+      - "J1048"
+  - name: C
+    description: >
+      rule: Consent comes before any effect that crosses a boundary: reaches another
+      person, the public, canonical state, spend, or a device outside the owner's
+      control. Inside a private, local and reversible boundary (browser-local draft,
+      private draft PR, local render, a row flagged needs-review that is not
+      canonical) work may be staged first and reviewed after, and every such surface
+      names the boundary it stays inside. Consequences named:
+      interface/yawn-observation-view-v1.yawn's forbidden automatic_persistence is
+      qualified to canonical or remote persistence so new-yawn's browser-local
+      autosave is not in conflict; database/feedback-intake.yawn says rows before
+      needs-review are not canonical.
+    cost: "One sentence in core/proof-and-boundary.yawn or design-principles v0_lock; a qualifier on one interface contract; a placement note on one database contract."
+    risk: "'Private boundary' widens over time until a draft PR becomes a merged PR."
+    reversibility: true
+    proof_needed: "Extend tests/interface-contracts.test.mjs: any contract declaring autosave or automatic creation must also declare persistence: browser-local (or equivalent), live_model_calls: none and typing_network_requests: none; extend tests/local-observation-art-contract.test.mjs to assert separate_human_decision is the last entry of order: and promote-through-a-separate-approval the last of pipeline:."
+    evidence_for:
+      - "J0077"
+      - "J0380"
+      - "J0425"
+      - "J0444"
+      - "J1044"
+      - "J1048"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    All authored judgments are consent-first and all act-first judgments are
+    revealed, but the revealed ones share one shape: staging inside a boundary the
+    owner controls, with the crossing step gated after. The test suite already
+    implements exactly that split ('rendering requires a bounded local grant and
+    cannot promote itself'; 'the recurring contract can propose but cannot
+    generate, spend, or publish'), and the outcome-attached feedback loop (private
+    draft PR, then notify, then review) is this rule in practice. The one real
+    conflict is between two sibling interface contracts over what 'persistence'
+    means, which C resolves by qualifying the word.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "The boundary-crossing rule is written once in core/proof-and-boundary.yawn or core/design-principles.yawn v0_lock."
+    - "interface/yawn-observation-view-v1.yawn and interface/new-yawn-v0.1.yawn no longer disagree on automatic persistence, and a test asserts autosave surfaces declare their local boundary."
+    - "database/feedback-intake.yawn states that rows before needs-review are not canonical."
+    - "tests/local-observation-art-contract.test.mjs asserts the human decision is the last ordered step and passes."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A surface that can send, publish, spend or write canonical state gains an
+    automatic step before its consent gate and npm test stays green.
+  status: proposed
+
+resolves:
+  - "J0077"
+  - "J0380"
+  - "J0425"
+  - "J0444"
+  - "J0506"
+  - "J0620"
+  - "J0341"
+  - "J0486"
+  - "J1044"
+  - "J1048"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

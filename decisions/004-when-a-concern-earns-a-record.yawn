@@ -1,0 +1,173 @@
+id: decisions/004-when-a-concern-earns-a-record
+title: "One split test for when a concern gets its own record"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'record-granularity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: record-granularity
+axis_gloss: "whether one concern gets one small record each, or several concerns are fused into a single larger record"
+poles:
+  a: decomposed-many-records
+  b: combined-single-record
+split: genuinely-split
+draft_status: full
+leverage: 36
+leverage_formula: "judgments_resolved(24) x split_weight(1) x authored_conflict_bonus(1.5)"
+
+question: >
+  When does one concern earn its own .yawn — whenever it has a name or an ID, or
+  only when its proof, owner, status or rollback would differ from its parent's?
+
+why_it_matters: >
+  The repo authors both halves of this: it splits a bot across four files and
+  links rather than merges overlapping records, yet refuses one-Yawn-per-message
+  and one-Agent-per-viewpoint; meanwhile a working-draft extension sits inside a
+  v1 record and a generator sits inside a node defined as checks-only,
+  unremarked. Once answered, a child Yawn deciding whether to fork a
+  relationship, a desire or a draft into its own file applies one written test
+  instead of guessing from precedent.
+
+state_snapshot:
+  description: >
+    17 judgments sit at decomposed-many-records (7 authored) and 7 at
+    combined-single-record (3 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave counts a status or version difference alone as forcing a split,
+    or only a difference in proof, owner or rollback.
+
+options:
+  - name: A
+    description: >
+      rule: Every distinct concern (a relationship, a desire, a draft extension, a
+      module, a generator, a move) is its own record, linked from its parent by a
+      typed pointer. Embedding a concern that could stand alone is not allowed.
+    cost: "Splits objective_holon_extension_0_1 out of core/motivation-and-purpose.yawn, generators out of scripts/node.yawn, and contradicts the authored refusals in examples/conversation-import-routing.yawn and question-packets/orientation-nine.yawn (a stance is not a second Agent; a message ID is not a reason to become a record)."
+    risk: "Record count explodes; the folder-node rule (every active folder carries node.yawn) then multiplies too."
+    reversibility: false
+    proof_needed: "A test that fails when any nested block inside a record carries its own status:, spec_version:, owner: or proof: — today it fails on core/motivation-and-purpose.yawn and would also fail templates/turn.yawn moves, which the repo wants."
+    evidence_for:
+      - "J0066"
+      - "J0141"
+      - "J0148"
+      - "J0225"
+      - "J0366"
+      - "J0417"
+  - name: B
+    description: >
+      rule: A record may hold everything about its subject, including drafts,
+      extensions and sub-moves at other statuses. Splitting is the author's
+      discretion and needs no stated criterion.
+    cost: "Softens core/holarchy.yawn structural_change_rule and examples/merge-split-routing.yawn, whose merge_counterexample was written precisely to stop merges that fuse different proof conditions, owners and rollback scopes."
+    risk: "A v1 record carries working-draft content under the v1 label and a validator that trusts the top-level status trusts the draft."
+    reversibility: true
+    proof_needed: "None can enforce discretion; the record would be striking the five split conditions from core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 13."
+    evidence_for:
+      - "J0254"
+      - "J0337"
+      - "J0363"
+      - "J0522"
+      - "J0812"
+      - "J0882"
+  - name: C
+    description: >
+      rule: A concern becomes its own record when its proof condition, owner or
+      authority, lifecycle status or version, or rollback scope differs from its
+      parent's (the five conditions in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+      section 13 plus the merge_counterexample in examples/merge-split-routing.yawn,
+      written once in core/holarchy.yawn structural_change_rule). Having an ID, a
+      message boundary or a viewpoint is never sufficient on its own. Consequences
+      named: objective_holon_extension_0_1 (status working-draft inside a v1 record)
+      becomes its own record linked from core/motivation-and-purpose.yawn;
+      scripts/node.yawn lists generators under a separate generates: key with the
+      purpose line corrected. A turn's plural moves stay embedded because each
+      carries its own authority_ref by design.
+    cost: "One paragraph in core/holarchy.yawn, one new core record, one edit to scripts/node.yawn, pointers from the existing examples to the rule."
+    risk: "A status difference alone (draft inside active) may split things Dave wanted read together."
+    reversibility: true
+    proof_needed: "New tests/record-granularity.test.mjs: fail when a nested block in a .yawn record carries a top-level-style status: whose value differs from the record's own status (today: core/motivation-and-purpose.yawn); and assert every scripts/*.mjs is listed under exactly one of holds: or generates: in scripts/node.yawn (today: generate-inquiry-selection-receipt-v0.1.mjs sits under holds)."
+    evidence_for:
+      - "J0148"
+      - "J0366"
+      - "J0363"
+      - "J0522"
+      - "J0812"
+      - "J0882"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Both sides are authored, but they do not contradict: the decomposed side
+    states when to split (five conditions, a merge counterexample with
+    proof/owner/rollback), the combined side states when not to (an ID or a
+    viewpoint is not a reason). They are two halves of one criterion that no
+    single record writes. The two revealed exceptions (a working-draft block
+    inside a v1 file; a generator inside a checks node, outcome-attached) both
+    fail the criterion once it is written, so they become the named migrations
+    rather than a new rule. The turn's plural moves pass it.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/holarchy.yawn structural_change_rule states the split criterion once and examples/merge-split-routing.yawn and examples/conversation-import-routing.yawn point at it."
+    - "core/motivation-and-purpose.yawn contains no nested block with its own status: working-draft; the extension is its own record linked from the parent."
+    - "scripts/node.yawn separates generates: from holds: and its purpose line no longer claims checks-only."
+    - "A test in tests/ rejects a nested block whose status differs from its record and passes."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new draft extension is embedded inside a status: active or v1 record after
+    ratification and no test fails.
+  status: proposed
+
+resolves:
+  - "J0066"
+  - "J0141"
+  - "J0148"
+  - "J0225"
+  - "J0366"
+  - "J0417"
+  - "J0254"
+  - "J0337"
+  - "J0363"
+  - "J0522"
+  - "J0812"
+  - "J0882"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

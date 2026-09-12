@@ -1,0 +1,162 @@
+id: decisions/020-break-grammar-alias-addresses
+title: "Old names: break the grammar, alias the address"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'legacy-handling'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: legacy-handling
+axis_gloss: "whether the old name, route or address keeps working alongside the new one, or is broken so only the new one remains"
+poles:
+  a: hard-break
+  b: retain-alias
+split: leaning
+draft_status: full
+leverage: 13.7
+leverage_formula: "judgments_resolved(13) x split_weight(0.7) x authored_conflict_bonus(1.5)"
+
+question: >
+  When a name changes, does the old name stop working, as .ion and .yon did, or
+  keep working as a marked alias, as core-loop.yawn and /declaration-of-agency
+  do?
+
+why_it_matters: >
+  The repo hard-broke the old extension, the old schema layer and the old brand,
+  but kept old field names, old routes, the old repository slug and a superseded
+  loop file alive, and yawn.yawn registers that superseded file twice. Once
+  answered, a bot that meets an old name knows whether to resolve it or refuse
+  it, and a child Yawn knows which of its parent's names it may still use.
+
+state_snapshot:
+  description: >
+    3 judgments sit at hard-break (3 authored) and 10 at retain-alias (8
+    authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether aliases expire (declaration-of-agency/node.yawn has no sunset), and
+    whether the repository slug is a permanent alias or only waiting on
+    infrastructure authority.
+
+options:
+  - name: A
+    description: >
+      rule: Old names stop working. Retired extensions, routes, field names, slugs
+      and files are removed from the active tree; their content is preserved only
+      through Git history and one migration receipt.
+    cost: "Remove declaration-of-agency/node.yawn redirect, core-loop.yawn, the legacy compatibility examples and the schemas/node.yawn compatibility clause; rename the repository slug."
+    risk: "Eight authored judgments chose aliases for stated reasons (preserve first route, preserve lineage, exercise edge normalization); breaking them loses what they were kept for."
+    reversibility: false
+    proof_needed: "Extend scripts/validate-canonical-extension.mjs to reject any file with status: superseded or a redirects_to key."
+    evidence_for:
+      - "J0293"
+      - "J0470"
+      - "J0896"
+  - name: B
+    description: >
+      rule: Old names keep working. Every retired name remains readable, marked
+      superseded or redirects_to, and registered in yawn.yawn; nothing is
+      hard-broken.
+    cost: "Reverses the extension migration's fail-closed rollback clause and the no-second-schema-layer choice in CHANGELOG.md."
+    risk: "Aliases accumulate without expiry; the double registration in yawn.yawn is the first symptom."
+    reversibility: true
+    proof_needed: "A test that every superseded file is registered in yawn.yawn."
+    evidence_for:
+      - "J0298"
+      - "J0379"
+      - "J0605"
+      - "J0755"
+      - "J0756"
+      - "J0799"
+  - name: C
+    description: >
+      rule: The record grammar breaks hard: a retired extension, schema layer or
+      brand identity is never restored, and rollback reads old content only at the
+      old commit. Addresses and fields alias: a retired route, slug, field name or
+      file stays readable, carries status: superseded or redirects_to with a reason,
+      and is registered exactly once in yawn.yawn. An alias with no reason or no
+      registration is a defect.
+    cost: "One rule added to migrations/node.yawn; yawn.yawn deduplicated so core-loop.yawn is registered once."
+    risk: "The grammar/address line is contested for things like schema field names, which are both."
+    reversibility: true
+    proof_needed: "scripts/validate-canonical-extension.mjs already fails closed on grammar aliases; add a test in tests/ that every file with status: superseded or a redirects_to key is registered exactly once in yawn.yawn and carries a reason."
+    evidence_for:
+      - "J0293"
+      - "J0896"
+      - "J0298"
+      - "J0605"
+      - "J0755"
+      - "J0756"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Both sides are authored (3 and 8) and both have proof-attached members (J0293
+    through validate-canonical-extension; J0605 through the promotion receipt), so
+    this is not a rule with an exception but two rules for two classes. The
+    pattern is already consistent: everything on the hard-break side is grammar or
+    identity (extension, schema layer, brand); everything on the alias side is an
+    address or a field (route, slug, field names, a superseded file). The only
+    untidy item is J0799, the superseded loop registered twice with no expiry,
+    which is what the once-and-with-a-reason clause catches. C writes the existing
+    pattern down.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "migrations/node.yawn or core/canonical-extension.yawn states the two classes: grammar breaks, addresses alias."
+    - "yawn.yawn registers core-loop.yawn once, with the reason from its supersession_reason."
+    - "A test in tests/ fails when a superseded or redirecting file is unregistered or registered twice, and passes."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A schema field is renamed with no compatibility shim while a new route is
+    broken with no redirect, that is, the classes are applied backwards and
+    nothing notices.
+  status: proposed
+
+resolves:
+  - "J0293"
+  - "J0470"
+  - "J0896"
+  - "J0298"
+  - "J0379"
+  - "J0605"
+  - "J0755"
+  - "J0756"
+  - "J0799"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

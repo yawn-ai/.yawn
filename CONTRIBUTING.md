@@ -77,6 +77,25 @@ renames or historical cleanup in the same change as an unrelated semantic
 protocol change. A bounded naming migration with its own receipt, validator, and
 rollback/provenance path is acceptable.
 
+## Attribution
+
+Every `.yawn` record that speaks for a principal or a bot carries
+`authored_by:` with one of four values — `dave-human`, `agent-on-behalf`,
+`yawn.bot`, `unattributed` — and `agent-on-behalf` names the agent in
+`authored_via:`. It says who is answerable for the content, not who typed it.
+`tests/authored-by.test.mjs` enforces the enum everywhere the field appears and
+requires it under `decisions/`, `dave/`, and on `records/yawn.bot-state.yawn`.
+
+Commits that add or change records carry a matching trailer:
+
+```text
+Authored-By: agent-on-behalf (<tool or module>)
+```
+
+The git identity on the commit is not attribution. Measured 2026-09-12, more
+than half of the tree was last written by a project identity that shares the
+maintainer's email; the field exists so that a reader never has to guess.
+
 ## AI-assisted contributions
 
 AI assistance is welcome. Disclose material use in the pull request:

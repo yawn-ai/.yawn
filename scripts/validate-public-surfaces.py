@@ -41,6 +41,7 @@ html_files = [
     "dave/index.html",
     "dave/number-sense/index.html",
     "dave/prenumerical-thinking/index.html",
+    "dave/orientation/index.html",
 ]
 
 for relative_path in html_files:
@@ -90,6 +91,11 @@ yaml_files = [
     "dave/node.yawn",
     "dave/number-sense/model.yawn",
     "dave/prenumerical-thinking/model.yawn",
+    "dave/orientation/model.yawn",
+    "decisions/node.yawn",
+    "decisions/053-container-intelligence-name.yawn",
+    "records/yawn.bot-state.yawn",
+    "core/entity-and-coupling.yawn",
     "CITATION.cff",
     ".github/ISSUE_TEMPLATE/bug.yml",
     ".github/ISSUE_TEMPLATE/spec-proposal.yml",

@@ -1,0 +1,155 @@
+id: decisions/047-unknown-stays-unknown
+title: "A missing value is written as missing"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'completeness-versus-honesty'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: completeness-versus-honesty
+axis_gloss: "whether every slot is filled so the record looks finished, or slots are left visibly unfilled to stay truthful"
+poles:
+  a: honest-partial-record
+  b: complete-looking-record
+split: lone-exception
+draft_status: full
+leverage: 3.8
+leverage_formula: "judgments_resolved(8) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  When a record does not know a value, must the slot say so (empty,
+  not-recorded, a typed lacuna), or may it carry a plausible value so the record
+  reads complete?
+
+why_it_matters: >
+  Two authored rules say do not invent missing answers and one real receipt
+  writes provider_cost: unknown under status proved, but one example carries
+  bot_state: sleeping and lifecycle_state: active at once with no transition
+  between them. Once answered, a bot writing a receipt knows it must name what
+  it failed to capture, and a child Yawn learns that an empty slot is a
+  legitimate object it can address rather than a gap to paper over.
+
+state_snapshot:
+  description: >
+    7 judgments sit at honest-partial-record (3 authored) and 1 at
+    complete-looking-record (0 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave counts a self-labelled placeholder such as sha256:example-before
+    as honest or as an invented value.
+
+options:
+  - name: A
+    description: >
+      rule: A value the record does not have is written as an explicit marker (an
+      empty string, not-recorded, unknown, or a typed lacuna with a kind). No field
+      is filled by inference or synthesis to make the record read complete, and two
+      fields that describe the same state may not disagree without a transition
+      receipt between them.
+    cost: "Fix examples/dave-good-dad-objective-holon.yawn to one lifecycle value or add an activation receipt; name not-recorded/unknown in templates/proof-receipt.yawn."
+    risk: "Records fill with unknown markers that satisfy the rule and defer the work."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-objective-holon-v0.1.mjs to reject an objective holon whose proposed bot_state and realized lifecycle_state disagree with no activation receipt; add not-recorded and unknown to templates/proof-receipt.yawn as the named values for uncaptured fields."
+    evidence_for:
+      - "J0111"
+      - "J0403"
+      - "J0407"
+      - "J0484"
+      - "J0500"
+      - "J0640"
+  - name: B
+    description: >
+      rule: Records may carry placeholder or inferred values so that examples and
+      receipts read complete; a reader is expected to know which values are
+      illustrative.
+    cost: "Withdraws the 'Do not invent missing answers' rule from question-packets/ and the typed-lacuna rule from interface/new-yawn-v0.1.yawn."
+    risk: "An invented value enters the record with no attributable source, which is exactly the harm J0500 names."
+    reversibility: true
+    proof_needed: "None can enforce this."
+    evidence_for:
+      - "J0393"
+  - name: C
+    description: >
+      rule: As A, except that example fixtures may carry a self-evidently fake
+      placeholder (such as sha256:example-before) when the file is marked as an
+      example and the placeholder cannot be mistaken for a real value.
+    cost: "One marker convention for examples; otherwise as A."
+    risk: "The line between an obvious placeholder and a plausible fake is argued per file."
+    reversibility: true
+    proof_needed: "As A, plus a check that any digest in examples/ either matches the real pattern or contains the word example."
+    evidence_for:
+      - "J0484"
+      - "J0500"
+      - "J0640"
+      - "J0407"
+
+recommendation:
+  option_ref: A
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The honest-partial side is authored twice (J0484, J0500), outcome-attached
+    once (J0640, a real receipt writing provider_cost: unknown under status
+    proved), and revealed three more times. The lone exception, J0393, is not a
+    chosen pole but an internal contradiction in one example file: two lifecycle
+    fields that disagree with no transition, in a folder whose other examples
+    insist activation requires a receipt. It should be fixed, not written down. C
+    is not needed: waiting-turn's sha256:example-before already announces itself
+    as an example and participation-choice's empty strings are already honest, so
+    both satisfy A as stated.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "examples/dave-good-dad-objective-holon.yawn carries one lifecycle value or an activation receipt between bot_state and lifecycle_state."
+    - "scripts/validate-objective-holon-v0.1.mjs rejects the disagreement and passes on the fixed file."
+    - "templates/proof-receipt.yawn names not-recorded and unknown as the values for fields a run failed to capture."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A receipt with status proved omits provider_cost entirely and no reader can
+    tell it was uncaptured rather than free.
+  status: proposed
+
+resolves:
+  - "J0111"
+  - "J0403"
+  - "J0407"
+  - "J0484"
+  - "J0500"
+  - "J0640"
+  - "J0393"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

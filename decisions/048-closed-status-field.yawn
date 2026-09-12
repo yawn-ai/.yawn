@@ -1,0 +1,152 @@
+id: decisions/048-closed-status-field
+title: "Close the status: field like epistemic_status"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'status-vocabulary-closure'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: status-vocabulary-closure
+axis_gloss: "whether status values are drawn from a fixed enumerated set, or written freely per record"
+poles:
+  a: free-text-status
+  b: closed-status-enum
+split: lone-exception
+draft_status: full
+leverage: 3.4
+leverage_formula: "judgments_resolved(7) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Should the top-level status: field draw from a closed list, as
+  epistemic_status now does under a test, or stay free text that each file
+  coins?
+
+why_it_matters: >
+  The repo already ruled, with a test and a shrinking grandfather ledger, that
+  free-text epistemic statuses make records uncomputable, yet the top-level
+  status: field carries 38 distinct values across 176 files, and one ledger
+  violates the enum it declares two lines above its own entry. Once answered, a
+  bot that ranks or graduates records can compute over status:, and a child Yawn
+  inherits a lifecycle vocabulary instead of a folder habit.
+
+state_snapshot:
+  description: >
+    6 judgments sit at free-text-status (0 authored) and 1 at closed-status-enum
+    (1 authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    What Dave wants status: to mean, lifecycle, maturity or workflow, since the 38
+    current values mix all three; and whether schemas/statuses.v1.schema.json,
+    unused by any record, is to be adopted or retired.
+
+options:
+  - name: A
+    description: >
+      rule: status: is free text. Each folder may coin its own values. The
+      closed-enum rule applies to epistemic_status only.
+    cost: "None now; schemas/statuses.v1.schema.json lifecycleStatus stays unused."
+    risk: "The rationale the repo wrote for closing epistemic_status ('no ranker, graduation ladder, or claim calculator can operate over an open vocabulary') applies word for word to status: and is left unanswered."
+    reversibility: true
+    proof_needed: "None can enforce this; the record would be a note that status: is not machine-read."
+    evidence_for:
+      - "J0043"
+      - "J0247"
+      - "J0386"
+      - "J0628"
+      - "J0713"
+      - "J0767"
+  - name: B
+    description: >
+      rule: status: holds exactly one value from a closed set (the lifecycleStatus
+      five in schemas/statuses.v1.schema.json: draft, active, superseded, archived,
+      deleted, or the set Dave names). Maturity and version markers (v0-seed,
+      draft-0.2, v1) move to a separate version: or maturity: key. The 38 legacy
+      values are grandfathered by file in a test and the list may only shrink. A
+      file that declares its own entry enum must satisfy it.
+    cost: "A test modelled on tests/epistemic-status-vocabulary.test.mjs with a 38-value grandfather map; new records use the enum; records/yawn.bot-private-pr-ledger.yawn entry fixed."
+    risk: "The five lifecycle values do not cover workflow states the repo uses (owner-review-required, waiting, proposed), so authors invent qualifiers elsewhere."
+    reversibility: true
+    proof_needed: "tests/status-vocabulary.test.mjs: CANONICAL set, frozen GRANDFATHERED map keyed by file, may only shrink; plus a check that a file declaring an entry_shape enum has entries inside it."
+    evidence_for:
+      - "J0592"
+  - name: C
+    description: >
+      rule: status: is closed in the machine-read roots (core/, agents/,
+      automation/, records/, schemas/, templates/) and free in examples/ and
+      references/. The closed set and the grandfather ledger are as in B.
+    cost: "As B, minus examples/ and references/."
+    risk: "Two regimes for one key; a bot must know the folder before reading the field."
+    reversibility: true
+    proof_needed: "As B with a folder allowlist in the test."
+    evidence_for:
+      - "J0592"
+      - "J0386"
+      - "J0713"
+
+recommendation:
+  option_ref: B
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    By count this is six revealed against one, but the one is the only authored
+    judgment, it is proof-attached (tests/epistemic-status-vocabulary.test.mjs,
+    GROUND_TRUTH FACT 7), and its stated rationale is general, not specific to
+    epistemic_status. The six free-text judgments are all revealed practice with
+    no reason given anywhere. J0628 shows that even a self-declared enum is broken
+    without a test. The enforcement mechanism already exists and works; B
+    transplants it. The 38 values (FACT 2) mix lifecycle, maturity and workflow,
+    so the enum design is the open question, and that is Dave's.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "One record names the closed set for status: and says where maturity and version markers go."
+    - "A test in tests/ rejects status: values outside the set, holds a frozen grandfather map that may only shrink, and passes."
+    - "records/yawn.bot-private-pr-ledger.yawn's entry matches its own entry_shape enum."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    The test lands but the grandfather map grows on the next pull request.
+  status: proposed
+
+resolves:
+  - "J0043"
+  - "J0247"
+  - "J0386"
+  - "J0628"
+  - "J0713"
+  - "J0767"
+  - "J0592"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

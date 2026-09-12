@@ -1,0 +1,155 @@
+id: decisions/044-verdict-arity
+title: "Verdicts about people keep unknown"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'verdict-arity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: verdict-arity
+axis_gloss: "whether a gate, consent or classification resolves to yes/no, or carries intermediate and qualified values"
+poles:
+  a: graded-verdict
+  b: binary-verdict
+split: lone-exception
+draft_status: full
+leverage: 5.3
+leverage_formula: "judgments_resolved(11) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must every gate, consent and status be able to say unknown or partly, or are
+  there records where plain yes or no is the honest shape?
+
+why_it_matters: >
+  Four written rules keep failure, dispute, discrepancy and residual lacuna
+  representable and refuse to collapse consent or ratification into a boolean;
+  the two binary shapes in the tree are an observation's lifecycle (accepted or
+  superseded) and a ceiling of three ranked paths, both test-pinned. A bot
+  inherits whether it may round one missing signature to true; a child Yawn
+  inherits whether silence is recorded as unknown or as no.
+
+state_snapshot:
+  description: >
+    9 judgments sit at graded-verdict (4 authored) and 2 at binary-verdict (0
+    authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether unknown is a default the system writes when nobody spoke, or only a
+    value a person asserts; the three consent examples disagree by silence.
+
+options:
+  - name: A
+    description: >
+      Every verdict field carries at least a third value for unknown, withheld or
+      disputed. A boolean is never used for consent, ratification, a gate result, or
+      an epistemic status.
+    cost: "observation.v1's status enum gains a third value it cannot honestly use; the receipt tests that pin two-value fields are loosened."
+    risk: "An append-only record acquires a state (draft, rejected, archived) that implies a mutation it cannot undergo, which is the reason J1108 gives for two values."
+    reversibility: true
+    proof_needed: "A schema lint over schemas/*.json rejecting any boolean property whose name contains consent, ratified, cleared, or approved."
+    evidence_for:
+      - "J0400"
+      - "J0402"
+      - "J0517"
+      - "J0530"
+      - "J0531"
+      - "J0578"
+  - name: B
+    description: >
+      Verdicts are binary. Unknown is resolved before recording; a gate is clear or
+      not; consent is yes or no.
+    cost: "Collapsing recorded_with_consent: unknown, partially_ratified, and the nine answer statuses; deleting the turn-close invariants."
+    risk: "Silence reads as no or as yes; withholding reads as skipping; a partial ratification rounds to a lie in one direction."
+    reversibility: false
+    proof_needed: "None on this side beyond the two lifecycle enums already pinned."
+    evidence_for:
+      - "J1108"
+      - "J1217"
+  - name: C
+    description: >
+      Anything that describes a person or a claim (consent, ratification, gate
+      result, answer status, epistemic status) carries at least unknown and, where
+      it applies, partial or disputed. Binary is allowed only for the lifecycle of
+      an append-only record (accepted or superseded) and for bounded counts, where a
+      third value would imply a mutation or a choice the record cannot make.
+    cost: "One sentence in core/proof-and-boundary.yawn; the three recorded_with_consent values across examples/ unified into one enum in schemas/."
+    risk: "The line between describes-a-person and lifecycle needs one judgment per new field."
+    reversibility: true
+    proof_needed: "Keep tests/observation-state-v1.test.mjs pinning accepted or superseded; extend tests/state-substrate-v1.test.mjs ('multi-principal desires preserve privacy and cannot self-ratify a shared target') to assert ratification is two lists plus a three-state status; add a schema lint that no boolean is named consent, ratified, cleared or approved."
+    evidence_for:
+      - "J0400"
+      - "J0402"
+      - "J0517"
+      - "J0530"
+      - "J0531"
+      - "J0578"
+      - "J1108"
+      - "J1217"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    All four authored judgments are graded and give reasons: collapsing lets
+    silence read as unknown and withholding as skipping. The two binary judgments
+    are both proof-attached and neither is a verdict about a person or a claim:
+    J1108 is an append-only lifecycle where a third value would be a lie about
+    mutability, and J1217 is a count ceiling. C writes down the distinction the
+    tests already draw. The only cost is a sentence and an enum.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/proof-and-boundary.yawn states which fields must carry unknown or partial and which may be binary"
+    - "A lint in tests/ rejects boolean consent, ratified, cleared or approved properties in schemas/ and passes"
+    - "recorded_with_consent is one enum with yes, no, unknown declared in schemas/ and every example uses it"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new schema lands with ratified: boolean or a gate result whose only values
+    are true and false.
+  status: proposed
+
+resolves:
+  - "J0400"
+  - "J0402"
+  - "J0517"
+  - "J0530"
+  - "J0531"
+  - "J0578"
+  - "J1108"
+  - "J1217"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

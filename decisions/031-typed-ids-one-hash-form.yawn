@@ -1,0 +1,157 @@
+id: decisions/031-typed-ids-one-hash-form
+title: "Every record an id, one hash spelling"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'identifier-form'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: identifier-form
+axis_gloss: "whether identity is carried by a structured, resolvable, namespaced identifier, or a bare string, hash or path"
+poles:
+  a: structured-addressable-id
+  b: bare-opaque-handle
+split: leaning
+draft_status: full
+leverage: 8.4
+leverage_formula: "judgments_resolved(10) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must every record and every cross-reference carry a stable, namespaced
+  identifier and one hash format, or may a bare string, path or hex stand in?
+
+why_it_matters: >
+  core/canonical-extension.yawn says stable ids and typed relations carry
+  identity, not paths, yet the schema set spells hashes two ways and one intake
+  template has no id at all. Once answered, a bot that links records knows what
+  a reference must contain before it can be trusted, and a child Yawn inherits
+  an address it can be found at rather than a filename.
+
+state_snapshot:
+  description: >
+    8 judgments sit at structured-addressable-id (3 authored) and 2 at
+    bare-opaque-handle (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Which hash spelling Dave wants canonical, and whether coordinate: must resolve
+    over https or is a namespace only.
+
+options:
+  - name: A
+    description: >
+      rule: Every active record carries an id. Every cross-reference in a
+      machine-read schema is a typed ref (kind and id, plus revision or hash where
+      the target is versioned). Hashes carry one spelling everywhere. schemaVersion
+      is a namespaced string, never a bare integer.
+    cost: "Normalize the hash pattern in either the three state-substrate schemas or the six later ones; migrate ten schemas from schemaVersion const 1 to namespaced strings; add id to templates/conversation-import-draft.yawn."
+    risk: "Changing the state-substrate hash spelling breaks 8 passing assertions in tests/state-substrate-v1.test.mjs and any stored hashes."
+    reversibility: false
+    proof_needed: "A test in tests/ that every property named *Hash or *Sha256 across schemas/*.json uses one regex; extend the record-spine test to require id on every template."
+    evidence_for:
+      - "J0216"
+      - "J0712"
+      - "J0730"
+      - "J0838"
+      - "J0980"
+      - "J1071"
+  - name: B
+    description: >
+      rule: Bare handles are acceptable. A path, a bare hex digest, an integer
+      version or a namespace string without a scheme is enough to identify a record
+      or a state.
+    cost: "Softens core/canonical-extension.yawn relationship_to_identity and core/holarchy.yawn invariants[2]."
+    risk: "Two hash formats stay in circulation and a comparison across schema families silently fails."
+    reversibility: true
+    proof_needed: "None can enforce this."
+    evidence_for:
+      - "J1072"
+      - "J1171"
+  - name: C
+    description: >
+      rule: Every active record carries an id, and machine-read schemas use typed
+      refs. One hash spelling is canonical and the other is normalized at the
+      boundary; schemaVersion is a namespaced string on every new schema, with the
+      ten integer-versioned schemas grandfathered by name until next touched.
+      templates/conversation-import-draft.yawn is the one template allowed to lack
+      an id, because the id is assigned at routing, and it says so in a field.
+    cost: "Pick the hash spelling; add a normalizer; add an assigned_at: routing note to the import draft; write the grandfather list."
+    risk: "The grandfather list for integer schemaVersion never shrinks."
+    reversibility: true
+    proof_needed: "A test in tests/ that every hash pattern in schemas/*.json matches the chosen regex or the normalizer's accepted input; a test that every template except the named exception carries id; the grandfather list lives in the test and may only shrink."
+    evidence_for:
+      - "J0216"
+      - "J0838"
+      - "J0980"
+      - "J1071"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Three authored judgments and the canonical-extension suite (8 assertions)
+    implement path-is-not-identity; both opposing judgments are revealed drift,
+    not choices. J1072 is a plain split between the older state-substrate schemas
+    (sha256:-prefixed, 8 test assertions) and six later schemas (bare hex), so one
+    spelling must win and a normalizer covers the other. J1171 has a defensible
+    reason, an import draft has no id until routing assigns one, which is worth
+    writing down rather than removing. The inference that the prefixed form fits
+    J1071's preference for self-describing namespaced strings is mine, not the
+    repo's.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "All *Hash and *Sha256 patterns in schemas/*.json match one regex, and a test in tests/ locks it."
+    - "templates/conversation-import-draft.yawn either carries id or states in a field that id is assigned at routing."
+    - "references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn coordinate either resolves over https or is marked unresolved."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new schema lands with a third hash format or a bare integer schemaVersion
+    and npm test stays green.
+  status: proposed
+
+resolves:
+  - "J0216"
+  - "J0712"
+  - "J0730"
+  - "J0838"
+  - "J0980"
+  - "J1071"
+  - "J1072"
+  - "J1171"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

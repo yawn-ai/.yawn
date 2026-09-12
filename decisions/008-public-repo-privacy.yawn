@@ -1,0 +1,174 @@
+id: decisions/008-public-repo-privacy
+title: "Whether the public repo is a public surface"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'disclosure-depth'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: disclosure-depth
+axis_gloss: "how much of what is known is shown: verbatim and complete, or summarised, redacted and progressively revealed"
+poles:
+  a: minimal-redacted-disclosure
+  b: full-fidelity-disclosure
+split: leaning
+draft_status: full
+leverage: 25.2
+leverage_formula: "judgments_resolved(24) x split_weight(0.7) x authored_conflict_bonus(1.5)"
+
+question: >
+  Is this public repository a public surface that must carry sanitized summaries
+  only, or a source record that keeps full detail, including local file paths
+  and real family names?
+
+why_it_matters: >
+  agents/yawn.bot.policy.yawn says public surfaces carry no private links and
+  sanitized summaries only, yet the active tree holds 15 references to
+  C:/Users/dave paths and one example built on the maintainer's real family, so
+  the privacy boundary is stated but not held. Once answered, every bot that
+  writes a ledger or contract into this repo knows whether workspace: may name a
+  local path, and a child Yawn learns whether it inherits a full-fidelity rule
+  or a redaction rule.
+
+state_snapshot:
+  description: >
+    17 judgments sit at minimal-redacted-disclosure (11 authored) and 7 at
+    full-fidelity-disclosure (4 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave, as principal, consents to his family's real names in a public
+    example, and whether the C:/ paths were deliberately published as
+    documentation of a private setup or are an oversight.
+
+options:
+  - name: A
+    description: >
+      rule: The public repository is a public surface under
+      agents/yawn.bot.policy.yawn privacy.public_surfaces. No active .yawn record
+      may carry a local filesystem path, a private link, or personal data about
+      anyone other than the principal. Fuller evidence lives on a private surface
+      and is labelled private.
+    cost: "Replace 15 C:/ paths across 8 files with labelled private pointers; re-source or downgrade references/scientific-frame.yawn and references/july-01-lock.yawn; synthesize or consent-mark examples/dave-good-dad-objective-holon.yawn."
+    risk: "Automation contracts lose the literal workspace path their runs depend on, so the contract and the run diverge."
+    reversibility: true
+    proof_needed: "A test in tests/ (or an extension to scripts/validate-public-surfaces.py) that fails on any C:/, /Users/ or OneDrive path in an active .yawn outside a frozen grandfather list that may only shrink."
+    evidence_for:
+      - "J0031"
+      - "J0064"
+      - "J0087"
+      - "J0158"
+      - "J0183"
+      - "J0184"
+  - name: B
+    description: >
+      rule: The repository is the source of record and keeps full fidelity. Local
+      paths, real names and conflicting sources are recorded as they are;
+      compression is a View. Nothing in the repo is redacted.
+    cost: "agents/yawn.bot.policy.yawn privacy.public_surfaces must be rewritten to exclude the repository itself; the redaction promise in blocked_effects ('expose private evidence') is withdrawn."
+    risk: "Private paths and family names are already public; the rule would ratify an exposure rather than choose it."
+    reversibility: false
+    proof_needed: "None can enforce this; the record would be the policy rewrite."
+    evidence_for:
+      - "J0144"
+      - "J0286"
+      - "J0365"
+      - "J0392"
+      - "J0644"
+      - "J0680"
+  - name: C
+    description: >
+      rule: The repository keeps full fidelity for claims, contradictions and
+      provenance (both sources kept, contradictions survive merge, source detail
+      preserved). Two named classes are redacted everywhere: local filesystem paths,
+      which become a labelled private pointer (private_evidence: labelled, with a
+      reachable public stand-in or none), and personal data about people who are not
+      the principal, which is synthesized as the sibling examples already do unless
+      the principal records consent by name.
+    cost: "Same file edits as A for paths; the family example gains either a consent field or pseudonyms; no change to the full-fidelity rules on the B side."
+    risk: "The consent field is written by the same person whose data is not at issue, so it proves authorship, not the children's consent."
+    reversibility: true
+    proof_needed: "A test in tests/ that fails on C:/, /Users/ or OneDrive paths in active .yawn files outside a shrinking grandfather list, plus a check that examples carrying a real person's name carry synthetic_non_personal_example or a principal consent field."
+    evidence_for:
+      - "J0031"
+      - "J0087"
+      - "J0144"
+      - "J0286"
+      - "J0365"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The authored rules on the two sides are not actually in conflict: side A
+    governs projections (smaller surfaces may hide but not lie; public gets
+    summaries) and side B governs source records (keep both sources, keep
+    contradictions, keep resolution). The only real collision is J0644, the one
+    behaviour-proven, outcome-attached judgment on the axis, where the artifacts
+    publish local Windows paths against the stated policy, and J0392, the
+    unsynthesized family example. GROUND_TRUTH FACT 19 corroborates 15 unreachable
+    C:/ paths, one of them the sole first source of a record marked source-backed.
+    C keeps every authored rule intact and writes down the two classes that the
+    artifacts currently violate.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "A test in tests/ fails on any C:/Users path in an active .yawn outside a named grandfather list, the list may only shrink, and the suite passes."
+    - "references/scientific-frame.yawn either cites a reachable source or its proof.status no longer reads source-backed."
+    - "examples/dave-good-dad-objective-holon.yawn carries a principal consent field or is synthesized like examples/participation-choice.yawn (synthetic_non_personal_example: true)."
+    - "Every automation workspace: or source_repo: that named a local path now names a labelled private pointer."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new automation contract lands with workspace: C:/Users/dave/... and npm test
+    stays green.
+  status: proposed
+
+resolves:
+  - "J0031"
+  - "J0064"
+  - "J0087"
+  - "J0158"
+  - "J0183"
+  - "J0184"
+  - "J0144"
+  - "J0286"
+  - "J0365"
+  - "J0392"
+  - "J0644"
+  - "J0680"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
