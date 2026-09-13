@@ -1,14 +1,23 @@
 id: records/2026-09-12-yawn-bot-experiment-brief-review
 title: "Review of the yawn.bot experiment brief against the codebase"
 kind: review-record
-status: proposed
+status: active
 recorded: 2026-09-12
 recorded_by: agent:anthropic:claude-code
 epistemic_status: inferred
 epistemic_note: >
   Facts about the repositories below were observed and reproduced; the
-  judgments about what to do next are the agent's inference and remain a
-  proposal until Dave rules on them.
+  judgments about what to do next were the agent's inference until Dave ruled
+  on 2026-09-13.
+
+acceptance:
+  by: dave
+  on: 2026-09-13
+  expression: "I take your recommmendation and judgement please push live and keep record and the moves reversible"
+  expression_note: verbatim, spelling preserved
+  payload_sha256: 3b2940ef426b7bc2466e41a6d06425976661bfe5675e472c9f7469b4b2c7814d
+  approval_record: https://github.com/yawn-ai/yawn.bot/blob/main/YAWNS/Approvals/YAWN_STANDARD_AND_REVIEW_RELEASE_APPROVAL_2026_09_13.yawn
+  reversal: "a later ruling sets status back and records why; nothing here is rewritten"
 
 source:
   brief:
