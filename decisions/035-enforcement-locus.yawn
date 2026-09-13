@@ -1,0 +1,169 @@
+id: decisions/035-enforcement-locus
+title: "Shape lives in the schema, relations in the runtime, and both must be able to fail"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'enforcement-locus'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: enforcement-locus
+axis_gloss: "where a constraint actually lives and gets checked: declared in the schema/contract, or asserted by a script or test at run time"
+poles:
+  a: schema-declared-constraint
+  b: runtime-check
+split: genuinely-split
+draft_status: full
+leverage: 7.2
+leverage_formula: "judgments_resolved(6) x split_weight(1) x authored_conflict_bonus(1.2)"
+
+question: >
+  Where does a rule live so that it can fail — in the schema as a const or
+  required key, in a script or test at run time, or both — and may a schema
+  exist in schemas/ that no test ever compiles?
+
+why_it_matters: >
+  A const in a schema no test compiles is a rule that cannot fail, and the
+  repository's own standard is that a rule that cannot fail is not a rule; today
+  the projection-preference schema is exactly that while its runtime resolver
+  carries 441 test lines, and elsewhere the ranking policy and the
+  no-self-authorization rail are locked as schema consts. Once answered, every
+  contract a bot ships below Dave must say which of its rules the schema holds
+  and which the runtime holds, and a test must be able to make each one fail.
+
+state_snapshot:
+  description: >
+    3 judgments sit at schema-declared-constraint (0 authored) and 3 at
+    runtime-check (1 authored). The repository asserts both directions on this
+    axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave regards the @yawn/contracts package schemas under contracts/ as
+    inside this rule or as a separate surface (schemas/node.yawn calls them
+    parallel).
+
+options:
+  - name: A
+    description: >
+      rule: Schema-declared. Every constraint that JSON Schema can express — consts,
+      enums, required, additionalProperties — is declared there and nowhere else;
+      runtime code handles only what schema cannot (referential integrity, order,
+      cycles, privacy); a runtime check that duplicates a schema rule is removed.
+    cost: "Move roughly twenty projection-preference error codes into schema where expressible; delete duplicated runtime enum checks in lib/; a test compiling every schema."
+    risk: "Rules that are only partly expressible get split across two layers with the schema half looking complete; the assertSchemaAndRuntimeReject belt-and-braces in orientation-map is dismantled."
+    reversibility: true
+    proof_needed: "tests/schema-coverage.test.mjs: every schemas/*.schema.json is compiled by at least one test (projection-preference fails today); a lint that lib/*.mjs does not re-check an enum its schema owns."
+    evidence_for:
+      - "J1092"
+      - "J1104"
+      - "J1116"
+  - name: B
+    description: >
+      rule: Runtime-check. The resolver or reducer is the authority; a schema
+      documents shape and may be absent or uncompiled; a constraint counts as
+      enforced when a test exercises the runtime path. schemas/node.yawn says schema
+      validity is advisory.
+    cost: "One line in schemas/node.yawn; nothing else changes."
+    risk: "Schema consts such as selfAuthorizationAllowed: false and notAuthority: true become documentation, and a runtime that forgets to check them passes; the 'canonicalState const false' pin that keeps the orientation draft out of canon is no longer load-bearing."
+    reversibility: true
+    proof_needed: "None new; note in schemas/node.yawn that schemas are advisory."
+    evidence_for:
+      - "J1118"
+      - "J1209"
+      - "J1230"
+  - name: C
+    description: >
+      rule: Both, with the division written on every contract, as the
+      agency-holarchy $comment already writes it for one. Shape, enums, consts and
+      required keys live in the schema and every schema in schemas/ MUST be compiled
+      by a test. Relational rules — referential integrity, authorization, event
+      order, acyclicity, privacy, timestamps — live in the runtime and MUST be named
+      as deferred in the schema's $comment. Where a rule can live in both, the test
+      asserts that both reject (the assertSchemaAndRuntimeReject pattern in
+      tests/orientation-map-v0.1.test.mjs) so neither layer can drift silently. A
+      schema no test compiles is a defect, not a draft.
+    cost: "One coverage test; a $comment on each schema naming what it defers; extend assertSchemaAndRuntimeReject to projection-preference; no rule moves."
+    risk: "Dual assertion doubles the test surface for every shared rule and the exception list of runtime-only rules grows without review."
+    reversibility: true
+    proof_needed: "tests/schema-coverage.test.mjs: every schemas/*.schema.json is imported or compiled in tests/ or scripts/, and every schema carries a $comment naming what it defers to runtime; tests/projection-preference-v1.test.mjs compiles schemas/projection-preference.v1.schema.json and asserts both layers reject the same malformed preference."
+    evidence_for:
+      - "J1118"
+      - "J1209"
+      - "J1092"
+      - "J1104"
+      - "J1116"
+      - "J1230"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Three judgments on each side and only one authored — but that one (J1118, the
+    agency-holarchy $comment) already states C's division: JSON Schema checks
+    shape; reducers and policy engines must also check integrity, authorization,
+    order, acyclicity and privacy at runtime. The passing suite implements C's
+    dual-rejection pattern for orientation-map (J1209, with its explicit exception
+    list of relational rules), and the three schema-declared consts on side A
+    (ranking policy, the no-self-authorization rail, canonicalState false) are
+    exactly the kind of rule C says belongs in the schema: rails that must not be
+    configurable. So side A and side B are not in conflict; they are the two
+    halves of a division one file wrote down. The defect that makes this an axis
+    at all is J1230: schemas/projection-preference.v1.schema.json exists and no
+    test compiles it, so whatever it declares is decorative. C names that as a
+    defect and makes it fail. Genuinely split by count, not by structure.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "A test in tests/ fails if any schemas/*.schema.json is compiled by no test or script, and passes — which requires tests/projection-preference-v1.test.mjs to compile its schema."
+    - "Every schema in schemas/ carries a $comment naming the rules it defers to runtime, and a test checks the comment is present."
+    - "The projection-preference test asserts schema and runtime both reject at least one shared malformed case, on the orientation-map pattern."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A schema in schemas/ changes an enum or const and no test fails; or a runtime
+    error code exists with neither a schema rule nor a $comment naming it as
+    runtime-only.
+  status: proposed
+
+evidence_sample:
+  - "J1092"
+  - "J1104"
+  - "J1116"
+  - "J1118"
+  - "J1209"
+  - "J1230"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

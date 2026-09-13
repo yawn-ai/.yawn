@@ -8,6 +8,7 @@ updatedAt: ""
 protocolRevision: q-space.protocol.v1
 questionId: ""
 kind: observation
+record_shape: coordinate
 outcome: not_run
 purpose: null
 summary: ""

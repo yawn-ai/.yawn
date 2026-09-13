@@ -1,0 +1,170 @@
+id: decisions/041-dot-yawn-is-the-human-grammar
+title: "One grammar behind the .yawn extension"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'serialisation-form'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: serialisation-form
+axis_gloss: "whether a record is written in an exact machine grammar (JSON, schema-shaped, hashed) or a flat human-writable one"
+poles:
+  a: structured-machine-format
+  b: flat-human-format
+split: leaning
+draft_status: full
+leverage: 6.3
+leverage_formula: "judgments_resolved(9) x split_weight(0.7) x authored_conflict_bonus(1)"
+
+question: >
+  Is a .yawn file always the human-readable grammar, with machine contracts
+  living under .json, or may a .yawn file be JSON when a schema validates it?
+
+why_it_matters: >
+  core/canonical-extension.yawn claims the extension identifies one
+  human-readable grammar, and the corpus falsifies it: the only two templates
+  with executable contract validation are JSON, and the in-flight proof block
+  now lists media_role as not_covered and points here. Once answered, a bot
+  opening any .yawn knows whether it needs one parser or two, and a child Yawn
+  that wants a schema knows whether it must write YAML and point at the schema
+  or may write the schema's own serialization.
+
+state_snapshot:
+  description: >
+    7 judgments sit at structured-machine-format (0 authored) and 2 at
+    flat-human-format (0 authored). The repository asserts both directions on this
+    axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave sees JSON-in-.yawn as a mistake to reverse or as the intended
+    home for machine contracts, and whether the front-matter-plus-prose form is a
+    third grammar or a header variant.
+
+options:
+  - name: A
+    description: >
+      rule: A record that has a schema is written in the schema's own serialization
+      (JSON, camelCase), .yawn extension included; the human-readable form is a
+      rendering, not the record. canonical.media_role in
+      core/canonical-extension.yawn is changed to 'schema-shaped protocol record'.
+    cost: "Rewrites the media_role claim and relationship_to_identity in core/canonical-extension.yawn; over time every record with a schema (thirty schemas exist) migrates to JSON."
+    risk: "The repo's stated reason to exist (inspectable orientation a person can read and correct) is traded for validation; yawn.yawn first_move ('copy basic.yawn') stops being true for schema-backed records."
+    reversibility: false
+    proof_needed: "tests/observation-question-art-v1.test.mjs already validates the two JSON templates; extend it so every template that names a schema is JSON. Today thirty of thirty-two would fail."
+    evidence_for:
+      - "J0041"
+      - "J0350"
+      - "J0538"
+      - "J0637"
+      - "J0837"
+      - "J1157"
+  - name: B
+    description: >
+      rule: Every .yawn file is the flat human grammar (YAML-shaped, snake_case,
+      id/title/kind-led). Machine contracts live under .json
+      (templates/art-brief.v1.json, templates/question-proposal.v1.json) and a .yawn
+      record points at them; a hash binding is a field inside a human-readable
+      record, never the file's grammar. Multi-valued enum fields hold a list, not
+      pipe-joined text.
+    cost: "Rename two templates and every path that cites them (tests, yawn.yawn template_links, schemas); convert interface/desktop-homebase-v1.yawn's front-matter form or register it; fix records/access-log.yawn entries."
+    risk: "The two renamed contracts lose the .yawn identity the repo gave them on purpose and their tests must be re-pointed."
+    reversibility: true
+    proof_needed: "Extend tests/record-shape.test.mjs (in-flight): no .yawn file anywhere in the tree may begin with '{'; extend scripts/validate-canonical-extension.mjs so canonical.media_role moves from not_covered to covers."
+    evidence_for:
+      - "J0428"
+      - "J0632"
+  - name: C
+    description: >
+      rule: A .yawn file is the human-readable grammar EXCEPT the two json-contract
+      templates already registered in templates/node.yawn record_shapes
+      (art-brief.v1, question-proposal.v1), grandfathered by name with a ceiling of
+      two that may only shrink; no new JSON-bodied .yawn may be added, and a new
+      machine contract is written as .json beside a .yawn that points at it. The
+      sha256 binding in
+      records/interception-statement-image-approval-2026-08-29.yawn is the model:
+      structure as a field inside a readable record. Multi-valued enum fields hold a
+      list.
+    cost: "One ledger in a test, one sentence in templates/node.yawn record_shapes.rule (already half-written), one fix to records/access-log.yawn."
+    risk: "Two grammars remain forever if the ledger never shrinks; readers of those two files still need a second parser."
+    reversibility: true
+    proof_needed: "Extend tests/record-shape.test.mjs: any .yawn anywhere whose first non-blank character is '{' must be listed as json-contract in templates/node.yawn with ceiling 2; name that test under core/canonical-extension.yawn proof.covers for canonical.media_role; add an assertion that entry_shape enum fields in records/*.yawn hold one value or a list."
+    evidence_for:
+      - "J0637"
+      - "J0837"
+      - "J1157"
+      - "J0428"
+      - "J0632"
+
+recommendation:
+  option_ref: C
+  confidence: 0.65
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    No judgment on this axis is authored, so the stated rule has to come from
+    outside it: core/canonical-extension.yawn's media_role 'human-readable
+    protocol record' (GROUND_TRUTH FACT 9) is authored and is the claim the two
+    JSON files break, and the in-flight templates/node.yawn registry already ranks
+    header canonical and labels json-contract as not human-readable-first. The
+    structured side's strongest evidence, the proof-attached sha256 binding, is
+    not in conflict at all: it is structure inside a readable record, which is
+    what C makes the rule. B is cleaner but re-points tests and links for two
+    files; C freezes the exception at two and finally gives media_role a proof.
+    Close between B and C.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "The count of JSON-bodied .yawn files in the tree is two and frozen by name, or zero."
+    - "canonical.media_role appears under proof.covers in core/canonical-extension.yawn with the test that enforces it named."
+    - "records/access-log.yawn entries hold one action value or a list, never pipe-joined text, and a test asserts it."
+    - "interface/desktop-homebase-v1.yawn is either registered as a shape or converted to the header form."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A third JSON-bodied .yawn lands, or media_role is still listed under
+    not_covered a quarter after ratification, while npm test stays green.
+  status: proposed
+
+evidence_sample:
+  - "J0041"
+  - "J0350"
+  - "J0538"
+  - "J0637"
+  - "J0837"
+  - "J1157"
+  - "J0428"
+  - "J0632"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

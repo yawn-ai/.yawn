@@ -1,0 +1,168 @@
+id: decisions/026-what-counts-as-proof
+title: "A source list is not a proof"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'what-counts-as-proof'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: what-counts-as-proof
+axis_gloss: "whether a claim is backed by something a machine can run, or by a cited sentence a reader must accept"
+poles:
+  a: executable-proof
+  b: prose-proof
+split: leaning
+draft_status: full
+leverage: 11.8
+leverage_formula: "judgments_resolved(14) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Does a list of other .yawn files under proof.source count as proof, or is
+  proof only something that can be run, observed, or replayed?
+
+why_it_matters: >
+  core/proof-and-boundary.yawn says proof can be an observed outcome, a
+  completed action, an artifact, a replayed comparison, never a citation, yet 75
+  of the 128 proof blocks are a list of sibling files marked seed-backed, three
+  of them citing a private C:/ path, while the 15-file tests/ folder that
+  carries every executable check has no node.yawn and is absent from the index.
+  A bot inherits either prove-it-by-running-it or
+  prove-it-by-pointing-at-another-record; a child Yawn learns which kind of
+  proof block to write.
+
+state_snapshot:
+  description: >
+    11 judgments sit at executable-proof (1 authored) and 3 at prose-proof (0
+    authored). The repository asserts both directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave counts a bot having read a document (the README audit's proof
+    sources are documents it reads, J0038) as an observed outcome or as a
+    citation.
+
+options:
+  - name: A
+    description: >
+      A proof block must name something that runs or was observed: a command, a
+      test, a verifier, a validator_ref, a falsifier, or a dated outcome. A list of
+      other .yawn files is lineage, not proof; it moves to lineage: and proof.status
+      reads none until a check exists.
+    cost: "75 seed-backed blocks relabelled from proof to lineage; a runnable check or none for each; tests/node.yawn written and linked from yawn.yawn."
+    risk: "Most of core/ and all of automation/ read as unproven overnight, which is true but demoralizing; a bot with no check to name writes a fake one."
+    reversibility: true
+    proof_needed: "A new tests/proof-block-shape.test.mjs asserting every proof: block contains at least one of command, test, verifier, validator_ref, falsifier or outcome, with a frozen GRANDFATHERED map for the current seed-backed files that only shrinks; plus an assertion that tests/node.yawn exists and yawn.yawn links it."
+    evidence_for:
+      - "J0055"
+      - "J0126"
+      - "J0279"
+      - "J0316"
+      - "J0382"
+      - "J0440"
+  - name: B
+    description: >
+      A source list is proof at seed strength. proof.status: seed-backed means
+      grounded in these records and is a valid terminal state for a record whose
+      claims are conceptual.
+    cost: "One sentence in core/proof-and-boundary.yawn adding cited record to proof_can_be."
+    risk: "The proof_can_be list becomes false; a claim citing an unreachable C:/ file (FACT 19) stays source-backed forever; nothing distinguishes a record that was tested from one that was linked."
+    reversibility: true
+    proof_needed: "None beyond validating that every proof.source path resolves, which scripts/validate-hub-links.mjs does for markdown only and which is not wired into npm run validate."
+    evidence_for:
+      - "J0453"
+      - "J0701"
+      - "J1144"
+  - name: C
+    description: >
+      Proof is executable or observed for any record with status active or v1 and
+      for every automation that can act; proof.status: seed-backed remains valid for
+      v0-seed and draft records and means lineage, not proof. Every proof.source
+      path must resolve inside the repository. tests/ gets a node.yawn and appears
+      in the index.
+    cost: "Runnable checks or demotion for the 37 active or v1 files (only schemas/node.yawn names a command today); C:/ sources in references/ and automation/ replaced by in-repo copies or marked unreachable; tests/node.yawn."
+    risk: "Two meanings of proof.status in one tree, told apart only by the record's status."
+    reversibility: true
+    proof_needed: "Same test as A, scoped to status active or v1 and to automation/*.yawn, plus a path-resolution check on every proof.source entry; extend scripts/validate-hub-links.mjs to .yawn proof.source lists and wire it into npm run validate."
+    evidence_for:
+      - "J0055"
+      - "J0279"
+      - "J0316"
+      - "J0382"
+      - "J0440"
+      - "J1144"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The authored rule (proof_can_be in core/proof-and-boundary.yawn, and J0279 in
+    Dave's own models: what the child does, not what she says) is executable or
+    observed; the one proof-attached judgment (J0316, dave/node.yawn with a
+    validator that runs) is on the same side; 128 green assertions on 15 subjects
+    (FACT 5) are where the repo actually bought proof. The prose-proof side is
+    practice by volume, not by argument: the artifacts carry 75 seed-backed blocks
+    and a constitutional checklist that checks only what prose can satisfy
+    (J0701). A is the honest rule but would relabel most of core/ in one move; C
+    applies it where status claims maturity and where a bot can act, and fixes the
+    two things GROUND_TRUTH makes urgent: proof sources on a private disk (FACT
+    19) and an invisible tests/ folder (FACT 4).
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "tests/ has a node.yawn and yawn.yawn links it"
+    - "A test in tests/ rejects an active or v1 record, or any automation contract, whose proof block names nothing runnable or observed, passing with a shrink-only ledger"
+    - "Every proof.source path resolves inside the repository, asserted by a validator in npm run validate"
+    - "core/proof-and-boundary.yawn says a source list is lineage"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record marked active carries proof.status: source-backed with a Windows user-profile
+    path as its first source and npm test stays green;
+    references/scientific-frame.yawn is the live case.
+  status: proposed
+
+evidence_sample:
+  - "J0055"
+  - "J0126"
+  - "J0279"
+  - "J0316"
+  - "J0382"
+  - "J0440"
+  - "J0453"
+  - "J0701"
+  - "J1144"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -1,0 +1,184 @@
+id: decisions/024-tie-break-basis
+title: "Two ladders, named, and the person's explicit choice placed by rule"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'tie-break-basis'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: tie-break-basis
+axis_gloss: "when two candidates are otherwise equal, whether the cheaper-to-answer one wins or the one the actor explicitly chose this turn"
+poles:
+  a: lower-effort-first
+  b: explicit-choice-first
+split: genuinely-split
+draft_status: full
+leverage: 12
+leverage_formula: "judgments_resolved(8) x split_weight(1) x authored_conflict_bonus(1.5)"
+
+question: >
+  When two questions are equally important, does the cheaper one to answer win,
+  or the one the person explicitly asked for this turn — and does the executable
+  tie-break say the same thing as the prose precedence list three blocks above
+  it?
+
+why_it_matters: >
+  This is the one place in the tree where the executable rule and the prose
+  disagree about who wins — core/inquiry-selection.yawn puts
+  explicit_current_turn_choice at highest specificity in preference_precedence,
+  fourth in determinism.tie_break below lower_answer_burden, and first in an
+  unlabelled considerations list, while the test enforces burden-first and the
+  receipt records which rule fired. Once answered, every selector a bot runs
+  below Dave inherits one ordering in which the person's explicit choice sits
+  where a rule put it, not where a list happened to put it.
+
+state_snapshot:
+  description: >
+    3 judgments sit at lower-effort-first (2 authored) and 5 at
+    explicit-choice-first (1 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave intends the person's explicit choice to beat cheapness among ties
+    (which would make B the rule), or only to be visible; the tree records the
+    machine's answer, not his.
+
+options:
+  - name: A
+    description: >
+      rule: Lower effort first. determinism.tie_break stands as written
+      (hard_gate_priority, greater_semantic_priority, lower_answer_burden,
+      explicit_current_turn_choice, accepted_question_order_preference,
+      canonical_question_order). preference_precedence is amended to say it orders
+      preferences, not candidates. The interaction_fit considerations list is
+      reordered to match tie_break or marked `ordered: false`.
+    cost: "Two prose edits in core/inquiry-selection.yawn; one added assertion."
+    risk: "A person who explicitly asks for a harder question among semantic ties is quietly handed the cheaper one and the only trace is a tie-break line in a receipt."
+    reversibility: true
+    proof_needed: "Keep tests/orientation-map-v0.1.test.mjs 'lower effort precedes accepted presentation order when semantic priority is tied' and tests/inquiry-selection-receipt-v0.1.test.mjs 'the receipt copies the ranker's actual lower-burden tie-break trace'; add an assertion that an explicit_current_turn_choice for a higher-burden candidate does not beat a lower-burden tied one; a test that any list in core/inquiry-selection.yawn consumed as a rank is labelled priority or tie_break, and considerations is marked unordered."
+    evidence_for:
+      - "J0250"
+      - "J1023"
+      - "J1200"
+  - name: B
+    description: >
+      rule: Explicit choice first. When semantic priority ties, the person's
+      explicit choice this turn wins before burden is compared: tie_break becomes
+      hard_gate_priority, greater_semantic_priority, explicit_current_turn_choice,
+      accepted_question_order_preference, lower_answer_burden,
+      canonical_question_order. The DeterministicTieBreak ruleOrder const and the
+      orientation-map rankingPolicy const change with a policyVersion bump.
+    cost: "Edit two schema consts (schemas/inquiry-selection-receipt.v0.1.schema.json ruleOrder, schemas/orientation-map.v0.1.schema.json rankingPolicy), bump policyVersion, regenerate fixture receipts, rewrite two test titles and their assertions."
+    risk: "An explicit choice becomes a way to route around burden limits that exist to protect the person (unbounded_or_unnecessary_burden is a hold reason), so the selector must add a burden ceiling the current design gets for free."
+    reversibility: true
+    proof_needed: "Reverse the two named tests; a new assertion that an explicit current-turn choice among semantic ties beats lower burden; a new assertion that the burden hold still fires above a ceiling regardless of explicit choice."
+    evidence_for:
+      - "J1012"
+      - "J1013"
+      - "J1015"
+      - "J1016"
+      - "J1094"
+  - name: C
+    description: >
+      rule: Two ladders, each named for what it ranks. Semantic ranking keeps effort
+      last — what matters is never decided by what is cheap. The deterministic
+      tie-break keeps lower_answer_burden before explicit_current_turn_choice, as
+      tested. carve-out, written down: an explicit current-turn choice is honoured
+      as a presentation choice (order, medium, adapter) and as a reason to hold or
+      foreground, never as a rank input, so it can always be seen but never silently
+      out-ranks burden. preference_precedence gains one line: it orders preferences,
+      not candidates; candidates are ordered by determinism.tie_break. The
+      interaction_fit considerations list is marked `ordered: false`.
+    cost: "Three prose edits in core/inquiry-selection.yawn; one consistency test; no executable change."
+    risk: "Dave in fact wants his explicit choice to win among ties, and C entrenches the machine's preference with a clearer label."
+    reversibility: true
+    proof_needed: "A test that the three lists in core/inquiry-selection.yawn are consistent with the schema consts (semanticPriorityOrder and ruleOrder) and that any list not labelled priority or tie_break carries ordered: false; keep both existing tie-break tests; a receipt fixture in which an explicit current-turn choice appears under presentation evidence while lower_answer_burden appears as the applied tie-break."
+    evidence_for:
+      - "J1023"
+      - "J1200"
+      - "J1012"
+      - "J1094"
+      - "J0250"
+      - "J1013"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    By count this is split (3 against 5) and both sides carry authored judgments,
+    but by proof it leans hard to lower-effort: J1023 and J1200 are authored and
+    proof-attached, and the passing suite implements burden-before-explicit-choice
+    in two test files with the receipt copying the trace. On the other side, J1012
+    (authored) is about a different ladder — semantic priority, where effort is
+    ninth — and does not conflict, since burden enters the tie-break only after
+    semantic priority ties; the other four are REVEALED list positions in a block
+    the file deliberately calls considerations rather than priority (GROUND_TRUTH
+    facts 16 and 18), so the apparent two-cycle is a stated-versus-revealed
+    conflict already adjudicated by test. What is genuinely open is J0250:
+    preference_precedence puts explicit_current_turn_choice at highest specificity
+    and tie_break puts it fourth, and nothing says those are different orderings.
+    C writes that down without touching executable behaviour and gives the
+    explicit choice a visible place (presentation and hold) instead of a losing
+    rank. B is the honest alternative if Dave's intent is that his ask should beat
+    cheapness; that is a question only he can answer.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/inquiry-selection.yawn preference_precedence states that it orders preferences, not candidates, and points at determinism.tie_break for candidates."
+    - "The interaction_fit considerations list carries ordered: false, or is reordered to match tie_break."
+    - "A test in tests/ fails if any of the three lists in core/inquiry-selection.yawn disagrees with the schema consts it is meant to mirror, and passes; both existing tie-break tests stay green."
+    - "A receipt fixture shows an explicit current-turn choice recorded under presentation evidence while the applied tie-break is lower_answer_burden."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A fixture where a person explicitly picks a higher-burden question among
+    semantic ties yields a receipt in which lower_answer_burden overrides it, no
+    hold or presentation trace shows the choice, and no prose rule can be found
+    that says burden wins.
+  status: proposed
+
+evidence_sample:
+  - "J0250"
+  - "J1023"
+  - "J1200"
+  - "J1012"
+  - "J1013"
+  - "J1015"
+  - "J1016"
+  - "J1094"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

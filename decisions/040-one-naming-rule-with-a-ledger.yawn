@@ -1,0 +1,171 @@
+id: decisions/040-one-naming-rule-with-a-ledger
+title: "The naming invariant covers files, ids and case"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'naming-convention-uniformity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: naming-convention-uniformity
+axis_gloss: "whether every path, key and file follows one casing and naming rule, or files may depart from it"
+poles:
+  a: uniform-naming-convention
+  b: per-file-naming-freedom
+split: leaning
+draft_status: full
+leverage: 6.7
+leverage_formula: "judgments_resolved(8) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Does one naming rule cover everything — file names, record ids, dated names,
+  extension case — or only the extension and product tokens it already proves?
+
+why_it_matters: >
+  The authored invariant (.yawn lowercase, YAWN uppercase, no .ion/.yon aliases)
+  has a validator and tests, but it does not check case, so the uppercase
+  MASTER-CONTROL.YAWN root that four of five scheduled bots run against passes;
+  meanwhile two constitutional files scream, three id shapes coexist in
+  examples/, and the file that argues paths carry no identity is the only one
+  with a URN id. Once answered, a bot creating a file knows one rule for its
+  name, its id and its case, and a child Yawn knows whether uppercase means
+  anything.
+
+state_snapshot:
+  description: >
+    5 judgments sit at uniform-naming-convention (3 authored) and 3 at
+    per-file-naming-freedom (0 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether uppercase filenames were meant to mark constitutional documents, and
+    whether MASTER-CONTROL.YAWN is a real directory on Dave's machine that cannot
+    be renamed.
+
+options:
+  - name: A
+    description: >
+      rule: One naming rule everywhere: kebab-case filenames, unquoted path-shaped
+      ids equal to the file's path without extension, subject-first names with the
+      date as a suffix, snake_case keys, lowercase extension in every tracked path
+      and every workspace or source path named in a record. The three uppercase
+      files are renamed, the URN and singular ids normalised, the one date-first
+      record renamed.
+    cost: "Renames core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn and references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn and every link to them; changes ids in examples/ and core/canonical-extension.yawn; either lowercases the MASTER-CONTROL.YAWN root on Dave's machine or breaks four automations' workspace paths."
+    risk: "Renaming the constitutional files erases a signal (uppercase = foundational) that nobody wrote down but may be intended; the workspace root may not be renameable."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-canonical-extension.mjs: fail on any .YAWN/.Yawn in tracked paths or content, any non-kebab .yawn filename, any id: not equal to its path; today it fails on at least eleven files."
+    evidence_for:
+      - "J0214"
+      - "J0326"
+      - "J0657"
+      - "J0892"
+      - "J0927"
+  - name: B
+    description: >
+      rule: Only the extension token and product name are governed. Filename case,
+      id shape, key case and dated-name order are per-author choices and are not
+      checked.
+    cost: "Softens canonical.case in core/canonical-extension.yawn to advisory and drops the 'source path' clause from its invariant."
+    risk: "A fourth id shape and a third case convention arrive with the next authoring batch, and a bot that indexes by id or path has to guess."
+    reversibility: true
+    proof_needed: "None can enforce freedom; the record would be moving canonical.case out of the invariant list."
+    evidence_for:
+      - "J0272"
+      - "J0387"
+      - "J0916"
+  - name: C
+    description: >
+      rule: The naming invariant extends to filename case, id shape (id equals path
+      without extension) and dated-name order (subject first, date suffix) for every
+      new file, and the validator checks extension case in tracked paths and in
+      workspace or source paths named by records. Existing outliers are
+      grandfathered by name in the validator with a ledger that may only shrink: the
+      two SCREAMING constitutional files (or, if Dave says uppercase marks
+      constitutional status, that is written into core/what-is-a-yawn.yawn
+      canonical_naming as the one permitted exception), .github/ISSUE_TEMPLATE which
+      is GitHub's own convention, the yawn:core:canonical-extension URN id, the four
+      singular and URN example ids, the one date-first record, and the
+      MASTER-CONTROL.YAWN external root marked reachability: operator-only.
+    cost: "One ledger in scripts/validate-canonical-extension.mjs, one paragraph in core/what-is-a-yawn.yawn canonical_naming, no renames."
+    risk: "The ledger is the rule's escape hatch; if it never shrinks, C is B with paperwork."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-canonical-extension.mjs with three checks (extension case including drive-letter paths, kebab-case filenames, id equals path) each with a frozen grandfather set and a ceiling, following tests/status-vocabulary.test.mjs; move canonical.case from not_covered to covers in core/canonical-extension.yawn proof."
+    evidence_for:
+      - "J0214"
+      - "J0892"
+      - "J0927"
+      - "J0326"
+      - "J0657"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The uniform side holds all three authored judgments and two proof-attached
+    ones; every freedom-side judgment is revealed and unremarked. The stated
+    invariant already includes case and source paths (GROUND_TRUTH FACT 20) and
+    the in-flight proof block admits the validator does not check them, so the
+    honest move is to make the validator cover what the record already claims.
+    Renaming the constitutional files (A) is the only expensive part and the only
+    place a meaning might be lost, which is why the exception is grandfathered
+    rather than removed; the shrinking-ledger pattern is the repo's own
+    established mechanism three times over.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "canonical.case moves from not_covered to covers in core/canonical-extension.yawn proof and scripts/validate-canonical-extension.mjs rejects an uppercase extension in a tracked path or a record-named workspace path."
+    - "core/what-is-a-yawn.yawn canonical_naming states the id and filename rule, and whether uppercase filenames mean anything."
+    - "Each outlier is renamed or grandfathered by name in a ledger with a ceiling, and the ledger has not grown at the next inventory."
+    - "npm run validate passes with the new checks."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new file lands with an uppercase name, a URN or singular id, or a date-first
+    name, and validate passes without a ledger change.
+  status: proposed
+
+evidence_sample:
+  - "J0214"
+  - "J0326"
+  - "J0657"
+  - "J0892"
+  - "J0927"
+  - "J0272"
+  - "J0387"
+  - "J0916"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

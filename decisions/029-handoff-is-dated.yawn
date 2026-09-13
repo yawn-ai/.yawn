@@ -1,0 +1,153 @@
+id: decisions/029-handoff-is-dated
+title: "Even the agent handoff is a dated record"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'record-mutability'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: record-mutability
+axis_gloss: "whether a record is corrected by appending a new entry, or by overwriting, rewriting or deleting the old one"
+poles:
+  a: append-only-immutable
+  b: destructive-in-place-update
+split: lone-exception
+draft_status: full
+leverage: 9.6
+leverage_formula: "judgments_resolved(20) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Is every record corrected by adding to it, with both versions kept visible —
+  including the agent handoff, which today carries only an updated date and
+  nothing that says when it began?
+
+why_it_matters: >
+  Append-only is the repo's most reinforced written rule (state is a reduction
+  over an append-only log; corrections are new entries; branch and keep both
+  visible), and the grandfather ledgers in tests/ are built the same way, may
+  only shrink. Once answered, a bot handing work to the next session knows
+  whether the handoff it writes is history that will be replayed or a scratch
+  pointer it may overwrite.
+
+state_snapshot:
+  description: >
+    19 judgments sit at append-only-immutable (11 authored) and 1 at
+    destructive-in-place-update (0 authored). The repository asserts both
+    directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave means the handoff to be a durable record at all, or a per-session
+    scratch note that should not be in the tree.
+
+options:
+  - name: A
+    description: >
+      rule: Every record, templates included, carries a creation-time field
+      (created:, timestamp: or date:) and is corrected by appending or branching,
+      never by overwriting the only copy. templates/agent-handoff.yawn gains
+      created: beside updated: and a supersedes: pointer to the handoff it replaces.
+    cost: "Two lines in one template; existing handoffs, if any, gain created: on next touch."
+    risk: "None visible; a handoff that is overwritten is still recoverable from git, so the cost of the rule is only the extra field."
+    reversibility: true
+    proof_needed: "Extend tests/record-shape.test.mjs (in-flight, uncommitted): every template registered as shape header must carry created:, timestamp: or date:; today templates/agent-handoff.yawn fails."
+    evidence_for:
+      - "J0020"
+      - "J0078"
+      - "J0082"
+      - "J0127"
+      - "J0182"
+      - "J0204"
+  - name: B
+    description: >
+      rule: Records may be edited in place; git is the only history. No record needs
+      a creation field and corrections may overwrite.
+    cost: "Contradicts core/state.yawn substrate.history_is_append_only: true and core/design-principles.yawn 'branch a record and keep both versions visible'; the filesystem_affordances list in core/yawn-space.yawn would need edit, overwrite and delete added."
+    risk: "A replayed state can no longer be reconstructed from the records alone, which yawn.yawn canonical_sentence promises."
+    reversibility: false
+    proof_needed: "None can enforce this; the record would be flipping history_is_append_only to false in core/state.yawn."
+    evidence_for:
+      - "J0885"
+  - name: C
+    description: >
+      rule: Every record is append-only EXCEPT a record declared mutability:
+      current-state-pointer, which is a View over history (a reduction, not an
+      event) and may be overwritten; its history lives in git and it may never be
+      cited as proof. templates/agent-handoff.yawn is the one template declared this
+      way and says so in a mutability: line.
+    cost: "One line in the template, one sentence in core/state.yawn distinguishing an event from a pointer."
+    risk: "A second template declares itself a pointer to escape the rule."
+    reversibility: true
+    proof_needed: "Extend tests/record-shape.test.mjs: a header template without a creation field must carry mutability: current-state-pointer, and scripts/validate-proof-refs.mjs must reject a proof.source pointing at a record carrying that line."
+    evidence_for:
+      - "J0078"
+      - "J0127"
+      - "J0885"
+
+recommendation:
+  option_ref: A
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Eleven authored judgments and the substrate contract sit on append-only; the
+    one exception is a revealed reading of a missing field, with no sentence
+    anywhere saying the handoff is meant to be mutable. Removing the exception
+    costs two lines; writing it down (C) would introduce a new record class the
+    constitution does not have. If Dave does intend the handoff as a scratch
+    pointer, C is the honest version, but nothing in the tree says so today.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/agent-handoff.yawn carries created: and supersedes: beside updated:."
+    - "A test in tests/ rejects a header-shape template without a creation-time field and passes."
+    - "core/yawn-space.yawn filesystem_affordances still lists no edit, overwrite or delete verb."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record in records/ is changed in place with its earlier content gone from
+    the tree and no receipt or branch names the change, while the tests stay
+    green.
+  status: proposed
+
+evidence_sample:
+  - "J0020"
+  - "J0078"
+  - "J0082"
+  - "J0127"
+  - "J0182"
+  - "J0204"
+  - "J0885"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

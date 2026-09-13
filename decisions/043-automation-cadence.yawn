@@ -1,0 +1,158 @@
+id: decisions/043-automation-cadence
+title: "Which bots run on a clock"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'automation-cadence'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: automation-cadence
+axis_gloss: "whether a loop runs on a clock whether or not anything happened, or only when an event or a person triggers it"
+poles:
+  a: on-demand-triggered
+  b: scheduled-recurring
+split: leaning
+draft_status: full
+leverage: 5.9
+leverage_formula: "judgments_resolved(7) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Should a bot run on a clock or only when something arrives or someone asks,
+  and does the answer depend on whether the bot can act outside the repo?
+
+why_it_matters: >
+  The schedules already encode a tier: loops that watch inbound surfaces poll
+  hourly, loops that produce prose run once or twice a day in a fixed morning
+  order, and the one loop that can spend or publish is never scheduled, which a
+  test enforces; no file says any of this is intended, and the human side
+  (core/human-use.yawn) is entered only when something is felt. A new bot
+  inherits a cadence tier or picks one at random; a child Yawn learns whether a
+  clock is a trigger or a default.
+
+state_snapshot:
+  description: >
+    5 judgments sit at on-demand-triggered (1 authored) and 2 at
+    scheduled-recurring (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether the twice-daily AI-writing scan (10:30 and 16:30) reflects a priority
+    Dave holds over license and comprehension risk, or is an accident of when it
+    was written.
+
+options:
+  - name: A
+    description: >
+      Bots run on triggers. A loop runs when an inbound event, a changed head SHA,
+      or a named review condition fires; no loop runs on a clock unless the clock is
+      written as a trigger with a stated reason.
+    cost: "Rewriting eight schedule: lines as trigger conditions; the three hourly polls become event subscriptions or keep a clock with a reason."
+    risk: "Polling surfaces (GitHub feedback, the main-branch diff) offer no push event today; a trigger-only rule leaves them unwatched."
+    reversibility: true
+    proof_needed: "A test over automation/*.yawn asserting any schedule: value is paired with a schedule_reason: that names the surface being watched."
+    evidence_for:
+      - "J0015"
+      - "J0265"
+      - "J0334"
+      - "J0622"
+      - "J0788"
+  - name: B
+    description: >
+      Bots run on schedules. Each contract sets its own cadence; unscheduled loops
+      are the exception and say why.
+    cost: "One sentence in agents/yawn.bot.policy.yawn; a reason on statement-image-proposals (already present)."
+    risk: "A loop that gains a spend or publish effect keeps its schedule; nothing ties cadence to capability."
+    reversibility: true
+    proof_needed: "None beyond the existing test 'the recurring contract can propose but cannot generate, spend, or publish'."
+    evidence_for:
+      - "J0033"
+      - "J1162"
+  - name: C
+    description: >
+      Cadence follows capability. A loop that watches an inbound surface (feedback,
+      PRs, the public branch) polls on a written cadence with a reason. A loop that
+      only produces prose runs at most daily. A loop that can spend, publish, send,
+      or leave the machine is never scheduled and runs only on a human trigger under
+      a one-time approval. Human use of the protocol is never scheduled. Every
+      schedule: carries a schedule_reason:.
+    cost: "One paragraph in agents/yawn.bot.policy.yawn; a schedule_reason line on eight automation contracts; a decision on whether the twice-daily AI-writing scan stays twice-daily."
+    risk: "The tiers need a capability field a bot cannot set for itself; if allowed_effects is bot-authored the tier is bot-chosen."
+    reversibility: true
+    proof_needed: "Extend tests/interception-statement-image-governance.test.mjs to scan every automation/*.yawn: any contract whose allowed_effects include spend, publish, send or external must have schedule: not-scheduled; any schedule: must be paired with schedule_reason:; prose-only loops may not be more frequent than daily unless the reason says why."
+    evidence_for:
+      - "J0015"
+      - "J0033"
+      - "J0265"
+      - "J0788"
+      - "J1162"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    GROUND_TRUTH FACT 17 reads the schedule values as a priority order and finds
+    the one test-enforced piece: the only spend-capable loop is the only
+    unscheduled one ('approval is one-time conditional preauthorization, never
+    recurring authority'). J1162 (outcome-attached) and J0033 read the same
+    tiering off the other schedules; J0265 and J0788 (on-demand) are the human and
+    root-record side, which C keeps unscheduled. The only authored judgment
+    (J0015) is a dedupe rule that works under any cadence. C is what the artifacts
+    do; it lacks a sentence and a reason field. A would force event subscriptions
+    the surfaces do not offer; B would let capability and cadence drift apart.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "agents/yawn.bot.policy.yawn states the capability tiers and that spend, publish, send or external effects are never scheduled"
+    - "Every automation/*.yawn with a schedule: carries a schedule_reason:, asserted by a test in tests/ that passes"
+    - "The morning order (07:30 radar, 08:20 readme, 08:40 license, 09:00 daily) is either stated as intended or declared arbitrary in one of those reasons"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    An automation gains an email, publish or spend effect and acquires a schedule
+    without a new approval record, and the governance test stays green.
+  status: proposed
+
+evidence_sample:
+  - "J0015"
+  - "J0265"
+  - "J0334"
+  - "J0622"
+  - "J0788"
+  - "J0033"
+  - "J1162"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

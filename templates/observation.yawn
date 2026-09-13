@@ -1,5 +1,6 @@
 specVersion: "1"
 kind: "observation"
+record_shape: fragment
 schemaVersion: "yawn.observation-state.v1"
 
 observationId: "observation:replace-with-stable-id"

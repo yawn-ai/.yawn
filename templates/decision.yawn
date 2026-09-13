@@ -1,55 +1,92 @@
+id: decisions/NNN-slug
 title: ""
 kind: decision-frame
+record_shape: header
+status: draft
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
+authored_via: ""
 version: "1.0.0"
+updated: ""
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: ""
+axis_gloss: ""
+poles:
+  a: ""
+  b: ""
+split: ""            # genuinely-split | leaning | lone-exception | held
+draft_status: full   # full | axis-only
+leverage: 0          # judgments_resolved x split_weight x authored_conflict_bonus, one decimal; or held
+leverage_formula: "judgments_resolved(0) x split_weight(1) x authored_conflict_bonus(1)"
+
+question: >
+  ""
+
+why_it_matters: >
+  ""
 
 state_snapshot:
-  description: ""
-  attributed_to: ""
-  epistemic_status: reported
-  source_refs: []
-
-possibilities: []
-desires: []
-target_condition:
-  mode: decide
-  description: ""
-  proposed_by: ""
-  affected_principals: []
-  ratification_status: proposed
-  sufficient_when: []
-  boundary_refs: []
+  description: >
+    ""
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
 
 lacuna:
   kind: unselected_choice
-  description: ""
+  description: >
+    ""
 
 options:
-  - name: ""
+  - name: A
+    description: >
+      ""
     cost: ""
     risk: ""
     reversibility: true
     proof_needed: ""
+    evidence_for: []
+
+recommendation:
+  option_ref: ""
+  confidence: 0
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    ""
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when: []
 
 choice:
   selected_by: ""
   option_ref: ""
   authority_ref: ""
 
-transition_intent:
-  from_state_hash: ""
-  expected_delta: ""
-  move: ""
-  stop_condition: ""
-  proof_contract_ref: ""
-boundary: ""
-proof: ""
-transition_result:
-  observed_delta: ""
-  outcome_status: not_observed
-  residual_lacuna_refs: []
-update:
-  authorized_event_refs: []
-  changed_paths: []
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    ""
+  status: proposed
+
+evidence_sample: []
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
 
 source:
   template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

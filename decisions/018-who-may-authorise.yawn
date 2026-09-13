@@ -1,0 +1,176 @@
+id: decisions/018-who-may-authorise
+title: "A bot may own the work before the say-so, never the say-so"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'who-may-authorise'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: who-may-authorise
+axis_gloss: "whether an effect needs a named human principal's say-so, or an agent/automation may license its own action"
+poles:
+  a: principal-authority
+  b: agent-autonomy
+split: lone-exception
+draft_status: full
+leverage: 13.9
+leverage_formula: "judgments_resolved(29) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  May any bot or automation license an effect on its own, or may it only own the
+  proposing, routing and evidence-gathering that comes before a principal's
+  authorization — and does a bot-owned open question count as owning an effect?
+
+why_it_matters: >
+  Every effect that matters — commit, publish, spend, canonicalize, ratify — is
+  held behind a named human's current exact authorization in the written rule,
+  yet two artifacts put a bot in the owner seat (a pipeline that proposes before
+  review, an open question owned by YAWN.bot) without saying whether owning is
+  authorizing. Once answered, every child Yawn and steward bot below Dave knows
+  exactly which seat it may sit in: it may own a question, a proposal or a
+  pipeline stage, and the answer or the effect still waits for a principal.
+
+state_snapshot:
+  description: >
+    27 judgments sit at principal-authority (22 authored) and 2 at agent-autonomy
+    (0 authored). The repository asserts both directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants bots to be nameable as `owner:` of anything at all, or only
+    as `assigned_to:`; and whether the pre-review pipeline stages (extraction,
+    retrieval, structural proposal) are effects when they write files to the tree.
+
+options:
+  - name: A
+    description: >
+      rule: Only a named human principal may authorize an effect. A bot or
+      automation may read, orient, mirror, infer, ask, classify, route and propose;
+      it may not be named `owner:` of an open question or of any pipeline stage that
+      produces an authorized event. Bot-owned questions are reassigned to a
+      principal and the bot is listed as `assigned_to:` for evidence gathering.
+    cost: "Reassign the projection-equivalence question in questions/open-questions.yawn from YAWN.bot to Dave; add assigned_to to templates/open-question.yawn; every open question in a child Yawn needs a human owner even when only the runtime can gather its evidence."
+    risk: "A holarchy of steward bots cannot hold an open question about its own runtime, so runtime questions go unowned or get a nominal human owner who cannot answer them."
+    reversibility: true
+    proof_needed: "tests/effect-authority.test.mjs: every `owner:` under open_questions in questions/*.yawn resolves to a human principal; every automation/*.yawn allowed_effects entry that names commit, push, merge, publish, send, spend or mutate carries an authorization_ref; the existing 'AI-authored moves remain proposals until a separate authorization receipt exists' (tests/agency-holarchy-v0.2.test.mjs) and 'only authorized events update canonical materialized state' (tests/state-substrate-v1.test.mjs) stay green."
+    evidence_for:
+      - "J0005"
+      - "J0014"
+      - "J0022"
+      - "J0030"
+      - "J0113"
+      - "J0139"
+  - name: B
+    description: >
+      rule: An automation may license its own effect inside a declared envelope
+      without a per-act authorization (commit to its branch, send its notification,
+      answer the question it owns), as the import pipeline and the bot-owned open
+      question already do. Each automation declares `autonomous_envelope:`; effects
+      inside it need no receipt.
+    cost: "Strike or narrow blocked_without_current_exact_authorization in agents/yawn.bot.yawn; rewrite the commit_gate in automation/yawn.bot.feedback-loop.yawn; the execution-relationship schema's selfAuthorizationAllowed const false must be relaxed and its test rewritten."
+    risk: "The safety rail 'ai output is not authority' becomes conditional on an envelope a bot could widen by editing its own record; the interception governance test 'approval is one-time conditional preauthorization, never recurring authority' would have to be reversed."
+    reversibility: false
+    proof_needed: "A test that every automation declares autonomous_envelope and every ledger entry's effect falls inside it; reversal of tests/interception-statement-image-governance.test.mjs 'the recurring contract can propose but cannot generate, spend, or publish' and of the selfAuthorizationAllowed const in schemas/execution-relationship.v1.schema.json."
+    evidence_for:
+      - "J0397"
+      - "J0545"
+  - name: C
+    description: >
+      rule: Only a named human principal may authorize an effect (as A). carve-out,
+      written down: a bot or automation may be the `owner:` of an open question or
+      of a pre-authorization pipeline stage, and ownership means answerable for
+      gathering evidence and proposing — never authority over the answer or the
+      effect. templates/open-question.yawn gains `authority: none` and
+      `accepted_by:` beside `owner:`; examples/conversation-import-routing.yawn
+      states that steps before human_review produce proposals only;
+      agents/yawn.bot.yawn may_without_external_authority gains 'own an open
+      question's evidence gathering'.
+    cost: "Three small edits (open-question template, the import example, agents/yawn.bot.yawn) and one added field on the four existing open questions."
+    risk: "A reader skims `owner: YAWN.bot` and reads it as authority anyway; the added `authority: none` line is the only defence."
+    reversibility: true
+    proof_needed: "tests/effect-authority.test.mjs: every open question with a non-human owner carries authority: none and accepted_by naming a principal; every pipeline step before human_review in examples/conversation-import-routing.yawn carries the word proposal in its rule; no automation allowed_effects entry names an effect from agents/yawn.bot.yawn blocked_without_current_exact_authorization without an authorization_ref."
+    evidence_for:
+      - "J0022"
+      - "J0030"
+      - "J0113"
+      - "J0397"
+      - "J0545"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Side A holds 27 judgments, 22 authored, and the passing suite enforces it six
+    ways (state-substrate 'only authorized events update canonical state',
+    agency-holarchy 'AI-authored moves remain proposals', objective-holon
+    'confidence cannot substitute for an accepted ratification receipt',
+    delegated-execution 'receipt graduation proposes but never activates policy',
+    interception 'approval is one-time', collaboration-message 'keeps model
+    authority closed'), plus selfAuthorizationAllowed const false in the
+    execution-relationship schema. Side B is two REVEALED readings and neither
+    licenses an effect: the import pipeline places human_review before
+    authorized_events, and the bot-owned question gathers evidence for a receipt
+    Dave will accept. So the artifacts do not contradict the rule; they leave one
+    word — owner — undefined. C keeps the rule untouched and writes the one
+    exception where it lives. A is nearly as good and differs only in whether a
+    bot may be named owner of a question; in a holarchy of steward bots that is
+    the seat they need. B is ruled out by the constitution's own rails.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "questions/open-questions.yawn: the entry owned by YAWN.bot carries authority: none and accepted_by: Dave, and templates/open-question.yawn teaches both fields."
+    - "examples/conversation-import-routing.yawn: every step before human_review says its output is a proposal."
+    - "A test in tests/ rejects an open question with a non-human owner and no authority: none, rejects an automation allowed_effects entry naming a blocked effect without an authorization_ref, and passes."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A ledger under records/ shows a commit, publication, send or spend by an
+    automation with no authorization_ref, or an open question owned by a bot is
+    marked answered-with-evidence on the bot's own say-so, and npm test stays
+    green.
+  status: proposed
+
+evidence_sample:
+  - "J0005"
+  - "J0014"
+  - "J0022"
+  - "J0030"
+  - "J0113"
+  - "J0139"
+  - "J0397"
+  - "J0545"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

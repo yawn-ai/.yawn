@@ -1,0 +1,158 @@
+id: decisions/036-proof-reaches-outside
+title: "What a proof must reach outside the graph"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'evidence-locus'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: evidence-locus
+axis_gloss: "whether the warrant for a claim comes from inside the repository's own graph, or from something outside it"
+poles:
+  a: internal-self-sourcing
+  b: external-verification
+split: lone-exception
+draft_status: full
+leverage: 7.2
+leverage_formula: "judgments_resolved(15) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  May a proof block be satisfied by pointing at other .yawn files in the same
+  repo, or must proof reach something outside the graph (a commit, a deployment,
+  a dated observation) before its status can rise above seed-backed?
+
+why_it_matters: >
+  128 of 194 files carry a proof block and 75 of those say seed-backed while
+  citing only sibling .yawn files, so proof mostly means consistent with
+  siblings; the one production-verified record is the only one with an external
+  chain. Once answered, a bot that promotes a record or ranks a claim knows
+  whether seed-backed counts as proof, and a child Yawn learns what it must
+  fetch from outside the graph before calling anything proved.
+
+state_snapshot:
+  description: >
+    14 judgments sit at internal-self-sourcing (2 authored) and 1 at
+    external-verification (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave means seed-backed as a real proof status or as no proof yet; and
+    whether proof a single person can meet alone (J0264) is a principle of the
+    protocol or only what was available.
+
+options:
+  - name: A
+    description: >
+      rule: proof.source may consist wholly of sibling .yawn records. seed-backed is
+      a valid terminal proof status; no external source is required at any status.
+    cost: "None; status quo for 75 files."
+    risk: "A record marked source-backed on a file no one else can open (references/scientific-frame.yawn) counts as proven; the canonical sentence's inspectable and replayable is not met."
+    reversibility: true
+    proof_needed: "None can enforce this; the record would be a note in templates/proof.yawn that sibling citation suffices."
+    evidence_for:
+      - "J0012"
+      - "J0062"
+      - "J0107"
+      - "J0264"
+      - "J0273"
+      - "J0463"
+  - name: B
+    description: >
+      rule: Every proof block must include at least one source outside the .yawn
+      graph (a commit, URL, deployment id, or dated observation), or its status is
+      capped at unproven.
+    cost: "75 seed-backed files and all templates fail immediately; proof that a single person can meet alone (core/proof-and-boundary.yawn proof_can_be) becomes insufficient."
+    risk: "Contradicts J0012, which refuses an external AI-detection score as authority; and forces external citations onto records whose proof is genuinely internal (a template, a node index)."
+    reversibility: true
+    proof_needed: "A test in tests/ that every proof.source list contains a reachable non-.yawn entry."
+    evidence_for:
+      - "J0707"
+  - name: C
+    description: >
+      rule: A proof block whose status is seed-backed or draft-backed may cite only
+      sibling records. Any status above that (source-backed, production-verified,
+      proved, passed) requires at least one externally checkable source: an https
+      URL, a commit hash, a deployment id, or a dated named-observer observation. A
+      source only the author can open does not count. External scores never count as
+      authority (J0012 stands); external evidence does. The proof.status ladder is
+      written into templates/proof.yawn.
+    cost: "Write the ladder; downgrade or re-source references/scientific-frame.yawn and references/july-01-lock.yawn; no change to the 75 seed-backed files."
+    risk: "Everything stays seed-backed forever because the higher rungs cost more; the ladder documents stagnation rather than curing it."
+    reversibility: true
+    proof_needed: "A test in tests/ that parses proof.status and, for values above seed-backed/draft-backed, requires a proof.source entry matching https://, a 40-hex commit, a deployment id, or a dated observation, and rejects C:/ sources as not externally checkable."
+    evidence_for:
+      - "J0012"
+      - "J0264"
+      - "J0707"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The lone exception is the strongest proof block in the repository:
+    references/interception.yawn is behaviour-proven and proof-attached with
+    commit, PR, deployment id, HTTP status and a dated browser observation, and it
+    is the only file whose status reads production-verified. The internal-sourcing
+    side is mostly revealed practice; its two authored judgments (J0012, and J0264
+    on cheap solo proof) are both preserved by C. GROUND_TRUTH FACT 3 gives the
+    12-value proof.status distribution and FACT 19 shows source-backed resting on
+    a private file, which is the case C is designed to catch. Writing the
+    exception down as a ladder is the smallest rule that makes the word proof mean
+    something different at each rung.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/proof.yawn names the proof.status ladder and what each rung requires."
+    - "A test in tests/ fails when a file claims source-backed or above with no reachable external source, and passes."
+    - "references/scientific-frame.yawn is either re-sourced to a reachable file or its status drops below source-backed."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record claims production-verified while citing only sibling .yawn files and
+    npm test stays green.
+  status: proposed
+
+evidence_sample:
+  - "J0012"
+  - "J0062"
+  - "J0107"
+  - "J0264"
+  - "J0273"
+  - "J0463"
+  - "J0707"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

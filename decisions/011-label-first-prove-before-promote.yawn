@@ -1,0 +1,175 @@
+id: decisions/011-label-first-prove-before-promote
+title: "Labelled action allowed, promotion waits for proof"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'proof-timing'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: proof-timing
+axis_gloss: "whether the evidence must exist before the change lands, or the change ships first and acquires its proof later"
+poles:
+  a: act-then-prove
+  b: prove-then-act
+split: genuinely-split
+draft_status: full
+leverage: 24
+leverage_formula: "judgments_resolved(16) x split_weight(1) x authored_conflict_bonus(1.5)"
+
+question: >
+  May a record be marked active or accepted, or be cited as another record's
+  proof, before its own evidence exists — so long as it is labelled — or must
+  the proof land first?
+
+why_it_matters: >
+  The written rules say durable memory waits for authority and proof and legacy
+  claims stay historical until restated and proved, yet three nodes cite a
+  status: proposed migration as proof.source, a pattern ledger entry reads
+  accepted with proof 'pending', and eight automations run active under
+  seed-status agent contracts. Once answered, a bot knows whether 'active' on
+  its own contract is a lifecycle fact (it runs) or a claim it must have earned,
+  and whether it may point at a proposal and call it proof.
+
+state_snapshot:
+  description: >
+    10 judgments sit at act-then-prove (1 authored) and 6 at prove-then-act (3
+    authored). The repository asserts both directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave reads 'active' on an automation as a lifecycle fact (it is
+    scheduled) or as a proof claim (its contract is settled); the in-flight
+    status-vocabulary test treats it as lifecycle.
+
+options:
+  - name: A
+    description: >
+      rule: A record may ship, run, be promoted or be cited as soon as its proof
+      status is labelled; evidence arrives later and the label is updated when it
+      does. proof.status: not_started is a valid state for an active record.
+    cost: "Softens core/co-orientation-loop.yawn's final-step condition and migrations/node.yawn raw_claims_promoted_automatically: false; the pattern ledger's ten-step ladder loses its ordering."
+    risk: "A proposal cited under proof.source launders into a fact for every reader who follows the pointer; this already happened three times on one migration."
+    reversibility: true
+    proof_needed: "None can enforce lateness; the record would be removing the ordering claim from records/yawn.bot-pattern-ledger.yawn entry_shape and the 'before' from core-loop.yawn feedback_gate."
+    evidence_for:
+      - "J0044"
+      - "J0325"
+      - "J0406"
+      - "J0636"
+      - "J0647"
+      - "J0683"
+  - name: B
+    description: >
+      rule: Nothing is promoted to active, accepted or v1, cited under proof.source,
+      published, or written to durable memory until its proof condition is met.
+      Working papers wait for review; automations wait for their governing agent
+      contract to leave seed status.
+    cost: "Unpublishes or relabels references/interception.yawn (proof-attached public working paper), demotes eight active automations, and contradicts the authored choice in J0683 to publish before peer review with a label."
+    risk: "The repo stops moving; fifteen of seventeen examples already sit at not_started and would never be allowed to be used."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs: any active record whose proof.status is not passed, proof-attached or outcome-attached fails; today roughly 90 records fail."
+    evidence_for:
+      - "J0752"
+      - "J0772"
+      - "J0894"
+      - "J0913"
+      - "J1033"
+      - "J1207"
+  - name: C
+    description: >
+      rule: Provisional action is allowed when labelled (publish a paper marked
+      not-peer-reviewed, run an automation marked active-seed, ship an example with
+      proof not_started). Three things wait for proof: promotion of status to
+      accepted, v1 or official; citation under proof.source (a status: proposed or
+      draft record may be cited under proposal_refs: or source_refs:, never under
+      proof.source); and durable memory update. Written once in
+      core/proof-and-boundary.yawn transition_boundary.
+    cost: "Re-key three proof.source lines (database/node.yawn, feedback/node.yawn, .github/node.yawn), return one ledger entry to human_review or attach its proof, one new sentence in core/proof-and-boundary.yawn."
+    risk: "The label becomes the excuse; active-seed does forever what active may not."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs (in-flight): a path under proof.source whose target's top-level status is proposed or draft is an error; extend tests/status-vocabulary.test.mjs or a ledger test so an entry with state: accepted and proof_after_merge empty or 'pending' fails; tests/inquiry-selection-receipt-v0.1.test.mjs already asserts options fail before a receipt can be composed, which is this rule for receipts."
+    evidence_for:
+      - "J0636"
+      - "J0683"
+      - "J0752"
+      - "J0894"
+      - "J0913"
+      - "J1033"
+      - "J1207"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The three authored prove-then-act judgments are all about promotion and
+    durable memory; the one authored act-then-prove judgment is about labelled
+    publication. They do not collide, and the two proof-attached judgments
+    (publish the labelled working paper; throw before compose) each sit on the
+    side C assigns them. The repo's own promotion practice is already B for canon
+    (only records with a reducer, schema or test reached v1, outcome-attached), so
+    C names what the tree does. The violations that remain are three proof.source
+    lines and one ledger state, both cheap and both checkable by the in-flight
+    proof-refs validator.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/proof-and-boundary.yawn transition_boundary names the three things that wait for proof."
+    - "No proof.source in the tree points at a record whose status is proposed or draft, and validate-proof-refs rejects one that does."
+    - "records/yawn.bot-pattern-ledger.yawn entry 2026-07-01 carries a real proof_after_merge ref or its state returns to human_review."
+    - "npm test passes with those checks present."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record reaches status accepted, official or v1 with proof.status
+    not_started, or a new node cites a proposed migration under proof.source, and
+    validate passes.
+  status: proposed
+
+evidence_sample:
+  - "J0044"
+  - "J0325"
+  - "J0406"
+  - "J0636"
+  - "J0647"
+  - "J0683"
+  - "J0752"
+  - "J0772"
+  - "J0894"
+  - "J0913"
+  - "J1033"
+  - "J1207"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

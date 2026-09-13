@@ -1,0 +1,161 @@
+id: decisions/010-list-order-semantics
+title: "When list order means rank"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'list-order-semantics'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: list-order-semantics
+axis_gloss: "whether the sequence of items in a list carries rank and is binding, or is presentation with no claim of priority"
+poles:
+  a: order-is-load-bearing
+  b: order-is-display-only
+split: genuinely-split
+draft_status: full
+leverage: 24
+leverage_formula: "judgments_resolved(16) x split_weight(1) x authored_conflict_bonus(1.5)"
+
+question: >
+  When a record lists things, does the order mean anything, and if only
+  sometimes, how does a reader or a bot know which lists are ranked?
+
+why_it_matters: >
+  The two written statements say order is not a ladder (scope lenses are
+  locations; questions may be visited in any order), while thirteen unlabelled
+  lists put attain first among target modes, local first among lanes, confused
+  first among sentiments, and the validate chain runs in a fixed order nobody
+  calls fixed. A bot that takes the first item as the default inherits a
+  priority nobody stated; a bot that ignores order in the tie_break list breaks
+  a test.
+
+state_snapshot:
+  description: >
+    13 judgments sit at order-is-load-bearing (1 authored) and 3 at
+    order-is-display-only (2 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave intends the validate chain order and the 07:30 radar, 08:20
+    readme, 08:40 license, 09:00 daily morning order to be rank; both are
+    load-bearing in practice and unstated.
+
+options:
+  - name: A
+    description: >
+      List order is rank. The first entry of any list is the default or highest
+      priority unless the record says otherwise.
+    cost: "Auditing every enum and holds: list; reordering dave/node.yawn holds to match the conceptual order; writing unordered on lists that are not."
+    risk: "attain becomes the default target mode inside the file whose invariants say targets are optional (J0274 against J0219); every alphabetical list becomes a silent ranking."
+    reversibility: true
+    proof_needed: "A test that compares each enum in schemas/ against its .yawn counterpart as a sequence, not a set."
+    evidence_for:
+      - "J0199"
+      - "J0274"
+      - "J0333"
+      - "J0344"
+      - "J0395"
+      - "J0476"
+  - name: B
+    description: >
+      List order carries no meaning. Only a key named priority, precedence, order,
+      tie_break or ranked is ordered; every other list is a set and may be sorted
+      freely.
+    cost: "One sentence in core/yawn-space.yawn or a new core/list-order.yawn; a comment in package.json saying the validate chain is ordered."
+    risk: "The validate chain order (J0333) and the morning automation ordering (FACT 17b) are load-bearing in practice and unlabelled; B says they are not."
+    reversibility: true
+    proof_needed: "Extend tests/state-substrate-v1.test.mjs 'target modes remain exact and do not imply attain' to compare modes as a set; a lint that any key matching priority, precedence, order, tie_break or ranked is a list."
+    evidence_for:
+      - "J0317"
+      - "J0357"
+      - "J0676"
+  - name: C
+    description: >
+      List order carries no meaning unless the key is named for rank (priority,
+      precedence, order, tie_break, ranked) or the list carries ordered: true with a
+      one-line reason. The validate chain in package.json and the automation morning
+      schedule are declared ordered with reasons; all other lists are sets.
+    cost: "One core sentence; ordered: markers or reasons on the validate chain, the automation cadence, and any enum Dave wants ranked; alphabetize dave/node.yawn holds or mark it."
+    risk: "A ranked list that forgets its marker silently becomes a set; the marker must be lint-checked."
+    reversibility: true
+    proof_needed: "Extend tests/orientation-map-v0.1.test.mjs ('default axis order is a validated partial tie-break and is not expanded') into a repo-wide check: keys named for rank must be lists; unlabelled enums in schemas/ are compared to their .yawn source as sets; scripts/node.yawn declares the validate chain ordered and the test reads package.json to confirm."
+    evidence_for:
+      - "J0333"
+      - "J0357"
+      - "J0676"
+      - "J0317"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Both authored judgments (J0357, J0676) are display-only. The executable layer
+    implements rank exactly where the key says so: core/inquiry-selection.yawn
+    names passes 1-2 priority and pass 3 considerations (GROUND_TRUTH FACT 18),
+    and the tests enforce the stated tie_break order over the unlabelled
+    considerations order (FACT 16). So the practice is already ordered-when-named.
+    The thirteen order-is-rank judgments are readings of unlabelled enums that no
+    file claims are ranked. C writes the convention down and forces the two
+    genuinely ordered unlabelled lists (the validate chain, the morning cadence)
+    to say so. It is close because J0333 is proof-attached and unlabelled: the
+    repo does depend on an order it never declared.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "A core file states that list order is rank only when the key is named for rank or carries ordered: true"
+    - "scripts/node.yawn or package.json marks the validate chain ordered with a reason, and a test reads it"
+    - "Tests compare unlabelled enums (target modes, connection_state, sentiment) as sets, and pass"
+    - "dave/node.yawn holds: is either alphabetized by rule or reordered and marked"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A bot treats the first entry of an unlabelled list as the default (attain as
+    the default target mode, local as the default lane) and no record said it was.
+  status: proposed
+
+evidence_sample:
+  - "J0199"
+  - "J0274"
+  - "J0333"
+  - "J0344"
+  - "J0395"
+  - "J0476"
+  - "J0317"
+  - "J0357"
+  - "J0676"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

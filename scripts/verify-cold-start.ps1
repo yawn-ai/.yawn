@@ -23,7 +23,7 @@ if ($missing) {
 
 $checks = @(
   @{ File = "yawn.yawn"; Pattern = "core_loop: core/co-orientation-loop.yawn" },
-  @{ File = "yawn.yawn"; Pattern = "repository: https://github.com/yawn-ai/web-game" },
+  @{ File = "yawn.yawn"; Pattern = "repository: https://github.com/yawn-ai/yawn.bot" },
   @{ File = "agents/yawn.bot.yawn"; Pattern = "status: official" },
   @{ File = "agents/yawn.bot.yawn"; Pattern = "kind: co-orientation-runtime-identity" },
   @{ File = "core-loop.yawn"; Pattern = "status: superseded" },
@@ -49,7 +49,7 @@ if (Select-String -LiteralPath "README.md", "readme.yawn" -SimpleMatch $forbidde
   status = "passed"
   repository = "yawn-ai/.yawn"
   runtime = "YAWN.bot"
-  runtimeRepository = "yawn-ai/web-game"
+  runtimeRepository = "yawn-ai/yawn.bot"
   protocolLoop = "core/co-orientation-loop.yawn"
   requiredFiles = $requiredFiles.Count
   assertions = $checks.Count + 1

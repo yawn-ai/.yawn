@@ -1,0 +1,173 @@
+id: decisions/027-structural-topology
+title: "A Yawn has one parent, a situation has many arenas"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'structural-topology'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: structural-topology
+axis_gloss: "whether a thing hangs from exactly one parent, or may belong to several containers at once"
+poles:
+  a: multi-parent-graph
+  b: single-parent-tree
+split: genuinely-split
+draft_status: full
+leverage: 10.5
+leverage_formula: "judgments_resolved(7) x split_weight(1) x authored_conflict_bonus(1.5)"
+
+question: >
+  Does a thing in YAWN hang from exactly one parent, or may it belong to several
+  containers at once — and is the answer the same for a Yawn, an arena and a
+  bot?
+
+why_it_matters: >
+  A holarchy where every Yawn has one primary parent is what lets authority
+  narrow and privacy never widen by nesting, while a world where a family dinner
+  is seven arenas at once is what keeps the model from becoming the totalizing
+  hierarchy failure test 9 names — and one file asserts both, then serializes
+  arena as a single slot. Once answered, each child Yawn below Dave knows it
+  hangs from one parent, may sit in many arenas, and expresses everything else
+  as a typed lateral relation.
+
+state_snapshot:
+  description: >
+    3 judgments sit at multi-parent-graph (3 authored) and 4 at single-parent-tree
+    (1 authored). The repository asserts both directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants arena-to-arena relations drawn from the same eight-value
+    lateral enum as Yawn relations or from the five arena relation types section
+    6.1 names (parent, child, adjacent, supporting, conflicting).
+
+options:
+  - name: A
+    description: >
+      rule: Multi-parent graph. A Yawn, an arena and a bot may each belong to
+      several containers; primaryParentYawnRef becomes one of several parent refs;
+      the holarchy test's rejection of secondaryParentYawnRef is dropped and
+      reducers detect cycles across a DAG.
+    cost: "Rewrite tests/agency-holarchy-v0.2.test.mjs 'the holarchy has one primary-parent backbone and typed lateral links' and the schema; the invariant 'Every canonical Yawn is reachable from one explicit root or primary parent' and the inheritance rules (authority may narrow automatically, privacy never widens by nesting) become ambiguous under two parents."
+    risk: "A Yawn with two parents inherits the wider privacy or authority of either, which is precisely the widening-by-nesting core/holarchy.yawn forbids."
+    reversibility: false
+    proof_needed: "A rewritten holarchy schema and test accepting multiple parent refs, plus a cycle-detection test over multi-parent graphs and an inheritance test showing privacy takes the strictest parent."
+    evidence_for:
+      - "J0155"
+      - "J0162"
+      - "J0803"
+  - name: B
+    description: >
+      rule: Single-parent tree everywhere. A Yawn has one primary parent (as
+      tested); an arena has one parent arena (parent_arena_id stays singular); a bot
+      has one parent bot (as tested); a situation that seems to be several arenas is
+      recorded as one arena plus lateral relations to the others.
+    cost: "Rewrite section 6.1 and 13 of core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn, which are authored and argued; extend the holarchy test to reject arena records with more than one parent."
+    risk: "Forces the one-arena election that section 6.1 says would be the totalizing hierarchy; agent and arena stop being reciprocal roles."
+    reversibility: true
+    proof_needed: "Extend tests/agency-holarchy-v0.2.test.mjs to reject an Arena with more than one parent ref and a relationship record with a plural arenas list; rewrite the two authored sections."
+    evidence_for:
+      - "J0221"
+      - "J1215"
+      - "J0172"
+      - "J0411"
+  - name: C
+    description: >
+      rule: Three answers, one per thing, written in core/holarchy.yawn. (1) Yawn
+      containment is a tree: one acyclic primary parent, every canonical Yawn
+      reachable from one root, as tested. (2) Arenas are a graph: a situation may
+      project several concurrent arenas related as parent, child, adjacent,
+      supporting or conflicting, and arena nesting never implies Yawn parentage —
+      templates/arena.yawn already says so on parent_arena_id. (3) Bot parentage is
+      a tree bound to the Yawn tree, as tested. All other belonging is a typed
+      lateral relation from the closed eight-value enum. The relationship record
+      shape in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 14 changes its
+      singular arena slot to an active_arena_projection plus concurrent_arena_refs
+      so the shape matches section 6.1.
+    cost: "One block added to core/holarchy.yawn; one field change in section 14 of the arena document; one fixture; two assertions."
+    risk: "Arena graphs become the place multi-parent semantics leak back into Yawn containment through 'supporting' and 'conflicting' relations read as parentage."
+    reversibility: true
+    proof_needed: "Add to tests/agency-holarchy-v0.2.test.mjs: an Arena record carrying two parent-arena refs validates while a Yawn carrying two parents does not; a test that templates/arena.yawn keeps the 'does not determine Yawn parentage' note; a fixture serializing the family-dinner example of section 6.1 with plural arena refs; keep objective-holon 'bot parentage is acyclic and the root stays the root steward'."
+    evidence_for:
+      - "J0803"
+      - "J0221"
+      - "J1215"
+      - "J0155"
+      - "J0162"
+      - "J0172"
+
+recommendation:
+  option_ref: C
+  confidence: 0.85
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    This looks split — three authored judgments for the graph, one authored for
+    the tree — but the two sides are about different things, and one authored
+    judgment already states the decoupling: templates/arena.yawn (J0803) says
+    arena nesting is a relevance boundary that says nothing about Yawn parentage,
+    and keeps primary_parent_yawn_ref in a different template entirely. The tree
+    is authored for Yawn containment (core/holarchy.yawn, J0221) and test-enforced
+    for Yawns (J1215: adding secondaryParentYawnRef fails) and for bots
+    (objective-holon 'bot parentage is acyclic'); the graph is authored for arenas
+    (J0155, J0162) and tested nowhere either way. The one real defect is REVEALED:
+    J0172, where the relationship record in section 14 gives arena a singular slot
+    while section 6.1 of the same file insists a situation is several arenas — the
+    data shape contradicts the prose in one document. C writes down which topology
+    applies to which thing and fixes the one shape. High confidence because C
+    changes no rule Dave wrote; it only names the scope of each.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/holarchy.yawn states the three topologies — Yawn tree, arena graph, bot tree — and that arena membership never implies Yawn parentage."
+    - "core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 14 serializes concurrent arenas plurally, matching section 6.1, and a fixture shows the family-dinner example."
+    - "A test in tests/ accepts an arena with two parent arenas and rejects a Yawn with two parents, and passes alongside the existing backbone test."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A fixture serializes a situation that section 6.1 calls seven arenas into one
+    arena slot and validates; or a Yawn gains a second parent through a lateral
+    relation read as containment and the suite stays green.
+  status: proposed
+
+evidence_sample:
+  - "J0155"
+  - "J0162"
+  - "J0803"
+  - "J0172"
+  - "J0221"
+  - "J0411"
+  - "J1215"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -1,0 +1,144 @@
+id: decisions/053-container-intelligence-name
+title: "What the container above yawn.bot is called"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; from Dave's spoken description; held under core/canonical-extension.yawn creation_gate.on_ambiguity"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: naming-convention-uniformity
+split: held
+draft_status: full
+leverage: held
+leverage_formula: "not ranked: held by the lexical invariant until Dave answers the naming question"
+
+question: >
+  Dave described a third entity: the intelligence above yawn.bot that has not
+  arrived yet, the intuition above all of this, the container in which the rest
+  happens. Is it a distinct entity that needs a new name, or the same thing the
+  principal's preferences call by the manifest file's name — and in either case,
+  what is it called?
+
+why_it_matters: >
+  core/entity-and-coupling.yawn cannot name its third entity until this is
+  answered, and every bot below Dave needs to know whether there is a level
+  above the root steward or not. The name Dave spoke is one of the exact tokens
+  the canonical extension contract forbids in tracked content, so this cannot be
+  settled by writing it down; it has to be decided.
+
+# yawn-invalid-alias-guard:start
+raw_term_as_spoken:
+  term: "YON"
+  as_address: "at YON bot"
+  epistemic_status: reported
+  preserved_because: >
+    core/canonical-extension.yawn requires the raw transcript to be preserved
+    alongside the normalized term when correction affects provenance. This block
+    is inside the alias guard so the raw term is kept for provenance and is not
+    promoted to canon by appearing here.
+collision:
+  rule: core/canonical-extension.yawn invalid_product_aliases and common_speech_to_text_substitutions
+  validator: scripts/validate-canonical-extension.mjs
+  effect: >
+    "yon" is listed as an invalid alias for YAWN and a common speech-to-text
+    substitution; the validator rejects "yon.bot" in any tracked file outside a
+    guard block. The contract's ambiguity rule says: do not silently rewrite,
+    hold creation, surface one naming question.
+# yawn-invalid-alias-guard:end
+
+state_snapshot:
+  description: >
+    The principal's preferences name the emerging superintelligence with the
+    same token as the repository manifest file, yawn.yawn. Dave's spoken
+    description uses a different token that the lexical invariant forbids.
+    core/entity-and-coupling.yawn holds the container with name: null.
+  attributed_to: principal:dave
+  epistemic_status: reported
+  source_refs:
+    - core/canonical-extension.yawn
+    - core/entity-and-coupling.yawn
+
+lacuna:
+  kind: unselected_choice
+  description: "Whether the container is one entity or two, and its canonical name."
+
+options:
+  - name: A
+    description: >
+      The container is the same entity the preferences already name; keep that
+      name, and add a rule that the manifest file and the entity share a token
+      deliberately, with the file being a View of the entity.
+    cost: "one overloaded token; readers must learn the distinction"
+    risk: "the manifest file gets mistaken for the entity, or the reverse"
+    reversibility: true
+    proof_needed: "core/entity-and-coupling.yawn names it; validate-canonical-extension passes unchanged"
+    evidence_for: []
+  - name: B
+    description: >
+      The container is a distinct entity and gets a NEW name that is not an
+      invalid alias — chosen by Dave, not derived from the spoken term — and an
+      address under it.
+    cost: "a naming decision Dave has to make on purpose"
+    risk: "a third product noun to keep coherent with YAWN and yawn.bot"
+    reversibility: true
+    proof_needed: "the new name is added to core/canonical-extension.yawn canonical block; the validator's alias list is unchanged"
+    evidence_for: []
+  - name: C
+    description: >
+      The spoken term IS the intended name: amend core/canonical-extension.yawn
+      to remove it from invalid_product_aliases and the speech-to-text list,
+      update the validator and its tests, and write a migration receipt for the
+      change.
+    cost: "the lexical invariant loses one of its guards; every speech-to-text safeguard for that token goes with it"
+    risk: "future dictation that meant YAWN will be silently accepted as the container's name"
+    reversibility: false
+    proof_needed: "validate-canonical-extension.mjs and tests/canonical-extension-v1.test.mjs updated and passing; migration receipt"
+    evidence_for: []
+
+recommendation:
+  option_ref: ""
+  confidence: 0
+  epistemic_status: unknown
+  authority: none
+  reasoning: >
+    No recommendation. The creation gate says hold and ask; a recommendation
+    here would be choosing a name on Dave's behalf, which the contract forbids.
+    The one observation offered: option C is the only irreversible one.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/entity-and-coupling.yawn entities.container.name is non-null"
+    - "scripts/validate-canonical-extension.mjs passes on the tree that names it"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    The container appears under a canonical name anywhere in the tree outside a
+    guard block before this record's choice is filled.
+  status: proposed
+
+evidence_sample: []
+
+boundary:
+  - "an address is a View; the name is the identity"
+  - "the raw spoken term stays inside the guard until decided"
+
+source:
+  template: templates/decision.yawn
+  rule: core/canonical-extension.yawn

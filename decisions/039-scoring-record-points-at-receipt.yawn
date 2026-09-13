@@ -1,0 +1,155 @@
+id: decisions/039-scoring-record-points-at-receipt
+title: "A move-scoring record points at its receipt"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'how-success-is-judged'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: how-success-is-judged
+axis_gloss: "whether the actor that made the move declares it succeeded, or a separate step or party evaluates the outcome"
+poles:
+  a: independently-evaluated-success
+  b: self-certified-success
+split: lone-exception
+draft_status: full
+leverage: 6.7
+leverage_formula: "judgments_resolved(14) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Is a move's success always judged by a separate observation and receipt — and
+  if so, where does a record that ranks and suggests moves write, or point to,
+  what actually happened?
+
+why_it_matters: >
+  'A move cannot mark itself successful' is authored in four core files and
+  enforced by role splits (verifier never co-occurs with actor), yet
+  templates/next-move-record.yawn scores, suggests and sets replay_after with no
+  slot for the observed outcome, so the loop it starts can never close inside
+  the record. Once answered, a bot that ranks its next move knows it must leave
+  a pointer to the receipt a verifier will write, and a verifier knows where to
+  attach it.
+
+state_snapshot:
+  description: >
+    13 judgments sit at independently-evaluated-success (9 authored) and 1 at
+    self-certified-success (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants the scoring record to be incomplete (a lacuna) while
+    result_ref is empty, or merely open.
+
+options:
+  - name: A
+    description: >
+      rule: Every record that proposes, ranks or performs a move carries an outcome
+      block (observed_delta, observed_by, evidence) that only an actor other than
+      the proposer may fill. templates/next-move-record.yawn gains that block.
+    cost: "One block in one template; guidance on who may fill it."
+    risk: "The scoring record becomes the place the outcome is written, so the actor who wrote the score is now editing the same file as the judge."
+    reversibility: true
+    proof_needed: "New assertion in tests/record-shape.test.mjs: every template whose kind names a move (next-move-record, decision, structural-change-receipt, turn) carries an outcome or transition_result block with an observed_by field."
+    evidence_for:
+      - "J0081"
+      - "J0145"
+      - "J0209"
+      - "J0410"
+      - "J0529"
+      - "J0546"
+  - name: B
+    description: >
+      rule: The actor that made the move may record its own result. A move record
+      ends when the actor says it ended.
+    cost: "Strikes 'A move cannot mark itself successful.' from core/proof-and-boundary.yawn transition_boundary and the matching invariants in core/state-transition.yawn, core/turn.yawn, core/movement-loop.yawn and question-packets/turn-close.yawn."
+    risk: "Every receipt in records/ becomes self-certification; the interception result test ('the result proves the bounded candidate') no longer means anything."
+    reversibility: false
+    proof_needed: "None can enforce self-certification; the record would be the five deletions above."
+    evidence_for:
+      - "J0845"
+  - name: C
+    description: >
+      rule: Success is judged by a separate observation and receipt, always. A
+      record that ranks or suggests moves never writes the outcome; it carries
+      result_ref: (empty until a verifier writes a proof-receipt) and is incomplete
+      until that pointer resolves. templates/next-move-record.yawn gains result_ref:
+      and a sentence saying who fills it.
+    cost: "One field and one sentence in one template; a receipt per suggested move that gets acted on."
+    risk: "result_ref stays empty forever and nothing notices."
+    reversibility: true
+    proof_needed: "Extend tests/record-shape.test.mjs: a template of kind next-move-record carries result_ref:; extend scripts/validate-proof-refs.mjs so a non-empty result_ref must resolve to a record whose observed_by or verifier differs from the scoring record's actor."
+    evidence_for:
+      - "J0081"
+      - "J0410"
+      - "J0529"
+      - "J0546"
+      - "J0845"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Nine authored judgments say the actor is never the judge; the lone exception
+    is not a claim of self-certification but a template with nowhere to close the
+    loop. A would give the scoring record an outcome slot, which puts actor and
+    judge in one file; C keeps the separation the role split (J0410) and the
+    proof_refs pattern (J0546, outcome-attached) already use, and costs one
+    pointer field. Confidence is high because both authored rule and existing
+    practice point the same way; the only question is the field name.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/next-move-record.yawn carries result_ref: with a sentence saying a verifier other than the proposer fills it."
+    - "A test in tests/ rejects a move-ranking template without result_ref and passes."
+    - "Any non-empty result_ref in records/ resolves to a receipt whose verifier is not the scoring record's actor, and validate-proof-refs checks it."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A next-move record in records/ carries a filled outcome written by the same
+    agent that scored the move, and nothing fails.
+  status: proposed
+
+evidence_sample:
+  - "J0081"
+  - "J0145"
+  - "J0209"
+  - "J0410"
+  - "J0529"
+  - "J0546"
+  - "J0845"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -1,0 +1,163 @@
+id: decisions/015-maturity-claim-honesty
+title: "Status is earned, not declared"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'maturity-claim-honesty'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: maturity-claim-honesty
+axis_gloss: "whether a record's advertised maturity matches what it actually has, or overstates it"
+poles:
+  a: honest-maturity-label
+  b: inflated-stability-claim
+split: leaning
+draft_status: full
+leverage: 16
+leverage_formula: "judgments_resolved(19) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  May a record call itself active, v1 or constitutional before it has a proof
+  that runs, or must status be earned by what the record actually carries, and
+  who checks?
+
+why_it_matters: >
+  Most of the tree under-claims (the automation index sits at v0-seed while
+  indexing thirteen live loops), but the two largest documents claim active,
+  constitutional, 1.0.0 with every implementation box unchecked, and a ledger
+  with zero entries calls itself active-seed. Status is the one field a bot or
+  child Yawn reads to decide whether to trust or inherit a record; until this is
+  answered, 38 ad-hoc status values carry no comparable meaning.
+
+state_snapshot:
+  description: >
+    16 judgments sit at honest-maturity-label (6 authored) and 3 at
+    inflated-stability-claim (0 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    What the status ladder is. GROUND_TRUTH FACT 2 counts 38 distinct values
+    across 176 files and no schema any record satisfies; honesty cannot be checked
+    against a vocabulary that does not exist.
+
+options:
+  - name: A
+    description: >
+      Status is earned. A record may carry status: active or v1 only when its proof
+      block names a command, test, verifier or validator_ref that runs green; a
+      ledger may carry active-* only when current_entries is non-empty; a working
+      paper with unchecked implementation boxes carries status: draft with its
+      checklist as the maturity signal.
+    cost: "Of 37 files claiming active or v1 today, roughly 12 have no proof block and most of the rest are seed-backed; only schemas/node.yawn names a command. Each is relabelled or grandfathered by name."
+    risk: "A wave of demotions that reads as regression; the status vocabulary (38 values, no schema) must be fixed first or the rule has nothing to bind to."
+    reversibility: true
+    proof_needed: "A new tests/status-ladder.test.mjs in the shape of tests/epistemic-status-vocabulary.test.mjs: scan status: and proof: for every .yawn, assert active or v1 implies a runnable proof key, assert active-* ledgers have entries, with a frozen GRANDFATHERED map and a size ceiling."
+    evidence_for:
+      - "J0045"
+      - "J0135"
+      - "J0315"
+      - "J0351"
+      - "J0390"
+      - "J0455"
+  - name: B
+    description: >
+      Status is declared. The owner sets it; it means what the owner says; readers
+      consult the proof block separately for maturity.
+    cost: "Nothing changes; one sentence in core/yawn-space.yawn saying status is an owner claim."
+    risk: "Status carries no information a bot can use; the graduation ladder the epistemic-status test rationale asks for cannot exist."
+    reversibility: true
+    proof_needed: "None; B is the status quo and is honoured by the absence of a check."
+    evidence_for:
+      - "J0189"
+      - "J0631"
+      - "J0700"
+  - name: C
+    description: >
+      Status is earned for records and ledgers (option A), but a constitutional
+      working paper may carry status: active alongside a completion checklist, and
+      the checklist, not the status word, is its maturity signal. The two such
+      papers are named in a shrink-only ledger.
+    cost: "Same test as A with two grandfather entries for core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn and references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn."
+    risk: "The same two files are already the naming outliers (FACT 8) and the epistemic-status outliers (FACT 7); a third exception makes them a permanent second regime."
+    reversibility: true
+    proof_needed: "Same as A, with the two files in the GRANDFATHERED map and a ceiling of 2."
+    evidence_for:
+      - "J0045"
+      - "J0351"
+      - "J0455"
+      - "J0189"
+      - "J0700"
+
+recommendation:
+  option_ref: A
+  confidence: 0.6
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Six authored judgments sit on honest labelling and the tree's habit is to
+    under-claim; the three inflated cases are all unauthored readings, two of them
+    outcome-attached, and two of the three are the same two files already
+    grandfathered for epistemic status and already the naming outliers
+    (GROUND_TRUTH FACTS 7, 8). The epistemic-status test's own rationale, that
+    free-text statuses make records uncomputable, is the argument for A. It is not
+    a strong recommendation because FACT 2 shows there is no status vocabulary to
+    bind to: this decision cannot be enforced until Dave picks a ladder, and on
+    day one A is a large grandfather ledger.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "A test in tests/ rejects status: active or v1 on any file whose proof block is absent or names nothing runnable, passing with a frozen shrink-only ledger"
+    - "records/yawn.bot-pr-notification-ledger.yawn reads seed until it holds an entry"
+    - "core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn and references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn are either relabelled or named in that ledger with a date"
+    - "A status ladder with fewer than ten values is written in one core file and every status: value in the tree is on it or ledgered"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A file is promoted to active or v1 in a commit that adds no proof source,
+    command or test, and npm test stays green.
+  status: proposed
+
+evidence_sample:
+  - "J0045"
+  - "J0135"
+  - "J0315"
+  - "J0351"
+  - "J0390"
+  - "J0455"
+  - "J0189"
+  - "J0631"
+  - "J0700"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

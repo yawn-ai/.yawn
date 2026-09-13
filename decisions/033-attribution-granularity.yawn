@@ -1,0 +1,178 @@
+id: decisions/033-attribution-granularity
+title: "authored_by says who answers; each mixed claim says how it is known"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'attribution-granularity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: attribution-granularity
+axis_gloss: "whether each individual claim names its source, or attribution is declared once for a whole document"
+poles:
+  a: per-claim-attribution
+  b: document-level-attribution
+split: leaning
+draft_status: full
+leverage: 7.6
+leverage_formula: "judgments_resolved(9) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Does attribution live once per record (authored_by, source.template) or on
+  each claim (epistemic_status and source_refs per line) — and when a record
+  carries both, which one may a bot act on?
+
+why_it_matters: >
+  The protocol is about attribution and until this week the tree could not
+  attribute itself; now a document-level authored_by is required under
+  decisions/ and dave/, while the authored rules say human expression and
+  machine inference must stay separately labelled on every line, and two
+  references cite the same territory at DOI level and at bare-keyword level.
+  Once answered, every child Yawn below Dave learns that authored_by answers
+  'who stands behind this record' and per-claim tags answer 'how is this line
+  known', and that neither substitutes for the other.
+
+state_snapshot:
+  description: >
+    7 judgments sit at per-claim-attribution (4 authored) and 2 at
+    document-level-attribution (0 authored). The repository asserts both
+    directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Which list keys Dave regards as mixed-voice by nature; and whether the
+    eight-dimension statuses.v1 vector belongs on a document or on each snapshot
+    (J1131), which the status-dimensionality decision also touches.
+
+options:
+  - name: A
+    description: >
+      rule: Attribution is per claim. Every claim, inference, snapshot and relation
+      carries its own attributed_to, epistemic_status and source_refs, as
+      readme.yawn's orientation card and core/holarchy.yawn relation_requirements
+      already do. Document-level authored_by remains as the answerable party but may
+      not stand in for per-claim provenance. Every research anchor names an author,
+      year and link or DOI.
+    cost: "Per-item tags on every list in core/, records/ and references/ that makes claims; twelve bare anchors in references/scientific-frame.yawn resolved to works; a test that walks list items, not just top-level keys."
+    risk: "Records that are one voice throughout (a ledger entry, a template) carry per-line tags that all say the same thing, and the noise hides the lines where attribution matters."
+    reversibility: true
+    proof_needed: "Extend tests/authored-by.test.mjs: for named list keys (current_state, snapshots, relations, research_anchors, open_questions) every item carries epistemic_status and source_refs or attributed_to; references/scientific-frame.yawn research_anchors each carry at least one of author, doi, url."
+    evidence_for:
+      - "J0085"
+      - "J0586"
+      - "J0668"
+      - "J0679"
+      - "J0800"
+      - "J1131"
+  - name: B
+    description: >
+      rule: Attribution is per document. One authored_by and one source block per
+      record are sufficient; per-claim tags are optional; examples need not declare
+      the template they instantiate; a reference may cite by keyword.
+    cost: "Nothing to change beyond the existing tests/authored-by.test.mjs; strike the per-claim tagging in readme.yawn's orientation card or leave it as decoration."
+    risk: "A record that mixes a human report and a machine inference under one authored_by lets a bot act on the inference as if it were the report — the failure core/co-orientation-loop.yawn's boundary names first."
+    reversibility: true
+    proof_needed: "The existing tests/authored-by.test.mjs as-is."
+    evidence_for:
+      - "J0416"
+      - "J0703"
+  - name: C
+    description: >
+      rule: Two layers, each answering a different question, both written down.
+      Document-level authored_by names who is answerable for the record and is
+      required wherever a record speaks for Dave or as the bot (the current test).
+      Per-claim attribution (attributed_to or epistemic_status plus source_refs on
+      each item) is required wherever a record mixes voices (human expression with
+      machine inference), mixes observers, or states a claim a bot may act on —
+      orientation cards, state snapshots, lateral relations, research anchors, open
+      questions. A single-voice record attributes once. Every example declares the
+      template it instantiates (source.template or template_ref resolving into
+      templates/).
+    cost: "Extend one test with per-item checks on five named list keys; add source.template to five 2026-08 examples; resolve twelve keyword anchors in references/scientific-frame.yawn to at least a link each."
+    risk: "'Mixes voices' is decided per key by the test author, so a new list shape escapes the check until someone names it."
+    reversibility: true
+    proof_needed: "Extend tests/authored-by.test.mjs with per-item assertions on current_state, snapshots, relations, research_anchors and open_questions; a test that every examples/*.yawn carries source.template or template_ref resolving to a file in templates/; scripts/validate-hub-links.mjs resolves the pointer."
+    evidence_for:
+      - "J0085"
+      - "J0586"
+      - "J0679"
+      - "J0800"
+      - "J0416"
+      - "J0703"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Four of the seven per-claim judgments are authored and they are the protocol's
+    core commitments: human expression and machine inference separately labelled
+    (J0085), every material contribution separately attributable across agents
+    (J0586), a per-action accountability map (J0668), contradiction kept explicit
+    across observers (J0679). The passing suite's newest test is document-level,
+    and its own comment says exactly what it is for: authored_by names who is
+    answerable, not who typed it, and 'does not make a record true'. So the two
+    layers answer different questions and the suite already has one; the decision
+    is to write down that the second is required where voices mix. The two
+    document-level judgments are REVEALED omissions — five examples with no
+    template pointer, twelve anchors with no author — not a preference for coarse
+    attribution. C keeps the existing test, adds the per-item check where the
+    authored rules demand it, and does not tag single-voice records line by line.
+    A is right in spirit and wrong in scope; B would let a bot act on an inference
+    wearing a report's authored_by.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "tests/authored-by.test.mjs, or a sibling, rejects a current_state, snapshot, relation, research_anchor or open_question item with no epistemic_status and no source_refs or attributed_to, and passes."
+    - "Every file under examples/ carries source.template or template_ref resolving into templates/, and a test checks it."
+    - "references/scientific-frame.yawn research_anchors each carry at least an author, DOI or link."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record carries an observed report and a machine inference under one
+    epistemic_status and one authored_by, and npm test stays green; or a new
+    example ships with no template pointer.
+  status: proposed
+
+evidence_sample:
+  - "J0085"
+  - "J0586"
+  - "J0668"
+  - "J0679"
+  - "J0800"
+  - "J1131"
+  - "J0416"
+  - "J0703"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -1,0 +1,159 @@
+id: decisions/045-rule-versus-carve-out
+title: "Every rule with violations keeps a shrink-only ledger"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'rule-versus-carve-out'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: rule-versus-carve-out
+axis_gloss: "whether one rule applies to everything without exception, or known violations are enumerated in a named, shrinking exception list"
+poles:
+  a: explicit-grandfather-ledger
+  b: uniform-rule
+split: lone-exception
+draft_status: full
+leverage: 4.2
+leverage_formula: "judgments_resolved(7) x split_weight(0.4) x authored_conflict_bonus(1.5)"
+
+question: >
+  When a rule has known violations, should every such rule carry a named,
+  shrink-only exception list the way the epistemic-status test does, or should a
+  rule with exceptions not be called a rule yet?
+
+why_it_matters: >
+  One rule in the tree (the seven-value epistemic vocabulary) is enforced with a
+  frozen, file-keyed ledger that a test caps at five and that may only shrink;
+  three others (every active folder carries node.yawn, extensions are lowercase,
+  names are kebab-case) have thirteen, seven and three known violations with no
+  ledger and validators that cannot see them. A bot inherits whether a rule it
+  breaks gets named or gets ignored; a child Yawn learns whether history is
+  rewritten or listed.
+
+state_snapshot:
+  description: >
+    6 judgments sit at explicit-grandfather-ledger (3 authored) and 1 at
+    uniform-rule (1 authored). The repository asserts both directions on this
+    axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether MASTER-CONTROL.YAWN, a folder on Dave's own disk outside the
+    repository, is to be renamed lowercase or permanently ledgered; the
+    invariant's source-path clause reaches outside the repo and only Dave can act
+    there.
+
+options:
+  - name: A
+    description: >
+      Every rule with existing violations names them in a shrink-only, file-keyed
+      ledger with a size ceiling asserted by test. A violation not in the ledger
+      fails the build. The ledger may only shrink; a fix removes its entry.
+    cost: "Three new tests in the shape of tests/epistemic-status-vocabulary.test.mjs (folder-node, extension case, kebab naming); ledgers of thirteen folders, six files and three files respectively; scripts/validate-canonical-extension.mjs taught to check extension case."
+    risk: "Ledgers that never shrink become a second rulebook; the ceiling test is what prevents it and must ship with each ledger."
+    reversibility: true
+    proof_needed: "Copy the three-test shape (scan, template, shrink-only ceiling) from tests/epistemic-status-vocabulary.test.mjs to tests/folder-node.test.mjs, tests/canonical-extension-case.test.mjs and tests/naming.test.mjs; add a case check to scripts/validate-canonical-extension.mjs."
+    evidence_for:
+      - "J0324"
+      - "J0625"
+      - "J0908"
+      - "J0988"
+      - "J1001"
+      - "J1178"
+  - name: B
+    description: >
+      A rule is stated only when its violations are zero. Until then it is a
+      proposal and no test enforces it.
+    cost: "Demoting the core/folder-node.yawn rule, canonical-extension invariant[0] and the naming convention to proposals; the epistemic-status ledger deleted and the five records rewritten."
+    risk: "History rewritten silently, which the test comment names as the thing being prevented; three real rules lose their teeth while waiting for zero."
+    reversibility: false
+    proof_needed: "None; B is the absence of ledgers."
+    evidence_for:
+      - "J1179"
+  - name: C
+    description: >
+      Option A, with three additions: every ledger entry carries a reason and a
+      date; all ledgers live either in the enforcing test or in one
+      records/grandfather-ledgers.yawn that the tests read; and a violation the
+      validator could not see is added to the ledger the day it is found, never left
+      invisible. The MASTER-CONTROL.YAWN workspace path is the first such entry.
+    cost: "Same as A plus a reason and date per entry and one records file."
+    risk: "A ledger in a records file can be edited without a test noticing unless the test reads it; keep the ceiling in the test."
+    reversibility: true
+    proof_needed: "Same as A; each test reads its ledger (inline or from the records file) and asserts size is at most the count on the day it was written."
+    evidence_for:
+      - "J0625"
+      - "J0908"
+      - "J1001"
+      - "J1178"
+      - "J1179"
+
+recommendation:
+  option_ref: C
+  confidence: 0.85
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The ledger pattern has three authored and four proof-attached judgments, and
+    the only judgment the extraction placed opposite (J1179, the size ceiling) is
+    the constraint that makes the pattern safe, not an argument against it; both
+    live in the same test file. GROUND_TRUTH FACTS 4, 8 and 20 show three stated
+    rules with unledgered violations, and FACT 20 shows the worst case: the
+    lowercase invariant is violated by the workspace root of four scheduled bots
+    and the validator cannot see it. C generalizes the one executable pattern the
+    repo already trusts and closes the invisible-violation gap.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "tests/ holds a scan-plus-ceiling test for folder-node, extension case and kebab naming, each with a frozen ledger, all passing"
+    - "scripts/validate-canonical-extension.mjs checks extension case, and MASTER-CONTROL.YAWN is either renamed or ledgered with a reason"
+    - "Every ledger entry carries a reason and a date"
+    - "No ledger ceiling has been raised in any commit"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A ledger grows (its ceiling is raised) in a commit, or a violation is cleared
+    by editing the rule's wording instead of the record.
+  status: proposed
+
+evidence_sample:
+  - "J0324"
+  - "J0625"
+  - "J0908"
+  - "J0988"
+  - "J1001"
+  - "J1178"
+  - "J1179"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

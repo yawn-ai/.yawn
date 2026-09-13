@@ -1,0 +1,168 @@
+id: decisions/012-shared-key-vocabulary
+title: "One key vocabulary for permits, loops, colours"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'vocabulary-locality'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: vocabulary-locality
+axis_gloss: "whether one vocabulary governs the whole corpus, or each record, folder or layer coins its own"
+poles:
+  a: per-record-local-vocabulary
+  b: single-shared-vocabulary
+split: leaning
+draft_status: full
+leverage: 23.5
+leverage_formula: "judgments_resolved(28) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Should there be one shared set of key names for what an agent may and may not
+  do, for where a record sits in the loop, and for what a colour means, or may
+  each record coin its own?
+
+why_it_matters: >
+  Every authored rule on this axis says one grammar (six fixed loop relations,
+  one relational grammar, exact palette values, one canonical operator), yet
+  across 22 agent and automation files the permit key appears six ways and the
+  deny key seven, and the chrome contract hardcodes hexes the brand contract
+  told it to reference. Once answered, a bot that checks its own boundary can
+  read one key instead of guessing among may/allowed/agent_may, and a child Yawn
+  inherits a vocabulary rather than a naming habit.
+
+state_snapshot:
+  description: >
+    23 judgments sit at per-record-local-vocabulary (0 authored) and 5 at
+    single-shared-vocabulary (5 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Which of the six permit spellings and seven deny spellings Dave wants kept;
+    and whether the differing core/ section names (invariants, boundary, lock) are
+    meant to signal different strengths or are drift.
+
+options:
+  - name: A
+    description: >
+      rule: Each record may name its permit, deny, boundary, loop-position and
+      colour-role keys as it sees fit. The shared-vocabulary rules in
+      core/movement-loop.yawn and interface/yawn-brand-v1.yawn apply only inside
+      their own files.
+    cost: "Nothing to migrate; but core/movement-loop.yawn projection_rule and interface/yawn-brand-v1.yawn rules must be narrowed to say they do not bind siblings."
+    risk: "No bot can compute over boundaries across files; a policy checker has to be rewritten per contract."
+    reversibility: true
+    proof_needed: "None can enforce this; the record would be a scope note on the two rule files."
+    evidence_for:
+      - "J0039"
+      - "J0050"
+      - "J0132"
+      - "J0404"
+      - "J0465"
+      - "J0467"
+  - name: B
+    description: >
+      rule: One shared field vocabulary governs every .yawn record. The permit key,
+      the deny key, the boundary section name, the loop-position key and the colour
+      role names are each fixed in one named record, and every record in the corpus
+      uses those spellings.
+    cost: "Rewrite permit/deny keys in ~22 agent and automation files, unify section names (invariants/boundary/stable_claims/must_not/lock) across core/, fix examples/participation-choice.yawn loop key, re-point interface/yawn-chrome-v1.yawn to CSS variables."
+    risk: "Section names may carry deliberate strength differences (lock vs boundary) that a forced merge erases."
+    reversibility: false
+    proof_needed: "A test in tests/ that walks every active .yawn and rejects any permit/deny/loop-position key outside the fixed set; extend tests/interface-contracts.test.mjs to reject hex literals in yawn-chrome-v1 that are not declared brand variables."
+    evidence_for:
+      - "J0089"
+      - "J0151"
+      - "J0457"
+      - "J0466"
+      - "J0479"
+  - name: C
+    description: >
+      rule: Keys a bot reads to decide what it may do or how to render are fixed in
+      one shared vocabulary: the permit key, the deny key, the loop-position key,
+      the colour role names, and the canonical operator. Prose section names
+      (invariants, stable_claims, lock) stay free. The shared set is listed by name
+      in one record.
+    cost: "Rewrite permit/deny keys in agents/ and automation/, fix the loop key in examples/participation-choice.yawn, re-point yawn-chrome-v1 hexes; leave core/ section naming alone."
+    risk: "The line between machine-read and prose keys is argued case by case."
+    reversibility: true
+    proof_needed: "A test in tests/ over agents/ and automation/ that rejects permit/deny keys outside the fixed set, and an extension to tests/interface-contracts.test.mjs that rejects undeclared hex literals in interface/yawn-chrome-v1.yawn."
+    evidence_for:
+      - "J0089"
+      - "J0457"
+      - "J0466"
+      - "J0479"
+
+recommendation:
+  option_ref: C
+  confidence: 0.65
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    All five authored judgments sit on the shared-vocabulary side and all 23
+    local-vocabulary judgments are revealed, so this is a written rule with a
+    large unwritten exception. But the authored rules are each domain-scoped
+    (loop, relational grammar, interface), and none says every .yawn key is
+    shared. The one contract-defined rule with a test (J0466,
+    tests/interface-contracts.test.mjs) is already violated by J0467 without the
+    test noticing, which shows the rule needs a checker, not just a restatement. C
+    fixes the keys a bot actually reads and leaves prose naming free, which is the
+    smallest rule that would have caught J0039, J0050, J0404 and J0467.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "One record (agents/node.yawn or core/agency.yawn) lists the permit key, deny key and loop-position key by name, and a test in tests/ rejects records in agents/ and automation/ that use other spellings."
+    - "tests/interface-contracts.test.mjs fails if interface/yawn-chrome-v1.yawn carries a hex literal not declared in interface/yawn-brand-v1.yawn css_variables, and passes after the chrome file is fixed."
+    - "examples/participation-choice.yawn uses one loop-position key."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new automation contract lands with a fresh permit key (for example
+    permitted:) and npm test stays green.
+  status: proposed
+
+evidence_sample:
+  - "J0039"
+  - "J0050"
+  - "J0132"
+  - "J0404"
+  - "J0465"
+  - "J0467"
+  - "J0089"
+  - "J0151"
+  - "J0457"
+  - "J0466"
+  - "J0479"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

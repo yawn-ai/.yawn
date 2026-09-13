@@ -1,0 +1,177 @@
+id: decisions/003-rules-that-can-fail
+title: "Every stated rule names what fails when it breaks"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'enforcement-mechanism'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: enforcement-mechanism
+axis_gloss: "whether a rule is carried by code that can fail, or by prose that states the rule and relies on compliance"
+poles:
+  a: executable-enforcement
+  b: documentary-declaration
+split: genuinely-split
+draft_status: full
+leverage: 39
+leverage_formula: "judgments_resolved(26) x split_weight(1) x authored_conflict_bonus(1.5)"
+
+question: >
+  When the repo writes a rule down, must something be able to fail if the rule
+  is broken, or is the written record itself the authority and compliance a
+  matter of reading?
+
+why_it_matters: >
+  The repo already learned once that a trailing YAML comment is not an
+  enforcement: the epistemics commit blamed exactly that mechanism for the drift
+  it then had to lock with a test, and the same comment-enum pattern still sits
+  on five templates. Once answered, a bot reading core/ knows which rules will
+  stop it (a validator will reject its record) and which are asked of it (a
+  human will review), instead of treating every sentence as equally binding or
+  equally optional.
+
+state_snapshot:
+  description: >
+    18 judgments sit at executable-enforcement (3 authored) and 8 at
+    documentary-declaration (2 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants the relationship, agent and arena shapes in
+    core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn to get schemas eventually or to
+    remain prose by design.
+
+options:
+  - name: A
+    description: >
+      rule: Every rule in core/, interface/ and automation/ names a test or
+      validator that fails when it is broken. A rule with no check is labelled
+      proof.status: asserted-unverified in the record that states it and may not be
+      cited as proof by another record. Enum values live in a schema or a test,
+      never only in a trailing comment.
+    cost: "Schemas or tests for the constitutional shapes in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn (relationship, agent, arena), the seven-term credibility_standard in yawn.yawn, and the two human-judgment conditions in records/inquiry-aperture-one-question-face.yawn, which cannot be machine-checked at all."
+    risk: "Subjective rules get fake tests, or get deleted because they cannot have one."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs (in-flight, uncommitted) so a status: active record under core/ or interface/ without proof.covers: fails; add an assertion that every 'status: x # a | b | c' comment in templates/ matches the enum the status-vocabulary test enforces."
+    evidence_for:
+      - "J0004"
+      - "J0042"
+      - "J0130"
+      - "J0160"
+      - "J0246"
+      - "J0255"
+  - name: B
+    description: >
+      rule: A .yawn record is the authority for what it states. Tests and validators
+      are optional conformance evidence; a rule is honoured by being read, and proof
+      blocks are narrative.
+    cost: "Contradicts the stated rationale of tests/epistemic-status-vocabulary.test.mjs ('Free-text statuses make records uncomputable') and the in-flight covers:/not_covered: convention on core/canonical-extension.yawn."
+    risk: "The next drift is invisible again, exactly as the 38-value status field was until 2026-09-12."
+    reversibility: true
+    proof_needed: "None can enforce this; the record would be removing the 'must' from the credibility_standard and letting proof.status stay free text."
+    evidence_for:
+      - "J0191"
+      - "J0442"
+      - "J0536"
+      - "J0661"
+      - "J0912"
+      - "J1124"
+  - name: C
+    description: >
+      rule: A rule a program could check (a vocabulary, a required field, an
+      authority flag, a path, a hash binding, an ordering) must be enforced by a
+      named test or validator. A rule that needs a human (was the question worth
+      asking, is the move bounded, is this an instrument or a prohibition) is exempt
+      but must be listed under proof.human_review_required, as
+      records/inquiry-aperture-one-question-face.yawn already does. Every proof:
+      block on an active record carries covers: and not_covered: so the boundary
+      between the two is visible.
+    cost: "covers:/not_covered: lines on roughly 30 core and interface records; enum comments on five templates either gain a test or are moved into a schema; the constitutional shapes are explicitly listed as not_covered with a reason."
+    risk: "not_covered becomes a parking lot; nothing forces it to shrink."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs: an active record under core/ or interface/ must carry proof.covers:; any not_covered entry must carry status and note (the shape already used on core/canonical-extension.yawn); a per-record not_covered count is frozen with a ceiling that may only shrink, following the grandfather pattern of tests/status-vocabulary.test.mjs."
+    evidence_for:
+      - "J0004"
+      - "J0130"
+      - "J0246"
+      - "J0255"
+      - "J0536"
+      - "J0661"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    This axis is authored on both sides, but the two authored declaration-side
+    judgments (the smallest move is an instrument, not a rule; 'did the question
+    matter' is reserved for human review) are about which rules cannot be
+    machine-checked, not against checking as such. The executable side holds the
+    proof-attached and outcome-attached judgments and the suite's own rationale
+    (GROUND_TRUTH FACT 7), and the in-flight covers:/not_covered: addition to
+    core/canonical-extension.yawn (FACT 10) is already option C in practice. The
+    genuine open cost is J0191: whether the constitutional prose shapes ever get a
+    schema; C lets them stay prose while forcing the record to say so.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "Every status: active record under core/ and interface/ carries proof.covers: and, where needed, not_covered: or human_review_required:, and validate-proof-refs rejects one that does not."
+    - "The five templates with trailing-comment status enums either match the enforced lifecycle enum or point at the schema that defines their values, and a test asserts it."
+    - "yawn.yawn credibility_standard states which of its seven terms are required keys and templates/full.yawn carries them."
+    - "npm test passes with those checks present."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record carries proof.status: contract-defined or proof-attached while its
+    named validator matches none of the claims under covers:, and the suite stays
+    green.
+  status: proposed
+
+evidence_sample:
+  - "J0004"
+  - "J0042"
+  - "J0130"
+  - "J0160"
+  - "J0246"
+  - "J0255"
+  - "J0191"
+  - "J0442"
+  - "J0536"
+  - "J0661"
+  - "J0912"
+  - "J1124"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

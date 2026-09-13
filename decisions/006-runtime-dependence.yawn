@@ -1,0 +1,190 @@
+id: decisions/006-runtime-dependence
+title: "Read with nothing, check with the pinned toolchain, run in a declared workspace"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'runtime-dependence'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: runtime-dependence
+axis_gloss: "whether an artifact can be read and checked with nothing installed, or requires a particular parser, runtime, host or vendor"
+poles:
+  a: tool-and-vendor-binding
+  b: zero-dependency-portability
+split: genuinely-split
+draft_status: full
+leverage: 26.4
+leverage_formula: "judgments_resolved(22) x split_weight(1) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must a .yawn stay readable and checkable with nothing installed, or is it
+  enough that the record reads with nothing while checking it needs Node and ajv
+  and running it needs Dave's Windows desktop — and is that three-way split
+  written anywhere?
+
+why_it_matters: >
+  The written rule promises a boring portable folder that works with no
+  software, while the only proof that anything holds is a Node 22 test suite
+  with one npm dependency, and the four scheduled automations run PowerShell
+  against Dave's OneDrive desktop paths that appear 32 times across 12 tracked
+  records. Once answered, every child Yawn and bot below Dave inherits an
+  explicit answer to what it may depend on at each layer, instead of copying
+  whichever absolute path or interpreter it finds nearest.
+
+state_snapshot:
+  description: >
+    9 judgments sit at tool-and-vendor-binding (0 authored) and 13 at
+    zero-dependency-portability (11 authored). The repository asserts both
+    directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants the two PowerShell scripts ported or kept as operator
+    tools; whether the exact operator paths in existing ledgers should be
+    preserved as historical receipts or rewritten to workspace_ref; and whether
+    principal identity (dave@yawn.ai) is a layer-3 binding or a protocol constant.
+
+options:
+  - name: A
+    description: >
+      rule: The protocol runs on a named stack. Records may name absolute workspace
+      paths, PowerShell scripts and vendor tools; package.json declares engines; the
+      v0_lock entries 'no required parser' and 'no required UI' are struck from
+      core/design-principles.yawn and the yawn-space rule is narrowed to the record
+      text only.
+    cost: "Strikes two authored lock entries and the yawn-space definition; binds every child Yawn to Dave's desktop layout; a contributor on Linux or macOS cannot run verify-cold-start.ps1 or any automation."
+    risk: "The public repository becomes a description of one machine, and the claim in yawn.yawn that orientation is 'inspectable, correctable, and replayable' holds only for its owner."
+    reversibility: false
+    proof_needed: "A runtime manifest (package.json engines, a scripts/runtime.yawn naming pwsh, node and python versions) and a test that every workspace: path in automation/*.yawn exists on the declared host — which cannot run in CI and so proves nothing here."
+    evidence_for:
+      - "J0036"
+      - "J0245"
+      - "J0338"
+      - "J0383"
+      - "J0624"
+      - "J0649"
+  - name: B
+    description: >
+      rule: Zero-dependency portability at every layer. Every record reads with
+      nothing; every check runs on any host with Node alone (ajv vendored or
+      dropped, both .ps1 scripts ported to .mjs); no tracked record carries a
+      drive-letter or OneDrive path — workspaces are `workspace_ref:` names resolved
+      from an untracked local file; principals are roles (principal:dave), never a
+      hard-coded address.
+    cost: "Port scripts/verify-cold-start.ps1 and scripts/preserve-yawn-workspace.ps1; rewrite 32 path references in 12 files; replace ajv in nine test files or vendor it; re-run and re-record the cold-start proof on a portable host."
+    risk: "The operational ledgers lose the exact paths that made their receipts checkable on the machine that produced them; a workspace_ref indirection can silently point somewhere else."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs (which already reports drive-letter paths under proof: with a shrink-only ledger of 2) to scan every key of every tracked .yawn, seeded with the 12 files and a ceiling that only shrinks; a test that scripts/ holds one interpreter family; package.json devDependencies empty or vendored."
+    evidence_for:
+      - "J0073"
+      - "J0206"
+      - "J0287"
+      - "J0310"
+      - "J0314"
+      - "J0345"
+  - name: C
+    description: >
+      rule: Three layers, each written where it binds. (1) Reading: a .yawn record
+      needs nothing installed — the v0 lock stays. (2) Checking: conformance needs
+      the pinned toolchain declared in package.json engines and named in
+      scripts/node.yawn, whose purpose changes from 'dependency-free checks' to 'one
+      pinned toolchain, no runtime authority'; ajv is the one declared dependency.
+      (3) Operating: an automation needs an operator workspace, written as
+      `workspace_ref:` and resolved outside the tree; no tracked record carries a
+      drive-letter path. The two PowerShell scripts are either ported or marked
+      operator-only under layer 3 and excluded from layer 2's promise.
+    cost: "Edit scripts/node.yawn and package.json; introduce workspace_ref in automation/ and records/ (12 files); decide the fate of two .ps1 scripts; re-record the cold-start proof or mark it operator-only."
+    risk: "Layer 3 becomes the place everything machine-specific hides, so the portability promise quietly shrinks to layers 1 and 2 while the running system stays bound to one desktop."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs to reject drive-letter and OneDrive paths in any key of any tracked .yawn outside a shrink-only ledger seeded from today's 12 files; a test that package.json declares engines.node and that scripts/node.yawn no longer claims dependency-free; a test that every automation/*.yawn names workspace_ref rather than workspace: with an absolute path."
+    evidence_for:
+      - "J0073"
+      - "J0206"
+      - "J0314"
+      - "J0245"
+      - "J0338"
+      - "J0036"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The authored side is unanimous: eleven authored judgments for portability,
+    none for binding — Dave has stated the preference and the six binding
+    judgments are all REVEALED readings of what the running system does. But pure
+    B is falsified by the thing that proves everything else: the passing suite is
+    Node plus ajv, and J0314's own note records that ajv is the one devDependency.
+    A rule that says 'no required parser' while the only proof requires one is the
+    kind of stated-but-not-honoured rule this repository says it does not want. C
+    keeps the authored promise exactly where it was made (reading a record) and
+    writes the two unwritten exceptions down where they already operate.
+    GROUND_TRUTH facts 19 and 20 corroborate that the operator layer is where the
+    invariant breaks (the workspace root every scheduled bot runs against is an
+    uppercase-extension path the validator cannot see); validate-proof-refs.mjs
+    already implements C's mechanism for proof blocks with a ledger of two.
+    Leaning C over B mainly on cost; if Dave is willing to port both scripts and
+    vendor ajv, B is the cleaner rule.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "scripts/node.yawn purpose names the pinned toolchain and no longer says dependency-free; package.json declares engines.node."
+    - "No tracked .yawn outside a shrink-only ledger carries a drive-letter or OneDrive path; automation records carry workspace_ref."
+    - "A test in tests/ or a validator in npm run validate rejects a new drive-letter path in any key of any tracked record, and passes."
+    - "Either both .ps1 scripts are ported to .mjs, or scripts/node.yawn marks them operator-only and excludes them from the conformance claim."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new automation record names a C:/ or OneDrive path outside workspace_ref and
+    npm test stays green; or a reader needs Node to open and understand a record;
+    or scripts/node.yawn keeps saying dependency-free while package.json keeps
+    ajv.
+  status: proposed
+
+evidence_sample:
+  - "J0036"
+  - "J0245"
+  - "J0338"
+  - "J0383"
+  - "J0624"
+  - "J0649"
+  - "J0073"
+  - "J0206"
+  - "J0287"
+  - "J0310"
+  - "J0314"
+  - "J0345"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -1,3 +1,4 @@
+record_shape: spec-version
 schema_version: objective-holon.v0.1
 
 source:

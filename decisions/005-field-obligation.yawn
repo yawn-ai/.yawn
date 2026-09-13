@@ -1,0 +1,171 @@
+id: decisions/005-field-obligation
+title: "Which fields a record may leave off"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'field-obligation'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: field-obligation
+axis_gloss: "whether a field must be present for a record to be valid, or may be left off"
+poles:
+  a: mandatory-field-set
+  b: optional-field-set
+split: genuinely-split
+draft_status: full
+leverage: 34.8
+leverage_formula: "judgments_resolved(29) x split_weight(1) x authored_conflict_bonus(1.2)"
+
+question: >
+  When a record leaves a field off, does that mean the field was optional or
+  that the record is incomplete, and should every contract say which fields are
+  which?
+
+why_it_matters: >
+  The written rule makes goals optional (a Yawn needs no target, an Observation
+  needs no Yawn), but nothing says which fields a record must carry, so
+  migrations/node.yawn ships a proof block with no status and the Homebase
+  contract declares two of the four authority flags. A bot reading a record
+  cannot tell silence from permission until this is answered; a child Yawn
+  inherits either a required list or a guess.
+
+state_snapshot:
+  description: >
+    12 judgments sit at mandatory-field-set (0 authored) and 17 at
+    optional-field-set (7 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave treats a classifier's summary, sentiment and severity as
+    observations that must be present, or as inferences that may be absent; J0342
+    is the only record that answers, and it answers by omitting an optional list.
+
+options:
+  - name: A
+    description: >
+      Every key in a contract's declared shape is required unless the contract lists
+      it under optional:. A record missing a shape key is invalid.
+    cost: "An optional: list added to every contract that has a shape (state-transition, canonical-extension provenance_shape, folder-node node_shape, feedback-intake); target_condition and Observation attachment moved into those lists to preserve the authored rule."
+    risk: "Records that were valid yesterday fail today; the 50 v0-seed files with sparse shapes need grandfathering."
+    reversibility: true
+    proof_needed: "A new scripts/validate-record-shape.mjs in npm run validate that reads each contract's shape and optional list and rejects records missing a required key; start with node.yawn files against core/folder-node.yawn node_shape."
+    evidence_for:
+      - "J0109"
+      - "J0110"
+      - "J0342"
+      - "J0518"
+      - "J0558"
+      - "J0572"
+  - name: B
+    description: >
+      Every key is optional unless the contract lists it under required:. A record
+      carrying only what it knows is complete.
+    cost: "A required: list in every contract that lacks one (canonical-extension provenance_shape has none; folder-node node_shape has none)."
+    risk: "Recovery fields (proof.status, stop_condition, unintended_effects, authority flags) get omitted silently, which is exactly the J0329 and J0429 case."
+    reversibility: true
+    proof_needed: "Same validator as A, reading required: instead of optional:; extend tests/interface-contracts.test.mjs to assert desktop-homebase-v1 declares all four authority flags."
+    evidence_for:
+      - "J0219"
+      - "J0268"
+      - "J0299"
+      - "J0329"
+      - "J0408"
+      - "J0429"
+  - name: C
+    description: >
+      Goal fields are optional; recovery fields are required. A record need not
+      carry a target, a move, or a parent Yawn. It must carry every field that says
+      how it can fail or be undone: proof.status, reversibility, stop_condition,
+      residual_lacuna_refs, unintended_effects, and all four authority flags
+      wherever one appears. Every contract carries a required: list naming these;
+      model-derived classifications (summary, sentiment, severity) are never in it.
+    cost: "One rule in core/proof-and-boundary.yawn; a required: list in each contract; proof.status added to migrations/node.yawn; two flags added to interface/desktop-homebase-v1.yawn; database/feedback-intake.yawn required_fields split into observed and inferred."
+    risk: "The line between goal and recovery fields needs a judgment call per contract; some fields (target_conditions in a family record) sit on both sides."
+    reversibility: true
+    proof_needed: "Extend tests/state-substrate-v1.test.mjs (which already asserts optional-target fixtures cover non-goal Yawns) with the recovery-field check; extend tests/interface-contracts.test.mjs to require all four authority flags on desktop-homebase-v1; a node-shape validator in npm run validate that rejects a proof block without status."
+    evidence_for:
+      - "J0109"
+      - "J0110"
+      - "J0219"
+      - "J0299"
+      - "J0329"
+      - "J0429"
+
+recommendation:
+  option_ref: C
+  confidence: 0.65
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The two authored judgments (J0219, J0299) only ever made goal fields optional,
+    and the tests implement exactly that: 'Observation is valid without Target,
+    Move, or Yawn promotion' and 'optional-target fixtures cover non-goal Yawns'
+    both pass. The revealed mandatory judgments (J0109, J0110) require recovery
+    and falsification fields, not goals. These do not conflict; the gap is that no
+    contract states its required list, which is why J0268, J0329 and J0429 read as
+    silent omissions rather than choices. C writes down the split the executable
+    layer already draws. It is close because J0342 (thirteen required intake
+    fields including model output) is the one place the artifacts require
+    inference as if it were fact, and C would reverse it.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/proof-and-boundary.yawn names which fields are recovery fields and states they are required wherever the record can act or be acted on"
+    - "migrations/node.yawn carries proof.status and interface/desktop-homebase-v1.yawn declares persistenceAuthorized and modelCallAuthorized, asserted by tests/interface-contracts.test.mjs"
+    - "A validator in npm run validate rejects a node.yawn whose proof block lacks status, and passes"
+    - "database/feedback-intake.yawn separates required observed fields from optional inferred fields"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new contract lands with a required_fields list that names model-derived
+    output and no optional list, or a node.yawn without proof.status passes npm
+    run validate.
+  status: proposed
+
+evidence_sample:
+  - "J0109"
+  - "J0110"
+  - "J0342"
+  - "J0518"
+  - "J0558"
+  - "J0572"
+  - "J0219"
+  - "J0268"
+  - "J0299"
+  - "J0329"
+  - "J0408"
+  - "J0429"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

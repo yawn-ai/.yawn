@@ -2,7 +2,7 @@ id: dave/node
 title: "dave node"
 kind: mental-model-node
 status: active
-updated: 2026-09-09
+updated: 2026-09-12
 
 purpose: >
   Hold Dave's public mental models: small, questions-first records of what
@@ -10,10 +10,13 @@ purpose: >
   under dave/<slug>/ so a person or a Yawn.bot can carry the same model.
 
 principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "content last written under the yawn.ai git identity on 2026-09-08; this attribution line added on Dave's behalf on 2026-09-12 by a Claude Code session"
 template_ref: templates/mental-model.yawn
 validator_ref: scripts/validate-mental-models.mjs
 
 holds:
+  - orientation
   - number-sense
   - prenumerical-thinking
 

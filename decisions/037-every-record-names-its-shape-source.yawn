@@ -1,0 +1,154 @@
+id: decisions/037-every-record-names-its-shape-source
+title: "Every record names where its shape came from"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'provenance-retention'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: provenance-retention
+axis_gloss: "whether the original wording, shape and cost of an input survive into the record, or only a cleaned, normalised form does"
+poles:
+  a: raw-source-preserved
+  b: normalised-only
+split: lone-exception
+draft_status: full
+leverage: 7.2
+leverage_formula: "judgments_resolved(15) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must every record say which template it was copied from, or is a spec or
+  schema version enough for the newer families that carry one?
+
+why_it_matters: >
+  The repo keeps raw wording, raw email bodies and the owner's exact words
+  beside every interpretation, and never lets a rendering stand in for what
+  arrived; the one place it drops lineage is the record's own shape, where the
+  1.0 human family carries source.template and every newer family carries a
+  version tag instead. Once answered, a bot that reads a record knows what to
+  diff it against — the template file or the schema — and a child Yawn copying a
+  template knows which back-pointer it must keep.
+
+state_snapshot:
+  description: >
+    14 judgments sit at raw-source-preserved (7 authored) and 1 at normalised-only
+    (0 authored). The repository asserts both directions on this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave regards a schema version as lineage at all, or only as a
+    validation target.
+
+options:
+  - name: A
+    description: >
+      rule: Every record, in every family, carries a back-pointer to the template it
+      was copied from (source.template for YAML records, sourceTemplate for the two
+      JSON contracts). A version tag identifies a contract, not the file the record
+      was made from, so it does not replace the pointer.
+    cost: "One line in roughly twenty templates; the two JSON templates gain a key their schemas must allow."
+    risk: "Redundant with spec_version on the q-space and contract families; two identity fields drift apart."
+    reversibility: true
+    proof_needed: "Extend tests/record-shape.test.mjs (in-flight): every template carries source.template (or sourceTemplate) equal to its own path, so copies inherit it; today twelve of thirty-two pass."
+    evidence_for:
+      - "J0156"
+      - "J0200"
+      - "J0346"
+      - "J0431"
+      - "J0511"
+      - "J0643"
+  - name: B
+    description: >
+      rule: A version identifier is sufficient lineage. source.template is dropped
+      from the 1.0 family; a record is identified by spec_version, schemaVersion or
+      record_shape alone.
+    cost: "Twelve templates lose a field; the newcomer who copied templates/basic.yawn can no longer be told which file to diff against."
+    risk: "Two records of the same spec_version made from different templates are indistinguishable, which is the one thing the raw-source rule elsewhere refuses to allow."
+    reversibility: true
+    proof_needed: "None needed to drop a field; the record would be removing source.template from the twelve templates and the sentence in templates/node.yawn saying why."
+    evidence_for:
+      - "J0840"
+  - name: C
+    description: >
+      rule: Every record names the artifact its shape came from, and
+      templates/node.yawn record_shapes.rule says which field each shape uses:
+      header-shape records carry source.template; spec-version and coordinate shapes
+      carry spec_version and kind; json-contract shapes carry schemaVersion. A
+      record missing its shape's identity field is malformed.
+    cost: "One paragraph in templates/node.yawn; the in-flight record_shape registry already lists every template's shape."
+    risk: "Three lineage conventions remain three; a reader still has to know which one to look for."
+    reversibility: true
+    proof_needed: "Extend tests/record-shape.test.mjs: for each registered shape, assert the template carries that shape's identity field (source.template for header, spec_version for spec-version and coordinate, schemaVersion for json-contract)."
+    evidence_for:
+      - "J0346"
+      - "J0643"
+      - "J0840"
+
+recommendation:
+  option_ref: C
+  confidence: 0.6
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The seven authored judgments are about preserving raw inputs, not about
+    template back-pointers, so they do not settle this directly; the single
+    exception is a revealed pattern across three template families and the
+    in-flight record_shape registry has already committed to those families
+    coexisting. Given that, saying which identity field each family owns (C) is
+    cheaper and more honest than forcing one field onto grammars that already have
+    an equivalent (A). A is the simplest uniform rule and is close; it wins if
+    Dave wants one back-pointer a newcomer can always find.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/node.yawn record_shapes.rule names the identity field for each shape."
+    - "Every template carries the identity field its registered shape requires, and a test in tests/ rejects one that does not."
+    - "No template carries both a source.template and a spec_version that disagree about its family."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new template lands with neither source.template nor a version field and the
+    record-shape test passes.
+  status: proposed
+
+evidence_sample:
+  - "J0156"
+  - "J0200"
+  - "J0346"
+  - "J0431"
+  - "J0511"
+  - "J0643"
+  - "J0840"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

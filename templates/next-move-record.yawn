@@ -1,6 +1,7 @@
 id: ""
 title: ""
 kind: next-move-record
+record_shape: header
 timestamp: ""
 
 frame: ""

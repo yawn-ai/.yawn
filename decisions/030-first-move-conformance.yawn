@@ -1,0 +1,153 @@
+id: decisions/030-first-move-conformance
+title: "Whether the first .yawn must conform"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'onboarding-friction'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: onboarding-friction
+axis_gloss: "whether the first move is made as cheap as possible, or the newcomer's first artifact must already conform to the corpus's rules"
+poles:
+  a: low-friction-entry
+  b: conformance-at-entry
+split: lone-exception
+draft_status: full
+leverage: 8.6
+leverage_formula: "judgments_resolved(18) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Must a newcomer's first .yawn file already conform to the corpus (id, kind,
+  status, proof), or is the first move allowed to be non-conforming and repaired
+  later?
+
+why_it_matters: >
+  yawn.yawn tells a newcomer to copy templates/basic.yawn, and that file lacks
+  the three keys nearly every other record has, so the cheapest first move
+  produces the least conforming record. Once answered, a bot that ingests
+  newcomer files knows whether to expect the spine or to add it, and a child
+  Yawn started from basic.yawn inherits either a conforming record or a debt.
+
+state_snapshot:
+  description: >
+    17 judgments sit at low-friction-entry (7 authored) and 1 at
+    conformance-at-entry (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave meant readme.yawn-before-README.md as a deliberate ranking of his
+    own format over Markdown, or as an unordered list.
+
+options:
+  - name: A
+    description: >
+      rule: The first move is as cheap as possible. templates/basic.yawn stays
+      minimal (title, signal, inference, current, possible, lacuna, boundary, move,
+      proof, replay, source). Conformance keys are added when the record is next
+      touched, never demanded at entry.
+    cost: "None now; every newcomer file starts non-conforming and a later sweep or per-touch repair is owed."
+    risk: "Records made from basic.yawn cannot be validated, ranked or linked by id until someone repairs them."
+    reversibility: true
+    proof_needed: "None enforces this; the record is a note in yawn.yawn first_move that conformance comes later."
+    evidence_for:
+      - "J0026"
+      - "J0159"
+      - "J0266"
+      - "J0378"
+      - "J0482"
+      - "J0542"
+  - name: B
+    description: >
+      rule: The first artifact must conform. templates/basic.yawn carries id, kind,
+      status and proof, and the newcomer is told what each is before writing.
+    cost: "The front door starts explaining id/kind/status; contradicts the authored front_door_rule, must_not_force and questions/node.yawn purpose."
+    risk: "The failure the repo names in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn 18.8 (ontology before value) is reintroduced at the door."
+    reversibility: true
+    proof_needed: "The record-spine test applied to templates/basic.yawn plus README copy that teaches the keys."
+    evidence_for:
+      - "J0125"
+  - name: C
+    description: >
+      rule: The first move stays cheap in prose: one natural question, no ontology
+      first, no helper copy. But templates/basic.yawn pre-fills the spine keys (id,
+      kind, status) with placeholder values, so the file a newcomer produces
+      conforms without the newcomer being taught why. core/yawn-space.yawn
+      minimal_shape either declares itself ordered or lists README.md first.
+    cost: "Three lines added to templates/basic.yawn; one wording change in core/yawn-space.yawn."
+    risk: "Placeholder ids collide or are never replaced."
+    reversibility: true
+    proof_needed: "The record-spine test (see record-shape-uniformity) run against templates/basic.yawn; a check in tests/ that yawn.yawn first_move points at a template that passes it."
+    evidence_for:
+      - "J0026"
+      - "J0378"
+      - "J0482"
+      - "J0542"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Seven authored judgments say the reader must not be made to learn the ontology
+    first; none of them says the file may be non-conforming. The single opposing
+    judgment, J0125, is revealed from a list order that is never called ordered,
+    and is better removed as evidence than written as a rule. C keeps every
+    authored low-friction rule and closes the gap GROUND_TRUTH FACT 13 names:
+    onboarding was ranked above conformance silently. It depends on the
+    record-spine decision for what the placeholders are.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/basic.yawn carries id, kind and status with placeholder values and passes the record-spine test."
+    - "questions/node.yawn and interface/new-yawn-v0.1.yawn still open with a natural question and no taxonomy headers."
+    - "core/yawn-space.yawn minimal_shape either says it is ordered or lists README.md before readme.yawn."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    basic.yawn gains the keys but the first README screen starts by explaining id,
+    kind and status.
+  status: proposed
+
+evidence_sample:
+  - "J0026"
+  - "J0159"
+  - "J0266"
+  - "J0378"
+  - "J0482"
+  - "J0542"
+  - "J0125"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -1,0 +1,152 @@
+id: decisions/042-numbers-on-inferred-only
+title: "Where a number may carry uncertainty"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'confidence-representation'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: confidence-representation
+axis_gloss: "whether uncertainty is carried as a number or score, or left as an unnumbered qualitative judgment"
+poles:
+  a: unquantified-judgment
+  b: quantified-confidence
+split: genuinely-split
+draft_status: full
+leverage: 6
+leverage_formula: "judgments_resolved(6) x split_weight(1) x authored_conflict_bonus(1)"
+
+question: >
+  When a bot or record carries uncertainty, should it carry a number that can be
+  computed over, or a qualitative judgment in prose, and if a number, must the
+  number leave the calculation into the receipt?
+
+why_it_matters: >
+  Nothing authored settles this: next-move-logic computes a score and outputs
+  prose, q-space weights eleven terms with no prose ranking them, and one
+  example puts confidence only on inferred items. Once answered, a bot that
+  scores a move knows whether the score is evidence it must show or scaffolding
+  it must hide, and a child Yawn learns whether a number on a claim is
+  inspectable or off limits.
+
+state_snapshot:
+  description: >
+    2 judgments sit at unquantified-judgment (0 authored) and 4 at
+    quantified-confidence (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave stands behind the q-space frontier_score weights as a ranking he
+    means, or regards them as a placeholder formula.
+
+options:
+  - name: A
+    description: >
+      rule: Uncertainty is carried qualitatively, as epistemic_status plus
+      epistemic_note. Scores and weights are internal scaffolding and never appear
+      in outputs, receipts or records.
+    cost: "Strip confidence: from examples/dave-good-dad-objective-holon.yawn; q-space/protocol-v1.yawn frontier_score becomes an implementation detail with no record of which formula ran."
+    risk: "A move chosen by a score cannot be replayed, against yawn.yawn's inspectable, correctable, replayable."
+    reversibility: true
+    proof_needed: "A test in tests/ that rejects confidence: or score: keys in records/ and examples/."
+    evidence_for:
+      - "J0118"
+      - "J0846"
+  - name: B
+    description: >
+      rule: Uncertainty is carried as a number wherever a claim is inferred, and
+      every score or weight that decides a move or ranking is written into the
+      receipt so it can be inspected and replayed.
+    cost: "core/next-move-logic.yawn output gains a score field; every scored selection writes the number and the formula id; reported and observed items may also carry numbers."
+    risk: "Numbers on reported items imply a precision nobody measured; a number is read as authority, which the constitution forbids (confidence cannot ratify an objective)."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-inquiry-selection-receipt-v0.1.mjs and scripts/validate-orientation-map-v0.1.mjs to require score and formula version on any receipt derived from a scored selection."
+    evidence_for:
+      - "J0394"
+      - "J1040"
+      - "J1041"
+      - "J1042"
+  - name: C
+    description: >
+      rule: A number may attach only to an item whose epistemic_status is inferred
+      or predicted; reported and observed items carry none. Any score that decides a
+      move or ranking is written into the receipt with the formula id and version,
+      so the number is inspectable, and no number ratifies anything, per the
+      constitution.
+    cost: "core/next-move-logic.yawn output gains score and formula fields; q-space/protocol-v1.yawn frontier_score gets a version id; a check that confidence: sits only beside inferred or predicted."
+    risk: "Every inferred item sprouts a number of no provenance because the rule allows it."
+    reversibility: true
+    proof_needed: "A test in tests/ that confidence: appears only next to epistemic_status inferred or predicted; extend scripts/validate-inquiry-selection-receipt-v0.1.mjs to require score and formula id on scored receipts."
+    evidence_for:
+      - "J0394"
+      - "J0118"
+
+recommendation:
+  option_ref: C
+  confidence: 0.55
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Genuinely open: none of the six judgments is authored and none has proof
+    beyond seed-backed. The closest thing to a rule is J0394's pattern, numbers
+    only on inferred items, which is coherent with the enforced seven-value
+    epistemic vocabulary. The strongest argument against A is the canonical
+    sentence: a score that never leaves the calculation (J0118) is not inspectable
+    or replayable. The strongest argument against B is the constitution's
+    'confidence cannot ratify an objective', which C writes in as a boundary on
+    any number. Close; the executable backing that exists (the inquiry-selection
+    receipt validator) is where C would land first.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "One record states where numbers may appear and that no number ratifies a move or an objective."
+    - "A test in tests/ rejects confidence: on items whose epistemic_status is reported or observed, and passes."
+    - "core/next-move-logic.yawn output either carries the score and formula id or states why it must not."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A receipt names its chosen move 'because score' with no number in it, or a
+    number appears beside a reported item and the suite stays green.
+  status: proposed
+
+evidence_sample:
+  - "J0118"
+  - "J0846"
+  - "J0394"
+  - "J1040"
+  - "J1041"
+  - "J1042"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

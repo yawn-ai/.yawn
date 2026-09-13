@@ -1,0 +1,158 @@
+id: decisions/049-source-admissibility
+title: "Three kinds of source, each checked its own way"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'source-admissibility'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: source-admissibility
+axis_gloss: "whether only material already inside the tree may be cited as backing, or outside artifacts and services count"
+poles:
+  a: outside-source-admitted
+  b: repo-internal-source
+split: genuinely-split
+draft_status: full
+leverage: 2
+leverage_formula: "judgments_resolved(2) x split_weight(1) x authored_conflict_bonus(1)"
+
+question: >
+  What may a record name as its source — only other .yawn records, any file in
+  this tree, or things outside it (a paper, a DOI, a service, a file on the
+  operator's machine) — and how does a reader check each kind?
+
+why_it_matters: >
+  Today a .sql file, a DOI and a path on Dave's laptop are all written the same
+  way under source:, and the validator resolves one kind, silently skips another
+  and grandfathers the third; the manifest names ten outside disciplines as
+  influences and cites fifteen files, every one inside the tree. Once answered,
+  every child Yawn and bot below Dave learns which of the three kinds it may
+  cite and at what proof status, and a reader can tell at a glance which sources
+  open from the tree.
+
+state_snapshot:
+  description: >
+    1 judgments sit at outside-source-admitted (0 authored) and 1 at
+    repo-internal-source (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants external works citable under source: at all, or only in
+    references/ prose; and whether the two grandfathered operator-path proofs
+    should be vendored, downgraded, or kept as historical receipts.
+
+options:
+  - name: A
+    description: >
+      rule: Outside sources admitted. A source: or proof.source entry may be
+      anything a reader could in principle consult — a tree file of any type, a DOI
+      or URL, an operator path — provided the entry says which kind it is.
+      yawn.yawn's source list adds the external works its influence_frame names.
+    cost: "Type every source entry by prefix; extend scripts/validate-proof-refs.mjs to check well-formedness of DOIs and URLs and to require each be listed in references/source-index.yawn; add .sql and other tracked extensions to its path pattern."
+    risk: "Unreachable sources (a URL that moves, a path on one machine) carry the same weight as a file in the tree, and a proof.status of source-backed means less than it looks."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs: tree paths must resolve (any tracked extension, .sql included); https and doi entries must be well-formed and appear in references/source-index.yawn; drive-letter paths are reported under the existing shrink-only ledger."
+    evidence_for:
+      - "J0352"
+  - name: B
+    description: >
+      rule: Repo-internal only. A source: names only a file in this tree. External
+      works are cited in references/ prose with author, year and DOI but never as
+      proof.source; operator paths are removed by vendoring the file or marking the
+      claim unverified, which the validator already demands for new ones.
+    cost: "Vendor or downgrade the two grandfathered external proofs (references/july-01-lock.yawn, references/scientific-frame.yawn); reject URLs under proof:; the manifest's influence_frame stays a list of disciplines with no citable works."
+    risk: "A protocol that names ten outside disciplines as its lineage can never cite them as sources, so lineage lives only in prose and the credit-the-whole-lineage decision has nowhere to put a DOI."
+    reversibility: true
+    proof_needed: "scripts/validate-proof-refs.mjs rejects any https or doi entry under proof:, extends its path pattern to every tracked extension, and its external ceiling goes from 2 to 0 once the two grandfathered files vendor or downgrade."
+    evidence_for:
+      - "J0766"
+  - name: C
+    description: >
+      rule: Three admissible kinds of source, each with its own check, written in
+      templates/proof.yawn. tree_ref: any tracked file of any extension, must
+      resolve. external_ref: a DOI or URL, admissible as reference lineage and under
+      source: but not as proof — it cannot raise proof.status above source-backed.
+      operator_ref: a path outside the tree, never admissible as proof or source;
+      allowed only as an automation's workspace_ref (see runtime-dependence).
+      yawn.yawn's source list keeps its tree refs; its influence_frame disciplines
+      resolve to external_refs in references/source-index.yawn.
+    cost: "Three prefixes documented in templates/proof.yawn; scripts/validate-proof-refs.mjs extended for .sql and for the external-ref status ceiling; references/source-index.yawn gains one cited work per discipline in influence_frame."
+    risk: "The status ceiling for external refs is argued around ('the DOI is the proof') and the validator cannot tell a citation from a claim."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs: add .sql and every tracked extension to its path pattern; reject an https or doi entry under proof: when proof.status is above source-backed; keep the drive-letter ledger at ceiling 2 and shrinking; a test that references/source-index.yawn names at least one work for each discipline in yawn.yawn influence_frame."
+    evidence_for:
+      - "J0352"
+      - "J0766"
+
+recommendation:
+  option_ref: C
+  confidence: 0.6
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    This is close and thin: one REVEALED judgment on each side, nothing authored,
+    and the two artifacts do not even contradict each other — one cites an in-tree
+    .sql beside .yawn files and grades itself seed-backed, the other omits the
+    outside literature its own influence_frame names. What tips it is what the
+    passing validator already implements: scripts/validate-proof-refs.mjs resolves
+    tree paths (but its extension list omits .sql, so J0352's citation is checked
+    by nothing), reports drive-letter paths under a shrink-only ledger of two, and
+    silently admits https URLs — the last is the gap. So the tree has already
+    chosen a typed answer for two of three kinds and left the third unspoken. C
+    names all three and puts a status ceiling on the one the validator cannot
+    open. The neighbouring evidence-locus decision (proof-reaches-outside) asks
+    whether proof must reach beyond the .yawn graph; this one only asks what a
+    source may be and how each kind is checked, and C answers by typing rather
+    than admitting or banning wholesale. Low-moderate confidence because both
+    judgments are readings, not preferences.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/proof.yawn documents tree_ref, external_ref and operator_ref and the proof status each may support."
+    - "scripts/validate-proof-refs.mjs checks .sql and every other tracked extension, and fails when an https or doi entry sits under a proof: whose status is above source-backed."
+    - "references/source-index.yawn names at least one work for each discipline in yawn.yawn influence_frame, and a test checks the mapping."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A proof block cites an https URL and reports production-verified while nothing
+    resolves the URL and the validator passes; or a .sql citation goes unchecked
+    because the validator's extension list still omits it.
+  status: proposed
+
+evidence_sample:
+  - "J0352"
+  - "J0766"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

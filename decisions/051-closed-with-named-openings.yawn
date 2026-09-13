@@ -1,0 +1,148 @@
+id: decisions/051-closed-with-named-openings
+title: "Closed schemas, openings named and typed"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'schema-strictness'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: schema-strictness
+axis_gloss: "whether a schema rejects everything it does not name, or tolerates unknown keys for forward compatibility"
+poles:
+  a: closed-world-schema
+  b: open-extensible-schema
+split: lone-exception
+draft_status: full
+leverage: 1.6
+leverage_formula: "judgments_resolved(4) x split_weight(0.4) x authored_conflict_bonus(1)"
+
+question: >
+  Should every schema reject keys it does not name, including inside event
+  payloads and proof pre/postconditions, or are there named places where a
+  record may carry open content?
+
+why_it_matters: >
+  All 29 schemas close every object they name, yet payload, preconditions and
+  postconditions are bare untyped objects and two nested sites are open, so the
+  strictness has holes nobody has listed. Once answered, a bot that emits an
+  event knows whether its payload must declare what it is, and a child Yawn
+  inherits schemas whose extension points are known rather than discovered.
+
+state_snapshot:
+  description: >
+    3 judgments sit at closed-world-schema (0 authored) and 1 at
+    open-extensible-schema (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: TAXONOMY.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether schemas/statuses.v1.schema.json, closed and satisfied by no record, is
+    to be adopted or retired; that bears on how much closure the repo can actually
+    afford.
+
+options:
+  - name: A
+    description: >
+      rule: Every schema is closed everywhere. payload, preconditions and
+      postconditions receive typed shapes; the two additionalProperties: true sites
+      in agency-holarchy.v0.2 and objective-holon.v0.1 are closed.
+    cost: "Type every event payload by eventType; extend tests/observation-state-v1.test.mjs and tests/state-substrate-v1.test.mjs; risk breaking the two open sites' 24 passing assertions."
+    risk: "A closed payload schema must be revised for every new event type, and unknown fields are lost on round-trip; schemas/statuses.v1 shows a closed schema nobody adopts is dead weight (GROUND_TRUTH FACT 2)."
+    reversibility: false
+    proof_needed: "A test in tests/ that no schema in schemas/ contains additionalProperties: true or an object with no properties."
+    evidence_for:
+      - "J1061"
+      - "J1138"
+      - "J1208"
+  - name: B
+    description: >
+      rule: Schemas are open by default so unanticipated fields survive round-trips;
+      additionalProperties is true or omitted unless a field must be rejected.
+    cost: "Rewrite 29 schemas and the 128 assertions that rely on fail-closed behaviour."
+    risk: "Typo'd keys pass silently; the hand-written fail-closed date-time format (J1208) becomes the odd one out."
+    reversibility: true
+    proof_needed: "None; the test suite's fail-closed assertions would be removed."
+    evidence_for:
+      - "J1112"
+  - name: C
+    description: >
+      rule: Schemas are closed by default. Open content is allowed only at named
+      extension points, listed in schemas/node.yawn: event payload, record-event
+      payload, proof-receipt preconditions and postconditions, and the two existing
+      additionalProperties: true sites. Each open site carries a required
+      discriminator (payloadType or schemaRef) so the open object still says what it
+      is. A new open site outside the list is a defect.
+    cost: "Add the list to schemas/node.yawn; add a required discriminator to event.v1, record-event.v1 and record-proof-receipt; one test."
+    risk: "The list grows by exception until closed-by-default is nominal."
+    reversibility: true
+    proof_needed: "A test in tests/ that greps schemas/*.json for additionalProperties: true and for objects with no properties, and fails unless each site is on the allowlist in schemas/node.yawn and carries the discriminator."
+    evidence_for:
+      - "J1061"
+      - "J1138"
+      - "J1208"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    All four judgments are revealed, but the closed side is behaviour-proven
+    across 29 schemas and the whole 128-assertion suite, including a deliberately
+    hand-written fail-closed date-time format. The one open judgment is not a
+    preference but a hole: payload objects with no shape in schemas that close
+    everything else. A payload whose shape varies by event type is a legitimate
+    extension point, so removing it (A) is the wrong fix; leaving it untyped is
+    not the same as making it open on purpose. C keeps closed-by-default and makes
+    the openings explicit and self-describing. The unused statuses.v1 schema (FACT
+    2) is the cautionary case for A.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "schemas/node.yawn lists the open extension points by schema and property."
+    - "A test in tests/ fails when a new open object appears outside that list, and passes."
+    - "event.v1 and record-event.v1 payloads require a discriminator keyed to eventType."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A third additionalProperties: true appears in schemas/ and no test notices.
+  status: proposed
+
+evidence_sample:
+  - "J1061"
+  - "J1138"
+  - "J1208"
+  - "J1112"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -1,0 +1,124 @@
+id: mental-model:dave:orientation
+title: "Dave / orientation"
+kind: mental-model
+record_shape: header
+status: draft
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; the settled role and its why are Dave's words as reported; the ranking is computed by scripts/render-bot-state.mjs"
+arena: "Dave's own decision space: what is settled, what is next, and what the bot is doing about it"
+state_ref: records/yawn.bot-state.yawn
+decisions_ref: decisions/node.yawn
+updated: 2026-09-12
+
+questions:
+  - key: role
+    answer: "Steward of yawn.bot. Settled 2026-09-12. Recalled from the record when it resurfaces, not reopened."
+  - key: relevance
+    answer: >
+      So that I stay flexible and agile with as much agency as possible, while
+      the bills are paid and leverage is as high as it can be. That is the why
+      attached to the role, and it is what the bots below me inherit.
+  - key: definition
+    answer: "Orientation is where I am in my own decisions: settled, next, and in flight."
+  - key: inside
+    answer: "The open axes — every place the repository argues with itself — ranked by leverage."
+  - key: show
+    answer: "The next question, then the queue. One at a time."
+  - key: assumptions
+    answer: "What I am taking for granted about the bot, the ledgers, and my own role, marked so I can correct it."
+  - key: proof
+    answer: "A decision is made when the axis collapses to one direction in the records and a test holds it there."
+  - key: lacuna
+    answer: "Which way I will decide is unknown until I do; and the container above the bot has no name yet."
+
+concept:
+  name: Orientation
+  one_line: "Knowing what is already answered, what to answer next, and what the bot is waiting on."
+  inside:
+    - name: "canonical multiplicity"
+      glyph: "14 ⇄ 24"
+      one_line: "whether one blessed artifact (schema, template, root, entry point, memory) governs, or several coexist in parallel"
+    - name: "coverage allocation"
+      glyph: "61 ⇄ 3"
+      one_line: "whether verification, indexing and specification are spread evenly over everything, or concentrated on a chosen few"
+    - name: "enforcement mechanism"
+      glyph: "18 ⇄ 8"
+      one_line: "whether a rule is carried by code that can fail, or by prose that states the rule and relies on compliance"
+    - name: "record granularity"
+      glyph: "17 ⇄ 7"
+      one_line: "whether one concern gets one small record each, or several concerns are fused into a single larger record"
+    - name: "field obligation"
+      glyph: "12 ⇄ 17"
+      one_line: "whether a field must be present for a record to be valid, or may be left off"
+    - name: "runtime dependence"
+      glyph: "9 ⇄ 13"
+      one_line: "whether an artifact can be read and checked with nothing installed, or requires a particular parser, runtime, host or vendor"
+    - name: "default authorisation posture"
+      glyph: "21 ⇄ 10"
+      one_line: "what a field, gate or actor is allowed to do when nobody has said anything: closed until opened, or open until closed"
+    - name: "disclosure depth"
+      glyph: "17 ⇄ 7"
+      one_line: "how much of what is known is shown: verbatim and complete, or summarised, redacted and progressively revealed"
+
+show:
+  - icon: "#001"
+    do: "Open decisions/001-one-canon-per-concept.yawn and choose A, B or C."
+    say: "When two records define the same thing (lacuna, the loop, the objective lifecycle, a promotion gate, a read order), does one of them govern, and does it say so?"
+  - icon: "#002"
+    do: "Open decisions/002-coverage-allocation.yawn and choose A, B or C."
+    say: "Should every record, loop and receipt get the same depth of proof, memory and indexing, or should the heavy machinery be concentrated on the few that can spend, publish or mutate, and should that choice be written down?"
+  - icon: "#003"
+    do: "Open decisions/003-rules-that-can-fail.yawn and choose A, B or C."
+    say: "When the repo writes a rule down, must something be able to fail if the rule is broken, or is the written record itself the authority and compliance a matter of reading?"
+  - icon: "#004"
+    do: "Open decisions/004-when-a-concern-earns-a-record.yawn and choose A, B or C."
+    say: "When does one concern earn its own .yawn — whenever it has a name or an ID, or only when its proof, owner, status or rollback would differ from its parent's?"
+  - icon: "#005"
+    do: "Open decisions/005-field-obligation.yawn and choose A, B or C."
+    say: "When a record leaves a field off, does that mean the field was optional or that the record is incomplete, and should every contract say which fields are which?"
+  - icon: "#006"
+    do: "Open decisions/006-runtime-dependence.yawn and choose A, B or C."
+    say: "Must a .yawn stay readable and checkable with nothing installed, or is it enough that the record reads with nothing while checking it needs Node and ajv and running it needs Dave's Windows desktop — and is that three-way split written anywhere?"
+
+embody:
+  - "When 'what am I to be?' resurfaces, answer from the record first: last time we checked, steward of yawn.bot, so that you stay flexible with the bills paid and leverage high. Then ask whether it still holds."
+  - "One question at a time. The top of the queue, never the whole list."
+  - "Propose; never ratify. Every recommendation carries authority: none."
+  - "Show the bot's last observed run and its age. Never show the schedule as the state."
+  - "The slash is the relationship. What the bot is doing lives in yawn.bot/dave; it is never a claim about Dave."
+
+assumptions:
+  - text: "The ledgers in this repository are the only evidence of bot activity available from here; the runtime is not visible."
+    epistemic_status: observed
+  - text: "Records last written by the yawn.ai identity are on Dave's behalf, not Dave as himself."
+    epistemic_status: assumed
+  - text: "Leverage as computed is a fair first ordering. It is not importance, truth, obligation, or permission."
+    epistemic_status: assumed
+  - text: "The role answer and its why are Dave's, as spoken on 2026-09-12."
+    epistemic_status: reported
+
+proof:
+  signals:
+    - "A decision record gets a filled choice: and moves to superseded."
+    - "next_question in the state record changes because a choice was filled, not because the formula did."
+    - "The role question, when asked, is answered from the record and not reopened."
+    - "scripts/render-bot-state.mjs --check exits 0 on the committed tree."
+  falsifier: "If the role question reappears at the top of the list, or a bot fills a choice:, this model is not being honoured."
+
+lacunae:
+  - "Which option Dave will choose on each open axis."
+  - "The name of the container above yawn.bot (decisions/053)."
+  - "Whether any automation has run since the last observed run in the ledgers."
+
+sources:
+  - text: "JUDGMENTS.md: 1249 judgments over all 194 .yawn files on main at 09933cb, 2026-09-12; records added since are not inventoried."
+    epistemic_status: observed
+  - text: "TAXONOMY.md: the merge record behind the axes; every merge can be rejected."
+    epistemic_status: observed
+  - text: "HOLDOUT.md: stated judgments predicted at precision 0.297, recall 0.174."
+    epistemic_status: observed
+  - text: "core/entity-and-coupling.yawn: the settled role, its why, and the recall rule."
+    epistemic_status: reported
