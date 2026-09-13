@@ -1,4 +1,9 @@
+id: ""
 title: ""
+kind: yawn
+status: draft  # draft | active | superseded | archived | deleted
+record_shape: header
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
 
 signal: ""
 inference: ""

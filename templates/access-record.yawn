@@ -1,6 +1,7 @@
 id: ""
 title: ""
 kind: access-record
+record_shape: header
 timestamp: ""
 
 actor: "human | agent | llm | tool | integration"

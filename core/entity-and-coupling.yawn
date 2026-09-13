@@ -1,0 +1,126 @@
+id: core/entity-and-coupling
+title: "entities and the coupling between them"
+kind: concept
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; from Dave's spoken description, not separately ratified"
+updated: 2026-09-12
+
+purpose: >
+  Name the entities this protocol coordinates, give each its address, and say
+  what the slash between two of them means. The slash is the relationship: the
+  coupling where interactions live, kept separate from the observer on either
+  side of it. This is the move the protocol is built on and it was never written
+  down as one record.
+
+entities:
+  principal:
+    name: Dave
+    ref: principal:dave
+    role: >
+      Observer and root principal. Sits at the top of the holarchy: the questions
+      answered at this level set the questions the bots and child Yawns below it
+      get to work on. Owns meaning, values, consent, and ratification.
+    role_settled:
+      what_am_i_to_be: "steward of yawn.bot"
+      why: >
+        So that Dave stays flexible and agile with as much agency as possible,
+        while the bills are paid and leverage is as high as it can be.
+      settled_on: 2026-09-12
+      epistemic_status: reported
+      recall_rule: >
+        When the role question resurfaces — Dave asks it again, or a bot detects
+        the pattern of it — answer FROM THIS RECORD first: "Last time we checked,
+        what you are to be is the steward of yawn.bot, so that…" and attach the
+        why. Do not reopen the question unless Dave corrects the answer. The
+        question keeps its key (role) but drops in rank once answered; the top
+        slot goes to the next highest-leverage question in
+        records/yawn.bot-state.yawn.
+  runtime:
+    name: yawn.bot
+    ref: agents/yawn.bot.yawn
+    role: >
+      The bounded runtime. Root steward inside the contract; may propose,
+      mirror, infer, and ask; may not ratify, activate itself, spend, or publish
+      without current exact authorization. Its goal at Dave's level is to keep
+      the role question answerable — flexibility with survival — not to answer
+      it for him.
+    addresses:
+      - address: "@yawn"
+        note: "existing handle, as reported"
+        epistemic_status: reported
+      - address: "yawn@yawn.bot"
+        note: "proposed cleaner form, as reported"
+        epistemic_status: reported
+  container:
+    name: null
+    role: >
+      The intelligence above yawn.bot that has not arrived yet; the intuition
+      above all of this; the container in which the rest happens. Its name is
+      HELD, not chosen — see the naming question below. In the principal's own
+      preferences it is also called by the same name as this repository's
+      manifest file, which is one more reason the name needs one decision.
+    name_status: held-pending-decision
+    decision_ref: decisions/053-container-intelligence-name.yawn
+
+coupling:
+  operator: "/"
+  meaning: >
+    A slash between two entities is a relationship record, not a path. It is the
+    coupling where their interactions live. yawn.bot/dave is the relationship of
+    the runtime with Dave: its history, its open questions, its next move. The
+    observer stays on one side of the slash; the interactions stay in it. That
+    separation is why a person can look at yawn.bot/dave and see the bot's state
+    without the bot's state becoming a claim about the person.
+  examples:
+    - "yawn.bot/dave        the relationship; reads records/yawn.bot-state.yawn"
+    - "yawn.bot/dave/chat   an interaction surface inside that relationship; on a new entry it surfaces next_question from the state record"
+    - "dave/<slug>          Dave's own mental models; a view of the principal, no bot in the coupling"
+  maps_to:
+    - templates/relationship.yawn
+    - core/holarchy.yawn
+    - core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+    - agency-declaration.yawn
+  boundary:
+    - "the coupling inherits selected context; it does not inherit truth, consent, privacy, proof, or authority"
+    - "a bot's state shown in the coupling is the bot's; it is never a diagnosis of the person"
+    - "an address is a View; stable IDs and typed relations carry identity (core/canonical-extension.yawn)"
+
+# yawn-invalid-alias-guard:start
+naming_question:
+  raw_term_as_spoken: "YON / at YON bot"
+  status: held
+  rule_applied: core/canonical-extension.yawn creation_gate.on_ambiguity
+  why_held: >
+    The spoken name for the container is one of the exact tokens the canonical
+    extension contract lists as an invalid alias and speech-to-text substitution
+    for YAWN, and scripts/validate-canonical-extension.mjs rejects it in tracked
+    content. The contract's own rule is to hold creation and surface one naming
+    question rather than either silently normalizing to YAWN or silently creating
+    a second entity under a forbidden token. This block is inside the alias guard
+    so the raw term is preserved for provenance without being promoted to canon.
+  question: >
+    Is the container a distinct entity that needs a new name, or is it the same
+    thing the preferences call by the manifest's name — and in either case, what
+    is it called?
+# yawn-invalid-alias-guard:end
+
+proof:
+  covers:
+    - entities.principal.role_settled
+    - coupling
+  condition: >
+    records/yawn.bot-state.yawn carries next_question and the settled role with
+    its why; dave/orientation/ renders both; when the role question is asked, a
+    reader can find the recall answer from this record without reopening it.
+  falsifier: >
+    The role question reappears at the top of Dave's list, or a bot answers it
+    fresh instead of from the record, or the container gets a canonical name
+    without decision 053 being ratified.
+  source:
+    - agents/yawn.bot.yawn
+    - core/holarchy.yawn
+    - core/canonical-extension.yawn
+    - templates/relationship.yawn
+  status: reported

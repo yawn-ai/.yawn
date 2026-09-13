@@ -2,6 +2,7 @@ id: ""
 title: ""
 
 kind: relationship-yawn
+record_shape: header
 status: draft
 version: "1.0.0"
 created: ""

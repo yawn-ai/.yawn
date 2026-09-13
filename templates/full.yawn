@@ -2,6 +2,7 @@ id: ""
 title: ""
 
 kind: yawn
+record_shape: header
 status: seed
 version: "1.0.0"
 created: ""

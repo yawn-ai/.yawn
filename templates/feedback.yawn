@@ -1,6 +1,7 @@
 id: ""
 title: ""
 kind: feedback
+record_shape: header
 received_at: ""
 
 source: "email | form | github | conversation | other"

@@ -1,0 +1,148 @@
+id: decisions/023-state-ownership-in-interface
+title: "A rendered page is never the record"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'state-ownership-in-interface'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: state-ownership-in-interface
+axis_gloss: "whether the rendered surface owns the state it shows, or it is a derived projection of state owned elsewhere"
+poles:
+  a: model-holds-state
+  b: view-holds-state
+split: lone-exception
+draft_status: full
+leverage: 12
+leverage_formula: "judgments_resolved(25) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  Is a rendered page ever the record, or is every page a rebuildable view of a
+  plain-text .yawn, and should the one route node that lists its HTML before its
+  source be corrected?
+
+why_it_matters: >
+  Twenty-one authored statements say views never hold canonical state and the
+  funnel bridge is forbidden from writing back into the source repo; one route
+  node quietly lists index.html ahead of the .yawn it renders. A child Yawn that
+  serves a public route inherits either 'source first, page rebuildable' or a
+  precedent that the page may lead.
+
+state_snapshot:
+  description: >
+    24 judgments sit at model-holds-state (21 authored) and 1 at view-holds-state
+    (0 authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave intends holds: order to carry rank at all (the list-order
+    decision); if not, this axis reduces to adding a source: key.
+
+options:
+  - name: A
+    description: >
+      A View never holds canonical state. Every route node lists its plain-text
+      .yawn source before any rendered artifact under holds:, and every rendered
+      artifact must be rebuildable from that source without loss.
+    cost: "Swapping two lines in agency-declaration/node.yawn; one sentence added to core/folder-node.yawn node_shape."
+    risk: "None beyond the edit; the funnel bridge already enforces the direction for the homepage."
+    reversibility: true
+    proof_needed: "A new test in tests/interface-contracts.test.mjs that walks every node.yawn and, for any holds: list containing an .html or other rendered artifact, asserts a .yawn entry precedes it."
+    evidence_for:
+      - "J0009"
+      - "J0010"
+      - "J0024"
+      - "J0157"
+      - "J0229"
+      - "J0234"
+  - name: B
+    description: >
+      A route node may name its rendered page as the primary object it holds; the
+      .yawn beside it is a source note. The page is the record for that route.
+    cost: "Rewriting core/projection-and-aperture.yawn invariants, the funnel-bridge source_repo_rule and the observation-view holon rule."
+    risk: "Two canonical stores; a homepage edit that never reaches the protocol; every 'View, not canonical state' test breaks."
+    reversibility: false
+    proof_needed: "There is no test on this side; adopting B means deleting 'serialization is a deterministic View materialization, not canonical state' from tests/observation-state-v1.test.mjs."
+    evidence_for:
+      - "J0796"
+  - name: C
+    description: >
+      A View never holds canonical state, and holds: order in a node carries no
+      rank; a route node names its canonical source under a separate source: key so
+      the order of holds: is free.
+    cost: "A source: key in agency-declaration/node.yawn; one sentence in core/folder-node.yawn."
+    risk: "Depends on the list-order decision going the display-only way; otherwise two keys say the same thing."
+    reversibility: true
+    proof_needed: "Same walk as A, but asserting a source: key names a .yawn whenever holds: contains a rendered artifact."
+    evidence_for:
+      - "J0009"
+      - "J0234"
+      - "J0796"
+
+recommendation:
+  option_ref: A
+  confidence: 0.85
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Every authored judgment is on A, three of them contract-defined and one
+    (J0234) stating the rule three separate ways; the passing test 'serialization
+    is a deterministic View materialization, not canonical state' implements it.
+    The only exception is a two-line ordering in one node whose own purpose
+    paragraph says the point is keeping the source declaration in plain text; the
+    artifact orders it that way, nobody argued for it. Fix it and add the walk so
+    it cannot recur. C is the fallback only if Dave decides list order carries no
+    meaning anywhere.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "agency-declaration/node.yawn lists ../agency-declaration.yawn before index.html"
+    - "A test in tests/ walks every node.yawn and rejects a holds: list where a rendered artifact precedes its .yawn source, and passes"
+    - "core/folder-node.yawn node_shape says holds: names sources before renderings"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A route's index.html is edited with content absent from its .yawn source and
+    neither the funnel bridge nor a validator flags the drift.
+  status: proposed
+
+resolves:
+  - "J0009"
+  - "J0010"
+  - "J0024"
+  - "J0157"
+  - "J0229"
+  - "J0234"
+  - "J0796"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

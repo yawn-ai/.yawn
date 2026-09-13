@@ -1,0 +1,176 @@
+id: decisions/007-closed-until-opened
+title: "Closed until opened, including template defaults"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'default-authorisation-posture'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: default-authorisation-posture
+axis_gloss: "what a field, gate or actor is allowed to do when nobody has said anything: closed until opened, or open until closed"
+poles:
+  a: deny-by-default
+  b: permit-by-default
+split: leaning
+draft_status: full
+leverage: 26
+leverage_formula: "judgments_resolved(31) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  When a record, template or gate says nothing, is the answer no until someone
+  opens it — and does that rule also cover the values a template ships
+  prefilled, like reversible: true, status: accepted, or a consent list that
+  starts with yes?
+
+why_it_matters: >
+  The written rule (capability plane zero-exposure, four authority flags false,
+  capture locked first) is deny-by-default, but four templates and one root
+  record quietly ship the opposite, and every record copied from them inherits
+  an authorization nobody gave. Once answered, a bot that copies
+  templates/observation.yawn or interface/move.yawn knows whether the values it
+  inherits are permissions or blanks it must earn.
+
+state_snapshot:
+  description: >
+    21 judgments sit at deny-by-default (5 authored) and 10 at permit-by-default
+    (0 authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave regards reversible: true as harmless optimism or as a claim each
+    move must earn, and whether move.authorized: true on the root declaration was
+    his own authorization (then it needs an authority ref) or a copied default.
+
+options:
+  - name: A
+    description: >
+      rule: Nothing is permitted by default. Every field that carries authority
+      meaning (authorized, consent, follow_up_allowed, status, confidence,
+      capability exposure, reversible) ships empty or at its most conservative value
+      in every template and question output block; a permissive value exists only
+      where an author wrote it and can be asked why.
+    cost: "Edit interface/move.yawn and questions/what-can-i-do-next.yawn (reversible), templates/observation.yawn (status, confidence), feedback/codex-t4o-parser.yawn (enum order); decide whether agency-declaration.yawn move.authorized: true is Dave's own act and needs selected_by."
+    risk: "reversible: '' on every move template makes a harmless field mandatory and adds friction to the first move."
+    reversibility: true
+    proof_needed: "New tests/template-defaults.test.mjs: scan templates/*.yawn and questions/*.yawn output blocks; fail if authorized, reversible, consent*, follow_up_allowed, status or confidence carries true, yes, accepted or 1. Today it fails on four files."
+    evidence_for:
+      - "J0112"
+      - "J0426"
+      - "J0475"
+      - "J0496"
+      - "J0499"
+      - "J0504"
+  - name: B
+    description: >
+      rule: A field is open unless a record closes it. Templates may prefill
+      permissive values; root documents govern by enumerating prohibitions, and
+      anything not prohibited is allowed.
+    cost: "Strike or soften interface/desktop-homebase-v1.yawn capability_plane.exposure_to_remote_content and the all-false authority block in interface/yawn-observation-view-v1.yawn; contradicts proof-and-boundary 'Desire cannot authorize action'."
+    risk: "A new automation inherits spend, publish or send by omission; the interception governance test would have to be weakened."
+    reversibility: true
+    proof_needed: "None can enforce openness; the record would be removing the deny-by-default lines and the four-flag block from the interface contracts."
+    evidence_for:
+      - "J0343"
+      - "J0449"
+      - "J0534"
+      - "J0774"
+      - "J0776"
+      - "J0833"
+  - name: C
+    description: >
+      rule: Nothing is permitted by default, EXCEPT reversible, which may ship true
+      because reversibility grants nothing (questions/what-can-i-do-next.yawn
+      boundary: 'Reversibility does not silently grant authorization') — that
+      sentence is copied next to every prefilled reversible.
+      templates/observation.yawn ships status: draft and no confidence;
+      codex-t4o-parser lists unknown first like email-intake;
+      agency-declaration.yawn move.authorized: true is grandfathered by name as the
+      principal's own published act and gains selected_by: principal:dave.
+    cost: "Three small template edits, one enum reorder, one selected_by line, one sentence copied twice."
+    risk: "reversible: true keeps teaching optimism about undo, which a bot may read as permission to act."
+    reversibility: true
+    proof_needed: "Same test as A with reversible exempted by name, plus: templates/observation.yawn's 'accepted' entry leaves the tests/status-vocabulary.test.mjs grandfather ledger (in-flight, uncommitted), which then rejects any record copied from the old template."
+    evidence_for:
+      - "J0112"
+      - "J0426"
+      - "J0496"
+      - "J0504"
+      - "J0534"
+      - "J0776"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    All five authored judgments sit on deny-by-default and the only test-enforced
+    behaviour on this axis is on that side too (interception governance: 'the
+    recurring contract can propose but cannot generate, spend, or publish';
+    'approval is one-time ... never recurring authority'). Every permit-by-default
+    judgment is revealed, and four of six are template prefill artifacts nobody
+    argued for. reversible: true is the one exception with an authored reason
+    sitting beside it in the same file, so it is worth writing down rather than
+    removing; the observation template's accepted/confidence 1 is the sharpest
+    violation and the in-flight status-vocabulary test already lists it as legacy,
+    so C is mostly finishing work the tree has started.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "templates/observation.yawn ships status: draft and no confidence value, and its entry is removed from the status-vocabulary grandfather ledger."
+    - "feedback/codex-t4o-parser.yawn follow_up_allowed lists unknown first, matching feedback/email-intake.yawn consent_to_follow_up."
+    - "A test in tests/ rejects a template or question output block whose authority-bearing field is prefilled permissive, and passes with reversible exempted by name."
+    - "agency-declaration.yawn move carries selected_by naming the principal, or authorized returns to false."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A template or output block added after ratification ships authorized: true,
+    status: accepted, confidence: 1 or a consent enum leading with yes, and npm
+    test stays green.
+  status: proposed
+
+resolves:
+  - "J0112"
+  - "J0426"
+  - "J0475"
+  - "J0496"
+  - "J0499"
+  - "J0504"
+  - "J0343"
+  - "J0449"
+  - "J0534"
+  - "J0774"
+  - "J0776"
+  - "J0833"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

@@ -1,0 +1,164 @@
+id: decisions/002-coverage-allocation
+title: "Where proof and memory get spent"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'coverage-allocation'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: coverage-allocation
+axis_gloss: "whether verification, indexing and specification are spread evenly over everything, or concentrated on a chosen few"
+poles:
+  a: selective-concentrated-coverage
+  b: exhaustive-even-coverage
+split: leaning
+draft_status: full
+leverage: 53.8
+leverage_formula: "judgments_resolved(64) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  Should every record, loop and receipt get the same depth of proof, memory and
+  indexing, or should the heavy machinery be concentrated on the few that can
+  spend, publish or mutate, and should that choice be written down?
+
+why_it_matters: >
+  Today the repo spends its heaviest checks on one unscheduled image loop and on
+  receipt schemas, while 66 of 194 files carry no proof block and only four
+  automations keep memory; nothing says this is deliberate. Once answered, a new
+  bot knows whether it must ship with a memory root, an approval contract and a
+  test before it runs, or only when it can act outside the repo.
+
+state_snapshot:
+  description: >
+    61 judgments sit at selective-concentrated-coverage (1 authored) and 3 at
+    exhaustive-even-coverage (0 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether the twice-daily AI-writing scan (J0034) reflects something Dave cares
+    about more than license or comprehension risk, or is an accident of when it
+    was written; the criterion for concentration is unknown until he names it.
+
+options:
+  - name: A
+    description: >
+      Coverage is concentrated. A record, loop or schema gets a runnable proof, a
+      memory root and a full approval contract only when it can spend money,
+      publish, send, or mutate canonical state; every other record declares
+      proof.status: seed-backed or none, and the criterion is written once in
+      agents/yawn.bot.policy.yawn.
+    cost: "One paragraph in the policy file; a status line on the 66 files that have no proof block."
+    risk: "A loop that quietly gains an external effect keeps its light coverage until someone notices."
+    reversibility: true
+    proof_needed: "Extend tests/interception-statement-image-governance.test.mjs to scan every automation/*.yawn: any contract whose allowed_effects include spend, publish, send or mutate must carry an approval contract and a memory root; the rest need not."
+    evidence_for:
+      - "J0034"
+      - "J0037"
+      - "J0038"
+      - "J0057"
+      - "J0106"
+      - "J0128"
+  - name: B
+    description: >
+      Coverage is even. Every automation carries canonical_memory and a ledger,
+      every record carries a proof block, and every receipt records every gate
+      against every axis whether or not it fired.
+    cost: "Memory roots for nine more automations, proof blocks for 66 files, promotion of every v0-seed core file to a proof condition."
+    risk: "Proof blocks written to satisfy a rule rather than a claim; seed-backed becomes wallpaper."
+    reversibility: true
+    proof_needed: "A new tests/proof-coverage.test.mjs asserting every .yawn has a top-level proof block and every automation/*.yawn has canonical_memory; today it would fail on 66 and 9 files respectively."
+    evidence_for:
+      - "J0323"
+      - "J1089"
+      - "J1243"
+  - name: C
+    description: >
+      Coverage is concentrated across records but exhaustive inside a receipt. Which
+      records get heavy machinery follows option A's criterion; but any receipt or
+      migration record that exists to prove something enumerates everything it
+      assessed, including gates that did not fire and paths that were not changed.
+    cost: "Same as A plus one sentence in schemas/node.yawn stating the receipt rule."
+    risk: "Receipts stay large (45 gate assessments per selection, 340 lines per migration) and readers skip them."
+    reversibility: true
+    proof_needed: "Option A's scan, plus a test that every *receipt*.schema.json keeps minItems equal to maxItems on its gate and axis arrays (tests/inquiry-selection-receipt-v0.1.test.mjs already pins 5 and 9)."
+    evidence_for:
+      - "J0034"
+      - "J0037"
+      - "J0057"
+      - "J0323"
+      - "J1089"
+      - "J1243"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Both proof-attached judgments (J1089, J1243) are exhaustive and both live
+    inside receipt schemas and their tests; every selective judgment is a reading
+    of unlabelled behaviour across records, and the artifacts, not Dave,
+    concentrate coverage. GROUND_TRUTH FACT 17a shows the one test-enforced
+    allocation: the only loop that can spend or publish is the only one held
+    unscheduled behind a one-time approval. The tree already does C; nothing
+    states it. Option A alone would license trimming receipts the tests currently
+    forbid; option B is contradicted by 66 proof-less files and would only be
+    honoured by wallpaper.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "agents/yawn.bot.policy.yawn states which capabilities (spend, publish, send, mutate canonical state) require an approval contract, a memory root and a test before scheduling"
+    - "A test in tests/ rejects any automation contract that has those capabilities without those three things, and passes"
+    - "Every receipt schema under schemas/ keeps minItems equal to maxItems on gate and axis arrays, asserted by test"
+    - "The 66 files without a proof block either gain one or carry proof.status: none-by-design"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new automation acquires an email, publish or spend effect and ships with
+    schedule set and no approval contract, while a prose-only audit loop gets a
+    memory root and a ledger first.
+  status: proposed
+
+resolves:
+  - "J0034"
+  - "J0037"
+  - "J0038"
+  - "J0057"
+  - "J0106"
+  - "J0128"
+  - "J0323"
+  - "J1089"
+  - "J1243"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

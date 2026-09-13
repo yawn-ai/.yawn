@@ -1,0 +1,152 @@
+id: migrations/2026-09-12-cohere-vocabulary-and-attribution
+title: "Cohere the vocabulary, attribute the records, surface the decisions"
+kind: migration-receipt
+record_shape: header
+status: active
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; changes proposed from JUDGMENTS.md and accepted by Dave in conversation; not a mass rewrite"
+updated: 2026-09-13
+supersedes: none
+inventory_ref: JUDGMENTS.md
+
+purpose: >
+  Record what changed, what was deliberately left alone, and how to undo it.
+  The judgment inventory of 2026-09-12 found the repository stating rules it
+  did not enforce and enforcing rules it did not state. This receipt closes the
+  gap by adding checks, not by rewriting history: every existing divergent value
+  is grandfathered by file, every ledger may only shrink, and no record's
+  meaning was changed.
+
+what_changed:
+  vocabulary:
+    - change: "top-level status: closed to the lifecycle enum draft|active|superseded|archived|deleted"
+      enforced_by: tests/status-vocabulary.test.mjs
+      grandfathered: "145 files, by name, frozen; ceiling 145; the ledger may only shrink"
+      why: >
+        38 distinct values were in use across 176 files, mixing lifecycle,
+        version, authority, and loop position in one field the schema keeps as
+        eight. templates/basic.yawn now teaches the enum on its status: line.
+    - change: "authored_by: field with enum dave-human|agent-on-behalf|yawn.bot|unattributed and authored_via:"
+      enforced_by: tests/authored-by.test.mjs
+      required_on: [decisions/, dave/, records/yawn.bot-state.yawn]
+      why: >
+        100 of 194 .yawn files were last written by the yawn.ai git identity,
+        which shares the maintainer's email; the tree could not say whether a
+        stated preference was Dave's. The field says who is answerable.
+    - change: "record_shape: declared in every template; templates/node.yawn ranks five shapes and names header canonical"
+      enforced_by: tests/record-shape.test.mjs
+      why: "four incompatible shapes with no statement of which was canonical"
+  proof:
+    - change: "proof: blocks must resolve every path they cite; covers: and not_covered: convention"
+      enforced_by: scripts/validate-proof-refs.mjs
+      first_applied: core/canonical-extension.yawn
+      why: >
+        The canonical-extension proof named a validator that checks the alias
+        list and nothing else, while the record also claims media_role and case.
+        Its proof now says what it covers and lists the two claims it does not.
+      grandfathered: "2 files citing a private Windows filesystem, by name, frozen; ceiling 2"
+  manifest:
+    - change: "yawn.yawn link tables kept complete against the filesystem"
+      enforced_by: scripts/generate-manifest.mjs (check mode in npm run validate)
+      applied: "54 missing links appended; no existing entry rewritten or removed"
+  entities:
+    - added: core/entity-and-coupling.yawn
+      why: >
+        Names the principal, the runtime, and a third entity whose name is held;
+        defines the slash as a relationship record; carries the settled answer
+        to the role question with its why and a recall rule.
+  decisions:
+    - added: decisions/
+      count: "52 records from the reversal axes, numbered by leverage, plus 053 held"
+      rule: "every record is proposed with an empty choice:; a recommendation carries authority: none"
+    - added: records/yawn.bot-state.yawn
+      generated_by: scripts/render-bot-state.mjs
+      why: "a surface needs one record to read; the contracts said daily while the newest ledger entry was 2026-07-04"
+    - added: dave/orientation/
+      why: "the settled role drops from the top slot; the next highest-leverage question takes it"
+  runtime_pointer:
+    - change: "official_runtime.repository and agents/yawn.bot.yawn identity.repository corrected from yawn-ai/web-game to yawn-ai/yawn.bot"
+      why: >
+        Dave stated on 2026-09-12 that web-game is the older repository and is to
+        be archived, and that yawn.bot with its Supabase database is the runtime.
+        At the time of the change both repositories were at the same commit
+        (a0ff2f4), so the correction is one of address, not content.
+      epistemic_status: reported
+      old_address_kept_as: superseded_repository
+    - change: "the remaining active records that named web-game as the runtime now name yawn.bot: examples/cold-start-agent.yawn, scripts/verify-cold-start.ps1, q-space/node.yawn, questions/open-questions.yawn"
+      applied: 2026-09-13
+      why: >
+        The 2026-07-11 repository-slug question in questions/open-questions.yawn
+        is answered by the same statement and moved to recently_resolved as
+        answered-provisionally (reported, recorded on Dave's behalf); the
+        2026-07-11 answer naming web-game is marked superseded, not deleted.
+        One open question replaces it: when web-game is archived and which
+        links must move first. Historical records (the 2026-07-11 promotion
+        receipt, the cold-start proof, the drift ledger, the MVB-1 deliverable)
+        keep the old address as history.
+  runtime_surface:
+    - change: "yawn.bot/dave and its chat view read a vendored, pinned copy of records/yawn.bot-state.yawn"
+      where: "yawn-ai/yawn.bot pull request 157, branch claude/dave-next-question-r0ysdf; this repository's pull request 33 carries the record"
+      what_the_surface_shows: >
+        The next highest-leverage open decision first, then the ranked queue,
+        then Dave's own inquiries, then the judgments he has made; the settled
+        role is recalled from principal_role_settled with its why and is the
+        purpose vector of the page; the two support expanders appear only under
+        judgments. The header status there still comes from Supabase
+        connectivity, not from observed_activity.
+      pin_rule: "the runtime pins the record's git blob in protocol/dot-yawn.lock.json; a stale pin is bumped there by a reviewed change"
+      epistemic_status: observed
+      proof: "yawn.bot tests/unit/dave-public-mission.test.tsx, tests/unit/yawn-bot-state-record.test.ts, tests/e2e/dave-public-model.spec.ts"
+  entry:
+    - added: CLAUDE.md
+      why: "one file that is true on landing, for agents"
+    - added: "CONTRIBUTING.md Attribution section and Authored-By commit trailer"
+  validate_script: >
+    npm run validate now also runs generate-manifest (check) and
+    validate-proof-refs. CI runs npm test, which runs validate first.
+
+not_migrated:
+  - what: "the 145 grandfathered status: values"
+    why: "rewriting them is a per-record judgment (is v0-seed draft or active?), not a mechanical one; each migrates when its record is next touched, and the ledger shrinks"
+  - what: "the 15 references to C:/Users/dave/... in active records"
+    why: "external workspace paths; renaming Dave's folder is not this receipt's to decide; the case and reachability questions are decisions/ records"
+  - what: "record shapes of existing instances"
+    why: "declared and ranked, not converted; a shape migration needs its own receipt with fixtures"
+  - what: "the container entity's name"
+    why: "held under core/canonical-extension.yawn creation_gate.on_ambiguity; decisions/053"
+  - what: "the yawn.bot/dave header status dropdown"
+    why: "it lives in the runtime repository and still reads Supabase connectivity; the page body and the chat view read this repository's bot-state record as of yawn-ai/yawn.bot pull request 157 (see runtime_surface)"
+  - what: "archiving yawn-ai/web-game"
+    why: "an outward-facing GitHub action for Dave to take; the intent is recorded in questions/open-questions.yawn"
+
+rollback: >
+  Every change is additive and lives in named files. Remove the four tests, the
+  three scripts, and the two package.json validate steps and the previous suite
+  passes unchanged. The 54 manifest links are appended at block ends and can be
+  deleted as a range. record_shape:, authored_by:, and authored_via: lines can
+  be stripped by a one-line filter. decisions/, dave/orientation/, CLAUDE.md,
+  and core/entity-and-coupling.yawn are new paths. No record's prior content
+  was rewritten except templates/basic.yawn (three header lines added) and
+  core/canonical-extension.yawn (covers/not_covered added under proof:).
+
+provenance:
+  inventory: JUDGMENTS.md
+  merge_record: TAXONOMY.md
+  holdout: HOLDOUT.md
+  method: HOLDOUT_METHOD.md
+
+proof:
+  covers:
+    - what_changed
+    - not_migrated
+    - rollback
+  condition: "npm test passes on the tree this receipt describes, including the four new test files and the check-mode validators"
+  tests:
+    - tests/status-vocabulary.test.mjs
+    - tests/authored-by.test.mjs
+    - tests/record-shape.test.mjs
+  validators:
+    - scripts/validate-proof-refs.mjs
+    - scripts/generate-manifest.mjs
+    - scripts/render-bot-state.mjs
+  status: contract-defined

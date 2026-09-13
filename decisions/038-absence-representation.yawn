@@ -1,0 +1,173 @@
+id: decisions/038-absence-representation
+title: "A blank means something, and the record says what"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'absence-representation'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: absence-representation
+axis_gloss: "how a missing value is shown: a named marker saying what is absent and why, or an empty string, null or omitted key"
+poles:
+  a: explicit-typed-absence
+  b: silent-blank
+split: lone-exception
+draft_status: full
+leverage: 6.7
+leverage_formula: "judgments_resolved(14) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  When a value is missing — a preference never set, a cost nobody knows, a run
+  that changed nothing, a question skipped — must the record write what is
+  absent and why, or may it leave an empty string, a null, or a zero that a
+  ranker reads as a value?
+
+why_it_matters: >
+  core/next-move-logic.yawn scores 'absent or unknown' as 0 and then subtracts
+  cost and risk, so a move whose cost nobody examined outranks one with a known
+  medium cost — the opposite of proof over certainty — while every receipt,
+  ledger and packet rule elsewhere makes a null result a first-class recorded
+  outcome. Once answered, every ranker, ledger and question packet a bot runs
+  below Dave inherits one meaning for a blank, so a child Yawn's silence can
+  never be scored as a zero.
+
+state_snapshot:
+  description: >
+    13 judgments sit at explicit-typed-absence (4 authored) and 1 at silent-blank
+    (0 authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants unknown excluded from the next-move sum or scored
+    worst-case; and which fields in the thirty-three templates are optional by
+    design rather than merely blank.
+
+options:
+  - name: A
+    description: >
+      rule: A missing value is written as a typed marker — unknown, none, skipped,
+      held, no_change, not_applicable — with a reason or owner wherever the record
+      offers one. No ranker, score or gate may treat unknown as a number; unknown is
+      excluded from a sum and reported as a lacuna. A template ships no bare "" on a
+      required key without a comment naming what fills it.
+    cost: "Rewrite core/next-move-logic.yawn scale and score_shape; audit thirty-three templates for uncommented required blanks; add a lacuna line to any output that drops an unknown term."
+    risk: "Typed markers proliferate into a second vocabulary (see vocabulary-closure); an automation writes unknown everywhere to pass the test."
+    reversibility: true
+    proof_needed: "tests/typed-absence.test.mjs: core/next-move-logic.yawn scale no longer maps 'absent or unknown' to 0 and score_shape names how unknown is handled; a fixture in fixtures/ where a candidate with unknown cost does not outrank one with known medium cost; every required key in templates/*.yawn whose value is \"\" carries a trailing comment."
+    evidence_for:
+      - "J0054"
+      - "J0124"
+      - "J0494"
+      - "J0583"
+      - "J0595"
+      - "J0740"
+  - name: B
+    description: >
+      rule: A missing value is an empty string, null, omitted key or zero. A reader
+      infers absence from shape; a ranker treats unknown as 0; no marker is
+      required.
+    cost: "Strike absence_distinct_from_explicit_reset from interface/yawn-observation-view-v1.yawn and question_packet_rule from yawn.yawn; drop hold and requestedHold from the receipt schema's required list."
+    risk: "A skipped answer is indistinguishable from an answered blank; a preference reset is indistinguishable from a preference never set; the verification run that refused to read zero feedback as a finding has no rule behind it."
+    reversibility: true
+    proof_needed: "None can enforce this; the existing receipt tests ('the executable selector preserves an all-deferred hold as distinct from completion', 'unknown hard-gate evidence is foregrounded and never rewritten as clear') would have to be deleted."
+    evidence_for:
+      - "J0116"
+  - name: C
+    description: >
+      rule: Typed absence is required wherever a bot ranks, scores, gates or acts on
+      the value — costs, risks, gate evidence, holds, preferences, answers, run
+      outcomes — and unknown is never a number in a sum. carve-out, written down: a
+      template placeholder and a field the record itself marks optional may be a
+      plain blank. core/next-move-logic.yawn separates unknown (excluded from the
+      score and named as a lacuna in the output) from not_applicable (0). Every
+      lifecycle state that can be entered without a value (blocked, abandoned,
+      superseded) gets at least an owner and a reason, as waiting already has.
+    cost: "Rewrite the scale in core/next-move-logic.yawn and add a lacuna field to its output; add owner and reason fields for blocked and abandoned in core/turn.yawn; one fixture."
+    risk: "The line between 'ranked or acted on' and 'merely recorded' is drawn per field by whoever writes the test, so the carve-out drifts."
+    reversibility: true
+    proof_needed: "tests/typed-absence.test.mjs: core/next-move-logic.yawn scale distinguishes unknown from not_applicable and score_shape excludes unknown; a fixture where unknown cost does not beat known medium cost; core/turn.yawn gives blocked and abandoned an owner and reason field; keep the receipt tests on holds and unknown gate evidence green."
+    evidence_for:
+      - "J0054"
+      - "J0124"
+      - "J0494"
+      - "J0583"
+      - "J0595"
+      - "J0740"
+      - "J0116"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Thirteen judgments sit on the typed-absence side, four of them authored
+    (absence distinct from reset, signal strength none infers no thesis, a skipped
+    answer becomes a visible lacuna), and the passing suite enforces it at the
+    receipt layer: holds are required alongside the selected question, an
+    all-deferred hold is distinct from completion, unknown gate evidence is never
+    rewritten as clear, zero-confidence negatives cannot claim clear. The lone
+    exception is REVEALED and the judgment itself calls it 'arguably
+    self-defeating': next-move-logic's scale conflates absent and unknown at 0
+    under an additive score, so ignorance is rewarded. No record defends that; it
+    reads as an early seed nobody revisited. So the asymmetry is an omission and
+    the answer is to remove it, which A and C both do. C over A because a rule
+    that forbids every blank in 194 files is unenforceable, while a rule scoped to
+    values a bot ranks or acts on is exactly what the tests already implement.
+    J0124 corroborates the scope: waiting got five fields because a bot has to
+    resume it; blocked and abandoned got none.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/next-move-logic.yawn: scale no longer maps unknown to 0; score_shape says unknown terms are excluded and named in output as a lacuna."
+    - "A fixture under fixtures/ shows a candidate with unknown cost not outranking a candidate with known medium cost, and a test in tests/ asserts it."
+    - "core/turn.yawn gives blocked and abandoned at least owner and reason, or states why waiting alone needs fields."
+    - "A test in tests/ rejects a scored or gated value that is blank where the record marks it required, and passes."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A next-move record or ledger ranks a candidate first with cost and risk both
+    unrecorded, or a receipt records a skipped question as answered, and npm test
+    stays green.
+  status: proposed
+
+resolves:
+  - "J0054"
+  - "J0124"
+  - "J0494"
+  - "J0583"
+  - "J0595"
+  - "J0740"
+  - "J0116"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

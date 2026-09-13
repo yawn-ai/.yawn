@@ -12,6 +12,7 @@
 
 specVersion: "1"
 kind: conversation-import-draft
+record_shape: fragment
 draftSchema: yawn.conversation-import-draft.v0
 importId: "import:"
 lifecycle: draft_pending_review          # draft_pending_review | accepted | rejected | deferred

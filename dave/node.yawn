@@ -10,10 +10,13 @@ purpose: >
   under dave/<slug>/ so a person or a Yawn.bot can carry the same model.
 
 principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "yawn.ai project identity; last git author yawn.ai <hi@yawn.ai>, not separately ratified by Dave"
 template_ref: templates/mental-model.yawn
 validator_ref: scripts/validate-mental-models.mjs
 
 holds:
+  - orientation
   - number-sense
   - prenumerical-thinking
 

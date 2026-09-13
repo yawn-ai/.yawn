@@ -2,7 +2,7 @@ id: questions/open-questions
 title: "What is still unresolved?"
 kind: lacuna-index
 status: preview
-updated: 2026-07-11
+updated: 2026-09-12
 
 purpose: >
   Keep unanswered, disputed, deferred, and decision-changing questions visible
@@ -11,17 +11,17 @@ purpose: >
 template: templates/open-question.yawn
 
 open_questions:
-  - question: "Should the official YAWN.bot GitHub repository slug change from web-game to yawn-bot?"
+  - question: "When is yawn-ai/web-game archived, and which inbound links and integrations must move to yawn-ai/yawn.bot first?"
     coordinate: "runtime/repository-identity"
-    why_it_matters: "The product identity is official, but renaming a repository changes external links and integrations."
+    why_it_matters: "Dave stated on 2026-09-12 that web-game is the older repository and is to be archived. Archiving is reversible on GitHub, but it breaks nothing only if every live pointer already names yawn.bot; the pointers in this repository were corrected the same day, the ones outside it are uninventoried."
     evidence_needed:
       - inbound link inventory
       - Vercel and GitHub integration inventory
-      - redirect and rollback plan
+      - archive receipt
     owner: Dave
     status: open
     blocks_action: false
-    review_after: "before any repository rename"
+    review_after: "before archiving the repository"
 
   - question: "Which exact .yawn protocol revision should govern the official YAWN.bot runtime?"
     coordinate: "runtime/protocol-pin"
@@ -60,9 +60,23 @@ open_questions:
     review_after: "before declaring production healthy"
 
 recently_resolved:
+  - question: "Should the official YAWN.bot GitHub repository slug change from web-game to yawn-bot?"
+    answer: "Yes. The official YAWN.bot runtime is https://github.com/yawn-ai/yawn.bot with its Supabase database; https://github.com/yawn-ai/web-game is the older address, superseded and to be archived. Stated by Dave on 2026-09-12 and recorded on his behalf; provisional until he confirms it in a record he writes."
+    status: answered-provisionally
+    epistemic_status: reported
+    owner: Dave
+    answered_on: 2026-09-12
+    proof_refs:
+      - migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn
+      - yawn.yawn
+      - agents/yawn.bot.yawn
+    supersedes:
+      - "Which codebase is the official YAWN.bot runtime? (2026-07-11 answer naming web-game)"
   - question: "Which codebase is the official YAWN.bot runtime?"
     answer: "The codebase at https://github.com/yawn-ai/web-game is the official YAWN.bot runtime."
-    status: answered-with-evidence
+    status: superseded
+    superseded_on: 2026-09-12
+    superseded_by: "the repository-slug answer above; the same codebase is now addressed at https://github.com/yawn-ai/yawn.bot"
     owner: Dave
     proof_refs:
       - records/yawn-bot-runtime-promotion-2026-07-11.yawn

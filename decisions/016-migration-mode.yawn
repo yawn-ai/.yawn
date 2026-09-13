@@ -1,0 +1,159 @@
+id: decisions/016-migration-mode
+title: "Complete sweep or migrate-on-touch, per field"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'migration-completeness'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: migration-completeness
+axis_gloss: "whether a rename or vocabulary change is carried through every affected artifact, or only where it was convenient"
+poles:
+  a: partial-migration
+  b: complete-migration
+split: leaning
+draft_status: full
+leverage: 14.7
+leverage_formula: "judgments_resolved(14) x split_weight(0.7) x authored_conflict_bonus(1.5)"
+
+question: >
+  When a rule changes, must every affected record be carried across at once, or
+  may records drift until their author next touches them?
+
+why_it_matters: >
+  The extension rename was carried through completely with a fail-closed
+  validator, while the epistemic-status fix touched one template comment and
+  left ~85 records to migrate 'never in bulk', and four contracts still read
+  2026-07-01 after their index nodes moved on. Once answered, a bot that finds a
+  drifted record knows whether to fix it, ledger it, or leave it, and a child
+  Yawn knows whether the rule it inherits is already true of its parent's
+  records.
+
+state_snapshot:
+  description: >
+    12 judgments sit at partial-migration (1 authored) and 2 at complete-migration
+    (2 authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether 'never in bulk' in
+    records/epistemic-status-drift-ledger-2026-08-28.yawn is a principle
+    (authorship and history are not overwritten) or a resource constraint at the
+    time.
+
+options:
+  - name: A
+    description: >
+      rule: Migrations are opportunistic. A record migrates when its author next
+      touches it, never in bulk. A drift ledger in records/ names the debt and a
+      test holds a frozen grandfather list that may only shrink.
+    cost: "Drifted records stay drifted indefinitely; every consumer must tolerate both old and new form."
+    risk: "Records nobody touches never migrate, and the ledger becomes the permanent state."
+    reversibility: true
+    proof_needed: "For each migration, a test modelled on tests/epistemic-status-vocabulary.test.mjs with a frozen grandfather map."
+    evidence_for:
+      - "J0071"
+      - "J0347"
+      - "J0388"
+      - "J0451"
+      - "J0593"
+      - "J0626"
+  - name: B
+    description: >
+      rule: Migrations are complete. A rule change lands with every affected record
+      updated in the same change, and a validator in scripts/ fails on any
+      straggler, as migrations/2026-08-17-canonical-extension.yawn did.
+    cost: "Bulk rewrites of ~85 records for epistemic status alone; authorship of those records is overwritten by the migrator."
+    risk: "Contradicts the authored 'never in bulk' rule (J0593) and the repo's stance that history is not rewritten silently."
+    reversibility: false
+    proof_needed: "A validator in npm run validate per migration with zero grandfather list."
+    evidence_for:
+      - "J0288"
+      - "J0745"
+  - name: C
+    description: >
+      rule: Every migration receipt in migrations/ declares its mode. Fields a
+      validator can check (extension, epistemic_status, status enum, hash format,
+      schemaVersion) migrate completely or with a frozen grandfather list that may
+      only shrink, enforced by a test. Prose, dates and proof.source lists migrate
+      on touch, and the receipt names the ledger that tracks them.
+    cost: "One field (mode) and one pointer (ledger) added to migrations/node.yawn rules and to each receipt; the J0347 contracts and interface/move.yawn are either updated or ledgered."
+    risk: "Everything hard is declared prose and migrated on touch, so mode becomes a label for avoiding work."
+    reversibility: true
+    proof_needed: "Extend migrations/node.yawn rules to require mode and ledger; a test in tests/ that every receipt in migrations/ carries mode: complete|opportunistic and that opportunistic ones name a test holding a grandfather list."
+    evidence_for:
+      - "J0288"
+      - "J0745"
+      - "J0593"
+      - "J0626"
+
+recommendation:
+  option_ref: C
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Both poles are authored, for two different migrations: the extension rename
+    (J0288, J0745, contract-defined and proof-attached) was complete and
+    fail-closed; the epistemic-status containment (J0593, J0626, outcome-attached)
+    was deliberately opportunistic and forbids bulk. The revealed partials (J0347,
+    J0388, J0451) are unledgered drift with no receipt. The repo's most
+    proof-attached practice is already the hybrid:
+    tests/epistemic-status-vocabulary.test.mjs enforces going forward and
+    grandfathers by name with a ledger that may only shrink (GROUND_TRUTH FACT 7).
+    C makes that hybrid the stated rule and requires each receipt to say which
+    mode it is in.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "migrations/node.yawn rules require every migration receipt to declare mode: complete or opportunistic and, if opportunistic, to name its ledger test."
+    - "Every opportunistic migration has a test in tests/ with a frozen grandfather list that may only shrink, and the suite passes."
+    - "database/feedback-intake.yawn, feedback/codex-t4o-parser.yawn, feedback/email-intake.yawn, feedback/form.yawn and interface/move.yawn are either updated or named in a ledger."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A migration receipt says complete but a grep within its own declared scope
+    finds untouched records.
+  status: proposed
+
+resolves:
+  - "J0071"
+  - "J0347"
+  - "J0388"
+  - "J0451"
+  - "J0593"
+  - "J0626"
+  - "J0288"
+  - "J0745"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

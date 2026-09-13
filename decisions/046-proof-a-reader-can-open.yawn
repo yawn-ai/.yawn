@@ -1,0 +1,158 @@
+id: decisions/046-proof-a-reader-can-open
+title: "A proof source a reader can actually open"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'source-reachability'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: source-reachability
+axis_gloss: "whether a cited source can be opened by anyone reading the record, or only by its author on their own machine"
+poles:
+  a: independently-reachable-source
+  b: author-only-source
+split: leaning
+draft_status: full
+leverage: 4.2
+leverage_formula: "judgments_resolved(6) x split_weight(0.7) x authored_conflict_bonus(1)"
+
+question: >
+  May a record call itself source-backed when its source is a file only Dave can
+  open, and may an automation contract name Dave's private machine as its
+  workspace without saying so?
+
+why_it_matters: >
+  yawn.yawn promises orientation that is inspectable and replayable, yet two
+  references claim source-backed on C:/Users/dave paths, four of five scheduled
+  bots run against a workspace root no reader can reach, and the loop contract
+  hardcodes an operator's email; the in-flight proof-refs validator already
+  freezes the two proof cases by name. Once answered, a bot writing a receipt
+  knows whether a private path earns 'source-backed' or only 'reported', and a
+  child Yawn on another machine knows which contracts it can run at all.
+
+state_snapshot:
+  description: >
+    4 judgments sit at independently-reachable-source (0 authored) and 2 at
+    author-only-source (0 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether the two Desktop and Downloads sources can be published at all, and
+    whether the notification email in core-loop.yawn is meant to be public.
+
+options:
+  - name: A
+    description: >
+      rule: Every proof.source, and every workspace, source_repo or memory root
+      named by an active automation contract, resolves inside the repository or to a
+      public URL. A private source is vendored with private material removed, or the
+      claim it backs is relabelled reported or asserted-unverified.
+      Operator-specific paths and emails move to an untracked local config the
+      contract names by key.
+    cost: "Vendoring or relabelling two references; rewriting workspace: in six active records to a config key; a local config mechanism the repo does not have yet."
+    risk: "The real operational root disappears from the tree and the automations become harder, not easier, to inspect."
+    reversibility: true
+    proof_needed: "scripts/validate-proof-refs.mjs (in-flight) already rejects new external proof sources; extend it to scan workspace:, source_repo: and canonical_memory.root: in automation/*.yawn and core-loop.yawn for drive-letter paths with no grandfather set; today six files fail."
+    evidence_for:
+      - "J0196"
+      - "J0353"
+      - "J0710"
+      - "J1224"
+  - name: B
+    description: >
+      rule: A source on the author's machine is an acceptable proof source and earns
+      source-backed; the record notes that only the author can open it.
+    cost: "Contradicts the test-enforced index reachability rule for governance records and the canonical_sentence's 'inspectable'."
+    risk: "Any claim becomes source-backed by naming a file nobody else can check, which is worse than no proof."
+    reversibility: true
+    proof_needed: "None can enforce this; the record would be removing the external-source rejection from validate-proof-refs."
+    evidence_for:
+      - "J0708"
+      - "J0782"
+  - name: C
+    description: >
+      rule: A proof: block must be reachable from the tree or a public URL (already
+      enforced, two records grandfathered by name with a ceiling of two that may
+      only shrink), and a grandfathered record may carry proof.status: reported or
+      source-backed-private, never source-backed. An operational contract may name a
+      private workspace root but must mark it reachability: operator-only, may not
+      be cited as proof by any other record, and keeps personal contact details out
+      of the tree.
+    cost: "Two proof.status edits, a reachability: line on six records, one email moved out of core-loop.yawn."
+    risk: "operator-only becomes a standing excuse and the two grandfathered sources never get vendored."
+    reversibility: true
+    proof_needed: "Extend scripts/validate-proof-refs.mjs: a record on EXTERNAL_SOURCE_GRANDFATHER may not carry proof.status: source-backed; any drive-letter value under workspace:, source_repo: or canonical_memory.root: must be followed by reachability: operator-only, and no proof.source anywhere may point at such a record's workspace."
+    evidence_for:
+      - "J0196"
+      - "J1224"
+      - "J0708"
+      - "J0782"
+
+recommendation:
+  option_ref: C
+  confidence: 0.7
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    Nothing on this axis is authored, but the reachable side has the
+    proof-attached index test and the in-flight validator already implements its
+    proof-block half with a shrinking ledger; the author-only side is two revealed
+    observations of the same single-operator reality. The sharp violation is not
+    that private paths exist but that they are graded source-backed while a real
+    file in the tree is graded seed-backed (J0708): fixing the label is cheap and
+    C does it. Full portability (A) needs a config mechanism the repo does not
+    have and would hide the real root from inspection.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "references/july-01-lock.yawn and references/scientific-frame.yawn either vendor their sources or carry a proof.status other than source-backed, and the external-source ledger is at two by name or smaller."
+    - "Every automation contract naming a drive-letter path carries reachability: operator-only and validate-proof-refs checks it."
+    - "core-loop.yawn no longer carries a personal email inline."
+    - "npm run validate passes with those checks present."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new proof.source points at a private path, or source-backed survives on an
+    unopenable source, and validate passes.
+  status: proposed
+
+resolves:
+  - "J0196"
+  - "J0353"
+  - "J0710"
+  - "J1224"
+  - "J0708"
+  - "J0782"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

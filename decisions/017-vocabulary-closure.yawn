@@ -1,0 +1,179 @@
+id: decisions/017-vocabulary-closure
+title: "A compared field is closed, and grows only by registry"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'vocabulary-closure'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: vocabulary-closure
+axis_gloss: "whether a term set is fixed and enumerable, or may grow freely as records need new words"
+poles:
+  a: open-vocabulary
+  b: closed-vocabulary
+split: genuinely-split
+draft_status: full
+leverage: 14.4
+leverage_formula: "judgments_resolved(12) x split_weight(1) x authored_conflict_bonus(1.2)"
+
+question: >
+  Which term sets in a .yawn are closed lists — status: and epistemic_status now
+  are, under tests — and is kind: one of them, or may a record coin its own kind
+  whenever it has a new purpose?
+
+why_it_matters: >
+  kind: is the field a bot would use to ask 'show me every receipt' or 'every
+  contract', and today twenty-six records answer with thirteen words and twelve
+  core files with eleven, while the RFC index carries a status its own lifecycle
+  diagram does not list and the CHANGELOG has a section no convention names.
+  Once answered, every child Yawn's kinds are enumerable, so an index, a ranker
+  or a steward bot can operate over them without reading prose, and a new kind
+  is a recorded act instead of a drift.
+
+state_snapshot:
+  description: >
+    5 judgments sit at open-vocabulary (0 authored) and 7 at closed-vocabulary (3
+    authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave wants the registry in templates/node.yawn beside record_shapes or
+    in its own core/ record; and which of the near-duplicate receipt kinds are the
+    same kind under different names.
+
+options:
+  - name: A
+    description: >
+      rule: Vocabulary is open by default. Outside the fields a test already closes
+      (status, epistemic_status, authored_by, record_shape), a record may coin its
+      own kind, an RFC its own status string, a CHANGELOG its own section. Closure
+      is the exception and applies only where a test names the enum.
+    cost: "Nothing to change; write in templates/node.yawn that kind: is free text."
+    risk: "The same drift that produced 50+ epistemic values and 38 status values recurs in kind:, and the rationale the repository already recorded — a vocabulary is only computable while it is closed — is contradicted for the one field an index most needs."
+    reversibility: true
+    proof_needed: "None can enforce openness; the record would be a line in templates/node.yawn."
+    evidence_for:
+      - "J0271"
+      - "J0630"
+      - "J0911"
+      - "J0936"
+      - "J0952"
+  - name: B
+    description: >
+      rule: Every field a ranker, index or bot compares across records draws from a
+      closed list held by a test with a shrink-only grandfather ledger, on the
+      pattern of tests/epistemic-status-vocabulary.test.mjs: status (done),
+      epistemic_status (done), authored_by (done), record_shape (done), kind:
+      (closed to a fixed set), RFC status (the eight stages rfcs/README.md already
+      names), CHANGELOG sections (Added, Changed, Deprecated, Removed, Fixed,
+      Security). No new value without a test change.
+    cost: "A kind test with a by-file ledger seeded from roughly forty distinct kinds; a rewrite of RFC 0002's status line; a Removed section in CHANGELOG.md for the fifty retired files; every new record purpose needs a test edit."
+    risk: "A frozen kind enum is wrong for a growing protocol — a genuinely new record purpose is a legitimate new kind — so writers reuse the nearest wrong kind to avoid touching a test."
+    reversibility: true
+    proof_needed: "tests/kind-vocabulary.test.mjs with a fixed KINDS set and by-file ledger; a test that every status under rfcs/README.md Current RFCs is one of its Lifecycle stages; a test that CHANGELOG.md section headings are within the Keep a Changelog set."
+    evidence_for:
+      - "J0421"
+      - "J0681"
+      - "J0886"
+      - "J0907"
+      - "J1088"
+      - "J1177"
+  - name: C
+    description: >
+      rule: A field is closed once it is compared across records; free text stays
+      free where nothing compares it (title, purpose, notes). kind: joins status,
+      epistemic_status, authored_by and record_shape as a closed field, but closed
+      by registry, not by frozen enum: every kind is listed with a one-line
+      definition in a registry record (templates/node.yawn kinds:, or
+      core/vocabulary.yawn), and a new kind may be added only by adding it to the
+      registry in the same change. So the vocabulary grows by record, never by
+      drift. RFC statuses and CHANGELOG sections follow the lists their own index
+      documents already state.
+    cost: "A registry seeded with today's kinds, each needing a definition (which will expose near-duplicates such as proof-receipt, bounded-action-proof-receipt, owner-decision-receipt); one test; one RFC status line; one CHANGELOG section."
+    risk: "The registry is edited as casually as the records were, and closure is nominal; the definitions are the only thing that makes adding a kind a decision."
+    reversibility: true
+    proof_needed: "tests/kind-vocabulary.test.mjs: every kind: in a tracked .yawn appears in the registry, and every registry entry has a non-empty definition; no grandfather ledger needed because the registry is seeded from today's values; plus the RFC and CHANGELOG assertions from B."
+    evidence_for:
+      - "J0907"
+      - "J1177"
+      - "J0681"
+      - "J0886"
+      - "J0271"
+      - "J0630"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The passing suite has now closed a vocabulary four times — epistemic_status,
+    status, authored_by, record_shape — each with the same authored rationale,
+    stated in the commit and in the test comment: free text makes records
+    uncomputable, no ranker or ledger can operate over an open vocabulary (J0907,
+    J1177). Side A is entirely REVEALED drift, and one of its five judgments
+    (J0911, free-text status) has already been removed by
+    tests/status-vocabulary.test.mjs since the inventory ran. J0681 (authored)
+    shows Dave's instinct is to split and define nine relational terms rather than
+    leave one loose word. So the authored side is closure. C over B because kind:
+    genuinely grows — a new record purpose is a legitimate new kind — so the
+    honest mechanism is a registry that must be edited on purpose with a
+    definition, not a frozen enum that writers route around. The definitions will
+    do the real work: the receipt kinds alone have four near-synonyms today.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "A registry (templates/node.yawn kinds: or core/vocabulary.yawn) lists every kind: in use with a one-line definition."
+    - "A test in tests/ rejects any kind: value not in the registry and any registry entry without a definition, and passes."
+    - "rfcs/README.md Current RFCs carries only statuses its own Lifecycle names; CHANGELOG.md records the fifty retired files under Removed."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A record with a kind: never seen before lands in the tree and npm test stays
+    green; or the registry gains entries with empty definitions.
+  status: proposed
+
+resolves:
+  - "J0271"
+  - "J0630"
+  - "J0911"
+  - "J0936"
+  - "J0952"
+  - "J0421"
+  - "J0681"
+  - "J0886"
+  - "J0907"
+  - "J1088"
+  - "J1177"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

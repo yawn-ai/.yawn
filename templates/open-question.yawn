@@ -1,6 +1,7 @@
 id: templates/open-question
 title: "open question template"
 kind: template
+record_shape: header
 status: active
 updated: 2026-07-11
 

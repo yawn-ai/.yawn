@@ -7,6 +7,7 @@
 
 spec_version: "0.2-draft"
 kind: routing_proposal
+record_shape: spec-version
 id: "routing:"
 status: proposed # proposed | accepted | rejected | expired
 proposed_by: "agent:"

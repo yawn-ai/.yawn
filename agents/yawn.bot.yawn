@@ -6,8 +6,10 @@ updated: 2026-08-25
 
 identity:
   name: YAWN.bot
-  repository: https://github.com/yawn-ai/web-game
+  repository: https://github.com/yawn-ai/yawn.bot
   repository_slug_status: current-address
+  repository_corrected: 2026-09-12
+  superseded_repository: https://github.com/yawn-ai/web-game
   runtime_status: official
   promoted_by: Dave
   promotion_receipt: records/yawn-bot-runtime-promotion-2026-07-11.yawn

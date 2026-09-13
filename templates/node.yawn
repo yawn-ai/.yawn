@@ -1,6 +1,8 @@
 id: templates/node
 title: "templates node"
 kind: mental-model-node
+record_shape: header
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
 status: active-mixed
 updated: 2026-08-27
 
@@ -31,6 +33,47 @@ holds:
   - objective holon template
   - mental model template (questions first)
   - orientation_inquiry projection fields over an independent orientation_map
+
+record_shapes:
+  canonical: header
+  rule: >
+    Every template declares record_shape:. header is canonical for new human-readable
+    records. spec-version and coordinate are working-draft contract shapes kept until their
+    own migration receipt. fragment is a partial record meant to be embedded, never a file
+    on its own. json-contract is machine-validated and not human-readable-first; see
+    JUDGMENTS.md §2B on audience-primacy before adding another.
+  files:
+    access-record.yawn: header
+    agent-handoff.yawn: header
+    backup-record.yawn: header
+    basic.yawn: header
+    decision.yawn: header
+    feedback.yawn: header
+    full.yawn: header
+    mental-model.yawn: header
+    next-move-record.yawn: header
+    observation-question-art.yawn: header
+    open-question.yawn: header
+    orientation-shape.yawn: header
+    proof.yawn: header
+    proof-receipt.yawn: header
+    relationship.yawn: header
+    arena.yawn: spec-version
+    objective-holon.yawn: spec-version
+    routing-proposal.yawn: spec-version
+    structural-change-receipt.yawn: spec-version
+    turn.yawn: spec-version
+    q-space-answer-event.yawn: coordinate
+    q-space-frontier-candidate.yawn: coordinate
+    q-space-pattern-candidate.yawn: coordinate
+    q-space-proof-event.yawn: coordinate
+    q-space-question-node.yawn: coordinate
+    q-space-transition-event.yawn: coordinate
+    collaboration-message.yawn: fragment
+    conversation-import-draft.yawn: fragment
+    observation.yawn: fragment
+    art-brief.v1.yawn: json-contract
+    question-proposal.v1.yawn: json-contract
 
 receives:
   - repeated movement patterns

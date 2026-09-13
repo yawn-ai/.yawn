@@ -1,0 +1,163 @@
+id: decisions/014-gap-disclosure
+title: "Name what the shape leaves out"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'gap-disclosure'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: gap-disclosure
+axis_gloss: "whether what is missing is named in the record as a gap, or simply left out without trace"
+poles:
+  a: declared-lacuna
+  b: silent-omission
+split: leaning
+draft_status: full
+leverage: 18.5
+leverage_formula: "judgments_resolved(22) x split_weight(0.7) x authored_conflict_bonus(1.2)"
+
+question: >
+  When a record's serialized shape leaves out something its own prose calls a
+  primitive, must the record name that gap as a lacuna, or may it just leave it
+  out?
+
+why_it_matters: >
+  The written practice is to name gaps: timeouts are recorded as timeouts,
+  private desires keep an id, the art contract publishes an open_lacunae list.
+  The constitutional arena document drops regulation, repair, arena-level
+  agents, five time fields, seven gravity contributors and the whole
+  artificial_agent block from its data shape without a word. A bot building from
+  section 14 inherits a shape that silently disagrees with sections 5 through 9;
+  a child Yawn inherits whether omissions must be declared or may be quiet.
+
+state_snapshot:
+  description: >
+    12 judgments sit at declared-lacuna (4 authored) and 10 at silent-omission (0
+    authored). The repository asserts both directions on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave holds section 14's shape to be normative over the prose (in which
+    case the prose should shrink) or the prose to be the design (in which case the
+    shape owes the gaps).
+
+options:
+  - name: A
+    description: >
+      Anything a record's prose names as a primitive, input, or requirement and its
+      serialized shape omits is listed in that record's lacunae: block with a
+      reason. An unlisted omission is a defect, not a choice.
+    cost: "An omitted_from_shape: list of roughly six entries in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 14; one sentence in core/lacuna.yawn."
+    risk: "The arena document is status active, criticality constitutional; editing it needs Dave's hand, not a bot's."
+    reversibility: true
+    proof_needed: "A new tests/arena-shape-coverage.test.mjs that parses the section 5-9 primitive lists and the section 14 shape, and asserts every prose primitive is either a shape field or a named entry in omitted_from_shape."
+    evidence_for:
+      - "J0065"
+      - "J0321"
+      - "J0371"
+      - "J0401"
+      - "J0441"
+      - "J0610"
+  - name: B
+    description: >
+      A serialized shape may omit prose-named primitives without note. The shape is
+      normative; the prose is informative and may exceed it.
+    cost: "A sentence in the arena document's frontmatter; nothing else changes."
+    risk: "Readers of the prose and readers of the shape build different systems; the failure the prose predicts for omitting regulation goes unrecorded."
+    reversibility: true
+    proof_needed: "None exists; B is honoured by the absence of a check."
+    evidence_for:
+      - "J0173"
+      - "J0174"
+      - "J0175"
+      - "J0176"
+      - "J0177"
+      - "J0179"
+  - name: C
+    description: >
+      Option A everywhere, except that core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn and
+      references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn are grandfathered by name in
+      a shrink-only ledger until Dave adds the omissions list.
+    cost: "Two ledger entries; the same test as A with a GRANDFATHERED map."
+    risk: "The ledger entry becomes permanent; the constitutional document stays the one place the rule does not hold."
+    reversibility: true
+    proof_needed: "Same test as A with a two-entry grandfather map and a size ceiling, following tests/epistemic-status-vocabulary.test.mjs."
+    evidence_for:
+      - "J0065"
+      - "J0401"
+      - "J0441"
+      - "J0173"
+      - "J0179"
+
+recommendation:
+  option_ref: A
+  confidence: 0.75
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    All four authored judgments and both outcome-attached ones (J0065 why_added,
+    J0401 a withheld-but-present desire) are on the declared-lacuna side; the repo
+    already pays for naming gaps and has a lacuna primitive (core/lacuna.yawn) and
+    lacunae: blocks in Dave's own models. Every silent omission is a reading of
+    one file, which also has no proof block (GROUND_TRUTH FACT 3) and claims
+    constitutional status with nineteen unchecked boxes (J0189). Writing six
+    entries into section 14 is smaller than maintaining an exception for the
+    constitution. C is the fallback if Dave will not edit the arena document now.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 14 carries an omitted_from_shape: list naming regulation, arena-level agents, repair, counterfactual_branch, accumulation, window, the seven dropped gravity contributors, and the artificial_agent block, each with a reason"
+    - "A test in tests/ diffs the prose primitives against the shape and passes only when every gap is listed"
+    - "core/lacuna.yawn states that a shape omission is a lacuna"
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A new schema drops a field its companion .yawn names as required and no
+    lacunae entry or test failure appears.
+  status: proposed
+
+resolves:
+  - "J0065"
+  - "J0321"
+  - "J0371"
+  - "J0401"
+  - "J0441"
+  - "J0610"
+  - "J0173"
+  - "J0174"
+  - "J0175"
+  - "J0176"
+  - "J0177"
+  - "J0179"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

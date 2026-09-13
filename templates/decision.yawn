@@ -1,5 +1,7 @@
 title: ""
 kind: decision-frame
+record_shape: header
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
 version: "1.0.0"
 
 state_snapshot:

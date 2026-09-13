@@ -1,6 +1,7 @@
 id: ""
 title: ""
 kind: proof-receipt
+record_shape: header
 date: ""
 
 linked_yawn: ""

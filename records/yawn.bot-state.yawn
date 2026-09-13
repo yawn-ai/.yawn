@@ -1,0 +1,178 @@
+id: records/yawn.bot-state
+title: "yawn.bot state"
+kind: runtime-state
+record_shape: header
+status: active
+authored_by: agent-on-behalf
+authored_via: "scripts/render-bot-state.mjs, from the ledgers, decisions/, and core/entity-and-coupling.yawn; regenerate rather than edit"
+updated: 2026-09-13
+generated_by: scripts/render-bot-state.mjs
+
+purpose: >
+  One record a surface can read to show the bot's state truthfully. Every line
+  names where it came from. The runtime repository (agents/yawn.bot.yawn
+  identity.repository) vendors this record and pins its blob in its protocol
+  lock; yawn.bot/dave and its chat view read that pinned copy to lead with
+  next_question and to recall principal_role_settled. The header status there
+  is not yet read from this record. A stale pin is the runtime's to bump by a
+  reviewed change, not this record's to push.
+
+runtime_ref: agents/yawn.bot.yawn
+relationship: "yawn.bot/dave"
+relationship_ref: core/entity-and-coupling.yawn
+
+loop_status: awaiting_choice
+loop_status_vocabulary: schemas/statuses.v1.schema.json#loopStatus
+loop_status_reason: >
+  52 decision records in decisions/ are proposed and none has a
+  selected_by. The loop is at the choice step and the choice is Dave's. This is
+  the protocol position; it says nothing about whether any scheduled automation
+  is running.
+
+observed_activity:
+  last_observed_run: 2026-07-04
+  observed_from: records/automation-log.yawn
+  as_of: 2026-09-13
+  epistemic_status: observed
+  note: >
+    The newest timestamp in any bot ledger in this repository. The automation
+    contracts under automation/ describe daily and hourly schedules; nothing in
+    this tree shows a run after this date. Do not display "sleeping" or "active"
+    from the contracts; display the last observed run and its age.
+
+principal_role_settled:
+  question_key: role
+  answer: "steward of yawn.bot"
+  why: >
+    So that Dave stays flexible and agile with as much agency as possible, while
+    the bills are paid and leverage is as high as it can be.
+  settled_on: 2026-09-12
+  source: core/entity-and-coupling.yawn
+  recall_rule: >
+    When the role question resurfaces, answer from this record first — "last
+    time we checked, what you are to be is steward of yawn.bot, so that…" — and do not
+    reopen it unless Dave corrects the answer. It has dropped from the top slot.
+
+next_question:
+  decision_ref: decisions/001-one-canon-per-concept.yawn
+  title: "One governing record per concept, lenses marked"
+  question: >
+    When two records define the same thing (lacuna, the loop, the objective
+    lifecycle, a promotion gate, a read order), does one of them govern, and
+    does it say so?
+  why: >
+    core/orientation.yawn already says one model with non-canonical lenses, yet
+    the corpus ships two lacuna definitions, a five-stage and a nine-stage
+    objective lifecycle, and gate definitions that have drifted apart, so a
+    reader cannot tell which binds. Once answered, a bot reading core/ inherits
+    exactly one definition per concept, and a child Yawn that coins its own
+    phrasing knows it must point at the canon rather than become a second one.
+  leverage: 57
+  leverage_formula: "judgments_resolved x split_weight(genuinely-split 1.0 | leaning 0.7 | lone-exception 0.4) x authored_conflict_bonus(both sides authored 1.5 | one side 1.2 | neither 1.0)"
+  rule: >
+    The highest-leverage proposed decision whose choice is still empty. A
+    surface that opens on a new entry shows this one question. Rank is not
+    importance, truth, obligation, or permission (core/inquiry-selection.yawn).
+
+question_queue:
+  - rank: 1
+    decision_ref: decisions/001-one-canon-per-concept.yawn
+    leverage: 57
+    split: genuinely-split
+    question: "When two records define the same thing (lacuna, the loop, the objective lifecycle, a promotion gate, a read order), does one of them govern, and does it say so?"
+    why: "core/orientation.yawn already says one model with non-canonical lenses, yet the corpus ships two lacuna definitions, a five-stage and a nine-stage objective lifecycle, and gate definitions that have drifted apart, so a reader cannot tell which binds. Once answered, a bot reading core/ inherits exactly one definition per concept, and a child Yawn that coins its own phrasing knows it must point at the canon rather than become a second one."
+  - rank: 2
+    decision_ref: decisions/002-coverage-allocation.yawn
+    leverage: 53.8
+    split: leaning
+    question: "Should every record, loop and receipt get the same depth of proof, memory and indexing, or should the heavy machinery be concentrated on the few that can spend, publish or mutate, and should that choice be written down?"
+    why: "Today the repo spends its heaviest checks on one unscheduled image loop and on receipt schemas, while 66 of 194 files carry no proof block and only four automations keep memory; nothing says this is deliberate. Once answered, a new bot knows whether it must ship with a memory root, an approval contract and a test before it runs, or only when it can act outside the repo."
+  - rank: 3
+    decision_ref: decisions/003-rules-that-can-fail.yawn
+    leverage: 39
+    split: genuinely-split
+    question: "When the repo writes a rule down, must something be able to fail if the rule is broken, or is the written record itself the authority and compliance a matter of reading?"
+    why: "The repo already learned once that a trailing YAML comment is not an enforcement: the epistemics commit blamed exactly that mechanism for the drift it then had to lock with a test, and the same comment-enum pattern still sits on five templates. Once answered, a bot reading core/ knows which rules will stop it (a validator will reject its record) and which are asked of it (a human will review), instead of treating every sentence as equally binding or equally optional."
+  - rank: 4
+    decision_ref: decisions/004-when-a-concern-earns-a-record.yawn
+    leverage: 36
+    split: genuinely-split
+    question: "When does one concern earn its own .yawn — whenever it has a name or an ID, or only when its proof, owner, status or rollback would differ from its parent's?"
+    why: "The repo authors both halves of this: it splits a bot across four files and links rather than merges overlapping records, yet refuses one-Yawn-per-message and one-Agent-per-viewpoint; meanwhile a working-draft extension sits inside a v1 record and a generator sits inside a node defined as checks-only, unremarked. Once answered, a child Yawn deciding whether to fork a relationship, a desire or a draft into its own file applies one written test instead of guessing from precedent."
+  - rank: 5
+    decision_ref: decisions/005-field-obligation.yawn
+    leverage: 34.8
+    split: genuinely-split
+    question: "When a record leaves a field off, does that mean the field was optional or that the record is incomplete, and should every contract say which fields are which?"
+    why: "The written rule makes goals optional (a Yawn needs no target, an Observation needs no Yawn), but nothing says which fields a record must carry, so migrations/node.yawn ships a proof block with no status and the Homebase contract declares two of the four authority flags. A bot reading a record cannot tell silence from permission until this is answered; a child Yawn inherits either a required list or a guess."
+  - rank: 6
+    decision_ref: decisions/006-runtime-dependence.yawn
+    leverage: 26.4
+    split: genuinely-split
+    question: "Must a .yawn stay readable and checkable with nothing installed, or is it enough that the record reads with nothing while checking it needs Node and ajv and running it needs Dave's Windows desktop — and is that three-way split written anywhere?"
+    why: "The written rule promises a boring portable folder that works with no software, while the only proof that anything holds is a Node 22 test suite with one npm dependency, and the four scheduled automations run PowerShell against C:/Users/dave/OneDrive paths that appear 32 times across 12 tracked records. Once answered, every child Yawn and bot below Dave inherits an explicit answer to what it may depend on at each layer, instead of copying whichever absolute path or interpreter it finds nearest."
+  - rank: 7
+    decision_ref: decisions/007-closed-until-opened.yawn
+    leverage: 26
+    split: leaning
+    question: "When a record, template or gate says nothing, is the answer no until someone opens it — and does that rule also cover the values a template ships prefilled, like reversible: true, status: accepted, or a consent list that starts with yes?"
+    why: "The written rule (capability plane zero-exposure, four authority flags false, capture locked first) is deny-by-default, but four templates and one root record quietly ship the opposite, and every record copied from them inherits an authorization nobody gave. Once answered, a bot that copies templates/observation.yawn or interface/move.yawn knows whether the values it inherits are permissions or blanks it must earn."
+  - rank: 8
+    decision_ref: decisions/008-public-repo-privacy.yawn
+    leverage: 25.2
+    split: leaning
+    question: "Is this public repository a public surface that must carry sanitized summaries only, or a source record that keeps full detail, including local file paths and real family names?"
+    why: "agents/yawn.bot.policy.yawn says public surfaces carry no private links and sanitized summaries only, yet the active tree holds 15 references to C:/Users/dave paths and one example built on the maintainer's real family, so the privacy boundary is stated but not held. Once answered, every bot that writes a ledger or contract into this repo knows whether workspace: may name a local path, and a child Yawn learns whether it inherits a full-fidelity rule or a redaction rule."
+  - rank: 9
+    decision_ref: decisions/009-audience-primacy.yawn
+    leverage: 24
+    split: genuinely-split
+    question: "Is 'human-readable first, machine-addressable second' a rule about how a .yawn reads and what leads it, or also about where proof effort and currency go — and if only the first, does any record say so?"
+    why: "The first principle in core/design-principles.yawn says human-readable first, yet the root file opens with a runtime identity block before its summary, the machine selector is 218 lines against 33 for the human entry path, the contracts reached v1 while the unified human document is not-yet-specified, and the one human onboarding record is two months stale. Once answered, every child Yawn below Dave knows whether its human summary must lead and stay current with its contracts, or whether the contracts may run ahead so long as the record still reads."
+  - rank: 10
+    decision_ref: decisions/010-list-order-semantics.yawn
+    leverage: 24
+    split: genuinely-split
+    question: "When a record lists things, does the order mean anything, and if only sometimes, how does a reader or a bot know which lists are ranked?"
+    why: "The two written statements say order is not a ladder (scope lenses are locations; questions may be visited in any order), while thirteen unlabelled lists put attain first among target modes, local first among lanes, confused first among sentiments, and the validate chain runs in a fixed order nobody calls fixed. A bot that takes the first item as the default inherits a priority nobody stated; a bot that ignores order in the tie_break list breaks a test."
+  - rank: 11
+    decision_ref: decisions/011-label-first-prove-before-promote.yawn
+    leverage: 24
+    split: genuinely-split
+    question: "May a record be marked active or accepted, or be cited as another record's proof, before its own evidence exists — so long as it is labelled — or must the proof land first?"
+    why: "The written rules say durable memory waits for authority and proof and legacy claims stay historical until restated and proved, yet three nodes cite a status: proposed migration as proof.source, a pattern ledger entry reads accepted with proof 'pending', and eight automations run active under seed-status agent contracts. Once answered, a bot knows whether 'active' on its own contract is a lifecycle fact (it runs) or a claim it must have earned, and whether it may point at a proposal and call it proof."
+  - rank: 12
+    decision_ref: decisions/012-shared-key-vocabulary.yawn
+    leverage: 23.5
+    split: leaning
+    question: "Should there be one shared set of key names for what an agent may and may not do, for where a record sits in the loop, and for what a colour means, or may each record coin its own?"
+    why: "Every authored rule on this axis says one grammar (six fixed loop relations, one relational grammar, exact palette values, one canonical operator), yet across 22 agent and automation files the permit key appears six ways and the deny key seven, and the chrome contract hardcodes hexes the brand contract told it to reference. Once answered, a bot that checks its own boundary can read one key instead of guessing among may/allowed/agent_may, and a child Yawn inherits a vocabulary rather than a naming habit."
+
+held:
+  - decision_ref: decisions/053-container-intelligence-name.yawn
+    reason: "held by core/canonical-extension.yawn creation_gate.on_ambiguity; not ranked"
+
+backlog:
+  proposed: 52
+  held: 1
+  ratified: 0
+  inventory_ref: JUDGMENTS.md
+
+boundary:
+  - "this record describes the bot; it is never a diagnosis of the person on the other side of the slash"
+  - "a state shown from the contracts instead of the ledgers is a claim without proof"
+  - "the bot cannot move this record past awaiting_choice; only a filled choice: in decisions/ can"
+
+proof:
+  covers:
+    - observed_activity
+    - next_question
+    - question_queue
+    - backlog
+  condition: >
+    node scripts/render-bot-state.mjs --check exits 0: the committed record
+    equals what the ledgers, decisions/, and the settled role produce today.
+  falsifier: >
+    A surface shows a bot status this record does not carry, or next_question
+    names a decision whose choice is already filled.
+  status: contract-defined

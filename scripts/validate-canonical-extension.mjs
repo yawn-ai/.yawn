@@ -10,6 +10,13 @@ const requiredFiles = [
 ];
 
 const contentExemptFiles = new Set([
+  // Inventory documents that QUOTE the corpus, including its own alias guards.
+  // They describe the invariant; they do not create artifacts under an alias.
+  "JUDGMENTS.md",
+  "TAXONOMY.md",
+  "HOLDOUT.md",
+  "HOLDOUT_METHOD.md",
+  "scripts/validate-proof-refs.mjs",
   "core/canonical-extension.yawn",
   "migrations/2026-08-17-canonical-extension.yawn",
   "lib/canonical-extension-v1.mjs",
@@ -105,7 +112,9 @@ for (const file of trackedFiles) {
   }
   forbiddenPathPattern.lastIndex = 0;
 
-  if (contentExemptFiles.has(file)) continue;
+  // decisions/ records propose changes to the naming rule itself and must be able
+  // to name the aliases they argue about. Their PATHS are still checked above.
+  if (contentExemptFiles.has(file) || file.startsWith("decisions/")) continue;
   if (!scannedExtensions.has(extname(file).toLowerCase())) continue;
 
   const buffer = readFileSync(file);

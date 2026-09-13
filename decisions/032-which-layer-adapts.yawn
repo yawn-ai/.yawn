@@ -1,0 +1,161 @@
+id: decisions/032-which-layer-adapts
+title: "Questions adapt, chrome and palette do not"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'presentation-adaptivity'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: presentation-adaptivity
+axis_gloss: "whether the surface reshapes itself to the reader and context, or every reader gets the same canonical rendering"
+poles:
+  a: adaptive-presentation
+  b: fixed-canonical-rendering
+split: genuinely-split
+draft_status: full
+leverage: 8.4
+leverage_formula: "judgments_resolved(7) x split_weight(1) x authored_conflict_bonus(1.2)"
+
+question: >
+  Which parts of a surface may change for the reader — the order, wording,
+  pacing and medium of the questions — and which must look the same to everyone
+  — the palette, the chrome, the meaning of a colour?
+
+why_it_matters: >
+  The authored rule says question presentation is noncanonical and may adapt
+  under an explicit preference, and a test pins that tie-break; another test
+  pins eight hex values and two pixel heights as canonical. Both pass, and no
+  record says they govern different layers. Once answered, a bot rendering a
+  View knows which fields it may reshape for an Agent or an accessibility need
+  and which it may not touch, and a child Yawn's stated preference knows how far
+  it can reach.
+
+state_snapshot:
+  description: >
+    3 judgments sit at adaptive-presentation (3 authored) and 4 at
+    fixed-canonical-rendering (0 authored). The repository asserts both directions
+    on this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether accessibility needs (contrast, motion, font size) may override the
+    pinned palette and chrome; core/orientation.yawn lists accessibility as an
+    adaptation input, the brand test does not.
+
+options:
+  - name: A
+    description: >
+      rule: Every layer adapts. Palette, chrome geometry and question presentation
+      all vary by Agent, Arena, accessibility need and accepted preference; the
+      interface-contracts test's hex and pixel pins are removed and yawn-brand-v1
+      becomes a default, not a canon.
+    cost: "Removes the one canonical palette from interface/yawn-brand-v1.yawn and the assertions in tests/interface-contracts.test.mjs; semantic colour roles (observation, question, agent) lose their fixed meaning."
+    risk: "Two readers of the same coordinate see different colours for the same role and the repo can no longer say what a View looks like."
+    reversibility: true
+    proof_needed: "Delete the palette assertion from tests/interface-contracts.test.mjs and add a preference field for palette to schemas/projection-preference.v1.schema.json."
+    evidence_for:
+      - "J0097"
+      - "J0827"
+      - "J1024"
+  - name: B
+    description: >
+      rule: One canonical rendering for everyone. Questions render in
+      canonical_question_order with a fixed exact_rendered_prompt, one palette, one
+      chrome; accepted_question_order_preference and explicit_current_turn_choice
+      are removed from the tie-break.
+    cost: "Rewrites core/orientation.yawn orientation_inquiry.rule and core/inquiry-selection.yawn determinism.tie_break; breaks tests/orientation-map-v0.1.test.mjs which asserts the preference-aware ordering."
+    risk: "Accessibility need is no longer an adaptation input, which core/orientation.yawn names explicitly."
+    reversibility: true
+    proof_needed: "Change tests/orientation-map-v0.1.test.mjs to assert canonical_question_order is the only tie-break; today it asserts the opposite and passes."
+    evidence_for:
+      - "J0480"
+      - "J0490"
+      - "J0868"
+      - "J1232"
+  - name: C
+    description: >
+      rule: Three layers, named once in interface/node.yawn: the semantic layer is
+      fixed (question_key set, semanticColorRoles, coordinate); the chrome layer is
+      fixed and test-pinned (yawn-brand-v1 palette, yawn-chrome-v1 heights,
+      prohibited banners and motifs); the presentation layer adapts (question order,
+      wording, pacing, representation_medium) but only under an explicit accepted
+      preference or accessibility need, with the question_key unchanged and a hashed
+      selection receipt. Every interface contract declares which layer it governs.
+    cost: "One paragraph in interface/node.yawn and a layer: line on each of the fifteen interface contracts."
+    risk: "Accessibility contrast needs collide with the pinned palette and no layer owns the conflict."
+    reversibility: true
+    proof_needed: "Keep tests/interface-contracts.test.mjs (palette, chrome) and tests/orientation-map-v0.1.test.mjs (tie-break) as they are; add one assertion that interface/node.yawn declares presentation_layers with fixed and adaptive lists and that every interface/*.yawn carries a layer: value from that list."
+    evidence_for:
+      - "J0097"
+      - "J0827"
+      - "J1024"
+      - "J0868"
+      - "J1232"
+
+recommendation:
+  option_ref: C
+  confidence: 0.8
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    This is the rare axis where both sides carry a proof-attached judgment and
+    both tests pass today, which means the tree already lives in C and only the
+    sentence naming the layers is missing. The adaptive side is authored (three
+    judgments) and scoped to question presentation; the fixed side is revealed and
+    scoped to chrome and colour roles. Writing the layers down costs a paragraph
+    and changes no test; the one genuine open point is where accessibility
+    overrides sit.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "interface/node.yawn names the fixed and adaptive layers and every interface/*.yawn carries a layer: line."
+    - "tests/interface-contracts.test.mjs and tests/orientation-map-v0.1.test.mjs both still pass unchanged."
+    - "A new per-reader palette or chrome variation fails a test."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    An interface contract varies palette or chrome per reader while
+    interface/yawn-brand-v1.yawn still claims one canonical palette and the suite
+    stays green.
+  status: proposed
+
+resolves:
+  - "J0097"
+  - "J0827"
+  - "J1024"
+  - "J0480"
+  - "J0490"
+  - "J0868"
+  - "J1232"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

@@ -1,0 +1,153 @@
+id: decisions/052-credit-the-whole-lineage
+title: "Credit every named author, not just the lead"
+kind: decision-frame
+record_shape: header
+status: draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-12; drafted from the JUDGMENTS.md reversal axis 'credit-reach'; recommendation is an attributed inference and ratifies nothing"
+version: "1.0.0"
+updated: 2026-09-12
+template_ref: templates/decision.yawn
+principal_ref: principal:dave
+
+axis: credit-reach
+axis_gloss: "how far back credit is carried: every upstream influence named, or credit stopped at the immediate author"
+poles:
+  a: bounded-self-credit
+  b: full-lineage-credit
+split: lone-exception
+draft_status: full
+leverage: 1.4
+leverage_formula: "judgments_resolved(3) x split_weight(0.4) x authored_conflict_bonus(1.2)"
+
+question: >
+  When YAWN borrows an idea, must every named author of the source be credited
+  wherever the idea appears, or is naming the lead author on the page enough if
+  the full list lives in the record?
+
+why_it_matters: >
+  references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn authors
+  attribution_precedes_extension: true, and
+  core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn warns in section 16.1 against
+  implying Vervaeke alone authored the framework, yet the same document's
+  completion checklist requires only visible Vervaeke attribution on the arena
+  page. Once answered, a bot that renders a public page or a child Yawn that
+  extends a borrowed frame knows the minimum credit it must carry and where the
+  full lineage has to be reachable from.
+
+state_snapshot:
+  description: >
+    1 judgments sit at bounded-self-credit (0 authored) and 2 at
+    full-lineage-credit (1 authored). The repository asserts both directions on
+    this axis.
+  attributed_to: JUDGMENTS.md
+  epistemic_status: observed
+  source_refs:
+    - JUDGMENTS.md
+    - TAXONOMY.md
+
+lacuna:
+  kind: unselected_choice
+  description: >
+    Whether Dave regards an external service (service:supabase in
+    examples/waiting-turn.yawn) as a party that is credited as an arena
+    participant or as a tool; the extraction filed that under this axis and it is
+    really a separate question.
+
+options:
+  - name: A
+    description: >
+      rule: A visible surface credits the lead author or tradition; the full author
+      list lives in the source record's front matter (inspired_in_part_by with
+      authors, work, year, DOI) and is reachable by link. Section 20's checklist
+      item stands as written.
+    cost: "None to the tree; one sentence in section 16.1 conceding that the page may name the lead author alone."
+    risk: "The page does exactly what section 16.1 says not to do, and readers who never follow the link take the lead author for the sole author."
+    reversibility: true
+    proof_needed: "None beyond the existing front-matter; a test could only assert that the ARENA record carries inspired_in_part_by, which it does."
+    evidence_for:
+      - "J0195"
+  - name: B
+    description: >
+      rule: Every surface that presents a borrowed framing carries the full author
+      list as the source record states it, and attribution precedes extension
+      everywhere. No page, README, or rendered View may name fewer authors than the
+      record it draws on.
+    cost: "Rewrites the section 20 checklist item and docs/research-basis.md; every future public surface carries two full author lists."
+    risk: "Long attribution blocks crowd the 'quiet host entry' the chrome contract requires, and public_root prohibits explanatory header copy."
+    reversibility: true
+    proof_needed: "New tests/attribution-lineage.test.mjs: for each record with inspired_in_part_by, every public surface that cites it (ARENA section 20, docs/research-basis.md, README.md) contains each author name; today the checklist item fails."
+    evidence_for:
+      - "J0412"
+      - "J0663"
+  - name: C
+    description: >
+      rule: Full lineage lives in the record (front matter with authors, work, year,
+      DOI; attribution_precedes_extension: true; an attribution_boundary stating
+      that none of the named authors endorse YAWN). A rendered surface carries at
+      least the lead author and the year for each borrowed work plus a visible link
+      to the lineage record, and may never phrase the credit so as to imply sole
+      authorship. Section 20's checklist item is rewritten to name both works with
+      their lead authors and to link section 16.1.
+    cost: "One checklist line, one line in docs/research-basis.md, one sentence in references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn synthesis_contract."
+    risk: "'Implies sole authorship' is a judgment call only a human can make, so the test can check names and links but not phrasing."
+    reversibility: true
+    proof_needed: "New tests/attribution-lineage.test.mjs: every public surface citing a record with inspired_in_part_by names each work's lead author and year and links to the record; phrasing is listed under proof.human_review_required in the ARENA record."
+    evidence_for:
+      - "J0663"
+      - "J0195"
+
+recommendation:
+  option_ref: C
+  confidence: 0.65
+  epistemic_status: inferred
+  authority: none
+  reasoning: >
+    The authored rule is on the full-lineage side, and the lone exception is a
+    checklist line inside the very document that authored the warning against it,
+    so this is a self-contradiction within one file rather than a considered
+    carve-out. B is the pure form but collides with the chrome contract's
+    quiet-root rule and the public_root prohibition on explanatory copy, both of
+    which are test-pinned; C keeps the full list in the record, the link on the
+    page, and forbids the phrasing section 16.1 already forbids. J0412 (an
+    external service listed as an arena participant) is a weak fit for this axis
+    and is resolved here only in the sense that C does not bear on it.
+
+target_condition:
+  mode: decide
+  proposed_by: agent-on-behalf
+  affected_principals:
+    - principal:dave
+  ratification_status: proposed
+  sufficient_when:
+    - "core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 20 checklist names both works with lead authors and year and links section 16.1."
+    - "docs/research-basis.md carries the same credit and a link to the lineage record."
+    - "A test in tests/ asserts the names and links on every public surface citing a lineage record, and the phrasing check is listed under human_review_required."
+
+choice:
+  selected_by: ""
+  option_ref: ""
+  authority_ref: ""
+
+proof:
+  covers:
+    - target_condition
+    - options
+  falsifier: >
+    A public page credits Vervaeke alone, or extends a borrowed frame without
+    naming its source, after ratification and no test fails.
+  status: proposed
+
+resolves:
+  - "J0195"
+  - "J0412"
+  - "J0663"
+
+boundary:
+  - "confidence cannot ratify an objective; this record proposes and Dave decides"
+  - "the REVEALED judgments cited here describe what artifacts do, not what Dave chose"
+
+source:
+  template: templates/decision.yawn
+  axis: TAXONOMY.md
+  inventory: JUDGMENTS.md

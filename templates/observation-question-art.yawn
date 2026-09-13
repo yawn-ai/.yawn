@@ -1,6 +1,7 @@
 id: templates/observation-question-art
 title: "Observation to Question to Art authoring guide"
 kind: authoring-guide
+record_shape: header
 status: draft
 updated: 2026-08-16
 
