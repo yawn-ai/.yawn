@@ -28,7 +28,7 @@ routes:
   pattern_candidate: templates/q-space-pattern-candidate.yawn
   transition_event: templates/q-space-transition-event.yawn
   proof_event: templates/q-space-proof-event.yawn
-  runtime: https://github.com/yawn-ai/web-game/tree/main/src/app/q-space
+  runtime: https://github.com/yawn-ai/yawn.bot/tree/main/src/app/q-space
 
 rules:
   - "Repeated answers may create a Pattern candidate; they never create truth or closure."

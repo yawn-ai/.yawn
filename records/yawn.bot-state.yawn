@@ -5,14 +5,17 @@ record_shape: header
 status: active
 authored_by: agent-on-behalf
 authored_via: "scripts/render-bot-state.mjs, from the ledgers, decisions/, and core/entity-and-coupling.yawn; regenerate rather than edit"
-updated: 2026-09-12
+updated: 2026-09-13
 generated_by: scripts/render-bot-state.mjs
 
 purpose: >
   One record a surface can read to show the bot's state truthfully. Every line
-  names where it came from. The dropdown at yawn.bot/dave and the chat surface
-  at yawn.bot/dave/chat read this record; they live in the runtime repository
-  (agents/yawn.bot.yawn identity.repository) and are not wired from here.
+  names where it came from. The runtime repository (agents/yawn.bot.yawn
+  identity.repository) vendors this record and pins its blob in its protocol
+  lock; yawn.bot/dave and its chat view read that pinned copy to lead with
+  next_question and to recall principal_role_settled. The header status there
+  is not yet read from this record. A stale pin is the runtime's to bump by a
+  reviewed change, not this record's to push.
 
 runtime_ref: agents/yawn.bot.yawn
 relationship: "yawn.bot/dave"
@@ -29,7 +32,7 @@ loop_status_reason: >
 observed_activity:
   last_observed_run: 2026-07-04
   observed_from: records/automation-log.yawn
-  as_of: 2026-09-12
+  as_of: 2026-09-13
   epistemic_status: observed
   note: >
     The newest timestamp in any bot ledger in this repository. The automation

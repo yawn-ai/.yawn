@@ -89,9 +89,12 @@ generated_by: scripts/render-bot-state.mjs
 
 purpose: >
   One record a surface can read to show the bot's state truthfully. Every line
-  names where it came from. The dropdown at yawn.bot/dave and the chat surface
-  at yawn.bot/dave/chat read this record; they live in the runtime repository
-  (agents/yawn.bot.yawn identity.repository) and are not wired from here.
+  names where it came from. The runtime repository (agents/yawn.bot.yawn
+  identity.repository) vendors this record and pins its blob in its protocol
+  lock; yawn.bot/dave and its chat view read that pinned copy to lead with
+  next_question and to recall principal_role_settled. The header status there
+  is not yet read from this record. A stale pin is the runtime's to bump by a
+  reviewed change, not this record's to push.
 
 runtime_ref: agents/yawn.bot.yawn
 relationship: "yawn.bot/dave"

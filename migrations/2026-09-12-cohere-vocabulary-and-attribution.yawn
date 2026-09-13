@@ -5,7 +5,7 @@ record_shape: header
 status: active
 authored_by: agent-on-behalf
 authored_via: "Claude Code session on Dave's behalf, 2026-09-12; changes proposed from JUDGMENTS.md and accepted by Dave in conversation; not a mass rewrite"
-updated: 2026-09-12
+updated: 2026-09-13
 supersedes: none
 inventory_ref: JUDGMENTS.md
 
@@ -73,6 +73,30 @@ what_changed:
         (a0ff2f4), so the correction is one of address, not content.
       epistemic_status: reported
       old_address_kept_as: superseded_repository
+    - change: "the remaining active records that named web-game as the runtime now name yawn.bot: examples/cold-start-agent.yawn, scripts/verify-cold-start.ps1, q-space/node.yawn, questions/open-questions.yawn"
+      applied: 2026-09-13
+      why: >
+        The 2026-07-11 repository-slug question in questions/open-questions.yawn
+        is answered by the same statement and moved to recently_resolved as
+        answered-provisionally (reported, recorded on Dave's behalf); the
+        2026-07-11 answer naming web-game is marked superseded, not deleted.
+        One open question replaces it: when web-game is archived and which
+        links must move first. Historical records (the 2026-07-11 promotion
+        receipt, the cold-start proof, the drift ledger, the MVB-1 deliverable)
+        keep the old address as history.
+  runtime_surface:
+    - change: "yawn.bot/dave and its chat view read a vendored, pinned copy of records/yawn.bot-state.yawn"
+      where: "yawn-ai/yawn.bot pull request 157, branch claude/dave-next-question-r0ysdf; this repository's pull request 33 carries the record"
+      what_the_surface_shows: >
+        The next highest-leverage open decision first, then the ranked queue,
+        then Dave's own inquiries, then the judgments he has made; the settled
+        role is recalled from principal_role_settled with its why and is the
+        purpose vector of the page; the two support expanders appear only under
+        judgments. The header status there still comes from Supabase
+        connectivity, not from observed_activity.
+      pin_rule: "the runtime pins the record's git blob in protocol/dot-yawn.lock.json; a stale pin is bumped there by a reviewed change"
+      epistemic_status: observed
+      proof: "yawn.bot tests/unit/dave-public-mission.test.tsx, tests/unit/yawn-bot-state-record.test.ts, tests/e2e/dave-public-model.spec.ts"
   entry:
     - added: CLAUDE.md
       why: "one file that is true on landing, for agents"
@@ -90,8 +114,10 @@ not_migrated:
     why: "declared and ranked, not converted; a shape migration needs its own receipt with fixtures"
   - what: "the container entity's name"
     why: "held under core/canonical-extension.yawn creation_gate.on_ambiguity; decisions/053"
-  - what: "the yawn.bot/dave dropdown and chat surface"
-    why: "they live in the runtime repository; this receipt gives them one record to read"
+  - what: "the yawn.bot/dave header status dropdown"
+    why: "it lives in the runtime repository and still reads Supabase connectivity; the page body and the chat view read this repository's bot-state record as of yawn-ai/yawn.bot pull request 157 (see runtime_surface)"
+  - what: "archiving yawn-ai/web-game"
+    why: "an outward-facing GitHub action for Dave to take; the intent is recorded in questions/open-questions.yawn"
 
 rollback: >
   Every change is additive and lives in named files. Remove the four tests, the
