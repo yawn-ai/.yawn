@@ -269,6 +269,7 @@ question_packet_links:
   orientation_nine: question-packets/orientation-nine.yawn
   turn_close: question-packets/turn-close.yawn
   polanyi: question-packets/polanyi.yawn
+  game_slots: question-packets/game-slots.yawn
 
 template_links:
   basic: templates/basic.yawn

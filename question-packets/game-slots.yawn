@@ -1,0 +1,171 @@
+id: question-packets/game-slots
+title: "Game slots: seven questions a new Yawn asks by being empty"
+kind: question-packet
+record_shape: header
+status: draft
+version: 0.1.0-draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; the seven slots, their order, and the reason opponent and win are never cut are Dave's design for yawn.bot/{user}/new, restated; the leverage numbers and every seal are the agent's, not Dave's"
+updated: 2026-09-13
+runtime_surface: https://yawn.bot/new
+loop_ref: core/articulation-floor.yawn
+seal_schema_ref: schemas/articulation-floor.v0.1.schema.json
+
+purpose: >
+  Ask the orientation questions by showing the structure empty instead of
+  composing a sentence. A new Yawn renders seven grey slots; each empty slot is
+  a question and the label is the ask. The person fills slots by talking, and
+  the surface reads their exact words into the slots and shows its work: which
+  fragment filled which slot, who it is answerable to, and, for a slot the
+  reader has not stated, the guess the bot sealed before they said it.
+
+one_principle: >
+  A filled slot is a proposition. An empty slot is a question. The same record
+  holds both, so nothing has to be decided in advance about which the system
+  stores: a slot is a question until it is filled and a proposition after.
+
+relation_to_orientation_nine:
+  rule: projection_of
+  target: question-packets/orientation-nine.yawn
+  note: >
+    These are not a second ontology and not nine renamed keys. They are a
+    compression of the orientation projection into the seven that tell a story
+    about a game, for the one surface where a person arrives with nothing. Each
+    slot names the orientation key it feeds; a fill is source for that key, not
+    an answer to it. core/holarchy.yawn projection_of is the typed pointer.
+
+projection_rule: >
+  A surface may render these in any order, wording, or medium while
+  question_key stays stable. Skipped slots stay empty and are lacunae, never
+  filled to look complete. The reader's fill is an answer record; `you` stays
+  null here and is filled per principal by their own records.
+
+attribution_rule: >
+  Every fill carries `by`. A fill the person stated is answerable to them and
+  is `reported`. A fill the parser read from a cue is answerable to the parser,
+  is `inferred`, and is sealed. Measured 2026-09-12 in this repository: 100 of
+  194 records were last written by an agent identity, so a corpus parsed
+  without `by` would return borrowed judgment as the principal's. The field is
+  the guard against that, and it is why a dump of years of chat history can be
+  read into slots at all.
+
+seal_rule: >
+  An inferred fill is a prediction of what the person would say, so it is
+  sealed with lib/articulation-floor-v0.1.mjs at the moment the words arrived,
+  blind, and revealed only when the person states that slot themselves. The
+  reveal is scored hit, partial, or miss against their words. No seal, no
+  inferred fill: a guess that can be edited after the answer is not a
+  measurement.
+
+next_move_rule: >
+  The eighth row is derived, never authored: the highest-leverage empty slot,
+  or, when an existing game matches the `game` slot, continuing there instead
+  of splitting the map, or, when the seven are filled, the check that no other
+  game is being played inside this one. Leverage below is declared, not
+  measured; a floor from core/articulation-floor.yawn replaces it when one
+  exists. Rank is not importance, truth, obligation, or permission
+  (core/inquiry-selection.yawn).
+
+questions:
+  - question_key: game
+    default_display_order: 1
+    default_prompt: "What game is this?"
+    leverage: 100
+    basis: "No other slot means anything until the game is named."
+    maps_to: [scope, intent]
+    you: null
+
+  - question_key: level
+    default_display_order: 2
+    default_prompt: "What level are you at in it?"
+    leverage: 40
+    basis: "Level 0 is the same for every game: still naming it. It closes last."
+    maps_to: [current-state]
+    you: null
+
+  - question_key: arena
+    default_display_order: 3
+    default_prompt: "Where is it played?"
+    leverage: 70
+    basis: "The arena decides which rules and participants can apply at all."
+    maps_to: [placement, boundary]
+    you: null
+
+  - question_key: participants
+    default_display_order: 4
+    default_prompt: "Who else is in this?"
+    leverage: 60
+    basis: "Participants fix who a move can reach and who can move back."
+    maps_to: [perspective]
+    you: null
+
+  - question_key: opponent
+    default_display_order: 5
+    default_prompt: "What is in the way?"
+    leverage: 90
+    basis: "The opponent carries the narrative; without one there is no game, only a record."
+    maps_to: [lacuna, boundary]
+    you: null
+
+  - question_key: rules
+    default_display_order: 6
+    default_prompt: "What are the rules on duty?"
+    leverage: 50
+    basis: "Rules say which standards apply while this game is running."
+    maps_to: [boundary]
+    you: null
+
+  - question_key: win
+    default_display_order: 7
+    default_prompt: "What does winning look like?"
+    leverage: 85
+    basis: "Win is the other narrative slot: the condition the game exists to reach."
+    maps_to: [movement, proof]
+    you: null
+
+lattice_note:
+  claim: >
+    Filled slots are attributes over records, so games split and group by the
+    same operation: records sharing attributes form a tighter game, games
+    sharing attributes roll up. The hierarchy is computed from the slots rather
+    than authored.
+  epistemic_status: inferred
+  attributed_to: agent-on-behalf
+  source_refs: [core/holarchy.yawn, question-packets/orientation-nine.yawn]
+  not_implemented: >
+    No lattice is computed anywhere in this repository or in the runtime today.
+    The runtime matches a filled `game` slot against existing records by term
+    overlap and offers to continue there. Writing this down is a claim about
+    what the slots make possible, not a claim that it exists.
+
+boundaries:
+  - "a fill is source for an orientation key, never a ratified answer"
+  - "an inferred fill is a proposal and stays inferred until the person states it"
+  - "matching an existing game proposes navigation; moving an expression into it is the owner's press"
+  - "nothing here activates a bot, spends, publishes, or writes outside the person's own record"
+
+proof:
+  source:
+    - question-packets/orientation-nine.yawn
+    - core/articulation-floor.yawn
+    - core/inquiry-selection.yawn
+    - lib/articulation-floor-v0.1.mjs
+  covers:
+    - questions
+    - seal_rule
+    - attribution_rule
+  not_covered:
+    - lattice_note
+    - next_move_rule
+  status: draft-backed
+
+runtime_mirror:
+  repository: "https://github.com/yawn-ai/yawn.bot"
+  module: "src/domain/yawn-game-slots.ts"
+  proof: "tests/unit/yawn-game-slots.test.ts"
+  note: >
+    The runtime mirror of this packet and its parser are proved in the product
+    repository: the seven keys and their order, the seal hash recomputed with
+    these exact bytes, the fragment offsets, and the reveal scoring. Those paths
+    are in that tree, not this one, so they are named here rather than in proof:.
+    Nothing in this tree executes the packet yet.

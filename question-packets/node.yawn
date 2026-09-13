@@ -14,6 +14,7 @@ holds:
   - canonical nine-question orientation projection
   - turn close and replay packet
   - Polanyi axes packet: seven sealed questions about what can be said
+  - game slots packet: the seven slots a new Yawn asks by being empty
 
 receives:
   - simple user answers
@@ -44,6 +45,7 @@ links:
   - question-packets/orientation-nine.yawn
   - question-packets/turn-close.yawn
   - question-packets/polanyi.yawn
+  - question-packets/game-slots.yawn
   - core/inquiry-selection.yawn
   - core/articulation-floor.yawn
   - templates/full.yawn
@@ -58,5 +60,6 @@ proof:
     - question-packets/orientation-nine.yawn
     - core/inquiry-selection.yawn
     - question-packets/polanyi.yawn
+    - question-packets/game-slots.yawn
     - scripts/validate-articulation-floor-v0.1.mjs
   status: draft-backed
