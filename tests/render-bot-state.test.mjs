@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { extractSealsFromYawn, verifySeal } from "../lib/articulation-floor-v0.1.mjs";
 
 // The bot-state renderer decides what "open" means. A decision Dave has chosen (choice.selected_by
 // filled, status superseded) must leave next_question and the queue; a held one is listed as held.
@@ -61,7 +62,11 @@ async function fixture(extra = {}) {
 
 recommendation:
   option_ref: C
+  confidence: 0.7
   authority: none
+  reasoning: >
+    The exception is
+    already written.
 ` }));
   await writeFile(path.join(root, "decisions", "004-held.yawn"), decision("004", "held", { leverage: "held", split: "held" }));
   for (const [name, text] of Object.entries(extra)) await writeFile(path.join(root, "decisions", name), text);
@@ -99,6 +104,12 @@ test("a chosen decision leaves the queue; the highest open one is next; held is 
   // candidates: names and descriptions from the record's options, the recommendation marked
   assert.match(out, /^next_question:[\s\S]*?  candidates:\n    - name: A\n      description: "Keep the first pole\."\n      recommended: false\n    - name: B\n      description: "Keep the second pole\."\n      recommended: false\n    - name: C\n      description: "Write the exception down\."\n      recommended: true\n/m);
   assert.match(out, /decision_ref: decisions\/001-lower\.yawn\n[\s\S]*?    candidates:\n    \[\]\n/m);
+  // the seal: the recommendation and its reasoning, hashed, dated by the record, anchored (blind: false)
+  assert.match(out, /^next_question:[\s\S]*?  seal:\n    question: decisions\/003-higher\.yawn\n    axis: unlabelled\n    predicted_answer: "C"\n    predicted_reason: "The exception is already written\."\n    confidence: 0\.7\n    model: "decisions\/003-higher\.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"\n    t_sealed: "2026-09-13T00:00:00Z"\n    blind: false\n    source_refs: \[decisions\/003-higher\.yawn\]\n    hash: sha256:[a-f0-9]{64}\n  seal_rule: >/m);
+  const seals = extractSealsFromYawn(out);
+  assert.equal(seals.length, 2, "next_question and the one queued decision with a recommendation");
+  for (const { seal } of seals) assert.deepEqual(verifySeal(seal), []);
+  assert.match(out, /decision_ref: decisions\/001-lower\.yawn\n[\s\S]*?    seal:\n    null\n/m, "no recommendation, no seal");
   assert.equal(render(root).status, 0);
   assert.equal(spawnSync(process.execPath, [SCRIPT, "--check"], { env: { ...process.env, YAWN_ROOT: root }, encoding: "utf8" }).status, 0);
 });

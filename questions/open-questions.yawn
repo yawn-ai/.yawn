@@ -11,6 +11,30 @@ purpose: >
 template: templates/open-question.yawn
 
 open_questions:
+  - question: "Where do the sealed-question answer records persist (the answer and reason_match beats of core/articulation-floor.yawn), so that records/articulation-floor.yawn can be recomputed from more than one device?"
+    coordinate: "runtime/articulation-answer-persistence"
+    why_it_matters: "On 2026-09-13 every queued decision in records/yawn.bot-state.yawn and every axis in question-packets/polanyi.yawn carries a sealed prediction; the runtime reveals it after an answer and asks whether the sealed reason was the reason. Those answer records are what the floor is computed from, and today they live only on the answering device, so the public slice at https://yawn.bot/status shows n zero and a device-local floor beside it. This is the proposition-persistence question below, extended to a record with a schema (schemas/articulation-floor.v0.1.schema.json) and a validator; the same answer should settle both."
+    evidence_needed:
+      - the answer to runtime/proposition-persistence below
+      - one round trip: an answer record written from the surface, read back by lib/articulation-floor-v0.1.mjs computeFloor, and shown on /status with its n
+      - the authority flags under which a runtime may append to the answer ledger
+    owner: Dave
+    question_status: open
+    blocks_action: false
+    review_after: "before any floor is read as a verdict (ten closed records)"
+
+  - question: "Which model may write the seal for a question that carries no attributed recommendation, and what re-ask gap and cap should the loop use?"
+    coordinate: "runtime/seal-model-and-cadence"
+    why_it_matters: "A decision's seal is its recommendation and needs no model; the Polanyi packet's seals were written by the agent from the records it cites. Any other question (a saved Yawn's inquiries, Dave's own open inquiries) has no prediction to seal without a provider call, which is a paid effect that needs Dave's authorization. core/articulation-floor.yawn states a 21-day re-ask gap and a one-in-five cap as defaults; both are tunable and neither has been chosen by Dave."
+    evidence_needed:
+      - which provider and version, under what approval boundary, may seal a prediction
+      - the cadence Dave wants for re-asks, or confirmation of the defaults
+      - a record of the first ten closed answers so the defaults can be judged against data
+    owner: Dave
+    question_status: open
+    blocks_action: false
+    review_after: "before the loop is extended past decisions and the Polanyi packet"
+
   - question: "Where does an answer given on yawn.bot/dave to an open decision persist: a bound orientation stream for that coordinate, a runtime table, or a proposal record in this repository, and under which authority flags?"
     coordinate: "runtime/proposition-persistence"
     why_it_matters: "On 2026-09-13 yawn.bot/dave began opening each ranked decision in place with its candidates and the chat composer; what Dave writes there is sorted to a proposition and kept on his device, and 'Continue in a Yawn' hands it to /new. The decision records here say a chosen candidate is his proposal until he fills choice:, but nothing says where that proposal lives between the device and the record. Until answered, the device thread and the /new handoff are the whole path, and a second device sees nothing."

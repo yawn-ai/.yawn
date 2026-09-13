@@ -13,6 +13,7 @@ import { readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import { seal } from "../lib/articulation-floor-v0.1.mjs";
 
 // YAWN_ROOT lets a test point the renderer at a fixture tree; production runs read the repository.
 const ROOT = process.env.YAWN_ROOT ? path.resolve(process.env.YAWN_ROOT) : path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -56,7 +57,25 @@ const optionsOf = (t) => {
     return { name, description };
   });
 };
-const recommendationOf = (t) => t.match(/^recommendation:\n  option_ref:\s*(\S*)/m)?.[1] ?? "";
+const recommendationOf = (t) => {
+  const block = (t.match(/^recommendation:\n([\s\S]*?)(?=^\S)/m)?.[1] ?? "").replace(/^\s{2}/gm, "");
+  const confidence = Number(scalar(block, "confidence"));
+  return { option_ref: scalar(block, "option_ref") ?? "", confidence: Number.isFinite(confidence) ? confidence : 0, reasoning: folded(block, "reasoning") ?? "" };
+};
+// The seal: the bot's prediction of Dave's answer, written before any surface renders the question.
+// For a decision it is the record's attributed recommendation and its reasoning, hashed with
+// lib/articulation-floor-v0.1.mjs so it cannot change after he answers (core/articulation-floor.yawn).
+// blind is false: the question-first contract shows the recommendation beside the candidates.
+const sealOf = (d) => d.recommended && d.options.some((o) => o.name === d.recommended)
+  ? seal({ question: d.file, axis: d.axis ?? "unlabelled", predicted_answer: d.recommended, predicted_reason: d.reasoning || d.why, confidence: d.confidence,
+      model: `${d.file} recommendation, attributed agent-on-behalf, authority none; no provider call`, t_sealed: `${d.updated}T00:00:00Z`, blind: false, source_refs: [d.file] })
+  : null;
+const sealYaml = (d, indent) => {
+  const s = sealOf(d);
+  if (!s) return `${indent.slice(0, -2)}null`;
+  return [`${indent}question: ${s.question}`, `${indent}axis: ${s.axis}`, `${indent}predicted_answer: ${q(s.predicted_answer)}`, `${indent}predicted_reason: ${q(s.predicted_reason)}`,
+    `${indent}confidence: ${s.confidence}`, `${indent}model: ${q(s.model)}`, `${indent}t_sealed: ${q(s.t_sealed)}`, `${indent}blind: false`, `${indent}source_refs: [${s.source_refs.join(", ")}]`, `${indent}hash: ${s.hash}`].join("\n");
+};
 const candidatesYaml = (d, indent) => d.options.length
   ? d.options.slice(0, 3).map((o) => `${indent}- name: ${o.name}\n${indent}  description: ${q(o.description)}\n${indent}  recommended: ${o.name === d.recommended ? "true" : "false"}`).join("\n")
   : `${indent.slice(0, -2)}[]`;
@@ -91,7 +110,8 @@ for (const f of (await readdir(decDir)).filter((f) => /^\d{3}-.*\.yawn$/.test(f)
     question: folded(t, "question"), why: folded(t, "why_it_matters"), leverage: lev === "held" ? null : Number(lev),
     split: scalar(t, "split"), axis: scalar(t, "axis"),
     status: scalar(t, "status") ?? "",
-    options: optionsOf(t), recommended: recommendationOf(t),
+    options: optionsOf(t), recommended: recommendationOf(t).option_ref, confidence: recommendationOf(t).confidence, reasoning: recommendationOf(t).reasoning,
+    updated: scalar(t, "updated") ?? TODAY,
     ratification: (t.match(/ratification_status:\s*(\S+)/) ?? [])[1] ?? "proposed",
     selected: scalar(t, "  selected_by") ?? "",
   });
@@ -124,7 +144,9 @@ purpose: >
   pull request 160 the header's State control reads loop_status, its reason,
   and observed_activity from this record and projects the next steps from the
   runtime's own loop transitions, and since pull request 161 each open
-  decision opens in place with the candidates listed here. A stale pin is the
+  decision opens in place with the candidates listed here, and each queued
+  question carries the bot's sealed prediction of Dave's answer so the runtime
+  can reveal it after he answers and measure the floor. A stale pin is the
   runtime's to bump by a reviewed change, not this record's to push.
 
 runtime_ref: agents/yawn.bot.yawn
@@ -177,6 +199,17 @@ ${next ? candidatesYaml(next, "    ") : "    []"}
     attributed recommendation marked; choosing one here is Dave's proposal
     until he fills choice: in the record. Cost, risk, and proof_needed stay in
     the record.
+  seal:
+${next ? sealYaml(next, "    ") : "    null"}
+  seal_rule: >
+    The bot's prediction of Dave's answer, sealed before this record renders:
+    the decision's attributed recommendation and its reasoning, hashed with
+    lib/articulation-floor-v0.1.mjs (core/articulation-floor.yawn) so it cannot
+    change after he answers. blind is false because the question-first contract
+    shows the recommendation beside the candidates; a hit here measures
+    agreement with a visible recommendation, not a blind prediction. A surface
+    reveals the seal after the answer and asks whether the sealed reason was the
+    reason; no record closes without that check.
   leverage_formula: "judgments_resolved x split_weight(genuinely-split 1.0 | leaning 0.7 | lone-exception 0.4) x authored_conflict_bonus(both sides authored 1.5 | one side 1.2 | neither 1.0)"
   rule: >
     The highest-leverage proposed decision whose choice is still empty. A
@@ -184,7 +217,7 @@ ${next ? candidatesYaml(next, "    ") : "    []"}
     importance, truth, obligation, or permission (core/inquiry-selection.yawn).
 
 question_queue:
-${open.slice(0, 12).map((d, i) => `  - rank: ${i + 1}\n    decision_ref: ${d.file}\n    leverage: ${d.leverage}\n    split: ${d.split}\n    question: ${q(d.question)}\n    why: ${q(d.why)}\n    candidates:\n${candidatesYaml(d, "      ")}`).join("\n")}
+${open.slice(0, 12).map((d, i) => `  - rank: ${i + 1}\n    decision_ref: ${d.file}\n    leverage: ${d.leverage}\n    split: ${d.split}\n    question: ${q(d.question)}\n    why: ${q(d.why)}\n    candidates:\n${candidatesYaml(d, "      ")}\n    seal:\n${sealYaml(d, "      ")}`).join("\n")}
 
 held:
 ${held.map((d) => `  - decision_ref: ${d.file}\n    reason: "held by core/canonical-extension.yawn creation_gate.on_ambiguity; not ranked"`).join("\n") || "  []"}
@@ -208,7 +241,9 @@ proof:
     - backlog
   condition: >
     node scripts/render-bot-state.mjs --check exits 0: the committed record
-    equals what the ledgers, decisions/, and the settled role produce today.
+    equals what the ledgers, decisions/, and the settled role produce today;
+    scripts/validate-articulation-floor-v0.1.mjs recomputes every seal hash
+    and fails if a queued question has none.
   falsifier: >
     A surface shows a bot status this record does not carry, or next_question
     names a decision whose choice is already filled.

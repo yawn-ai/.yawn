@@ -17,6 +17,8 @@ templates/                 authoring surfaces
 examples/ + fixtures/      explanatory and executable evidence
 docs/                      guides, status, projections, research boundary
 interface/ + q-space/      presentation contracts and projections
+question-packets/          question packets: the nine orientation keys and the seven sealed Polanyi axes
+records/                   generated and receipt records: the bot's state, the measured floor
 dave/                      principal mental models: questions-first records and their page views
 decisions/                 proposed decisions for the principal, one per open axis, ranked by leverage
 agents/                    runtime identities and bounded bot-role contracts
@@ -31,6 +33,12 @@ command, the closed vocabularies, the record shapes, the proof rule, and where
 the decisions and the bot's state live. [`records/yawn.bot-state.yawn`](../records/yawn.bot-state.yawn)
 is generated from the ledgers and [`decisions/`](../decisions/node.yawn) by
 `scripts/render-bot-state.mjs`; surfaces read it rather than the contracts.
+Every queued decision in it carries a sealed prediction of Dave's answer, and
+[`records/articulation-floor.yawn`](../records/articulation-floor.yawn) is
+the floor those seals measure once answers close
+([`core/articulation-floor.yawn`](../core/articulation-floor.yawn)). The
+runtime routes that read these records are listed in `readme.yawn`
+under `runtime_surfaces`: yawn.bot/dave, yawn.bot/polanyi, yawn.bot/status.
 
 ## Retired numbered generation
 

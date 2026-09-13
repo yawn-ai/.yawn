@@ -23,6 +23,10 @@ and historical material so each can be read with the right level of trust.
 5. Compile a signal into an [Objective Holon Draft 0.1](../spec/objective-holons.md).
 6. Resolve adaptive inquiry with the [Orientation Map Draft 0.1](../schemas/orientation-map.v0.1.schema.json)
    and its [closed selection receipt](../schemas/inquiry-selection-receipt.v0.1.schema.json).
+6b. Seal a prediction before a question renders and measure the floor with the
+   [Articulation Floor Draft 0.1](../schemas/articulation-floor.v0.1.schema.json)
+   and its [governing record](../core/articulation-floor.yawn); the
+   [Polanyi packet](../question-packets/polanyi.yawn) is the worked example.
 7. Read [serialization and compatibility](../spec/serialization.md).
 8. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
 
@@ -57,6 +61,8 @@ and historical material so each can be read with the right level of trust.
 | [`examples/`](../examples/) | Informative, inspectable use cases |
 | [`interface/`](../interface/) | Presentation and interaction contracts |
 | [`q-space/`](../q-space/) | Question-oriented projection |
+| [`question-packets/`](../question-packets/) | Question packets: the nine orientation keys and the seven sealed Polanyi axes |
+| [`records/`](../records/) | Generated and receipt records: the bot's state, the measured floor, publication receipts |
 | [`references/`](../references/) and [research basis](research-basis.md) | Evidence, influences, and scientific boundaries |
 | [`migrations/`](../migrations/) | Source-preserving structural receipts and canonical target maps |
 

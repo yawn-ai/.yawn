@@ -1,0 +1,245 @@
+id: question-packets/polanyi
+title: "Polanyi axes: seven questions about what can be said"
+kind: question-packet
+record_shape: header
+status: draft
+version: 0.1.0-draft
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; the seven axes and their marks are Dave's design for the /polanyi surface, restated; each seal is the agent's prediction of Dave's mark from the records cited, sealed before the surface exists"
+updated: 2026-09-13
+loop_ref: core/articulation-floor.yawn
+runtime_surface: https://yawn.bot/polanyi
+floor_surface: https://yawn.bot/status
+seal_schema_ref: schemas/articulation-floor.v0.1.schema.json
+
+purpose: >
+  Project Michael Polanyi's account of tacit knowing into seven questions a
+  person can mark, so that the same card that asks any other question can ask
+  these and the page measures itself. Each axis is a question. It goes through
+  the four beats of core/articulation-floor.yawn: the bot's prediction of the
+  reader's mark is sealed here, the reader marks, the seal is revealed and
+  scored, and the reader scores the sealed reason. The two axes Polanyi never
+  took a position on, timing and fidelity, are where the extension lives if it
+  lives anywhere.
+
+projection_rule: >
+  These are not seven storage fields. A surface may ask them in any order,
+  wording, or medium while question_key stays stable. Skipped marks become
+  lacunae. The reader's mark is an answer record, never a field in this shared
+  packet: you stays null here and is filled per principal by their own answer
+  records, which live where core/articulation-floor.yawn says they may.
+
+marks_rule: >
+  polanyi is Polanyi's own position as reported by the sources below, on the
+  same scale the reader marks. contested_by names who argued against it;
+  contest_note says the argument in one line. Neither is a claim about the
+  reader. Polanyi's mark is shown as content because it is the question; the
+  seal is not shown until the reader has marked.
+
+seal_rule: >
+  Every axis carries one seal: the bot's prediction of the reader's mark and
+  the reason it expects that mark, read from the records in source_refs on the
+  reader's behalf, timestamped and hashed with lib/articulation-floor-v0.1.mjs
+  before any surface rendered the question. A surface hides the seal until the
+  mark is made (blind: true); this public record does not hide it, because
+  what the hash protects is the bot's inability to change its guess after the
+  answer, not the reader's ability to look. A reader who looks first has
+  anchored their mark and should say so. scripts/validate-articulation-floor-v0.1.mjs
+  recomputes every hash and fails if any axis has no seal: no seal, no question.
+
+answer_contract_ref: question-packets/orientation-nine.yawn#answer_contract
+answer_record_ref: templates/answer.yawn
+floor_record_ref: records/articulation-floor.yawn
+
+questions:
+  - question_key: floor
+    default_display_order: 1
+    default_prompt: "Can what you know be fully said?"
+    polanyi: "no"
+    contested_by: [collins]
+    contest_note: "relational tacit knowledge can be made explicit"
+    candidates: ["no", "partly", "yes"]
+    maps_to: [lacuna, proof]
+    you: null
+    seal:
+      question: "question-packets/polanyi.yawn#floor"
+      axis: floor
+      predicted_answer: "partly"
+      predicted_reason: "Dave's own closing line splits the mechanical, carried by intelligence, from the meaningful, carried by humans, and HOLDOUT.md measured his stated judgments predicting his revealed ones at precision 0.297; the records already commit to a remainder that cannot be said."
+      confidence: 0.6
+      model: "agent-on-behalf (Claude Code session, 2026-09-13) reading the records in source_refs on Dave's behalf; a prediction of Dave's mark, not Dave's mark; no provider call"
+      t_sealed: "2026-09-13T05:40:00Z"
+      blind: true
+      source_refs: [index.html, HOLDOUT.md, JUDGMENTS.md]
+      hash: sha256:736b8f463245067130604f6dcfd166b6e25287658e972a548366f1c50b475f23
+
+  - question_key: exclusivity
+    default_display_order: 2
+    default_prompt: "Can you attend to a thing and through it at once?"
+    polanyi: "never"
+    contested_by: []
+    candidates: ["never", "sometimes", "always"]
+    maps_to: [scope, perspective]
+    you: null
+    seal:
+      question: "question-packets/polanyi.yawn#exclusivity"
+      axis: exclusivity
+      predicted_answer: "sometimes"
+      predicted_reason: "The aperture contract lets one record be looked at through several lenses without changing it, and the compute press on a question row opens what is missing from a question while it is being asked; the records treat attending to and through as switchable, not exclusive."
+      confidence: 0.5
+      model: "agent-on-behalf (Claude Code session, 2026-09-13) reading the records in source_refs on Dave's behalf; a prediction of Dave's mark, not Dave's mark; no provider call"
+      t_sealed: "2026-09-13T05:40:00Z"
+      blind: true
+      source_refs: [core/projection-and-aperture.yawn, records/inquiry-aperture-one-question-face.yawn]
+      hash: sha256:361740c3161fdd92b59c52c0b2318085d29f938935a8844365006a918217c4f1
+
+  - question_key: reversibility
+    default_display_order: 3
+    default_prompt: "After you break a skill apart, can you put it back?"
+    polanyi: "usually"
+    contested_by: [tsoukas]
+    contest_note: "not back to not-knowing"
+    candidates: ["rarely", "usually", "always"]
+    maps_to: [movement, proof]
+    you: null
+    seal:
+      question: "question-packets/polanyi.yawn#reversibility"
+      axis: reversibility
+      predicted_answer: "usually"
+      predicted_reason: "Every structural change in the protocol carries a source-preserving receipt so the prior state can be rebuilt, yet the migration record says the numbered generation was absorbed, not restored; the records expect to put a thing back, never back to before it was known."
+      confidence: 0.55
+      model: "agent-on-behalf (Claude Code session, 2026-09-13) reading the records in source_refs on Dave's behalf; a prediction of Dave's mark, not Dave's mark; no provider call"
+      t_sealed: "2026-09-13T05:40:00Z"
+      blind: true
+      source_refs: [migrations/2026-08-17-canonical-extension.yawn, templates/structural-change-receipt.yawn]
+      hash: sha256:28f7c2297b6b8a79035ab84089edf21f01f1e25240b3215edfd7903d88886dcc
+
+  - question_key: timing
+    default_display_order: 4
+    default_prompt: "Does saying what you know have to happen while you're using it?"
+    polanyi: "assumed yes"
+    contested_by: []
+    contest_note: "Polanyi never considered the after-the-fact case"
+    candidates: ["yes", "sometimes", "no"]
+    maps_to: [proof, movement]
+    you: null
+    seal:
+      question: "question-packets/polanyi.yawn#timing"
+      axis: timing
+      predicted_answer: "no"
+      predicted_reason: "The turn-close packet, the session reflection and the De-Yawn brief all articulate a move after it was made; the records are built on saying it afterwards."
+      confidence: 0.7
+      model: "agent-on-behalf (Claude Code session, 2026-09-13) reading the records in source_refs on Dave's behalf; a prediction of Dave's mark, not Dave's mark; no provider call"
+      t_sealed: "2026-09-13T05:40:00Z"
+      blind: true
+      source_refs: [question-packets/turn-close.yawn, core/movement-loop.yawn]
+      hash: sha256:aba1f4959b2d4fb68f7c23697a0696586a8c77d48cd9b321b8e24dbfd1aca5bc
+
+  - question_key: fidelity
+    default_display_order: 5
+    default_prompt: "Is the reason you give the reason that moved you?"
+    polanyi: "silent"
+    contested_by: [nisbett_wilson]
+    contest_note: "Telling More Than We Can Know (1977), Polanyi's line inverted"
+    candidates: ["rarely", "sometimes", "usually"]
+    maps_to: [proof, current-state]
+    you: null
+    seal:
+      question: "question-packets/polanyi.yawn#fidelity"
+      axis: fidelity
+      predicted_answer: "sometimes"
+      predicted_reason: "The proof contract says a move cannot judge itself and the judgment inventory keeps a stated reason separate from what the artifact reveals; the records expect the given reason to sometimes be the moving one and never assume it."
+      confidence: 0.55
+      model: "agent-on-behalf (Claude Code session, 2026-09-13) reading the records in source_refs on Dave's behalf; a prediction of Dave's mark, not Dave's mark; no provider call"
+      t_sealed: "2026-09-13T05:40:00Z"
+      blind: true
+      source_refs: [core/proof-and-boundary.yawn, JUDGMENTS.md]
+      hash: sha256:2648b0669f623a578c919c3c7945d0030c8bdc9998d6f2dace39ad7d31805435
+
+  - question_key: locus
+    default_display_order: 6
+    default_prompt: "Is knowing something you do, or something that's simply true?"
+    polanyi: "personal"
+    contested_by: []
+    candidates: ["something you do", "simply true", "both"]
+    maps_to: [perspective, intent]
+    you: null
+    seal:
+      question: "question-packets/polanyi.yawn#locus"
+      axis: locus
+      predicted_answer: "something you do"
+      predicted_reason: "Observation is the first deliberate move in the orientation contract and a Yawn is bound to a principal, so knowing is recorded as an act by someone; the empirical half of the proof contract keeps claims answerable to evidence without making them impersonal."
+      confidence: 0.6
+      model: "agent-on-behalf (Claude Code session, 2026-09-13) reading the records in source_refs on Dave's behalf; a prediction of Dave's mark, not Dave's mark; no provider call"
+      t_sealed: "2026-09-13T05:40:00Z"
+      blind: true
+      source_refs: [core/orientation.yawn, core/proof-and-boundary.yawn, agents/yawn.bot.yawn]
+      hash: sha256:db6d373c1a6f112930248d9182d246831400a128d3c2ad9874be41f0ca99e3c5
+
+  - question_key: levels
+    default_display_order: 7
+    default_prompt: "Can a whole be read off from its parts?"
+    polanyi: "no"
+    contested_by: []
+    contest_note: "boundary conditions harness the lower level; holonic"
+    candidates: ["no", "partly", "yes"]
+    maps_to: [placement, boundary]
+    you: null
+    seal:
+      question: "question-packets/polanyi.yawn#levels"
+      axis: levels
+      predicted_answer: "no"
+      predicted_reason: "The holarchy contract lets a child inherit selected context but never truth, consent, privacy, proof or authority; the whole is not the sum of what the parts carry."
+      confidence: 0.75
+      model: "agent-on-behalf (Claude Code session, 2026-09-13) reading the records in source_refs on Dave's behalf; a prediction of Dave's mark, not Dave's mark; no provider call"
+      t_sealed: "2026-09-13T05:40:00Z"
+      blind: true
+      source_refs: [core/holarchy.yawn, index.html]
+      hash: sha256:05c5573fcc9818f5bd2510fe0fe50a550c52419cf5747616f0b00f8ce2cd33fc
+
+readout_ref: core/articulation-floor.yawn#readout
+
+sources:
+  - text: "Michael Polanyi, Personal Knowledge (1958) and The Tacit Dimension (1966): we can know more than we can tell; subsidiary and focal awareness; tacit knowing as personal; boundary conditions harnessing a lower level."
+    epistemic_status: reported
+  - text: "Harry Collins, Tacit and Explicit Knowledge (2010): relational tacit knowledge could in principle be made explicit; somatic and collective tacit knowledge resist it differently."
+    epistemic_status: reported
+  - text: "Haridimos Tsoukas, Do we really understand tacit knowledge? (2003): tacit knowledge is not converted into explicit knowledge; articulation displays it in a new context without abolishing the tacit."
+    epistemic_status: reported
+  - text: "Richard Nisbett and Timothy Wilson, Telling More Than We Can Know (1977): verbal reports on mental processes are often confabulated; the reason given is not reliably the reason that moved."
+    epistemic_status: reported
+  - text: "Dave, 2026-09-13, the /polanyi design (surface, records, loop): the seven axes, Polanyi's marks, the contests, and the four beats, recorded on his behalf."
+    epistemic_status: reported
+
+boundaries:
+  - "A mark is the reader's; the seal is the bot's; neither is a diagnosis."
+  - "Seven of seven marked does not mean true, and a hit does not mean the bot understood."
+  - "Polanyi's mark is content, not a recommendation; the scale is a projection, not a measurement of the reader's worth."
+  - "A seal that was seen before the mark is anchored; a floor built from anchored seals measures agreement, not prediction."
+  - "The packet holds no answer; where answers persist is an open question in questions/open-questions.yawn."
+
+links:
+  - core/articulation-floor.yawn
+  - schemas/articulation-floor.v0.1.schema.json
+  - templates/seal.yawn
+  - templates/answer.yawn
+  - templates/floor.yawn
+  - records/articulation-floor.yawn
+  - question-packets/orientation-nine.yawn
+  - core/inquiry-selection.yawn
+  - core/proof-and-boundary.yawn
+
+proof:
+  covers:
+    - questions
+    - seal_rule
+  validator: scripts/validate-articulation-floor-v0.1.mjs
+  tests:
+    - tests/articulation-floor-v0.1.test.mjs
+  condition: >
+    Every axis carries a seal whose hash recomputes from its sealed fields and
+    whose t_sealed is a valid UTC timestamp; the validator exits 1 otherwise.
+  not_covered:
+    - "whether any reader has marked an axis; that lives in answer records"
+    - "whether Polanyi's marks are the right reading of the sources"
+  status: contract-defined

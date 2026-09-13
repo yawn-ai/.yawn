@@ -8,6 +8,12 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Articulation Floor 0.1: seal, answer, and floor records with a schema, a
+  dependency-free lib, a validator, a replayable fixture, and templates; the
+  Polanyi question packet with one sealed prediction per axis; every queued
+  decision in the bot-state record sealed by the renderer; the live floor
+  record; the hub's live-surface section and `runtime_surfaces` in
+  `readme.yawn` naming which record each yawn.bot route reads
 - Questions-first mental-model template, the `dave/` node with number sense and
   prenumerical thinking models and pages, and a dependency-free self-scan that
   fails closed on record/page/node drift

@@ -4,7 +4,7 @@ kind: mental-model-node
 record_shape: header
 authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
 status: active-mixed
-updated: 2026-08-27
+updated: 2026-09-13
 
 purpose: >
   Hold reusable .yawn shapes that people and agents can copy without learning
@@ -33,6 +33,7 @@ holds:
   - objective holon template
   - mental model template (questions first)
   - orientation_inquiry projection fields over an independent orientation_map
+  - seal, answer, and floor templates (the articulation-floor loop)
 
 record_shapes:
   canonical: header
@@ -58,6 +59,9 @@ record_shapes:
     proof.yawn: header
     proof-receipt.yawn: header
     relationship.yawn: header
+    seal.yawn: header
+    answer.yawn: header
+    floor.yawn: header
     arena.yawn: spec-version
     objective-holon.yawn: spec-version
     routing-proposal.yawn: spec-version
@@ -124,12 +128,18 @@ links:
   - core/inquiry-selection.yawn
   - schemas/orientation-map.v0.1.schema.json
   - schemas/inquiry-selection-receipt.v0.1.schema.json
+  - templates/seal.yawn
+  - templates/answer.yawn
+  - templates/floor.yawn
+  - core/articulation-floor.yawn
+  - question-packets/polanyi.yawn
   - schemas/node.yawn
 
 related_question_packets:
   basic: question-packets/basic.yawn
   relationship: question-packets/relationship.yawn
   orientation: question-packets/orientation-nine.yawn
+  polanyi: question-packets/polanyi.yawn
 
 proof:
   source:
@@ -150,4 +160,8 @@ proof:
     - question-packets/orientation-nine.yawn
     - core/inquiry-selection.yawn
     - schemas/inquiry-selection-receipt.v0.1.schema.json
+    - templates/seal.yawn
+    - templates/answer.yawn
+    - templates/floor.yawn
+    - tests/record-shape.test.mjs
   status: draft-backed

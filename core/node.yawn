@@ -2,7 +2,7 @@ id: core/node
 title: "core node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-08-27
+updated: 2026-09-13
 
 purpose: >
   Hold the public core concepts for understanding and using .yawn.
@@ -30,6 +30,7 @@ holds:
   - objective holons and Yawn.bot activation
   - projection and aperture boundaries
   - adaptive inquiry selection and replay receipts
+  - the articulation floor: sealed prediction, answer, reveal, reason check
 
 receives:
   - readme.yawn

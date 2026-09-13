@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 7
-updated: "2026-08-27"
+revision: 8
+updated: "2026-09-13"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -244,6 +244,17 @@ protocol_layers:
     presentation_preferences: schemas/projection-preference.v1.schema.json
     version: "0.1-draft"
     canonical_state: false
+  articulation_floor:
+    contract: core/articulation-floor.yawn
+    schema: schemas/articulation-floor.v0.1.schema.json
+    runtime: lib/articulation-floor-v0.1.mjs
+    validator: scripts/validate-articulation-floor-v0.1.mjs
+    packet: question-packets/polanyi.yawn
+    live_floor: records/articulation-floor.yawn
+    templates: [templates/seal.yawn, templates/answer.yawn, templates/floor.yawn]
+    version: "0.1-draft"
+    canonical_state: false
+    not_authority: true
   human_document:
     paths: [templates/, examples/]
     stability: mixed-and-explicitly-versioned
@@ -324,6 +335,31 @@ project_links:
   q_space: q-space/node.yawn
   canonical_extension_migration: migrations/2026-08-17-canonical-extension.yawn
 
+runtime_surfaces:
+  rule: >
+    Each public route of the runtime reads one pinned record from this
+    repository; the route is a View, the record is the source. A route is
+    listed here only with the record it reads and its proof status.
+  runtime_repository: https://github.com/yawn-ai/yawn.bot
+  routes:
+    - url: https://yawn.bot/dave
+      reads: records/yawn.bot-state.yawn
+      shows: "the relationship yawn.bot/dave: the next highest-leverage open decision with its candidates and sealed prediction, the ranked queue, the settled role"
+      proof_status: declared-by-runtime-pull-requests-160-161
+    - url: https://yawn.bot/polanyi
+      reads: question-packets/polanyi.yawn
+      shows: "the seven Polanyi axes as questions; mark, reveal the seal, score the sealed reason"
+      proof_status: declared-2026-09-13
+    - url: https://yawn.bot/status
+      reads: records/articulation-floor.yawn
+      shows: "the measured floor: n and reason accuracy per axis, updated each pulse; n zero shown as n zero"
+      proof_status: declared-2026-09-13
+    - url: https://yawn.bot/interception
+      reads: references/interception.yawn
+      shows: "the Interception working paper"
+      proof_status: production-verified
+      proof_ref: records/interception-publication-2026-08-29.yawn
+
 replay:
   current_claim: >
     README.md is the human front door, readme.yawn is the repository's own
@@ -333,6 +369,9 @@ replay:
     product/schema naming is normalized through one canonical extension
     contract before creation. Orientation Map 0.1 keeps the nine semantic axes
     stable while adaptive questioning and presentation remain replayable Views.
+    Articulation Floor 0.1 seals a prediction before a question renders and
+    measures, per axis, how much of what the principal knows the records could
+    say in advance.
   next_review_when:
     - Draft 0.2 has field routing evidence
     - Objective Holon 0.1 has principal-reviewed independence and activation evidence
@@ -340,3 +379,4 @@ replay:
     - a unified document RFC is proposed
     - an independent implementation reports a compatibility gap
     - a speech-to-text correction produces a false positive or missed alias
+    - ten closed answers exist on any axis and the floor can be read

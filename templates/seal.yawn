@@ -1,0 +1,30 @@
+# A seal: the bot's prediction of the principal's answer, written BEFORE the
+# question renders and hashed so it cannot change after the answer. Copy, fill,
+# hash with lib/articulation-floor-v0.1.mjs sealHash(). One seal per asked question.
+# Governing record: core/articulation-floor.yawn. Schema: schemas/articulation-floor.v0.1.schema.json
+id: ""
+title: ""
+kind: seal
+record_shape: header
+status: draft  # draft | active | superseded | archived | deleted
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
+
+question: ""          # a packet question (question-packets/<packet>.yawn#<question_key>) or a decision record path
+axis: ""              # the floor aggregates on this: a packet question_key or a decision's axis
+predicted_answer: ""
+predicted_reason: ""  # the reason the bot expects to move the principal; beat 4 scores THIS, not a fresh one
+confidence: 0         # 0.0 to 1.0
+model: ""             # who or what guessed, from what; a provider call needs its own authorization
+t_sealed: ""          # ISO UTC; must be earlier than any answer's t_answered
+blind: true           # false when the prediction was visible before the answer (a shown recommendation)
+source_refs: []
+hash: ""              # sha256:<hex> over canonical JSON of question, axis, predicted_answer, predicted_reason, confidence, model, t_sealed
+
+boundary:
+  - "A seal is a prediction, never a recommendation with authority."
+  - "No seal, no question: a question rendered without a valid seal is content, not a measurement."
+  - "Public is not unsealed: the hash protects the guess from being changed, not from being read."
+
+source:
+  template: templates/seal.yawn
+  loop: core/articulation-floor.yawn

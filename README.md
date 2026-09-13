@@ -263,6 +263,44 @@ competition remains an optional Arena lens.
 [Selection receipt schema →](schemas/inquiry-selection-receipt.v0.1.schema.json) ·
 [Participation-choice example →](examples/participation-choice.yawn)
 
+## The seven Polanyi axes, and the floor they measure
+
+The question card is also an instrument. Before a question renders, the bot
+seals a prediction of the answer and of the reason (hashed, timestamped,
+append-only); the person answers; the seal is revealed and scored hit, partial,
+or miss; the person scores the sealed *reason* yes, partly, or no. The rolling
+reason accuracy per axis is the floor: how much of what a person knows their
+records could say in advance. The curve's shape is the finding.
+
+[`question-packets/polanyi.yawn`](question-packets/polanyi.yawn) carries seven
+axis-questions from Polanyi's account of tacit knowing, each with his mark,
+who contested it, and one sealed prediction written before any surface asked it:
+
+1. **floor** · Can what you know be fully said?
+2. **exclusivity** · Can you attend to a thing and through it at once?
+3. **reversibility** · After you break a skill apart, can you put it back?
+4. **timing** · Does saying what you know have to happen while you're using it?
+5. **fidelity** · Is the reason you give the reason that moved you?
+6. **locus** · Is knowing something you do, or something that's simply true?
+7. **levels** · Can a whole be read off from its parts?
+
+Timing and fidelity are the two axes Polanyi never took a position on; if the
+extension lives anywhere, it lives there. Every queued decision in
+[`records/yawn.bot-state.yawn`](records/yawn.bot-state.yawn) carries the same
+kind of seal (its attributed recommendation, anchored rather than blind), so
+the loop starts today without a model call. No seal, no question; no reason
+check, no closed record; below ten closed records the floor is reported, not
+read.
+
+Live: mark the axes at [yawn.bot/polanyi](https://yawn.bot/polanyi) · the
+measured floor at [yawn.bot/status](https://yawn.bot/status) · the bot's next
+question at [yawn.bot/dave](https://yawn.bot/dave).
+
+[The loop, in one record →](core/articulation-floor.yawn) ·
+[Seal, answer, floor schema →](schemas/articulation-floor.v0.1.schema.json) ·
+[Templates →](templates/seal.yawn) ·
+[The floor today →](records/articulation-floor.yawn)
+
 ## Build and validate
 
 Requires Node.js 22 or a current Node.js LTS release.
@@ -289,6 +327,8 @@ relations, turns, routing, and structural receipts. Objective Holon 0.1 adds
 typed objective compilation, ratification, Yawn.bot binding, and activation.
 Orientation Map 0.1 adds attributed semantic coverage, adaptive inquiry, and
 closed selected-question or hold receipts while keeping presentation separate.
+Articulation Floor 0.1 adds sealed predictions, reason-checked answers, and a
+per-axis floor that replays from its ledger.
 Neither v1 module is marketed as the complete schema for every human-readable
 `.yawn` file.
 
@@ -314,6 +354,9 @@ test failure and cannot replace a commit-bound local result.
 | Understand merge vs. link vs. split | [Routing example](examples/merge-split-routing.yawn) |
 | See one objective become a Yawn.bot | [Dave / good dad](examples/dave-good-dad-objective-holon.yawn) |
 | Orient before choosing a game or competition | [Participation-choice example](examples/participation-choice.yawn) |
+| Mark the seven Polanyi axes and see the seal revealed | [Polanyi packet](question-packets/polanyi.yawn) · [yawn.bot/polanyi](https://yawn.bot/polanyi) |
+| Read the measured floor | [records/articulation-floor.yawn](records/articulation-floor.yawn) · [yawn.bot/status](https://yawn.bot/status) |
+| Open the bot's next question with its sealed prediction | [records/yawn.bot-state.yawn](records/yawn.bot-state.yawn) · [yawn.bot/dave](https://yawn.bot/dave) |
 | Explore unresolved questions | [Q-Space](q-space/) |
 | Understand the evidence boundary | [Research basis](docs/research-basis.md) |
 | Navigate the whole repository | [Documentation hub](docs/) |

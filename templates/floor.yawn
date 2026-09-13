@@ -1,0 +1,29 @@
+# A floor: the rolling reason accuracy over closed answers, per axis and global.
+# Recomputed from the ledger each cycle; never hand-edited. The curve's shape is
+# the finding (core/articulation-floor.yawn readout).
+# Schema: schemas/articulation-floor.v0.1.schema.json
+id: ""
+title: ""
+kind: floor
+record_shape: header
+status: draft  # draft | active | superseded | archived | deleted
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
+
+axis: all               # one axis, or "all" for the global floor
+n: 0                    # closed records counted
+blind_n: 0              # of which the seal was not shown before the answer
+anchored_n: 0           # of which the seal (a recommendation) was visible; these measure agreement, not prediction
+answer_accuracy: 0      # rolling; on its own this is correlation
+reason_accuracy: 0      # rolling; the number that matters
+curve: []               # [[n, reason_accuracy], ...] cumulative after each closed record
+last_break: null        # {ref, after_n, note}: the ontology change after which the curve moved, or null
+t_computed: null
+
+boundary:
+  - "A floor below ten closed records is reported, never read as a verdict."
+  - "answer_accuracy high with reason_accuracy low is correlation, not articulation."
+  - "A floor is a measurement of the representation, never a diagnosis of the person."
+
+source:
+  template: templates/floor.yawn
+  loop: core/articulation-floor.yawn

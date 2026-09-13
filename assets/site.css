@@ -140,13 +140,16 @@
 
   .turn-section,
   .projection-section,
+  .bot-section,
   .start-section {
     display: block;
   }
 
   .turn-section .section-heading,
   .projection-section .section-heading,
+  .bot-section .section-heading,
   .start-section .section-heading { margin-bottom: clamp(60px, 9vw, 110px); }
+  .bot-section .relation-caption { margin-top: 28px; text-align: left; }
 
   .holarchy-section {
     grid-template-areas:

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/articulation-floor.v0.1.schema.json",
+  "title": "Articulation Floor Ledger V0.1",
+  "description": "Draft 0.1. A ledger of sealed predictions (seal), the principal's answers scored against them (answer), and the rolling reason-accuracy per axis (floor). A seal is content-addressed so it cannot change after the answer. Nothing in this ledger is canonical state or authority; core/articulation-floor.yawn governs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "ledgerId", "canonicalState", "notAuthority", "seals", "answers", "floors"],
+  "properties": {
+    "schemaVersion": { "const": "yawn.articulation-floor.v0.1" },
+    "ledgerId": { "type": "string", "minLength": 1 },
+    "canonicalState": { "const": false },
+    "notAuthority": { "const": true },
+    "seals": { "type": "array", "items": { "$ref": "#/$defs/seal" } },
+    "answers": { "type": "array", "items": { "$ref": "#/$defs/answer" } },
+    "floors": { "type": "array", "items": { "$ref": "#/$defs/floor" } }
+  },
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "text": { "type": "string", "minLength": 1 },
+    "seal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "kind", "question", "axis", "predicted_answer", "predicted_reason", "confidence", "model", "t_sealed", "blind", "source_refs", "hash", "canonicalState", "notAuthority"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.articulation-floor.v0.1" },
+        "kind": { "const": "seal" },
+        "question": { "$ref": "#/$defs/text", "description": "A question ref: a packet question (question-packets/<packet>.yawn#<question_key>) or a decision record path." },
+        "axis": { "$ref": "#/$defs/text", "description": "The axis the floor aggregates on: a packet question_key or a decision's axis." },
+        "predicted_answer": { "$ref": "#/$defs/text" },
+        "predicted_reason": { "$ref": "#/$defs/text" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "model": { "$ref": "#/$defs/text", "description": "Who or what made the guess, and from what. A provider call needs its own authorization; the absence of one is stated here." },
+        "t_sealed": { "type": "string", "format": "date-time" },
+        "blind": { "type": "boolean", "description": "true when the seal was not shown before the answer. A decision's recommendation is shown beside its candidates by the question-first contract, so its seal is anchored, not blind." },
+        "source_refs": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+        "hash": { "$ref": "#/$defs/hash", "description": "sha256 over canonical JSON of question, axis, predicted_answer, predicted_reason, confidence, model, t_sealed." },
+        "canonicalState": { "const": false },
+        "notAuthority": { "const": true }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "kind", "question", "axis", "seal", "answer", "mode", "answer_match", "answer_match_scored_by", "reason_match", "t_answered", "actor", "prior_answer", "drift", "canonicalState", "notAuthority"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.articulation-floor.v0.1" },
+        "kind": { "const": "answer" },
+        "question": { "$ref": "#/$defs/text" },
+        "axis": { "$ref": "#/$defs/text" },
+        "seal": { "$ref": "#/$defs/hash" },
+        "answer": { "$ref": "#/$defs/text" },
+        "mode": { "enum": ["pick", "freeform"] },
+        "answer_match": { "enum": ["hit", "partial", "miss"] },
+        "answer_match_scored_by": { "enum": ["comparison", "principal"], "description": "A pick is scored by comparison with the sealed answer; freeform text is scored by the principal at the reveal." },
+        "reason_match": { "enum": ["yes", "partly", "no"], "description": "Beat 4, the confabulation check: the principal scores the SEALED reason. Required; a record without it is not closed." },
+        "t_answered": { "type": "string", "format": "date-time" },
+        "actor": { "$ref": "#/$defs/text" },
+        "prior_answer": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/hash" }, { "$ref": "#/$defs/text" }], "description": "Set on a re-ask: the previous answer record this one follows." },
+        "drift": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/text" }], "description": "One line: what moved between the prior answer and this one. Lives here, not in its own record." },
+        "canonicalState": { "const": false },
+        "notAuthority": { "const": true }
+      }
+    },
+    "floor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "kind", "axis", "n", "blind_n", "anchored_n", "answer_accuracy", "reason_accuracy", "curve", "last_break", "t_computed", "canonicalState", "notAuthority"],
+      "properties": {
+        "schemaVersion": { "const": "yawn.articulation-floor.v0.1" },
+        "kind": { "const": "floor" },
+        "axis": { "$ref": "#/$defs/text", "description": "One axis, or \"all\" for the global floor." },
+        "n": { "type": "integer", "minimum": 0 },
+        "blind_n": { "type": "integer", "minimum": 0 },
+        "anchored_n": { "type": "integer", "minimum": 0 },
+        "answer_accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
+        "reason_accuracy": { "type": "number", "minimum": 0, "maximum": 1, "description": "The number that matters. answer_accuracy on its own is correlation." },
+        "curve": {
+          "type": "array",
+          "description": "Cumulative reason accuracy after each closed record: [[n, accuracy], ...]. The shape is the finding.",
+          "items": { "type": "array", "prefixItems": [{ "type": "integer", "minimum": 1 }, { "type": "number", "minimum": 0, "maximum": 1 }], "items": false, "minItems": 2, "maxItems": 2 }
+        },
+        "last_break": {
+          "anyOf": [
+            { "type": "null" },
+            { "type": "object", "additionalProperties": false, "required": ["ref", "after_n"], "properties": { "ref": { "$ref": "#/$defs/text" }, "after_n": { "type": "integer", "minimum": 0 }, "note": { "type": "string" } } }
+          ],
+          "description": "The ontology change after which the curve moved, or null."
+        },
+        "t_computed": { "anyOf": [{ "type": "null" }, { "type": "string", "format": "date-time" }] },
+        "canonicalState": { "const": false },
+        "notAuthority": { "const": true }
+      }
+    }
+  }
+}

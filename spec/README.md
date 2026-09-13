@@ -23,6 +23,7 @@ It does not claim that the record is the world.
 | Agency holarchy | Arena, Yawn, relation, turn, routing, and structural change | [Draft 0.2 schema](../schemas/agency-holarchy.v0.2.schema.json) |
 | Objective holons | Detection, ratification, objective Yawn, Yawn.bot, and activation | [Draft 0.1 schema](../schemas/objective-holon.v0.1.schema.json) |
 | Orientation map | Nine-axis semantic coverage, adaptive inquiry ranking, closed selection receipts, and presentation hypotheses | [Draft 0.1 schema](../schemas/orientation-map.v0.1.schema.json) |
+| Articulation floor | A prediction sealed before a question renders, the principal's answer scored against it, the sealed reason checked, and a rolling per-axis floor | [Draft 0.1 schema](../schemas/articulation-floor.v0.1.schema.json) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
 | View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
 
