@@ -2,7 +2,7 @@ id: dave/node
 title: "dave node"
 kind: mental-model-node
 status: active
-updated: 2026-09-12
+updated: 2026-09-13
 
 purpose: >
   Hold Dave's public mental models: small, questions-first records of what
@@ -19,6 +19,7 @@ holds:
   - orientation
   - number-sense
   - prenumerical-thinking
+  - ai-talk-in-the-park
 
 receives:
   - lived situations where Dave needs a shared model with a person or a bot

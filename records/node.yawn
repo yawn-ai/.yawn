@@ -33,6 +33,8 @@ holds:
   - Interception statement-image bounded action result
   - the bot state record, generated from the ledgers and decisions
   - the measured articulation floor
+  - review of the yawn.bot experiment brief against the codebase (accepted 2026-09-13)
+  - yawn.bot standard and brief review release result
 
 receives:
   - agent actions
@@ -101,6 +103,8 @@ links:
   - records/interception-statement-image-result-2026-08-29.yawn
   - records/yawn.bot-state.yawn
   - records/articulation-floor.yawn
+  - records/2026-09-12-yawn-bot-experiment-brief-review.yawn
+  - records/2026-09-13-standard-and-review-release-result.yawn
 
 proof:
   source:

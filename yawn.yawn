@@ -229,6 +229,7 @@ automation_links:
   yawn_bot_ai_writing_scan: automation/yawn.bot.ai-writing-scan.yawn
   yawn_bot_statement_image_proposals: automation/yawn.bot.statement-image-proposals.yawn
   automation_log: records/automation-log.yawn
+  yawn_bot_dave_ai_talk_pulse: automation/yawn.bot.dave-ai-talk-pulse.yawn
 
 record_links:
   interception_publication: records/interception-publication-2026-08-29.yawn
@@ -258,6 +259,8 @@ record_links:
   inquiry_aperture_one_question_face: records/inquiry-aperture-one-question-face.yawn
   yawn_bot_state: records/yawn.bot-state.yawn
   articulation_floor: records/articulation-floor.yawn
+  yawn_bot_experiment_brief_review: records/2026-09-12-yawn-bot-experiment-brief-review.yawn
+  standard_and_review_release_result: records/2026-09-13-standard-and-review-release-result.yawn
 
 question_packet_links:
   node: question-packets/node.yawn
@@ -431,6 +434,8 @@ dave_links:
   number_sense: dave/number-sense/model.yawn
   prenumerical_thinking: dave/prenumerical-thinking/model.yawn
   orientation: dave/orientation/model.yawn
+  ai_talk_in_the_park: dave/ai-talk-in-the-park/model.yawn
+  objective_holon: dave/ai-talk-in-the-park/objective-holon.yawn
 
 usage_frame: >
   YAWN is an orientation shape for inference before action. Use it by naming

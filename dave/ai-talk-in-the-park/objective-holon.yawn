@@ -1,0 +1,173 @@
+id: objective-holon:dave:ai-talk-in-the-park
+title: "Dave / AI talk in the park objective holon"
+kind: objective-holon
+record_shape: spec-version
+status: draft
+spec_version: objective-holon.v0.1
+template_ref: templates/objective-holon.yawn
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; compiled from his spoken rehearsal; candidate and routing are the bot's proposals, ratification is Dave's and is held"
+mental_model_ref: dave/ai-talk-in-the-park/model.yawn
+updated: 2026-09-13
+
+source_signal:
+  asserted_by: principal:dave
+  text: "I think my way to get this out there is to have a talk in the park about AI. The AI talk in the park. Let's call it that. My city is Parker, Colorado."
+  epistemic_status: reported
+  retained_in: "Claude Code session, 2026-09-13; hashed in yawn-ai/yawn.bot public/dave/model.yawn as source:dave-ai-talk-in-the-park-speech-2026-09-13"
+
+compile_projection:
+  detections:
+    - kind: principal
+      value: Dave
+      epistemic_status: reported
+    - kind: desire
+      value: "Give a mellow, free, one-hour talk in a Parker park about raising small kids into a world where AI is arriving; a hundred people on blankets within a month"
+      epistemic_status: reported
+    - kind: objective_candidate
+      value: "Dave / AI talk in the park"
+      epistemic_status: inferred
+      confidence: 0.9
+    - kind: arena
+      value: "A Parker, Colorado park on a Saturday morning this fall, with neighbours"
+      epistemic_status: inferred
+      confidence: 0.8
+    - kind: lacuna
+      value: "Which path the Town requires (rental or community event permit), which Saturday, and whether presence transfers in an hour"
+      epistemic_status: inferred
+      confidence: 0.75
+    - kind: requested_effect
+      value: "Email the people who can get a permit, on Dave's behalf"
+      epistemic_status: reported
+      note: "blocked_without_current_exact_authorization: send; drafted and addressed in the runtime's YAWNS/Operations packet, not sent"
+  correction_operators: [confirm, reject, correct, add_more]
+  proposed_operations:
+    - rank: 1
+      kind: create_objective_holon
+      description: "Hold the talk as its own objective under Dave's root, with a sleeping steward bot"
+      requires_confirmation: true
+    - rank: 2
+      kind: link_lateral
+      description: "Couple it to the good-dad objective (the audience is parents) and to the steward-of-yawn.bot role (the bills)"
+      requires_confirmation: true
+    - rank: 3
+      kind: hold
+      description: "Keep it as a mental model only, no bot"
+      requires_confirmation: true
+  status: proposed
+
+proposed_structure:
+  parent_yawn_ref: yawn:dave:root
+  yawn_ref: yawn:dave:ai-talk-in-the-park
+  bot_ref: bot:dave:ai-talk-in-the-park
+  bot_state: sleeping
+  independence_reasons:
+    - distinct_objective
+    - bounded_time_horizon
+    - distinct_relationships
+    - external_effects_that_need_their_own_grants
+
+ratification:
+  decision: held
+  authorized_by: ""
+  receipt_ref: ""
+  note: "Dave asked for the bot and the page; he has not ratified this record. Detection is not ratification."
+
+objective:
+  objective_ref: objective:dave:ai-talk-in-the-park
+  principal_ref: principal:dave
+  statement: "Give the AI talk in the park, and find the parents who need to think clearly enough to raise someone in the dark."
+  purpose: "Transfer presence to a park full of neighbours in one hour, starting from a yawn, and be known around the park for it."
+  mode: attain
+  horizon: "one season; first gathering this fall, repeated monthly if it works"
+  guardrails:
+    - "Do not send, book, spend, or collect on Dave's behalf without his current exact press."
+    - "Do not publish what Dave marked as not for the speech, the children's names, or another person's involvement."
+    - "Label his predictions as predictions and his hopes as hopes."
+    - "Do not treat attendance, applause, or a donation as proof that presence transferred."
+  progress_signals:
+    - "The Town's reply with a path, a fee, and an open Saturday"
+    - "A date chosen by Dave"
+    - "People on blankets, counted"
+    - "One thing each person did afterward, reported"
+  status: proposed
+
+yawn:
+  yawn_ref: yawn:dave:ai-talk-in-the-park
+  primary_parent_yawn_ref: yawn:dave:root
+  arena_ref: "arena:parker-park-saturday-morning"
+  primary_objective_ref: objective:dave:ai-talk-in-the-park
+  lacuna: "Which path the Town requires, which Saturday, whether anyone gives, and whether presence transfers"
+  proof_policy_ref: core/proof-and-boundary.yawn
+  lateral_links:
+    - relation: "dave-ai-talk-in-the-park coordinates_with dave-good-dad"
+      ref: examples/dave-good-dad-objective-holon.yawn
+    - relation: "dave-ai-talk-in-the-park serves dave-steward-of-yawn.bot"
+      ref: core/entity-and-coupling.yawn
+
+yawn_bot:
+  bot_ref: bot:dave:ai-talk-in-the-park
+  parent_bot_ref: bot:dave:root
+  principal_ref: principal:dave
+  role: objective_steward
+  lifecycle_state: sleeping
+  personality_profile_ref: null
+  runtime_coordinate: "yawn.bot/dave/ai-talk-in-the-park"
+  receives_structural_context:
+    - dave/ai-talk-in-the-park/model.yawn
+    - "yawn-ai/yawn.bot YAWNS/Product/AI_TALK_IN_THE_PARK_2026_09_13.yawn"
+    - "yawn-ai/yawn.bot YAWNS/Operations/AI_TALK_IN_THE_PARK_OUTREACH_2026_09_13.yawn"
+    - "yawn-ai/yawn.bot YAWNS/WorkOrders/AI_TALK_IN_THE_PARK_2026_09_13.yawn"
+  may_without_external_authority:
+    - hold the plan and rank its open questions
+    - draft and address outreach for Dave's press
+    - propose candidate dates and parks
+    - report what the pulse observed
+  blocked_without_current_exact_authorization:
+    - send the outreach or any external message
+    - book a park or file a permit
+    - join a waitlist or sign anything
+    - collect money or open a donation rail
+    - publish, merge, or deploy
+  does_not_inherit:
+    - consent
+    - truth
+    - confidence
+    - effect authority
+    - proof
+    - other people's private models
+  authority_grant_refs: []
+  activation_receipt_refs: []
+
+pulse:
+  contract_ref: automation/yawn.bot.dave-ai-talk-pulse.yawn
+  rule: "The pulse re-enters the work order on a schedule, checks what moved, and writes a receipt; it never activates this bot or widens its authority."
+
+proof:
+  covers:
+    - proposed_structure
+    - yawn_bot
+  condition: >
+    The record names a sleeping bot with no authority grants and no activation
+    receipts; dave/ai-talk-in-the-park/model.yawn mirrors the same objective;
+    the runtime page exists at the named coordinate.
+  falsifier: >
+    The bot is shown active, an authority grant or activation receipt appears
+    here without Dave's ratification, or the outreach is marked sent by the
+    bot rather than by Dave or an actor he pressed.
+  not_covered:
+    - "objective: proposed, waits on ratification"
+    - "schema conformance: this record follows the example shape (examples/dave-good-dad-objective-holon.yawn), not the JSON fixture the validator checks"
+  source:
+    - core/objective-holon.yawn
+    - templates/objective-holon.yawn
+    - examples/dave-good-dad-objective-holon.yawn
+    - agents/yawn.bot.yawn
+  status: proposed
+
+proof_boundary: >
+  Evidence can support a bounded claim that a gathering happened and what
+  people reported afterward. It cannot prove that presence transferred, that
+  Dave is a good speaker, or that the objective is complete while it is
+  still a season.

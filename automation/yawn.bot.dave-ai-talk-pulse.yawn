@@ -1,0 +1,82 @@
+id: automation/yawn.bot.dave-ai-talk-pulse
+title: "yawn.bot/dave hourly pulse"
+kind: automation-contract
+record_shape: header
+status: active
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; created at Dave's spoken request for an hourly pulse that keeps the AI talk in the park moving and alerts the entering agent when it is stuck"
+updated: 2026-09-13
+
+automation_id: yawn-bot-dave-ai-talk-pulse
+schedule: "every hour, at minute 36 UTC"
+runtime: "Claude Code Remote routine trig_01A5fpDEfa1h72hAn5cZF8KJ, a fresh session per firing, no connector tools"
+workspace_ref: "yawn-ai/yawn.bot and yawn-ai/.yawn on branch claude/yawn-bot-dave-ai-park-1ds1ab until merged, then main"
+service_identity: agents/yawn.bot.yawn
+objective_ref: dave/ai-talk-in-the-park/objective-holon.yawn
+work_order_ref: "yawn-ai/yawn.bot YAWNS/WorkOrders/AI_TALK_IN_THE_PARK_2026_09_13.yawn"
+ledger_ref: "yawn-ai/yawn.bot YAWNS/Operations/PULSE.yawn"
+runtime_pair: "yawn-ai/yawn.bot /api/yawn-pulse/tick, a Vercel cron at minute 7 of every hour, which records the pulse, emails Dave, and feeds yawn.bot/status"
+
+purpose: >
+  Re-enter the AI-talk work order every hour, check what the repository and
+  the branch can show, advance a bounded already-authorized move when one
+  exists, and write the stuck alert into the pulse ledger so that whoever
+  enters next reads it first. It backfills lacunae that became records; it
+  cannot backfill judgment that never became one.
+
+input_surfaces:
+  - the work order's completion block
+  - the pulse ledger and its last receipt
+  - the branch state on origin and whether it is an ancestor of main
+  - the public pulse read at yawn.bot/api/yawn-pulse
+  - the outreach packet's send_status
+
+each_run_produces:
+  - one receipt line in the pulse ledger
+  - an alert line when a required requirement has not moved for two pulses and needs another actor
+  - a bounded fix, proven and pushed to the branch, when the stuck requirement names the agent
+  - a session reflection only when something moved
+
+may_without_external_authority:
+  - read the repositories and the public pulse
+  - run the goal audit, the protocol sync, the focused tests, typecheck and lint
+  - write the ledger line and the alert locally
+
+under_the_work_order_authorization_only:
+  - "commit and push to the work order's branch: authorized by Dave's request of 2026-09-13 for this work order and its branch, recorded in the runtime's YAWNS/WorkOrders/AI_TALK_IN_THE_PARK_2026_09_13.yawn; not a standing grant, and it ends when that work order closes"
+
+blocked_without_current_exact_authorization:
+  - merge, deploy, publish
+  - send email or any external message
+  - spend, join a waitlist, change a secret
+  - write to Supabase
+  - activate a sleeping bot or raise any bot's autonomy
+  - fill a decision's choice or write as Dave
+
+observed_runs:
+  rule: "A run is observed only by its receipt in the pulse ledger and its commit on the branch; the schedule is not the state."
+  last_observed: null
+  test_firing: "2026-09-13T04:45Z, session cse_01WpngJHxyGs3AQs3r8a15nY, ran two minutes, no receipt; its sources list was empty, so the fresh session may not have reached the repositories"
+  failing: "loop:pulse-agent until a receipt lands; alert set in the runtime's pulse ledger for user:dave to attach the repositories as sources"
+  first_scheduled: "2026-09-13T05:36Z"
+
+proof:
+  covers:
+    - schedule
+    - runtime
+    - under_the_work_order_authorization_only
+    - blocked_without_current_exact_authorization
+  condition: >
+    records/automation-log.yawn carries this automation's creation entry with
+    its routine identifier; the runtime's pulse ledger names the same
+    identifier; a receipt line appears in that ledger after a firing.
+  falsifier: >
+    A receipt claims a merge, a send, or an activation, or the ledger shows
+    no receipt for three consecutive hours while the routine reads enabled.
+  not_covered:
+    - "observed_runs: null until the first receipt lands"
+  source:
+    - agents/yawn.bot.yawn
+    - dave/ai-talk-in-the-park/objective-holon.yawn
+    - records/automation-log.yawn
+  status: seed-backed

@@ -2,7 +2,7 @@ id: automation/node
 title: "automation node"
 kind: knowledge-node
 status: v0-seed
-updated: 2026-08-29
+updated: 2026-09-13
 
 purpose: >
   Hold automations that watch for feedback, contributor signals, and bounded
@@ -22,6 +22,7 @@ holds:
   - yawn.ai open-source funnel bridge
   - yawn.bot AI-writing scan
   - yawn.bot statement-image proposal compiler
+  - yawn.bot/dave hourly pulse for the AI talk in the park
 
 receives:
   - GitHub issues
@@ -70,6 +71,7 @@ questions:
   - does this public text sound generically AI-written
   - does this require human authorization
   - should this statement receive an adjacent image proposal
+  - what did the hourly pulse observe, and is a requirement stuck
 
 links:
   - automation/yawn-bot-repo-contributor-loop.yawn
@@ -87,6 +89,7 @@ links:
   - automation/yawn.bot.ai-writing-scan.yawn
   - automation/yawn.bot.statement-image-proposals.yawn
   - records/automation-log.yawn
+  - automation/yawn.bot.dave-ai-talk-pulse.yawn
 
 proof:
   source:
