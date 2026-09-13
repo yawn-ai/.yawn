@@ -14,7 +14,8 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+// YAWN_ROOT lets a test point the renderer at a fixture tree; production runs read the repository.
+const ROOT = process.env.YAWN_ROOT ? path.resolve(process.env.YAWN_ROOT) : path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "records", "yawn.bot-state.yawn");
 const CHECK = process.argv.includes("--check");
 const TODAY = process.env.YAWN_TODAY || new Date().toISOString().slice(0, 10);
@@ -65,6 +66,7 @@ const decs = [];
 for (const f of (await readdir(decDir)).filter((f) => /^\d{3}-.*\.yawn$/.test(f)).sort()) {
   const t = await readFile(path.join(decDir, f), "utf8");
   const lev = scalar(t, "leverage");
+  if (lev !== "held" && !Number.isFinite(Number(lev))) throw new Error(`decisions/${f}: leverage must be a number or "held", got ${JSON.stringify(lev)}`);
   decs.push({
     file: `decisions/${f}`, id: scalar(t, "id"), title: scalar(t, "title"),
     question: folded(t, "question"), why: folded(t, "why_it_matters"), leverage: lev === "held" ? null : Number(lev),

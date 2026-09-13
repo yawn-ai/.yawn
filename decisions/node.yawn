@@ -18,6 +18,7 @@ purpose: >
 principal_ref: principal:dave
 template_ref: templates/decision.yawn
 inventory_ref: JUDGMENTS.md
+id_index_ref: TAXONOMY.md
 axis_ref: TAXONOMY.md
 
 ranking_rule: >
@@ -68,9 +69,16 @@ proof:
     - lifecycle
   condition: >
     Every record in this folder carries authored_by, ratification_status,
-    leverage with its formula, and an empty choice until Dave fills it;
+    leverage equal to its printed formula inputs, numbering that follows
+    leverage, an empty choice until Dave fills it, a recommendation with
+    authority none, and judgment ids that resolve in TAXONOMY.md;
+    tests/decisions.test.mjs checks each of these, tests/render-bot-state.test.mjs
+    checks that a chosen or superseded decision leaves the queue, and
     tests/authored-by.test.mjs and tests/status-vocabulary.test.mjs pass over
     this folder.
+  tests:
+    - tests/decisions.test.mjs
+    - tests/render-bot-state.test.mjs
   source:
     - JUDGMENTS.md
     - TAXONOMY.md

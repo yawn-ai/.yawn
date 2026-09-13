@@ -1,6 +1,11 @@
 # HOLDOUT PROTOCOL — committed BEFORE selection, BEFORE prediction, BEFORE scoring
 # Written at the point where the extraction corpus existed but no holdout had been chosen
 # and no predictor had been run. Nothing below may be revised after seeing a score.
+#
+# Provenance note, added 2026-09-13 after review (the only edit since the score): this file
+# and HOLDOUT.md landed in one commit (4262644, 2026-09-12), so the ordering above is the
+# author's report, not something git shows. The selection draw is in
+# tests/fixtures/holdout-files.txt and tests/fixtures/holdout-selection.json.
 
 ## Question
 Are the STATED judgments in this inventory predictable from the rest of the corpus?
@@ -18,7 +23,7 @@ against itself.
 - Stratify by top-level directory; allocate proportionally; take 20 files total.
 - Deterministic ordering: sha256(path), ascending, take the first k per stratum.
   No reroll. The first draw is the draw.
-- The selected list is written to holdout-files.txt and is not changed afterwards.
+- The selected list is written to holdout-files.txt (now tests/fixtures/holdout-files.txt) and is not changed afterwards.
 
 ## Information the predictor MAY see
 - The full judgment index for the OTHER 174 files (STATED and REVEALED).

@@ -39,7 +39,7 @@ state_snapshot:
     6 judgments sit at explicit-grandfather-ledger (3 authored) and 1 at
     uniform-rule (1 authored). The repository asserts both directions on this
     axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -139,7 +139,7 @@ proof:
     by editing the rule's wording instead of the record.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0324"
   - "J0625"
   - "J0908"
@@ -156,3 +156,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

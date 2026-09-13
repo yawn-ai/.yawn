@@ -37,7 +37,7 @@ state_snapshot:
     17 judgments sit at low-friction-entry (7 authored) and 1 at
     conformance-at-entry (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -133,7 +133,7 @@ proof:
     kind and status.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0026"
   - "J0159"
   - "J0266"
@@ -150,3 +150,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

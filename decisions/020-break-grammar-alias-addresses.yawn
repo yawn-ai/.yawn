@@ -36,7 +36,7 @@ state_snapshot:
   description: >
     3 judgments sit at hard-break (3 authored) and 10 at retain-alias (8
     authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -141,7 +141,7 @@ proof:
     nothing notices.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0293"
   - "J0470"
   - "J0896"
@@ -160,3 +160,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

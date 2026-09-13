@@ -1,0 +1,245 @@
+{
+ "files": [
+  "agency-declaration/node.yawn",
+  "agents/yawn.bot.yawn",
+  "database/feedback-intake.yawn",
+  "dave/number-sense/model.yawn",
+  "declaration-of-agency/node.yawn",
+  "examples/relationship-commitment-conversation.yawn",
+  "feedback/email-intake.yawn",
+  "fixtures/node.yawn",
+  "interface/objective-compiler.yawn",
+  "migrations/node.yawn",
+  "observations/node.yawn",
+  "q-space/node.yawn",
+  "question-packets/basic.yawn",
+  "questions/what-is-this.yawn",
+  "readme.yawn",
+  "references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn",
+  "schemas/node.yawn",
+  "scripts/node.yawn",
+  "shape/orientation-shape.yawn",
+  "start/how-to-use-yawn.yawn"
+ ],
+ "allocation": {
+  ".": 1,
+  "agency-declaration": 1,
+  "agents": 1,
+  "database": 1,
+  "dave": 1,
+  "declaration-of-agency": 1,
+  "examples": 1,
+  "feedback": 1,
+  "fixtures": 1,
+  "interface": 1,
+  "migrations": 1,
+  "observations": 1,
+  "q-space": 1,
+  "question-packets": 1,
+  "questions": 1,
+  "references": 1,
+  "schemas": 1,
+  "scripts": 1,
+  "shape": 1,
+  "start": 1
+ },
+ "actual_stated_ids": {
+  "agency-declaration/node.yawn": [
+   "J0757",
+   "J0920",
+   "J0959",
+   "J0969"
+  ],
+  "agents/yawn.bot.yawn": [
+   "J0924",
+   "J0925"
+  ],
+  "database/feedback-intake.yawn": [
+   "J0307"
+  ],
+  "dave/number-sense/model.yawn": [
+   "J0277",
+   "J0278",
+   "J0279",
+   "J0280",
+   "J0281",
+   "J0282",
+   "J0285",
+   "J0948",
+   "J1058"
+  ],
+  "declaration-of-agency/node.yawn": [
+   "J0756",
+   "J0905",
+   "J0920"
+  ],
+  "examples/relationship-commitment-conversation.yawn": [
+   "J0361",
+   "J0379",
+   "J0380"
+  ],
+  "feedback/email-intake.yawn": [
+   "J0309"
+  ],
+  "fixtures/node.yawn": [
+   "J0299",
+   "J0302"
+  ],
+  "interface/objective-compiler.yawn": [
+   "J0448",
+   "J0456",
+   "J0457",
+   "J0458",
+   "J0460",
+   "J0488",
+   "J0962",
+   "J0964",
+   "J1055",
+   "J1056"
+  ],
+  "migrations/node.yawn": [
+   "J0289",
+   "J0290",
+   "J0293",
+   "J0295",
+   "J0894",
+   "J0895"
+  ],
+  "observations/node.yawn": [
+   "J0561"
+  ],
+  "q-space/node.yawn": [
+   "J0547",
+   "J0560",
+   "J0565",
+   "J0566",
+   "J0567",
+   "J0577",
+   "J0580",
+   "J0581",
+   "J0982",
+   "J1169"
+  ],
+  "question-packets/basic.yawn": [
+   "J0500",
+   "J0501",
+   "J0502",
+   "J0503",
+   "J0536"
+  ],
+  "questions/what-is-this.yawn": [
+   "J0548",
+   "J0549",
+   "J0550",
+   "J0580",
+   "J0581",
+   "J0953",
+   "J0957",
+   "J0969"
+  ],
+  "readme.yawn": [
+   "J0731",
+   "J0733",
+   "J0734",
+   "J0735",
+   "J0736",
+   "J0737",
+   "J0739",
+   "J0740",
+   "J0741",
+   "J0744",
+   "J0745",
+   "J0746",
+   "J0747",
+   "J0748",
+   "J0749",
+   "J0750",
+   "J0901",
+   "J0908",
+   "J0961",
+   "J0962",
+   "J0963",
+   "J0964",
+   "J0965",
+   "J0966",
+   "J0972",
+   "J0979",
+   "J0980",
+   "J0981",
+   "J0982",
+   "J0983",
+   "J0984",
+   "J0986",
+   "J1039",
+   "J1057"
+  ],
+  "references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn": [
+   "J0662",
+   "J0663",
+   "J0664",
+   "J0665",
+   "J0666",
+   "J0667",
+   "J0668",
+   "J0669",
+   "J0670",
+   "J0671",
+   "J0672",
+   "J0673",
+   "J0674",
+   "J0675",
+   "J0676",
+   "J0677",
+   "J0678",
+   "J0679",
+   "J0680",
+   "J0681",
+   "J0908",
+   "J0918",
+   "J1178"
+  ],
+  "schemas/node.yawn": [
+   "J0296",
+   "J0297",
+   "J0298",
+   "J0299",
+   "J0300",
+   "J0301",
+   "J0302",
+   "J0303",
+   "J0304",
+   "J0305",
+   "J0306",
+   "J1119"
+  ],
+  "scripts/node.yawn": [
+   "J0311",
+   "J0312",
+   "J0313",
+   "J0314",
+   "J0985",
+   "J0986"
+  ],
+  "shape/orientation-shape.yawn": [
+   "J0503",
+   "J0512",
+   "J0515",
+   "J0522",
+   "J0523",
+   "J0548",
+   "J0552",
+   "J0959",
+   "J0967",
+   "J0969",
+   "J1010",
+   "J1039"
+  ],
+  "start/how-to-use-yawn.yawn": [
+   "J0550",
+   "J0556",
+   "J0976"
+  ]
+ },
+ "n_actual": 155,
+ "population": 150
+}

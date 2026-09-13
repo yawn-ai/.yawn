@@ -110,7 +110,7 @@ question_queue:
     leverage: 26.4
     split: genuinely-split
     question: "Must a .yawn stay readable and checkable with nothing installed, or is it enough that the record reads with nothing while checking it needs Node and ajv and running it needs Dave's Windows desktop — and is that three-way split written anywhere?"
-    why: "The written rule promises a boring portable folder that works with no software, while the only proof that anything holds is a Node 22 test suite with one npm dependency, and the four scheduled automations run PowerShell against C:/Users/dave/OneDrive paths that appear 32 times across 12 tracked records. Once answered, every child Yawn and bot below Dave inherits an explicit answer to what it may depend on at each layer, instead of copying whichever absolute path or interpreter it finds nearest."
+    why: "The written rule promises a boring portable folder that works with no software, while the only proof that anything holds is a Node 22 test suite with one npm dependency, and the four scheduled automations run PowerShell against Dave's OneDrive desktop paths that appear 32 times across 12 tracked records. Once answered, every child Yawn and bot below Dave inherits an explicit answer to what it may depend on at each layer, instead of copying whichever absolute path or interpreter it finds nearest."
   - rank: 7
     decision_ref: decisions/007-closed-until-opened.yawn
     leverage: 26
@@ -122,7 +122,7 @@ question_queue:
     leverage: 25.2
     split: leaning
     question: "Is this public repository a public surface that must carry sanitized summaries only, or a source record that keeps full detail, including local file paths and real family names?"
-    why: "agents/yawn.bot.policy.yawn says public surfaces carry no private links and sanitized summaries only, yet the active tree holds 15 references to C:/Users/dave paths and one example built on the maintainer's real family, so the privacy boundary is stated but not held. Once answered, every bot that writes a ledger or contract into this repo knows whether workspace: may name a local path, and a child Yawn learns whether it inherits a full-fidelity rule or a redaction rule."
+    why: "agents/yawn.bot.policy.yawn says public surfaces carry no private links and sanitized summaries only, yet the active tree holds 15 references to Windows user-profile paths and one example built on the maintainer's real family, so the privacy boundary is stated but not held. Once answered, every bot that writes a ledger or contract into this repo knows whether workspace: may name a local path, and a child Yawn learns whether it inherits a full-fidelity rule or a redaction rule."
   - rank: 9
     decision_ref: decisions/009-audience-primacy.yawn
     leverage: 24

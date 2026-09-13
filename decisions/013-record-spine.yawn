@@ -38,7 +38,7 @@ state_snapshot:
     17 judgments sit at per-kind-record-shape (1 authored) and 5 at
     uniform-record-shape (1 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -143,7 +143,7 @@ proof:
     notices.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0194"
   - "J0331"
   - "J0348"
@@ -164,3 +164,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -39,7 +39,7 @@ state_snapshot:
     18 judgments sit at executable-enforcement (3 authored) and 8 at
     documentary-declaration (2 authored). The repository asserts both directions
     on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -152,7 +152,7 @@ proof:
     green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0004"
   - "J0042"
   - "J0130"
@@ -174,3 +174,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

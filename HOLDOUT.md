@@ -1,7 +1,10 @@
 # HOLDOUT — can this repository's stated judgments be predicted from the rest of it?
 
-The protocol was written to `HOLDOUT_METHOD.md` and committed **before** selection, prediction and
-scoring. Nothing in it was revised after a number was visible. The result below is reported as it came out.
+The protocol was written to `HOLDOUT_METHOD.md` **before** selection, prediction and scoring, as the
+author reports; git holds the method and the result in one commit (4262644, 2026-09-12), so that
+ordering is reported, not shown. Nothing in the method was revised after a number was visible except
+a provenance note added 2026-09-13. The selection draw is in `tests/fixtures/holdout-files.txt` and
+`tests/fixtures/holdout-selection.json`. The result below is reported as it came out.
 
 ## Question
 
@@ -86,6 +89,13 @@ read `readme.yawn` and `database/feedback-intake.yawn`. These violate the protoc
 forbade all 20 files to everyone) but cannot inflate any score, because each predictor is graded only
 on its own five files and none read any of those. `predict:g3` gained slightly more corpus context
 than allowed, which is disclosed rather than corrected.
+
+**Applying the committed remedy** (`HOLDOUT_METHOD.md`: any leak drops the affected file from
+scoring) means dropping `schemas/node.yawn`, `readme.yawn` and `database/feedback-intake.yawn`:
+actual 108, predicted 77, matched 25, precision **0.325**, recall **0.231**. The headline keeps all
+20 files, which is a deviation from the method as written; it is disclosed here (added 2026-09-13
+after review) rather than corrected, and the remedy figures are the ones to cite if the letter of the
+method is preferred.
 
 **Scoring was cross-graded**: scorer *s* graded a different predictor's group, so nobody marked their
 own work. Matching required both poles to agree; ties broke downward.

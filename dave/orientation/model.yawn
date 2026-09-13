@@ -114,7 +114,7 @@ lacunae:
   - "Whether any automation has run since the last observed run in the ledgers."
 
 sources:
-  - text: "JUDGMENTS.md: 1249 judgments over all 194 .yawn files, 2026-09-12."
+  - text: "JUDGMENTS.md: 1249 judgments over all 194 .yawn files on main at 09933cb, 2026-09-12; records added since are not inventoried."
     epistemic_status: observed
   - text: "TAXONOMY.md: the merge record behind the axes; every merge can be rejected."
     epistemic_status: observed

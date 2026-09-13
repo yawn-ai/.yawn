@@ -38,7 +38,7 @@ state_snapshot:
     12 judgments sit at mandatory-field-set (0 authored) and 17 at
     optional-field-set (7 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -146,7 +146,7 @@ proof:
     run validate.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0109"
   - "J0110"
   - "J0342"
@@ -168,3 +168,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

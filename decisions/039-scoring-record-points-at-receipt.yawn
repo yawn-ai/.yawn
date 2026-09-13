@@ -39,7 +39,7 @@ state_snapshot:
     13 judgments sit at independently-evaluated-success (9 authored) and 1 at
     self-certified-success (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -135,7 +135,7 @@ proof:
     agent that scored the move, and nothing fails.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0081"
   - "J0145"
   - "J0209"
@@ -152,3 +152,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

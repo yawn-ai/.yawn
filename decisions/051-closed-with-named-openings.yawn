@@ -37,7 +37,7 @@ state_snapshot:
     3 judgments sit at closed-world-schema (0 authored) and 1 at
     open-extensible-schema (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -131,7 +131,7 @@ proof:
     A third additionalProperties: true appears in schemas/ and no test notices.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J1061"
   - "J1138"
   - "J1208"
@@ -145,3 +145,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

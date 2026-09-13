@@ -39,7 +39,7 @@ state_snapshot:
     3 judgments sit at schema-declared-constraint (0 authored) and 3 at
     runtime-check (1 authored). The repository asserts both directions on this
     axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -150,7 +150,7 @@ proof:
     runtime-only.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J1092"
   - "J1104"
   - "J1116"
@@ -166,3 +166,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

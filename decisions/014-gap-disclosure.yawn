@@ -38,7 +38,7 @@ state_snapshot:
   description: >
     12 judgments sit at declared-lacuna (4 authored) and 10 at silent-omission (0
     authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -139,7 +139,7 @@ proof:
     lacunae entry or test failure appears.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0065"
   - "J0321"
   - "J0371"
@@ -161,3 +161,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -128,8 +128,15 @@ review_followup:
     - "two decision falsifiers no longer quote a literal drive path inside proof:"
     - "CONTRIBUTING.md: the Authored-By trailer applies from 2026-09-13 forward and trailers must be one contiguous block"
     - "this receipt: three tests, three scripts, three validate steps; render-bot-state --check named"
+    - "tests/decisions.test.mjs: leverage equals the printed formula inputs, numbering follows leverage, no choice is filled unless the record is superseded, every recommendation carries authority none, every judgment id cited under decisions/ resolves in TAXONOMY.md; decisions/node.yawn names it"
+    - "tests/render-bot-state.test.mjs: the renderer reads a fixture root (YAWN_ROOT) and a chosen or superseded decision leaves the queue; a non-numeric leverage stops the render"
+    - "decisions/*: state_snapshot.attributed_to and source.id_index name TAXONOMY.md, where the judgment ids resolve; resolves: renamed evidence_sample: because it is a sample, not the axis count the formula uses; no record quotes a literal drive path"
+    - "templates/decision.yawn regenerated from the shape the records carry (header keys, axis, poles, split, leverage and its formula, options with evidence_for, recommendation with authority none, evidence_sample)"
+    - "JUDGMENTS.md: #3 and #385 retagged REVEALED · BP as its own §4 had found (TAXONOMY.md rows J1177 and J1216 retagged with them; neither axis feeds a decision record's leverage: ontology-ambition is not a reversal axis and vocabulary-closure keeps two other authored rows on the same pole); the verification and coverage claims are pinned to main 09933cb; §2 no longer calls the stated side the author's; §6 says its columns sum to 2316 because a judgment anchored to n files appears in n rows"
+    - "HOLDOUT.md and HOLDOUT_METHOD.md: the pre-registration ordering is stated as the author's report (method and result landed in one commit, 4262644); the selection draw is in tests/fixtures/holdout-files.txt and holdout-selection.json; the committed leak remedy is applied in a disclosed line (precision 0.325, recall 0.231 after dropping the three files read across groups) while the headline keeps all 20"
+    - "dave/orientation: the inventory claim carries the commit and date on both the record and its page"
   not_applied:
-    - "a unit test for render-bot-state's open filter: the script reads the tree in place; testing it needs a fixture root, which is its own change"
+    - "recomputing the header counts of JUDGMENTS.md for the two retagged records; the header says so"
 
 not_migrated:
   - what: "the 145 grandfathered status: values"

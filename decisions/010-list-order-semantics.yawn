@@ -38,7 +38,7 @@ state_snapshot:
     13 judgments sit at order-is-load-bearing (1 authored) and 3 at
     order-is-display-only (2 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -139,7 +139,7 @@ proof:
     the default target mode, local as the default lane) and no record said it was.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0199"
   - "J0274"
   - "J0333"
@@ -158,3 +158,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

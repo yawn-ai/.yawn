@@ -38,7 +38,7 @@ state_snapshot:
   description: >
     5 judgments sit at open-vocabulary (0 authored) and 7 at closed-vocabulary (3
     authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -156,7 +156,7 @@ proof:
     green; or the registry gains entries with empty definitions.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0271"
   - "J0630"
   - "J0911"
@@ -177,3 +177,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md
