@@ -11,6 +11,18 @@ purpose: >
 template: templates/open-question.yawn
 
 open_questions:
+  - question: "Where does an answer given on yawn.bot/dave to an open decision persist: a bound orientation stream for that coordinate, a runtime table, or a proposal record in this repository, and under which authority flags?"
+    coordinate: "runtime/proposition-persistence"
+    why_it_matters: "On 2026-09-13 yawn.bot/dave began opening each ranked decision in place with its candidates and the chat composer; what Dave writes there is sorted to a proposition and kept on his device, and 'Continue in a Yawn' hands it to /new. The decision records here say a chosen candidate is his proposal until he fills choice:, but nothing says where that proposal lives between the device and the record. Until answered, the device thread and the /new handoff are the whole path, and a second device sees nothing."
+    evidence_needed:
+      - the orientation stream contract for a coordinate that is not a saved Yawn
+      - a proposal event shape with authored_by and epistemic_status
+      - one round trip from the surface to a record Dave can read back
+    owner: Dave
+    question_status: open
+    blocks_action: false
+    review_after: "before the proposition workspace is relied on across devices"
+
   - question: "Which git identity should commits made on Dave's behalf carry, now that Vercel refuses to build a commit whose author is not a member of the Yawn team?"
     coordinate: "runtime/commit-identity"
     why_it_matters: "On 2026-09-13 Vercel declined the preview build of yawn.bot commit b5c4fc6 because its author, the GitHub account daveforman, is not a member of the Yawn team on Vercel; the merge commits that main deploys from are authored by the yawn-ai account. CONTRIBUTING.md says the git identity is not attribution and asks for an Authored-By trailer instead, so the identity is free to be chosen for the pipeline: add daveforman to the Vercel team, or author agent commits under the yawn-ai identity with the trailer carrying who is answerable."
