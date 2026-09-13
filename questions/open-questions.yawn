@@ -2,7 +2,7 @@ id: questions/open-questions
 title: "What is still unresolved?"
 kind: lacuna-index
 status: preview
-updated: 2026-09-12
+updated: 2026-09-13
 
 purpose: >
   Keep unanswered, disputed, deferred, and decision-changing questions visible
@@ -11,6 +11,17 @@ purpose: >
 template: templates/open-question.yawn
 
 open_questions:
+  - question: "Which git identity should commits made on Dave's behalf carry, now that Vercel refuses to build a commit whose author is not a member of the Yawn team?"
+    coordinate: "runtime/commit-identity"
+    why_it_matters: "On 2026-09-13 Vercel declined the preview build of yawn.bot commit b5c4fc6 because its author, the GitHub account daveforman, is not a member of the Yawn team on Vercel; the merge commits that main deploys from are authored by the yawn-ai account. CONTRIBUTING.md says the git identity is not attribution and asks for an Authored-By trailer instead, so the identity is free to be chosen for the pipeline: add daveforman to the Vercel team, or author agent commits under the yawn-ai identity with the trailer carrying who is answerable."
+    evidence_needed:
+      - Vercel team membership
+      - a preview deployment that builds
+    owner: Dave
+    question_status: open
+    blocks_action: false
+    review_after: "before the next agent commit on yawn.bot that needs a preview deployment"
+
   - question: "When is yawn-ai/web-game archived, and which inbound links and integrations must move to yawn-ai/yawn.bot first?"
     coordinate: "runtime/repository-identity"
     why_it_matters: "Dave stated on 2026-09-12 that web-game is the older repository and is to be archived. Archiving is reversible on GitHub, but it breaks nothing only if every live pointer already names yawn.bot; the pointers in this repository were corrected the same day, the ones outside it are uninventoried."
@@ -19,7 +30,7 @@ open_questions:
       - Vercel and GitHub integration inventory
       - archive receipt
     owner: Dave
-    status: open
+    question_status: open
     blocks_action: false
     review_after: "before archiving the repository"
 
@@ -30,7 +41,7 @@ open_questions:
       - accepted public protocol commit
       - compatibility result against the runtime
     owner: Dave
-    status: open
+    question_status: open
     blocks_action: true
     review_after: "before canonical production reconciliation"
 
@@ -42,7 +53,7 @@ open_questions:
       - public contract inventory
       - owner-reviewed promotion list
     owner: Dave
-    status: open
+    question_status: open
     blocks_action: true
     review_after: "before public publication"
 
@@ -55,14 +66,14 @@ open_questions:
       - orientation revision comparison
       - console and runtime logs
     owner: YAWN.bot
-    status: open
+    question_status: open
     blocks_action: true
     review_after: "before declaring production healthy"
 
 recently_resolved:
   - question: "Should the official YAWN.bot GitHub repository slug change from web-game to yawn-bot?"
     answer: "Yes. The official YAWN.bot runtime is https://github.com/yawn-ai/yawn.bot with its Supabase database; https://github.com/yawn-ai/web-game is the older address, superseded and to be archived. Stated by Dave on 2026-09-12 and recorded on his behalf; provisional until he confirms it in a record he writes."
-    status: answered-provisionally
+    question_status: answered-provisionally
     epistemic_status: reported
     owner: Dave
     answered_on: 2026-09-12
@@ -74,7 +85,7 @@ recently_resolved:
       - "Which codebase is the official YAWN.bot runtime? (2026-07-11 answer naming web-game)"
   - question: "Which codebase is the official YAWN.bot runtime?"
     answer: "The codebase at https://github.com/yawn-ai/web-game is the official YAWN.bot runtime."
-    status: superseded
+    question_status: superseded
     superseded_on: 2026-09-12
     superseded_by: "the repository-slug answer above; the same codebase is now addressed at https://github.com/yawn-ai/yawn.bot"
     owner: Dave

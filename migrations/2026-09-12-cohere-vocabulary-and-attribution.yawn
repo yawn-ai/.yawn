@@ -103,6 +103,7 @@ what_changed:
         authorized_by: "Dave, in conversation on 2026-09-13; recorded on his behalf"
         runtime_receipt: "yawn.bot YAWNS/Observations/YAWN_DAVE_NEXT_QUESTION_MERGE_2026_09_13.yawn"
         not_observed: "the production page after the merge; the session's network egress refuses yawn.bot and the GitHub integration cannot read deployment statuses, so the live result is Dave's to look at"
+        deployment_note: "Vercel refused the preview build of the runtime branch head b5c4fc6 because its git author's GitHub account (daveforman) is not a member of the Yawn team on Vercel; main's merge commits are authored by yawn-ai. The identity question is open in questions/open-questions.yawn (runtime/commit-identity)"
   entry:
     - added: CLAUDE.md
       why: "one file that is true on landing, for agents"
@@ -128,6 +129,7 @@ review_followup:
     - "two decision falsifiers no longer quote a literal drive path inside proof:"
     - "CONTRIBUTING.md: the Authored-By trailer applies from 2026-09-13 forward and trailers must be one contiguous block"
     - "this receipt: three tests, three scripts, three validate steps; render-bot-state --check named"
+    - "questions/open-questions.yawn: entries carry question_status:, the same key the template now uses for a question's own state"
     - "tests/decisions.test.mjs: leverage equals the printed formula inputs, numbering follows leverage, no choice is filled unless the record is superseded, every recommendation carries authority none, every judgment id cited under decisions/ resolves in TAXONOMY.md; decisions/node.yawn names it"
     - "tests/render-bot-state.test.mjs: the renderer reads a fixture root (YAWN_ROOT) and a chosen or superseded decision leaves the queue; a non-numeric leverage stops the render"
     - "decisions/*: state_snapshot.attributed_to and source.id_index name TAXONOMY.md, where the judgment ids resolve; resolves: renamed evidence_sample: because it is a sample, not the axis count the formula uses; no record quotes a literal drive path"
