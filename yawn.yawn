@@ -256,6 +256,7 @@ record_links:
   epistemic_status_drift_ledger: records/epistemic-status-drift-ledger-2026-08-28.yawn
   inquiry_aperture_one_question_face: records/inquiry-aperture-one-question-face.yawn
   yawn_bot_state: records/yawn.bot-state.yawn
+  yawn_bot_experiment_brief_review: records/2026-09-12-yawn-bot-experiment-brief-review.yawn
 
 question_packet_links:
   node: question-packets/node.yawn
