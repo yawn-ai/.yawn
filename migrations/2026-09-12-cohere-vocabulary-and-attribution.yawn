@@ -97,13 +97,46 @@ what_changed:
       pin_rule: "the runtime pins the record's git blob in protocol/dot-yawn.lock.json; a stale pin is bumped there by a reviewed change"
       epistemic_status: observed
       proof: "yawn.bot tests/unit/dave-public-mission.test.tsx, tests/unit/yawn-bot-state-record.test.ts, tests/e2e/dave-public-model.spec.ts"
+      merged:
+        this_repository: "pull request 33 merged 2026-09-13 as c3de16b5f345209ed7ad04a11ee6f6652ee6c349 on main (merge commit; hosted CI passed on the merged head)"
+        runtime: "yawn-ai/yawn.bot pull request 157 merged 2026-09-13 as 21f086a5598e58356630ffbb0de2fe8f6a0e883b on main; its lock pins this record at blob 59198132b895d506d67c41ddc4da25b89d6cf7f1, upstreamCommit c3de16b5, upstreamStatus merged"
+        authorized_by: "Dave, in conversation on 2026-09-13; recorded on his behalf"
+        runtime_receipt: "yawn.bot YAWNS/Observations/YAWN_DAVE_NEXT_QUESTION_MERGE_2026_09_13.yawn"
+        not_observed: "the production page after the merge; the session's network egress refuses yawn.bot and the GitHub integration cannot read deployment statuses, so the live result is Dave's to look at"
   entry:
     - added: CLAUDE.md
       why: "one file that is true on landing, for agents"
     - added: "CONTRIBUTING.md Attribution section and Authored-By commit trailer"
   validate_script: >
-    npm run validate now also runs generate-manifest (check) and
-    validate-proof-refs. CI runs npm test, which runs validate first.
+    npm run validate now also runs generate-manifest (check),
+    validate-proof-refs, and render-bot-state --check. CI runs npm test,
+    which runs validate first.
+
+review_followup:
+  date: 2026-09-13
+  source: "adversarial review workflow run over the merged change set; findings verified by reproduction before being applied"
+  applied:
+    - "scripts/validate-proof-refs.mjs inspects every column-0 proof: block, not only the first; detects a drive-letter or file: path anywhere on a line, not only at its start; resolves cited paths of any extension, directories, and paths with a #fragment; the external-source ledger is a frozen snapshot that may only shrink"
+    - "tests/status-vocabulary.test.mjs checks every column-0 status: line and the grandfather ledger is a frozen snapshot (tests/fixtures/status-grandfather-2026-09-12.txt, sha256 pinned) so a freed slot cannot be reused"
+    - "templates/open-question.yawn: the question's own state is question_status:, so a template no longer teaches a second top-level status:"
+    - "tests/record-shape.test.mjs: end-of-input anchor instead of a literal Z"
+    - "scripts/render-bot-state.mjs: a decision with a filled choice.selected_by or a superseded, archived, or deleted status is not open and leaves the queue; the default date is today's, not a literal"
+    - "records/cold-start-proof-2026-07-11.yawn marked superseded by this receipt; the corrected fixture is not re-run (no Windows host), so a fresh receipt is owed"
+    - "dave/node.yawn and the two mental-model records: authored_via now states the original provenance instead of naming a git author the same commit replaced; updated: bumped"
+    - "yawn.yawn and agents/yawn.bot.yawn updated: bumped to the day they were edited"
+    - "JUDGMENTS.md dates its coverage claim to main 09933cb; the records this change set added are not inventoried"
+    - "two decision falsifiers no longer quote a literal drive path inside proof:"
+    - "CONTRIBUTING.md: the Authored-By trailer applies from 2026-09-13 forward and trailers must be one contiguous block"
+    - "this receipt: three tests, three scripts, three validate steps; render-bot-state --check named"
+    - "tests/decisions.test.mjs: leverage equals the printed formula inputs, numbering follows leverage, no choice is filled unless the record is superseded, every recommendation carries authority none, every judgment id cited under decisions/ resolves in TAXONOMY.md; decisions/node.yawn names it"
+    - "tests/render-bot-state.test.mjs: the renderer reads a fixture root (YAWN_ROOT) and a chosen or superseded decision leaves the queue; a non-numeric leverage stops the render"
+    - "decisions/*: state_snapshot.attributed_to and source.id_index name TAXONOMY.md, where the judgment ids resolve; resolves: renamed evidence_sample: because it is a sample, not the axis count the formula uses; no record quotes a literal drive path"
+    - "templates/decision.yawn regenerated from the shape the records carry (header keys, axis, poles, split, leverage and its formula, options with evidence_for, recommendation with authority none, evidence_sample)"
+    - "JUDGMENTS.md: #3 and #385 retagged REVEALED · BP as its own §4 had found (TAXONOMY.md rows J1177 and J1216 retagged with them; neither axis feeds a decision record's leverage: ontology-ambition is not a reversal axis and vocabulary-closure keeps two other authored rows on the same pole); the verification and coverage claims are pinned to main 09933cb; §2 no longer calls the stated side the author's; §6 says its columns sum to 2316 because a judgment anchored to n files appears in n rows"
+    - "HOLDOUT.md and HOLDOUT_METHOD.md: the pre-registration ordering is stated as the author's report (method and result landed in one commit, 4262644); the selection draw is in tests/fixtures/holdout-files.txt and holdout-selection.json; the committed leak remedy is applied in a disclosed line (precision 0.325, recall 0.231 after dropping the three files read across groups) while the headline keeps all 20"
+    - "dave/orientation: the inventory claim carries the commit and date on both the record and its page"
+  not_applied:
+    - "recomputing the header counts of JUDGMENTS.md for the two retagged records; the header says so"
 
 not_migrated:
   - what: "the 145 grandfathered status: values"
@@ -120,9 +153,10 @@ not_migrated:
     why: "an outward-facing GitHub action for Dave to take; the intent is recorded in questions/open-questions.yawn"
 
 rollback: >
-  Every change is additive and lives in named files. Remove the four tests, the
-  three scripts, and the two package.json validate steps and the previous suite
-  passes unchanged. The 54 manifest links are appended at block ends and can be
+  Every change is additive and lives in named files. Remove the three tests
+  (status-vocabulary, authored-by, record-shape), the three scripts
+  (validate-proof-refs, generate-manifest, render-bot-state), and the three
+  package.json validate steps and the previous suite passes unchanged. The 54 manifest links are appended at block ends and can be
   deleted as a range. record_shape:, authored_by:, and authored_via: lines can
   be stripped by a one-line filter. decisions/, dave/orientation/, CLAUDE.md,
   and core/entity-and-coupling.yawn are new paths. No record's prior content
@@ -140,7 +174,7 @@ proof:
     - what_changed
     - not_migrated
     - rollback
-  condition: "npm test passes on the tree this receipt describes, including the four new test files and the check-mode validators"
+  condition: "npm test passes on the tree this receipt describes, including the three new test files and the check-mode validators"
   tests:
     - tests/status-vocabulary.test.mjs
     - tests/authored-by.test.mjs

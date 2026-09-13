@@ -96,6 +96,12 @@ The git identity on the commit is not attribution. Measured 2026-09-12, more
 than half of the tree was last written by a project identity that shares the
 maintainer's email; the field exists so that a reader never has to guess.
 
+The trailer applies to commits from 2026-09-13 forward. The change set that
+introduced it (pull request 33) carried the interim form: `Co-Authored-By` and
+`Claude-Session` trailers, with the `Authored-By` line in the body, separated
+from the trailer block by a blank line, so git does not parse it as a trailer.
+Keep every trailer in one contiguous block at the end of the message.
+
 ## AI-assisted contributions
 
 AI assistance is welcome. Disclose material use in the pull request:

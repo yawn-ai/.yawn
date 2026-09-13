@@ -30,7 +30,7 @@ why_it_matters: >
   The written rule promises a boring portable folder that works with no
   software, while the only proof that anything holds is a Node 22 test suite
   with one npm dependency, and the four scheduled automations run PowerShell
-  against C:/Users/dave/OneDrive paths that appear 32 times across 12 tracked
+  against Dave's OneDrive desktop paths that appear 32 times across 12 tracked
   records. Once answered, every child Yawn and bot below Dave inherits an
   explicit answer to what it may depend on at each layer, instead of copying
   whichever absolute path or interpreter it finds nearest.
@@ -40,7 +40,7 @@ state_snapshot:
     9 judgments sit at tool-and-vendor-binding (0 authored) and 13 at
     zero-dependency-portability (11 authored). The repository asserts both
     directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -165,7 +165,7 @@ proof:
     ajv.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0036"
   - "J0245"
   - "J0338"
@@ -187,3 +187,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

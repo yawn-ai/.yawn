@@ -39,7 +39,7 @@ state_snapshot:
     5 judgments sit at uniform-naming-convention (3 authored) and 3 at
     per-file-naming-freedom (0 authored). The repository asserts both directions
     on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -150,7 +150,7 @@ proof:
     name, and validate passes without a ledger change.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0214"
   - "J0326"
   - "J0657"
@@ -168,3 +168,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

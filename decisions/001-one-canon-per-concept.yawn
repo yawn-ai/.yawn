@@ -38,7 +38,7 @@ state_snapshot:
     14 judgments sit at single-canonical-artifact (10 authored) and 24 at
     plural-parallel-artifacts (6 authored). The repository asserts both directions
     on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -145,7 +145,7 @@ proof:
     same_as/derived_from pointer and npm test stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0029"
   - "J0051"
   - "J0074"
@@ -167,3 +167,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

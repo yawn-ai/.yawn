@@ -2,6 +2,14 @@ id: records/cold-start-proof-2026-07-11
 title: "cold-start orientation proof"
 kind: proof-receipt
 status: passed
+superseded_on: 2026-09-12
+superseded_by: migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn
+superseded_note: >
+  This receipt certified the fixture against yawn-ai/web-game. On 2026-09-12 the
+  official runtime address became yawn-ai/yawn.bot and the fixture and its
+  verifier were corrected to expect it; this receipt is history for the old
+  address. The corrected fixture has not been re-run (the verifier is
+  PowerShell and no Windows host has run it since); a fresh receipt is owed.
 created: 2026-07-11
 
 target: examples/cold-start-agent.yawn

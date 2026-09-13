@@ -40,7 +40,7 @@ state_snapshot:
   description: >
     8 judgments sit at consent-before-effect (3 authored) and 4 at act-then-audit
     (0 authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -149,7 +149,7 @@ proof:
     automatic step before its consent gate and npm test stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0077"
   - "J0380"
   - "J0425"
@@ -169,3 +169,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

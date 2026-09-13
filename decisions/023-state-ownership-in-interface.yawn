@@ -36,7 +36,7 @@ state_snapshot:
   description: >
     24 judgments sit at model-holds-state (21 authored) and 1 at view-holds-state
     (0 authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -129,7 +129,7 @@ proof:
     neither the funnel bridge nor a validator flags the drift.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0009"
   - "J0010"
   - "J0024"
@@ -146,3 +146,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

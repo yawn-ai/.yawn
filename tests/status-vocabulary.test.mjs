@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
@@ -176,6 +177,10 @@ const GRANDFATHERED = new Map([
   ["templates/turn.yawn", ["open"]],
 ]);
 const LEDGER_CEILING = 145;
+// Frozen snapshot of the ledger as first written. The live map above may only lose entries:
+// every key in it must appear in the snapshot, and the snapshot file may not change.
+const SNAPSHOT_FILE = "tests/fixtures/status-grandfather-2026-09-12.txt";
+const SNAPSHOT_SHA256 = "d34580a7be469245e7ff03df4ed651d6c23cdb979fbd494d4f1a3f4503fdf5b7";
 
 const SKIP_DIRS = new Set(["node_modules", "build", "output", "backup", ".git"]);
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -192,31 +197,35 @@ async function walkYawnFiles(dir) {
   return found;
 }
 
-function topLevelStatus(text) {
-  // Only the top-level (column-0) `status:` scalar. Nested status fields inside
+function topLevelStatuses(text) {
+  // Every top-level (column-0) `status:` scalar, in order. Nested status fields inside
   // proof:, entries, or schema-typed records are different dimensions and are
-  // governed by their own contracts.
-  if (text.trimStart().startsWith("{")) return null; // JSON-format record
+  // governed by their own contracts. A record normally has one; a second column-0
+  // status: is checked too, so it cannot hide an off-vocabulary value.
+  if (text.trimStart().startsWith("{")) return []; // JSON-format record
+  const values = [];
   for (const line of text.split(/\r?\n/)) {
     const match = line.match(/^status:\s*(.*)$/);
     if (!match) continue;
     let value = match[1].trim();
     if (value.startsWith('"') || value.startsWith("'")) value = value.slice(1, value.lastIndexOf(value[0]));
     else value = value.replace(/\s+#.*$/, "").trim();
-    return value;
+    values.push(value);
   }
-  return null;
+  return values;
 }
+const topLevelStatus = (text) => topLevelStatuses(text)[0] ?? null;
 
 test("top-level status: values stay inside the lifecycle vocabulary", async () => {
   const violations = [];
   for (const file of await walkYawnFiles(ROOT)) {
     const relative = path.relative(ROOT, file).split(path.sep).join("/");
-    const value = topLevelStatus(await readFile(file, "utf8"));
-    if (value === null || value === "") continue;
     const allowedLegacy = GRANDFATHERED.get(relative) ?? [];
-    if (!LIFECYCLE.has(value) && !allowedLegacy.includes(value)) {
-      violations.push(`${relative}: "${value}"`);
+    for (const value of topLevelStatuses(await readFile(file, "utf8"))) {
+      if (value === "") continue;
+      if (!LIFECYCLE.has(value) && !allowedLegacy.includes(value)) {
+        violations.push(`${relative}: "${value}"`);
+      }
     }
   }
   assert.deepEqual(
@@ -228,6 +237,11 @@ test("top-level status: values stay inside the lifecycle vocabulary", async () =
 
 test("the grandfather ledger only shrinks", async () => {
   assert.ok(GRANDFATHERED.size <= LEDGER_CEILING, `no new grandfathered files may be added (ceiling ${LEDGER_CEILING})`);
+  const snapshotText = await readFile(path.join(ROOT, SNAPSHOT_FILE), "utf8");
+  assert.equal(createHash("sha256").update(snapshotText).digest("hex"), SNAPSHOT_SHA256, `${SNAPSHOT_FILE} is frozen; do not edit it`);
+  const snapshot = new Set(snapshotText.split("\n").filter(Boolean));
+  const added = [...GRANDFATHERED.keys()].filter((k) => !snapshot.has(k));
+  assert.deepEqual(added, [], `files grandfathered after the snapshot (a freed slot may not be reused):\n${added.join("\n")}`);
   // An entry whose file no longer carries its legacy value is stale: remove it.
   const stale = [];
   for (const [relative, legacy] of GRANDFATHERED) {

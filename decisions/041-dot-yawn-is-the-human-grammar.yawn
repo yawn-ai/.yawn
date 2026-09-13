@@ -38,7 +38,7 @@ state_snapshot:
     7 judgments sit at structured-machine-format (0 authored) and 2 at
     flat-human-format (0 authored). The repository asserts both directions on this
     axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -149,7 +149,7 @@ proof:
     not_covered a quarter after ratification, while npm test stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0041"
   - "J0350"
   - "J0538"
@@ -167,3 +167,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

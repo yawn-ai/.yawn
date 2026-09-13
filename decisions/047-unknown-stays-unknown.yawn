@@ -38,7 +38,7 @@ state_snapshot:
     7 judgments sit at honest-partial-record (3 authored) and 1 at
     complete-looking-record (0 authored). The repository asserts both directions
     on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -136,7 +136,7 @@ proof:
     tell it was uncaptured rather than free.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0111"
   - "J0403"
   - "J0407"
@@ -153,3 +153,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

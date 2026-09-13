@@ -36,7 +36,7 @@ state_snapshot:
   description: >
     9 judgments sit at graded-verdict (4 authored) and 2 at binary-verdict (0
     authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -135,7 +135,7 @@ proof:
     are true and false.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0400"
   - "J0402"
   - "J0517"
@@ -153,3 +153,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

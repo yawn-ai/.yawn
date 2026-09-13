@@ -133,7 +133,7 @@ proof:
     guard block before this record's choice is filled.
   status: proposed
 
-resolves: []
+evidence_sample: []
 
 boundary:
   - "an address is a View; the name is the identity"

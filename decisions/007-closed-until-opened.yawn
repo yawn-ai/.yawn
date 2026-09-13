@@ -38,7 +38,7 @@ state_snapshot:
   description: >
     21 judgments sit at deny-by-default (5 authored) and 10 at permit-by-default
     (0 authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -152,7 +152,7 @@ proof:
     test stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0112"
   - "J0426"
   - "J0475"
@@ -174,3 +174,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

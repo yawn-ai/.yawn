@@ -27,7 +27,7 @@ question: >
 
 why_it_matters: >
   yawn.yawn promises orientation that is inspectable and replayable, yet two
-  references claim source-backed on C:/Users/dave paths, four of five scheduled
+  references claim source-backed on Windows user-profile paths, four of five scheduled
   bots run against a workspace root no reader can reach, and the loop contract
   hardcodes an operator's email; the in-flight proof-refs validator already
   freezes the two proof cases by name. Once answered, a bot writing a receipt
@@ -39,7 +39,7 @@ state_snapshot:
     4 judgments sit at independently-reachable-source (0 authored) and 2 at
     author-only-source (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -140,7 +140,7 @@ proof:
     unopenable source, and validate passes.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0196"
   - "J0353"
   - "J0710"
@@ -156,3 +156,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

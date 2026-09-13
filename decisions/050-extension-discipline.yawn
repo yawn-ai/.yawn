@@ -36,7 +36,7 @@ state_snapshot:
     3 judgments sit at namespaced-bounded-extension (2 authored) and 1 at
     free-key-extension (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -124,7 +124,7 @@ proof:
     validation.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0826"
   - "J1062"
   - "J1206"
@@ -138,3 +138,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

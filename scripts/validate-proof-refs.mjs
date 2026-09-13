@@ -34,9 +34,17 @@ const EXTERNAL_SOURCE_GRANDFATHER = new Set([
   "references/scientific-frame.yawn",
 ]);
 const EXTERNAL_CEILING = 2;
+// Frozen 2026-09-12. The live ledger above may only lose entries; every entry must be here.
+const EXTERNAL_SOURCE_SNAPSHOT = Object.freeze(["references/july-01-lock.yawn", "references/scientific-frame.yawn"]);
 
-const PATH_LIKE = /(?:^|[\s"'\[,(])((?:\.\.?\/)?(?:[A-Za-z0-9_.\-]+\/)+[A-Za-z0-9_.\-]+\.(?:yawn|json|mjs|js|ts|md|py|ps1|css|html|txt|cff))(?=$|[\s"'\],)])/g;
+// A cited path: dir/.../name.ext (any extension), an optional #fragment that is not part of
+// the path, or a directory ending in "/". Anchored on both sides so URLs and prose stay out.
+const PATH_LIKE = /(?:^|[\s"'\[,(])((?:\.\.?\/)?(?:[A-Za-z0-9_.\-]+\/)+(?:[A-Za-z0-9_.\-]+\.[A-Za-z0-9]{1,8})?)(?:#[A-Za-z0-9_.\-\/]+)?(?=$|[\s"'\],)])/g;
 const EXTERNAL = /^(?:https?:\/\/|[A-Za-z]:[\\/]|file:)/;
+// A Windows drive or file: URL anywhere in the line (after a space, quote, bracket, or the
+// start), not only when it begins the value; "https://" does not match because the letter
+// before the colon is preceded by another letter.
+const EXTERNAL_ANYWHERE = /(?:^|[^A-Za-z])(?:[A-Za-z]:[\\/][A-Za-z0-9_.\-]|file:\/)/;
 
 async function walk(dir) {
   const out = [];
@@ -47,17 +55,23 @@ async function walk(dir) {
   return out;
 }
 
-function proofBlock(text) {
-  // top-level `proof:` through the next column-0 key (YAML-ish, no parser)
+function proofBlocks(text) {
+  // every column-0 `proof:` through the next column-0 key (YAML-ish, no parser). A record
+  // with a scalar proof: line before its real proof: mapping has both inspected.
   const lines = text.split(/\r?\n/);
-  const start = lines.findIndex((l) => /^proof:\s*$/.test(l) || /^proof:\s*\S/.test(l));
-  if (start < 0) return null;
-  const body = [lines[start]];
-  for (let i = start + 1; i < lines.length; i++) {
-    if (/^\S/.test(lines[i]) && !/^\s*#/.test(lines[i])) break;
-    body.push(lines[i]);
+  const blocks = [];
+  for (let start = 0; start < lines.length; start++) {
+    if (!/^proof:\s*(?:$|\S)/.test(lines[start])) continue;
+    const body = [lines[start]];
+    let i = start + 1;
+    for (; i < lines.length; i++) {
+      if (/^\S/.test(lines[i]) && !/^\s*#/.test(lines[i])) break;
+      body.push(lines[i]);
+    }
+    blocks.push(body.join("\n"));
+    start = i - 1;
   }
-  return body.join("\n");
+  return blocks;
 }
 
 function topLevelKeys(text) {
@@ -87,10 +101,11 @@ for (const file of await walk(ROOT)) {
   const rel = path.relative(ROOT, file).split(path.sep).join("/");
   const text = await readFile(file, "utf8");
   if (text.trimStart().startsWith("{")) continue; // JSON-format record: schema-validated elsewhere
-  const block = proofBlock(text);
-  if (!block) continue;
+  const blocks = proofBlocks(text);
+  if (!blocks.length) continue;
   checked++;
 
+  for (const block of blocks) {
   for (const m of block.matchAll(PATH_LIKE)) {
     const p = m[1];
     if (EXTERNAL.test(p)) continue;
@@ -98,10 +113,11 @@ for (const file of await walk(ROOT)) {
     try { await access(abs); }
     catch { errors.push(`${rel}: proof cites missing path ${p}`); }
   }
-  // external (unverifiable) sources
+  // external (unverifiable) sources, wherever they sit on the line
   for (const line of block.split("\n")) {
-    const v = line.replace(/^\s*-\s*/, "").trim().replace(/^["']|["']$/g, "");
-    if (/^[A-Za-z]:[\\/]/.test(v) || /^file:/.test(v)) {
+    if (/^\s*#/.test(line)) continue;
+    const v = line.replace(/^\s*-\s*/, "").trim();
+    if (EXTERNAL_ANYWHERE.test(v)) {
       if (!EXTERNAL_SOURCE_GRANDFATHER.has(rel)) errors.push(`${rel}: proof cites a path outside the repository (${v.slice(0, 60)}…); vendor it, or mark the claim unverified`);
       else externals.push(`${rel}: ${v.slice(0, 70)}`);
     }
@@ -116,9 +132,11 @@ for (const file of await walk(ROOT)) {
       if (!keys.has(top)) errors.push(`${rel}: proof.covers names "${k}" but the record has no top-level key "${top}"`);
     }
   }
+  }
 }
 
 if (EXTERNAL_SOURCE_GRANDFATHER.size > EXTERNAL_CEILING) errors.push(`external-source grandfather ledger may not grow beyond ${EXTERNAL_CEILING}`);
+for (const g of EXTERNAL_SOURCE_GRANDFATHER) if (!EXTERNAL_SOURCE_SNAPSHOT.includes(g)) errors.push(`${g}: not in the frozen 2026-09-12 external-source snapshot; the ledger may only shrink`);
 for (const g of EXTERNAL_SOURCE_GRANDFATHER) {
   const hit = externals.some((e) => e.startsWith(g + ":"));
   if (!hit) errors.push(`${g}: grandfathered for an external source it no longer cites — remove the entry`);

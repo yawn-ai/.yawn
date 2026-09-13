@@ -39,7 +39,7 @@ state_snapshot:
     23 judgments sit at per-record-local-vocabulary (0 authored) and 5 at
     single-shared-vocabulary (5 authored). The repository asserts both directions
     on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -144,7 +144,7 @@ proof:
     permitted:) and npm test stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0039"
   - "J0050"
   - "J0132"
@@ -165,3 +165,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

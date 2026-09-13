@@ -38,7 +38,7 @@ state_snapshot:
   description: >
     27 judgments sit at principal-authority (22 authored) and 2 at agent-autonomy
     (0 authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -155,7 +155,7 @@ proof:
     green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0005"
   - "J0014"
   - "J0022"
@@ -173,3 +173,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

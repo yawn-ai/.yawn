@@ -41,7 +41,7 @@ state_snapshot:
     3 judgments sit at lower-effort-first (2 authored) and 5 at
     explicit-choice-first (1 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -163,7 +163,7 @@ proof:
     that says burden wins.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0250"
   - "J1023"
   - "J1200"
@@ -181,3 +181,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

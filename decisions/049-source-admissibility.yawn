@@ -39,7 +39,7 @@ state_snapshot:
     1 judgments sit at outside-source-admitted (0 authored) and 1 at
     repo-internal-source (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -143,7 +143,7 @@ proof:
     because the validator's extension list still omits it.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0352"
   - "J0766"
 
@@ -155,3 +155,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

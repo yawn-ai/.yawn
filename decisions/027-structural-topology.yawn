@@ -38,7 +38,7 @@ state_snapshot:
   description: >
     3 judgments sit at multi-parent-graph (3 authored) and 4 at single-parent-tree
     (1 authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -153,7 +153,7 @@ proof:
     relation read as containment and the suite stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0155"
   - "J0162"
   - "J0803"
@@ -170,3 +170,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

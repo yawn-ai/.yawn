@@ -37,7 +37,7 @@ state_snapshot:
     61 judgments sit at selective-concentrated-coverage (1 authored) and 3 at
     exhaustive-even-coverage (0 authored). The repository asserts both directions
     on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -143,7 +143,7 @@ proof:
     memory root and a ledger first.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0034"
   - "J0037"
   - "J0038"
@@ -162,3 +162,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

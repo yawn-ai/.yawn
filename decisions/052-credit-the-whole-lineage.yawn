@@ -40,7 +40,7 @@ state_snapshot:
     1 judgments sit at bounded-self-credit (0 authored) and 2 at
     full-lineage-credit (1 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -138,7 +138,7 @@ proof:
     naming its source, after ratification and no test fails.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0195"
   - "J0412"
   - "J0663"
@@ -151,3 +151,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

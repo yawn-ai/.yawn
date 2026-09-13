@@ -41,7 +41,7 @@ state_snapshot:
     3 judgments sit at minimum-sufficient-commitment (0 authored) and 11 at
     heavy-specification (1 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -162,7 +162,7 @@ proof:
     stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0117"
   - "J0473"
   - "J1043"
@@ -181,3 +181,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

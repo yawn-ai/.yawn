@@ -37,7 +37,7 @@ state_snapshot:
   description: >
     6 judgments sit at free-text-status (0 authored) and 1 at closed-status-enum
     (1 authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -133,7 +133,7 @@ proof:
     The test lands but the grandfather map grows on the next pull request.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0043"
   - "J0247"
   - "J0386"
@@ -150,3 +150,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

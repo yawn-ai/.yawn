@@ -10,7 +10,7 @@ coordinate: ""
 why_it_matters: ""
 evidence_needed: []
 owner: ""
-status: open
+question_status: open
 blocks_action: false
 review_after: ""
 answer: null

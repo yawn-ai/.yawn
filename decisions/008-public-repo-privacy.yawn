@@ -28,7 +28,7 @@ question: >
 why_it_matters: >
   agents/yawn.bot.policy.yawn says public surfaces carry no private links and
   sanitized summaries only, yet the active tree holds 15 references to
-  C:/Users/dave paths and one example built on the maintainer's real family, so
+  Windows user-profile paths and one example built on the maintainer's real family, so
   the privacy boundary is stated but not held. Once answered, every bot that
   writes a ledger or contract into this repo knows whether workspace: may name a
   local path, and a child Yawn learns whether it inherits a full-fidelity rule
@@ -39,7 +39,7 @@ state_snapshot:
     17 judgments sit at minimal-redacted-disclosure (11 authored) and 7 at
     full-fidelity-disclosure (4 authored). The repository asserts both directions
     on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -131,7 +131,7 @@ target_condition:
     - principal:dave
   ratification_status: proposed
   sufficient_when:
-    - "A test in tests/ fails on any C:/Users path in an active .yawn outside a named grandfather list, the list may only shrink, and the suite passes."
+    - "A test in tests/ fails on any Windows user-profile path in an active .yawn outside a named grandfather list, the list may only shrink, and the suite passes."
     - "references/scientific-frame.yawn either cites a reachable source or its proof.status no longer reads source-backed."
     - "examples/dave-good-dad-objective-holon.yawn carries a principal consent field or is synthesized like examples/participation-choice.yawn (synthetic_non_personal_example: true)."
     - "Every automation workspace: or source_repo: that named a local path now names a labelled private pointer."
@@ -146,11 +146,11 @@ proof:
     - target_condition
     - options
   falsifier: >
-    A new automation contract lands with workspace: C:/Users/dave/... and npm test
+    A new automation contract lands with workspace: a Windows user-profile path and npm test
     stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0031"
   - "J0064"
   - "J0087"
@@ -172,3 +172,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

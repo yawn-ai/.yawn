@@ -1573,7 +1573,7 @@ whether a term set is fixed and enumerable, or may grow freely as records need n
 | Judgment | Extractor's original poles | Mapped to | Conf | Prov |
 |---|---|---|---|---|
 | `J0907` | closed-enum > free-text-vocabulary | closed-vocabulary > open-vocabulary | 0.95 | A |
-| `J1177` | closed-vocabulary > free-text-status | closed-vocabulary > open-vocabulary | 0.95 | A |
+| `J1177` | closed-vocabulary > free-text-status | closed-vocabulary > open-vocabulary | 0.95 | BP |
 | `J0911` | open-status-vocabulary > closed-status-vocabulary | open-vocabulary > closed-vocabulary | 0.90 | RU |
 | `J0630` | bespoke-kind > closed-kind-taxonomy | open-vocabulary > closed-vocabulary | 0.85 | RU |
 | `J0271` | per-record-kind-coinage > closed-kind-taxonomy | open-vocabulary > closed-vocabulary | 0.80 | RU |
@@ -1758,7 +1758,7 @@ whether the model claims a bounded domain, or claims to cover everything a perso
 
 | Judgment | Extractor's original poles | Mapped to | Conf | Prov |
 |---|---|---|---|---|
-| `J1216` | unbounded-world-referent > serialized-world | bounded-ontology > totalizing-ontology | 0.90 | A |
+| `J1216` | unbounded-world-referent > serialized-world | bounded-ontology > totalizing-ontology | 0.90 | BP |
 | `J0750` | bounded-ontology > totalizing-ontology | bounded-ontology > totalizing-ontology | 0.85 | A |
 | `J0548` | bounded-claim > metaphysical-claim | bounded-ontology > totalizing-ontology | 0.80 | A |
 | `J0561` | bounded-observation-object > universal-decoding | bounded-ontology > totalizing-ontology | 0.80 | A |

@@ -2,7 +2,7 @@ id: agents/yawn.bot
 title: "YAWN.bot"
 kind: co-orientation-runtime-identity
 status: official
-updated: 2026-08-25
+updated: 2026-09-12
 
 identity:
   name: YAWN.bot

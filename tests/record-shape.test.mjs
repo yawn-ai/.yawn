@@ -26,7 +26,7 @@ function registry(nodeText) {
   //   canonical: header
   //   files:
   //     basic.yawn: header
-  const block = nodeText.match(/^record_shapes:\s*\n([\s\S]*?)(?=^\S|\Z)/m)?.[1] ?? "";
+  const block = nodeText.match(/^record_shapes:\s*\n([\s\S]*?)(?=^\S|$(?![\s\S]))/m)?.[1] ?? "";
   const canonical = block.match(/^\s+canonical:\s*(\S+)/m)?.[1];
   const files = new Map();
   for (const m of block.matchAll(/^\s{4}([A-Za-z0-9_.\-]+\.yawn):\s*(\S+)/gm)) files.set(m[1], m[2]);

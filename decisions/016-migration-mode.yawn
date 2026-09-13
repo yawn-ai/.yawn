@@ -37,7 +37,7 @@ state_snapshot:
   description: >
     12 judgments sit at partial-migration (1 authored) and 2 at complete-migration
     (2 authored). The repository asserts both directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -139,7 +139,7 @@ proof:
     finds untouched records.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0071"
   - "J0347"
   - "J0388"
@@ -157,3 +157,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

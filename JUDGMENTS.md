@@ -10,7 +10,7 @@ bottom is a leaf: it can be reversed on its own.
 
 | | |
 |---|---|
-| `.yawn` files inventoried | 194 (100% — every file in the repo) |
+| `.yawn` files inventoried | 194 (every file on main at 09933cb, 2026-09-12; the decisions/, records, and dave/orientation added by the same change set are proposals built from this inventory and are not themselves inventoried) |
 | Judgments extracted | **1249** |
 | — STATED (written down as a preference) | 538 |
 | — REVEALED (read off what an artifact does) | 711 |
@@ -58,7 +58,7 @@ repository asserts this*, not as *Dave asserts this* — the stronger reading is
 here, and the distinction matters most for exactly the judgments a reader would most want to
 attribute.
 
-Verification basis: `npm test` was run against this tree and passes **128/128**. Every judgment
+Verification basis: `npm test` was run against main at 09933cb (2026-09-12) and passed **128/128**; the coherence change set that followed raised the suite to 136. Two records (#3 and #385) were retagged `REVEALED · BP` on 2026-09-13 after review, because §4 had already identified them as behaviour-proven readings; the counts in this header are as of the 2026-09-12 extraction and are not recomputed for those two; their TAXONOMY.md rows (J1177, J1216) carry the new tag. Every judgment
 tagged **BP** names the test, validator or record that confirms it, and those were opened and
 checked rather than taken from the prose; 40 judgments had an overstated proof claim downgraded as a result.
 
@@ -115,7 +115,9 @@ Tier cuts come from this corpus's own distribution — Constitutional ≥ 7, Str
 
 #### 3. epistemic_status is a closed seven-value vocabulary (observed | reported | inferred | assumed | predicted | disputed | unknown) enforced by a repo-wide scan of every .yawn file → 14
 
-> STATED · **A** authored · **proof-attached** · axis: `vocabulary-closure`
+> REVEALED · **BP** behaviour-proven · **proof-attached** · axis: `vocabulary-closure`
+
+- **Retagged** — 2026-09-13, after review. §4 had already found this claim established by a test observing behaviour, not by authored prose; the behaviour is established, the intent is not the author's. Was `STATED · A`.
 
 - **Chosen** — epistemic_status is a closed seven-value vocabulary (observed | reported | inferred | assumed | predicted | disputed | unknown) enforced by a repo-wide scan of every .yawn file
 - **Rejected** — letting epistemic_status be free text, as 50+ ad-hoc values in the wild already were (mixed_reported_observed_inferred_proposed, reported_plus_inferred, ...)
@@ -4690,7 +4692,9 @@ Tier cuts come from this corpus's own distribution — Constitutional ≥ 7, Str
 
 #### 385. the schema has no 'world' property at all; only agent-relative fields and arenas are serialized → 1
 
-> STATED · **A** authored · outcome-attached · axis: `ontology-ambition`
+> REVEALED · **BP** behaviour-proven · outcome-attached · axis: `ontology-ambition`
+
+- **Retagged** — 2026-09-13, after review. §4 had already found this claim established by a test observing behaviour, not by authored prose; the behaviour is established, the intent is not the author's. Was `STATED · A`.
 
 - **Chosen** — the schema has no 'world' property at all; only agent-relative fields and arenas are serialized
 - **Rejected** — modelling the world as a record the system can hold
@@ -14427,7 +14431,7 @@ Tier cuts come from this corpus's own distribution — Constitutional ≥ 7, Str
 Each entry pairs a preference the repo **writes down** with behaviour in the same repo that goes the
 other way. Ordered by how load-bearing the contradicted stated judgment is.
 
-The stated side is the author's. The revealed side is what an artifact does — established where it
+The stated side is written in the repository (tag **A**; see the limit of the A tag in the Provenance header). The revealed side is what an artifact does — established where it
 is tagged **BP**, and an unconfirmed reading where it is tagged **RU**. A contradiction here means
 the written rule and the shipped artifact disagree; it is not evidence about anyone's intent, and
 the *adjudication* line says which side actually governs in practice and on what evidence.
@@ -15350,6 +15354,8 @@ graph LR
 ## 6. Full index by file
 
 Every `.yawn` file, and the judgments anchored to it. Files with no judgment are listed in §7.
+A judgment anchored to n files appears in n rows; the columns therefore sum to 2316 (863 STATED,
+1453 REVEALED), not to the 1249 judgments in the header. HOLDOUT.md counts actuals the same way.
 
 | File | Judgments | STATED | REVEALED |
 |---|---|---|---|
@@ -15749,4 +15755,4 @@ longer and less true.
 
 ---
 
-_1249 judgments · 194 files · generated from a structured extraction, rendered mechanically._
+_1249 judgments · 194 files on main at 09933cb, 2026-09-12 · generated from a structured extraction, rendered mechanically._

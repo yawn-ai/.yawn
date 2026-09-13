@@ -38,7 +38,7 @@ state_snapshot:
     2 judgments sit at unquantified-judgment (0 authored) and 4 at
     quantified-confidence (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -133,7 +133,7 @@ proof:
     number appears beside a reported item and the suite stays green.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0118"
   - "J0846"
   - "J0394"
@@ -149,3 +149,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

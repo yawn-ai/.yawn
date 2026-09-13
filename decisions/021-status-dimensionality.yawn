@@ -39,7 +39,7 @@ state_snapshot:
     12 judgments sit at multi-axis-status (8 authored) and 4 at
     single-scalar-status (0 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -159,7 +159,7 @@ proof:
     all eight dimensions while no record satisfies it.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0122"
   - "J0190"
   - "J0304"
@@ -179,3 +179,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

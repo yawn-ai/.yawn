@@ -38,7 +38,7 @@ state_snapshot:
     17 judgments sit at decomposed-many-records (7 authored) and 7 at
     combined-single-record (3 authored). The repository asserts both directions on
     this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -149,7 +149,7 @@ proof:
     ratification and no test fails.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0066"
   - "J0141"
   - "J0148"
@@ -171,3 +171,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md

@@ -40,7 +40,7 @@ state_snapshot:
     7 judgments sit at per-claim-attribution (4 authored) and 2 at
     document-level-attribution (0 authored). The repository asserts both
     directions on this axis.
-  attributed_to: JUDGMENTS.md
+  attributed_to: TAXONOMY.md
   epistemic_status: observed
   source_refs:
     - JUDGMENTS.md
@@ -157,7 +157,7 @@ proof:
     example ships with no template pointer.
   status: proposed
 
-resolves:
+evidence_sample:
   - "J0085"
   - "J0586"
   - "J0668"
@@ -175,3 +175,4 @@ source:
   template: templates/decision.yawn
   axis: TAXONOMY.md
   inventory: JUDGMENTS.md
+  id_index: TAXONOMY.md
