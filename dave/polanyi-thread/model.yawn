@@ -1,0 +1,121 @@
+id: mental-model:dave:polanyi-thread
+title: "Dave / the Polanyi thread"
+kind: mental-model
+record_shape: header
+status: draft
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; the thread and the mastery line are Dave's words as reported from a screenshot; the reading of Polanyi is the agent's and is marked"
+arena: "Dave's account of what a record can hold about judgment, and what it cannot"
+sibling_ref: dave/mastery-line/model.yawn
+judgments_ref: JUDGMENTS.md
+updated: 2026-09-13
+
+questions:
+  - key: role
+    answer: "The person holding the thread: a reader of Polanyi who is also the author of the judgments this repository tries to write down."
+  - key: relevance
+    answer: >
+      The whole method here is to make judgment inspectable. Polanyi says a
+      part of judgment cannot be told, by its nature and not by neglect. If I
+      know where that part begins I know what a record can carry, what a
+      person or a practice has to carry instead, and what a bot should stop
+      asking for.
+  - key: definition
+    answer: "We know more than we can tell. Knowing has a focal target and a subsidiary ground, and the ground cannot be made focal without losing the target."
+  - key: inside
+    answer: "Six turns of the thread, from focal awareness to the remainder no record recovers."
+  - key: show
+    answer: "Five moments where the thread is visible, each with one question."
+  - key: assumptions
+    answer: "What I am taking from Polanyi, and where I am reading past him."
+  - key: proof
+    answer: "Whether asking for the rule changes the performance, and whether the reconstruction matches the act."
+  - key: lacuna
+    answer: "Where the tiers came from, and how much of my own judgment is already on the far side."
+
+concept:
+  name: The Polanyi thread
+  one_line: "The line of thought from tacit knowing to the remainder a record cannot recover."
+  inside:
+    - name: "focal"
+      glyph: "◉"
+      one_line: "what you attend to; the thing you can point at and name"
+    - name: "subsidiary"
+      glyph: "◌ ◌ ◌ → ◉"
+      one_line: "what you attend from; the clues, the grip, the medium; felt, not looked at"
+    - name: "from–to"
+      glyph: "from → to"
+      one_line: "every act of knowing runs from a subsidiary ground to a focal target; the direction is the structure"
+    - name: "indwelling"
+      glyph: "⌂"
+      one_line: "the tool, the rule, the language becomes part of the body you know with; you live in it"
+    - name: "the pianist"
+      glyph: "♪ ✋"
+      one_line: "shift attention from the piece to the fingers and the piece stops; looking at the ground destroys the target"
+    - name: "the remainder"
+      glyph: "◉ … ∅"
+      one_line: "judgment exercised but never told; it leaves outcomes, not records, and cannot be written down afterwards"
+
+show:
+  - icon: "🚲"
+    do: "Ask someone who rides well how they keep a bicycle upright. Then ask them to ride while explaining."
+    say: "Which came first, the account or the wobble?"
+  - icon: "✋"
+    do: "Watch a person type a password they use every day, then ask them to say it aloud letter by letter."
+    say: "Did saying it help, or did the fingers know something the mouth did not?"
+  - icon: "📜"
+    do: "Open JUDGMENTS.md and pick one STATED judgment and one REVEALED judgment."
+    say: "Which of these did the author attend to when writing it, and which was read off what the file does?"
+  - icon: "🤖"
+    do: "When a bot asks for the rule behind a fast answer, notice whether the answer slows down."
+    say: "Is the rule being stated, or being reconstructed to satisfy the question?"
+  - icon: "🧵"
+    do: "Follow the thread to its sibling: the mastery line names the crossing itself."
+    say: "On which side of the line is this judgment right now?"
+
+embody:
+  - "Ask for the rule only while the rule is still focal. Once it has gone subsidiary, ask for the outcome and record that."
+  - "Treat a written-down judgment as one of two things, and say which: stated while focal, or reconstructed after the fact."
+  - "Do not backfill. When a judgment left only outcomes, write the outcomes and mark the judgment as a lacuna."
+  - "A bot inherits the stated judgments from the record and the subsidiary ones only by practice alongside the person. Say so rather than claiming the second."
+  - "Looking is not free. Before asking a person to explain what they do well, know that the asking can cost the doing."
+
+assumptions:
+  - text: "Polanyi's focal/subsidiary distinction is a fair description of skilled judgment, not only of motor skill."
+    epistemic_status: assumed
+  - text: "The judgments in JUDGMENTS.md are the ones that were caught while focal, or read back from artifacts; neither set reaches the remainder."
+    epistemic_status: inferred
+  - text: "Dave's 'Tier 3' is the remainder: judgment that never became a record. The tiers below it are the stated and revealed judgments already inventoried here."
+    epistemic_status: inferred
+    epistemic_note: "Dave's words name Tier 3 only. The conversation that defined the tiers is not in either repository; the mapping of Tiers 1 and 2 is the agent's reading."
+  - text: "The pianist example is Polanyi's own, and the thread quotes it in his sense."
+    epistemic_status: reported
+
+proof:
+  signals:
+    - "Asked for the rule behind a skilled act, the person's reconstruction differs from what they were observed to do."
+    - "Asked to explain while doing, the doing degrades; asked afterwards, it does not."
+    - "A judgment written in this repository can be tagged stated or revealed, and no third tag is needed for what was caught."
+    - "What could not be caught shows up as outcomes in the ledgers with no judgment record behind them."
+  falsifier: "If every judgment a skilled person exercises can be written down afterwards without loss, and stating it while acting costs nothing, there is no subsidiary ground and no remainder; the thread is broken and Tier 3 could be backfilled."
+
+lacunae:
+  - "The conversation the tier scheme came from, and what Tiers 1 and 2 were called there."
+  - "How much of Dave's own judgment about this repository is already subsidiary and so already missing from JUDGMENTS.md."
+  - "Whether a subsidiary judgment can be brought back to focal for teaching without a lasting cost to the skill."
+  - "Whether a bot practising alongside a person acquires anything subsidiary at all, or only a longer record."
+
+sources:
+  - text: "Dave, 2026-09-13, screenshot supplied to the session: 'The mastery line — from the Polanyi thread. Mastery is when judgments stop being things you attend to and become the medium you attend from. They go subsidiary. The pianist watching her fingers loses the music. That's also the exact reason Tier 3 can't be backfilled: it's made of judgment that never became a record.'"
+    epistemic_status: reported
+  - text: "Michael Polanyi, Personal Knowledge (1958): focal and subsidiary awareness; the pianist who attends to her fingers; indwelling."
+    epistemic_status: reported
+  - text: "Michael Polanyi, The Tacit Dimension (1966): 'we can know more than we can tell'; the from–to structure of tacit knowing."
+    epistemic_status: reported
+  - text: "JUDGMENTS.md: 1249 judgments with STATED and REVEALED provenance tags; the inventory the remainder sits outside of."
+    epistemic_status: observed
+  - text: "dave/mastery-line/model.yawn: the sibling model that names the crossing."
+    epistemic_status: observed

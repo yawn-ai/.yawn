@@ -1,0 +1,127 @@
+id: mental-model:dave:mastery-line
+title: "Dave / the mastery line"
+kind: mental-model
+record_shape: header
+status: draft
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; the line itself is Dave's words as reported from a screenshot; the parts, moments and proof are the agent's elaboration and are marked"
+arena: "Any judgment Dave, a person, or a bot is trying to record, teach, or inherit"
+sibling_ref: dave/polanyi-thread/model.yawn
+judgments_ref: JUDGMENTS.md
+updated: 2026-09-13
+
+questions:
+  - key: role
+    answer: "The person deciding whether a judgment can still be written down, or has already crossed into what I act from."
+  - key: relevance
+    answer: >
+      Mastery is when judgments stop being things you attend to and become the
+      medium you attend from. They go subsidiary. That is the exact reason a
+      third tier of judgment cannot be backfilled: it is made of judgment
+      that never became a record. If I know where the line is, I know which
+      of my judgments a record can still catch, which a bot can inherit from
+      the record, and which only practice carries.
+  - key: definition
+    answer: "The mastery line is the crossing where a judgment stops being attended to and becomes attended from. It is a change in where attention sits, not a level of skill."
+  - key: inside
+    answer: "Six parts: the two sides, the crossing, the cost of looking, the trace a record can still catch, and the way back."
+  - key: show
+    answer: "Six moments, each with one question, where the line is visible in a house or in a repository."
+  - key: assumptions
+    answer: "What I am taking for granted about attention, skill, and what a ledger can hold."
+  - key: proof
+    answer: "Whether stating the judgment costs the act, and whether the after-the-fact account matches what was done."
+  - key: lacuna
+    answer: "Which of my judgments are already across, and whether anything can be brought back without cost."
+
+concept:
+  name: The mastery line
+  one_line: "The crossing where a judgment goes from something you attend to, to the medium you attend from."
+  inside:
+    - name: "before the line"
+      glyph: "→ ◉"
+      one_line: "the judgment is focal; you can state it, it costs attention, and a record can catch it as stated"
+    - name: "the crossing"
+      glyph: "◉ | ◌"
+      one_line: "the moment a rule stops being consulted and starts being lived in; usually unnoticed, never scheduled"
+    - name: "after the line"
+      glyph: "◌ →"
+      one_line: "the judgment is subsidiary; you act from it, and stating it now costs the performance"
+    - name: "the cost of looking"
+      glyph: "♪ ✋"
+      one_line: "the pianist watching her fingers loses the music; making the ground focal loses the target"
+    - name: "the trace"
+      glyph: "◌ → ▮▮▮"
+      one_line: "what a ledger can still catch after the line: outcomes and their pattern, never the judgment itself"
+    - name: "the way back"
+      glyph: "◌ ⇠ ◉"
+      one_line: "novelty, injury, or teaching drags a subsidiary judgment back to focal, at a cost, and only for a while"
+
+show:
+  - icon: "👟"
+    do: "Ask a child who has just learned to tie shoes to say the steps. Ask an adult the same."
+    say: "Who can say it, and who can only do it?"
+  - icon: "🔢"
+    do: "Watch a kindergartner count a row of buttons, then watch her just see that there are four."
+    say: "Is she still attending to the counting words, or from them?"
+  - icon: "🚗"
+    do: "Ask an experienced driver, mid-drive, what they are doing with the clutch."
+    say: "Did the car notice the question?"
+  - icon: "📜"
+    do: "Open a decision record in decisions/ and a STATED judgment in JUDGMENTS.md."
+    say: "Was this written while the judgment was still being attended to, or reconstructed after it had gone subsidiary?"
+  - icon: "🤖"
+    do: "When a bot asks Dave for the rule behind a quick answer, watch whether the answer changes."
+    say: "Are we recording the judgment or rewriting it by asking?"
+  - icon: "🧵"
+    do: "Follow the sibling thread for where this line comes from."
+    say: "What did Polanyi say the ground is made of?"
+
+embody:
+  - "Before the line, ask for the rule and record it as stated. After the line, ask for the outcome and record that. Do not confuse the two."
+  - "Never backfill. If a judgment left only outcomes, write the outcomes and leave the judgment as a named lacuna, not as an inferred rule."
+  - "Say which tier a written judgment belongs to: caught while focal, read back from an artifact, or missing because it crossed before anyone wrote it down."
+  - "When a person answers fast and well, do not slow them down with 'why'. Note it and ask later, off the performance."
+  - "A bot inherits the judgments on the near side of the line from the record; the far side it can only practice into, alongside the person. Do not claim the far side."
+
+assumptions:
+  - text: "The line is Dave's, in his words: mastery is when judgments stop being things you attend to and become the medium you attend from."
+    epistemic_status: reported
+  - text: "A judgment can be on one side of the line only at a time; it is focal or subsidiary, not both."
+    epistemic_status: assumed
+  - text: "The ledgers in this repository can catch outcomes on the far side but not the judgment; the outcome pattern is a trace, not a backfill."
+    epistemic_status: inferred
+  - text: "'Tier 3' is Dave's name for the far side: judgment that never became a record. The tiers beneath it are the stated and revealed judgments already inventoried."
+    epistemic_status: inferred
+    epistemic_note: "Only Tier 3 is in Dave's words. The conversation that defined the scheme is not in either repository."
+  - text: "The pianist is Polanyi's example, used here in his sense, not as evidence about pianists."
+    epistemic_status: reported
+
+proof:
+  signals:
+    - "Before the line, asking for the rule does not change the act; after it, asking slows or breaks the act."
+    - "An after-the-fact account of a mastered judgment differs, in detail, from what was observed."
+    - "A record written after the line reads as revealed, not stated, when checked against what the file or the person actually did."
+    - "The bot's ledgers show outcomes with no judgment record behind them, and those are marked as lacunae rather than filled in."
+  falsifier: "If a judgment can be stated while it is exercised at no cost to the exercise, and written down afterwards without loss, it never crossed; if that holds for every judgment, there is no line and the third tier could be backfilled."
+
+lacunae:
+  - "Which of Dave's judgments about this repository have already crossed and are therefore absent from JUDGMENTS.md."
+  - "Whether a subsidiary judgment brought back to focal for teaching returns intact, or returns changed."
+  - "Whether the line is one crossing or a gradient; the model treats it as a line because that is how it is named."
+  - "The conversation the tier scheme came from."
+
+sources:
+  - text: "Dave, 2026-09-13, screenshot supplied to the session: 'The mastery line — from the Polanyi thread. Mastery is when judgments stop being things you attend to and become the medium you attend from. They go subsidiary. The pianist watching her fingers loses the music. That's also the exact reason Tier 3 can't be backfilled: it's made of judgment that never became a record.'"
+    epistemic_status: reported
+  - text: "dave/polanyi-thread/model.yawn: the sibling model, where focal and subsidiary come from."
+    epistemic_status: observed
+  - text: "Michael Polanyi, Personal Knowledge (1958) and The Tacit Dimension (1966): focal and subsidiary awareness, the pianist, we know more than we can tell."
+    epistemic_status: reported
+  - text: "JUDGMENTS.md: the inventory of stated and revealed judgments; the near side of the line as it stands."
+    epistemic_status: observed
+  - text: "dave/number-sense/model.yawn: subitizing as a child's crossing from counting words to seeing the amount."
+    epistemic_status: observed

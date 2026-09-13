@@ -423,6 +423,8 @@ dave_links:
   number_sense: dave/number-sense/model.yawn
   prenumerical_thinking: dave/prenumerical-thinking/model.yawn
   orientation: dave/orientation/model.yawn
+  mastery_line: dave/mastery-line/model.yawn
+  polanyi_thread: dave/polanyi-thread/model.yawn
 
 usage_frame: >
   YAWN is an orientation shape for inference before action. Use it by naming
