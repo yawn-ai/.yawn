@@ -17,7 +17,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "records", "yawn.bot-state.yawn");
 const CHECK = process.argv.includes("--check");
-const TODAY = process.env.YAWN_TODAY || "2026-09-12";
+const TODAY = process.env.YAWN_TODAY || new Date().toISOString().slice(0, 10);
 
 const scalar = (text, key) => {
   const m = text.match(new RegExp(`^${key}:\\s*(.*)$`, "m"));
@@ -69,12 +69,18 @@ for (const f of (await readdir(decDir)).filter((f) => /^\d{3}-.*\.yawn$/.test(f)
     file: `decisions/${f}`, id: scalar(t, "id"), title: scalar(t, "title"),
     question: folded(t, "question"), why: folded(t, "why_it_matters"), leverage: lev === "held" ? null : Number(lev),
     split: scalar(t, "split"), axis: scalar(t, "axis"),
+    status: scalar(t, "status") ?? "",
     ratification: (t.match(/ratification_status:\s*(\S+)/) ?? [])[1] ?? "proposed",
     selected: scalar(t, "  selected_by") ?? "",
   });
 }
-const open = decs.filter((d) => d.ratification === "proposed" && d.leverage !== null).sort((a, b) => b.leverage - a.leverage);
-const held = decs.filter((d) => d.leverage === null);
+// Open means: still proposed, nobody has filled choice.selected_by, and the record is
+// not superseded, archived, or deleted. Ratifying a decision (fill choice:, mark it
+// superseded) therefore drops it from the queue on the next render and --check.
+const RETIRED = new Set(["superseded", "archived", "deleted"]);
+const isOpen = (d) => d.ratification === "proposed" && d.selected === "" && !RETIRED.has(d.status);
+const open = decs.filter((d) => isOpen(d) && d.leverage !== null).sort((a, b) => b.leverage - a.leverage);
+const held = decs.filter((d) => d.leverage === null && isOpen(d));
 const next = open[0];
 
 const rec = `id: records/yawn.bot-state
@@ -154,7 +160,7 @@ ${held.map((d) => `  - decision_ref: ${d.file}\n    reason: "held by core/canoni
 backlog:
   proposed: ${open.length}
   held: ${held.length}
-  ratified: ${decs.filter((d) => d.ratification !== "proposed").length}
+  ratified: ${decs.filter((d) => !isOpen(d)).length}
   inventory_ref: JUDGMENTS.md
 
 boundary:

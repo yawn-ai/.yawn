@@ -146,7 +146,7 @@ proof:
     - target_condition
     - options
   falsifier: >
-    A new automation contract lands with workspace: C:/Users/dave/... and npm test
+    A new automation contract lands with workspace: a Windows user-profile path and npm test
     stays green.
   status: proposed
 

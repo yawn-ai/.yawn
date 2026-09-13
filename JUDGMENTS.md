@@ -10,7 +10,7 @@ bottom is a leaf: it can be reversed on its own.
 
 | | |
 |---|---|
-| `.yawn` files inventoried | 194 (100% — every file in the repo) |
+| `.yawn` files inventoried | 194 (every file on main at 09933cb, 2026-09-12; the decisions/, records, and dave/orientation added by the same change set are proposals built from this inventory and are not themselves inventoried) |
 | Judgments extracted | **1249** |
 | — STATED (written down as a preference) | 538 |
 | — REVEALED (read off what an artifact does) | 711 |

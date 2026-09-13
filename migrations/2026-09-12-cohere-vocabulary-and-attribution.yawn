@@ -108,8 +108,28 @@ what_changed:
       why: "one file that is true on landing, for agents"
     - added: "CONTRIBUTING.md Attribution section and Authored-By commit trailer"
   validate_script: >
-    npm run validate now also runs generate-manifest (check) and
-    validate-proof-refs. CI runs npm test, which runs validate first.
+    npm run validate now also runs generate-manifest (check),
+    validate-proof-refs, and render-bot-state --check. CI runs npm test,
+    which runs validate first.
+
+review_followup:
+  date: 2026-09-13
+  source: "adversarial review workflow run over the merged change set; findings verified by reproduction before being applied"
+  applied:
+    - "scripts/validate-proof-refs.mjs inspects every column-0 proof: block, not only the first; detects a drive-letter or file: path anywhere on a line, not only at its start; resolves cited paths of any extension, directories, and paths with a #fragment; the external-source ledger is a frozen snapshot that may only shrink"
+    - "tests/status-vocabulary.test.mjs checks every column-0 status: line and the grandfather ledger is a frozen snapshot (tests/fixtures/status-grandfather-2026-09-12.txt, sha256 pinned) so a freed slot cannot be reused"
+    - "templates/open-question.yawn: the question's own state is question_status:, so a template no longer teaches a second top-level status:"
+    - "tests/record-shape.test.mjs: end-of-input anchor instead of a literal Z"
+    - "scripts/render-bot-state.mjs: a decision with a filled choice.selected_by or a superseded, archived, or deleted status is not open and leaves the queue; the default date is today's, not a literal"
+    - "records/cold-start-proof-2026-07-11.yawn marked superseded by this receipt; the corrected fixture is not re-run (no Windows host), so a fresh receipt is owed"
+    - "dave/node.yawn and the two mental-model records: authored_via now states the original provenance instead of naming a git author the same commit replaced; updated: bumped"
+    - "yawn.yawn and agents/yawn.bot.yawn updated: bumped to the day they were edited"
+    - "JUDGMENTS.md dates its coverage claim to main 09933cb; the records this change set added are not inventoried"
+    - "two decision falsifiers no longer quote a literal drive path inside proof:"
+    - "CONTRIBUTING.md: the Authored-By trailer applies from 2026-09-13 forward and trailers must be one contiguous block"
+    - "this receipt: three tests, three scripts, three validate steps; render-bot-state --check named"
+  not_applied:
+    - "a unit test for render-bot-state's open filter: the script reads the tree in place; testing it needs a fixture root, which is its own change"
 
 not_migrated:
   - what: "the 145 grandfathered status: values"
@@ -126,9 +146,10 @@ not_migrated:
     why: "an outward-facing GitHub action for Dave to take; the intent is recorded in questions/open-questions.yawn"
 
 rollback: >
-  Every change is additive and lives in named files. Remove the four tests, the
-  three scripts, and the two package.json validate steps and the previous suite
-  passes unchanged. The 54 manifest links are appended at block ends and can be
+  Every change is additive and lives in named files. Remove the three tests
+  (status-vocabulary, authored-by, record-shape), the three scripts
+  (validate-proof-refs, generate-manifest, render-bot-state), and the three
+  package.json validate steps and the previous suite passes unchanged. The 54 manifest links are appended at block ends and can be
   deleted as a range. record_shape:, authored_by:, and authored_via: lines can
   be stripped by a one-line filter. decisions/, dave/orientation/, CLAUDE.md,
   and core/entity-and-coupling.yawn are new paths. No record's prior content
@@ -146,7 +167,7 @@ proof:
     - what_changed
     - not_migrated
     - rollback
-  condition: "npm test passes on the tree this receipt describes, including the four new test files and the check-mode validators"
+  condition: "npm test passes on the tree this receipt describes, including the three new test files and the check-mode validators"
   tests:
     - tests/status-vocabulary.test.mjs
     - tests/authored-by.test.mjs

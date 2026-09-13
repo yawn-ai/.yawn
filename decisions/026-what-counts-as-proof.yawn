@@ -141,7 +141,7 @@ proof:
     - target_condition
     - options
   falsifier: >
-    A record marked active carries proof.status: source-backed with a C:/Users
+    A record marked active carries proof.status: source-backed with a Windows user-profile
     path as its first source and npm test stays green;
     references/scientific-frame.yawn is the live case.
   status: proposed
