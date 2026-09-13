@@ -40,8 +40,10 @@ each_run_produces:
 may_without_external_authority:
   - read the repositories and the public pulse
   - run the goal audit, the protocol sync, the focused tests, typecheck and lint
-  - write the ledger line and the alert
-  - commit and push to the work order's branch
+  - write the ledger line and the alert locally
+
+under_the_work_order_authorization_only:
+  - "commit and push to the work order's branch: authorized by Dave's request of 2026-09-13 for this work order and its branch, recorded in the runtime's YAWNS/WorkOrders/AI_TALK_IN_THE_PARK_2026_09_13.yawn; not a standing grant, and it ends when that work order closes"
 
 blocked_without_current_exact_authorization:
   - merge, deploy, publish
@@ -54,12 +56,15 @@ blocked_without_current_exact_authorization:
 observed_runs:
   rule: "A run is observed only by its receipt in the pulse ledger and its commit on the branch; the schedule is not the state."
   last_observed: null
-  first_expected: "2026-09-13T05:36Z"
+  test_firing: "2026-09-13T04:45Z, session cse_01WpngJHxyGs3AQs3r8a15nY, ran two minutes, no receipt; its sources list was empty, so the fresh session may not have reached the repositories"
+  failing: "loop:pulse-agent until a receipt lands; alert set in the runtime's pulse ledger for user:dave to attach the repositories as sources"
+  first_scheduled: "2026-09-13T05:36Z"
 
 proof:
   covers:
     - schedule
     - runtime
+    - under_the_work_order_authorization_only
     - blocked_without_current_exact_authorization
   condition: >
     records/automation-log.yawn carries this automation's creation entry with

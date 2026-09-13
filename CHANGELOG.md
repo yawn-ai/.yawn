@@ -14,8 +14,9 @@ labels and do not imply compatibility.
   registered in the dave node, the sitemap, and the manifest
 - `automation/yawn.bot.dave-ai-talk-pulse.yawn`: the hourly agent pulse that
   re-enters the talk's work order in the runtime repository and alerts on a
-  stuck requirement; its creation is the newest entry in the automation log,
-  so the bot-state record's last observed run moves to 2026-09-13
+  stuck requirement; its creation entry in the automation log is marked
+  `created`, not a run, so the bot-state record's last observed run stays at
+  the last run the ledgers can show
 
 - Questions-first mental-model template, the `dave/` node with number sense and
   prenumerical thinking models and pages, and a dependency-free self-scan that
