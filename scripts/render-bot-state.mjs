@@ -42,6 +42,25 @@ const fold = (s, indent) => {
   return lines.map((l) => indent + l).join("\n");
 };
 
+// options and recommendation of a decision record: the candidates a surface offers
+// beside the question. Names and descriptions only; cost, risk and proof stay in the record.
+const optionsOf = (t) => {
+  const m = t.match(/^options:\n([\s\S]*?)(?=^\S)/m);
+  if (!m) return [];
+  return m[1].split(/^  - name:\s*/m).slice(1).map((chunk) => {
+    const name = chunk.split("\n")[0].trim();
+    const foldedDesc = chunk.match(/^    description:\s*>-?\s*\n((?:\s{6}.*\n?)+)/m);
+    const description = foldedDesc
+      ? foldedDesc[1].split("\n").map((l) => l.trim()).filter(Boolean).join(" ")
+      : (chunk.match(/^    description:\s*(.*)$/m)?.[1] ?? "").trim().replace(/^["']|["']$/g, "");
+    return { name, description };
+  });
+};
+const recommendationOf = (t) => t.match(/^recommendation:\n  option_ref:\s*(\S*)/m)?.[1] ?? "";
+const candidatesYaml = (d, indent) => d.options.length
+  ? d.options.slice(0, 3).map((o) => `${indent}- name: ${o.name}\n${indent}  description: ${q(o.description)}\n${indent}  recommended: ${o.name === d.recommended ? "true" : "false"}`).join("\n")
+  : `${indent.slice(0, -2)}[]`;
+
 // 1. last observed run: newest timestamp in the bot ledgers
 const LEDGERS = ["records/automation-log.yawn", "records/yawn.bot-log.yawn", "records/yawn.bot-verification-2026-07-01.yawn",
   "records/yawn.bot-pattern-ledger.yawn", "records/yawn.bot-private-pr-ledger.yawn", "records/yawn.bot-pr-notification-ledger.yawn"];
@@ -72,6 +91,7 @@ for (const f of (await readdir(decDir)).filter((f) => /^\d{3}-.*\.yawn$/.test(f)
     question: folded(t, "question"), why: folded(t, "why_it_matters"), leverage: lev === "held" ? null : Number(lev),
     split: scalar(t, "split"), axis: scalar(t, "axis"),
     status: scalar(t, "status") ?? "",
+    options: optionsOf(t), recommended: recommendationOf(t),
     ratification: (t.match(/ratification_status:\s*(\S+)/) ?? [])[1] ?? "proposed",
     selected: scalar(t, "  selected_by") ?? "",
   });
@@ -147,6 +167,13 @@ ${fold(next?.question, "    ")}
   why: >
 ${fold(next?.why, "    ")}
   leverage: ${next?.leverage ?? "n/a"}
+  candidates:
+${next ? candidatesYaml(next, "    ") : "    []"}
+  candidates_rule: >
+    The decision record's options, names and descriptions only, with the
+    attributed recommendation marked; choosing one here is Dave's proposal
+    until he fills choice: in the record. Cost, risk, and proof_needed stay in
+    the record.
   leverage_formula: "judgments_resolved x split_weight(genuinely-split 1.0 | leaning 0.7 | lone-exception 0.4) x authored_conflict_bonus(both sides authored 1.5 | one side 1.2 | neither 1.0)"
   rule: >
     The highest-leverage proposed decision whose choice is still empty. A
@@ -154,7 +181,7 @@ ${fold(next?.why, "    ")}
     importance, truth, obligation, or permission (core/inquiry-selection.yawn).
 
 question_queue:
-${open.slice(0, 12).map((d, i) => `  - rank: ${i + 1}\n    decision_ref: ${d.file}\n    leverage: ${d.leverage}\n    split: ${d.split}\n    question: ${q(d.question)}\n    why: ${q(d.why)}`).join("\n")}
+${open.slice(0, 12).map((d, i) => `  - rank: ${i + 1}\n    decision_ref: ${d.file}\n    leverage: ${d.leverage}\n    split: ${d.split}\n    question: ${q(d.question)}\n    why: ${q(d.why)}\n    candidates:\n${candidatesYaml(d, "      ")}`).join("\n")}
 
 held:
 ${held.map((d) => `  - decision_ref: ${d.file}\n    reason: "held by core/canonical-extension.yawn creation_gate.on_ambiguity; not ranked"`).join("\n") || "  []"}

@@ -11,7 +11,7 @@ import test from "node:test";
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SCRIPT = path.join(ROOT, "scripts", "render-bot-state.mjs");
 
-function decision(n, slug, { leverage, split = "leaning", status = "draft", selected = '""' }) {
+function decision(n, slug, { leverage, split = "leaning", status = "draft", selected = '""', options = "" }) {
   return `id: decisions/${n}-${slug}
 title: "${slug}"
 kind: decision-frame
@@ -27,6 +27,7 @@ question: >
 why_it_matters: >
   Because ${slug}.
 
+${options}
 target_condition:
   ratification_status: proposed
 
@@ -44,7 +45,24 @@ async function fixture(extra = {}) {
   await mkdir(path.join(root, "records"), { recursive: true });
   await writeFile(path.join(root, "decisions", "001-lower.yawn"), decision("001", "lower", { leverage: 10 }));
   await writeFile(path.join(root, "decisions", "002-chosen.yawn"), decision("002", "chosen", { leverage: 20, status: "superseded", selected: "Dave" }));
-  await writeFile(path.join(root, "decisions", "003-higher.yawn"), decision("003", "higher", { leverage: 15 }));
+  await writeFile(path.join(root, "decisions", "003-higher.yawn"), decision("003", "higher", { leverage: 15, options: `options:
+  - name: A
+    description: >
+      Keep the first
+      pole.
+    cost: "low"
+  - name: B
+    description: "Keep the second pole."
+    cost: "high"
+  - name: C
+    description: >
+      Write the exception down.
+    cost: "medium"
+
+recommendation:
+  option_ref: C
+  authority: none
+` }));
   await writeFile(path.join(root, "decisions", "004-held.yawn"), decision("004", "held", { leverage: "held", split: "held" }));
   for (const [name, text] of Object.entries(extra)) await writeFile(path.join(root, "decisions", name), text);
   await writeFile(path.join(root, "core", "entity-and-coupling.yawn"), `entities:
@@ -78,6 +96,9 @@ test("a chosen decision leaves the queue; the highest open one is next; held is 
   assert.match(out, /^  ratified: 1$/m);
   assert.match(out, /^  last_observed_run: 2026-07-04$/m);
   assert.match(out, /answer: "steward of yawn.bot"/);
+  // candidates: names and descriptions from the record's options, the recommendation marked
+  assert.match(out, /^next_question:[\s\S]*?  candidates:\n    - name: A\n      description: "Keep the first pole\."\n      recommended: false\n    - name: B\n      description: "Keep the second pole\."\n      recommended: false\n    - name: C\n      description: "Write the exception down\."\n      recommended: true\n/m);
+  assert.match(out, /decision_ref: decisions\/001-lower\.yawn\n[\s\S]*?    candidates:\n    \[\]\n/m);
   assert.equal(render(root).status, 0);
   assert.equal(spawnSync(process.execPath, [SCRIPT, "--check"], { env: { ...process.env, YAWN_ROOT: root }, encoding: "utf8" }).status, 0);
 });
