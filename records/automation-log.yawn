@@ -2,7 +2,7 @@ id: records/automation-log
 title: "automation log"
 kind: record-log
 status: v0-seed
-updated: 2026-08-17
+updated: 2026-09-13
 
 purpose: >
   Track automations created for the .yawn repository and what they are allowed
@@ -105,6 +105,16 @@ current_entries:
     allowed_effects: "report suspicious excerpts, false-positive caveats, and bounded human-voice rewrite suggestions"
     blocked_effects: "declare authorship as AI, rely on AI-detector scores as proof, scan dependencies/build output, commit, push, comment, PR, or deploy without authorization"
     proof: "created through Codex app automation_update"
+  - created: "2026-09-13"
+    # `created`, not `timestamp`: this entry records a creation, not a run, so
+    # scripts/render-bot-state.mjs does not count it as an observed run.
+    automation_id: "yawn-bot-dave-ai-talk-pulse"
+    name: "yawn.bot/dave hourly pulse"
+    schedule: "every hour, at minute 36 UTC"
+    scope: "re-enter the AI talk in the park work order, check the branch and the public pulse, alert on a stuck requirement, advance a bounded authorized move"
+    allowed_effects: "write the pulse ledger line and alert, commit and push proven fixes to the work order's branch, leave a session reflection when something moved"
+    blocked_effects: "merge, deploy, publish, send email, spend, write to Supabase, join a waitlist, change a secret, activate a sleeping bot, fill a decision's choice"
+    proof: "created as Claude Code Remote routine trig_01A5fpDEfa1h72hAn5cZF8KJ on 2026-09-13; contract automation/yawn.bot.dave-ai-talk-pulse.yawn; a test firing at 04:45Z left no receipt (session cse_01WpngJHxyGs3AQs3r8a15nY, empty sources); no run observed"
 
 proof:
   source:
@@ -119,6 +129,7 @@ proof:
     - automation/yawn.bot.license-reference-audit.yawn
     - automation/yawn.ai.funnel-bridge.yawn
     - automation/yawn.bot.ai-writing-scan.yawn
+    - automation/yawn.bot.dave-ai-talk-pulse.yawn
     - records/access-log.yawn
     - migrations/2026-08-17-canonical-extension.yawn
   status: seed-backed

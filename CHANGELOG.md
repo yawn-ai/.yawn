@@ -8,6 +8,16 @@ labels and do not imply compatibility.
 
 ### Added
 
+- `dave/ai-talk-in-the-park/`: Dave's mental model of the AI talk in the park
+  (a one-hour gathering in a Parker, Colorado park, starting from a yawn), its
+  page, and a proposed objective holon with a sleeping steward bot beside it;
+  registered in the dave node, the sitemap, and the manifest
+- `automation/yawn.bot.dave-ai-talk-pulse.yawn`: the hourly agent pulse that
+  re-enters the talk's work order in the runtime repository and alerts on a
+  stuck requirement; its creation entry in the automation log is marked
+  `created`, not a run, so the bot-state record's last observed run stays at
+  the last run the ledgers can show
+
 - Questions-first mental-model template, the `dave/` node with number sense and
   prenumerical thinking models and pages, and a dependency-free self-scan that
   fails closed on record/page/node drift

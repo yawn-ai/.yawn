@@ -1,0 +1,117 @@
+id: mental-model:dave:ai-talk-in-the-park
+title: "Dave / AI talk in the park"
+kind: mental-model
+record_shape: header
+status: draft
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; from Dave's spoken rehearsal of the talk and the reflection he pasted; the plan is his, the dates and shares are the bot's proposals"
+arena: "A Parker, Colorado park, one Saturday morning this fall, for one hour, with neighbours on blankets"
+objective_ref: dave/ai-talk-in-the-park/objective-holon.yawn
+runtime_ref: "https://yawn.bot/dave/ai-talk-in-the-park"
+work_order_ref: "yawn-ai/yawn.bot YAWNS/WorkOrders/AI_TALK_IN_THE_PARK_2026_09_13.yawn"
+updated: 2026-09-13
+
+questions:
+  - key: role
+    answer: "Speaker Dave. The scope on duty for one hour on the grass: transfer presence, say only what I would say to a neighbour, and hand parents the chain."
+  - key: relevance
+    answer: >
+      Because my kids are four and five and the world they are walking into is
+      one nobody can see. The talk is how I find the other parents who feel
+      that, and how I practice saying it plainly enough that a five-year-old
+      could follow.
+  - key: definition
+    answer: "A free, quiet hour in a Parker park where I talk about raising small kids into a world where AI is arriving, and I start with a yawn."
+  - key: inside
+    answer: "The yawn as the shared, unexplained thing; the chain a child can carry; the game you are playing right now; who is speaking; where and when; what my bot does and does not do."
+  - key: show
+    answer: "A blanket. The first yawn, mine. One question at a time."
+  - key: assumptions
+    answer: "That presence transfers in an hour; that the Town's permit path is as reported; that parents are the audience; that the bot's candidate dates are close enough to start from."
+  - key: proof
+    answer: "A rental or permit in hand, a date, people on blankets, and what they did next."
+  - key: lacuna
+    answer: "The Town's answer, the date, whether anyone gives, and whether presence transfers at all."
+
+concept:
+  name: AI talk in the park
+  one_line: "One hour on the grass, starting from a yawn, about raising small kids into a world where AI is arriving."
+  inside:
+    - name: "the yawn"
+      glyph: "( o )"
+      one_line: "the one thing everyone here does and nobody can fully explain; where presence starts"
+    - name: "the chain"
+      glyph: "o-o-o-o"
+      one_line: "you are an organism, you have needs, you weigh, predict, choose, find out, and live with it; true in every future"
+    - name: "the game"
+      glyph: "|||"
+      one_line: "which scope is running right now, and so which standards are on duty"
+    - name: "the blanket"
+      glyph: "[___]"
+      one_line: "the whole setup: no amplifier, no vendor, nobody has to stay"
+    - name: "the town"
+      glyph: "^"
+      one_line: "a permit or a rental, a park, a Saturday; the part that is not mine to decide alone"
+
+show:
+  - icon: "blanket"
+    do: "Sit down before you speak. Let people arrive."
+    say: "What is one thing every person here does that none of us can explain?"
+  - icon: "yawn"
+    do: "Go first. Yawn in front of everyone, then wait."
+    say: "Could you think about anything else while that happened?"
+  - icon: "question"
+    do: "Ask the one question, then stop talking."
+    say: "What game are you playing right now, and which of your standards are on duty in it?"
+
+embody:
+  - "Say only what you would say on the grass to a neighbour. If it needs the transcript to make sense, it is not ready."
+  - "Label the prediction as a prediction and the hope as a hope. Robots in Parker in two years is a prediction; a hundred people on blankets is a hope."
+  - "When someone asks why it is called yawn, answer with the yawn, not with the product."
+  - "Never book, send, or collect on Dave's behalf without his press; draft, address, and wait."
+  - "The talk's questions are ranked by what a parent needs first, not by what Dave finds most interesting."
+
+assumptions:
+  - text: "Presence can be transferred to a group in one hour, starting from a shared yawn."
+    epistemic_status: assumed
+  - text: "A gathering of ten or more on Town property needs a Community Event Permit, and park shelters are reserved through the Parks and Recreation rental request."
+    epistemic_status: reported
+  - text: "Parents orienting on behalf of a child are the audience that will come back."
+    epistemic_status: inferred
+  - text: "The three candidate Saturdays and the twenty-to-fifty sizing are close enough to start the conversation with the Town."
+    epistemic_status: assumed
+  - text: "What Dave said for the speech about himself is his to publish; what he marked as not for the speech is not."
+    epistemic_status: reported
+
+proof:
+  covers:
+    - questions
+    - show
+    - embody
+  signals:
+    - "The Town answers with a path, a fee, and an open Saturday."
+    - "A date is chosen by Dave and written into the work order, not by the bot."
+    - "People on blankets, counted, and one thing each did afterward."
+    - "scripts/validate-mental-models.mjs passes on this record and its page."
+  falsifier: "If the bot books a park, sends the outreach, or collects money without Dave's press, or if the talk happens and nobody can say what changed for them afterward, this model is not being honoured."
+  not_covered:
+    - "concept: the glyphs are a View choice, not a claim"
+    - "assumptions: each is labelled and waits on its own evidence"
+  status: seed-backed
+
+lacunae:
+  - "The Town of Parker's answer: rental or permit, tier, fee, deposit, lead time."
+  - "The date and the park."
+  - "Whether a donation rail should exist, and for what stated use."
+  - "Whether presence transfers, and how anyone would know."
+
+sources:
+  - text: "Dave's spoken rehearsal of the talk in a Claude Code session on 2026-09-13, and the reflection he pasted to reconstruct a lost eureka; retained in that session, hashed in the runtime's public/dave/model.yawn."
+    epistemic_status: reported
+  - text: "Town of Parker Community Event Permits (parkerco.gov/2445) and Parks and Recreation park rentals (parkerrec.com/219), as summarized by search results on 2026-09-13; the pages themselves were not reachable from the session."
+    epistemic_status: reported
+  - text: "core/entity-and-coupling.yawn: the settled role that this talk sits under (steward of yawn.bot, so that the bills are paid and agency stays high)."
+    epistemic_status: observed
