@@ -33,7 +33,7 @@ loop_status_reason: >
   is running.
 
 observed_activity:
-  last_observed_run: 2026-07-04
+  last_observed_run: 2026-09-13
   observed_from: records/automation-log.yawn
   as_of: 2026-09-13
   epistemic_status: observed
