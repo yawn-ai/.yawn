@@ -31,7 +31,8 @@ holds:
   - Interception public publication receipt
   - Interception statement-image owner decision
   - Interception statement-image bounded action result
-  - review of the yawn.bot experiment brief against the codebase (proposed)
+  - review of the yawn.bot experiment brief against the codebase (accepted 2026-09-13)
+  - yawn.bot standard and brief review release result
 
 receives:
   - agent actions
@@ -99,6 +100,7 @@ links:
   - records/interception-statement-image-approval-2026-08-29.yawn
   - records/interception-statement-image-result-2026-08-29.yawn
   - records/2026-09-12-yawn-bot-experiment-brief-review.yawn
+  - records/2026-09-13-standard-and-review-release-result.yawn
 
 proof:
   source:
