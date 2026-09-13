@@ -101,6 +101,7 @@ core_links:
   inquiry_selection: core/inquiry-selection.yawn
   relationship_first_agent_arena: core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
   entity_and_coupling: core/entity-and-coupling.yawn
+  articulation_floor: core/articulation-floor.yawn
 
 schema_links:
   node: schemas/node.yawn
@@ -134,6 +135,7 @@ schema_links:
   record_proof_receipt_v1: schemas/record-proof-receipt.v1.schema.json
   record_ref_v1: schemas/record-ref.v1.schema.json
   view_feedback_v1: schemas/view-feedback.v1.schema.json
+  articulation_floor_v0_1: schemas/articulation-floor.v0.1.schema.json
 
 spec_links:
   root: spec/README.md
@@ -256,6 +258,7 @@ record_links:
   epistemic_status_drift_ledger: records/epistemic-status-drift-ledger-2026-08-28.yawn
   inquiry_aperture_one_question_face: records/inquiry-aperture-one-question-face.yawn
   yawn_bot_state: records/yawn.bot-state.yawn
+  articulation_floor: records/articulation-floor.yawn
   yawn_bot_experiment_brief_review: records/2026-09-12-yawn-bot-experiment-brief-review.yawn
   standard_and_review_release_result: records/2026-09-13-standard-and-review-release-result.yawn
 
@@ -265,6 +268,7 @@ question_packet_links:
   relationship: question-packets/relationship.yawn
   orientation_nine: question-packets/orientation-nine.yawn
   turn_close: question-packets/turn-close.yawn
+  polanyi: question-packets/polanyi.yawn
 
 template_links:
   basic: templates/basic.yawn
@@ -298,6 +302,9 @@ template_links:
   q_space_question_node: templates/q-space-question-node.yawn
   q_space_transition_event: templates/q-space-transition-event.yawn
   question_proposal_v1: templates/question-proposal.v1.yawn
+  answer: templates/answer.yawn
+  floor: templates/floor.yawn
+  seal: templates/seal.yawn
 
 example_links:
   stuck: examples/stuck.yawn
@@ -330,6 +337,7 @@ fixture_links:
   delegated_execution_v1: fixtures/delegated-execution.v1.json
   observation_question_art_v1: fixtures/observation-question-art.v1.json
   observation_v1: fixtures/observation.v1.json
+  articulation_floor_v0_1: fixtures/articulation-floor.v0.1.json
 
 governance_links:
   governance: GOVERNANCE.md

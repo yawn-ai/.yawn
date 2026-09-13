@@ -1,0 +1,99 @@
+id: records/articulation-floor
+title: "the measured floor"
+kind: floor
+record_shape: header
+status: active
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-13; computed by lib/articulation-floor-v0.1.mjs computeFloor over the closed answer records; there are none yet, so every count is zero and nothing is invented"
+updated: 2026-09-13
+loop_ref: core/articulation-floor.yawn
+template_ref: templates/floor.yawn
+public_slice: https://yawn.bot/status
+
+purpose: >
+  The global floor the public slice reads, plus one row per axis that has been
+  sealed. It is recomputed from the answer ledger each pulse; where that ledger
+  persists is an open question (questions/open-questions.yawn), so until it is
+  answered the closed answers live on the principal's device and this record
+  shows n zero honestly. A runtime may compute a device-local floor beside it
+  and must label it as such.
+
+axis: all
+n: 0
+blind_n: 0
+anchored_n: 0
+answer_accuracy: 0
+reason_accuracy: 0
+curve: []
+last_break: null
+t_computed: null
+
+axes:
+  rule: "one row per axis with at least one seal; n counts closed answers on this device-independent record only"
+  rows:
+    - axis: floor
+      source: question-packets/polanyi.yawn
+      sealed: 1
+      n: 0
+      reason_accuracy: 0
+    - axis: exclusivity
+      source: question-packets/polanyi.yawn
+      sealed: 1
+      n: 0
+      reason_accuracy: 0
+    - axis: reversibility
+      source: question-packets/polanyi.yawn
+      sealed: 1
+      n: 0
+      reason_accuracy: 0
+    - axis: timing
+      source: question-packets/polanyi.yawn
+      sealed: 1
+      n: 0
+      reason_accuracy: 0
+    - axis: fidelity
+      source: question-packets/polanyi.yawn
+      sealed: 1
+      n: 0
+      reason_accuracy: 0
+    - axis: locus
+      source: question-packets/polanyi.yawn
+      sealed: 1
+      n: 0
+      reason_accuracy: 0
+    - axis: levels
+      source: question-packets/polanyi.yawn
+      sealed: 1
+      n: 0
+      reason_accuracy: 0
+    - axis: decisions
+      source: records/yawn.bot-state.yawn
+      sealed: 12
+      n: 0
+      reason_accuracy: 0
+      note: "the twelve queued decisions, one seal each, anchored: the recommendation is shown beside the candidates"
+
+readout:
+  verdict: no-data
+  note: "No closed record yet. The floor cannot be backfilled; it starts when the first sealed question is answered and its reason checked."
+  rule: core/articulation-floor.yawn#readout
+
+boundary:
+  - "n zero is shown as n zero; a floor below ten closed records is reported, never read as a verdict"
+  - "a device-local floor a runtime computes beside this record is that device's, not this record's"
+  - "this record measures the representation; it is never a claim about the person"
+
+proof:
+  covers:
+    - axis
+    - n
+    - readout
+  condition: >
+    Every axis row names a record whose seals scripts/validate-articulation-floor-v0.1.mjs
+    verifies; the counts are zero until an answer ledger exists that
+    lib/articulation-floor-v0.1.mjs computeFloor can read.
+  source:
+    - question-packets/polanyi.yawn
+    - records/yawn.bot-state.yawn
+    - lib/articulation-floor-v0.1.mjs
+  status: contract-defined

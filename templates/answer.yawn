@@ -1,0 +1,32 @@
+# An answer against a seal. Beat 2 (the principal answers), beat 3 (the seal is
+# revealed and scored), and beat 4 (the principal scores the sealed reason).
+# A record without reason_match is NOT closed and does not enter the floor.
+# Governing record: core/articulation-floor.yawn. Schema: schemas/articulation-floor.v0.1.schema.json
+id: ""
+title: ""
+kind: answer
+record_shape: header
+status: draft  # draft | active | superseded | archived | deleted
+authored_by: unattributed  # dave-human | agent-on-behalf | yawn.bot | unattributed
+
+question: ""
+axis: ""
+seal: ""                    # the seal's hash; the answer belongs to exactly that seal
+answer: ""
+mode: pick                  # pick | freeform
+answer_match: ""            # hit | partial | miss; a pick is hit or miss only
+answer_match_scored_by: ""  # comparison (a pick, scored against the seal) | principal (freeform, scored at the reveal)
+reason_match: ""            # yes | partly | no; beat 4, the confabulation check; required
+t_answered: ""              # ISO UTC; must be later than the seal's t_sealed
+actor: ""
+prior_answer: null          # set on a re-ask: the answer record this one follows
+drift: null                 # one line: what moved since the prior answer; lives here, not in its own record
+
+boundary:
+  - "The answer is the principal's; the score is against the seal, not against truth."
+  - "A hit does not mean the bot understood; a miss does not mean the principal was wrong."
+  - "Re-ask gap: 21 days by default, tunable; at most one in five questions per pulse."
+
+source:
+  template: templates/answer.yawn
+  loop: core/articulation-floor.yawn

@@ -8,6 +8,12 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Articulation Floor 0.1: seal, answer, and floor records with a schema, a
+  dependency-free lib, a validator, a replayable fixture, and templates; the
+  Polanyi question packet with one sealed prediction per axis; every queued
+  decision in the bot-state record sealed by the renderer; the live floor
+  record; the hub's live-surface section and `runtime_surfaces` in
+  `readme.yawn` naming which record each yawn.bot route reads
 - `dave/ai-talk-in-the-park/`: Dave's mental model of the AI talk in the park
   (a one-hour gathering in a Parker, Colorado park, starting from a yawn), its
   page, and a proposed objective holon with a sleeping steward bot beside it;

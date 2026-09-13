@@ -17,7 +17,9 @@ purpose: >
   pull request 160 the header's State control reads loop_status, its reason,
   and observed_activity from this record and projects the next steps from the
   runtime's own loop transitions, and since pull request 161 each open
-  decision opens in place with the candidates listed here. A stale pin is the
+  decision opens in place with the candidates listed here, and each queued
+  question carries the bot's sealed prediction of Dave's answer so the runtime
+  can reveal it after he answers and measure the floor. A stale pin is the
   runtime's to bump by a reviewed change, not this record's to push.
 
 runtime_ref: agents/yawn.bot.yawn
@@ -86,6 +88,26 @@ next_question:
     attributed recommendation marked; choosing one here is Dave's proposal
     until he fills choice: in the record. Cost, risk, and proof_needed stay in
     the record.
+  seal:
+    question: decisions/001-one-canon-per-concept.yawn
+    axis: canonical-multiplicity
+    predicted_answer: "C"
+    predicted_reason: "Side A is where the authored rules live (10 authored of 14): one_model_rule, the folder-node rule, the canonical memory root. The six side-B judgments shown are all revealed, and four of them are plain drift (gates restated and already diverged, lacuna copied verbatim with no cross-reference, two lifecycles of different length). The repo already holds the C mechanism: core/orientation.yawn declares lenses non-canonical and core/holarchy.yawn defines supersedes and same_as, which J0241 notes are unused. So C writes down what the authored side already says while keeping the friendly-name and dual-read-order artifacts as marked lenses. Close on the lifecycle and loop: the inventory counts six authored judgments on side B beyond the sample, so some parallelism is intended."
+    confidence: 0.7
+    model: "decisions/001-one-canon-per-concept.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+    t_sealed: "2026-09-12T00:00:00Z"
+    blind: false
+    source_refs: [decisions/001-one-canon-per-concept.yawn]
+    hash: sha256:e56275838bac6c14571381355bb5e2b4a7105e2b2a167ee23df8192cc294e176
+  seal_rule: >
+    The bot's prediction of Dave's answer, sealed before this record renders:
+    the decision's attributed recommendation and its reasoning, hashed with
+    lib/articulation-floor-v0.1.mjs (core/articulation-floor.yawn) so it cannot
+    change after he answers. blind is false because the question-first contract
+    shows the recommendation beside the candidates; a hit here measures
+    agreement with a visible recommendation, not a blind prediction. A surface
+    reveals the seal after the answer and asks whether the sealed reason was the
+    reason; no record closes without that check.
   leverage_formula: "judgments_resolved x split_weight(genuinely-split 1.0 | leaning 0.7 | lone-exception 0.4) x authored_conflict_bonus(both sides authored 1.5 | one side 1.2 | neither 1.0)"
   rule: >
     The highest-leverage proposed decision whose choice is still empty. A
@@ -109,6 +131,17 @@ question_queue:
       - name: C
         description: "rule: Each concept has one canonical record. Any other record that restates or rephrases it must carry a typed pointer to the canon (same_as, derived_from, supersedes, or projection_of, as core/holarchy.yawn already defines) and must not contradict it. Friendly names and loop rephrasings are allowed only as marked lenses over the canon."
         recommended: true
+    seal:
+      question: decisions/001-one-canon-per-concept.yawn
+      axis: canonical-multiplicity
+      predicted_answer: "C"
+      predicted_reason: "Side A is where the authored rules live (10 authored of 14): one_model_rule, the folder-node rule, the canonical memory root. The six side-B judgments shown are all revealed, and four of them are plain drift (gates restated and already diverged, lacuna copied verbatim with no cross-reference, two lifecycles of different length). The repo already holds the C mechanism: core/orientation.yawn declares lenses non-canonical and core/holarchy.yawn defines supersedes and same_as, which J0241 notes are unused. So C writes down what the authored side already says while keeping the friendly-name and dual-read-order artifacts as marked lenses. Close on the lifecycle and loop: the inventory counts six authored judgments on side B beyond the sample, so some parallelism is intended."
+      confidence: 0.7
+      model: "decisions/001-one-canon-per-concept.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/001-one-canon-per-concept.yawn]
+      hash: sha256:e56275838bac6c14571381355bb5e2b4a7105e2b2a167ee23df8192cc294e176
   - rank: 2
     decision_ref: decisions/002-coverage-allocation.yawn
     leverage: 53.8
@@ -125,6 +158,17 @@ question_queue:
       - name: C
         description: "Coverage is concentrated across records but exhaustive inside a receipt. Which records get heavy machinery follows option A's criterion; but any receipt or migration record that exists to prove something enumerates everything it assessed, including gates that did not fire and paths that were not changed."
         recommended: true
+    seal:
+      question: decisions/002-coverage-allocation.yawn
+      axis: coverage-allocation
+      predicted_answer: "C"
+      predicted_reason: "Both proof-attached judgments (J1089, J1243) are exhaustive and both live inside receipt schemas and their tests; every selective judgment is a reading of unlabelled behaviour across records, and the artifacts, not Dave, concentrate coverage. GROUND_TRUTH FACT 17a shows the one test-enforced allocation: the only loop that can spend or publish is the only one held unscheduled behind a one-time approval. The tree already does C; nothing states it. Option A alone would license trimming receipts the tests currently forbid; option B is contradicted by 66 proof-less files and would only be honoured by wallpaper."
+      confidence: 0.7
+      model: "decisions/002-coverage-allocation.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/002-coverage-allocation.yawn]
+      hash: sha256:cc1713f838a618c256f68ed86a6b28ee68dbe773be4843776528ab7b071876d5
   - rank: 3
     decision_ref: decisions/003-rules-that-can-fail.yawn
     leverage: 39
@@ -141,6 +185,17 @@ question_queue:
       - name: C
         description: "rule: A rule a program could check (a vocabulary, a required field, an authority flag, a path, a hash binding, an ordering) must be enforced by a named test or validator. A rule that needs a human (was the question worth asking, is the move bounded, is this an instrument or a prohibition) is exempt but must be listed under proof.human_review_required, as records/inquiry-aperture-one-question-face.yawn already does. Every proof: block on an active record carries covers: and not_covered: so the boundary between the two is visible."
         recommended: true
+    seal:
+      question: decisions/003-rules-that-can-fail.yawn
+      axis: enforcement-mechanism
+      predicted_answer: "C"
+      predicted_reason: "This axis is authored on both sides, but the two authored declaration-side judgments (the smallest move is an instrument, not a rule; 'did the question matter' is reserved for human review) are about which rules cannot be machine-checked, not against checking as such. The executable side holds the proof-attached and outcome-attached judgments and the suite's own rationale (GROUND_TRUTH FACT 7), and the in-flight covers:/not_covered: addition to core/canonical-extension.yawn (FACT 10) is already option C in practice. The genuine open cost is J0191: whether the constitutional prose shapes ever get a schema; C lets them stay prose while forcing the record to say so."
+      confidence: 0.75
+      model: "decisions/003-rules-that-can-fail.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/003-rules-that-can-fail.yawn]
+      hash: sha256:944b480e255145dc04c49d3b28075f495f7bb1d90071c81ba37169b70768fc29
   - rank: 4
     decision_ref: decisions/004-when-a-concern-earns-a-record.yawn
     leverage: 36
@@ -157,6 +212,17 @@ question_queue:
       - name: C
         description: "rule: A concern becomes its own record when its proof condition, owner or authority, lifecycle status or version, or rollback scope differs from its parent's (the five conditions in core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn section 13 plus the merge_counterexample in examples/merge-split-routing.yawn, written once in core/holarchy.yawn structural_change_rule). Having an ID, a message boundary or a viewpoint is never sufficient on its own. Consequences named: objective_holon_extension_0_1 (status working-draft inside a v1 record) becomes its own record linked from core/motivation-and-purpose.yawn; scripts/node.yawn lists generators under a separate generates: key with the purpose line corrected. A turn's plural moves stay embedded because each carries its own authority_ref by design."
         recommended: true
+    seal:
+      question: decisions/004-when-a-concern-earns-a-record.yawn
+      axis: record-granularity
+      predicted_answer: "C"
+      predicted_reason: "Both sides are authored, but they do not contradict: the decomposed side states when to split (five conditions, a merge counterexample with proof/owner/rollback), the combined side states when not to (an ID or a viewpoint is not a reason). They are two halves of one criterion that no single record writes. The two revealed exceptions (a working-draft block inside a v1 file; a generator inside a checks node, outcome-attached) both fail the criterion once it is written, so they become the named migrations rather than a new rule. The turn's plural moves pass it."
+      confidence: 0.8
+      model: "decisions/004-when-a-concern-earns-a-record.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/004-when-a-concern-earns-a-record.yawn]
+      hash: sha256:5490824c151231173dc452025cc8bbda22f748d81e25553943f06160813e9172
   - rank: 5
     decision_ref: decisions/005-field-obligation.yawn
     leverage: 34.8
@@ -173,6 +239,17 @@ question_queue:
       - name: C
         description: "Goal fields are optional; recovery fields are required. A record need not carry a target, a move, or a parent Yawn. It must carry every field that says how it can fail or be undone: proof.status, reversibility, stop_condition, residual_lacuna_refs, unintended_effects, and all four authority flags wherever one appears. Every contract carries a required: list naming these; model-derived classifications (summary, sentiment, severity) are never in it."
         recommended: true
+    seal:
+      question: decisions/005-field-obligation.yawn
+      axis: field-obligation
+      predicted_answer: "C"
+      predicted_reason: "The two authored judgments (J0219, J0299) only ever made goal fields optional, and the tests implement exactly that: 'Observation is valid without Target, Move, or Yawn promotion' and 'optional-target fixtures cover non-goal Yawns' both pass. The revealed mandatory judgments (J0109, J0110) require recovery and falsification fields, not goals. These do not conflict; the gap is that no contract states its required list, which is why J0268, J0329 and J0429 read as silent omissions rather than choices. C writes down the split the executable layer already draws. It is close because J0342 (thirteen required intake fields including model output) is the one place the artifacts require inference as if it were fact, and C would reverse it."
+      confidence: 0.65
+      model: "decisions/005-field-obligation.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/005-field-obligation.yawn]
+      hash: sha256:8bbdab394250403d860a64b7cec12ddef805382ff290f3c51cf6a0658f58da19
   - rank: 6
     decision_ref: decisions/006-runtime-dependence.yawn
     leverage: 26.4
@@ -189,6 +266,17 @@ question_queue:
       - name: C
         description: "rule: Three layers, each written where it binds. (1) Reading: a .yawn record needs nothing installed — the v0 lock stays. (2) Checking: conformance needs the pinned toolchain declared in package.json engines and named in scripts/node.yawn, whose purpose changes from 'dependency-free checks' to 'one pinned toolchain, no runtime authority'; ajv is the one declared dependency. (3) Operating: an automation needs an operator workspace, written as `workspace_ref:` and resolved outside the tree; no tracked record carries a drive-letter path. The two PowerShell scripts are either ported or marked operator-only under layer 3 and excluded from layer 2's promise."
         recommended: true
+    seal:
+      question: decisions/006-runtime-dependence.yawn
+      axis: runtime-dependence
+      predicted_answer: "C"
+      predicted_reason: "The authored side is unanimous: eleven authored judgments for portability, none for binding — Dave has stated the preference and the six binding judgments are all REVEALED readings of what the running system does. But pure B is falsified by the thing that proves everything else: the passing suite is Node plus ajv, and J0314's own note records that ajv is the one devDependency. A rule that says 'no required parser' while the only proof requires one is the kind of stated-but-not-honoured rule this repository says it does not want. C keeps the authored promise exactly where it was made (reading a record) and writes the two unwritten exceptions down where they already operate. GROUND_TRUTH facts 19 and 20 corroborate that the operator layer is where the invariant breaks (the workspace root every scheduled bot runs against is an uppercase-extension path the validator cannot see); validate-proof-refs.mjs already implements C's mechanism for proof blocks with a ledger of two. Leaning C over B mainly on cost; if Dave is willing to port both scripts and vendor ajv, B is the cleaner rule."
+      confidence: 0.7
+      model: "decisions/006-runtime-dependence.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/006-runtime-dependence.yawn]
+      hash: sha256:3a9b1b2ae47b666165ab199d1916115bf4921165aaac459f49a4e56b5181de23
   - rank: 7
     decision_ref: decisions/007-closed-until-opened.yawn
     leverage: 26
@@ -205,6 +293,17 @@ question_queue:
       - name: C
         description: "rule: Nothing is permitted by default, EXCEPT reversible, which may ship true because reversibility grants nothing (questions/what-can-i-do-next.yawn boundary: 'Reversibility does not silently grant authorization') — that sentence is copied next to every prefilled reversible. templates/observation.yawn ships status: draft and no confidence; codex-t4o-parser lists unknown first like email-intake; agency-declaration.yawn move.authorized: true is grandfathered by name as the principal's own published act and gains selected_by: principal:dave."
         recommended: true
+    seal:
+      question: decisions/007-closed-until-opened.yawn
+      axis: default-authorisation-posture
+      predicted_answer: "C"
+      predicted_reason: "All five authored judgments sit on deny-by-default and the only test-enforced behaviour on this axis is on that side too (interception governance: 'the recurring contract can propose but cannot generate, spend, or publish'; 'approval is one-time ... never recurring authority'). Every permit-by-default judgment is revealed, and four of six are template prefill artifacts nobody argued for. reversible: true is the one exception with an authored reason sitting beside it in the same file, so it is worth writing down rather than removing; the observation template's accepted/confidence 1 is the sharpest violation and the in-flight status-vocabulary test already lists it as legacy, so C is mostly finishing work the tree has started."
+      confidence: 0.7
+      model: "decisions/007-closed-until-opened.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/007-closed-until-opened.yawn]
+      hash: sha256:8b2c702e14472ccdabf73aede2eae64b95f8f0c71e7f1fb072f082c1d9b10427
   - rank: 8
     decision_ref: decisions/008-public-repo-privacy.yawn
     leverage: 25.2
@@ -221,6 +320,17 @@ question_queue:
       - name: C
         description: "rule: The repository keeps full fidelity for claims, contradictions and provenance (both sources kept, contradictions survive merge, source detail preserved). Two named classes are redacted everywhere: local filesystem paths, which become a labelled private pointer (private_evidence: labelled, with a reachable public stand-in or none), and personal data about people who are not the principal, which is synthesized as the sibling examples already do unless the principal records consent by name."
         recommended: true
+    seal:
+      question: decisions/008-public-repo-privacy.yawn
+      axis: disclosure-depth
+      predicted_answer: "C"
+      predicted_reason: "The authored rules on the two sides are not actually in conflict: side A governs projections (smaller surfaces may hide but not lie; public gets summaries) and side B governs source records (keep both sources, keep contradictions, keep resolution). The only real collision is J0644, the one behaviour-proven, outcome-attached judgment on the axis, where the artifacts publish local Windows paths against the stated policy, and J0392, the unsynthesized family example. GROUND_TRUTH FACT 19 corroborates 15 unreachable C:/ paths, one of them the sole first source of a record marked source-backed. C keeps every authored rule intact and writes down the two classes that the artifacts currently violate."
+      confidence: 0.75
+      model: "decisions/008-public-repo-privacy.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/008-public-repo-privacy.yawn]
+      hash: sha256:972291991c5c5c7a3f623262d3b4065c4b9f42c90f75a1637b98d3d163fdcc42
   - rank: 9
     decision_ref: decisions/009-audience-primacy.yawn
     leverage: 24
@@ -237,6 +347,17 @@ question_queue:
       - name: C
         description: "rule: Human-readable first governs the record: a human sentence leads every .yawn (summary before runtime identity), normative lists read the same way for a person and an agent, and a machine block never replaces the human one. carve-out, written down: proof effort goes where effects are — the machine layer may run ahead in validators, schemas and tests, stated as 'proof-bound when promoted' (examples/yawn-spine-dogfood.yawn). One obligation ties the layers: a contract that reaches v1 names the human record that explains it, and that record is not older than the contract."
         recommended: true
+    seal:
+      question: decisions/009-audience-primacy.yawn
+      axis: audience-primacy
+      predicted_answer: "C"
+      predicted_reason: "The authored side is unanimous on the principle (seven authored judgments, none against) but J0201 gives no reason and the six REVEALED judgments show where the repository actually spends: validators, schemas and tests all sit on the machine side, the human entry record is the oldest file in core/, and the manifest's own file_priority is contradicted by its own key order. GROUND_TRUTH fact 9 corroborates: where the repo bought proof it paid in human-readability. The reconciling formula is already authored — J0377's 'human-readable first, machine-addressable second, proof-bound when promoted' — and C is that formula written as a rule with one obligation that stops the human layer from being permanently 'next'. B is what the authored records literally say and would be right if Dave means effort, not text; A contradicts four authored records. Close between B and C; C is what the passing suite already implements plus one link."
+      confidence: 0.65
+      model: "decisions/009-audience-primacy.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/009-audience-primacy.yawn]
+      hash: sha256:22bae76f28b693c4ca63c2096216274ca8c117f61a62c6542f4b937d36299190
   - rank: 10
     decision_ref: decisions/010-list-order-semantics.yawn
     leverage: 24
@@ -253,6 +374,17 @@ question_queue:
       - name: C
         description: "List order carries no meaning unless the key is named for rank (priority, precedence, order, tie_break, ranked) or the list carries ordered: true with a one-line reason. The validate chain in package.json and the automation morning schedule are declared ordered with reasons; all other lists are sets."
         recommended: true
+    seal:
+      question: decisions/010-list-order-semantics.yawn
+      axis: list-order-semantics
+      predicted_answer: "C"
+      predicted_reason: "Both authored judgments (J0357, J0676) are display-only. The executable layer implements rank exactly where the key says so: core/inquiry-selection.yawn names passes 1-2 priority and pass 3 considerations (GROUND_TRUTH FACT 18), and the tests enforce the stated tie_break order over the unlabelled considerations order (FACT 16). So the practice is already ordered-when-named. The thirteen order-is-rank judgments are readings of unlabelled enums that no file claims are ranked. C writes the convention down and forces the two genuinely ordered unlabelled lists (the validate chain, the morning cadence) to say so. It is close because J0333 is proof-attached and unlabelled: the repo does depend on an order it never declared."
+      confidence: 0.7
+      model: "decisions/010-list-order-semantics.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/010-list-order-semantics.yawn]
+      hash: sha256:57e2805a9f64f4189bfe6f6b29a10bdeb7ffd5b75379fbe75671e15d064b29e8
   - rank: 11
     decision_ref: decisions/011-label-first-prove-before-promote.yawn
     leverage: 24
@@ -269,6 +401,17 @@ question_queue:
       - name: C
         description: "rule: Provisional action is allowed when labelled (publish a paper marked not-peer-reviewed, run an automation marked active-seed, ship an example with proof not_started). Three things wait for proof: promotion of status to accepted, v1 or official; citation under proof.source (a status: proposed or draft record may be cited under proposal_refs: or source_refs:, never under proof.source); and durable memory update. Written once in core/proof-and-boundary.yawn transition_boundary."
         recommended: true
+    seal:
+      question: decisions/011-label-first-prove-before-promote.yawn
+      axis: proof-timing
+      predicted_answer: "C"
+      predicted_reason: "The three authored prove-then-act judgments are all about promotion and durable memory; the one authored act-then-prove judgment is about labelled publication. They do not collide, and the two proof-attached judgments (publish the labelled working paper; throw before compose) each sit on the side C assigns them. The repo's own promotion practice is already B for canon (only records with a reducer, schema or test reached v1, outcome-attached), so C names what the tree does. The violations that remain are three proof.source lines and one ledger state, both cheap and both checkable by the in-flight proof-refs validator."
+      confidence: 0.7
+      model: "decisions/011-label-first-prove-before-promote.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/011-label-first-prove-before-promote.yawn]
+      hash: sha256:a8d517d4b5ededb6b904c2a702d63fed5b8896b8ea8a9e6cadee8dce0420e767
   - rank: 12
     decision_ref: decisions/012-shared-key-vocabulary.yawn
     leverage: 23.5
@@ -285,6 +428,17 @@ question_queue:
       - name: C
         description: "rule: Keys a bot reads to decide what it may do or how to render are fixed in one shared vocabulary: the permit key, the deny key, the loop-position key, the colour role names, and the canonical operator. Prose section names (invariants, stable_claims, lock) stay free. The shared set is listed by name in one record."
         recommended: true
+    seal:
+      question: decisions/012-shared-key-vocabulary.yawn
+      axis: vocabulary-locality
+      predicted_answer: "C"
+      predicted_reason: "All five authored judgments sit on the shared-vocabulary side and all 23 local-vocabulary judgments are revealed, so this is a written rule with a large unwritten exception. But the authored rules are each domain-scoped (loop, relational grammar, interface), and none says every .yawn key is shared. The one contract-defined rule with a test (J0466, tests/interface-contracts.test.mjs) is already violated by J0467 without the test noticing, which shows the rule needs a checker, not just a restatement. C fixes the keys a bot actually reads and leaves prose naming free, which is the smallest rule that would have caught J0039, J0050, J0404 and J0467."
+      confidence: 0.65
+      model: "decisions/012-shared-key-vocabulary.yawn recommendation, attributed agent-on-behalf, authority none; no provider call"
+      t_sealed: "2026-09-12T00:00:00Z"
+      blind: false
+      source_refs: [decisions/012-shared-key-vocabulary.yawn]
+      hash: sha256:3ae51386356553542302db037bc0c7204040f7b3b99151ec11f92ab7b3b2a6e3
 
 held:
   - decision_ref: decisions/053-container-intelligence-name.yawn
@@ -309,7 +463,9 @@ proof:
     - backlog
   condition: >
     node scripts/render-bot-state.mjs --check exits 0: the committed record
-    equals what the ledgers, decisions/, and the settled role produce today.
+    equals what the ledgers, decisions/, and the settled role produce today;
+    scripts/validate-articulation-floor-v0.1.mjs recomputes every seal hash
+    and fails if a queued question has none.
   falsifier: >
     A surface shows a bot status this record does not carry, or next_question
     names a decision whose choice is already filled.

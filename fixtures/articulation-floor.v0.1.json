@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "yawn.articulation-floor.v0.1",
+  "ledgerId": "ledger:fixture:articulation-floor",
+  "canonicalState": false,
+  "notAuthority": true,
+  "seals": [
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "seal",
+      "question": "question-packets/polanyi.yawn#fidelity",
+      "axis": "fidelity",
+      "predicted_answer": "rarely",
+      "predicted_reason": "The records say a move cannot mark itself successful and resonance is not proof; a reason given after the move is treated as a claim to check.",
+      "confidence": 0.55,
+      "model": "fixture: predictions read from the records named in source_refs; no provider call",
+      "t_sealed": "2026-09-13T00:00:00Z",
+      "blind": true,
+      "source_refs": [
+        "core/proof-and-boundary.yawn"
+      ],
+      "canonicalState": false,
+      "notAuthority": true,
+      "hash": "sha256:1a927e3062a2893e5ac75677c7f4b6b1703e6c31aae3310fb4bbc8ed85b03f49"
+    },
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "seal",
+      "question": "question-packets/polanyi.yawn#levels",
+      "axis": "levels",
+      "predicted_answer": "no",
+      "predicted_reason": "The holarchy contract says a whole harnesses its parts through boundary conditions the parts do not carry.",
+      "confidence": 0.6,
+      "model": "fixture: predictions read from the records named in source_refs; no provider call",
+      "t_sealed": "2026-09-13T00:00:00Z",
+      "blind": true,
+      "source_refs": [
+        "core/holarchy.yawn"
+      ],
+      "canonicalState": false,
+      "notAuthority": true,
+      "hash": "sha256:800e614643eda7ccab6677b0b13b5bdbf25bf57b402583550dd4fe858954c222"
+    },
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "seal",
+      "question": "decisions/001-one-canon-per-concept.yawn",
+      "axis": "canonical-multiplicity",
+      "predicted_answer": "C",
+      "predicted_reason": "The authored rules sit on the single-canon side while the plural side is mostly drift; a typed pointer keeps lenses without a second canon.",
+      "confidence": 0.7,
+      "model": "decisions/001-one-canon-per-concept.yawn recommendation, attributed agent-on-behalf, authority none; no provider call",
+      "t_sealed": "2026-09-12T00:00:00Z",
+      "blind": false,
+      "source_refs": [
+        "decisions/001-one-canon-per-concept.yawn"
+      ],
+      "canonicalState": false,
+      "notAuthority": true,
+      "hash": "sha256:ece981adf3daa8251788452e4bdff049fa2bc749902aa14c34b3bb96846a9612"
+    }
+  ],
+  "answers": [
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "answer",
+      "question": "question-packets/polanyi.yawn#fidelity",
+      "axis": "fidelity",
+      "seal": "sha256:1a927e3062a2893e5ac75677c7f4b6b1703e6c31aae3310fb4bbc8ed85b03f49",
+      "answer": "sometimes; I can usually name the reason a day later, not in the moment",
+      "mode": "freeform",
+      "answer_match": "partial",
+      "answer_match_scored_by": "principal",
+      "reason_match": "partly",
+      "t_answered": "2026-09-13T09:00:00Z",
+      "actor": "principal:fixture",
+      "prior_answer": null,
+      "drift": null,
+      "canonicalState": false,
+      "notAuthority": true
+    },
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "answer",
+      "question": "question-packets/polanyi.yawn#levels",
+      "axis": "levels",
+      "seal": "sha256:800e614643eda7ccab6677b0b13b5bdbf25bf57b402583550dd4fe858954c222",
+      "answer": "no",
+      "mode": "pick",
+      "answer_match": "hit",
+      "answer_match_scored_by": "comparison",
+      "reason_match": "yes",
+      "t_answered": "2026-09-13T09:05:00Z",
+      "actor": "principal:fixture",
+      "prior_answer": null,
+      "drift": null,
+      "canonicalState": false,
+      "notAuthority": true
+    },
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "answer",
+      "question": "decisions/001-one-canon-per-concept.yawn",
+      "axis": "canonical-multiplicity",
+      "seal": "sha256:ece981adf3daa8251788452e4bdff049fa2bc749902aa14c34b3bb96846a9612",
+      "answer": "A",
+      "mode": "pick",
+      "answer_match": "miss",
+      "answer_match_scored_by": "comparison",
+      "reason_match": "no",
+      "t_answered": "2026-09-13T09:10:00Z",
+      "actor": "principal:fixture",
+      "prior_answer": null,
+      "drift": null,
+      "canonicalState": false,
+      "notAuthority": true
+    }
+  ],
+  "floors": [
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "floor",
+      "axis": "all",
+      "n": 3,
+      "blind_n": 2,
+      "anchored_n": 1,
+      "answer_accuracy": 0.5,
+      "reason_accuracy": 0.5,
+      "curve": [
+        [
+          1,
+          0.5
+        ],
+        [
+          2,
+          0.75
+        ],
+        [
+          3,
+          0.5
+        ]
+      ],
+      "last_break": null,
+      "t_computed": "2026-09-13T12:00:00Z",
+      "canonicalState": false,
+      "notAuthority": true
+    },
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "floor",
+      "axis": "fidelity",
+      "n": 1,
+      "blind_n": 1,
+      "anchored_n": 0,
+      "answer_accuracy": 0.5,
+      "reason_accuracy": 0.5,
+      "curve": [
+        [
+          1,
+          0.5
+        ]
+      ],
+      "last_break": null,
+      "t_computed": "2026-09-13T12:00:00Z",
+      "canonicalState": false,
+      "notAuthority": true
+    },
+    {
+      "schemaVersion": "yawn.articulation-floor.v0.1",
+      "kind": "floor",
+      "axis": "canonical-multiplicity",
+      "n": 1,
+      "blind_n": 0,
+      "anchored_n": 1,
+      "answer_accuracy": 0,
+      "reason_accuracy": 0,
+      "curve": [
+        [
+          1,
+          0
+        ]
+      ],
+      "last_break": null,
+      "t_computed": "2026-09-13T12:00:00Z",
+      "canonicalState": false,
+      "notAuthority": true
+    }
+  ]
+}

@@ -26,6 +26,12 @@ question
 -> replay
 ```
 
+Measured questions: the seven [Polanyi axes](../question-packets/polanyi.yawn)
+carry a sealed prediction each and run through
+[the articulation-floor loop](../core/articulation-floor.yawn); live at
+[yawn.bot/polanyi](https://yawn.bot/polanyi), the floor at
+[yawn.bot/status](https://yawn.bot/status).
+
 Machine-readable orientation: [node.yawn](node.yawn)
 
 Return to the [repository root](../README.md).

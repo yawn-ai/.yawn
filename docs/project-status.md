@@ -34,6 +34,9 @@ packages. Security or correctness fixes may still require additive changes.
 - Orientation Map 0.1: nine-axis semantic coverage, deterministic adaptive
   inquiry, closed selection/hold replay receipts, source-preserving presentation
   metadata, and proposed presentation-fit hypotheses
+- Articulation Floor 0.1: sealed predictions written before a question renders,
+  reason-checked answers, a per-axis floor that replays from its ledger, and a
+  readout that refuses a verdict below ten closed records
 - the exact portable `.yawn` document envelope
 - cross-module canonical hashing and reference resolution beyond the new
   Observation/record-subject slice
