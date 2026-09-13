@@ -13,9 +13,12 @@ purpose: >
   names where it came from. The runtime repository (agents/yawn.bot.yawn
   identity.repository) vendors this record and pins its blob in its protocol
   lock; yawn.bot/dave and its chat view read that pinned copy to lead with
-  next_question and to recall principal_role_settled. The header status there
-  is not yet read from this record. A stale pin is the runtime's to bump by a
-  reviewed change, not this record's to push.
+  next_question and to recall principal_role_settled; since yawn-ai/yawn.bot
+  pull request 160 the header's State control reads loop_status, its reason,
+  and observed_activity from this record and projects the next steps from the
+  runtime's own loop transitions, and since pull request 161 each open
+  decision opens in place with the candidates listed here. A stale pin is the
+  runtime's to bump by a reviewed change, not this record's to push.
 
 runtime_ref: agents/yawn.bot.yawn
 relationship: "yawn.bot/dave"

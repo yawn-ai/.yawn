@@ -104,6 +104,36 @@ what_changed:
         runtime_receipt: "yawn.bot YAWNS/Observations/YAWN_DAVE_NEXT_QUESTION_MERGE_2026_09_13.yawn"
         not_observed: "the production page after the merge; the session's network egress refuses yawn.bot and the GitHub integration cannot read deployment statuses, so the live result is Dave's to look at"
         deployment_note: "Vercel refused the preview build of the runtime branch head b5c4fc6 because its git author's GitHub account (daveforman) is not a member of the Yawn team on Vercel; main's merge commits are authored by yawn-ai. The identity question is open in questions/open-questions.yawn (runtime/commit-identity)"
+    - change: "the Yawn header on yawn.bot/dave carries a State control read from this record's loop_status, loop_status_reason, and observed_activity"
+      applied: 2026-09-13
+      where: "yawn-ai/yawn.bot pull request 160, branch claude/dave-open-proposition-r0ysdf, merged as 5a4deb82973986e47a075b9db491d841b8b66917 on main"
+      what_the_surface_shows: >
+        The control names the loop position (awaiting_choice), its reason, the
+        last observed run with its source, and where the loop goes next,
+        projected from the runtime's own loop transitions. Before this the
+        header status came from Supabase connectivity only.
+      epistemic_status: observed
+      proof: "yawn.bot tests/unit/yawn-bot-state-record.test.ts (projectLoopState), tests/unit/dave-public-mission.test.tsx, tests/e2e/dave-public-model.spec.ts"
+      runtime_receipt: "yawn.bot YAWNS/Observations/YAWN_DAVE_HEADER_STATE_CONTROL_2026_09_13.yawn"
+      authorized_by: "Dave, in conversation on 2026-09-13; recorded on his behalf"
+    - change: "each open decision on yawn.bot/dave opens in place with the candidates this record lists, a readable status line, and the chat composer docked to the row; an input there is sorted to a proposition with the open question as the prior"
+      applied: 2026-09-13
+      where: "yawn-ai/yawn.bot pull request 161, branch claude/dave-open-proposition-flow-r0ysdf, merged as de1000036d3ff03984d30c1aa9c32e9ee301a2ec on main"
+      upstream: "this repository's pull request 36 (a7f1ca4) added each open decision's candidates to records/yawn.bot-state.yawn; pull request 37 (093a5d3) opened runtime/proposition-persistence in questions/open-questions.yawn"
+      pins: "yawn.bot pull requests 158 (439cd86) and 159 (c1a938d) bumped the vendored record to this repository's pull requests 34 and 36; the lock names the blob, the upstream commit, and the pull request"
+      what_the_surface_shows: >
+        The opened question pins under the header with no padding; the top
+        three candidates with the recommended one marked; the why and the
+        record links; a thread of what Dave wrote to that proposition, kept on
+        his device; the composer at the bottom of the row. No choice: is
+        written and no model is called; the sorter is deterministic term
+        overlap and says so on the element.
+      epistemic_status: observed
+      proof: "yawn.bot tests/unit/yawn-proposition-sort.test.ts, tests/unit/yawn-proposition-workspace.test.tsx, tests/e2e/dave-public-model.spec.ts"
+      runtime_receipt: "yawn.bot YAWNS/Observations/YAWN_DAVE_OPEN_PROPOSITION_2026_09_13.yawn"
+      authorized_by: "Dave, in conversation on 2026-09-13; recorded on his behalf"
+      not_observed: "the production page after the merge, for the reason given above"
+      open_question: "questions/open-questions.yawn, runtime/proposition-persistence: where a proposition-scoped answer lives between the device and the record"
   entry:
     - added: CLAUDE.md
       why: "one file that is true on landing, for agents"
