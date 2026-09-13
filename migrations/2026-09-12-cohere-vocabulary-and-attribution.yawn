@@ -97,6 +97,12 @@ what_changed:
       pin_rule: "the runtime pins the record's git blob in protocol/dot-yawn.lock.json; a stale pin is bumped there by a reviewed change"
       epistemic_status: observed
       proof: "yawn.bot tests/unit/dave-public-mission.test.tsx, tests/unit/yawn-bot-state-record.test.ts, tests/e2e/dave-public-model.spec.ts"
+      merged:
+        this_repository: "pull request 33 merged 2026-09-13 as c3de16b5f345209ed7ad04a11ee6f6652ee6c349 on main (merge commit; hosted CI passed on the merged head)"
+        runtime: "yawn-ai/yawn.bot pull request 157 merged 2026-09-13 as 21f086a5598e58356630ffbb0de2fe8f6a0e883b on main; its lock pins this record at blob 59198132b895d506d67c41ddc4da25b89d6cf7f1, upstreamCommit c3de16b5, upstreamStatus merged"
+        authorized_by: "Dave, in conversation on 2026-09-13; recorded on his behalf"
+        runtime_receipt: "yawn.bot YAWNS/Observations/YAWN_DAVE_NEXT_QUESTION_MERGE_2026_09_13.yawn"
+        not_observed: "the production page after the merge; the session's network egress refuses yawn.bot and the GitHub integration cannot read deployment statuses, so the live result is Dave's to look at"
   entry:
     - added: CLAUDE.md
       why: "one file that is true on landing, for agents"
