@@ -1,0 +1,355 @@
+id: interface/new-yawn-coordinate-workbench-v0.1
+title: "New Yawn coordinate-complete workbench"
+kind: interface-contract
+status: draft-0.1
+version: 0.1.0-draft
+updated: 2026-09-01
+
+purpose: >
+  Let a person begin with one unconstrained signal while the interface compiles
+  a truthful, inspectable, proposal-only View of the existing YAWN orientation
+  ontology. The surface makes the emerging coordinate legible without turning
+  presentation tiles, model inference, or coverage level into canonical truth,
+  authority, identity, or proof.
+
+constitutional_sources:
+  orientation: core/orientation.yawn
+  orientation_questions: question-packets/orientation-nine.yawn
+  orientation_map: schemas/orientation-map.v0.1.schema.json
+  inquiry_selection: core/inquiry-selection.yawn
+  agency_holarchy: schemas/agency-holarchy.v0.2.schema.json
+  objective_holon: schemas/objective-holon.v0.1.schema.json
+  new_yawn: interface/new-yawn-v0.1.yawn
+  projection_and_aperture: core/projection-and-aperture.yawn
+  proof_and_boundary: core/proof-and-boundary.yawn
+
+one_model_rule: >
+  This contract does not create a second orientation packet, personal ontology,
+  agent ontology, or canonical level system. It projects and edits proposed
+  state against orientation-map.v0.1 and the shared nine stable question_key
+  values. Every generated answer, placement, objective, agent, relationship,
+  or move remains attributed and proposal-only until the corresponding
+  principal event or accepted record exists.
+
+surface_budget:
+  initial:
+    - "one existing free-expression field"
+    - "one coordinate identity strip"
+    - "one compact ten-cell resolution grid"
+    - "Auto-lacuna"
+    - "Auto-cohere"
+  progressive_disclosure:
+    - "one selected cell inspector"
+    - "proposal feed with Accept, Correct, Reject, and Inspect source"
+    - "full nine-axis map"
+    - "candidate parent and lateral relations"
+    - "provider/delegate binding details"
+  prohibition: >
+    The default View may not become a ten-field setup form or ask all nine
+    orientation questions at once. Inquiry selection continues to foreground
+    at most one highest-leverage question or an explicit hold.
+
+coordinate_header:
+  fields:
+    image:
+      source: "selected identity image or canonical blank sleeping Yawn image"
+      canonical: false
+    name:
+      source: "reported name or explicitly labeled inferred draft label"
+      canonical: false
+    coordinate:
+      source: "unplanted local draft address until Owner Plant"
+      canonical: false
+    location:
+      source: "proposed primary-parent path plus relationship/Arena placement"
+      canonical: false
+    lifecycle:
+      values: [local_draft, proposed, planted, sleeping, orienting, active, holding, retired]
+    principal:
+      rule: "Name the rightful principal or keep it unknown; never infer authority from a display name."
+
+resolution_grid:
+  view_kind: orientation_resolution_projection
+  canonical_state: false
+  cells:
+    - cell_key: identity
+      label: Identity
+      projects: [scope, perspective, principal, coordinate]
+      question: "What is this Yawn, and whose coordinate is it?"
+    - cell_key: intelligence
+      label: Intelligence
+      projects: [provider_binding, delegate_relationship, capability, provenance]
+      question: "Which intelligence is currently interpreting or acting here, under what binding?"
+      boundary: >
+        Provider, model, tool, delegate, Agent, and principal remain distinct.
+        Connected means a verified current binding, not a selected logo or
+        available model.
+    - cell_key: relationship
+      label: Relationship
+      projects: [placement, perspective, relationship]
+      question: "Who or what is in relationship here?"
+    - cell_key: arena
+      label: Arena
+      projects: [placement, current-state, arena, horizon]
+      question: "Which relevant field of roles, constraints, and affordances is active?"
+    - cell_key: state
+      label: Current state
+      projects: [current-state]
+      question: "What appears to be happening now, and who says so?"
+    - cell_key: purpose
+      label: Purpose
+      projects: [intent, objective_candidate]
+      question: "What matters, is needed, protected, learned, or made true—and to whom?"
+    - cell_key: lacuna
+      label: Lacuna
+      projects: [lacuna]
+      question: "What decision-relevant absence, dispute, or uncertainty remains?"
+    - cell_key: boundary
+      label: Boundary
+      projects: [boundary, authority]
+      question: "What must be protected, and who may decide, disclose, delegate, or act?"
+    - cell_key: movement
+      label: Movement
+      projects: [movement, affordance, candidate_move]
+      question: "What inquiry, hold, wait, exit, choice, or bounded move remains possible?"
+    - cell_key: proof
+      label: Proof
+      projects: [proof, consequence, update]
+      question: "What would reality have to show for this map or relationship to update?"
+  state_vocabulary:
+    - missing
+    - unknown
+    - proposed
+    - reported
+    - observed
+    - accepted
+    - disputed
+    - stale
+    - proof_pending
+    - verified
+    - not_applicable
+  rendering_rule: >
+    A cell visualizes attributed coverage and freshness. Brightness, completion,
+    order, and size never encode human worth, truth, authority, importance,
+    consciousness, or guaranteed capability.
+
+resolution_level:
+  name: orientation_resolution_level
+  range: [1, 10]
+  kind: noncanonical_view_metric
+  rule: >
+    The level is the highest cumulative guarantee currently represented at the
+    coordinate. It may fall when evidence becomes stale, disputed, revoked, or
+    structurally incoherent. Proposed content may be shown as proposed coverage
+    but cannot satisfy an accepted or verified guarantee.
+  rungs:
+    1: "The coordinate, principal status, and current intelligence-binding status are explicit—even when the honest value is unknown or unbound."
+    2: "The live signal, source boundary, and scope or episode are represented."
+    3: "Relationship, proposed placement, Arena, and horizon are represented."
+    4: "Perspective, roles, affected parties, and observer stance are represented."
+    5: "Attributed current state, resources, constraints, and capabilities are represented."
+    6: "Concern, need, value, commitment, and objective candidates are represented without turning desire into authority."
+    7: "Decision-relevant lacunae, contradictions, dependencies, and disputes remain visible."
+    8: "Safety, privacy, consent, obligation, decision rights, and effect authority are explicit."
+    9: "Candidate inquiry/hold/choice/movement and its selection rationale are inspectable; recommendation remains distinct from choice."
+    10: "Predicted consequence, verifier, falsifier, proof adjudication, update rule, and replay path are represented."
+  boundary:
+    - "Level is resolution, not rank, maturity, virtue, intelligence, autonomy, or truth."
+    - "Ten of ten does not mean correct."
+    - "A simple Yawn may be complete at a lower necessary resolution."
+    - "Unknown and not-applicable are valid explicit states; silence is not completion."
+
+input_compilation:
+  source_preservation: >
+    Preserve the person's exact input as an attributed source event before any
+    normalization, extraction, summarization, agent detection, objective
+    proposal, or routing proposal.
+  first_pass:
+    - "resolve or propose principal, scope, and draft coordinate"
+    - "map source spans into proposed answers on the nine axes"
+    - "type every detection as reported, observed, inferred, assumed, predicted, disputed, or unknown"
+    - "surface contradictions and missing hard-gate context"
+    - "leave unmapped source spans inspectable"
+  forbidden:
+    - "silently creating a canonical Agent from a metaphor, emotion, urge, voice, role, or model output"
+    - "silently creating or changing primary parentage"
+    - "turning salience into relevance, relevance into meaning, or meaning into truth"
+    - "turning model confidence into authority"
+
+intelligence_binding:
+  definition: >
+    A typed, revocable relationship connecting the Yawn coordinate to a
+    provider, model, human, service, tool, or delegated Agent for a named
+    cognitive or operational capability.
+  required_readout:
+    - binding_status
+    - provider_or_agent_ref
+    - role
+    - capability_scope
+    - authority_scope
+    - source_and_version
+    - freshness
+    - privacy_and_egress
+    - cost_boundary
+    - revocation_path
+  statuses: [unknown, unbound, available, selected, connected_unverified, connected_verified, suspended, revoked]
+  invariant: "Intelligence may infer or propose; only a valid grant authorizes an effect."
+
+auto_lacuna:
+  action_kind: inquiry_selection_request
+  implementation_rule: >
+    Reuse core/inquiry-selection.yawn over the current orientation-map revision.
+    Do not create a second lacuna-ranking algorithm. Return one selected
+    question or explicit hold by default; up to three candidates may appear
+    only as an inspectable comparison View.
+  output:
+    - exact missing or disputed axis
+    - selected question_key or hold
+    - why this could change orientation or rightful choice
+    - source and ranking receipt
+    - epistemic status and confidence
+    - what answer would update
+  authority: "proposal_only"
+
+auto_cohere:
+  action_kind: coherence_proposal
+  purpose: >
+    Compare the local draft with authorized ancestor context, exact-coordinate
+    state, relevant lateral relationships, and candidate objectives; propose
+    the smallest set of mappings or graph changes that would reduce
+    contradiction or duplication without mutating canonical state.
+  may_propose:
+    - "mapping source spans to existing orientation axes"
+    - "correcting an inferred label or objective"
+    - "linking to an existing Yawn"
+    - "candidate primary parent"
+    - "typed lateral relation"
+    - "candidate Agent, relationship, Arena, objective, lacuna, or move"
+    - "split, merge, or retire review"
+  must_show:
+    - before and proposed after
+    - source refs
+    - affected coordinates
+    - relation type
+    - confidence
+    - best alternative
+    - unresolved contradiction
+    - authority required
+    - effect boundary
+    - rollback or rejection path
+  cannot:
+    - "plant a Yawn"
+    - "reparent, merge, split, retire, disclose, delegate, execute, or spend"
+    - "promote a candidate Agent or objective"
+    - "overwrite a reported source"
+    - "clear a hard gate"
+  acceptance_rule: >
+    Accept records the principal's local disposition of the exact proposal.
+    It does not establish empirical truth, proof, provider connectivity, or
+    effect authority. Canonical graph mutation remains behind Owner Plant or a
+    later exact typed grant.
+
+proposal_feed:
+  dispositions: [accept_local, correct, reject, defer, inspect]
+  record_each:
+    - proposal_id
+    - source_revision
+    - exact_proposed_patch
+    - asserted_by
+    - epistemic_status
+    - confidence
+    - principal_disposition
+    - disposition_time
+    - resulting_local_revision
+  preservation_rule: "Rejected and corrected proposals remain replayable; history is not rewritten."
+
+agent_candidate_boundary:
+  default: "A detected goal-like process is an agent_candidate, not a canonical Agent."
+  promote_when:
+    - "it has a distinguishable identity or stable address"
+    - "it has a persistent purpose or policy"
+    - "it makes discriminating predictions or supports a distinct move"
+    - "it has a boundary, memory, capability, or authority that must remain separate"
+    - "the rightful principal accepts the representation at the declared resolution"
+  merge_or_reject_when: >
+    It adds no distinct prediction, boundary, responsibility, or useful
+    affordance beyond an existing Agent, role, habit, belief, emotion, or
+    relationship model.
+
+holarchy_runtime_rule:
+  inherited_context_order:
+    - "constitutional invariants and pinned versions"
+    - "rightful principal and exact grants"
+    - "exact-coordinate accepted state"
+    - "nearest accepted ancestor defaults along one acyclic primary-parent chain"
+    - "typed relevant lateral relationships by reference"
+    - "fresh observations, disputes, lacunae, and proof state"
+    - "rebuildable rankings and presentation"
+  never_inherit_as_truth:
+    - confidence
+    - inferred_identity
+    - desire
+    - target
+    - obligation
+    - authority
+    - privacy_widening
+    - agenthood
+    - proof
+  conflict_rule: >
+    Preserve both attributed claims and foreground the conflict. Exact scope may
+    narrow an ancestor default; widening privacy or authority requires an exact
+    rightful grant.
+
+owner_plant_boundary:
+  remains_canonical: true
+  rule: >
+    Before Plant, the coordinate, mappings, level, relationships, objectives,
+    accepted proposals, and provider selections remain an unsaved local View.
+    Plant writes an authenticated append-only event containing source,
+    dispositions, exact accepted mappings, primary parent, visibility, and
+    boundaries. Plant does not authorize later external effects.
+
+illegal_casts:
+  - "View -> ontology"
+  - "coverage -> truth"
+  - "level -> worth or autonomy"
+  - "provider -> Agent identity"
+  - "available intelligence -> connected intelligence"
+  - "salience -> relevance"
+  - "relevance -> meaning"
+  - "meaning -> truth"
+  - "confidence -> authority"
+  - "recommendation -> choice"
+  - "choice -> authorization"
+  - "capability -> permission"
+  - "acceptance -> proof"
+  - "move -> consequence"
+  - "consequence -> proof"
+  - "child grant -> parent authority"
+
+proof:
+  current_status: contract_proposed
+  smallest_product_test: >
+    Given one free-expression signal, the New Yawn View preserves the exact
+    source; shows a draft coordinate and ten-cell resolution projection; maps
+    only attributed proposals to the existing nine-axis Orientation Map;
+    returns proposal-only Auto-lacuna and Auto-cohere candidates; records local
+    Accept/Correct/Reject dispositions; and creates no persistence, graph
+    mutation, provider connection, authority grant, or external effect before
+    Owner Plant.
+  falsifiers:
+    - "The surface requires the person to complete a setup form before expression."
+    - "A model-generated field appears as reported or accepted without attribution."
+    - "Auto-cohere changes parentage or identity without an exact principal event."
+    - "Level is interpreted as intelligence, worth, truth, or permission."
+    - "A provider appears connected without a verified binding."
+    - "The implementation creates a parallel orientation object instead of orientation-map.v0.1."
+
+links:
+  - interface/new-yawn-v0.1.yawn
+  - core/orientation.yawn
+  - core/inquiry-selection.yawn
+  - question-packets/orientation-nine.yawn
+  - schemas/orientation-map.v0.1.schema.json
+  - schemas/agency-holarchy.v0.2.schema.json
+  - schemas/objective-holon.v0.1.schema.json
