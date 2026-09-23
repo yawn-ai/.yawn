@@ -1,0 +1,186 @@
+id: records/2026-09-05-single-signal-to-longitudinal-agent-space-clarification
+title: "The same YAWN must work for one question and a lifetime of cognition"
+kind: clarification-record
+status: proposed-canonical-backfill
+recorded: 2026-09-05
+supersedes_history: false
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+source_observation: >
+  Dave clarified that YAWN must be pressure-tested at radically different
+  capacities. A new person may want to understand one subject or do one thing and
+  should be able to talk immediately. Another person may bring years or decades
+  of cognition, several businesses, human relationships, internal conflict,
+  private health information, and many interacting decisions. The system should
+  use the same orientation grammar at both scales, preserve how models changed,
+  resurface prior intelligence when relevant, and continuously show only the
+  questions or moves that currently deserve attention.
+
+preserved_insight:
+  - >
+    The map is not valuable merely because it is filled. Each new answer changes
+    which lacunae, questions, relationships, paths, and decisions become
+    relevant.
+  - >
+    At the beginning the possibility space may be appropriately open and there
+    may be no immediate decision. Decisions emerge as values, purpose,
+    constraints, relationships, resources, timing, and evidence become explicit.
+  - >
+    The stack-ranked hierarchy is best treated as the current relevance and
+    agency frontier over a holonic relationship model, not as one permanent
+    metaphysical hierarchy.
+  - >
+    The most important continuity promise is that a person can stop mentally
+    carrying prior work and later recover the right concept, relationship,
+    question, reason, and proof when it becomes relevant again.
+
+corrected_claims:
+  objective_snapshot: >
+    Seek a source-faithful, reproducible, time-indexed snapshot—not an objective
+    copy of cognition or reality. Reports, observations, inferences,
+    ratifications, and proofs retain separate sources and statuses.
+  question_hierarchy: >
+    A question does not logically require one universal hierarchy. Consequential
+    inquiry does require selection among candidate questions, hypotheses,
+    criteria, or paths. YAWN should make that selection and its rationale
+    inspectable.
+  never_remove_record: >
+    Preserve semantic lineage through append-only supersession by default, while
+    retaining explicit privacy, revocation, retention, and lawful erasure paths
+    for sensitive source material. Non-destructive correction must not become an
+    excuse to imprison a person or third party's data forever.
+  digital_doppelganger: >
+    `@dave` may feel like a Drift partner or cognitive counterpart, but remains
+    an attributed external model and co-orientation system rather than a complete
+    copy, hidden mind reader, or independent owner of Dave's identity.
+
+question_and_move_frontiers:
+  rule: >
+    When orientation is sparse, rank the question, observation, or measurement
+    most likely to change the map. When enough relevant structure exists, rank
+    candidate actions, delegations, waits, refusals, or holds. Never create a
+    move simply because an agentic interface is expected to act.
+  answer_states:
+    - accepted
+    - corrected
+    - proposed
+    - unknown
+    - disputed
+    - deferred
+    - withheld
+    - not_applicable
+  principle: >
+    An unanswered blank remains a typed lacuna. The system may explain why an
+    answer would matter, but must not pressure the user to collapse a possibility
+    space that should remain open.
+
+relationship_case:
+  coordinate: "Dave / Lauren"
+  private_scope: >
+    Dave may use a private relationship Yawn to externalize his experience,
+    hopes, assumptions, commitments, unanswered questions, and possible moves.
+  boundary: >
+    The system must not treat Dave's model of Lauren as Lauren's model, simulate
+    her as though she had consented, or optimize covert manipulation. Claims
+    about her inner state remain attributed reports or hypotheses. A shared
+    relationship Yawn requires separate participation, consent, and
+    provisioning.
+  agency_translation: >
+    Desires about another person's response should be translated into
+    inspectable distinctions among what Dave values, what he can control, what
+    he can request or invite, what boundaries exist, and what evidence could
+    responsibly update the relationship model.
+
+through_line:
+  sequence:
+    - natural_expression
+    - immutable_or_content_addressed_source_event
+    - provisional_symbols_and_relationships
+    - attributed_interpretations_and_lacunae
+    - selected_question_or_explicit_hold
+    - user_ratification_correction_deferral_or_withholding
+    - time_indexed_yawn_snapshot
+    - local_question_or_move_frontier
+    - root_attention_arbitration_when_relevant
+    - advocate_challenger_and_path_dialogue
+    - principal_choice_delegation_refusal_or_hold
+    - bounded_move_or_wait
+    - consequence
+    - proof
+    - calibrated_update
+    - relevance_triggered_resurfacing
+  compression: >
+    YAWN turns expression into navigable symbolic structure, lets questions
+    expose what is missing, lets accepted constraints make real choices visible,
+    and preserves enough time, provenance, and proof that the person can see why
+    the system moved from one model or priority to another.
+
+capacity_cases:
+  one_thing: >
+    Immediate dialogue, one useful map, one high-value question or hold, no
+    ontology onboarding, no unnecessary persistent bot.
+  one_yawn: >
+    A durable local loop around one subject, relationship, objective, or
+    inquiry, with attention, replay, moves, and proof.
+  lifetime_agent_space: >
+    Many local Yawns, a root alignment bridge, canonical identity resolution,
+    field-level privacy, cross-Yawn resurfacing, and compressed attention claims.
+    Larger data volume must not produce a larger required human aperture.
+
+research_neighbors:
+  status: "supporting neighbors, not proof of the full YAWN thesis"
+  - >
+    Working memory is capacity-limited, and external cognitive offloading can
+    improve immediate task performance while also creating tradeoffs for later
+    internal memory.
+  - >
+    4E and distributed-cognition traditions support studying cognition as
+    embodied, embedded, enacted, and extended through tools and relationships.
+  - >
+    Cognitive-control and active-inference traditions model selection among
+    competing control policies using expected benefit, information, risk, and
+    effort; they do not validate any specific YAWN ranking formula.
+  - >
+    Participatory sense-making supports treating interaction as capable of
+    changing both participants' sense-making, while still requiring YAWN to keep
+    its models separate from the actual relationship.
+
+first_build_target:
+  statement: >
+    Make `/dave` and one selected local Yawn execute this same loop end to end.
+    The root should show a tiny current attention frontier; the local Yawn should
+    expose the questions or moves underneath it, preserve why they were selected,
+    accept corrections, hold unresolved branches, and later replay/resurface the
+    result.
+  first_single_signal_test: >
+    A fresh user speaks one sentence and receives useful orientation within one
+    interaction without understanding YAWN terminology.
+  first_longitudinal_test: >
+    Ingest the current multi-model design thread with exact attribution and later
+    resurface one older distinction at the moment a new message makes it
+    relevant, with a correct explanation of why.
+  first_relationship_test: >
+    Use a private synthetic or owner-authorized relationship case to verify
+    perspective, consent, controllability, and no-mind-reading boundaries before
+    touching another person's private data.
+
+completion_signal: >
+  The same protocol feels lightweight enough for one question and trustworthy
+  enough for a lifetime: the user can talk, see, correct, navigate, hold, choose,
+  act, replay, and return without repeatedly rebuilding the structure or
+  surrendering agency, privacy, or reality contact.
+
+links:
+  - interface/yawnbot-capacity-continuum-v0.1.yawn
+  - interface/new-yawn-v0.1.yawn
+  - interface/yawnbot-agentic-embodiment-v0.1.yawn
+  - interface/ranked-move-deliberation-v0.1.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
+  - core/inquiry-selection.yawn
+  - core/holarchy.yawn
+  - core/objective-holon.yawn
+  - core/projection-and-aperture.yawn
+  - spec/questions.md
+  - spec/serialization.md
+  - records/2026-09-04-externalized-cognition-resurfacing-and-agency-loop.yawn

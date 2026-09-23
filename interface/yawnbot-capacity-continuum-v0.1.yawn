@@ -1,0 +1,351 @@
+id: interface/yawnbot-capacity-continuum-v0.1
+title: "One protocol from a single signal to a longitudinal Agent Space"
+kind: interface-runtime-boundary-contract
+status: proposed-v0.1
+version: 0.1.0
+recorded: 2026-09-05
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+purpose: >
+  Require the same YAWN protocol to produce immediate value for a person who
+  wants help with one subject or one move and to remain coherent when the same
+  person later contributes years of private data, multiple businesses, human
+  relationships, objectives, conflicts, Agents, tools, events, and proofs. Scale
+  changes aperture, indexing, and orchestration; it must not create a second
+  ontology or a different behavioral grammar.
+
+central_thesis: >
+  The smallest and largest YAWN are the same kind of orientation loop at
+  different resolution. A sparse Yawn may contain one source signal, one live
+  lacuna, and one useful next turn. A mature Agent Space may coordinate many
+  local Yawns and relationships, but each remains source-attributed,
+  independently inspectable, replayable, permissioned, and locally actionable.
+
+entry_modes:
+  single_signal:
+    user_intent: "Understand one subject, answer one question, or do one thing."
+    interface_rule: >
+      Let the person speak immediately. Do not require account setup, ontology
+      knowledge, a personality inventory, or completion of all orientation axes
+      before producing a faithful first map.
+    minimum_useful_state:
+      - source_preserved_expression
+      - provisional_scope_or_subject
+      - one_or_more_attributed_symbolic_handles
+      - one_live_question_or_lacuna_or_explicit_hold
+      - current_privacy_and_effect_boundary
+    success: >
+      Within the first interaction, the person can see a useful representation
+      of what they said, correct it cheaply, and understand the next useful
+      question, move, or hold.
+  bounded_yawn:
+    user_intent: "Sustain one objective, relationship, inquiry, or project over time."
+    adds:
+      - stable_yawn_identity_and_address
+      - relationships_and_roles
+      - target_or_intent_if_ratified
+      - constraints_and_boundaries
+      - attention_and_wake_contract
+      - candidate_questions_and_moves
+      - proof_and_close_conditions
+      - temporal_replay
+  longitudinal_agent_space:
+    user_intent: >
+      Preserve and navigate years or decades of cognition, documents, events,
+      businesses, relationships, decisions, models, contradictions, and proof.
+    adds:
+      - many_local_yawns
+      - root_alignment_and_attention_bridge
+      - canonical_symbol_and_identity_resolution
+      - source_registry_and_private_vault_coordinates
+      - typed_primary_parent_and_lateral_relations
+      - cross_yawn_relevance_resurfacing
+      - local_to_root_attention_claims
+      - delegation_and_multi_agent_coordination
+      - historical_diff_and_supersession
+      - field_level_provisioning
+    success: >
+      Complexity increases the amount the system can hold, not the amount the
+      person must see or manually organize at one time.
+
+same_protocol_invariants:
+  - "Natural expression is always a valid entry point."
+  - "Sparse orientation is valid; unknown, deferred, withheld, disputed, and not-applicable are not errors."
+  - "The interface asks one useful question by default and may show only a small candidate set."
+  - "The same semantic statuses, operators, authority boundaries, and proof loop apply at every scale."
+  - "A concept or question alone does not automatically create a Yawn or Yawnbot."
+  - "The root does not flatten local Yawns into one global mutable task list."
+  - "Increasing corpus size never widens model-provider access or human permissions automatically."
+  - "A public projection never implies that private source bodies are public."
+
+snapshot_boundary:
+  desired_property: >
+    Produce the most source-faithful, explicit, reproducible, and revisable
+    snapshot available at a recorded time.
+  not_objective_reality: >
+    A Yawn snapshot is not an objective copy of a person, relationship, mind, or
+    world. It is a time-indexed materialized View over attributed reports,
+    observations, inferences, ratifications, events, and proofs.
+  deterministic_core: >
+    Equivalent effective canonical inputs, policy version, gates, candidate set,
+    accepted preferences, and tie-break rules should reproduce the same selected
+    question, hold, rank, or materialized View.
+  generative_boundary: >
+    Model-generated parsing, hypotheses, and proposed explanations may vary.
+    Persist the actual output, provider/model/version, prompt or policy hash,
+    input and evidence hashes, time, confidence, and status. Replay historical
+    state from recorded events and outputs rather than asking a model to
+    regenerate the past exactly.
+
+question_to_decision_emergence:
+  open_state: >
+    A new Yawn may legitimately begin with no decision and a wide possibility
+    space. The system should first preserve the signal and identify what would
+    be useful to distinguish, not manufacture a task merely to appear agentic.
+  sequence:
+    - preserve_expression
+    - propose_symbols_and_relationships
+    - expose_unknowns_constraints_and_disputes
+    - select_high_information_or_safety_critical_question
+    - accept_correct_reject_defer_or_withhold_answer
+    - update_possible_states_and_constraints
+    - repeat_until_a_choice_move_or_hold_is_warranted
+    - render_ranked_question_frontier_or_move_frontier
+    - principal_chooses_modifies_rejects_delegates_or_holds
+    - consequence_proof_and_update
+  mad_libs_metaphor: >
+    The interface may feel like a living Mad Libs in which missing variables
+    become visible only when filling them would materially change orientation.
+    The blanks are dynamic typed lacunae, not a fixed questionnaire and not an
+    invitation for AI to invent an answer.
+  allowed_next_turns:
+    - ask_or_answer
+    - inspect_or_correct
+    - connect_or_distinguish
+    - hold_or_wait
+    - observe_or_measure
+    - choose_or_refuse
+    - delegate_or_act
+  ranking_rule: >
+    Questions compete first when information is missing; moves compete when the
+    orientation is sufficient for a bounded choice. A top-ranked turn may be a
+    question, observation, hold, wait, refusal, professional consultation,
+    delegation, or action.
+
+local_and_root_frontiers:
+  local_yawn: >
+    Each Yawn maintains its own current frontier: what is held, what changed,
+    what is unknown, which questions matter, which moves are possible, what is
+    waiting, and what deserves local attention.
+  root_yawn: >
+    The username/root Yawn receives compressed attributed attention claims from
+    local Yawns and compares them under the principal's accepted values,
+    relationships, constraints, safety, time, evidence, and authority.
+  hierarchy_boundary: >
+    The displayed stack rank is a time-dependent View of relevance and agency
+    allocation. It is not the permanent containment hierarchy and not a claim
+    that reality itself has one universal order.
+  aperture_rule: >
+    Opening a ranked item increases resolution into the relevant local Yawn,
+    question, relationship, rationale, advocate/challenger cases, and history.
+    Recompressing returns implications upward without deleting local structure.
+
+longitudinal_record:
+  event_rule: >
+    Canonical semantic change is append-only. Corrections, merges, splits,
+    reparenting, rejection, and changed belief create attributed superseding or
+    compensating events; they do not rewrite prior history.
+  materialized_state: >
+    Current state is a reducible View over an event cursor or causal frontier.
+    Replay can answer what was believed, proposed, authorized, private, ranked,
+    or unresolved at a historical moment and why it changed.
+  no_silent_removal: >
+    Ordinary correction never silently removes the record that explains how the
+    system moved from one model to another.
+  erasure_and_privacy_boundary: >
+    Append-only epistemic history does not cancel the principal's privacy,
+    revocation, retention, or lawful erasure rights. Sensitive source bodies may
+    be deleted, locally retained, redacted, or cryptographically tombstoned
+    according to explicit policy. The system may preserve a minimal authorized
+    receipt or hash without retaining private content when appropriate. Never
+    promise immutable retention of another person's data without authority.
+
+relevance_resurfacing:
+  rule: >
+    Current expression or events may reactivate prior concepts, relationships,
+    questions, models, commitments, or proofs when they could materially improve
+    present orientation. Surface a small explanation of the connection and let
+    the principal integrate, revise, reject, or leave the older material
+    historical.
+  success: >
+    The person need not remember that a useful earlier model exists before YAWN
+    can bring it back with source, historical status, and what changed since.
+
+relationship_yawn_boundary:
+  real_person: >
+    A human such as Lauren is an Agent in reality, not a bot or a simulation.
+  private_model: >
+    A private `Dave / Lauren` Yawn may model Dave's experience, observations,
+    hopes, commitments, questions, and possible moves in the relationship. It
+    must label claims about Lauren's thoughts, feelings, intentions, or likely
+    responses as Dave-attributed reports or machine-attributed hypotheses, not
+    as Lauren's truth.
+  shared_relationship: >
+    A jointly stewarded relationship Yawn requires appropriate participation,
+    consent, attribution, provisioning, and separate perspectives. One
+    participant cannot silently ratify the other's beliefs, obligations, values,
+    or permissions.
+  ethical_move_rule: >
+    Rank moves by what the principal can ethically choose or invite, not by how
+    effectively the system can manipulate another person into a desired state.
+    Wishes such as "I want her to love me" should be separated from controllable
+    commitments, requests, boundaries, and evidence about the relationship.
+  agentic_embodiment_rule: >
+    A Yawnbot may embody the relationship Yawn or Dave's private model of it. It
+    must not impersonate Lauren or claim to be her digital twin without explicit
+    authority and a much stronger identity/consent contract.
+
+root_drift_partner:
+  product_metaphor: >
+    `@dave` may feel like a Drift partner, cognitive counterpart, or digital
+    doppelganger because it carries continuity, mirrors expression, maintains
+    the field, and helps allocate attention across time.
+  truth_boundary: >
+    It is an attributed external model and co-orientation partner, not a complete
+    copy of Dave, not hidden access to his mind, and not an independent owner of
+    his identity, values, relationships, or decisions.
+  completion_target: >
+    Dave can speak into the root, see faithful symbolic structure emerge, enter
+    any local Yawn or relationship, recover why the model changed, and receive
+    the smallest explainable question or move that currently deserves agency.
+
+capacity_pressure_test_matrix:
+  - id: one_subject_first_minute
+    setup: "New user, one sentence, one subject, no prior state."
+    must_prove:
+      - immediate_input_without_onboarding
+      - faithful_source_preservation
+      - useful_first_map_or_question
+      - low_correction_cost
+      - no_forced_objective_or_bot_creation
+  - id: one_bounded_outcome
+    setup: "One practical result with explicit budget, time, and constraints."
+    must_prove:
+      - questions_narrow_the_possibility_space
+      - constraints_generate_real_candidate_paths
+      - move_or_hold_is_explainable
+      - forecast_and_proof_are_recorded
+  - id: sparse_open_inquiry
+    setup: "User wants to understand something but has no target or decision yet."
+    must_prove:
+      - inquiry_and_presence_are_valid
+      - no_premature_action_pressure
+      - lacunae_remain_open_without_fabrication
+  - id: longitudinal_private_corpus
+    setup: "Years of conversations, notes, files, decisions, and changing beliefs."
+    must_prove:
+      - canonical_identity_resolution
+      - source_and_time_lineage
+      - relevance_triggered_resurfacing
+      - no_duplicate_concept_explosion
+      - historical_model_diff_and_context_restoration
+  - id: multi_business_agent_space
+    setup: "Several companies, objectives, Agents, tools, and deadlines."
+    must_prove:
+      - local_frontiers_and_root_arbitration
+      - explicit_authority_and_delegation
+      - cross_yawn_dependencies
+      - no_flat_global_backlog
+  - id: private_health
+    setup: "Sensitive uncertain longitudinal health data."
+    must_prove:
+      - least_necessary_disclosure
+      - probability_not_diagnosis
+      - information_moves_and_professional_escalation
+      - privacy_replay_and_erasure_controls
+  - id: human_relationship
+    setup: "One-sided private model and optionally a later shared relationship Yawn."
+    must_prove:
+      - perspective_and_consent_separation
+      - no_mind_reading_or_impersonation
+      - ethical_controllable_moves
+      - field_level_provisioning
+  - id: provider_swap
+    setup: "Replace the active frontier intelligence."
+    must_prove:
+      - stable_yawn_and_symbol_identity
+      - unchanged_authority_privacy_history_and_proof
+      - explicit_new_provider_attribution
+  - id: interruption_and_return
+    setup: "Stop for days or months, then return from a related event."
+    must_prove:
+      - useful_resurfacing
+      - fast_context_restoration
+      - exact_why_this_now_explanation
+      - no_need_for_user_to_reconstruct_the_thread
+  - id: adversarial_marketing_input
+    setup: "External system introduces fears, claims, or incentives."
+    must_prove:
+      - source_identity_and_interest_remain_visible
+      - salience_does_not_equal_relevance_or_truth
+      - no_silent_objective_or_value_adoption
+  - id: delete_revoke_and_replay
+    setup: "Principal revokes access or removes sensitive source content."
+    must_prove:
+      - future_access_is_closed
+      - replay_does_not_leak_removed_content
+      - authorized_lineage_or_tombstone_remains_coherent
+      - no_false_claim_of_complete_immutable_memory
+
+comparative_evaluation:
+  baseline_conditions:
+    - plain_frontier_chat
+    - frontier_chat_with_large_context_only
+    - static_notes_or_cards
+    - unembodied_graph
+    - yawn_without_resurfacing_or_ranking
+    - full_yawn_protocol
+  hold_constant_where_possible:
+    - underlying_model
+    - compute_budget
+    - source_corpus
+    - task
+    - time_budget
+  primary_measures:
+    - time_to_first_useful_orientation
+    - correction_cost
+    - orientation_gain
+    - cognitive_carrying_reduction
+    - context_restoration_time
+    - resurfacing_precision_and_recall
+    - question_information_value
+    - next_move_completion_and_usefulness
+    - forecast_calibration
+    - repeated_error_rate
+    - authority_and_consent_comprehension
+    - management_and_orchestration_overhead
+    - unwanted_engagement_or_anthropomorphic_confusion
+
+falsifiers:
+  - "The single-subject path requires ontology work before value appears."
+  - "Longitudinal use produces duplicate symbols, irrecoverable provenance, or an unreadable global graph."
+  - "The system manufactures decisions when inquiry or holding is more appropriate."
+  - "Stack ranking is driven by salience or model fluency rather than evidence, values, time, and constraints."
+  - "Historical replay cannot explain why a question, belief, or move changed."
+  - "Relationship Yawns encourage mind-reading, manipulation, or unauthorized representations of other people."
+  - "The root model becomes more cognitively expensive to maintain than the cognition it is meant to carry."
+  - "More data decreases practical orientation because aperture and resurfacing fail."
+
+links:
+  - interface/new-yawn-v0.1.yawn
+  - interface/yawnbot-agentic-embodiment-v0.1.yawn
+  - interface/ranked-move-deliberation-v0.1.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
+  - core/inquiry-selection.yawn
+  - core/holarchy.yawn
+  - core/objective-holon.yawn
+  - core/projection-and-aperture.yawn
+  - spec/questions.md
+  - spec/serialization.md
+  - records/2026-09-04-externalized-cognition-resurfacing-and-agency-loop.yawn

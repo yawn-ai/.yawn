@@ -1,0 +1,225 @@
+id: records/2026-09-05-voices-answers-and-public-feedback-clarification
+title: "Voices as attributed perspectives; answers as the bridge from lacunae to moves"
+kind: clarification-record
+status: proposed-canonical-backfill
+recorded: 2026-09-05
+supersedes_history: false
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+source_observation: >
+  Dave recognized that an earlier Yawn.ai voice system already contains a seed
+  of the current architecture: multiple internal or external standpoints respond
+  to a situation, questions reveal lacunae, candidate answers compete or
+  cooperate, and the resulting model informs moves. He connected this to public
+  comments on media: a creator publishes a projection, other intelligences
+  respond through their own apertures, and those responses can help refine the
+  creator's model, expression, experiment, or future behavior.
+
+preserve:
+  - >
+    Questions expose lacunae. Attributed answer candidates reduce, reframe, or
+    deepen those lacunae. The resulting answer field informs the next warranted
+    question, hold, test, decision, or move.
+  - >
+    Different Yawnbots, humans, models, roles, historical selves, and public
+    commenters may offer distinct perspectives on the same question.
+  - >
+    Public response can become a visible input to recursive improvement when the
+    source projection, respondent aperture, evidence relation, consequence, and
+    resulting update remain inspectable.
+  - >
+    The system should show why one question, answer, or move currently leads and
+    what evidence would change that position.
+  - >
+    The earlier voice, public-answer, expression-synthesis, and feedback-
+    reintegration code should be reconciled rather than discarded or duplicated.
+
+correct:
+  - >
+    A voice is not automatically a Yawnbot. It is an attributed expression from
+    a standpoint. An already-existing Yawnbot may produce a voice; a generated
+    voice earns persistent bot status only if it independently satisfies the
+    Agent/Yawn persistence threshold.
+  - >
+    A question does not necessarily create one strict hierarchy of answers.
+    Answers may oppose, support, qualify, reframe, apply under different
+    conditions, address different scopes, or remain unknown. The underlying
+    model is relational; the interface may show a ranked answer frontier.
+  - >
+    Comments are not direct rewards. They are heterogeneous feedback events:
+    experience reports, factual claims, questions, preferences, value
+    disagreements, requests, resonance, counterexamples, consequences,
+    manipulation, spam, or unknown input.
+  - >
+    Positive comments do not prove the creator was right. Negative comments do
+    not prove failure. Popularity, conviction, salience, evidence, affectedness,
+    and decision relevance must remain separate.
+  - >
+    Unless a formal reward and policy-update contract exists, call the mechanism
+    attributed feedback reintegration or perspective-conditioned model revision,
+    not reinforcement learning.
+  - >
+    Recursive improvement should optimize a named, principal-ratified outcome
+    under safety, evidence, affected-party, and authority constraints—not simply
+    fewer objections, more praise, or longer engagement.
+
+unified_shape:
+  sequence:
+    - question_or_lacuna
+    - permitted_perspectives
+    - attributed_answer_candidates
+    - answer_relationship_and_evidence_graph
+    - ranked_answer_frontier
+    - synthesis_with_dissent_and_unknowns
+    - next_warranted_turn
+    - principal_choice_or_hold
+    - authorized_move_or_publication
+    - consequence_and_response
+    - attributed_feedback_events
+    - proof_and_calibration
+    - updated_questions_answers_moves_and_apertures
+  note: >
+    This sequence belongs inside the established Crystallization, Learning, and
+    Execution loops. It does not create a fourth canonical loop.
+
+voice_definition:
+  statement: >
+    A voice is what an attributed standpoint would say here, through this
+    aperture, about this question, claim, relationship, expression, or move.
+  possible_origins:
+    - current_self_report
+    - historical_self
+    - named_human_participant
+    - invited_collaborator
+    - local_yawnbot
+    - connected_agent
+    - advocate_or_challenger_role
+    - public_commenter
+    - research_or_measurement
+    - model_simulation
+    - unknown_missing_perspective
+  boundaries:
+    - "voice != Agent"
+    - "voice != Yawnbot"
+    - "voice != stable belief"
+    - "voice != psychological diagnosis"
+    - "voice != authority"
+    - "voice != proof"
+
+answer_frontier:
+  statement: >
+    The answer frontier is the small current set of candidate answers whose
+    evaluation would most improve orientation or movement. It is a View over a
+    larger answer/evidence graph.
+  show:
+    - leading_answer_or_synthesis_if_warranted
+    - meaningful_alternatives
+    - material_dissent
+    - applicability_conditions
+    - source_and_perspective
+    - evidence_for_and_against
+    - confidence_or_unknown
+    - conviction_or_preference_if_expressed
+    - what_would_change_the_position
+  do_not_conflate:
+    - question_priority
+    - answer_credence
+    - perspective_relevance
+    - social_popularity
+    - user_conviction
+    - emotional_salience
+    - move_leverage
+
+external_comment_example:
+  publication: >
+    Dave publishes one dated, provisioned expression from a Yawn through a
+    Public Story or other public aperture.
+  response: >
+    A commenter responds using only the public projection and their own
+    experience, values, incentives, and assumptions.
+  system_behavior: >
+    Preserve the comment and its context; classify its possible relation as a
+    proposal; connect it to the relevant question, claim, or move; estimate its
+    evidence and decision relevance; surface consequential minority feedback;
+    and ask whether it should change the model, expression, audience, test,
+    future move, or nothing.
+  principal_boundary: >
+    Dave may accept, reject, reframe, test, or hold the feedback. The commenter
+    cannot silently rewrite Dave's values or private Yawn, and Dave cannot treat
+    the comment as access to the commenter's full model.
+
+self_improvement_boundary:
+  valid_learning_chain: >
+    publish or move -> response or consequence -> attributed feedback ->
+    classification proposal -> evidence evaluation -> model/rank delta -> next
+    test -> later consequence -> calibration.
+  invalid_shortcuts:
+    - "like -> truth"
+    - "agreement -> proof"
+    - "criticism -> failure"
+    - "engagement -> value"
+    - "comment volume -> representativeness"
+    - "model consensus -> independent evidence"
+    - "user reaction -> policy authority"
+
+existing_code_reconciliation:
+  surface_voice_generator: >
+    Preserve its insight that needs, tensions, constraints, practical
+    job-scoping, and deeper probes can be surfaced before movement. Generalize
+    forced position/counter pairs into a multi-answer perspective field and
+    retain labels such as bias, need, emotion, or IFS part as optional attributed
+    hypotheses requiring correction, not diagnoses.
+  voice_cards: >
+    Preserve easy reaction and comment controls, but record whether the response
+    means recognition, conviction, preference, relevance, or something else.
+    Do not let a slider automatically increase truth or self-model confidence.
+  control_level_detector: >
+    Preserve Regulation/Task/Goal/Identity/Meaning as a possible presentation or
+    routing lens. The keyword detector is a low-confidence proposal, not a fixed
+    hierarchy of cognition, diagnostic type, or permission to suppress mixed
+    levels.
+  feedback_reintegration: >
+    Preserve source feedback and its possible link to lacunae, moves, or
+    variants. Replace brittle canonical keyword classification and immediate
+    writes with attributed proposals, explicit evidence relations, and governed
+    update targets.
+  answer_agent: >
+    Preserve the inverse Question/Answer intuition. Remove assumptions that every
+    answer adds positive coherence. An answer can increase, reduce, split,
+    dispute, reframe, or leave coherence unchanged. Processing failure creates
+    no positive epistemic credit.
+  expression_synthesis: >
+    Preserve Expression(t)=f(Tree(t)) as a View: answers can sharpen what the
+    Yawn currently expresses. Do not allow answer count, tree density, or
+    internal consistency to substitute for evidence or erase dissent, source
+    scope, uncertainty, and alternatives.
+
+implementation_priority:
+  first: >
+    Audit and model the existing voice, answer, comment, expression, and feedback
+    data flows before creating another agent family.
+  second: >
+    Introduce richer perspective and answer-candidate provenance through
+    compatibility adapters.
+  third: >
+    Bind the perspective field into Questions First, ranked deliberation,
+    public/shared apertures, and historical replay.
+  fourth: >
+    Test one real publication-response-revision cycle against a plain comment
+    inbox baseline.
+
+proof_questions:
+  - "Does the perspective field find better questions or moves than a single-answer model?"
+  - "Can users distinguish a generated voice from their own belief and another person's actual position?"
+  - "Does the system preserve high-value minority evidence instead of following popularity?"
+  - "Do external comments lead to traceable improvements in communication, model accuracy, or outcomes rather than approval-seeking?"
+  - "Can replay show exactly which answer or feedback event changed a rank?"
+  - "Does the added perspective metadata reduce repeated errors enough to justify its complexity?"
+
+links:
+  - interface/perspective-field-and-feedback-reintegration-v0.1.yawn
+  - interface/ranked-move-deliberation-v0.1.yawn
+  - interface/aperture-registry-and-provisioning-v0.1.yawn
+  - interface/yawnbot-agentic-embodiment-v0.1.yawn
+  - records/2026-09-04-externalized-cognition-resurfacing-and-agency-loop.yawn

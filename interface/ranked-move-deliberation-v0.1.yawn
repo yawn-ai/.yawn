@@ -1,0 +1,249 @@
+id: interface/ranked-move-deliberation-v0.1
+title: "Ranked move deliberation: advocate, challenger, and forecast trace"
+kind: interface-boundary-contract
+status: proposed-v0.1
+version: 0.1.0
+recorded: 2026-09-04
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+purpose: >
+  Render a small ranked set of candidate moves and let a principal inspect why
+  one currently leads. Progressive disclosure opens a deliberation aperture
+  containing the strongest case for the move, the strongest challenge, the
+  evidence and assumptions moving the forecast, unresolved lacunae, and the
+  conditions that would change the rank. The View supports dialogue and model
+  correction without converting ranking into authority or debate into proof.
+
+view_boundary:
+  view_kind: ranked_move_deliberation
+  canonical_state: false
+  rule: >
+    This is a rebuildable View over attributed orientation, candidate movement,
+    evidence, forecasts, authority, dialogue, and proof records. Expanding or
+    collapsing the View changes aperture only. It does not accept a move, grant
+    authority, mutate canonical state, or prove the recommendation.
+
+primary_objects:
+  candidate_move: >
+    A proposed bounded action, inquiry, hold, wait, refusal, or delegation with
+    a defined intended outcome or information gain.
+  ranking_hypothesis: >
+    The current attributed claim that this candidate deserves more attention or
+    agency than alternatives under the present Arena, time, evidence, values,
+    constraints, and authority.
+  advocate_case: >
+    The strongest evidence-bounded case that the candidate is a good next move.
+  challenger_case: >
+    The strongest evidence-bounded case that the candidate is wrong, premature,
+    lower-value than an alternative, or dependent on an unsupported assumption.
+  principal_response: >
+    The rightful principal's acceptance, rejection, correction, modification,
+    deferral, hold, or delegation. A response is not proof that the ranking was
+    correct.
+
+role_model:
+  canonical_roles:
+    - advocate
+    - challenger
+    - integrator
+  presentation_aliases:
+    challenger:
+      - adversary
+      - skeptic
+      - red_team
+      - case_against
+  boundary: >
+    Advocate and challenger are roles in a deliberation episode, not new Yawns,
+    Yawnbots, identities, objectives, or authorities by default. One Agent may
+    render both roles for low-cost exploration, but the result must say that the
+    cases are correlated. Consequential decisions may use independently
+    instantiated Agents or providers, blinded first passes, or distinct evidence
+    access. The integrator compresses the cases and updates the ranking
+    hypothesis; it does not become the judge of truth or the rightful principal.
+
+bounded_agent_spawning:
+  default: "do not spawn a persistent Yawnbot for each role or move"
+  may_spawn_ephemeral_agent_when:
+    - expected_information_gain_exceeds_compute_and_coordination_cost
+    - materially_distinct_capability_or_evidence_access_is_needed
+    - decision_consequence_or_irreversibility_justifies_independent_review
+    - correlated_model_error_is_a_material_risk
+  required_contract:
+    - parent_yawn_ref
+    - deliberation_episode_ref
+    - role
+    - question_or_claim_scope
+    - allowed_evidence_aperture
+    - model_and_provider_identity
+    - independence_declaration
+    - compute_or_time_budget
+    - authority_boundary
+    - output_contract
+    - stop_and_expiry_condition
+  persistence_rule: >
+    Preserve the attributed output and receipt after the worker expires. Promote
+    the work into a persistent Yawn or Yawnbot only when it independently earns
+    a durable orientation loop under the holarchy contract.
+
+quantity_separation:
+  rule: >
+    Do not collapse outcome probability, expected leverage, salience, and
+    priority rank into one number. They answer different questions.
+  outcome_probability: >
+    P(the defined intended outcome occurs within the defined time horizon given
+    this move and the current model). Show only when outcome and horizon are
+    sufficiently specified; otherwise show unknown or a qualitative range.
+  expected_leverage: >
+    The estimated agency or information value of the move after accounting for
+    possible outcomes, user-ratified value, information gain, option value,
+    downstream unlocks, cost, risk, irreversibility, and attention burden.
+  priority_rank: >
+    The move's current order relative to the available candidate set after hard
+    gates, timing, dependencies, and current orientation are considered.
+  salience: >
+    How strongly something captures attention or affect. High salience is not
+    automatically high normative or decision relevance.
+  rank_confidence: >
+    Confidence that the current ordering is robust to known uncertainty and
+    reasonable changes in assumptions; not confidence that the move will work.
+
+expected_value_shape:
+  provisional_not_universal: true
+  expression: >
+    expected agency value ~= sum(probability of outcome_i * principal-ratified
+    value of outcome_i) + information value + option value + downstream unlocks
+    - cost - risk - irreversibility - attention burden.
+  boundary: >
+    This is a decomposable hypothesis and audit frame, not a canonical scalar
+    formula. Values and tradeoffs remain attributed; missing inputs remain
+    visible rather than being filled with theatrical precision.
+
+forecast_trace:
+  visual_analogy: >
+    A Polymarket-like time series may be used to make belief revision visible,
+    but it is not a market price and must not imply crowd wisdom or liquidity.
+  separate_traces:
+    - outcome_probability_over_time
+    - expected_leverage_over_time
+    - priority_rank_over_time
+    - principal_estimate_if_expressed
+    - independent_agent_estimates_without_silent_averaging
+  event_markers:
+    - new_user_observation
+    - new_external_evidence
+    - corrected_assumption
+    - changed_value_or_constraint
+    - authority_change
+    - dependency_change
+    - consequence_or_proof
+  revision_receipt_requires:
+    - ranking_revision_id
+    - timestamp
+    - previous_and_new_candidate_set_hash
+    - previous_and_new_rank
+    - previous_and_new_forecast_or_unknown
+    - factor_contributions_or_qualitative_reasons
+    - triggering_evidence_refs
+    - advocate_claim_refs
+    - challenger_claim_refs
+    - remaining_lacuna_refs
+    - model_policy_and_provider_refs
+    - principal_response_ref_or_null
+  invariant: >
+    Every visible movement in a forecast or rank must be inspectable as an
+    attributed revision. The interface may never draw a smooth synthetic line
+    across moments for which no recorded estimate exists without labeling the
+    interpolation as presentation-only.
+
+progressive_disclosure:
+  collapsed_rank_item:
+    - rank
+    - candidate_move
+    - why_now_compression
+    - outcome_probability_or_unknown
+    - expected_leverage_summary
+    - rank_confidence
+    - major_lacuna
+  expanded_deliberation_aperture:
+    - intended_outcome_and_time_horizon
+    - advocate_case
+    - challenger_case
+    - assumptions
+    - supporting_and_contradictory_evidence
+    - factor_contributions
+    - forecast_and_rank_history
+    - alternatives_considered
+    - opportunity_cost
+    - authority_and_provisioning
+    - what_would_change_the_rank
+    - dialogue_input
+    - accept_modify_reject_hold_or_delegate_controls
+
+false_balance_rule: >
+  Steelman both the strongest support and strongest challenge, but never force
+  equal weight, equal space, or equal confidence when the evidence is strongly
+  asymmetric. A weak challenge remains visibly weak. The role structure exists
+  to expose error and alternatives, not to manufacture controversy.
+
+dialogue_and_learning:
+  user_input_effect: >
+    New user expression becomes attributed evidence or correction, not an
+    automatic preference or truth. Recompute only the quantities it can
+    materially affect and show the delta and reason.
+  distinguish_learning_signals:
+    user_choice: "evidence about preference, values, or willingness; not proof of move quality"
+    move_execution: "evidence that the move occurred; not proof of intended causation"
+    outcome: "observed consequence with scope and uncertainty"
+    proof_evaluation: "evidence bearing on forecast, causal claim, or success condition"
+    subjective_helpfulness: "evidence about experienced usefulness; not objective outcome"
+  scope_rule: >
+    Apply corrections locally by default. Widen from episode to Yawn, person,
+    relationship, reusable model, or canonical ontology only with increasing
+    evidence, explicit provenance, and rightful authority.
+
+principal_and_reality:
+  principal: >
+    The principal may inspect, disagree, add evidence, choose another move,
+    pause, or delegate. No score or role output becomes permission.
+  reality: >
+    Advocate and challenger participate before action. Consequence and proof
+    participate afterward. Model agreement never substitutes for world proof.
+
+provisioning:
+  rule: >
+    The collapsed public View may expose a move and bounded public rationale
+    while private evidence, health data, relationship history, model traces, or
+    participant identities remain withheld. Each rendered claim and evidence
+    reference obeys effective field-level access, not only whole-Yawn visibility.
+
+acceptance_tests:
+  - "Expanding a ranked item reveals advocate, challenger, assumptions, lacunae, alternatives, and what would change the rank."
+  - "Outcome probability, expected leverage, rank, rank confidence, and salience remain visually and semantically distinct."
+  - "Adding user evidence creates a timestamped revision and shows why the forecast or rank moved."
+  - "User acceptance does not mark the recommendation proven."
+  - "A high-salience low-relevance case is not automatically ranked first."
+  - "Weak evidence does not receive artificial equal weight through the two-role presentation."
+  - "One-model self-debate is labeled as correlated; independent Agents retain identity and provenance."
+  - "Ephemeral role Agents cannot widen authority or persist as Yawnbots without a separate authorized structural proposal."
+  - "Replay recovers the exact recorded rank and rationale for a historical moment."
+  - "Public replay never exposes evidence outside current and historical provisioning rights."
+  - "A consequence and proof event can recalibrate later forecasts without erasing the original estimate."
+
+falsifiers:
+  - "The two-role View creates repetitive performative debate without changing decisions or model quality."
+  - "Users mistake the displayed line for objective or crowd probability."
+  - "Added dialogue costs more attention than it saves."
+  - "Rank changes cannot be traced to evidence and assumptions."
+  - "Role proliferation creates more orchestration overhead than information gain."
+  - "The system learns to mimic user approval rather than improve calibration against outcomes."
+
+links:
+  - core/orientation.yawn
+  - core/inquiry-selection.yawn
+  - core/holarchy.yawn
+  - core/turn.yawn
+  - core/projection-and-aperture.yawn
+  - core/proof-and-boundary.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
+  - records/2026-09-04-externalized-cognition-resurfacing-and-agency-loop.yawn
