@@ -29,7 +29,6 @@ const CANONICAL = new Set([
 // Frozen grandfather ledger (file path -> allowed legacy values). Entries are
 // removed when their records migrate; nothing may be added.
 const GRANDFATHERED = new Map([
-  ["core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn", ["falsifiable_design_hypothesis"]],
   ["core/state.yawn", ["how a claim is known or contested"]], // field-definition doc
   ["readme.yawn", ["proposed"]],
   ["records/inquiry-aperture-one-question-face.yawn", ["proposed_interpretation"]],

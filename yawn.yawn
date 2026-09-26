@@ -437,6 +437,7 @@ dave_links:
   orientation: dave/orientation/model.yawn
   ai_talk_in_the_park: dave/ai-talk-in-the-park/model.yawn
   objective_holon: dave/ai-talk-in-the-park/objective-holon.yawn
+  meaning: dave/meaning/model.yawn
 
 usage_frame: >
   YAWN is an orientation shape for inference before action. Use it by naming

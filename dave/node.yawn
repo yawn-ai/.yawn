@@ -20,6 +20,7 @@ holds:
   - number-sense
   - prenumerical-thinking
   - ai-talk-in-the-park
+  - meaning
 
 receives:
   - lived situations where Dave needs a shared model with a person or a bot

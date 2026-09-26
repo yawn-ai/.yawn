@@ -1,0 +1,128 @@
+id: mental-model:dave:meaning
+title: "Dave / meaning"
+kind: mental-model
+record_shape: header
+status: draft
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Claude Code session on Dave's behalf, 2026-09-26, from Dave's 25 Sep document 'Meaning, Story & the Living Model' (design direction Dave, synthesis ChatGPT) and his request to organise his meaning model in layers; every answer is proposed until Dave accepts or corrects it"
+arena: "Any Yawn where a person brings an expression and needs to see what it means here, whose reading that is, and what a correction would change"
+relations:
+  - type: overlaps
+    target: interface/meaning.yawn
+    note: "The /meaning cognition handle asks what something means to the observer; this is Dave's working model of how that meaning is held, shown and corrected."
+product_ref: "yawn.bot /meaning, which redirects to /dave/meaning-model"
+updated: 2026-09-26
+
+questions:
+  - key: role
+    answer: "A participant with meaning to inspect. yawn.bot proposes readings; the participant holds the meaning. A proposed reading is not mine until I state or accept it."
+  - key: relevance
+    answer: >
+      So people can find their own use for what they bring without handing
+      authorship to the model. Inspectable meaning is how the system earns
+      correction instead of compliance.
+  - key: definition
+    answer: "Meaning is the situated, attributed significance of something to someone, in a relationship and context, at a time. It is not truth, evidence, permission or a permanent essence."
+  - key: inside
+    answer: "Four ways to encounter one record (Meaning, Story, Model, History), with Basis, Ranking basis and Permission kept as separate questions, and a name that is only a handle."
+  - key: show
+    answer: "One reading at a time: whose it is, what kind of statement it is, what is uncertain, and the four correction choices."
+  - key: assumptions
+    answer: "What I am taking for granted about readings, rankings and names, marked so it can be corrected."
+  - key: proof
+    answer: "A correction changes what depended on it, and nothing else, and it is still there when I come back."
+  - key: lacuna
+    answer: "Where each of two context-bound readings applies; which expression best carries a meaning for a given concern; whether Meaning should replace Why as the participant-facing word."
+
+concept:
+  name: Meaning
+  one_line: "What this matters as, to whom, here, with its story, structure and history kept distinct and correctable."
+  inside:
+    - name: "meaning"
+      glyph: "◎"
+      one_line: "the current situated significance: what this matters as, to whom, here"
+    - name: "story"
+      glyph: "∿"
+      one_line: "an attributed account of how the significance formed; a told story is not evidence that events happened"
+    - name: "model"
+      glyph: "⌗"
+      one_line: "the claims, dimensions, relationships, assumptions and alternatives that structure a reading"
+    - name: "history"
+      glyph: "⋮"
+      one_line: "what was expressed, proposed, accepted, corrected, chosen and observed, in order, never rewritten"
+    - name: "basis"
+      glyph: "⊢"
+      one_line: "what supports a reading: sources, assumptions, alternatives and uncertainty"
+    - name: "ranking basis"
+      glyph: "↥"
+      one_line: "why something is shown now: concern, matching evidence, scope and policy, never worth or truth"
+    - name: "permission"
+      glyph: "⚿"
+      one_line: "why an action may occur: the grant, actor, scope and current validity; a reading never grants it"
+    - name: "name"
+      glyph: "≈"
+      one_line: "a current handle; rename keeps identity, and refine, relocate, split, merge and reinterpret are other operations"
+
+show:
+  - icon: "one reading"
+    do: "Show a single reading with whose expression it came from, who generated it and who accepted it."
+    say: "Is this what you mean here, or is it a different context?"
+  - icon: "four choices"
+    do: "Offer That's not my meaning, Different context, Leave this open, and This fits."
+    say: "Which of these is closest to what you want to change?"
+  - icon: "the next proof"
+    do: "Correct one reading, keep or change one name, then return and find both intact."
+    say: "What changed, what stayed the same, and what has actually happened outside the model?"
+
+embody:
+  - "Say 'proposed reading for Dave' until Dave states or accepts it; never 'Dave's meaning' before that."
+  - "Put the reason something is shown beside it, from the real selection, never a story written afterward."
+  - "Keep the name and the draft target still while Dave is working; offer a rename without moving the item."
+  - "One question at a time. A boundary or a refusal is usable context, not a demand to disclose more."
+  - "When two readings answer for different contexts, keep both and say where each applies is still open."
+
+assumptions:
+  - text: "Dave endorses the 25 Sep document as the shape of his meaning model; its specific answers are still proposals."
+    epistemic_status: reported
+  - text: "Separating Meaning, Story, Model and History helps people correct a reading faster than one undifferentiated account."
+    epistemic_status: assumed
+    epistemic_note: "An interface hypothesis; the comparison has not been run."
+  - text: "The four sources the document cites (P1 to P4) are in Dave's private root, which was not reachable when this was written."
+    epistemic_status: observed
+
+proof:
+  covers:
+    - questions
+    - concept
+  signals:
+    - "scripts/validate-mental-models.mjs passes with this record and its page, in the same question order."
+    - "A reading corrected as a different context stays current beside the original, and neither is treated as applying everywhere."
+    - "A chosen move survives a correction that does not touch what it was chosen on."
+  falsifier: "If a correction is acknowledged in conversation but absent from the next working state, or a more persuasive story is no easier to correct, this model is not being honoured."
+  not_covered:
+    - "embody: a communication style is observed in use, not proven by this record"
+    - "that separating the four views helps people; no comparison has been run"
+  status: proposed
+
+lacunae:
+  - "Where each of two context-bound readings applies; there is no structured scope yet."
+  - "Which expression best carries a meaning for a given concern; concern-scoped ranking is not built."
+  - "Whether Meaning replaces Why as the participant-facing word (yawn.bot decision frame meaning-or-why)."
+  - "Durable reload of a correction against the canonical store has not been run from the environment that wrote this."
+
+sources:
+  - text: "Dave, 'yawn.bot — Meaning, Story & the Living Model', v0.1, 25 Sep 2026 (design direction Dave, synthesis ChatGPT)"
+    epistemic_status: reported
+  - text: "JUDGMENTS.md #41: question_key and answer meaning survive any change of wording, order, layout, medium or input adapter"
+    epistemic_status: observed
+  - text: "JUDGMENTS.md #40: semantic similarity may surface candidates; identity is decided by declared records"
+    epistemic_status: observed
+  - text: "JUDGMENTS.md #194 and #479: mental models are questions-first records; role first, relevance second"
+    epistemic_status: observed
+  - text: "JUDGMENTS.md #754: the interface must explain why something is visible, larger, nearer or higher-ranked"
+    epistemic_status: observed
+  - text: "core/inquiry-selection.yawn: hard gates, semantic priority, then interaction fit"
+    epistemic_status: observed

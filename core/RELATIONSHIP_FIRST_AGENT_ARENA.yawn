@@ -8,7 +8,7 @@ criticality: constitutional
 version: 1.0.0
 owner: dave
 created_at: 2026-08-16
-updated_at: 2026-08-16
+updated_at: 2026-09-26
 coordinate: yawn.ai/architecture/relationship-first-agent-arena
 parent_coordinate: yawn.ai/architecture/multi-actor-coherence-field
 public_routes:
@@ -19,7 +19,8 @@ public_routes:
   - https://yawn.bot/agent
   - https://yawn.bot/arena
 ontological_status: canonical_working_model
-epistemic_status: falsifiable_design_hypothesis
+epistemic_status: inferred
+epistemic_note: "Adopted as a modeling convention; specified agent-arena relationships are falsifiable design hypotheses; the exhaustive or irreducible thesis is withheld (see 2.0, 2026-09-26). Previously recorded as falsifiable_design_hypothesis."
 inspired_in_part_by:
   - authors: John Vervaeke; Christopher Mastropietro; Filip Miscevic
     work: Zombies in Western Culture
@@ -139,6 +140,49 @@ authority         feedback                 consequences
 These are not a sequence.
 
 They are three lenses on one situated event.
+
+### 2.0 Claim levels (clarification, 2026-09-26)
+
+Recorded by Claude Code on Dave's behalf from a critique Dave directed be
+implemented. The sentence above is kept as written. This clarification says how
+strongly it is claimed; it does not rewrite it.
+
+| Claim | Kind | Standing |
+|---|---|---|
+| We describe situations through participant, setting and their relationship. | A modeling convention. | Adopted. It can be challenged by showing the distinctions are ambiguous, redundant, misleading, or less useful than another representation. |
+| Specified agent–arena relationships help explain or predict behaviour. | A family of empirical hypotheses. | Investigated. Each must name which relationship, which behaviour and which conditions, and be compared with alternatives. |
+| Agent, Relationship and Arena are the necessary, exhaustive, irreducible constituents of all agency. | An ontological thesis. | Withheld. As worded it has no clear empirical falsifier. |
+
+Read "irreducible" as: these must stay distinguishable so that information
+needed for prediction, correction or responsible action is not lost. It does not
+claim that Relationship is an additional substance, or that a representation
+storing body width and doorway width separately is wrong. Read "mutually
+specifying" with scope: the relevant description of an agent depends on the
+current situation; the agent's whole identity does not depend on one situation.
+
+The framework keeps its own record:
+
+- **Claim:** the triad is a grammar; particular models built with it make predictions.
+- **Scope:** situated episodes where a concern, a participant and a setting can be named.
+- **Alternative:** equal-information prose or a flat record may serve as well.
+- **Prediction:** keeping decision-relevant relationships explicit yields fewer context-inappropriate recommendations, and corrections that propagate only where they should.
+- **Failure condition:** a sufficiently informative comparison finds no worthwhile improvement, or people understand less and err more with the triad shown.
+- **Evidence:** none recorded yet.
+
+Three planned tests, all `proposed`:
+
+- A: the relationship model against equal-information prose, for recommendations.
+- B: a correction propagates to dependents only. This is a conformance test; the
+  first fixture-level proof is in the yawn.bot correction-loop tests.
+- C: showing the triad against concrete task language, for comprehension.
+
+Kirlik's criticism of permissive affordance definitions applies directly: a
+relationship that can mean anything explains every result afterward and predicts
+nothing beforehand. Name the relationship, predict, meet a discrepancy, and revise
+the specific model; do not rename the discrepancy as another relationship.
+Lineage: Turvey; Stoffregen; Chemero; Kirlik (2004); De Jaegher and Di Paolo
+(2007); Adams and Aizawa; Warren (1984); Meeuwsen (1991). The lineage is
+conceptual, not experimental proof of this architecture.
 
 ### 2.1 Agent
 

@@ -103,7 +103,6 @@ const GRANDFATHERED = new Map([
   ["interface/desktop-homebase-v1.yawn", ["working_draft"]],
   ["interface/local-observation-art-v0.1.yawn", ["proposed"]],
   ["interface/map.yawn", ["v0-seed"]],
-  ["interface/meaning.yawn", ["v1"]],
   ["interface/memory.yawn", ["v0-seed"]],
   ["interface/mirror.yawn", ["v0-seed"]],
   ["interface/move.yawn", ["v0-seed"]],

@@ -23,6 +23,14 @@ labels and do not imply compatibility.
   stuck requirement; its creation entry in the automation log is marked
   `created`, not a run, so the bot-state record's last observed run stays at
   the last run the ledgers can show
+- `dave/meaning/`: Dave's meaning model (meaning, story, model, history, with
+  basis, ranking basis, permission and name kept as separate layers) from his
+  25 September "Meaning, Story & the Living Model" document; registered in the
+  dave node ("Five models."), the sitemap, and the manifest
+- `core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn` §2.0 claim levels: a dated
+  clarification that scopes "irreducible" and "mutually specifying", states
+  the claim, alternative, prediction and failure condition, and proposes three
+  tests; the original sentence is preserved
 
 - Questions-first mental-model template, the `dave/` node with number sense and
   prenumerical thinking models and pages, and a dependency-free self-scan that
@@ -76,6 +84,10 @@ labels and do not imply compatibility.
 
 ### Changed
 
+- `core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn` now carries
+  `epistemic_status: inferred` with its nuance in `epistemic_note`, and
+  `interface/meaning.yawn` carries `status: active` with `spec_version: v1`;
+  both files leave their grandfather ledgers, which only shrink
 - Retired the numbered pre-canonical generation from the active tree after
   mapping all 50 invalid-extension sources to current canonical targets; the
   immutable source commit remains the provenance witness

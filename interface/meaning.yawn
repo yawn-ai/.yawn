@@ -1,8 +1,9 @@
 id: interface/meaning
 title: "/meaning"
 kind: cognition-handle
-status: v1
-updated: 2026-07-21
+status: active
+spec_version: v1
+updated: 2026-09-26
 
 function: "separate attributed state, possibility, desire, optional target, and typed lacuna"
 
@@ -22,6 +23,23 @@ output:
     modal: "actual | possible | predicted | counterfactual"
     motivational: "desired | feared | neutral"
     epistemic: "reported | observed | inferred | assumed | supported | disputed | unknown | unproven"
+
+relations:
+  - type: overlaps
+    target: dave/meaning/model.yawn
+    note: "Dave's working model of what this handle is for; a view of the principal, not a rival definition."
+
+clarification_2026_09_26:
+  recorded_by: agent-on-behalf
+  recorded_via: "Claude Code session on Dave's behalf, 2026-09-26, from the New -> Pulse -> Meaning amendment and the sprint elevation review"
+  invariants:
+    - "Saving a source is not processing it; processing is not choosing; choosing is not authorizing; authorizing is not experiencing."
+    - "Rank the contribution of an item to this meaning, for this observer, here; never the item's worth."
+    - "A pass may change nothing; holding still is a valid result."
+    - "A concept is not an artifact; a described practice is not an attempted one."
+    - "Different context is not disputed: two readings kept for different contexts stay current, and where each applies stays explicitly unresolved until stated."
+    - "Whose expression, who generated a reading and who accepted it are three relationships; acceptance does not make a reading true or grant permission."
+  status_note: "status v1 was a version marker in the lifecycle field; it is now status: active with spec_version: v1."
 
 compatibility: >
   possible_kind remains readable only at legacy edges. It must not mix modal,
