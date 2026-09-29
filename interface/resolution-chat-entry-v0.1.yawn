@@ -1,0 +1,117 @@
+# Draft application interface contract; not a new core serialization or grant.
+spec_version: "0.2-draft"
+id: yawn:interface:resolution-chat-entry
+title: "One Yawn, adjustable detail, and in-place capture"
+kind: yawn
+status: proposed
+revision: 1
+updated: "2026-09-28"
+authority_status: proposed-until-maintainer-review
+source:
+  origin: participant-commissioned-interface-work
+  privacy: public-safe-design-extraction
+  raw_private_material_included: false
+  attribution: "agent:openai:chatgpt"
+intent:
+  description: >
+    Reuse one existing YawnBot doorway and workspace. Let a participant open
+    its questions, change displayed detail, and converse or create a draft
+    within the same visual frame without changing semantic state or authority.
+  implementation_status: pending-integration-and-proof
+presentation:
+  detail:
+    values: [glance, working, inspect]
+    labels: [Glance, Working, Inspect]
+    labels_status: reversible-implementation-proposal
+    default: working
+    meaning: displayed-granularity-not-truth-or-difficulty
+    scope: authenticated-principal-and-Yawn
+    public_or_unknown_scope: ephemeral-only
+    persistence: existing-authorized-view-preference-path-only
+    mandatory_at_every_level: [material-uncertainty, privacy, attribution-status, required-action-permission]
+    unavailable_detail: expose-the-gap-do-not-invent
+  view:
+    examples: [questions, meaning, story, model, history, chat]
+    rule: views-and-detail-are-independent-not-a-compulsory-learning-ladder
+  doorway:
+    tap: open-the-same-Yawn
+    agreement: never-implied
+    canonical_update: never-implied
+    public_disclosure: never-implied
+    paid_generation: never-implied
+capture:
+  reuse: existing-text-file-composer-and-its-handlers
+  placement: center-inside-existing-projection
+  frame: thin-dashed-white-border
+  one_composer: true
+  modes:
+    converse: add-input-to-current-permitted-context
+    create: compose-a-new-private-draft-with-explicit-target
+  entry_aliases: ["/new", "/{username}/new"]
+  chat: chat-icon-changes-inner-content-only
+  preserve: [bot-identity, coordinate-context, outer-geometry, draft, attachments, focus-return, owner-scope]
+  excluded: [second-file-uploader, duplicate-bottom-composer, route-specific-bot-copy, upload-on-view-change]
+  draft_to_saved:
+    require: [authenticated-owner, existing-save-validation, matching-server-save-receipt]
+    resolve: [stable-id, collision-safe-coordinate, explicit-parent-relationship]
+    navigate: only-after-matching-receipt
+    failure: retain-draft-without-claiming-persistence
+    retry: idempotent-with-existing-save-contract
+  existing_thread:
+    preserve: transcript-and-thread-identity
+    composer: one-in-place-input-no-fake-empty-thread
+  ordinary_navigation: does-not-create-a-Yawn
+updates:
+  presentation_feedback: changes-only-an-authorized-view-preference
+  interpretation_correction: revises-only-affected-proposals-preserving-source
+  goal_change: separate-attributed-principal-update
+  authorization: separate-scope-specific-grant
+  reported_experience: self-report-not-diagnosis-or-causal-proof
+  proposed_explanation: distinguish-from-answer-evidence-and-endorsement
+  outcome: separate-observation-with-limitations
+history:
+  fields: [event-id, Yawn-id, actor, source-ref, change-kind, prior-or-superseded-ref, recorded-at, occurred-at-if-known]
+  missing_timestamp: null-with-known-order-never-invented
+  later_backfill: distinguish-recording-time-from-source-time
+  story: rebuildable-attributed-account-not-canonical-causal-proof
+  reasoning: explicit-decision-trail-not-private-token-reasoning
+  revision: preserve-source-and-supersession-with-owner-controlled-retention
+learning:
+  propose_alternatives: true
+  infer_fixed_traits_from_interface_feedback: false
+  explanation_without_evidence: remains-proposed
+  rank_changes: inspectable-and-do-not-disrupt-active-reading
+  hold: complete-without-explanation-or-automatic-task
+  assess_separately: [assisted-usefulness, transferable-learning]
+privacy:
+  default: private-for-personal-input
+  server_authorization: required-before-render-download-or-save
+  owner_labels_in_import: never-trusted-as-authentication
+  account_change: purge-prior-principal-DOM-drafts-caches-and-inflight-responses
+  public_material: synthetic-neutral-fixtures-only
+  preserve_existing_RLS: true
+  do_not_copy_private_data_to: [public-repositories, public-metadata, analytics-payloads, public-fixtures, shared-client-caches]
+  public_bot_context: does-not-make-participant-input-public
+integration:
+  compatibility: additive-application-extension
+  core_schema_replacement: false
+  product_protocol_pin_change: false
+  direct_database_write_from_view: false
+  migration: only-after-inspecting-existing-identity-events-preferences-and-policies
+  robot_or_autonomy_extension: out-of-scope
+proof:
+  status: pending
+  required:
+    - Same shared doorway and bot identity for public root and permitted private Yawns.
+    - Switching to chat preserves outer-shell geometry on desktop and mobile.
+    - Exactly one existing composer; file and draft behavior retained.
+    - Slider supports keyboard input and announces its three named positions.
+    - Changing detail changes real displayed information, not only a label.
+    - A detail change does not mutate semantic content, endorsements, goals, or grants.
+    - No additional model call, upload, or external action on tap or detail change.
+    - A correction survives owner-authenticated fresh-session reload with original source intact.
+    - Another principal and anonymous access cannot recover private content or downloads.
+    - Duplicate create retries do not create duplicate records.
+    - Unknown or unauthorized coordinates do not silently fall back to another model.
+    - Console errors, route errors, overflow, and hidden drafts fail browser verification.
+  excluded_claims: [psychological-efficacy, clinical-benefit, mind-reading, consciousness, full-protocol-conformance]
