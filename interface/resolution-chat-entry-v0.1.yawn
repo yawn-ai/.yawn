@@ -4,7 +4,7 @@ id: yawn:interface:resolution-chat-entry
 title: "One Yawn, adjustable detail, and in-place capture"
 kind: yawn
 status: proposed
-revision: 1
+revision: 2
 updated: "2026-09-28"
 authority_status: proposed-until-maintainer-review
 source:
@@ -20,10 +20,10 @@ intent:
   implementation_status: pending-integration-and-proof
 presentation:
   detail:
-    values: [glance, working, inspect]
-    labels: [Glance, Working, Inspect]
+    values: [glance, standard, deep]
+    labels: [Glance, Standard, Deep]
     labels_status: reversible-implementation-proposal
-    default: working
+    default: standard
     meaning: displayed-granularity-not-truth-or-difficulty
     scope: authenticated-principal-and-Yawn
     public_or_unknown_scope: ephemeral-only
@@ -115,3 +115,19 @@ proof:
     - Unknown or unauthorized coordinates do not silently fall back to another model.
     - Console errors, route errors, overflow, and hidden drafts fail browser verification.
   excluded_claims: [psychological-efficacy, clinical-benefit, mind-reading, consciousness, full-protocol-conformance]
+
+reconciliation:
+  status: proposed-application-adoption
+  basis: Existing product resolution vocabulary and participant-provided situated-moment crosswalk.
+  draft_read_aliases: {working: standard, inspect: deep}
+  aliases_change: presentation-only-no-source-rewrite
+  four_independent_coordinates: [view, resolution, time, scope]
+  task_difficulty: belongs-to-an-activity-not-the-detail-control
+  current_revision: root-snapshot-and-explicit-source-version-manifest
+  source_revision_rule: sources-and-related-records-have-their-own-revisions
+  inspect_history: current-access-rules-apply-even-to-old-snapshots
+  live_update: preserve-active-reading-and-return-position-with-an-explicit-new-revision-indicator
+  computation_boundary: ordinary-rendering-and-authorized-reading-are-not-new-paid-analysis
+  generation: separate-operation-with-existing-valid-grant-or-new-approval
+  completion: documentation-is-one-part-of-the-product-work-order-not-its-replacement
+  benefit_checks: assisted-usefulness-and-transferable-learning-are-separate
