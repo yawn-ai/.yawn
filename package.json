@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "generate:decision-sufficiency": "node scripts/generate-decision-sufficiency-v0.1.mjs",
+    "check:decision-sufficiency": "node scripts/generate-decision-sufficiency-v0.1.mjs --check && node --test tests/decision-sufficiency-v0.1.test.mjs",
     "generate:inquiry-selection-receipt": "node scripts/generate-inquiry-selection-receipt-v0.1.mjs",
     "generate:articulation-floor": "node scripts/generate-articulation-floor-v0.1.mjs",
     "test": "npm run validate && node --test --test-concurrency=1 tests/*.test.mjs",

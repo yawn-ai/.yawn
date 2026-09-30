@@ -145,6 +145,7 @@ schema_links:
   participation_v0_1: schemas/participation.v0.1.schema.json
   relation_address_v0_1: schemas/relation-address.v0.1.schema.json
   relationship_v0_1: schemas/relationship.v0.1.schema.json
+  decision_sufficiency_receipt_v0_1: schemas/decision-sufficiency-receipt.v0.1.schema.json
 
 spec_links:
   root: spec/README.md
@@ -155,6 +156,7 @@ spec_links:
   objective_holons: spec/objective-holons.md
   questions: spec/questions.md
   serialization: spec/serialization.md
+  decision_sufficiency_v0_1: spec/decision-sufficiency-v0.1.md
 
 documentation_links:
   root: docs/README.md
@@ -192,6 +194,7 @@ interface_links:
   yawn_chrome_v1: interface/yawn-chrome-v1.yawn
   yawn_observation_view_v1: interface/yawn-observation-view-v1.yawn
   relationship_view_v0_1: interface/relationship-view-v0.1.yawn
+  decision_sufficiency_view_v0_1: interface/decision-sufficiency-view-v0.1.yawn
 
 question_links:
   doorway: questions/node.yawn
@@ -271,6 +274,7 @@ record_links:
   articulation_floor: records/articulation-floor.yawn
   yawn_bot_experiment_brief_review: records/2026-09-12-yawn-bot-experiment-brief-review.yawn
   standard_and_review_release_result: records/2026-09-13-standard-and-review-release-result.yawn
+  decision_sufficiency_first_run: records/decision-sufficiency-first-run.yawn
 
 question_packet_links:
   node: question-packets/node.yawn
@@ -351,6 +355,8 @@ fixture_links:
   articulation_floor_v0_1: fixtures/articulation-floor.v0.1.json
   relationship_core_v0_1_invalid: fixtures/relationship-core.v0.1.invalid.json
   relationship_core_v0_1: fixtures/relationship-core.v0.1.json
+  decision_sufficiency_v0_1: fixtures/decision-sufficiency.v0.1.json
+  decision_sufficiency_receipt_v0_1_invalid: fixtures/decision-sufficiency-receipt.v0.1.invalid.json
 
 governance_links:
   governance: GOVERNANCE.md
