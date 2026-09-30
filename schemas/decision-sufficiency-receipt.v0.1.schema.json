@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/decision-sufficiency-receipt.v0.1.schema.json",
+  "title": "YAWN Decision Sufficiency Receipt V0.1",
+  "description": "A strict receipt for one fiber of an experimental, synthetic finite decision-sufficiency analysis. It records a modeled evaluator result and refinement evidence; it grants no authority, disclosure, or external effect.",
+  "$comment": "This schema validates receipt shape and local result consistency. Recomputing the persisted generator is required to verify hashes, decision values, witness membership, and minimum-cardinality claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "experiment",
+    "source",
+    "query",
+    "referenceEvaluator",
+    "projection",
+    "bindings",
+    "fiber",
+    "result",
+    "ambiguityWitness",
+    "refinement",
+    "boundaries",
+    "replay"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "yawn.decision-sufficiency-receipt.v0.1" },
+    "receiptId": { "$ref": "#/$defs/ReceiptId" },
+    "experiment": { "$ref": "#/$defs/Experiment" },
+    "source": { "$ref": "#/$defs/Source" },
+    "query": { "$ref": "#/$defs/Query" },
+    "referenceEvaluator": { "$ref": "#/$defs/ReferenceEvaluator" },
+    "projection": { "$ref": "#/$defs/Projection" },
+    "bindings": { "$ref": "#/$defs/Bindings" },
+    "fiber": { "$ref": "#/$defs/Fiber" },
+    "result": { "$ref": "#/$defs/Result" },
+    "ambiguityWitness": {
+      "anyOf": [
+        { "$ref": "#/$defs/Witness" },
+        { "type": "null" }
+      ]
+    },
+    "refinement": {
+      "anyOf": [
+        { "$ref": "#/$defs/Refinement" },
+        { "type": "null" }
+      ]
+    },
+    "boundaries": { "$ref": "#/$defs/Boundaries" },
+    "replay": { "$ref": "#/$defs/Replay" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "result": { "type": "object", "properties": { "decisionState": { "const": "executable" } }, "required": ["decisionState"] } },
+        "required": ["result"]
+      },
+      "then": {
+        "properties": {
+          "fiber": { "type": "object", "properties": { "decisionValues": { "const": ["executable"] } } },
+          "ambiguityWitness": { "type": "null" },
+          "refinement": { "type": "null" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "result": { "type": "object", "properties": { "decisionState": { "const": "blocked" } }, "required": ["decisionState"] } },
+        "required": ["result"]
+      },
+      "then": {
+        "properties": {
+          "fiber": { "type": "object", "properties": { "decisionValues": { "const": ["blocked"] } } },
+          "ambiguityWitness": { "type": "null" },
+          "refinement": { "type": "null" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "result": { "type": "object", "properties": { "decisionState": { "const": "needs_refinement" } }, "required": ["decisionState"] } },
+        "required": ["result"]
+      },
+      "then": {
+        "properties": {
+          "fiber": {
+            "type": "object",
+            "properties": {
+              "decisionValues": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "contains": { "const": "executable" },
+                "minContains": 1,
+                "maxContains": 1,
+                "allOf": [
+                  {
+                    "contains": { "const": "blocked" },
+                    "minContains": 1,
+                    "maxContains": 1
+                  }
+                ]
+              }
+            }
+          },
+          "ambiguityWitness": { "$ref": "#/$defs/Witness" },
+          "refinement": { "$ref": "#/$defs/Refinement" }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "NonBlankText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64000,
+      "pattern": "\\S"
+    },
+    "Sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "Sha1": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "FieldName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "\\S"
+    },
+    "FieldSet": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/FieldName" }
+    },
+    "StateRef": {
+      "type": "string",
+      "pattern": "^state:synthetic:[0-9]+$"
+    },
+    "StateRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/StateRef" }
+    },
+    "JsonValue": {
+      "anyOf": [
+        { "type": "null" },
+        { "type": "boolean" },
+        { "type": "number" },
+        { "type": "string" },
+        { "type": "array", "items": { "$ref": "#/$defs/JsonValue" } },
+        { "type": "object", "additionalProperties": { "$ref": "#/$defs/JsonValue" } }
+      ]
+    },
+    "JsonObject": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/JsonValue" }
+    },
+    "ReceiptId": {
+      "allOf": [
+        { "$ref": "#/$defs/Identifier" },
+        { "type": "string", "pattern": "^receipt:decision-sufficiency:synthetic:[0-9]+$" }
+      ]
+    },
+    "Experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "status", "normativeAuthority", "fixtureIsSynthetic", "liveEffects"],
+      "properties": {
+        "domain": { "$ref": "#/$defs/NonBlankText" },
+        "status": { "const": "experimental" },
+        "normativeAuthority": { "const": "none" },
+        "fixtureIsSynthetic": { "const": true },
+        "liveEffects": { "const": false }
+      }
+    },
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit", "fixtureRef", "sourceArtifactSha256", "hashEncoding"],
+      "properties": {
+        "repository": { "type": "string", "minLength": 1, "maxLength": 2048, "pattern": "^https://" },
+        "commit": { "$ref": "#/$defs/Sha1" },
+        "fixtureRef": { "$ref": "#/$defs/Identifier" },
+        "sourceArtifactSha256": { "$ref": "#/$defs/Sha256" },
+        "hashEncoding": { "const": "canonical-json" }
+      }
+    },
+    "Query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["queryId", "text", "effectSignature", "querySha256"],
+      "properties": {
+        "queryId": {
+          "allOf": [
+            { "$ref": "#/$defs/Identifier" },
+            { "type": "string", "pattern": "^query:synthetic:[^\\s]+$" }
+          ]
+        },
+        "text": { "$ref": "#/$defs/NonBlankText" },
+        "effectSignature": { "$ref": "action-signature.v1.schema.json" },
+        "querySha256": { "$ref": "#/$defs/Sha256" }
+      }
+    },
+    "ReferenceEvaluator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "sourceRef", "sourceSha256", "dependencies", "evaluatorSha256", "resultDomain", "limitations"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "version": { "$ref": "#/$defs/Identifier" },
+        "sourceRef": { "$ref": "#/$defs/Identifier" },
+        "sourceSha256": { "$ref": "#/$defs/Sha256" },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["gateSourceSha256", "adapterSha256", "sourceFixtureSha256"],
+          "properties": {
+            "gateSourceSha256": { "$ref": "#/$defs/Sha256" },
+            "adapterSha256": { "$ref": "#/$defs/Sha256" },
+            "sourceFixtureSha256": { "$ref": "#/$defs/Sha256" }
+          }
+        },
+        "evaluatorSha256": { "$ref": "#/$defs/Sha256" },
+        "resultDomain": { "const": ["executable", "blocked"] },
+        "limitations": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/NonBlankText" },
+          "allOf": [
+            {
+              "contains": { "const": "Approval basis is tested for presence, not independently verified for legitimacy or revocation." },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": { "const": "An executable fixture outcome grants no real authority and triggers no operation." },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "Projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projectionId", "visibleFields", "candidateFields", "projectionSha256"],
+      "properties": {
+        "projectionId": { "$ref": "#/$defs/Identifier" },
+        "visibleFields": { "$ref": "#/$defs/FieldSet" },
+        "candidateFields": { "$ref": "#/$defs/FieldSet" },
+        "projectionSha256": { "$ref": "#/$defs/Sha256" }
+      }
+    },
+    "Bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stateSpaceSha256", "querySha256", "projectionSha256", "evaluatorSha256"],
+      "properties": {
+        "stateSpaceSha256": { "$ref": "#/$defs/Sha256" },
+        "querySha256": { "$ref": "#/$defs/Sha256" },
+        "projectionSha256": { "$ref": "#/$defs/Sha256" },
+        "evaluatorSha256": { "$ref": "#/$defs/Sha256" }
+      }
+    },
+    "DecisionValue": { "enum": ["executable", "blocked"] },
+    "DecisionValues": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/DecisionValue" }
+    },
+    "Fiber": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visibleValue", "stateRefs", "decisionValues"],
+      "properties": {
+        "visibleValue": { "$ref": "#/$defs/JsonObject" },
+        "stateRefs": { "$ref": "#/$defs/StateRefs" },
+        "decisionValues": { "$ref": "#/$defs/DecisionValues" }
+      }
+    },
+    "Result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisionState", "enforcementDisposition"],
+      "properties": {
+        "decisionState": { "enum": ["executable", "blocked", "needs_refinement"] },
+        "enforcementDisposition": { "enum": ["allow", "block"] }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "decisionState": { "const": "executable" } },
+            "required": ["decisionState"]
+          },
+          "then": { "properties": { "enforcementDisposition": { "const": "allow" } } },
+          "else": { "properties": { "enforcementDisposition": { "const": "block" } } }
+        }
+      ]
+    },
+    "Witness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["leftStateRef", "rightStateRef", "differingFields"],
+      "properties": {
+        "leftStateRef": { "$ref": "#/$defs/StateRef" },
+        "rightStateRef": { "$ref": "#/$defs/StateRef" },
+        "differingFields": {
+          "allOf": [
+            { "$ref": "#/$defs/FieldSet" },
+            { "type": "array", "minItems": 1 }
+          ]
+        }
+      }
+    },
+    "NecessityWitness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "leftStateRef", "rightStateRef", "differingFields"],
+      "properties": {
+        "field": { "$ref": "#/$defs/FieldName" },
+        "leftStateRef": { "$ref": "#/$defs/StateRef" },
+        "rightStateRef": { "$ref": "#/$defs/StateRef" },
+        "differingFields": {
+          "allOf": [
+            { "$ref": "#/$defs/FieldSet" },
+            { "type": "array", "minItems": 1 }
+          ]
+        }
+      }
+    },
+    "Refinement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimumCardinality", "allMinimumRefinements", "canonicalRefinement", "necessityWitnesses"],
+      "properties": {
+        "minimumCardinality": {
+          "anyOf": [
+            { "type": "integer", "minimum": 1, "maximum": 16 },
+            { "type": "null" }
+          ]
+        },
+        "allMinimumRefinements": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "allOf": [
+              { "$ref": "#/$defs/FieldSet" },
+              { "type": "array", "minItems": 1, "maxItems": 16 }
+            ]
+          }
+        },
+        "canonicalRefinement": { "$ref": "#/$defs/FieldSet" },
+        "necessityWitnesses": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/NecessityWitness" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "minimumCardinality": { "type": "null" } },
+            "required": ["minimumCardinality"]
+          },
+          "then": {
+            "properties": {
+              "allMinimumRefinements": { "type": "array", "maxItems": 0 },
+              "canonicalRefinement": { "type": "array", "maxItems": 0 },
+              "necessityWitnesses": { "type": "array", "maxItems": 0 }
+            }
+          },
+          "else": {
+            "properties": {
+              "allMinimumRefinements": { "type": "array", "minItems": 1 },
+              "canonicalRefinement": { "type": "array", "minItems": 1, "maxItems": 16 },
+              "necessityWitnesses": { "type": "array", "minItems": 1, "maxItems": 16 }
+            }
+          }
+        }
+      ]
+    },
+    "Boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receiptGrantsAuthority", "projectionGrantsAuthority", "refinementGrantsDisclosure", "fixtureIsSynthetic"],
+      "properties": {
+        "receiptGrantsAuthority": { "const": false },
+        "projectionGrantsAuthority": { "const": false },
+        "refinementGrantsDisclosure": { "const": false },
+        "fixtureIsSynthetic": { "const": true }
+      }
+    },
+    "Replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receiptSha256"],
+      "properties": {
+        "receiptSha256": { "$ref": "#/$defs/Sha256" }
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+id: interface/decision-sufficiency-view-v0.1
+title: "Decision Sufficiency View contract v0.1"
+kind: interface-contract
+record_shape: header
+status: draft
+version: 0.1.0
+updated: 2026-09-30
+authored_by: agent-on-behalf
+authored_via: "Codex, defining the experimental Decision Sufficiency View on behalf of the maintainer"
+
+purpose: >
+  Describe a Dave-only, private interface intention for inspecting one
+  experimental Decision Sufficiency receipt as Coarse, Witness, and Refined
+  views of the same attributed synthetic computation.
+
+provisioning:
+  principal_ref: principal:dave
+  audience: [principal:dave]
+  public_exposure: false
+  proposed_route: /dave/research/decision-sufficiency
+  app_repository: yawn-ai/yawn.bot
+  status: intention_only
+  activation_requires:
+    - explicit_principal_provisioning
+    - generated_receipt_artifact
+    - receipt_schema_validation
+  rule: >
+    This contract names a private intended surface. It does not itself deploy
+    the proposed app route, read private Dave data, create a record, or imply
+    that a browser surface has been verified.
+
+primary_object:
+  kind: decision-sufficiency-receipt
+  source_artifact: fixtures/decision-sufficiency.v0.1.json
+  source_pointer: receipts/0
+  receipt_schema: schemas/decision-sufficiency-receipt.v0.1.schema.json
+  generator: scripts/generate-decision-sufficiency-v0.1.mjs
+  rule: >
+    Coarse, Witness, and Refined remain projections of one receipt and its
+    generated artifact. Changing the selected View never creates a second
+    decision, a new approval, or a new authority record.
+
+views:
+  coarse:
+    shows:
+      - query_text
+      - visible_fields
+      - visible_fiber_value
+      - recorded_decision_values
+      - recorded_decision_state
+      - enforcement_disposition
+    rule: >
+      Show that the coarse projection is unresolved when its one visible fiber
+      contains both recorded reference decisions. The block is a refusal to
+      claim sufficiency, not an action gate on a live operation.
+  witness:
+    shows:
+      - ambiguity_witness_state_pair
+      - fields_that_differ
+      - each_recorded_reference_decision
+      - source_and_binding_digests
+    rule: >
+      The witness is generated finite-state evidence that the coarse projection
+      loses a relevant distinction. It is not evidence from a person, a claim
+      about a real-world relationship, or a disclosure grant.
+  refined:
+    shows:
+      - all_minimum_refinements
+      - canonical_refinement
+      - conditional_necessity_witnesses
+      - refined_fiber_summary
+    rule: >
+      A canonical refinement is a deterministic display representative. Tied
+      minimum refinements remain visible, and a necessity witness is scoped to
+      the selected minimum and declared synthetic state space.
+
+coordinates:
+  receipt_time: recorded_artifact
+  scope: synthetic_finite_state_space
+  aperture: [coarse, witness, refined]
+  global_resolution_boundary: >
+    Coarse, Witness, and Refined are semantic apertures over one receipt. They
+    are distinct from the application-wide glance, standard, and deep display
+    resolution controls.
+  selection_rule: "All three apertures use the same receipt ID and binding set."
+  stale_behavior: >
+    When a current binding differs, show stale and block. Preserve the historic
+    receipt without presenting it as current or regenerating its past result.
+
+evidence:
+  source: generated_fixture_and_independent_replay_tests
+  human_trial: not_run
+  claim_boundary: >
+    The evidence is the generator's exact finite partition, the persisted
+    receipt, and validation. It does not claim usability evidence, a human
+    trial, a live decision, or a deployed interface outcome.
+
+app_runtime:
+  repository: yawn-ai/yawn.bot
+  verification_status: pending_app_repo_verification
+  rule: >
+    The protocol fixture and schema are verified locally. App implementation,
+    provisioning behavior, and browser rendering require separate verification
+    in the app repository and are not claimed by this record.
+
+authority:
+  mutationAuthorized: false
+  persistenceAuthorized: false
+  modelCallAuthorized: false
+  externalEffectsAuthorized: false
+  receiptGrantsAuthority: false
+  projectionGrantsAuthority: false
+  refinementGrantsDisclosure: false
+  rule: >
+    Opening, zooming, comparing, or replaying the View cannot authenticate an
+    approval basis, check revocation, grant permission, disclose data, invoke a
+    model, or trigger an external effect.
+
+limitations:
+  - "Approval basis is tested for presence in the reused gate, not independently verified for legitimacy or revocation."
+  - "The evaluator binding covers the gate source, adapter/generator source, and synthetic source fixture; it is not a live-environment attestation."
+  - "Minimum cardinality is relative to the declared raw candidate fields and can change if the candidate universe changes."
+  - "A receipt digest detects ordinary mutation only when recomputed; it is not a signature or proof of truth."
+
+proof:
+  source:
+    - fixtures/decision-sufficiency.v0.1.json
+    - schemas/decision-sufficiency-receipt.v0.1.schema.json
+    - fixtures/decision-sufficiency-receipt.v0.1.invalid.json
+    - tests/decision-sufficiency-v0.1.test.mjs
+  acceptance:
+    - "The generated receipt validates and each declared invalid mutation is rejected."
+    - "Coarse, Witness, and Refined all identify the same receipt and binding set."
+    - "The View reports generated evidence and does not claim a human trial or live effect."
+    - "Every current/stale distinction preserves the historical receipt and blocks stale use."
+  status: schema_and_finite_fixture_verified

@@ -380,6 +380,9 @@ Orientation Map 0.1 adds attributed semantic coverage, adaptive inquiry, and
 closed selected-question or hold receipts while keeping presentation separate.
 Articulation Floor 0.1 adds sealed predictions, reason-checked answers, and a
 per-axis floor that replays from its ledger.
+Decision Sufficiency V0.1 is an additive synthetic research instrument that
+tests whether a declared finite projection preserves a reference gate result;
+it grants no authority or live effect. [Criterion and limits →](spec/decision-sufficiency-v0.1.md)
 Neither v1 module is marketed as the complete schema for every human-readable
 `.yawn` file.
 

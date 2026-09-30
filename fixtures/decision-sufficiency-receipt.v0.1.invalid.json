@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "yawn.decision-sufficiency-receipt-invalid-fixture.v0.1",
+  "documentId": "fixture:decision-sufficiency-receipt:invalid-cases",
+  "baseArtifactPath": "fixtures/decision-sufficiency.v0.1.json",
+  "invalidCases": [
+    {
+      "name": "a receipt must remain an experimental instrument",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/experiment/status", "value": "active" }
+      ],
+      "errorPattern": "status|constant"
+    },
+    {
+      "name": "an experimental receipt cannot acquire normative authority",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/experiment/normativeAuthority", "value": "advisory" }
+      ],
+      "errorPattern": "normativeAuthority|constant"
+    },
+    {
+      "name": "a synthetic receipt cannot claim live effects",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/experiment/liveEffects", "value": true }
+      ],
+      "errorPattern": "liveEffects|constant"
+    },
+    {
+      "name": "a receipt cannot grant authority",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/boundaries/receiptGrantsAuthority", "value": true }
+      ],
+      "errorPattern": "receiptGrantsAuthority|constant"
+    },
+    {
+      "name": "a projection cannot grant authority",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/boundaries/projectionGrantsAuthority", "value": true }
+      ],
+      "errorPattern": "projectionGrantsAuthority|constant"
+    },
+    {
+      "name": "a refinement cannot grant disclosure",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/boundaries/refinementGrantsDisclosure", "value": true }
+      ],
+      "errorPattern": "refinementGrantsDisclosure|constant"
+    },
+    {
+      "name": "a mixed decision fiber must remain blocked",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/result/enforcementDisposition", "value": "allow" }
+      ],
+      "errorPattern": "enforcementDisposition|constant"
+    },
+    {
+      "name": "a mixed decision fiber cannot be relabeled executable",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/result/decisionState", "value": "executable" },
+        { "path": "/result/enforcementDisposition", "value": "allow" }
+      ],
+      "errorPattern": "decisionValues|constant"
+    },
+    {
+      "name": "an unresolved fiber requires an ambiguity witness",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/ambiguityWitness", "value": null }
+      ],
+      "errorPattern": "ambiguityWitness|must be object"
+    },
+    {
+      "name": "an unresolved fiber requires a refinement record",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/refinement", "value": null }
+      ],
+      "errorPattern": "refinement|must be object"
+    },
+    {
+      "name": "the adapter dependency must be a pinned SHA-256 value",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/referenceEvaluator/dependencies/adapterSha256", "value": "not-a-sha256" }
+      ],
+      "errorPattern": "adapterSha256|pattern"
+    },
+    {
+      "name": "the evaluator must retain the approval-basis limitation",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/referenceEvaluator/limitations/0", "value": "Approval basis is independently verified for legitimacy and revocation." }
+      ],
+      "errorPattern": "contain"
+    },
+    {
+      "name": "the receipt digest has a strict SHA-256 transport shape",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/replay/receiptSha256", "value": "not-a-sha256" }
+      ],
+      "errorPattern": "receiptSha256|pattern"
+    },
+    {
+      "name": "a receipt cannot add an authority field outside its typed boundary",
+      "recordPath": "receipts/0",
+      "mutations": [
+        { "path": "/authority", "value": { "state": "granted" } }
+      ],
+      "errorPattern": "additional properties"
+    }
+  ]
+}

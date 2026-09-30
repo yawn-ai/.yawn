@@ -1,0 +1,73 @@
+kind: research_run
+id: research-run:decision-sufficiency:v0.1:first
+status: draft
+authored_by: agent-on-behalf
+authored_via: Codex
+recorded_date: 2026-09-30
+experiment_status: experimental
+source_ref: fixtures/decision-sufficiency.v0.1.json
+purpose: >
+  Determine whether a projection can erase a distinction required by an existing
+  bounded execution gate, exhibit that loss, and recover an exact gate outcome.
+finite_fixture_result:
+  enumerated_states: 256
+  gate_executable_states: 2
+  gate_blocked_states: 254
+  coarse_fibers: 1
+  ambiguous_coarse_fibers: 1
+  coarse_result: needs_refinement
+  minimum_refinement_cardinality: 7
+  all_minimum_refinement_count: 1
+  excluded_candidate_fields: [display_label]
+  refined_fibers: 128
+  ambiguous_refined_fibers: 0
+  interpretation: >
+    The intentionally lossy approval summary cannot determine this exact modeled
+    merge outcome. Seven independent gate conditions suffice and are necessary
+    within the declared attribute set. The display label contributes nothing to
+    recovering this decision. The counts are synthetic and are not event rates.
+independent_verification:
+  boolean_decision_rules: 256
+  projections_per_rule: 8
+  total_analyses: 2048
+  method: >
+    An independent pairwise oracle verifies every partition, outcome, ambiguity
+    witness, minimum-cardinality subset, tie, and field-necessity witness over all
+    Boolean decisions on three binary fields at every resolution.
+breakdown_found:
+  trigger: independent review of current applicability bindings
+  mismatch: >
+    Pinning the gate source alone omitted the adapter and baseline policy that
+    also determine its answer. A changed baseline policy head could change every
+    executable outcome while the four originally proposed bindings stayed equal.
+  responsible_component: scripts/generate-decision-sufficiency-v0.1.mjs
+  repair: >
+    The evaluator binding now hashes gate source, adapter source, and baseline
+    fixture together. A regression changes a valid policy head and confirms that
+    the old receipt becomes stale without changing its historical content.
+boundaries:
+  fixture_is_synthetic: true
+  live_effects: false
+  grants_authority: false
+  human_trials_run: 0
+  population_efficacy_established: false
+  gate_limit: >
+    The reused gate checks that approvalBasis is present; it does not establish
+    rightful approval or revocation status. Exact recovery is relative to this
+    evaluator and finite domain, not a proof of complete authorization safety.
+next_question: >
+  Can Dave use the witness and refined View to identify the consequential
+  distinction and reach the fixture-correct answer without extra explanation?
+next_test:
+  kind: single_participant_instrument_shakedown
+  proposed_trials: 16
+  status: not_run
+  observations: [answer_correctness, missing_distinction_identified, time_to_answer, confusing_labels]
+  limitation: >
+    This shakedown can find interface problems. It cannot establish general human
+    benefit, safety, calibration, or a population-level effect.
+proof:
+  covers: [finite_fixture_result, independent_verification, breakdown_found]
+  generator: scripts/generate-decision-sufficiency-v0.1.mjs
+  tests: tests/decision-sufficiency-v0.1.test.mjs
+  output: fixtures/decision-sufficiency.v0.1.json
