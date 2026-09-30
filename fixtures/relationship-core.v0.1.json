@@ -1,0 +1,543 @@
+{
+  "schemaVersion": "yawn.relationship-core-fixture.v0.1",
+  "documentId": "fixture:relationship-core:dave-christianity",
+  "relationships": [
+    {
+      "schemaVersion": "yawn.relationship.v0.1",
+      "relationshipId": "relationship:dave:christianity",
+      "revision": 2,
+      "status": "proposed",
+      "referents": [
+        {
+          "referentRef": "principal:dave",
+          "role": "anchor",
+          "epistemicStatus": "reported",
+          "sourceRefs": [
+            "source:dave:relationship-core-purpose:2026-09-30"
+          ]
+        },
+        {
+          "referentRef": "tradition:christianity",
+          "role": "target",
+          "epistemicStatus": "reported",
+          "sourceRefs": [
+            "source:dave:relationship-core-purpose:2026-09-30"
+          ]
+        }
+      ],
+      "purpose": {
+        "text": "Inspect Dave's model around Christianity, compare source-attributed perspectives, and distinguish source, interpretation, uncertainty, and any separately recorded Dave endorsement.",
+        "assertedByRef": "principal:dave",
+        "epistemicStatus": "reported",
+        "sourceRefs": [
+          "source:dave:relationship-core-purpose:2026-09-30"
+        ]
+      },
+      "profileRefs": [
+        "profile:relationship:inquiry"
+      ],
+      "participationRefs": [
+        "participation:dave:christianity:principal",
+        "participation:yawn-bot:dave-christianity:proposal"
+      ],
+      "couplingRefs": [
+        "coupling:dave:christianity:source-and-dialogue"
+      ],
+      "boundaryRefs": [
+        "boundary:dave:christianity:public-safe-inquiry"
+      ],
+      "policyRefs": [],
+      "arenaRefs": [
+        "arena:dave:christianity:inquiry"
+      ],
+      "viewRefs": [
+        "view:dave:christianity:purpose",
+        "view:dave:christianity:model",
+        "view:dave:christianity:perspectives",
+        "view:dave:christianity:sources",
+        "view:dave:christianity:boundaries",
+        "view:dave:christianity:history",
+        "view:dave:christianity:frontier"
+      ],
+      "eventRefs": [
+        "event:dave:christianity:relationship-created",
+        "event:dave:christianity:source-attribution-corrected"
+      ],
+      "inferenceRefs": [
+        "inference:dave:christianity:source-attribution-proposal",
+        "inference:dave:christianity:source-attribution-correction"
+      ],
+      "sourceRefs": [
+        "source:dave:relationship-core-purpose:2026-09-30"
+      ],
+      "previousRevisionRef": "relationship:dave:christianity:revision:1",
+      "stewardYawnRef": null,
+      "createdAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T13:00:00Z",
+      "boundary": {
+        "recordIsStructuralRelation": false,
+        "recordIsCoupling": false,
+        "recordIsBoundary": false,
+        "recordIsPolicy": false,
+        "recordIsParticipation": false,
+        "recordProvesContainment": false,
+        "recordProvesConsent": false,
+        "recordGrantsAuthority": false,
+        "routeDefinesIdentity": false
+      },
+      "extensions": {
+        "ai.yawn.example/publication": {
+          "publicSafe": true
+        }
+      }
+    },
+    {
+      "schemaVersion": "yawn.relationship.v0.1",
+      "relationshipId": "relationship:christianity:jesus:source-attribution",
+      "revision": 1,
+      "status": "active",
+      "referents": [
+        {
+          "referentRef": "tradition:christianity",
+          "role": "subject",
+          "epistemicStatus": "reported",
+          "sourceRefs": [
+            "source:christian-gospel-corpus"
+          ]
+        },
+        {
+          "referentRef": "historical-person:jesus",
+          "role": "target",
+          "epistemicStatus": "reported",
+          "sourceRefs": [
+            "source:christian-gospel-corpus"
+          ]
+        }
+      ],
+      "purpose": {
+        "text": "Keep source-level attribution to a historical person separate from a current participant, a synthetic voice, or a statement of Dave's belief.",
+        "assertedByRef": "agents:yawn.bot",
+        "epistemicStatus": "inferred",
+        "sourceRefs": [
+          "source:christian-gospel-corpus",
+          "source:dave:relationship-core-purpose:2026-09-30"
+        ]
+      },
+      "profileRefs": [
+        "profile:relationship:source-attribution"
+      ],
+      "participationRefs": [],
+      "couplingRefs": [
+        "coupling:christianity:jesus:textual-source-corpus"
+      ],
+      "boundaryRefs": [
+        "boundary:christianity:jesus:attribution"
+      ],
+      "policyRefs": [],
+      "arenaRefs": [
+        "arena:dave:christianity:inquiry"
+      ],
+      "viewRefs": [
+        "view:dave:christianity:sources",
+        "view:dave:christianity:perspectives"
+      ],
+      "eventRefs": [
+        "event:christianity:jesus:attribution-mode-recorded"
+      ],
+      "inferenceRefs": [],
+      "sourceRefs": [
+        "source:christian-gospel-corpus",
+        "source:dave:relationship-core-purpose:2026-09-30"
+      ],
+      "previousRevisionRef": null,
+      "stewardYawnRef": null,
+      "createdAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T12:00:00Z",
+      "boundary": {
+        "recordIsStructuralRelation": false,
+        "recordIsCoupling": false,
+        "recordIsBoundary": false,
+        "recordIsPolicy": false,
+        "recordIsParticipation": false,
+        "recordProvesContainment": false,
+        "recordProvesConsent": false,
+        "recordGrantsAuthority": false,
+        "routeDefinesIdentity": false
+      },
+      "extensions": {
+        "ai.yawn.example/attributionMode": "source_reports_historical_speaker"
+      }
+    }
+  ],
+  "participations": [
+    {
+      "schemaVersion": "yawn.participation.v0.1",
+      "participationId": "participation:dave:christianity:principal",
+      "relationshipRef": "relationship:dave:christianity",
+      "referentRef": "principal:dave",
+      "roles": [
+        "principal",
+        "participant"
+      ],
+      "participationMode": "direct",
+      "presence": "present",
+      "standpointRef": "standpoint:principal:dave",
+      "episodeRef": "episode:dave:christianity:orientation",
+      "arenaRef": "arena:dave:christianity:inquiry",
+      "effectiveFrom": "2026-09-30T12:00:00Z",
+      "effectiveUntil": null,
+      "status": "active",
+      "sourceRefs": [
+        "source:dave:relationship-core-purpose:2026-09-30"
+      ],
+      "recordedAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T12:00:00Z",
+      "boundary": {
+        "roleCreatesAgent": false,
+        "roleGrantsAuthority": false,
+        "roleProvesConsent": false,
+        "roleProvesOwnership": false,
+        "sourceReferenceCreatesParticipation": false,
+        "representedVoiceCreatesParticipation": false
+      },
+      "extensions": {}
+    },
+    {
+      "schemaVersion": "yawn.participation.v0.1",
+      "participationId": "participation:yawn-bot:dave-christianity:proposal",
+      "relationshipRef": "relationship:dave:christianity",
+      "referentRef": "agents:yawn.bot",
+      "roles": [
+        "observer"
+      ],
+      "participationMode": "direct",
+      "presence": "present",
+      "standpointRef": "standpoint:agents:yawn.bot:proposal-only",
+      "episodeRef": "episode:dave:christianity:orientation",
+      "arenaRef": "arena:dave:christianity:inquiry",
+      "effectiveFrom": "2026-09-30T12:00:00Z",
+      "effectiveUntil": null,
+      "status": "active",
+      "sourceRefs": [
+        "source:dave:relationship-core-purpose:2026-09-30"
+      ],
+      "recordedAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T12:00:00Z",
+      "boundary": {
+        "roleCreatesAgent": false,
+        "roleGrantsAuthority": false,
+        "roleProvesConsent": false,
+        "roleProvesOwnership": false,
+        "sourceReferenceCreatesParticipation": false,
+        "representedVoiceCreatesParticipation": false
+      },
+      "extensions": {
+        "ai.yawn.example/proposalOnly": true
+      }
+    }
+  ],
+  "inferenceEnvelopes": [
+    {
+      "schemaVersion": "yawn.inference-envelope.v0.1",
+      "inferenceId": "inference:dave:christianity:source-attribution-proposal",
+      "relationshipRef": "relationship:dave:christianity",
+      "relationshipRevision": 1,
+      "standpointRef": "standpoint:principal:dave",
+      "sourceVersionRefs": [
+        {
+          "sourceRef": "source:dave:relationship-core-purpose:2026-09-30",
+          "versionRef": "source-version:dave:relationship-core-purpose:2026-09-30",
+          "contentSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "spanRef": null
+        }
+      ],
+      "generator": {
+        "generatorRef": "agents:yawn.bot",
+        "generatorKind": "agent",
+        "modelVersionRef": "model:yawn.bot:relationship-core-v0.1",
+        "policyVersionRef": "policy:yawn.bot:proposal-only-v1",
+        "compilerVersionRef": "compiler:relationship-core-v0.1"
+      },
+      "generationMode": "generative",
+      "persistedOutputRef": "statement:dave:christianity:source-attribution-proposal",
+      "persistedOutputSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "replayMode": "persisted_output",
+      "epistemicStatus": "inferred",
+      "confidence": 0.6,
+      "disposition": "superseded",
+      "supersedesInferenceRef": null,
+      "supersededByInferenceRef": "inference:dave:christianity:source-attribution-correction",
+      "disclosure": {
+        "visibility": "private",
+        "policyRefs": [],
+        "grantRefs": [],
+        "evaluatedAt": "2026-09-30T12:00:00Z"
+      },
+      "recordedAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T12:00:00Z",
+      "boundary": {
+        "inferenceIsFact": false,
+        "inferenceGrantsAuthority": false,
+        "relationshipGrantsDisclosure": false,
+        "confidenceGrantsDisclosure": false,
+        "historicalReplayUsesPersistedOutput": true,
+        "freshGenerationRewritesHistory": false
+      },
+      "extensions": {
+        "ai.yawn.example/replayNote": "Persisted output is the historical replay source."
+      }
+    },
+    {
+      "schemaVersion": "yawn.inference-envelope.v0.1",
+      "inferenceId": "inference:dave:christianity:source-attribution-correction",
+      "relationshipRef": "relationship:dave:christianity",
+      "relationshipRevision": 2,
+      "standpointRef": "standpoint:principal:dave",
+      "sourceVersionRefs": [
+        {
+          "sourceRef": "source:dave:relationship-core-purpose:2026-09-30",
+          "versionRef": "source-version:dave:relationship-core-purpose:2026-09-30",
+          "contentSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "spanRef": null
+        }
+      ],
+      "generator": {
+        "generatorRef": "agents:yawn.bot",
+        "generatorKind": "agent",
+        "modelVersionRef": "model:yawn.bot:relationship-core-v0.1",
+        "policyVersionRef": "policy:yawn.bot:proposal-only-v1",
+        "compilerVersionRef": "compiler:relationship-core-v0.1"
+      },
+      "generationMode": "generative",
+      "persistedOutputRef": "statement:dave:christianity:source-attribution-correction",
+      "persistedOutputSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "replayMode": "persisted_output",
+      "epistemicStatus": "inferred",
+      "confidence": 0.7,
+      "disposition": "corrected",
+      "supersedesInferenceRef": "inference:dave:christianity:source-attribution-proposal",
+      "supersededByInferenceRef": null,
+      "disclosure": {
+        "visibility": "private",
+        "policyRefs": [],
+        "grantRefs": [],
+        "evaluatedAt": "2026-09-30T13:00:00Z"
+      },
+      "recordedAt": "2026-09-30T13:00:00Z",
+      "updatedAt": "2026-09-30T13:00:00Z",
+      "boundary": {
+        "inferenceIsFact": false,
+        "inferenceGrantsAuthority": false,
+        "relationshipGrantsDisclosure": false,
+        "confidenceGrantsDisclosure": false,
+        "historicalReplayUsesPersistedOutput": true,
+        "freshGenerationRewritesHistory": false
+      },
+      "extensions": {
+        "ai.yawn.example/correction": "Same source version retained; only the attributed inference changed."
+      }
+    }
+  ],
+  "relationAddresses": [
+    {
+      "schemaVersion": "yawn.relation-address.v0.1",
+      "addressId": "address:dave:open",
+      "anchorRef": "principal:dave",
+      "displayPath": "dave/",
+      "portState": "open",
+      "targetAbsence": "intentional_unbound",
+      "steps": [],
+      "standpointRef": "standpoint:principal:dave",
+      "foregroundRelationshipRef": null,
+      "foregroundQuestionRef": null,
+      "viewCoordinates": {
+        "aperture": "purpose",
+        "resolution": "glance",
+        "time": "now",
+        "scope": "relationship"
+      },
+      "sourceRefs": [
+        "source:dave:relationship-core-purpose:2026-09-30"
+      ],
+      "status": "accepted_view",
+      "createdAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T12:00:00Z",
+      "boundary": {
+        "pathProvesParentage": false,
+        "pathProvesIdentity": false,
+        "pathProvesConsent": false,
+        "pathGrantsAuthority": false,
+        "pathGrantsMutation": false,
+        "pathProvesContainment": false,
+        "viewChangesRelationshipIdentity": false,
+        "inversePreservesAuthority": false
+      },
+      "extensions": {}
+    },
+    {
+      "schemaVersion": "yawn.relation-address.v0.1",
+      "addressId": "address:dave:christianity",
+      "anchorRef": "principal:dave",
+      "displayPath": "dave/christianity",
+      "portState": "engaged",
+      "targetAbsence": null,
+      "steps": [
+        {
+          "stepId": "step:dave:christianity",
+          "fromRef": "principal:dave",
+          "toRef": "tradition:christianity",
+          "relationRecordRef": "relationship:dave:christianity",
+          "relationRecordKind": "relationship",
+          "relationType": "relates_to",
+          "direction": "forward",
+          "roleBindings": [
+            {
+              "referentRef": "principal:dave",
+              "role": "anchor"
+            },
+            {
+              "referentRef": "tradition:christianity",
+              "role": "target"
+            }
+          ],
+          "arenaRef": "arena:dave:christianity:inquiry",
+          "mediationRefs": [
+            "interface:yawn.bot"
+          ],
+          "apertureRef": "view:dave:christianity:model",
+          "effectiveAt": "2026-09-30T12:00:00Z",
+          "sourceRefs": [
+            "source:dave:relationship-core-purpose:2026-09-30"
+          ],
+          "epistemicStatus": "reported",
+          "semanticParentage": false
+        }
+      ],
+      "standpointRef": "standpoint:principal:dave",
+      "foregroundRelationshipRef": "relationship:dave:christianity",
+      "foregroundQuestionRef": "question:dave:christianity:orientation",
+      "viewCoordinates": {
+        "aperture": "model",
+        "resolution": "standard",
+        "time": "now",
+        "scope": "relationship"
+      },
+      "sourceRefs": [
+        "source:dave:relationship-core-purpose:2026-09-30"
+      ],
+      "status": "accepted_view",
+      "createdAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T12:00:00Z",
+      "boundary": {
+        "pathProvesParentage": false,
+        "pathProvesIdentity": false,
+        "pathProvesConsent": false,
+        "pathGrantsAuthority": false,
+        "pathGrantsMutation": false,
+        "pathProvesContainment": false,
+        "viewChangesRelationshipIdentity": false,
+        "inversePreservesAuthority": false
+      },
+      "extensions": {}
+    },
+    {
+      "schemaVersion": "yawn.relation-address.v0.1",
+      "addressId": "address:dave:christianity:jesus",
+      "anchorRef": "principal:dave",
+      "displayPath": "dave/christianity/jesus",
+      "portState": "engaged",
+      "targetAbsence": null,
+      "steps": [
+        {
+          "stepId": "step:dave:christianity",
+          "fromRef": "principal:dave",
+          "toRef": "tradition:christianity",
+          "relationRecordRef": "relationship:dave:christianity",
+          "relationRecordKind": "relationship",
+          "relationType": "relates_to",
+          "direction": "forward",
+          "roleBindings": [
+            {
+              "referentRef": "principal:dave",
+              "role": "anchor"
+            },
+            {
+              "referentRef": "tradition:christianity",
+              "role": "target"
+            }
+          ],
+          "arenaRef": "arena:dave:christianity:inquiry",
+          "mediationRefs": [
+            "interface:yawn.bot"
+          ],
+          "apertureRef": "view:dave:christianity:sources",
+          "effectiveAt": "2026-09-30T12:00:00Z",
+          "sourceRefs": [
+            "source:dave:relationship-core-purpose:2026-09-30"
+          ],
+          "epistemicStatus": "reported",
+          "semanticParentage": false
+        },
+        {
+          "stepId": "step:christianity:jesus:source-attribution",
+          "fromRef": "tradition:christianity",
+          "toRef": "historical-person:jesus",
+          "relationRecordRef": "relationship:christianity:jesus:source-attribution",
+          "relationRecordKind": "relationship",
+          "relationType": "references",
+          "direction": "forward",
+          "roleBindings": [
+            {
+              "referentRef": "tradition:christianity",
+              "role": "subject"
+            },
+            {
+              "referentRef": "historical-person:jesus",
+              "role": "target"
+            }
+          ],
+          "arenaRef": "arena:dave:christianity:inquiry",
+          "mediationRefs": [
+            "source:christian-gospel-corpus"
+          ],
+          "apertureRef": "view:dave:christianity:sources",
+          "effectiveAt": "2026-09-30T12:00:00Z",
+          "sourceRefs": [
+            "source:christian-gospel-corpus"
+          ],
+          "epistemicStatus": "reported",
+          "semanticParentage": false
+        }
+      ],
+      "standpointRef": "standpoint:principal:dave",
+      "foregroundRelationshipRef": "relationship:dave:christianity",
+      "foregroundQuestionRef": "question:dave:christianity:what-is-attributed",
+      "viewCoordinates": {
+        "aperture": "sources",
+        "resolution": "deep",
+        "time": "now",
+        "scope": "permitted_neighborhood"
+      },
+      "sourceRefs": [
+        "source:dave:relationship-core-purpose:2026-09-30",
+        "source:christian-gospel-corpus"
+      ],
+      "status": "accepted_view",
+      "createdAt": "2026-09-30T12:00:00Z",
+      "updatedAt": "2026-09-30T12:00:00Z",
+      "boundary": {
+        "pathProvesParentage": false,
+        "pathProvesIdentity": false,
+        "pathProvesConsent": false,
+        "pathGrantsAuthority": false,
+        "pathGrantsMutation": false,
+        "pathProvesContainment": false,
+        "viewChangesRelationshipIdentity": false,
+        "inversePreservesAuthority": false
+      },
+      "extensions": {
+        "ai.yawn.example/attributionMode": "source_reports_historical_speaker"
+      }
+    }
+  ]
+}

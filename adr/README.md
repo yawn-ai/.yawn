@@ -12,3 +12,4 @@ records; corrections create a new ADR that supersedes the old one.
 
 - [ADR 0001: Protocol layers and compatibility](0001-protocol-layers.md) — proposed
 - [ADR 0002: World, field, arena, and Yawn are distinct](0002-world-field-arena-yawn.md) — proposed
+- [ADR 0003: Give relationships stable identity; make slashes Views](0003-relationship-core.md) — proposed

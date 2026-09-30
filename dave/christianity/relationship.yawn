@@ -1,0 +1,208 @@
+id: relationship-projection:dave:christianity:public-safe
+title: "Dave / Christianity public-safe relationship projection"
+kind: relationship-projection
+record_shape: public-projection
+status: draft
+lifecycle: proposed
+projection_revision: 1
+canonical_relationship_ref: relationship:dave:christianity
+canonical_relationship_revision: 2
+canonical_schema_ref: schemas/relationship.v0.1.schema.json
+participation_schema_ref: schemas/participation.v0.1.schema.json
+relation_address_schema_ref: schemas/relation-address.v0.1.schema.json
+inference_envelope_schema_ref: schemas/inference-envelope.v0.1.schema.json
+relationship_view_contract_ref: interface/relationship-view-v0.1.yawn
+privacy: public-safe
+public_projection: dave/christianity/
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Codex session on Dave's behalf, 2026-09-30; a public-safe conformance record built from Dave's stated request. It does not establish Dave's identity, beliefs, consent beyond this publication request, or a shared religious conclusion."
+created: 2026-09-30
+updated: 2026-09-30
+
+projection:
+  disclosure_scope: public-safe
+  basis: >
+    This is the permitted public projection of canonical
+    relationship:dave:christianity at revision 2. It materializes only the
+    fields allowed by this record's public-safe boundary.
+  withheld:
+    - private_inference_envelopes_and_persisted_outputs
+    - private_reflections_and_unapproved_personal_belief_claims
+    - private_conversation_material_and_third_party_personal_information
+  rule: >
+    This projection is a View, not a second canonical relationship record. A
+    public reader can inspect the displayed purpose, boundaries, sources, and
+    frontier without receiving private inference output or authority.
+
+purpose:
+  text: >
+    Inspect the model Dave is carrying around Christianity, distinguish
+    attributed sources from interpretation, preserve uncertainty and
+    disagreement, and identify a useful next question without forcing a
+    religious identity, conclusion, or action.
+  asserted_by: principal:dave
+  epistemic_status: reported
+  lifecycle: proposed
+
+referents:
+  - ref: principal:dave
+    kind: principal
+    relationship_role: anchor
+  - ref: tradition:christianity
+    kind: tradition
+    relationship_role: inquiry_target
+
+participation:
+  - participant_ref: principal:dave
+    role: principal
+    presence: present
+    standpoint: first_person
+    authority: may_correct_or_withhold_own_report
+    epistemic_status: reported
+  - participant_ref: agents:yawn.bot
+    role: observer
+    presence: present
+    standpoint: proposal_only
+    authority: none
+    epistemic_status: reported
+
+stewardship:
+  yawn_ref: null
+  status: not_assigned
+  rule: >
+    This Relationship has not yet been promoted to or assigned a Yawn steward.
+    A later proposal must establish an independent continuity, inquiry, proof,
+    maintenance, authority, or privacy need; it cannot create a Yawn or grant
+    authority merely by naming one.
+
+represented_voices:
+  rule: >
+    Historical figures, text authors, traditions, scholars, and interpreters
+    may be referenced through attributed sources or modeled perspectives. They
+    are not current participants, consenting parties, decision holders, or
+    authorities merely because a record quotes or represents them.
+  default_status: source_associated_or_simulated_only
+
+coupling:
+  current: >
+    Dave's inquiry is mediated by source materials, interpretations, memories,
+    conversations, and this revisable record. This describes a modelled
+    relationship, not a claim that the tradition or any historical person is
+    currently interacting with Dave.
+  channels:
+    - source_reading
+    - attributed_interpretation
+    - participant_reflection
+    - yawn_proposal_only
+  boundary: "Possible influence is distinct from permitted action, authority, commitment, or proof."
+
+boundaries:
+  must_not:
+    - "Infer or publish Dave's religious identity, beliefs, commitments, or private history."
+    - "Treat a source-attributed statement as a verified statement by a historical person without preserving the attribution chain."
+    - "Treat historical, textual, simulated, or quoted voices as live participants."
+    - "Treat dave/christianity or dave/christianity/jesus as containment, agreement, consent, identity, or authority."
+    - "Turn a relationship address, source popularity, model fluency, or perspective count into proof."
+    - "Allow Yawn, whether observing now or proposed as a future steward, to ratify Dave's positions or make external commitments."
+  public_safe_fields:
+    - stated_purpose
+    - protocol_boundaries
+    - publicly_named_source_references
+    - explicitly_authorized_public_questions
+  withheld_by_default:
+    - private_reflections
+    - unapproved_personal_belief_claims
+    - private_conversation_material
+    - third_party_personal_information
+
+relation_address:
+  display_path: dave/christianity
+  anchor_ref: principal:dave
+  target_ref: tradition:christianity
+  direction: forward
+  semantics: directional_view
+  relation_ref: relationship:dave:christianity
+  path_proves_parentage: false
+  path_proves_identity: false
+  path_proves_agreement: false
+  path_proves_consent: false
+  path_grants_authority: false
+  note: >
+    A later address such as dave/christianity/jesus must declare each typed
+    relation step and remains a traversal/View, not containment. It does not
+    establish Dave's belief about Jesus or make a historical subject a live
+    participant.
+
+views:
+  - id: purpose
+    question: "Why is this relationship open?"
+  - id: model
+    question: "What model, assumptions, and lacunae are currently visible?"
+  - id: perspectives
+    question: "Which attributed perspectives, alternatives, and disagreements bear on the question?"
+  - id: sources
+    question: "What does each source report, and what is interpretation?"
+  - id: boundaries
+    question: "Who is participating, what is private, and what may happen here?"
+  - id: history
+    question: "What changed in the representation, when, and on what evidence?"
+  - id: frontier
+    question: "What question, hold, or small inspection would most change orientation now?"
+
+frontier:
+  status: open
+  current_question: "Which source-bounded question about Christianity would most change Dave's present orientation, and why?"
+  selection_basis:
+    - stated_purpose
+    - source_and_attribution_boundary
+    - unresolved_scope
+    - no_inferred_personal_position
+  allowed_next_moves:
+    - name_a_specific_source_or_question
+    - distinguish_source_from_interpretation
+    - compare_attributed_perspectives
+    - record_a_personal_report_if_dave_explicitly_supplies_one
+    - hold
+  disallowed_next_moves:
+    - infer_belief_or_identity
+    - create_an_external_commitment
+    - publish_private_material
+
+history:
+  - event: public_projection_materialized
+    recorded_at: 2026-09-30
+    actor_ref: agent:codex
+    basis: "Participant-requested public-safe conformance case; canonical relationship revision 2."
+    epistemic_status: reported
+    effect: "Materializes the permitted public View without exposing private inference output, belief, agreement, or external action."
+
+sources:
+  - ref: fixtures/relationship-core.v0.1.json
+    description: "Canonical Relationship Core conformance fixture containing relationship:dave:christianity revision 2 and its private inference-envelope boundary."
+    epistemic_status: observed
+  - ref: agents/yawn.bot.yawn
+    description: "YAWN.bot's declared proposal-only runtime identity and authority boundary."
+    epistemic_status: observed
+  - ref: participant-request:relationship-pressure-test:2026-09-30
+    description: "Dave requested this public-safe conformance case and supplied the desired relationship-first distinctions."
+    epistemic_status: reported
+  - ref: spec/ontology.md
+    description: "Relationship is a situated, changing coupling and does not automatically establish containment, agreement, or authority."
+    epistemic_status: observed
+  - ref: core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+    description: "Relationship is structurally first and Observation is operationally first."
+    epistemic_status: observed
+
+proof:
+  condition: >
+    The public projection identifies its canonical relationship and revision,
+    lets a reader inspect the permitted purpose, boundary, source attribution,
+    active lacunae, and current frontier, and withholds private inference
+    output, unprovided belief, identity, private reflection, and false live
+    participation claims.
+  falsifier: >
+    The record or View implies that Dave believes a doctrine, treats a
+    historical source as a present participant, makes path nesting mean
+    containment, or allows an unapproved external action.
+  status: not_started

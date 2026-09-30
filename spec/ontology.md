@@ -46,6 +46,35 @@ lacuna, or require the Arena to be reframed. See
 [`core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn`](../core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn)
 for the high-resolution constitutional source.
 
+#### Relationship record
+
+A generic **Relationship** is a named, versioned instance of situated relation
+among one or more addressable referents. It has an identity independent of its
+route, View, embedding, or stewarding Yawn. Its record can connect
+participation, stakes, couplings, boundaries, policy or contract references,
+attributed claims, events, and revision without making any one facet equivalent
+to the whole relationship.
+
+The following distinctions are normative:
+
+- A Relationship is not a **coupling**. A channel may make an effect possible
+  while policy prohibits it.
+- A Relationship is not a **policy**, commitment, or authority grant. Those
+  govern particular possible actions within it.
+- A Relationship is not a **participant roster**. Participation is
+  time-indexed and role-specific.
+- A Relationship is not a **Yawn**. A Yawn may steward one when it earns
+  independent continuity, inquiry, proof, or maintenance.
+- A Relationship is not a holarchy **Structural Relation**. The latter is a
+  typed Yawn-to-Yawn graph edge.
+- A Relationship is not a slash or URL. The slash opens a Relation Address
+  View into it.
+
+The v0.1 machine contract is
+[`schemas/relationship.v0.1.schema.json`](../schemas/relationship.v0.1.schema.json).
+It is an experimental additive contract and does not redefine the stable v1
+state substrate.
+
 ### Reality
 
 Whatever constrains consequences and can disconfirm the record. YAWN refers to
@@ -69,6 +98,21 @@ A role or entity with identity, capabilities, constraints, goals or values, and
 decision rights. Human, collective, institutional, and software agents can be
 represented operationally without claiming that they have the same kind of
 agency or experience.
+
+### Participation
+
+**Participation** records how an addressable referent is involved in one
+Relationship during an episode: its role, standpoint, presence, time bounds,
+and applicable access or authority references. A role is not a separate Agent,
+and a source author, historical subject, quoted speaker, or modeled perspective
+is not a current participant merely because their words inform the model.
+
+This allows a relationship to contain a shared identity while preserving
+distinct private accounts and capabilities. It also prevents a relationship
+record from claiming another person's mind, agreement, or consent.
+
+The reusable contract is
+[`schemas/participation.v0.1.schema.json`](../schemas/participation.v0.1.schema.json).
 
 ### Arena
 
@@ -211,6 +255,23 @@ State is a materialized view reduced from authorized events. Replay is the
 deterministic reconstruction of that view plus an inspectable account of what
 changed. Presentation changes do not change semantic state.
 
+### Inference envelope
+
+An interpretation does not need to be falsely deterministic in order to be
+inspectable. Its **inference envelope** is deterministic about the record that
+surrounds it: the active Relationship and revision, standpoint, source version
+and content hash, generator, model/policy/compiler version when available,
+recorded time, epistemic status, confidence, disposition, supersession, and
+current disclosure decision.
+
+Historical replay uses the persisted output and its hash. A fresh generative
+run may create a new attributed proposal, but it MUST NOT silently regenerate,
+replace, or relabel a historical interpretation. Neither relationship,
+confidence, nor an inference itself grants disclosure or authority.
+
+The contract is
+[`schemas/inference-envelope.v0.1.schema.json`](../schemas/inference-envelope.v0.1.schema.json).
+
 ### View and aperture
 
 A View renders part of the canonical graph for a purpose. Arena, timeline,
@@ -218,6 +279,29 @@ proof/replay, memory, causal graph, filesystem, and spatial world interfaces are
 Views. Aperture changes how much context is included or emphasized; it never
 changes permission or truth. Materializing or serializing a View is not an
 ontological Projection unless an Agent actually expresses it into an Arena.
+
+### Relation Address and slash traversal
+
+A **Relation Address** is a directional, time-indexed View over one or more
+typed relation steps. Slash notation is a quiet human-facing way to render that
+View. The human description is: **the slash opens the relationship**. The
+machine description is: **the slash traverses a Relation Address whose
+underlying Relationship identity exists independently of the route**.
+
+For example, `dave/christianity` can enter a Dave-standpoint View into a
+Relationship record. It does not establish Dave's religious identity, a belief,
+the truth of a source, authority to act, or containment. A composed address
+such as `dave/christianity/jesus` preserves each typed step; only an explicit
+`primary_parent` step establishes semantic ancestry.
+
+`dave/jaime` and `jaime/dave` may be inverse Views of one shared Relationship.
+Their access, disclosure, role, authority, and current salience may differ.
+Reversing a route never reverses those properties automatically. An open
+address is an operational View state, not proof of pure awareness, completed
+obligations, or permission to mutate canonical state.
+
+The contract is
+[`schemas/relation-address.v0.1.schema.json`](../schemas/relation-address.v0.1.schema.json).
 
 ### Execution-delegate relationship and consequence loop
 

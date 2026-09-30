@@ -6,6 +6,7 @@ const brandPath = new URL("../interface/yawn-brand-v1.yawn", import.meta.url);
 const chromePath = new URL("../interface/yawn-chrome-v1.yawn", import.meta.url);
 const observationPath = new URL("../interface/yawn-observation-view-v1.yawn", import.meta.url);
 const localArtPath = new URL("../interface/local-observation-art-v0.1.yawn", import.meta.url);
+const relationshipViewPath = new URL("../interface/relationship-view-v0.1.yawn", import.meta.url);
 
 test("the public interface contracts preserve one canonical palette and quiet root shell", async () => {
   const [brand, chrome] = await Promise.all([
@@ -69,4 +70,20 @@ test("local observation art keeps Question, candidate, Projection, and View dist
   assert.match(contract, /displaying a candidate by an attributed Agent in a review Arena is a Projection/);
   assert.match(contract, /page composition and serialization are rebuildable Views/);
   assert.match(contract, /automatic_acceptance_or_publish_or_promotion: forbidden/);
+});
+
+test("the relationship View keeps orientation coordinates separate from relationship semantics", async () => {
+  const relationshipView = await readFile(relationshipViewPath, "utf8");
+
+  assert.match(relationshipView, /kind: relationship/);
+  assert.match(relationshipView, /relationship_ref: required/);
+  assert.match(relationshipView, /relation_address_ref: required/);
+  assert.match(relationshipView, /values: \[purpose, model, perspectives, sources, boundaries, history, frontier\]/);
+  assert.match(relationshipView, /values: \[glance, standard, deep\]/);
+  assert.match(relationshipView, /values: \[now, revision, replay\]/);
+  assert.match(relationshipView, /values: \[this_relationship, permitted_neighborhood\]/);
+  assert.match(relationshipView, /route syntax never becomes that identity/);
+  assert.match(relationshipView, /historical figure, author, or tradition.*not a live participant/s);
+  assert.match(relationshipView, /mutationAuthorized: false/);
+  assert.match(relationshipView, /externalEffectsAuthorized: false/);
 });

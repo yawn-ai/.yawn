@@ -1,10 +1,10 @@
 # YAWN specification
 
 Status: **Working Draft 0.2**
-Last updated: 2026-08-27
+Last updated: 2026-09-30
 
 This directory is the human-readable specification for `.yawn`: an open
-protocol for inspectable orientation and agency.
+protocol for inspectable relationships, orientation, and agency.
 
 The specification is intentionally smaller than reality. It defines a shared
 language for recording how an agent encounters a situation, identifies what is
@@ -23,13 +23,16 @@ It does not claim that the record is the world.
 | Agency holarchy | Arena, Yawn, relation, turn, routing, and structural change | [Draft 0.2 schema](../schemas/agency-holarchy.v0.2.schema.json) |
 | Objective holons | Detection, ratification, objective Yawn, Yawn.bot, and activation | [Draft 0.1 schema](../schemas/objective-holon.v0.1.schema.json) |
 | Orientation map | Nine-axis semantic coverage, adaptive inquiry ranking, closed selection receipts, and presentation hypotheses | [Draft 0.1 schema](../schemas/orientation-map.v0.1.schema.json) |
+| Relationship Core | Stable relationship identity, time-indexed participation, directional slash addresses, and persisted inference envelopes | [Draft 0.1 contracts](../schemas/relationship.v0.1.schema.json) |
 | Articulation floor | A prediction sealed before a question renders, the principal's answer scored against it, the sealed reason checked, and a rolling per-axis floor | [Draft 0.1 schema](../schemas/articulation-floor.v0.1.schema.json) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
 | View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
 
 The v1 contracts are not silently redefined by these drafts. Agency Holarchy
 0.2, Objective Holon 0.1, and Orientation Map 0.1 are additive candidates for a
-future unified protocol. Where prose and an executable schema disagree, treat
+future unified protocol. Relationship Core 0.1 is likewise additive and keeps
+the Agency Holarchy Structural Relation, execution relationship, and
+interpersonal template as distinct specialized constructs. Where prose and an executable schema disagree, treat
 that as a lacuna and open an issue; do not invent a silent reconciliation.
 
 ## Normative core
@@ -59,6 +62,9 @@ can be tested.
     MUST NOT become bot activation or effect authority, by inference.
 12. Question order, wording, and medium MUST NOT alter semantic orientation or
     suppress safety, authority, privacy, provenance, or proof.
+13. A route, slash, embedding, or View MUST NOT establish relationship
+    identity, containment, consent, authority, or canonical mutation without
+    an explicit typed record.
 
 ## Read the specification
 
@@ -71,6 +77,11 @@ can be tested.
 - [Serialization](serialization.md): identifiers, extensions, time, and hashes
 - [Observation schema](../schemas/observation.v1.schema.json): source-backed state valid before Yawn promotion
 - [Delegated execution](../schemas/execution-relationship.v1.schema.json): revocable owner authority that cannot be self-granted by an agent or model output
+- [Relationship Core](../core/relationship.yawn): stable relationship identity,
+  participation, directional relation addresses, and inference replay boundaries
+- [Relationship View](../interface/relationship-view-v0.1.yawn): purpose,
+  model, perspectives, sources, boundaries, history, and frontier with
+  independent resolution, time, scope, and standpoint coordinates
 - [Question/art template](../templates/observation-question-art.yawn): proposal-only chain with explicit render and publication boundaries
 
 ## Maturity labels

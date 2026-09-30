@@ -1,10 +1,18 @@
 id: question-packets/relationship
-title: "Relationship Yawn Intake"
+title: "Interpersonal Relationship Yawn Intake"
 kind: question-packet
 status: seed
-updated: 2026-08-27
+updated: 2026-09-30
 
 target_template: templates/relationship.yawn
+profile: interpersonal-relationship
+generic_relationship_core_ref: core/relationship.yawn
+relation_address_core_ref: core/relation-address.yawn
+scope: >
+  A private self/partner intake for an interpersonal relationship. This packet
+  is a profile, not the generic Relationship primitive: it does not create a
+  universal relationship identity or turn a route, quote, inference, or
+  partner hypothesis into participation, consent, authority, or agreement.
 mode: draft_populate_only
 privacy_default: private
 
@@ -15,6 +23,7 @@ defaults:
   relationship_impacting_moves_blocked: true
 
 rules:
+  - "This packet records one protected interpersonal View; a generic Relationship record remains the stable identity when one is needed."
   - "Skipped answers become lacuna.open_questions."
   - "Quotes write to conversation.important_quotes."
   - "Facts write to attributed state_snapshots entries with observed or reported epistemic status."

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "yawn.relationship-core-invalid-fixture.v0.1",
+  "documentId": "fixture:relationship-core:invalid-cases",
+  "invalidCases": [
+    {
+      "name": "a generic relationship cannot declare itself a StructuralRelation",
+      "recordPath": "relationships/0",
+      "mutations": [
+        {
+          "path": "/boundary/recordIsStructuralRelation",
+          "value": true
+        }
+      ],
+      "errorPattern": "recordIsStructuralRelation|constant"
+    },
+    {
+      "name": "authority must be held by a referenced policy instead of the relationship record",
+      "recordPath": "relationships/0",
+      "mutations": [
+        {
+          "path": "/authority",
+          "value": {
+            "state": "granted"
+          }
+        }
+      ],
+      "errorPattern": "additional properties"
+    },
+    {
+      "name": "a represented voice cannot become a participation by declaration",
+      "recordPath": "participations/0",
+      "mutations": [
+        {
+          "path": "/boundary/representedVoiceCreatesParticipation",
+          "value": true
+        }
+      ],
+      "errorPattern": "representedVoiceCreatesParticipation|constant"
+    },
+    {
+      "name": "a participation role cannot grant authority",
+      "recordPath": "participations/1",
+      "mutations": [
+        {
+          "path": "/boundary/roleGrantsAuthority",
+          "value": true
+        }
+      ],
+      "errorPattern": "roleGrantsAuthority|constant"
+    },
+    {
+      "name": "historical replay cannot silently regenerate a fresh inference",
+      "recordPath": "inferenceEnvelopes/0",
+      "mutations": [
+        {
+          "path": "/boundary/freshGenerationRewritesHistory",
+          "value": true
+        }
+      ],
+      "errorPattern": "freshGenerationRewritesHistory|constant"
+    },
+    {
+      "name": "an inference envelope requires a pinned source version",
+      "recordPath": "inferenceEnvelopes/0",
+      "mutations": [
+        {
+          "path": "/sourceVersionRefs",
+          "value": []
+        }
+      ],
+      "errorPattern": "must NOT have fewer than 1 items"
+    },
+    {
+      "name": "a confidence score cannot disclose an inference",
+      "recordPath": "inferenceEnvelopes/0",
+      "mutations": [
+        {
+          "path": "/boundary/confidenceGrantsDisclosure",
+          "value": true
+        }
+      ],
+      "errorPattern": "confidenceGrantsDisclosure|constant"
+    },
+    {
+      "name": "a slash path cannot grant authority",
+      "recordPath": "relationAddresses/1",
+      "mutations": [
+        {
+          "path": "/boundary/pathGrantsAuthority",
+          "value": true
+        }
+      ],
+      "errorPattern": "pathGrantsAuthority|constant"
+    },
+    {
+      "name": "a generic relationship step cannot claim primary parentage",
+      "recordPath": "relationAddresses/1",
+      "mutations": [
+        {
+          "path": "/steps/0/relationType",
+          "value": "primary_parent"
+        },
+        {
+          "path": "/steps/0/semanticParentage",
+          "value": true
+        }
+      ],
+      "errorPattern": "relationRecordKind|constant"
+    },
+    {
+      "name": "a non-parent relation step cannot claim semantic parentage",
+      "recordPath": "relationAddresses/1",
+      "mutations": [
+        {
+          "path": "/steps/0/semanticParentage",
+          "value": true
+        }
+      ],
+      "errorPattern": "semanticParentage|constant"
+    },
+    {
+      "name": "an open port cannot silently retain a bound relationship",
+      "recordPath": "relationAddresses/1",
+      "mutations": [
+        {
+          "path": "/portState",
+          "value": "open"
+        }
+      ],
+      "errorPattern": "intentional_unbound|must NOT have more than 0 items|must be null"
+    }
+  ]
+}

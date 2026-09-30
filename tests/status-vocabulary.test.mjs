@@ -238,8 +238,11 @@ test("top-level status: values stay inside the lifecycle vocabulary", async () =
 test("the grandfather ledger only shrinks", async () => {
   assert.ok(GRANDFATHERED.size <= LEDGER_CEILING, `no new grandfathered files may be added (ceiling ${LEDGER_CEILING})`);
   const snapshotText = await readFile(path.join(ROOT, SNAPSHOT_FILE), "utf8");
-  assert.equal(createHash("sha256").update(snapshotText).digest("hex"), SNAPSHOT_SHA256, `${SNAPSHOT_FILE} is frozen; do not edit it`);
-  const snapshot = new Set(snapshotText.split("\n").filter(Boolean));
+  // The snapshot is frozen as canonical LF text. Git may materialize a text
+  // fixture with CRLF on Windows, which must not look like a content edit.
+  const canonicalSnapshotText = snapshotText.replace(/\r\n/g, "\n");
+  assert.equal(createHash("sha256").update(canonicalSnapshotText).digest("hex"), SNAPSHOT_SHA256, `${SNAPSHOT_FILE} is frozen; do not edit it`);
+  const snapshot = new Set(canonicalSnapshotText.split("\n").filter(Boolean));
   const added = [...GRANDFATHERED.keys()].filter((k) => !snapshot.has(k));
   assert.deepEqual(added, [], `files grandfathered after the snapshot (a freed slot may not be reused):\n${added.join("\n")}`);
   // An entry whose file no longer carries its legacy value is stale: remove it.

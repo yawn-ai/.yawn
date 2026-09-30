@@ -12,7 +12,11 @@ Each Yawn MAY have one `primary_parent_id`. The resulting containment backbone
 MUST be acyclic. This gives navigation, authority inheritance, proof roll-up,
 and lifecycle operations one unambiguous path.
 
-Relationships that are not containment use typed lateral links:
+Structural relationships that are not containment use typed lateral links. In
+this specification, **Structural Relation** means the narrow Yawn-to-Yawn edge
+defined by the Agency Holarchy schema. It is not the generic first-class
+Relationship record, which may relate people, agents, groups, institutions,
+concepts, source corpora, or artifacts.
 
 | Relation | Meaning |
 | --- | --- |
@@ -20,11 +24,15 @@ Relationships that are not containment use typed lateral links:
 | `depends_on` | Cannot complete or be evaluated without another contract |
 | `supports` | Supplies evidence, capability, or progress |
 | `conflicts_with` | Contains a material incompatibility requiring resolution |
+| `coordinates_with` | Coordinates activity or state without parentage |
+| `derived_from` | Preserves a source, transformation, or lineage relationship |
 | `supersedes` | Replaces another contract while preserving its identity trail |
 | `same_as` | Verified identity equivalence, not merely similarity |
 
 Links carry provenance, confidence, effective time, and the authority under
 which they were accepted. `same_as` requires stronger proof than `overlaps`.
+Neither a Structural Relation nor a path through it establishes a participant
+relationship, shared belief, consent, or authority.
 
 ## What parent and child mean
 

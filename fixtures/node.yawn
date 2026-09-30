@@ -2,7 +2,7 @@ id: fixtures/node
 title: "protocol fixtures"
 kind: contract-node
 status: active-mixed
-updated: 2026-09-13
+updated: 2026-09-30
 
 purpose: "Hold executable examples for schema, reducer, holarchy, objective, and multi-principal invariants."
 
@@ -15,6 +15,7 @@ holds:
   - orientation-map.v0.1.json
   - inquiry-selection-receipt.v0.1.json
   - articulation-floor.v0.1.json
+  - relationship-core.v0.1.json
 
 coverage:
   - versioned canonical interfaces
@@ -31,6 +32,7 @@ coverage:
   - nine-axis orientation coverage, deterministic inquiry rank, and presentation/semantic separation
   - replayable selected-question and explicit-hold inquiry receipts with typed provenance
   - sealed predictions, reason-checked answers, and a floor that replays from its ledger
+  - first-class Relationship, Participation, Inference Envelope, and Relation Address boundaries
 
 proof:
   command: "npm test"

@@ -1,0 +1,124 @@
+id: interface/relationship-view-v0.1
+title: "Relationship View contract v0.1"
+kind: interface-contract
+record_shape: header
+status: draft
+version: 0.1.0
+updated: 2026-09-30
+authored_by: agent-on-behalf
+authored_via: "Codex, reconciling the relationship-core proposal on behalf of the maintainer"
+
+purpose: >
+  Render one first-class Relationship as an inhabitable, inspectable surface
+  whose Story, interface, and agent operations remain answerable to the same
+  attributed record.
+
+primary_object:
+  kind: relationship
+  source_schema: schemas/relationship.v0.1.schema.json
+  address_schema: schemas/relation-address.v0.1.schema.json
+  participation_schema: schemas/participation.v0.1.schema.json
+  rule: "The page is a View of one stable Relationship identity; route syntax never becomes that identity."
+
+persistent_header:
+  answers:
+    - where_am_i
+    - from_whose_standpoint
+    - why_is_this_relationship_open
+    - which_revision_and_time_are_active
+    - which_scope_and_disclosure_boundary_apply
+    - who_is_actually_participating
+  required_coordinates:
+    relationship_ref: required
+    relation_address_ref: required
+    standpoint_ref: required
+    purpose_ref: required
+    revision_ref: required
+    disclosure_boundary_ref: required
+  presentation_rule: >
+    The header orients before it navigates. It may collapse detail at glance
+    resolution, but it never removes the active relationship identity,
+    standpoint, purpose, or disclosure boundary.
+
+view_coordinates:
+  view:
+    values: [purpose, model, perspectives, sources, boundaries, history, frontier]
+    rule: "Changes the foregrounded permitted projection, not relationship semantics."
+  resolution:
+    values: [glance, standard, deep]
+    rule: "Changes disclosed detail, not truth, authority, difficulty, or source identity."
+  time:
+    values: [now, revision, replay]
+    rule: "Selects a recorded temporal projection; historical replay uses persisted events and current disclosure rules."
+  scope:
+    values: [this_relationship, permitted_neighborhood]
+    rule: "Expands only through typed, permitted relations; spatial proximity and path prefixes do not decide scope."
+  standpoint:
+    rule: "Selects an attributed point of view. It does not create a participant, belief, agreement, authority, or shared truth."
+
+address_behavior:
+  display: "Dave / Christianity"
+  rule: >
+    The slash opens or traverses a Relation Address View. A path step names a
+    typed relationship step and any permitted source or participation context;
+    it does not imply containment unless the step is explicit primary_parent.
+  inverse_views: "Inverse addresses are explicit Views and may differ in role, access, salience, power, and disclosure."
+
+perspective_behavior:
+  rule: >
+    A perspective or voice is an attributed expression from a standpoint. It
+    is not automatically a belief, Agent, authority, participant, proof, or
+    vote. A relationship view keeps source, interpretation, recognition,
+    endorsement, disagreement, and unknown separate.
+  historical_voice_rule: >
+    A source-attributed historical figure, author, or tradition is displayed as
+    a represented voice, not a live participant, unless a present Participation
+    record says otherwise.
+
+frontier_behavior:
+  rule: >
+    The frontier exposes a question, hold, or bounded next inspection whose
+    answer would most change orientation given purpose, evidence, lacunae, and
+    boundaries. It may rank proposals but cannot manufacture authorization or
+    force every experience into a competition.
+  allowed_states: [question, hold, proposed_move, waiting_for_evidence]
+
+state_chaining:
+  rule: >
+    Story/replay, agent operations, and interface state reference the same
+    attributed events. A later interpretation cannot appear as earlier
+    knowledge, and a visible transition cannot claim an action or outcome that
+    the underlying record does not support.
+  operational_labels: [waiting, evaluate, act, observe, update]
+  boundary: "A label is a View of recorded activity, not proof that the runtime performed it."
+
+authority:
+  mutationAuthorized: false
+  persistenceAuthorized: false
+  modelCallAuthorized: false
+  externalEffectsAuthorized: false
+  rule: "Opening, rotating, zooming, or replaying a Relationship View does not create permission, a move, or an external effect."
+
+acceptance:
+  - "Switching Purpose, Model, Perspectives, Sources, Boundaries, History, and Frontier keeps one relationship revision identifiable."
+  - "Glance, Standard, and Deep change detail without mutating the underlying source or authority."
+  - "A historical source can be shown without becoming a current participant."
+  - "A correction preserves the prior source and identifies the superseded interpretation."
+  - "A public View exposes only explicitly provisioned fields."
+  - "A route such as Dave / Christianity / Jesus does not make a typed traversal into containment."
+
+links:
+  - core/relationship.yawn
+  - core/participation.yawn
+  - core/relation-address.yawn
+  - core/projection-and-aperture.yawn
+  - core/inquiry-selection.yawn
+  - dave/christianity/relationship.yawn
+  - dave/christianity/model.yawn
+
+proof:
+  covers: [primary_object, persistent_header, view_coordinates, address_behavior, perspective_behavior, frontier_behavior, state_chaining, authority, acceptance]
+  tests:
+    - tests/interface-contracts.test.mjs
+    - tests/relationship-core-v0.1.test.mjs
+  status: pending-local-validation

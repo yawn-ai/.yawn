@@ -2,7 +2,7 @@ id: core/node
 title: "core node"
 kind: mental-model-node
 status: active-mixed
-updated: 2026-09-13
+updated: 2026-09-30
 
 purpose: >
   Hold the public core concepts for understanding and using .yawn.
@@ -23,6 +23,7 @@ holds:
   - optional target conditions and typed lacunae
   - state transition intent and result
   - motivation and purpose
+  - first-class relationships, participation, and relation-address Views
   - world, field, and arena boundaries
   - Yawn holarchy and typed relations
   - asynchronous turns and causal time
@@ -64,6 +65,9 @@ links:
   - core/target-and-lacuna.yawn
   - core/state-transition.yawn
   - core/motivation-and-purpose.yawn
+  - core/relationship.yawn
+  - core/participation.yawn
+  - core/relation-address.yawn
   - core/world-field-arena.yawn
   - core/holarchy.yawn
   - core/turn.yawn

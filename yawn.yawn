@@ -2,7 +2,7 @@ id: yawn
 title: ".yawn"
 kind: repository-manifest
 status: active
-updated: 2026-09-12
+updated: 2026-09-30
 github: https://github.com/yawn-ai/.yawn
 license: MIT
 copyright_holder: The Yawn Company
@@ -27,9 +27,10 @@ official_runtime:
   correction_receipt: migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn
 
 summary: >
-  .yawn is an open protocol for inspectable orientation and agency: attributed
-  fields, provisional arenas, durable Yawns, causal turns, bounded authority,
-  principal-owned objectives, bounded Yawn.bots, proof, and replayable state.
+  .yawn is an open protocol for inspectable relationships, orientation, and
+  agency: attributed fields, provisional arenas, durable Yawns, causal turns,
+  bounded authority, principal-owned objectives, bounded Yawn.bots, proof, and
+  replayable state.
 
 canonical_sentence: >
   .yawn does not contain reality. It makes an agent's orientation toward part
@@ -48,6 +49,7 @@ protocol_status:
   agency_holarchy_0_2: working-draft
   objective_holon_0_1: working-draft
   orientation_map_0_1: working-draft
+  relationship_core_0_1: working-draft
   unified_human_document: not-yet-specified
 
 root_loop:
@@ -102,6 +104,9 @@ core_links:
   relationship_first_agent_arena: core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
   entity_and_coupling: core/entity-and-coupling.yawn
   articulation_floor: core/articulation-floor.yawn
+  participation: core/participation.yawn
+  relation_address: core/relation-address.yawn
+  relationship: core/relationship.yawn
 
 schema_links:
   node: schemas/node.yawn
@@ -136,6 +141,10 @@ schema_links:
   record_ref_v1: schemas/record-ref.v1.schema.json
   view_feedback_v1: schemas/view-feedback.v1.schema.json
   articulation_floor_v0_1: schemas/articulation-floor.v0.1.schema.json
+  inference_envelope_v0_1: schemas/inference-envelope.v0.1.schema.json
+  participation_v0_1: schemas/participation.v0.1.schema.json
+  relation_address_v0_1: schemas/relation-address.v0.1.schema.json
+  relationship_v0_1: schemas/relationship.v0.1.schema.json
 
 spec_links:
   root: spec/README.md
@@ -182,6 +191,7 @@ interface_links:
   yawn_capability_tags_v1: interface/yawn-capability-tags-v1.yawn
   yawn_chrome_v1: interface/yawn-chrome-v1.yawn
   yawn_observation_view_v1: interface/yawn-observation-view-v1.yawn
+  relationship_view_v0_1: interface/relationship-view-v0.1.yawn
 
 question_links:
   doorway: questions/node.yawn
@@ -339,6 +349,8 @@ fixture_links:
   observation_question_art_v1: fixtures/observation-question-art.v1.json
   observation_v1: fixtures/observation.v1.json
   articulation_floor_v0_1: fixtures/articulation-floor.v0.1.json
+  relationship_core_v0_1_invalid: fixtures/relationship-core.v0.1.invalid.json
+  relationship_core_v0_1: fixtures/relationship-core.v0.1.json
 
 governance_links:
   governance: GOVERNANCE.md
@@ -375,6 +387,7 @@ reference_links:
 migration_links:
   canonical_extension_2026_08_17: migrations/2026-08-17-canonical-extension.yawn
   cohere_vocabulary_and_attribution: migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn
+  relationship_core_reconciliation: migrations/2026-09-30-relationship-core-reconciliation.yawn
 
 decision_links:
   r_053_container_intelligence_name: decisions/053-container-intelligence-name.yawn
@@ -437,6 +450,8 @@ dave_links:
   orientation: dave/orientation/model.yawn
   ai_talk_in_the_park: dave/ai-talk-in-the-park/model.yawn
   objective_holon: dave/ai-talk-in-the-park/objective-holon.yawn
+  christianity: dave/christianity/model.yawn
+  relationship: dave/christianity/relationship.yawn
 
 usage_frame: >
   YAWN is an orientation shape for inference before action. Use it by naming

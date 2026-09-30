@@ -2,7 +2,7 @@ id: schemas/node
 title: "schema modules"
 kind: schema-index
 status: active
-updated: 2026-09-13
+updated: 2026-09-30
 
 purpose: >
   Hold machine-valid state-substrate modules and explicitly labeled protocol
@@ -38,6 +38,10 @@ holds:
   - orientation-map.v0.1.schema.json
   - inquiry-selection-receipt.v0.1.schema.json
   - articulation-floor.v0.1.schema.json
+  - relationship.v0.1.schema.json
+  - participation.v0.1.schema.json
+  - inference-envelope.v0.1.schema.json
+  - relation-address.v0.1.schema.json
 
 compatibility: >
   Legacy current/possible/desired fields remain readable at system boundaries.
@@ -88,6 +92,12 @@ orientation_map_draft: >
   inputs without making the map canonical state or preference semantic truth.
   Its inquiry-selection receipt closes the selected-question versus hold result,
   pins prompt and policy inputs, and remains non-authoritative View provenance.
+
+relationship_core_draft: >
+  Draft 0.1 adds a named, versioned Relationship instance; time-indexed
+  Participation; a provenance and persisted-replay Inference Envelope; and a
+  directional Relation Address. These remain distinct from StructuralRelation,
+  coupling, policy, boundary, authority, consent, and containment.
 
 status_rule: >
   Modal, motivational, epistemic, lifecycle, authority, loop,

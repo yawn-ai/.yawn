@@ -8,6 +8,17 @@ version: "1.0.0"
 created: ""
 updated: ""
 
+profile: interpersonal-relationship
+generic_relationship_core_ref: core/relationship.yawn
+relation_address_core_ref: core/relation-address.yawn
+scope: >
+  A private, two-party interpersonal relationship intake profile. It preserves
+  self/partner asymmetry, consent, repair, and review boundaries. It is not the
+  generic Relationship primitive for arbitrary people, agents, institutions,
+  concepts, or arenas; a generic relationship record carries the stable
+  relationship identity, while this profile may describe one protected View of
+  it.
+
 privacy: private
 partner_review_required: true
 relationship_impacting_moves_blocked: true
@@ -15,6 +26,9 @@ relationship_impacting_moves_blocked: true
 source:
   template: templates/relationship.yawn
   question_packet: question-packets/relationship.yawn
+  profile: interpersonal-relationship
+  generic_relationship_core_ref: core/relationship.yawn
+  relation_address_core_ref: core/relation-address.yawn
   origin: "" # self-report | conversation | transcript | observation | agent
   raw_material: ""
   source_refs: []
@@ -25,6 +39,7 @@ source:
     do_not_share_with: []
 
 relationship:
+  scope: "interpersonal self/partner relationship profile; not the universal relationship record"
   participants:
     - name: ""
       role: self

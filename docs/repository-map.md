@@ -11,8 +11,8 @@ than through a second live schema layer.
 README.md / index.html     public doors
 spec/                      human-readable specification
 contracts/                 stable v1 constitution/runtime package
-schemas/                   state, agency-holarchy, objective-holon, orientation-map, and other labeled drafts
-core/                      concept records and lexical invariants
+schemas/                   state, relationship-core, agency-holarchy, objective-holon, orientation-map, and other labeled drafts
+core/                      concept records, relationship semantics, and lexical invariants
 templates/                 authoring surfaces
 examples/ + fixtures/      explanatory and executable evidence
 docs/                      guides, status, projections, research boundary

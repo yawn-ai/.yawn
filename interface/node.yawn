@@ -2,7 +2,7 @@ id: interface/node
 title: "interface node"
 kind: mental-model-node
 status: v0-seed
-updated: 2026-08-27
+updated: 2026-09-30
 
 purpose: >
   Hold the five-command brain interface and projection stack.
@@ -22,6 +22,7 @@ holds:
   - local observation-art generation contract
   - dialogue objective compiler and correction operators
   - one-question orientation_inquiry View with source-preserving selection and answer provenance
+  - relationship View with independent View, resolution, time, scope, and standpoint coordinates
 
 receives:
   - lived signals
@@ -59,6 +60,7 @@ links:
   - question-packets/orientation-nine.yawn
   - schemas/orientation-map.v0.1.schema.json
   - schemas/inquiry-selection-receipt.v0.1.schema.json
+  - interface/relationship-view-v0.1.yawn
 
 proof:
   source:
