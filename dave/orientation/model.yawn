@@ -11,7 +11,7 @@ authored_via: "Claude Code session on Dave's behalf, 2026-09-12; the settled rol
 arena: "Dave's own decision space: what is settled, what is next, and what the bot is doing about it"
 state_ref: records/yawn.bot-state.yawn
 decisions_ref: decisions/node.yawn
-updated: 2026-09-12
+updated: 2026-09-30
 
 questions:
   - key: role
@@ -88,7 +88,7 @@ embody:
   - "One question at a time. The top of the queue, never the whole list."
   - "Propose; never ratify. Every recommendation carries authority: none."
   - "Show the bot's last observed run and its age. Never show the schedule as the state."
-  - "The slash is the relationship. What the bot is doing lives in yawn.bot/dave; it is never a claim about Dave."
+  - "The slash opens the relation address yawn.bot/dave, a View into a stable relationship record. What the bot is doing there is never a claim about Dave."
 
 assumptions:
   - text: "The ledgers in this repository are the only evidence of bot activity available from here; the runtime is not visible."

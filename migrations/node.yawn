@@ -2,7 +2,7 @@ id: migrations
 title: "protocol migrations"
 kind: folder-node
 status: active
-updated: 2026-08-17
+updated: 2026-09-30
 
 purpose: >
   Preserve the source, decision, compatibility boundary, authority, proof, and
@@ -10,6 +10,8 @@ purpose: >
 
 entries:
   - migrations/2026-08-17-canonical-extension.yawn
+  - migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn
+  - migrations/2026-09-30-relationship-core-reconciliation.yawn
 
 rules:
   - migration receipts are .yawn records

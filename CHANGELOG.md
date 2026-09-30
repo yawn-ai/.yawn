@@ -8,6 +8,11 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Relationship Core Working Draft 0.1: generic Relationship, Participation,
+  Relation Address, and provenance-and-replay inference-envelope contracts; a source-safe `Dave / Christianity`
+  conformance record and page; and a Relationship View contract that keeps
+  View, resolution, time, scope, and standpoint independent from semantic
+  identity and authority
 - Articulation Floor 0.1: seal, answer, and floor records with a schema, a
   dependency-free lib, a validator, a replayable fixture, and templates; the
   Polanyi question packet with one sealed prediction per axis; every queued
@@ -76,6 +81,10 @@ labels and do not imply compatibility.
 
 ### Changed
 
+- Defined the slash as a human-facing traversal/View into a stable relationship
+  record, instead of treating route syntax as relationship identity; retained
+  Agency Holarchy Relation, execution relationship, and interpersonal intake as
+  distinct specialized constructs
 - Retired the numbered pre-canonical generation from the active tree after
   mapping all 50 invalid-extension sources to current canonical targets; the
   immutable source commit remains the provenance witness

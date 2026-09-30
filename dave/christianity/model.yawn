@@ -1,0 +1,121 @@
+id: mental-model:dave:christianity
+title: "Dave / Christianity"
+kind: mental-model
+record_shape: header
+status: draft
+spec_version: mental-model.v0.1
+template_ref: templates/mental-model.yawn
+relationship_ref: relationship:dave:christianity
+relationship_projection_ref: dave/christianity/relationship.yawn
+relationship_revision: 2
+relationship_disclosure_scope: public-safe
+principal_ref: principal:dave
+authored_by: agent-on-behalf
+authored_via: "Codex session on Dave's behalf, 2026-09-30; built from Dave's stated request for a public-safe relationship conformance case. It records an inquiry purpose, not a religious identity or belief."
+arena: "A private-to-public-safe inquiry into the relationship between Dave's current model and Christianity"
+updated: 2026-09-30
+
+relationship_view:
+  canonical_relationship_ref: relationship:dave:christianity
+  canonical_revision: 2
+  public_projection_ref: dave/christianity/relationship.yawn
+  disclosure_scope: public-safe
+  rule: >
+    This mental model is a permitted public View of the canonical relationship.
+    It does not disclose private inference envelopes or their persisted output.
+
+questions:
+  - key: role
+    answer: "A participant examining a relationship to a tradition, not a person whose identity or beliefs are inferred by this record."
+  - key: relevance
+    answer: "To inspect the model Dave is carrying around Christianity: what sources and people actually say, what is inferred, what remains unresolved, and what would change the model."
+  - key: definition
+    answer: "A public-safe, revisable model of Dave's inquiry relationship to Christianity, a diverse historical and living religious tradition."
+  - key: inside
+    answer: "A stated purpose, attributed sources and perspectives, boundaries, history, and a frontier question; none silently becomes Dave's belief, consent, or identity."
+  - key: show
+    answer: "Start with why this relationship is open, then inspect sources, perspectives, boundaries, history, and the next useful question."
+  - key: assumptions
+    answer: "That a tradition has many sources and interpretations, and that a source claim, an interpretation, and Dave's own position need separate attribution."
+  - key: proof
+    answer: "A reader can trace a displayed claim to an attributed source or proposal, see what remains unknown, and correct the model without rewriting its source."
+  - key: lacuna
+    answer: "Which parts of Christianity are relevant to Dave now, which sources he wants to examine, and which positions he endorses, if any."
+
+concept:
+  name: "Dave / Christianity"
+  one_line: "A relationship record that helps Dave examine a tradition without mistaking the map, a source, or a route for a settled personal belief."
+  inside:
+    - name: "Purpose"
+      glyph: "WHY"
+      one_line: "Why this relationship is open before deciding which definition or source matters."
+    - name: "Attribution"
+      glyph: "↗"
+      one_line: "A source, its reported speaker, an interpretation, and Dave's response remain separately named."
+    - name: "Perspectives"
+      glyph: "≠"
+      one_line: "Different traditions, scholars, and readers may offer distinct or conditional answers without becoming a forced binary."
+    - name: "Boundary"
+      glyph: "⊘"
+      one_line: "Historical voices are not live participants; no source claim becomes Dave's identity, consent, or authority."
+    - name: "Frontier"
+      glyph: "?"
+      one_line: "The next question stays open until purpose, evidence, and the relationship make one useful."
+
+show:
+  - icon: WHY
+    do: "Read the stated purpose before opening a definition or a debate."
+    say: "Why is this relationship open for Dave now?"
+  - icon: ↗
+    do: "Open a claim with its source, attribution, interpretation, and uncertainty."
+    say: "What does this source report, and what has been added in interpretation?"
+  - icon: ≠
+    do: "Compare relevant perspectives without treating popularity or agreement as truth."
+    say: "Which distinctions in source, scope, definition, or evidence explain the difference?"
+  - icon: ⊘
+    do: "Inspect the participation and disclosure boundary before treating a voice as present."
+    say: "Who is actually participating here, and who is only represented by a source?"
+  - icon: "?"
+    do: "Return to the current frontier instead of manufacturing a conclusion."
+    say: "What question would most change orientation from this relationship?"
+
+embody:
+  - "Begin with the stated purpose; do not infer a religious identity, commitment, or belief from opening this model."
+  - "Keep source, attributed speaker, interpretation, and Dave's recognition or endorsement separate."
+  - "Represent historical figures, text authors, and interpreters as source-associated voices, never as live participants."
+  - "Treat dave/christianity as a directional View into a relationship record, not as containment or proof of agreement."
+  - "Offer a hold or a question when the source, scope, or authority is not clear."
+
+assumptions:
+  - text: "Christianity contains diverse historical sources, communities, and interpretations; this model does not select one as the whole tradition."
+    epistemic_status: assumed
+  - text: "A relationship record can preserve a source claim, interpretation, and personal response without collapsing them into one truth claim."
+    epistemic_status: observed
+  - text: "Dave asked for a public-safe conformance case that does not infer or publish his religious identity or beliefs."
+    epistemic_status: reported
+  - text: "A directional slash route is an address/View and does not establish containment, agreement, consent, or authority."
+    epistemic_status: observed
+
+proof:
+  signals:
+    - "A displayed claim identifies whether it is source-attributed, interpreted, proposed, or Dave-reported."
+    - "A historical person or text can be represented without appearing as a live participant or decision holder."
+    - "A correction preserves the earlier source and records what interpretation or view changed."
+    - "A reader can distinguish the relationship's current purpose from any claim about Dave's beliefs."
+  falsifier: "This model fails if it states or implies that Dave holds a religious identity or belief he has not explicitly supplied, treats a slash as containment, or presents a historical voice as a live participant."
+
+lacunae:
+  - "Which strand, community, historical period, or question within Christianity is relevant to Dave now."
+  - "Which source materials Dave wants to inspect and which editions, translations, or interpretations matter for that inspection."
+  - "What Dave recognizes, endorses, disputes, or prefers, if he chooses to record any of those positions."
+  - "What relationship-specific Yawn, if any, would earn independent stewardship, continuity, or proof obligations."
+
+sources:
+  - text: "Dave's participant-provided relationship pressure test, 2026-09-30: requested a public-safe Dave / Christianity conformance case with purpose, attribution, boundaries, history, and frontier kept distinct."
+    epistemic_status: reported
+  - text: "spec/ontology.md: relationship is a situated, changing coupling and is not automatically ownership, containment, agreement, or authority."
+    epistemic_status: observed
+  - text: "core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn: Relationship is structurally first; Observation is operationally first."
+    epistemic_status: observed
+  - text: "templates/mental-model.yawn: questions-first records keep why, perspective, inference status, and lacunae visible."
+    epistemic_status: observed

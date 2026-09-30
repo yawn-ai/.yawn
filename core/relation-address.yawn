@@ -1,0 +1,70 @@
+id: core/relation-address
+title: "Relation Address — the slash as traversal"
+kind: ontology-contract
+record_shape: header
+status: draft
+version: 0.1.0
+updated: 2026-09-30
+authored_by: agent-on-behalf
+authored_via: "Codex, reconciling the relationship-core proposal on behalf of the maintainer"
+
+purpose: >
+  Make a slash useful as a quiet, human-facing way to enter or traverse a
+  Relationship without making a route, glyph, or nesting convention carry
+  semantic identity by itself.
+
+definition:
+  human: "The slash opens the relationship."
+  machine: >
+    A Relation Address is a directional, time-indexed View over typed relation
+    steps. A slash is its visible traversal handle; the underlying
+    Relationship, participation, and policy records retain their own identity.
+
+example:
+  display_path: "dave/christianity"
+  means: >
+    A Dave-standpoint address into a stable relationship record concerning
+    Dave and the Christianity referent. The path does not state Dave's
+    religious identity, beliefs, authority, or the truth of any source.
+  composition: >
+    dave/christianity/jesus may traverse further typed relations, such as a
+    tradition's source-attributed reference to a historical person. It does
+    not establish parentage unless an explicit primary_parent step says so.
+
+direction:
+  rule: >
+    dave/jaime and jaime/dave may be directional Views into one shared
+    Relationship. Reversing a path does not automatically reverse authority,
+    obligation, disclosure, consent, causation, or truth.
+
+open_port:
+  rule: >
+    An address may be intentionally open at a known anchor. Openness is a View
+    state, not an assertion of empty memory, completed obligations, pure
+    consciousness, or permission to mutate the canonical record.
+
+parentage:
+  rule: >
+    Only an explicit primary_parent relation establishes semantic ancestry.
+    Route nesting, geometry, relatedness, and display order do not.
+
+boundaries:
+  - "A Relation Address does not prove containment, identity, agreement, consent, authority, or truth."
+  - "A Relation Address does not grant publication, action, or canonical mutation."
+  - "A rendered page is a View; it cannot replace the typed relation records it presents."
+
+links:
+  - schemas/relation-address.v0.1.schema.json
+  - schemas/relationship.v0.1.schema.json
+  - core/relationship.yawn
+  - core/participation.yawn
+  - core/holarchy.yawn
+  - spec/ontology.md
+
+proof:
+  covers: [definition, example, direction, open_port, parentage, boundaries]
+  tests:
+    - tests/relationship-core-v0.1.test.mjs
+  fixtures:
+    - fixtures/relationship-core.v0.1.json
+  status: proposed-until-maintainer-review

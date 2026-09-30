@@ -2,7 +2,7 @@ id: dave/node
 title: "dave node"
 kind: mental-model-node
 status: active
-updated: 2026-09-13
+updated: 2026-09-30
 
 purpose: >
   Hold Dave's public mental models: small, questions-first records of what
@@ -11,7 +11,7 @@ purpose: >
 
 principal_ref: principal:dave
 authored_by: agent-on-behalf
-authored_via: "content last written under the yawn.ai git identity on 2026-09-08; this attribution line added on Dave's behalf on 2026-09-12 by a Claude Code session"
+authored_via: "content last written under the yawn.ai git identity on 2026-09-08; attribution updated on Dave's behalf by Codex on 2026-09-30 when the public-safe Christianity relationship model was added"
 template_ref: templates/mental-model.yawn
 validator_ref: scripts/validate-mental-models.mjs
 
@@ -20,6 +20,7 @@ holds:
   - number-sense
   - prenumerical-thinking
   - ai-talk-in-the-park
+  - christianity
 
 receives:
   - lived situations where Dave needs a shared model with a person or a bot

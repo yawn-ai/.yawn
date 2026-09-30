@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-e8ff03.svg)](LICENSE)
 [![Status: working draft](https://img.shields.io/badge/ontology-working%20draft-fd49ac.svg)](docs/project-status.md)
 
-**An open protocol for inspectable orientation and agency.**
+**An open protocol for inspectable relationships, orientation, and agency.**
 
 `.yawn` gives human and AI agents a portable way to show what they noticed,
 what they inferred, what remains missing, what they were authorized to do, what
@@ -20,8 +20,42 @@ fully contains.
 | [YAWN.ai](https://yawn.ai) | The intelligence: it observes and processes records, preserves inference as proposal, and helps the system orient. |
 
 They are three roles around one record grammar, not three competing stores.
-The record can exist without either website; neither website may
-silently change its meaning or authority.
+The record can exist without either website; neither website may silently
+change its meaning or authority.
+
+## Why you may be here
+
+Something may matter enough to orient around: a person, an obligation, a
+decision, a source of meaning, an unanswered question, or a relationship that
+needs care. A Yawn preserves a revisable account of that relationship: what is
+here, who or what is involved, what was observed, what is inferred, what is
+unknown, what is protected, what could happen next, and what would change the
+model.
+
+The model is not reality. It is a source-attributed, correctable projection
+designed to be useful enough to act from and inspectable enough to revise.
+
+## Open a relationship
+
+```text
+Dave / Christianity
+```
+
+The slash opens a directional View into a stable relationship record. It does
+not say that Dave is Christian, that Christianity contains every subject named
+under it, or that a source speaks with current authority. It makes a concrete
+question possible: from Dave's stated purpose, what sources, perspectives,
+boundaries, and unresolved questions are relevant now?
+
+The public [Dave / Christianity conformance model](dave/christianity/) shows
+the first shape: a source-safe, questions-first View with no inferred religious
+identity or beliefs. The record distinguishes a current participant from a
+historical voice, a source claim from an interpretation, and a route from the
+Relationship it traverses.
+
+[Relationship core](core/relationship.yawn) ·
+[Relation Address](core/relation-address.yawn) ·
+[Dave / Christianity record](dave/christianity/relationship.yawn)
 
 > **Automate the burden. Preserve the authorship. Return the time.**
 
@@ -48,7 +82,7 @@ ambiguity. A correction never changes semantic identity or grants authority.
 [Canonical naming contract →](core/canonical-extension.yawn) ·
 [Migration receipt →](migrations/2026-08-17-canonical-extension.yawn)
 
-## Start with Observation
+## Observation is an entry, not the center
 
 Observation is the cleanest entry into the ontology: what became available to
 an attributed Agent from an Arena, under stated conditions and limits. It is
@@ -94,7 +128,24 @@ noticed, what matters, what movement is appropriate, and what authority is
 actually active. Proof returns to the relationship instead of merely closing a
 task.
 
+A generic Relationship has its own stable identity. It may include addressable
+referents, time-indexed participation, coupling, boundaries, policy references,
+attributed claims, events, and revision history. It is not equivalent to any
+one of those facets. A policy governs possible action within a relationship; a
+coupling describes how influence can flow; participation records who is here
+and how; a structural holarchy relation connects Yawns.
+
+The slash is a participant-facing traversal handle, not the relationship
+record. `dave/jaime` and `jaime/dave` can be directional Views into one shared
+relationship while preserving different standpoints and disclosure boundaries.
+Only an explicit `primary_parent` relation establishes containment.
+
 [Relationship-first Agent Arena →](core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn) ·
+[Relationship schema →](schemas/relationship.v0.1.schema.json) ·
+[Participation schema →](schemas/participation.v0.1.schema.json) ·
+[Relation Address schema →](schemas/relation-address.v0.1.schema.json) ·
+[Inference envelope schema →](schemas/inference-envelope.v0.1.schema.json) ·
+[Relationship View contract →](interface/relationship-view-v0.1.yawn) ·
 [Research braid →](references/RELATIONSHIP_FIRST_RESEARCH_BRAID.yawn) ·
 [Attributed collaboration history →](agents/collaboration-history.yawn)
 

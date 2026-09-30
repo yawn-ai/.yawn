@@ -1,0 +1,294 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/relationship.v0.1.schema.json",
+  "title": "YAWN Relationship V0.1",
+  "description": "A named, versioned instance of situated relation among addressable referents. This record is neither an Agency Holarchy StructuralRelation, a coupling, a policy, a boundary, a participation, nor a route.",
+  "$comment": "This draft supplies a stable relationship identity. References keep coupling, boundaries, policy, participation, Views, events, and a steward Yawn distinct. A route is a View over this record, not its identity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "relationshipId",
+    "revision",
+    "status",
+    "referents",
+    "purpose",
+    "profileRefs",
+    "participationRefs",
+    "couplingRefs",
+    "boundaryRefs",
+    "policyRefs",
+    "arenaRefs",
+    "viewRefs",
+    "eventRefs",
+    "inferenceRefs",
+    "sourceRefs",
+    "previousRevisionRef",
+    "stewardYawnRef",
+    "createdAt",
+    "updatedAt",
+    "boundary",
+    "extensions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "yawn.relationship.v0.1"
+    },
+    "relationshipId": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "active",
+        "paused",
+        "closed",
+        "superseded"
+      ]
+    },
+    "referents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/ReferentBinding"
+      }
+    },
+    "purpose": {
+      "$ref": "#/$defs/Purpose"
+    },
+    "profileRefs": {
+      "$ref": "#/$defs/References"
+    },
+    "participationRefs": {
+      "$ref": "#/$defs/References",
+      "description": "Time- and episode-indexed Participation records. A referent does not become a current participant merely by appearing in this Relationship."
+    },
+    "couplingRefs": {
+      "$ref": "#/$defs/References",
+      "description": "Mechanisms through which information or effects can flow. A coupling is not a permission or policy."
+    },
+    "boundaryRefs": {
+      "$ref": "#/$defs/References",
+      "description": "Records defining what may be distinguished, protected, admitted, excluded, or allowed to cross."
+    },
+    "policyRefs": {
+      "$ref": "#/$defs/References",
+      "description": "Explicit permissions, prohibitions, duties, commitments, and decision rights. Policy is not inferred from the Relationship."
+    },
+    "arenaRefs": {
+      "$ref": "#/$defs/References"
+    },
+    "viewRefs": {
+      "$ref": "#/$defs/References",
+      "description": "Views such as purpose, model, perspectives, sources, boundaries, history, and frontier. They do not change this Relationship's identity."
+    },
+    "eventRefs": {
+      "$ref": "#/$defs/References"
+    },
+    "inferenceRefs": {
+      "$ref": "#/$defs/References",
+      "description": "Persisted inference envelopes. The relationship does not turn an inference into fact, authority, or a replayable fresh generation."
+    },
+    "sourceRefs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/References"
+        },
+        {
+          "type": "array",
+          "minItems": 1
+        }
+      ]
+    },
+    "previousRevisionRef": {
+      "$ref": "#/$defs/NullableIdentifier"
+    },
+    "stewardYawnRef": {
+      "$ref": "#/$defs/NullableIdentifier",
+      "description": "A durable Yawn may steward this Relationship. A Relationship does not require a Yawn merely to exist."
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "updatedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "boundary": {
+      "$ref": "#/$defs/RelationshipBoundary"
+    },
+    "extensions": {
+      "$ref": "#/$defs/ExtensionBag"
+    }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "NullableIdentifier": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Identifier"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "NonBlankText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64000,
+      "pattern": "\\S"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "References": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
+    },
+    "EpistemicStatus": {
+      "enum": [
+        "observed",
+        "reported",
+        "inferred",
+        "assumed",
+        "predicted",
+        "disputed",
+        "unknown"
+      ]
+    },
+    "ReferentBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "referentRef",
+        "role",
+        "epistemicStatus",
+        "sourceRefs"
+      ],
+      "properties": {
+        "referentRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "role": {
+          "enum": [
+            "anchor",
+            "target",
+            "subject",
+            "context",
+            "other"
+          ]
+        },
+        "epistemicStatus": {
+          "$ref": "#/$defs/EpistemicStatus"
+        },
+        "sourceRefs": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/References"
+            },
+            {
+              "type": "array",
+              "minItems": 1
+            }
+          ]
+        }
+      }
+    },
+    "Purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "assertedByRef",
+        "epistemicStatus",
+        "sourceRefs"
+      ],
+      "properties": {
+        "text": {
+          "$ref": "#/$defs/NonBlankText"
+        },
+        "assertedByRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "epistemicStatus": {
+          "$ref": "#/$defs/EpistemicStatus"
+        },
+        "sourceRefs": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/References"
+            },
+            {
+              "type": "array",
+              "minItems": 1
+            }
+          ]
+        }
+      }
+    },
+    "RelationshipBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recordIsStructuralRelation",
+        "recordIsCoupling",
+        "recordIsBoundary",
+        "recordIsPolicy",
+        "recordIsParticipation",
+        "recordProvesContainment",
+        "recordProvesConsent",
+        "recordGrantsAuthority",
+        "routeDefinesIdentity"
+      ],
+      "properties": {
+        "recordIsStructuralRelation": {
+          "const": false
+        },
+        "recordIsCoupling": {
+          "const": false
+        },
+        "recordIsBoundary": {
+          "const": false
+        },
+        "recordIsPolicy": {
+          "const": false
+        },
+        "recordIsParticipation": {
+          "const": false
+        },
+        "recordProvesContainment": {
+          "const": false
+        },
+        "recordProvesConsent": {
+          "const": false
+        },
+        "recordGrantsAuthority": {
+          "const": false
+        },
+        "routeDefinesIdentity": {
+          "const": false
+        }
+      }
+    },
+    "ExtensionBag": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)+(?:/[A-Za-z0-9._~-]+)?$"
+      },
+      "additionalProperties": true
+    }
+  }
+}

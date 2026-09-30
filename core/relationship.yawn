@@ -1,0 +1,107 @@
+id: core/relationship
+title: "First-class Relationship"
+kind: ontology-contract
+record_shape: header
+status: draft
+version: 0.1.0
+updated: 2026-09-30
+authored_by: agent-on-behalf
+authored_via: "Codex, reconciling the relationship-core proposal on behalf of the maintainer"
+
+purpose: >
+  Define the generic Relationship record that lets YAWN preserve a situated,
+  revisable relation without confusing it with a URL, a structural Yawn edge,
+  a coupling mechanism, a permission, or a participant roster.
+
+definition:
+  relationship: >
+    A stable, revisable instance of situated relation among one or more
+    addressable referents. It carries the context needed to inspect how the
+    relation is understood and changes over time: participation, stakes,
+    coupling, boundaries, policy references, attributed claims, events, and
+    open questions.
+  identity_rule: >
+    A Relationship has an identity independent of any displayed route, View,
+    embedding, or Yawn that may steward it. Multiple directional Views may
+    enter the same Relationship.
+  record_rule: >
+    A relationship record is an inspectable projection of the relation, not a
+    complete account of the people, institutions, traditions, or reality it
+    references.
+
+facets:
+  referent: "A person, agent, group, institution, concept, tradition, source corpus, artifact, or other addressable thing."
+  participation: "A referent's time- and episode-specific involvement, role, standpoint, and presence in this Relationship."
+  coupling: "A channel or mechanism through which information or effects can flow."
+  boundary: "What is protected, admitted, excluded, or allowed to cross."
+  policy_or_contract: "Explicit permissions, prohibitions, duties, commitments, conditions, and decision rights that govern possible action."
+  arena: "A current situational field in which part of the Relationship is active."
+  yawn: "A durable orientation contract that may steward this Relationship when continuity, inquiry, proof, or maintenance warrants it."
+  structural_relation: "A typed Yawn-to-Yawn graph edge used by the holarchy; it is not this generic Relationship."
+
+must_remain_distinct:
+  - "relationship is not coupling: an effect may be technically possible and still prohibited."
+  - "relationship is not policy or authority: a policy governs an action within a relation; it does not exhaust the relation."
+  - "relationship is not participation: a historical author, source, or modeled voice is not thereby a present participant."
+  - "relationship is not a Yawn: a relation earns a Yawn only when it needs independent continuity, inquiry, proof, or stewardship."
+  - "relationship is not a structural Relation: agency-holarchy Relation remains a Yawn-to-Yawn lateral edge."
+  - "relationship is not a slash: the slash opens or traverses a Relation Address View."
+
+views:
+  stable_subject: relationship
+  selectable_apertures:
+    - purpose
+    - model
+    - perspectives
+    - sources
+    - boundaries
+    - history
+    - frontier
+  independent_coordinates:
+    - resolution
+    - effective_time
+    - scope
+    - standpoint
+  rule: >
+    Changing an aperture, resolution, time, scope, or standpoint changes the
+    permitted View, never the canonical Relationship identity or authority.
+
+inference_envelope:
+  rule: >
+    An inference need not reproduce the same interpretation forever, but its
+    envelope MUST preserve the source version, generator, recorded time,
+    model or policy version when available, epistemic status, confidence,
+    active Relationship and standpoint, supersession state, and disclosure
+    boundary.
+  replay: "Historical replay uses persisted records and events; it does not silently regenerate a past interpretation."
+  schema: schemas/inference-envelope.v0.1.schema.json
+
+relationship_yawn_rule: >
+  A Relationship may be promoted to or stewarded by a Yawn only through an
+  explicit proposal and applicable authority. The reason must name an
+  independently meaningful purpose, scope, authority or privacy boundary,
+  proof obligation, maintenance loop, or recurring inquiry.
+
+boundaries:
+  - "A relationship record does not establish agreement, consent, truth, identity, or authority by itself."
+  - "A relationship record does not infer a participant's private state or belief without attributable source and permission."
+  - "A relationship record does not turn a historical speaker, quoted author, or modeled perspective into a present participant."
+  - "Embedding proximity, path nesting, or topical similarity do not create containment, identity, consent, or authorization."
+
+links:
+  - schemas/relationship.v0.1.schema.json
+  - schemas/participation.v0.1.schema.json
+  - schemas/relation-address.v0.1.schema.json
+  - schemas/inference-envelope.v0.1.schema.json
+  - core/relation-address.yawn
+  - core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+  - core/holarchy.yawn
+  - spec/ontology.md
+
+proof:
+  covers: [definition, facets, must_remain_distinct, views, inference_envelope, relationship_yawn_rule, boundaries]
+  tests:
+    - tests/relationship-core-v0.1.test.mjs
+  fixtures:
+    - fixtures/relationship-core.v0.1.json
+  status: proposed-until-maintainer-review

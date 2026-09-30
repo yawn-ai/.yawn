@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/participation.v0.1.schema.json",
+  "title": "YAWN Participation V0.1",
+  "description": "A time- and episode-indexed account of how one referent is involved in a Relationship. Participation is not identity, consent, ownership, or authority.",
+  "$comment": "Use a Referent or attributed source/voice when something is discussed or quoted. Create Participation only for involvement in the active relationship episode.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "participationId",
+    "relationshipRef",
+    "referentRef",
+    "roles",
+    "participationMode",
+    "presence",
+    "standpointRef",
+    "episodeRef",
+    "arenaRef",
+    "effectiveFrom",
+    "effectiveUntil",
+    "status",
+    "sourceRefs",
+    "recordedAt",
+    "updatedAt",
+    "boundary",
+    "extensions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "yawn.participation.v0.1"
+    },
+    "participationId": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "relationshipRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "referentRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "principal",
+          "participant",
+          "steward",
+          "observer",
+          "contributor",
+          "decision_holder",
+          "delegate",
+          "affected",
+          "representative",
+          "witness",
+          "other"
+        ]
+      }
+    },
+    "participationMode": {
+      "enum": [
+        "direct",
+        "delegated",
+        "observed",
+        "unknown"
+      ]
+    },
+    "presence": {
+      "enum": [
+        "present",
+        "remote",
+        "unknown"
+      ]
+    },
+    "standpointRef": {
+      "$ref": "#/$defs/NullableIdentifier"
+    },
+    "episodeRef": {
+      "$ref": "#/$defs/NullableIdentifier"
+    },
+    "arenaRef": {
+      "$ref": "#/$defs/NullableIdentifier"
+    },
+    "effectiveFrom": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "effectiveUntil": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "active",
+        "ended",
+        "superseded"
+      ]
+    },
+    "sourceRefs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/References"
+        },
+        {
+          "type": "array",
+          "minItems": 1
+        }
+      ]
+    },
+    "recordedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "updatedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "boundary": {
+      "$ref": "#/$defs/ParticipationBoundary"
+    },
+    "extensions": {
+      "$ref": "#/$defs/ExtensionBag"
+    }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "NullableIdentifier": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Identifier"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "References": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
+    },
+    "ParticipationBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "roleCreatesAgent",
+        "roleGrantsAuthority",
+        "roleProvesConsent",
+        "roleProvesOwnership",
+        "sourceReferenceCreatesParticipation",
+        "representedVoiceCreatesParticipation"
+      ],
+      "properties": {
+        "roleCreatesAgent": {
+          "const": false
+        },
+        "roleGrantsAuthority": {
+          "const": false
+        },
+        "roleProvesConsent": {
+          "const": false
+        },
+        "roleProvesOwnership": {
+          "const": false
+        },
+        "sourceReferenceCreatesParticipation": {
+          "const": false
+        },
+        "representedVoiceCreatesParticipation": {
+          "const": false
+        }
+      }
+    },
+    "ExtensionBag": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)+(?:/[A-Za-z0-9._~-]+)?$"
+      },
+      "additionalProperties": true
+    }
+  }
+}

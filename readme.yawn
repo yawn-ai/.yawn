@@ -6,8 +6,8 @@ id: yawn:repository:ontology-hub
 title: ".yawn ontology hub"
 kind: yawn
 status: active
-revision: 8
-updated: "2026-09-13"
+revision: 9
+updated: "2026-09-30"
 
 identity:
   repository: "https://github.com/yawn-ai/.yawn"
@@ -28,6 +28,10 @@ signal:
     create competing product names, schemas, paths, or relationship records.
     Orientation now needs a replayable semantic map and adaptive question
     selection without turning presentation preference into personal truth.
+    Relationship now needs a generic, versioned identity that can carry
+    participation, coupling, boundaries, policy references, and history
+    without collapsing into a slash, a structural Yawn edge, or an
+    interpersonal template.
   epistemic_status: observed
   source_refs:
     - README.md
@@ -92,6 +96,12 @@ orientation:
         - schemas/orientation-map.v0.1.schema.json
         - question-packets/orientation-nine.yawn
         - spec/questions.md
+    - claim: "Relationship Core 0.1 gives a situated relationship independent identity; a slash is a directional Relation Address View into it."
+      epistemic_status: proposed
+      source_refs:
+        - core/relationship.yawn
+        - core/relation-address.yawn
+        - schemas/relationship.v0.1.schema.json
 
   governing_inference: >
     The repository serves as the ontology hub when it starts with Observation,
@@ -150,6 +160,7 @@ lacuna:
     - "How should web and desktop ingestion share one normalization receipt?"
     - "Which detected objectives deserve independent Yawns rather than attachment or a lateral link?"
     - "Which adaptive inquiry heuristics survive principal review across Arenas and accessibility contexts?"
+    - "Which Relationship Core 0.1 distinctions survive independent implementations and real shared-relationship use?"
 
 intent:
   mode: coordinate
@@ -202,6 +213,7 @@ proof_contract:
     - "Unverified local candidates cannot pass reviewability or authorize publication."
     - "Internal links on the public hub resolve."
     - "Orientation-map schema, semantic, ranking, closed receipt, and presentation-separation tests pass."
+    - "Relationship Core schema, valid fixture, adversarial fixture mutations, and Dave / Christianity conformance record pass."
     - "The GitHub Pages root returns the new ontology hub after merge."
     - "Feedback and Declaration routes remain live."
   falsifiers:
@@ -211,6 +223,7 @@ proof_contract:
     - "A structural change can erase source identity or bypass authority."
     - "A speech-to-text alias can create a competing schema or path without failure."
     - "Changing question order or medium changes the semantic orientation hash."
+    - "A slash or route can be used to establish relationship identity, participant consent, authority, or semantic parentage without an explicit typed record."
 
 protocol_layers:
   stable_constitution:
@@ -244,6 +257,21 @@ protocol_layers:
     presentation_preferences: schemas/projection-preference.v1.schema.json
     version: "0.1-draft"
     canonical_state: false
+  relationship_core:
+    relationship_schema: schemas/relationship.v0.1.schema.json
+    participation_schema: schemas/participation.v0.1.schema.json
+    relation_address_schema: schemas/relation-address.v0.1.schema.json
+    inference_envelope_schema: schemas/inference-envelope.v0.1.schema.json
+    relationship_contract: core/relationship.yawn
+    participation_contract: core/participation.yawn
+    relation_address_contract: core/relation-address.yawn
+    view_contract: interface/relationship-view-v0.1.yawn
+    version: "0.1-draft"
+    canonical_state: false
+    boundary: >
+      The generic Relationship contract is additive. Agency Holarchy Relation
+      remains a Yawn-to-Yawn structural edge; execution and interpersonal
+      relationship records remain specialized profiles.
   articulation_floor:
     contract: core/articulation-floor.yawn
     schema: schemas/articulation-floor.v0.1.schema.json
@@ -302,6 +330,9 @@ ontology_links:
   projection_preference: schemas/projection-preference.v1.schema.json
   observation_question_art: interface/local-observation-art-v0.1.yawn
   canonical_extension: core/canonical-extension.yawn
+  relationship: core/relationship.yawn
+  participation: core/participation.yawn
+  relation_address: core/relation-address.yawn
 
 practice_links:
   quickstart: docs/quickstart.md
@@ -344,7 +375,7 @@ runtime_surfaces:
   routes:
     - url: https://yawn.bot/dave
       reads: records/yawn.bot-state.yawn
-      shows: "the relationship yawn.bot/dave: the next highest-leverage open decision with its candidates and sealed prediction, the ranked queue, the settled role"
+      shows: "the yawn.bot/dave relation address: the next highest-leverage open decision with its candidates and sealed prediction, the ranked queue, the settled role"
       proof_status: declared-by-runtime-pull-requests-160-161
     - url: https://yawn.bot/polanyi
       reads: question-packets/polanyi.yawn
@@ -371,11 +402,14 @@ replay:
     stable while adaptive questioning and presentation remain replayable Views.
     Articulation Floor 0.1 seals a prediction before a question renders and
     measures, per axis, how much of what the principal knows the records could
-    say in advance.
+    say in advance. Relationship Core 0.1 adds a generic relationship identity,
+    time-indexed participation, and Relation Address Views so slash paths no
+    longer stand in for coupling, consent, authority, or containment.
   next_review_when:
     - Draft 0.2 has field routing evidence
     - Objective Holon 0.1 has principal-reviewed independence and activation evidence
     - adaptive inquiry has principal-reviewed utility and burden evidence
+    - Relationship Core 0.1 has independent implementation and shared-relationship evidence
     - a unified document RFC is proposed
     - an independent implementation reports a compatibility gap
     - a speech-to-text correction produces a false positive or missed alias

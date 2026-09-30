@@ -1,0 +1,44 @@
+id: core/participation
+title: "Participation in a Relationship"
+kind: ontology-contract
+record_shape: header
+status: draft
+version: 0.1.0
+updated: 2026-09-30
+authored_by: agent-on-behalf
+authored_via: "Codex, reconciling the relationship-core proposal on behalf of the maintainer"
+
+purpose: >
+  Separate who or what is addressable from how that referent is involved in a
+  particular Relationship, Arena, or episode.
+
+definition: >
+  Participation is a time-indexed record of a referent's involvement in a
+  Relationship. It records role, standpoint, presence, and applicable access
+  or authority references without claiming more than the available evidence.
+
+distinctions:
+  referent: "Who or what can be addressed in the model."
+  participation: "How that referent is involved here, during this episode."
+  role: "The position a participation occupies; a role is not a new Agent or a grant of authority."
+  standpoint: "The location from which a representation is produced; it is not a view from nowhere."
+  presence: "Whether an actual participation is present, remote, or unknown. Historical, source-represented, and unavailable referents belong in attribution or absence records, not a live Participation."
+
+rules:
+  - "A participant roster MUST NOT substitute for an attributed relationship record."
+  - "A quoted speaker, historical subject, source author, or modeled perspective is not a live participant unless a separate participation record establishes present involvement."
+  - "A role does not create identity, consent, authority, or independent corroboration."
+  - "A participation can end, pause, or change without changing the relationship identity."
+  - "Private standpoint material remains governed by current disclosure boundaries, including during replay."
+
+links:
+  - schemas/participation.v0.1.schema.json
+  - schemas/relationship.v0.1.schema.json
+  - core/relationship.yawn
+  - spec/ontology.md
+
+proof:
+  covers: [definition, distinctions, rules]
+  tests:
+    - tests/relationship-core-v0.1.test.mjs
+  status: proposed-until-maintainer-review

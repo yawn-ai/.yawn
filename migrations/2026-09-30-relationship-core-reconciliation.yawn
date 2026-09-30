@@ -1,0 +1,98 @@
+id: migrations/2026-09-30-relationship-core-reconciliation
+title: "Relationship Core Reconciliation"
+kind: migration-receipt
+record_shape: header
+status: draft
+updated: 2026-09-30
+authored_by: agent-on-behalf
+authored_via: "Codex, reconciling the relationship-core proposal on behalf of the maintainer"
+
+purpose: >
+  Record the additive migration from slash-as-relationship language to a
+  first-class Relationship record, without rewriting historical records or
+  overloading the existing Agency Holarchy Relation, execution relationship,
+  or interpersonal template.
+
+signal: >
+  The protocol's high-resolution constitutional account already treated
+  relationship as structurally first, but its machine-facing surfaces scattered
+  relation semantics across URLs, Yawn graph edges, execution contracts,
+  partner-oriented intake, Arenas, and unmerged proposals. A slash could be
+  read as the relationship itself even though it cannot preserve identity,
+  history, participation, policy, or authority.
+
+choice:
+  selected: >
+    Add Relationship Core 0.1 as an experimental, additive contract: generic
+    Relationship, reusable Participation, and directional Relation Address.
+    Preserve specialized existing records and correct active slash language.
+  rejected:
+    - "Treat every slash as parentage or relationship identity."
+    - "Expand the interpersonal partner template into the universal primitive."
+    - "Overload Agency Holarchy Relation beyond its Yawn-to-Yawn structural role."
+
+what_changed:
+  new_contracts:
+    - core/relationship.yawn
+    - core/participation.yawn
+    - core/relation-address.yawn
+    - schemas/relationship.v0.1.schema.json
+    - schemas/participation.v0.1.schema.json
+    - schemas/relation-address.v0.1.schema.json
+    - schemas/inference-envelope.v0.1.schema.json
+  active_language:
+    - "core/entity-and-coupling.yawn now says a slash opens or traverses a Relation Address View."
+    - "dave/orientation model and page now distinguish the bot's state from the relation address that opens it."
+  profiles_preserved:
+    - "Agency Holarchy Relation remains a Structural Relation between Yawns."
+    - "Execution Relationship V1 remains the delegate-specific authority contract."
+    - "templates/relationship.yawn and question-packets/relationship.yawn remain interpersonal profiles."
+  conformance_case:
+    - "dave/christianity records a public, source-safe relationship View without inferring Dave's religious identity or beliefs."
+    - "Historical sources and represented voices remain non-participants unless a separate participation record establishes present involvement."
+
+compatibility:
+  old_paths: "Existing slash-shaped paths remain readable as addresses and Views."
+  old_records: "No historical record is rewritten or retyped."
+  semantic_change: >
+    Active documentation now rejects the claim that the slash glyph or route
+    itself is the relationship record. The stable Relationship identity lives
+    independently of rendered path syntax.
+  historical_context: >
+    migrations/2026-09-12-cohere-vocabulary-and-attribution.yawn retains the
+    original wording as evidence of the earlier model. This receipt supersedes
+    that wording only for active semantics; it does not erase its provenance.
+
+not_changed:
+  - "Relationship Core 0.1 does not claim a complete universal human ontology."
+  - "It does not make all relationships Yawns."
+  - "It does not grant authority, publication, consent, or canonical mutation through a relation address."
+  - "It does not make generative inference deterministic; it makes provenance and replay boundaries inspectable."
+  - "It does not publish private reflection or infer the beliefs of Dave or any other participant."
+
+rollback: >
+  Remove the additive core/schema/fixture/test records and restore the active
+  wording from the prior revision. Existing v1 contracts, Agency Holarchy 0.2,
+  execution relationships, interpersonal profiles, and historical receipts
+  remain intact. Any records created under Relationship Core 0.1 retain their
+  source IDs and can be archived rather than silently deleted.
+
+links:
+  - adr/0003-relationship-core.md
+  - core/relationship.yawn
+  - core/participation.yawn
+  - core/relation-address.yawn
+  - spec/ontology.md
+  - spec/holarchy.md
+  - dave/christianity/relationship.yawn
+
+proof:
+  covers: [signal, choice, what_changed, compatibility, not_changed, rollback]
+  tests:
+    - tests/relationship-core-v0.1.test.mjs
+    - tests/authored-by.test.mjs
+    - tests/status-vocabulary.test.mjs
+  validators:
+    - scripts/generate-manifest.mjs
+    - scripts/validate-mental-models.mjs
+  status: pending-local-validation

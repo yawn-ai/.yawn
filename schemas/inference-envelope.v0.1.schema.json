@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/inference-envelope.v0.1.schema.json",
+  "title": "YAWN Inference Envelope V0.1",
+  "description": "A deterministic provenance and replay envelope for one attributed inference. It preserves the conditions around an interpretation without claiming that generative inference itself is deterministic.",
+  "$comment": "Historical replay uses the persisted output and its hash. A fresh generation may propose a new inference, but may not silently reconstruct or replace historical output.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "inferenceId",
+    "relationshipRef",
+    "relationshipRevision",
+    "standpointRef",
+    "sourceVersionRefs",
+    "generator",
+    "generationMode",
+    "persistedOutputRef",
+    "persistedOutputSha256",
+    "replayMode",
+    "epistemicStatus",
+    "confidence",
+    "disposition",
+    "supersedesInferenceRef",
+    "supersededByInferenceRef",
+    "disclosure",
+    "recordedAt",
+    "updatedAt",
+    "boundary",
+    "extensions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "yawn.inference-envelope.v0.1"
+    },
+    "inferenceId": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "relationshipRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "relationshipRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "standpointRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "sourceVersionRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/SourceVersion"
+      }
+    },
+    "generator": {
+      "$ref": "#/$defs/Generator"
+    },
+    "generationMode": {
+      "enum": [
+        "deterministic",
+        "generative",
+        "mixed",
+        "unknown"
+      ]
+    },
+    "persistedOutputRef": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "persistedOutputSha256": {
+      "$ref": "#/$defs/Sha256"
+    },
+    "replayMode": {
+      "const": "persisted_output"
+    },
+    "epistemicStatus": {
+      "enum": [
+        "inferred",
+        "assumed",
+        "predicted",
+        "disputed",
+        "unknown"
+      ]
+    },
+    "confidence": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "disposition": {
+      "enum": [
+        "proposed",
+        "displayed",
+        "accepted",
+        "corrected",
+        "rejected",
+        "superseded"
+      ]
+    },
+    "supersedesInferenceRef": {
+      "$ref": "#/$defs/NullableIdentifier"
+    },
+    "supersededByInferenceRef": {
+      "$ref": "#/$defs/NullableIdentifier"
+    },
+    "disclosure": {
+      "$ref": "#/$defs/Disclosure"
+    },
+    "recordedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "updatedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "boundary": {
+      "$ref": "#/$defs/InferenceBoundary"
+    },
+    "extensions": {
+      "$ref": "#/$defs/ExtensionBag"
+    }
+  },
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "\\S"
+    },
+    "NullableIdentifier": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Identifier"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "References": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
+    },
+    "SourceVersion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceRef",
+        "versionRef",
+        "contentSha256",
+        "spanRef"
+      ],
+      "properties": {
+        "sourceRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "versionRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "contentSha256": {
+          "$ref": "#/$defs/Sha256"
+        },
+        "spanRef": {
+          "$ref": "#/$defs/NullableIdentifier"
+        }
+      }
+    },
+    "Generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generatorRef",
+        "generatorKind",
+        "modelVersionRef",
+        "policyVersionRef",
+        "compilerVersionRef"
+      ],
+      "properties": {
+        "generatorRef": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "generatorKind": {
+          "enum": [
+            "human",
+            "agent",
+            "tool",
+            "system"
+          ]
+        },
+        "modelVersionRef": {
+          "$ref": "#/$defs/NullableIdentifier"
+        },
+        "policyVersionRef": {
+          "$ref": "#/$defs/NullableIdentifier"
+        },
+        "compilerVersionRef": {
+          "$ref": "#/$defs/NullableIdentifier"
+        }
+      }
+    },
+    "Disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "visibility",
+        "policyRefs",
+        "grantRefs",
+        "evaluatedAt"
+      ],
+      "properties": {
+        "visibility": {
+          "enum": [
+            "private",
+            "shared",
+            "public"
+          ]
+        },
+        "policyRefs": {
+          "$ref": "#/$defs/References"
+        },
+        "grantRefs": {
+          "$ref": "#/$defs/References"
+        },
+        "evaluatedAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "visibility": {
+                "enum": [
+                  "shared",
+                  "public"
+                ]
+              }
+            },
+            "required": [
+              "visibility"
+            ]
+          },
+          "then": {
+            "properties": {
+              "policyRefs": {
+                "type": "array",
+                "minItems": 1
+              },
+              "grantRefs": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "InferenceBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inferenceIsFact",
+        "inferenceGrantsAuthority",
+        "relationshipGrantsDisclosure",
+        "confidenceGrantsDisclosure",
+        "historicalReplayUsesPersistedOutput",
+        "freshGenerationRewritesHistory"
+      ],
+      "properties": {
+        "inferenceIsFact": {
+          "const": false
+        },
+        "inferenceGrantsAuthority": {
+          "const": false
+        },
+        "relationshipGrantsDisclosure": {
+          "const": false
+        },
+        "confidenceGrantsDisclosure": {
+          "const": false
+        },
+        "historicalReplayUsesPersistedOutput": {
+          "const": true
+        },
+        "freshGenerationRewritesHistory": {
+          "const": false
+        }
+      }
+    },
+    "ExtensionBag": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)+(?:/[A-Za-z0-9._~-]+)?$"
+      },
+      "additionalProperties": true
+    }
+  }
+}
