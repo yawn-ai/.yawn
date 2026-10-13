@@ -1,0 +1,49 @@
+id: migrations/2026-09-01-coordinate-complete-new-yawn
+kind: migration-contract
+status: draft
+updated: 2026-09-01
+
+intent: >
+  Connect the existing Orientation Map, inquiry selector, agency holarchy,
+  objective holon, decision, execution, proof, and projection contracts to the
+  New Yawn resolution View without rewriting accepted records.
+
+terminology:
+  - from: orientation_packet
+    to: schemas/orientation-map.v0.1.schema.json
+    rule: "Do not introduce a duplicate orientation primitive."
+  - from: level
+    to: Yawn_resolution
+    rule: "A derived View of represented capabilities, never human or intelligence rank."
+  - from: intelligence_running_me
+    to: intelligence_binding
+    rule: "Represent principal, providers, delegates, tools, capabilities, grants, freshness, and revocation separately."
+  - from: auto_lacuna
+    to: inquiry_and_lacuna_proposals
+    rule: "Use the pinned orientation revision and hard gates; preserve unknowns."
+  - from: auto_cohere
+    to: proposal_only_recompile
+    rule: "No silent reparenting, Agent creation, inheritance, acceptance, or external effect."
+
+lazy_backfill:
+  source: "Existing attributed records and accepted events."
+  operation: >
+    Derive cell state, resolution, and working-context summaries at read time or
+    through rebuildable indexes. Preserve original files and provenance.
+  never_infer_from_absence: [purpose, authority, consent, privacy, Agent_identity, relationship_agreement, proof]
+  conflicts: >
+    Retain all attributed claims; exact-coordinate accepted corrections outrank
+    inherited defaults without deleting history.
+
+runtime_seam:
+  path: >
+    source signal -> Orientation Map -> inquiry or hold -> candidate moves ->
+    move-selection receipt -> rightful choice event -> exact authorization ->
+    execution or delegation -> consequence receipt -> proof adjudication ->
+    sourced update -> rebuilt Views
+  boundary: "Every arrow is typed; no adjacent state silently implies the next."
+
+proof:
+  condition: >
+    A prior Yawn can render the grid and compile a bounded working context with
+    no mutation to its source; rejected topology proposals remain replayable.
