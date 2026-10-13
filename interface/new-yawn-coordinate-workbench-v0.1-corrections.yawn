@@ -1,0 +1,50 @@
+id: interface/new-yawn-coordinate-workbench-v0.1-corrections
+title: "New Yawn workbench draft corrections"
+kind: correction-record
+status: proposed
+updated: 2026-09-01
+corrects: interface/new-yawn-coordinate-workbench-v0.1.yawn
+
+corrections:
+  - id: draft-resolution-semantics
+    before: >
+      The resolution level was described as the highest cumulative guarantee
+      while the first implementation illuminated cells from attributed model
+      proposals.
+    after: >
+      The visible number is `draft_orientation_resolution`: explicit proposed
+      coverage over the ten-cell View. Every cell retains its epistemic and
+      lifecycle state. A separate accepted/observed/verified maturity measure
+      may be added only after evidence shows it is useful.
+    reason: >
+      Proposed coverage must not be cast as accepted semantic state, truth,
+      intelligence, autonomy, maturity, authority, or proof.
+
+  - id: proposal-disposition-boundary
+    before: >
+      A local Accept action could be read as accepting the target cell into the
+      Orientation Map.
+    after: >
+      Accept locally and Reject locally disposition only the exact proposal.
+      They do not alter Orientation Map state, intelligence binding, parentage,
+      Plant state, authority, or proof.
+    reason: "Recommendation acceptance is not a semantic write or effect grant."
+
+  - id: one-question-default
+    before: "The deterministic Auto-lacuna prototype returned up to three foreground proposals."
+    after: >
+      Auto-lacuna foregrounds exactly one question or hold by default. Any
+      alternatives belong behind Inspect with their comparison receipt.
+    reason: "Conforms to yawn.inquiry-selection.v0.1 and the one-question interface invariant."
+
+merge_rule: >
+  These corrections must be folded into the base draft before promotion or
+  canonical indexing. Until then the correction record takes precedence for
+  the paired product branch.
+
+proof:
+  expected:
+    - "The UI says draft orientation resolution."
+    - "Cell state remains proposed/unknown/verified after proposal disposition."
+    - "Auto-lacuna returns one foreground proposal."
+  status: branch-implemented-awaiting-verification

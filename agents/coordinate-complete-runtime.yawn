@@ -1,0 +1,418 @@
+id: agents/coordinate-complete-runtime
+title: "Coordinate-complete Agent runtime composition"
+kind: agent-runtime-composition
+status: draft-0.1
+version: 0.1.0-draft
+updated: 2026-09-01
+
+purpose: >
+  Make an authorized YAWN coordinate a sufficient operating aperture for a
+  capable human or machine Agent. A fresh Agent entering a coordinate should be
+  able to orient, inquire or hold, propose movement, respect decision rights,
+  execute only exact grants, report consequences, support proof adjudication,
+  and update the relationship without reconstructing the project from chat
+  history or silently escaping the holarchy.
+
+nonprimitive_rule: >
+  This file composes existing YAWN contracts. It does not create a second
+  ontology, Orientation Map, Objective Holon, Agent identity, authority system,
+  memory store, or proof model. Any unresolved seam remains named as a lacuna
+  rather than filled by relabeling an adjacent contract.
+
+constitutional_inputs:
+  relationship_first: core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+  orientation: core/orientation.yawn
+  agent_orientation: agents/orientation.yawn
+  orientation_questions: question-packets/orientation-nine.yawn
+  orientation_map: schemas/orientation-map.v0.1.schema.json
+  inquiry_selection: core/inquiry-selection.yawn
+  agency_holarchy: schemas/agency-holarchy.v0.2.schema.json
+  objective_holon: schemas/objective-holon.v0.1.schema.json
+  projection_and_aperture: core/projection-and-aperture.yawn
+  proof_and_boundary: core/proof-and-boundary.yawn
+  delegated_execution: schemas/execution-relationship.v1.schema.json
+  new_yawn_interface: interface/new-yawn-v0.1.yawn
+  coordinate_workbench: interface/new-yawn-coordinate-workbench-v0.1.yawn
+
+coordinate_entry_contract:
+  required_input:
+    - coordinate_ref
+    - principal_ref
+    - invoking_actor_or_agent_ref
+    - requested_role
+    - requested_operation_or_question
+    - current_time_and_freshness_boundary
+    - visibility_and_egress_context
+  required_result:
+    allowed:
+      - compiled_working_context
+      - explicit_hold
+      - escalation_request
+    prohibited:
+      - unscoped_full_corpus_dump
+      - invented_identity
+      - inferred_authority
+      - silent_parent_or_objective_change
+      - provider_specific_system_prompt_as_canonical_state
+
+working_context_compilation:
+  output_kind: coordinate_working_context_view
+  canonical_state: false
+  compilation_order:
+    - order: 1
+      layer: constitutional_kernel
+      include:
+        - pinned_ontology_version_and_hash
+        - semantic_invariants
+        - illegal_casts
+        - proof_and_revision_rules
+    - order: 2
+      layer: principal_and_governance
+      include:
+        - rightful_principal
+        - active_roles
+        - exact_decision_rights
+        - capability_and_effect_grants
+        - privacy_visibility_and_egress
+        - spend_mutation_and_external_effect_limits
+        - revocation_and_escalation_paths
+    - order: 3
+      layer: exact_coordinate
+      include:
+        - identity_and_lifecycle
+        - accepted_relationship_and_Arena_refs
+        - current_orientation_revision
+        - active_objective_or_objective_candidates
+        - exact_overrides_and_local_boundaries
+    - order: 4
+      layer: ancestor_inheritance
+      include:
+        - nearest_applicable_accepted_defaults
+        - unresolved_ancestor_constraints
+        - parent_objective_and_delegation_relationship
+      rule: "Traverse one acyclic primary-parent chain from nearest to root."
+    - order: 5
+      layer: lateral_context
+      include:
+        - typed_relationships_relevant_to_the_current_operation
+        - sibling_dependencies_and_resource_conflicts
+        - affected_parties_and_return_channels
+      rule: "Reference lateral context; never turn it into additional canonical parentage."
+    - order: 6
+      layer: epistemic_frontier
+      include:
+        - fresh_observations_and_reports
+        - inferred_and_disputed_claims
+        - confidence_and_freshness
+        - contradictions
+        - lacunae_and_open_questions
+        - current_proof_state
+    - order: 7
+      layer: operational_aperture
+      include:
+        - requested_job_or_governing_question
+        - available_resources_and_capabilities
+        - candidate_inquiry_hold_or_movement
+        - expected_consequence_and_close_condition
+        - reporting_and_stop_conditions
+    - order: 8
+      layer: rebuildable_projection
+      include:
+        - ranking_receipts
+        - summarized_working_memory
+        - presentation_preferences
+        - interface_state
+
+  context_budget:
+    strategy:
+      - "Keep constitutional invariants and live boundaries verbatim."
+      - "Include exact local accepted state before summaries."
+      - "Summarize older evidence only with stable record refs and hashes."
+      - "Retrieve deeper source material on demand through explicit references."
+      - "Drop rebuildable presentation before dropping epistemic or authority context."
+      - "When a material boundary cannot fit, hold rather than silently omit it."
+    minimum_visible_refs:
+      - source_record_ref
+      - source_revision_or_hash
+      - asserted_by
+      - epistemic_status
+      - freshness
+      - visibility
+      - dispute_status
+
+  never_inherit_as_truth:
+    - confidence
+    - inferred_identity
+    - observer_stance_as_separate_Agent
+    - salience
+    - relevance
+    - meaning
+    - desire
+    - objective_candidate
+    - obligation
+    - agenthood
+    - decision_right
+    - authority
+    - capability_grant
+    - privacy_widening
+    - provider_binding
+    - proof
+    - sibling_preference
+
+  precedence:
+    - "Constitutional invariant outranks all projections and preferences."
+    - "A current exact rightful grant outranks an inherited default within its scope."
+    - "Exact-coordinate accepted state outranks nearest-ancestor presentation defaults."
+    - "A descendant may narrow authority, privacy, spend, or effects; widening requires an exact rightful grant."
+    - "Conflicting attributed claims remain visible; confidence does not erase either source."
+    - "Freshness affects use, not historical preservation."
+
+coordinate_complete_questions:
+  - key: identity
+    question: "Who or what am I here, and is that identity accepted, delegated, inferred, or unknown?"
+    source: [scope, perspective, coordinate]
+  - key: principal
+    question: "Whose rights, goals, consent, and consequences govern this operation?"
+    source: [perspective, boundary]
+  - key: topology
+    question: "Where am I in the holarchy, and which parent, children, siblings, and lateral relationships matter now?"
+    source: [placement]
+  - key: arena
+    question: "Which purpose-relevant field of roles, constraints, affordances, and consequences is active?"
+    source: [placement, current-state]
+  - key: intent
+    question: "What is the accepted objective or governing question, and what remains only a candidate?"
+    source: [intent]
+  - key: epistemology
+    question: "What is observed, reported, inferred, assumed, predicted, disputed, stale, or unknown?"
+    source: [current-state, lacuna]
+  - key: relevance
+    question: "What could change the present orientation or rightful choice, and why?"
+    source: [scope, current-state, intent, lacuna]
+  - key: resources
+    question: "What resources, capabilities, dependencies, and constraints shape available participation?"
+    source: [current-state, boundary]
+  - key: authority
+    question: "What may I decide, disclose, spend, mutate, delegate, or execute—and what must I not do?"
+    source: [boundary]
+  - key: movement
+    question: "What inquiry, hold, wait, exit, proposal, choice, delegation, or move remains available?"
+    source: [movement]
+  - key: selection
+    question: "Why is this question or movement proposed over the alternatives?"
+    source: [inquiry_selection_receipt, unresolved_move_selection_receipt]
+  - key: proof
+    question: "What consequence, verifier, falsifier, and update rule close or revise this episode?"
+    source: [proof]
+  - key: continuity
+    question: "What must be reported upward or laterally, and when must I stop, sleep, escalate, merge, split, or retire?"
+    source: [movement, proof, agency_holarchy]
+
+runtime_sequence:
+  - step: invoke_coordinate
+    input: [coordinate_ref, actor_or_agent_ref, requested_role, request]
+    output: coordinate_entry_request
+  - step: compile_context
+    input: [constitutional_kernel, topology, exact_state, authorized_relations, freshness]
+    output: [coordinate_working_context_view, explicit_hold]
+  - step: orient
+    input: [working_context, attributed_signal]
+    output: orientation_map_revision_proposal
+  - step: select_inquiry_or_hold
+    input: orientation_map_revision
+    output: inquiry_selection_receipt
+  - step: revise_orientation
+    input: [attributed_answer_or_observation, correction, consequence]
+    output: new_orientation_revision
+  - step: resolve_objective
+    input: [intent_axis, objective_candidates, principal_disposition]
+    output: [accepted_objective_ref, explicit_no_objective, unresolved_objective]
+  - step: enumerate_movement
+    input: [orientation, objective, boundaries, capabilities]
+    output: candidate_inquiries_holds_choices_moves_or_delegations
+  - step: select_move_proposal
+    input: [candidate_set, affected_relationships, expected_consequences, reversibility, cost, risk, proofability]
+    output: [move_selection_proposal_and_receipt, explicit_hold]
+    status: unresolved_contract_lacuna
+  - step: rightful_choice
+    input: [proposal, alternatives, principal]
+    output: [choice_event, correction, rejection, deferral]
+    status: requires_exact_existing_or_new_contract_audit
+  - step: authorize
+    input: [choice_event, requested_effect_signature, existing_grants]
+    output: [exact_authorization_match, escalation, denial]
+  - step: execute_or_delegate
+    input: [authorization, capability, work_or_delegation_contract]
+    output: [attempt_event, child_agent_work_packet, explicit_nonaction]
+  - step: observe_consequence
+    input: [environment_and_relationship_events]
+    output: consequence_receipt
+  - step: adjudicate_proof
+    input: [prediction, consequence, verifier, falsifier, side_effects]
+    output: proof_state
+  - step: update
+    input: [proof_state, correction_policy]
+    output: [versioned_orientation_update, relationship_update, policy_or_objective_proposal]
+  - step: return_and_close
+    input: [events, proof, open_lacunae]
+    output: [parent_report, lateral_notifications, continue, hold, sleep, merge, split, retire, escalate]
+
+move_selection_lacuna:
+  statement: >
+    Inquiry selection is explicit and executable, but it must not be cast as
+    movement selection. This composition has not yet located a single canonical
+    executable contract that compares candidate moves, returns why one outranks
+    the alternatives, remains recommendation-only, and then hands off to a
+    distinct rightful choice and exact authorization grant.
+  prohibited_shortcuts:
+    - "Reuse inquiry rank as move rank without a separate contract."
+    - "Treat the first Moves-queue item as the rightful choice."
+    - "Treat principal acceptance as empirical proof."
+    - "Treat objective acceptance as effect authority."
+  smallest_resolution: >
+    Complete a repository-wide source audit of decision, action-request,
+    execution-relationship, capability/grant, delegation, and receipt contracts.
+    Only if no compatible move-selection receipt exists should a minimal new
+    schema be proposed.
+
+child_spawn_contract:
+  spawn_is: "a bounded delegation relationship and context compilation, not cloning the parent Agent"
+  required_before_spawn:
+    - accepted_parent_coordinate
+    - rightful_principal
+    - child_identity_or_role_status
+    - one objective_or_governing_question
+    - requested_capability
+    - exact_authority_and_effect_boundary
+    - resource_time_cost_and_concurrency_budget
+    - required_source_and_context_refs
+    - expected_return_artifacts
+    - proof_and_close_condition
+    - reporting_channel
+    - stop_escalate_and_revocation_conditions
+  child_may_inherit:
+    - constitutional_invariants
+    - explicitly_delegated_objective_scope
+    - narrowed_parent_boundaries
+    - relevant_source_refs
+    - necessary_resources_and_capabilities
+    - proof_contract
+    - return_channel
+  child_may_not_inherit_implicitly:
+    - parent_identity
+    - parent_authority_outside_the_grant
+    - sibling_authority
+    - private_context_outside_need_and_visibility
+    - confidence_as_truth
+    - objective_candidates_as_commitments
+    - right_to_spawn_further_children
+    - right_to_widen_cost_privacy_or_effects
+  report_back:
+    - exact_work_contract_ref
+    - events_and_artifacts
+    - observations_and_inferences_separated
+    - consequence_receipt
+    - proof_status
+    - unresolved_lacunae
+    - resource_use
+    - recommendation_or_escalation
+  close_when:
+    - objective_close_condition_met
+    - proof_contract_satisfied_or_falsified
+    - authority_or_resource_budget_exhausted
+    - parent_or_principal_revokes
+    - dependency_blocks_and_escalation_is_required
+    - duplicate_work_detected
+    - coordination_cost_exceeds_expected_value
+    - identity_or_scope_conflict_cannot_be_resolved_locally
+  recursion_guard:
+    default_child_spawn_authority: false
+    require:
+      - explicit_depth_or_budget_limit
+      - unique_responsibility
+      - no_existing_agent_owns_the_same_work
+      - expected_coordination_value_exceeds_overhead
+      - parent_visible_child_registry
+
+root_agent_model:
+  preferred_role: "governed coordinator and world-model steward, not universal executor or rightful principal"
+  responsibilities:
+    - maintain_topology_and_work_ownership_visibility
+    - compile_coordinate_context
+    - surface_conflicts_dependencies_and_lacunae
+    - route_inquiry_and_work_to_the_narrowest_capable_authorized_agent
+    - protect_principal_boundaries_and_escalation
+    - reconcile_consequences_and_proof
+    - detect_duplicate_work_runaway_spawning_stale_context_and_unclosed_loops
+  must_not:
+    - invent_or_replace_the_rightful_principal
+    - self_ratify_objectives_or_authority
+    - centralize_every_domain_decision
+    - hide_sibling_conflict_or_resource_contention
+    - treat_more_agents_or_activity_as_progress
+    - optimize_away_human_choice_where_the_principal_reserves_it
+
+illegal_casts:
+  - "coordinate -> Agent"
+  - "View -> ontology"
+  - "compiled_context -> canonical_state"
+  - "provider -> Agent_identity"
+  - "salience -> relevance"
+  - "relevance -> meaning"
+  - "meaning -> truth"
+  - "confidence -> authority"
+  - "recommendation -> choice"
+  - "choice -> authorization"
+  - "capability -> permission"
+  - "objective -> authority"
+  - "acceptance -> proof"
+  - "move -> consequence"
+  - "consequence -> proof"
+  - "child_delegation -> parent_authority"
+  - "throughput -> intelligence_or_value"
+
+conformance_test:
+  fresh_agent_case:
+    coordinate: yawn.bot/dave/frontier/example-child
+    pass_when:
+      - "The Agent can state identity status, principal, topology, Arena, objective status, epistemic frontier, resources, boundaries, available movement, proof, return channel, and stop condition."
+      - "Every material claim or grant has a source ref, revision/hash, attribution, freshness, and visibility."
+      - "The Agent can inspect deeper evidence without receiving the entire corpus by default."
+      - "The Agent holds when a material authority, source, privacy, or proof boundary is missing."
+      - "Its result returns to the exact parent relationship without becoming canonical truth."
+    fail_when:
+      - "The Agent requires undocumented prompt archaeology to discover its role or objective."
+      - "A summary silently drops a material boundary or dispute."
+      - "A provider identity replaces the Yawn or Agent identity."
+      - "The Agent can spawn, spend, disclose, mutate, or execute beyond an exact grant."
+      - "A recommendation, activity log, or self-report is counted as consequence proof."
+
+proof:
+  current_status: composition_proposed
+  expected_consequence: >
+    A fresh capable model can operate coherently inside an authorized coordinate
+    using a bounded compiled context, while preserving identity, source,
+    authority, proof, and topology distinctions.
+  comparison:
+    - plain_system_prompt
+    - full_corpus_dump
+    - task_ticket_only
+    - parent_summary_without_typed_sources
+  falsifiers:
+    - "The composed context omits a material boundary more often than a simpler baseline."
+    - "Context compilation costs exceed the coordination benefit for representative work."
+    - "Agents still reconstruct roles, objectives, or topology from chat history."
+    - "Sibling duplication or authority leakage rises as Agent count increases."
+    - "The same effective inputs do not produce replayably equivalent context."
+    - "The composition creates a second source of semantic truth instead of referencing canonical records."
+
+links:
+  - core/orientation.yawn
+  - agents/orientation.yawn
+  - question-packets/orientation-nine.yawn
+  - schemas/orientation-map.v0.1.schema.json
+  - core/inquiry-selection.yawn
+  - schemas/agency-holarchy.v0.2.schema.json
+  - schemas/objective-holon.v0.1.schema.json
+  - schemas/execution-relationship.v1.schema.json
+  - interface/new-yawn-coordinate-workbench-v0.1.yawn
