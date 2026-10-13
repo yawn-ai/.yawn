@@ -1,0 +1,226 @@
+id: records/2026-09-05-selectable-aperture-and-provisioning-clarification
+title: "One Yawn, many selectable apertures, explicit provisioning"
+kind: clarification-record
+status: proposed-canonical-backfill
+recorded: 2026-09-05
+supersedes_history: false
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+source_observation: >
+  Dave clarified that the system should not always compress a Yawn to the same
+  small surface. The user should control the aperture through a visible dropdown,
+  have sensible private and public defaults, and be able to add other Views over
+  the same .yawn model. YAWN may detect that another representation could fit the
+  present task or accepted preference better, but should propose that change
+  rather than hard-code a fixed learning type. Nestheads may be one open-world
+  game aperture over the same underlying model.
+
+preserve:
+  - >
+    The underlying Yawn should contain or reference enough attributed semantic
+    state, relationships, events, provenance, preferences, grants, and source
+    coordinates to reconstruct permitted cognitive projections.
+  - >
+    Different people may need different apertures over the same model, and the
+    same person may need different apertures for different questions, devices,
+    moments, or purposes.
+  - >
+    Questions First is a strong default for sparse orientation, but the user must
+    be able to choose another compatible aperture or use Auto.
+  - >
+    A private owner View and a public published View may coexist without
+    duplicating the canonical Yawn.
+  - >
+    Provisioning should support fast invitation by username or email while
+    retaining explicit access levels, expiration, revocation, and auditability.
+
+correct:
+  - >
+    Aperture and View are related but not identical. The existing ontology uses
+    aperture for scope, depth, time window, and salience inside a View. The UI
+    may call a saved View-plus-aperture-plus-presentation binding an Aperture,
+    while machine records remain explicit.
+  - >
+    The .yawn package need not inline every raw source body. Sensitive or large
+    sources may remain local, encrypted, external, expired, or deleted; the
+    canonical package preserves the permitted state, coordinates, hashes,
+    status, and access policy needed for honest reconstruction.
+  - >
+    Provisioning cannot belong only to the aperture. Rights must protect the
+    canonical resources and source fields first. A published aperture is an
+    additional authorized disclosure boundary and can only narrow what those
+    grants allow.
+  - >
+    Public and private should not be separate truth stores. They are separately
+    configured projections of one canonical Yawn, potentially pinned to
+    different revisions.
+  - >
+    User preferences are real and useful, but a persistent "visual learner" or
+    similar diagnosis should not be inferred. Store scoped accepted preferences
+    and measured local utility instead.
+
+interface_target:
+  header: >
+    The Yawnbot title surface should place time/replay, Aperture, and
+    provisioning controls next to the address so the user can immediately see
+    when, how, and for whom the Yawn is being rendered.
+  example: >
+    [Health / dave/health] [Now v] [Aperture: Questions First v]
+    [Private: only Dave v]
+  aperture_menu:
+    - Auto
+    - Questions First
+    - Attention Frontier
+    - Relationship Inspector
+    - Concept Map
+    - Timeline / Replay
+    - Proof / Evidence
+    - Decisions / Moves
+    - Raw Model
+    - Agentic Yawnbot
+    - Public Story
+    - Nestheads Game World
+    - Custom or imported apertures
+  note: >
+    The menu is registry-driven. The list above is an initial candidate set, not
+    a closed hard-coded enum.
+
+preference_scopes:
+  - this_turn_only
+  - this_view_or_shared_link
+  - this_yawn
+  - this_arena
+  - this_agent_space
+  - this_principal_private_default
+  - this_principal_public_authoring_default
+  - system_fallback
+
+preference_learning:
+  explicit_signals:
+    - selected_aperture
+    - saved_scope
+    - direct_feedback
+    - requested_density_or_medium
+    - accessibility_requirement
+  supporting_signals:
+    - correction_cost
+    - task_success
+    - navigation_success
+    - context_restoration
+    - repeated_switches
+  insufficient_alone:
+    - clicks
+    - dwell_time
+    - session_length
+    - emotional_engagement
+  behavior: >
+    YAWN may say, "This appears easier to inspect as a relationship map because
+    three open questions depend on the same relationship. Switch for now?" It
+    must show the reason and preserve immediate override.
+
+provisioning_layers:
+  canonical_resource_access: >
+    Who may discover, read, comment, propose, edit, share, export, connect
+    intelligence, equip capabilities, authorize effects, or administer each
+    Yawn, field, relationship, source, evidence item, and descendant scope.
+  aperture_publication: >
+    Which named View/aperture and revision may be rendered to a given audience,
+    with which fields, sanitization, link rules, expiration, and export rights.
+  provider_connection: >
+    Which data an intelligence provider may receive, retain, process, export, or
+    use, independently of the human collaborator's access level.
+  effect_authority: >
+    Which operations an Agent may perform. Read or edit access does not
+    automatically grant real-world effect authority.
+
+safe_defaults:
+  owner: full_private_access
+  new_yawn_visibility: private
+  public_template: may_exist_but_unpublished
+  public_discoverability: false_until_explicit_publication
+  external_agent_access: deny_until_explicit_grant
+  inherited_rights: may_narrow_never_widen
+
+public_private_model:
+  owner_private_default: >
+    The owner chooses or accepts a private default aperture. The system may use
+    Questions First for sparse Yawns and Attention Frontier for a root Agent
+    Space, subject to context and user override.
+  public_default: >
+    A Yawn may have a named Public Story or other public aperture, but it remains
+    disabled until explicitly provisioned. Public viewers see the published
+    projection, not the owner's private default.
+  shared_viewer: >
+    Invited users may choose their own permitted presentation aperture while
+    contributions and annotations remain separately attributed and provisioned.
+
+nestheads_relationship:
+  statement: >
+    Nestheads can be treated as an embodied open-world aperture over .yawn rather
+    than another competing ontology. The Phaser world renders canonical symbols,
+    relationships, Yawnbot bodies, state, and movement through game metaphors.
+  invariants:
+    - same_canonical_ids
+    - same_event_cursor
+    - same_authority_and_provisioning
+    - same_proof_boundary
+    - accessible_non_game_equivalent
+    - game_action_requires_explicit_semantic_operator_before_state_mutation
+
+codebase_findings:
+  view_switcher: >
+    The current product hard-codes public, dashboard, model, mapping,
+    experiments, and history in a ViewMode union and fixed option array. That is
+    a useful prototype but not the desired extensible meta-architecture.
+  visibility_dropdown: >
+    The current component presents public, participants, and private and has a
+    public component default. New Yawns and unresolved effective rights should
+    default to private/deny and derive access from grants.
+  participants_dropdown: >
+    The UI already points toward email/@username invitations, but non-AI user
+    invitation is incomplete and displayed access is largely static. It must be
+    backed by real invitations, roles, expiration, revocation, and audit events.
+  visibility_resolver: >
+    The current owner/participant/anonymous plus full/summary/hidden resolver is
+    too coarse for the proposed field-, source-, View-, Agent-, and action-level
+    model, but can remain as a compatibility adapter during migration.
+  existing_strength: >
+    projection-preference.v1 already models principal, scope, view kind, field
+    path, set/reset, accepted status, revision, source event, and timestamps.
+    Extend that substrate rather than introducing another preference store.
+
+research_boundary: >
+  Treat adaptive aperture selection as a testable interface policy. Respect
+  user preferences and accessibility while measuring task-context usefulness.
+  Do not claim a fixed learning-style classification or assume that matching a
+  preferred medium necessarily improves learning.
+
+first_test:
+  source_yawn: one_real_private_Dave_Yawn
+  same_underlying_state: true
+  compare:
+    - questions_first
+    - attention_frontier
+    - relationship_or_map_view
+    - owner_selected_view
+    - auto_suggested_view
+    - nestheads_or_agentic_embodiment_when_available
+  require:
+    - stable_ids_and_meaning
+    - no_semantic_mutation_on_switch
+    - no_access_change_on_switch
+    - visible_reason_for_auto_selection
+    - cheap_user_override
+    - distinct_private_and_public_projection
+    - zero_private_field_leakage
+    - measured_orientation_and_correction_cost
+
+links:
+  - interface/aperture-registry-and-provisioning-v0.1.yawn
+  - core/projection-and-aperture.yawn
+  - schemas/projection-preference.v1.schema.json
+  - interface/new-yawn-v0.1.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
+  - interface/yawnbot-agentic-embodiment-v0.1.yawn
+  - interface/yawnbot-capacity-continuum-v0.1.yawn

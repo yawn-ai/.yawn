@@ -1,0 +1,465 @@
+id: interface/perspective-field-and-feedback-reintegration-v0.1
+title: "Perspective field, answer frontier, and feedback reintegration"
+kind: interface-learning-boundary-contract
+status: proposed-v0.1
+version: 0.1.0
+recorded: 2026-09-05
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+purpose: >
+  Render one question, claim, expression, or candidate move together with the
+  attributed standpoints that bear on it; preserve competing, complementary,
+  conditional, and unresolved answers; explain how those answers inform the
+  next warranted turn; and reintegrate human, Agent, audience, and world
+  feedback without converting popularity, agreement, emotion, or model output
+  into truth, reward, authority, or proof.
+
+product_compression:
+  statement: >
+    Ask the question, see what each relevant perspective says, inspect what
+    supports or challenges each answer, and understand why the current model
+    recommends a question, hold, test, or move next.
+  creator_case: >
+    A creator can publish one provisioned expression, receive attributed public
+    responses through the respondents' own apertures, and use those responses
+    to refine the model, audience, expression, experiment, or future move while
+    preserving what was actually said and what remains unproven.
+
+core_definitions:
+  question: >
+    A typed projection of a lacuna or decision-relevant uncertainty. A question
+    may remain open, be decomposed, depend on another question, or reopen when
+    context, participants, evidence, purpose, or authority changes.
+  perspective: >
+    A bounded standpoint defined by an attributed participant or simulated
+    source, role, relationship, access aperture, context, time, and relevant
+    incentives or limitations. A perspective is not automatically an Agent,
+    identity, personality, or truth source.
+  answer_candidate: >
+    An attributed proposition, conditional response, observation, preference,
+    request, refusal, hypothesis, or unknown offered in relation to one or more
+    questions. It remains a candidate until its semantic status is explicitly
+    updated through ratification, evidence, consequence, or proof.
+  voice: >
+    An expression event: what an attributed standpoint says here, through this
+    aperture, about this question, claim, relationship, expression, or move. A
+    voice is not automatically a person, psychological part, Agent, Yawnbot, or
+    stable belief.
+  comment: >
+    An external or internal expression event attached to a published or private
+    projection. The original text, author or anonymous session, target
+    projection revision, timestamp, channel, and provisioning remain
+    recoverable where policy permits.
+  reaction: >
+    A low-bandwidth signal such as agree, disagree, slider position, like,
+    dislike, dwell, share, or click. It may indicate recognition, attention,
+    preference, affect, or willingness; it does not establish truth, quality,
+    causation, or principal values by itself.
+  feedback_event: >
+    An attributed event bearing on a question, answer, expression, move,
+    prediction, experience, or outcome. Feedback may be evidence, but only after
+    its relation, source access, scope, independence, and quality are modeled.
+  answer_frontier: >
+    A time-indexed ranked View of the answer candidates currently most relevant
+    to resolving a question or selecting the next warranted turn. It is not a
+    permanent containment hierarchy or a vote tally.
+  synthesis: >
+    An attributed integrator projection that states the current leading model,
+    meaningful alternatives, unresolved disagreements, and missing evidence.
+    It may compress plurality but may not erase it.
+
+question_answer_move_spine:
+  sequence:
+    - active_question_or_lacuna
+    - perspective_discovery_and_permission_filtering
+    - attributed_answer_candidates
+    - answer_relation_and_evidence_graph
+    - ranked_answer_frontier
+    - current_synthesis_with_disagreement
+    - next_warranted_turn_selection
+    - principal_dialogue_and_choice
+    - authorized_move_hold_or_publication
+    - consequence_and_external_response
+    - feedback_classification_as_proposal
+    - proof_and_calibration
+    - updated_questions_answers_moves_and_apertures
+  boundary: >
+    This is a phase and View inside the existing Crystallization, Learning, and
+    Execution loops. It is not a fourth canonical loop.
+
+perspective_origins:
+  may_include:
+    - principal_current_self_report
+    - principal_historical_self
+    - affected_human_participant
+    - invited_collaborator
+    - local_yawnbot_attention_claim
+    - connected_specialist_agent
+    - advocate_or_challenger_role
+    - external_commenter_or_audience_segment
+    - research_or_measurement_source
+    - model_simulated_perspective
+    - explicit_unknown_or_missing_perspective
+  identity_rule: >
+    A human, Agent, Yawnbot, role, and simulated perspective remain distinct.
+    A model may simulate what an absent perspective might say only when labeled
+    simulated, source-bounded, non-consensual-as-representation, and without
+    impersonation or authority.
+  yawnbot_rule: >
+    An existing Yawnbot may produce an attributed answer from its current Yawn
+    and accepted purpose. A generated voice does not become a Yawnbot unless it
+    independently earns persistent identity, memory, responsibility,
+    relationships, capability boundaries, authority, and an orientation/proof
+    loop.
+
+answer_candidate_contract:
+  required_fields:
+    - answer_candidate_id
+    - question_refs
+    - exact_content_or_source_ref
+    - asserted_by_or_simulated_by
+    - perspective_ref
+    - source_refs
+    - aperture_or_view_ref
+    - role_and_relationship_context
+    - epistemic_status
+    - applicability_scope_or_conditions
+    - confidence_or_unknown
+    - conviction_or_preference_if_expressed
+    - visibility_and_provisioning
+    - created_at
+    - effective_time
+    - lifecycle_status
+  recommended_fields:
+    - incentive_or_conflict_disclosure
+    - direct_experience_scope
+    - supporting_evidence_refs
+    - weakening_or_contradictory_evidence_refs
+    - independence_or_correlation_group
+    - affectedness_or_standing
+    - freshness
+    - what_would_change_it
+    - supersedes_or_is_superseded_by
+    - proposed_question_rank_impact
+    - proposed_move_rank_impact
+  separation_rule: >
+    Confidence, conviction, popularity, salience, affectedness, expertise,
+    evidence quality, and decision relevance answer different questions and may
+    not be collapsed into one score.
+
+answer_relation_graph:
+  relation_types:
+    - supports
+    - weakens
+    - contradicts
+    - reframes
+    - qualifies
+    - elaborates
+    - applies_under
+    - depends_on
+    - subsumes
+    - compatible_with
+    - addresses_different_scope
+    - asks_for_evidence
+    - unresolved_against
+  hierarchy_rule: >
+    Use parent/child answer structure only when one answer explicitly decomposes,
+    scopes, or subsumes another. Otherwise preserve a relational field. The UI
+    may rank answers for current relevance without pretending that rank is
+    ontological containment.
+
+answer_frontier_ranking:
+  hard_gates:
+    - safety
+    - rightful_authority_and_consent
+    - privacy_visibility_and_egress
+    - source_and_identity_integrity
+    - proof_integrity
+    - applicability_to_active_question
+  factors:
+    - evidential_support
+    - source_access_and_directness
+    - independence_and_correlation
+    - expertise_or_capability_fit
+    - affectedness_and_legitimate_standing
+    - scope_fit
+    - recency_and_freshness
+    - incentive_or_conflict_risk
+    - contradiction_strength
+    - expected_information_gain
+    - decision_relevance
+    - cost_of_further_inquiry
+  excluded_as_sole_basis:
+    - popularity
+    - number_of_agents
+    - emotional_intensity
+    - user_agreement
+    - model_eloquence
+    - engagement
+  output: >
+    Show the leading answer or synthesis only when warranted, meaningful
+    alternatives, material dissent, unresolved unknowns, and why the ordering
+    currently holds. A minority answer with strong direct evidence may outrank
+    a popular unsupported answer.
+
+question_hierarchy_and_move_derivation:
+  question_frontier: >
+    Rank questions by hard gates, expected orientation gain, information value,
+    relationship consequence, decision criticality, answer burden, and proof
+    relevance.
+  answer_frontier: >
+    For a selected question, rank or cluster answer candidates while preserving
+    conditionality, plurality, and disagreement.
+  move_frontier: >
+    Derive candidate moves from the current synthesis, accepted values and
+    constraints, authority, time, resources, and unresolved risk. Every material
+    move cites the questions, answer candidates, evidence, and assumptions that
+    support it.
+  uncertainty_rule: >
+    When the answer frontier is too uncertain, the highest-value move may be to
+    ask, measure, inspect, consult, publish a probe, or hold rather than choose a
+    substantive action.
+
+public_feedback_reintegration:
+  publication_binding:
+    requires:
+      - publication_or_expression_id
+      - yawn_and_revision_ref
+      - aperture_and_presentation_ref
+      - intended_audience_or_unknown
+      - intended_outcome_or_question
+      - provisioning_and_source_boundary
+      - published_at
+  preserve_raw_event:
+    fields:
+      - exact_feedback_or_content_addressed_source
+      - author_or_anonymous_session_ref
+      - channel_and_context
+      - target_projection_revision
+      - timestamp
+      - reaction_metrics_as_separate_signals
+      - collection_method_and_terms_or_permission_status
+  proposed_feedback_kinds:
+    - experience_report
+    - factual_claim_or_correction
+    - question_or_confusion
+    - preference_or_request
+    - value_or_norm_disagreement
+    - support_or_resonance
+    - objection_or_counterexample
+    - outcome_or_consequence_report
+    - manipulation_marketing_or_incentivized_input
+    - abuse_spam_or_irrelevant_input
+    - unknown
+  weighting_dimensions:
+    - relevance_to_published_question_or_claim
+    - direct_experience
+    - evidence_quality
+    - affectedness
+    - expertise_fit
+    - independence
+    - representativeness_or_sampling_limit
+    - incentive_and_conflict
+    - novelty
+    - adversarial_strength
+    - fit_to_intended_audience
+  update_targets_must_remain_distinct:
+    - canonical_model
+    - communication_or_presentation
+    - audience_model
+    - objective_or_value_proposal
+    - question_frontier
+    - move_or_experiment_frontier
+    - confidence_and_calibration
+    - no_change
+  rule: >
+    Public feedback first creates attributed proposals. It cannot silently
+    update principal values, objectives, canonical truth, Yawnbot policy,
+    reward functions, or effect authority.
+
+learning_and_reward_boundary:
+  preferred_description: >
+    Call the mechanism attributed feedback reintegration or
+    perspective-conditioned model revision unless a formal reward, policy, and
+    update rule actually exists.
+  separate_signals:
+    recognition: "the user says the voice resembles something they experience"
+    conviction: "the user currently endorses a proposition"
+    preference: "the user likes or chooses an option"
+    clarity: "the audience reports understanding"
+    resonance: "the audience experiences relevance or emotional fit"
+    execution: "the move occurred"
+    consequence: "something happened afterward"
+    proof: "evidence bears on the prediction or success condition"
+    value: "a rightful principal or affected participant evaluates an outcome"
+  reward_rule: >
+    Do not derive a reward function from likes, comments, agreement, retention,
+    or praise. Any policy update must name the objective, rightful principal,
+    evidence, affected parties, safety/authority gates, scope, and rollback or
+    falsifier.
+  creator_guard: >
+    The goal is not to eliminate negative comments or maximize positive ones.
+    Optimize the explicitly chosen outcome—such as clarity for an intended
+    audience, factual accuracy, useful action, or value alignment—while
+    preserving principled disagreement and minority evidence.
+
+adversarial_deliberation:
+  relation_to_advocate_challenger: >
+    Advocate and challenger are useful roles inside the perspective field. They
+    must be attributed and may be correlated when generated by one model.
+    External perspectives may supply genuine independent challenge, but social
+    disagreement is not automatically high-quality adversarial evidence.
+  no_forced_pair: >
+    Do not force every question into a binary position/counter-position. Some
+    answer fields contain several alternatives, complementary answers,
+    conditional branches, or a leading unknown. Do not manufacture symmetry.
+
+aperture_and_provisioning:
+  rule: >
+    The perspective field is a registered View. Each viewer sees only the
+    answer candidates, sources, comments, identities, and evidence permitted by
+    effective grants. A public comment may be visible while the private model it
+    influenced remains hidden.
+  perspective_aperture: >
+    Show what each participant could access when speaking. A comment based on a
+    public story should not be presented as if the commenter had access to the
+    private Yawn.
+  personal_presentation: >
+    One user may prefer voices, another a table, graph, debate, question tree,
+    or game-world scene. The underlying attributed records and operator
+    semantics remain identical.
+
+history_and_replay:
+  preserve:
+    - question_and_candidate_set_at_time
+    - answer_candidates_and_sources
+    - ranking_or_clustering_policy
+    - perspective_access_aperture
+    - principal_response
+    - publication_revision
+    - incoming_feedback
+    - proposed_and_accepted_updates
+    - consequence_and_proof
+  invariant: >
+    Replay reconstructs the recorded field and why the synthesis or move changed.
+    It may not regenerate historical voices with a newer model and present them
+    as the original deliberation.
+
+current_codebase_pressure_test:
+  useful_seeds:
+    - >
+      lib/agents/feed/surface-voice-generator.ts already generates position and
+      counter-position pairs, needs, tensions, and constraints.
+    - >
+      lib/agents/feed/feedback-reintegration-graph.ts already attempts to map
+      public feedback into lacunae and future artifacts.
+    - >
+      lib/agents/answer-agent processes public answers and connects them to
+      questions and axes.
+    - >
+      lib/agents/expression implements Expression(t)=f(Tree(t)), preserving the
+      important intuition that answers sharpen an expression.
+  required_corrections:
+    - >
+      Voice is currently over-specialized as internal psychology and often
+      assigned bias, need, emotion, threat, or IFS-part labels without user
+      ratification. These remain attributed hypotheses, never diagnoses.
+    - >
+      Position/counter pairs are forced even when the answer space is not binary
+      or evidentially symmetric.
+    - >
+      VoiceSource is only system or user and cannot represent named humans,
+      Yawnbots, Agents, historical selves, public commenters, providers,
+      research sources, or simulation status with adequate provenance.
+    - >
+      Agree/disagree and slider responses are described as accumulating
+      confidence in the self-model. Recognition, conviction, preference, model
+      confidence, and truth must be separated.
+    - >
+      SurfacePhaseContainer gates continuation on acknowledging a voice. A user
+      must be able to reject all candidates, remain unsure, hold, or continue
+      without false ratification.
+    - >
+      The control-level detector uses keyword heuristics to place input into a
+      fixed Regulation/Task/Goal/Identity/Meaning hierarchy. Treat this as a
+      transparent routing proposal, not ontology, diagnosis, or permanent user
+      type; preserve mixed levels and user override.
+    - >
+      Feedback reintegration uses brittle keyword rules such as "but" for
+      objection and "?" for confusion, and may create artifacts immediately.
+      Classification and artifact creation must remain proposals until governed.
+    - >
+      Positive feedback is described as validating a direction. It supports a
+      bounded claim about resonance with that respondent, not truth or outcome.
+    - >
+      The Answer Agent applies positive coherence deltas and even a positive
+      fallback when extraction fails. Feedback may increase, decrease, split,
+      dispute, or leave coherence unchanged; processing failure must not produce
+      epistemic credit.
+    - >
+      Expression synthesis produces one sharp coherent statement and increases
+      confidence with answer count and coherence. The expression is a View; it
+      must preserve dissent, unknowns, source scope, and disconfirming evidence,
+      and density may not substitute for accuracy.
+  migration_rule: >
+    Preserve existing rows and interfaces through compatibility adapters. Add
+    richer provenance and status before changing labels or confidence semantics.
+    Do not destructively reinterpret old reactions or generated voices as
+    ratified beliefs.
+
+acceptance_tests:
+  - "A voice can be shown without asserting that it is an Agent, Yawnbot, psychological part, or current belief."
+  - "An existing Yawnbot can submit an attributed answer candidate from its current Yawn and purpose."
+  - "A model-simulated absent human perspective is visibly simulated and cannot impersonate or authorize for that person."
+  - "A question can display three complementary answers and one unknown without forcing binary opposition."
+  - "Question priority, answer support, social popularity, user conviction, salience, and move leverage remain distinct."
+  - "A user's agree/slider response updates only the declared recognition, conviction, or preference record."
+  - "Rejecting every generated voice remains a valid outcome and creates a lacuna rather than blocking continuation."
+  - "A processing failure creates no positive coherence, confidence, or reward update."
+  - "Supportive but false feedback does not outrank a well-evidenced critical correction."
+  - "A high-quality minority counterexample remains visible despite low popularity."
+  - "Public feedback is bound to the exact publication revision and the commenter's available aperture."
+  - "A public comment creates a proposal, not an automatic canonical model or move mutation."
+  - "A move can cite the questions, answer candidates, evidence, values, constraints, and authority that derived it."
+  - "Replay explains why an answer or move changed without regenerating the historical field."
+  - "Optimizing communication clarity does not silently change the principal's values or underlying factual claim."
+  - "A public perspective field cannot reveal private evidence or enumerate hidden participants."
+
+comparative_tests:
+  conditions:
+    - single_model_answer
+    - forced_binary_voice_pair
+    - multi_answer_perspective_field
+    - independent_advocate_challenger
+    - public_feedback_reintegration
+  measures:
+    - correction_burden
+    - question_information_gain
+    - decision_understanding
+    - minority_evidence_retention
+    - calibration
+    - repeated_error_rate
+    - source_and_aperture_comprehension
+    - user_agreement_bias
+    - false_balance_rate
+    - automatic_mutation_rate
+    - cognitive_carrying_reduction
+
+falsifiers:
+  - "The perspective field adds performative voices without improving questions, moves, or calibration."
+  - "Users mistake generated voices for their own beliefs or other people's actual minds."
+  - "Social popularity dominates evidence or rightful values."
+  - "The system learns to seek praise, agreement, or engagement rather than the declared outcome."
+  - "Answer ranking hides consequential minority evidence."
+  - "Maintaining source, aperture, and incentive metadata costs more cognition than the field returns."
+  - "Public feedback leaks private context or creates unauthorized policy changes."
+
+links:
+  - core/orientation.yawn
+  - core/inquiry-selection.yawn
+  - core/projection-and-aperture.yawn
+  - interface/ranked-move-deliberation-v0.1.yawn
+  - interface/aperture-registry-and-provisioning-v0.1.yawn
+  - interface/yawnbot-agentic-embodiment-v0.1.yawn
+  - records/2026-09-05-voices-answers-and-public-feedback-clarification.yawn

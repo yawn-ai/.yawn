@@ -1,0 +1,273 @@
+id: records/2026-09-04-externalized-cognition-resurfacing-and-agency-loop
+title: "Externalized cognition, relevance resurfacing, and the theory carrying its builder"
+kind: clarification-record
+status: proposed-canonical-backfill
+recorded: 2026-09-04
+supersedes_history: false
+mutationAuthorized: false
+externalEffectsAuthorized: false
+
+source_observation: >
+  A long multi-model design dialogue converged on a narrower product center:
+  YAWN should help a person externalize cognition into a faithful, navigable,
+  dynamic, AI-native symbol system that preserves relationships, provenance,
+  uncertainty, time, and authority; frontier intelligence can then operate on
+  that structure with the person rather than forcing the person to repeatedly
+  reconstruct it from memory or prose.
+
+product_center:
+  statement: >
+    Externalize cognition into a navigable living symbol system without
+    pretending the symbol system is cognition or reality.
+  experience:
+    - "I can speak naturally."
+    - "Something that mattered becomes visible outside me."
+    - "I can inspect and correct it."
+    - "It persists across time and intelligence providers."
+    - "It reconnects to earlier models when they become relevant."
+    - "Intelligence can deliberate and act on that structure with me."
+    - "I do not need to hold the entire structure to remain its principal."
+
+relationship_language:
+  opening: "Here we are."
+  holding: "What can I hold for you?"
+  attention: "I think this matters now. Here's why. What do you see?"
+  agency: "What do you want to do?"
+  proof: "What happened?"
+  boundary: >
+    Shared orientation does not imply shared authority, values, identity, or
+    ownership. The rightful principal remains explicit.
+
+symbolization:
+  rule: >
+    Do not collapse all extracted structure into concepts. Ordinary expression
+    may yield people, Agents, concepts, events, claims, questions, commitments,
+    objectives, resources, constraints, evidence, lacunae, and relationships.
+  concept: >
+    A concept is a relatively stable reusable symbolic handle for a distinction
+    worth naming. The same concept may participate in many Yawns without being
+    duplicated.
+  distinction: >
+    A distinction is first an attributed differentiating operation or event;
+    it does not automatically become a new canonical primitive, Yawn, or bot.
+  relationship: >
+    Relationships situate symbolic handles and may carry roles, commitments,
+    expectations, authority, boundaries, dependencies, exchange, history,
+    tension, trust, evidence, and current state.
+  slash: >
+    A / B means inspect the modeled relationship at that coordinate. It does not
+    intrinsically mean containment, child, ownership, authority, or causation.
+
+conversation_compilation:
+  sequence:
+    - natural_expression
+    - attributed_observations
+    - provisional_symbolic_handles
+    - provisional_relationships
+    - interpretations_and_lacunae
+    - dialogue
+    - ratification_correction_or_hold_open
+    - model_update
+    - optional_persistent_orientation_loop
+  invariant: >
+    Human expression remains natural; the ontology performs decomposition. The
+    system should surface only the distinctions or relationships whose review
+    materially changes orientation, authority, or action.
+
+relevance_triggered_resurfacing:
+  provisional_name: "relevance-triggered resurfacing"
+  definition: >
+    A present observation, question, concept, relationship, person, objective,
+    decision, place, or event reactivates previously externalized cognition
+    because that prior structure may materially improve current orientation.
+  not_equal_to:
+    - generic_search
+    - reminder
+    - context_window_recall
+  preservation:
+    - original_source
+    - historical_epistemic_status
+    - historical_relationships
+    - what_changed_since
+  historical_identity_rule: >
+    Past Dave is not automatically present Dave. Resurfaced models may be
+    reaffirmed, revised, rejected, superseded, or left context-specific.
+  ranking_dimensions:
+    - semantic_relevance
+    - relationship_relevance
+    - active_lacuna
+    - current_objective
+    - expected_information_gain
+    - historical_importance
+    - evidence_quality
+    - freshness_or_decay
+    - prior_user_acceptance
+    - interruption_cost
+
+stop_bleeding_intelligence:
+  objective: >
+    Preserve what was discovered, why it mattered, what it related to, where it
+    came from, who believed it, what was inferred, what remained unresolved,
+    what changed it, what happened afterward, and when it could matter again.
+  failure_signal: >
+    Repeated user prompts equivalent to "didn't we already establish this?" are
+    evidence that the system is failing to carry durable cognition.
+
+holarchy:
+  preserve_current_contract: true
+  recursion_rule: >
+    A lacuna or subproblem earns its own Yawn only when resolving it requires an
+    independently meaningful orientation loop with persistent state,
+    relationships, movement or holding, and proof. A detected concept or
+    question alone does not create a bot.
+  bot_rule: >
+    Additional Agents or Yawnbots are justified by parallel cognition, distinct
+    capabilities, separate permission boundaries, independent responsibility,
+    or persistent work—not by noun count.
+  root_role: >
+    The root detects, routes, relates, protects, and proposes. Local Yawns hold
+    local frontiers; root orientation compares compressed attention claims
+    rather than flattening everything into one global backlog.
+
+attention_and_time:
+  thesis: >
+    A durable model that cannot know when to return something to attention is
+    incomplete.
+  attention_contract_fields:
+    - holding_state
+    - wake_conditions
+    - event_dependencies
+    - review_after
+    - deadline
+    - trajectory_if_ignored
+    - urgency
+    - interruption_cost
+    - preferred_surface
+    - escalation_policy
+    - stop_conditions
+  learning_signals:
+    - "not now"
+    - "you should have told me earlier"
+    - "do not interrupt me for this"
+    - "email me about things like this"
+    - "this matters more than you think"
+
+next_move_and_dialogue:
+  goal: >
+    Surface the smallest useful possibility set and identify the current
+    highest-leverage next move while preserving human choice and inspectability.
+  leverage_dimensions:
+    - expected_progress
+    - information_gain
+    - downstream_unlocks
+    - time_sensitivity
+    - reversibility
+    - cost
+    - risk
+    - friction
+    - dependencies
+    - confidence
+  rule: >
+    Leverage is an attributed hypothesis, not an oracle score. Material
+    recommendations expose why, why now, evidence, assumptions, alternatives,
+    uncertainty, and what would change the ranking.
+  disagreement: >
+    Human or Agent disagreement may reveal a missing concept, relationship,
+    evidence item, objective, authority boundary, ranking weight, or lacuna.
+    Preserve the discrepancy rather than smoothing it away.
+
+recursive_improvement:
+  seed: >
+    Recommendation -> rationale -> dialogue -> discrepancy -> classified update
+    -> move -> consequence -> proof -> prediction error -> better future model.
+  widening_scope:
+    - episode
+    - local_yawn
+    - person_model
+    - relationship
+    - reusable_yawn
+    - canonical_ontology
+  rule: >
+    Evidence and rightful authority requirements increase as an update widens in
+    scope. Local learning is cheap; canonical mutation is expensive.
+
+simulation_and_calibration:
+  role: >
+    Simulation is a bounded verification tool for consequential choices, not the
+    center of the system. Use premortems, counterfactuals, assumption
+    perturbation, and adversarial review to challenge recommendations.
+  boundaries:
+    - "simulated consequence != observed consequence"
+    - "model agreement != independent evidence"
+    - "prediction != proof"
+  calibration: >
+    Record predicted outcomes and confidence before meaningful moves, then score
+    them against observed consequence and proof so future confidence can become
+    empirically calibrated.
+
+health_pressure_test:
+  purpose: >
+    Health is a deliberately difficult arena for testing whether YAWN improves
+    orientation without creating diagnosis theater, privacy leakage, overload,
+    or silent authority transfer.
+  test_goal: >
+    Help a user externalize a confusing health situation into an inspectable
+    model, preserve sensitive longitudinal information safely, understand major
+    uncertainties and competing branches, choose high-information or
+    professional-care moves, and reduce cognitive overwhelm.
+  rules:
+    - "probability is not diagnosis or truth"
+    - "prefer information moves when they reduce uncertainty more safely than intervention"
+    - "preserve source, supporting and contradictory evidence, uncertainty, and authority"
+    - "use least-necessary disclosure and provider-independent durable state"
+  success_experience: >
+    The health arena may remain complex while the user no longer has to hold it
+    as one undifferentiated problem; YAWN holds the branches and returns only
+    what currently deserves attention.
+
+value_hypothesis:
+  claim: >
+    A relationship-aware, provenance-preserving, holonic external symbol system
+    with frontier intelligence, relevance-triggered resurfacing, explainable
+    attention allocation, path dialogue, and proof-based calibration can
+    increase effective agency while reducing cognitive carrying cost.
+  status: predicted
+  falsifiers:
+    - "maintaining YAWN costs more cognition than it returns"
+    - "resurfacing is frequently irrelevant or misses important prior cognition"
+    - "dialogue corrections do not reduce repeated errors"
+    - "ranked moves do not improve orientation or useful action"
+    - "provenance and authority boundaries degrade through automation"
+
+success_criteria:
+  - "Natural speech can become useful symbolic structure without manual ontology entry."
+  - "The user can navigate and cheaply correct that structure."
+  - "Stable symbolic identity survives conversations, time, and provider changes."
+  - "Important prior cognition resurfaces when relevant without manual search."
+  - "The user can stop rehearsing important state merely to avoid losing it."
+  - "Only a small explainable set of attention claims is surfaced at once."
+  - "Recommendations support dialogue before adoption."
+  - "Choice, holding, rejection, and delegation remain distinct."
+  - "Consequences and proof update future confidence."
+  - "The user spends progressively less time maintaining the system itself."
+  - "The user can open the root Yawn, trust the current orientation, and make the next highest-leverage move."
+
+primary_test:
+  source: "the multi-model 2026-09-03/04 design conversation"
+  instruction: >
+    Ingest the conversation with exact attribution, reconcile extracted symbols
+    and claims against canonical YAWN rather than duplicating them, preserve
+    important distinctions and lacunae, and prove that the user can later
+    recover the right piece of this shared work when it becomes relevant.
+  success_question: >
+    Can the user stop mentally maintaining the thread without losing the
+    distinctions that matter?
+
+links:
+  - core/orientation.yawn
+  - core/holarchy.yawn
+  - core/objective-holon.yawn
+  - core/projection-and-aperture.yawn
+  - core/RELATIONSHIP_FIRST_AGENT_ARENA.yawn
+  - interface/yawn-temporal-header-v0.1.yawn
+  - records/2026-09-03-yawnbot-intelligence-container-clarification.yawn
