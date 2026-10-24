@@ -19,6 +19,11 @@ separate contracts.
 This is an additive experiment, not the universal schema for all `.yawn`
 documents. Existing v1 contracts and Agency Holarchy 0.2 remain unchanged.
 
+The additive [Runtime Action host contract](runtime-host-contract.md) provides
+two-stage structural/action resolution, separate identities, dynamic host
+checks, private disclosure and golden conformance. It preserves this 0.1
+grammar and the existing all-or-nothing resolver as a compatibility baseline.
+
 ## Implementation boundary
 
 The repository provides a [JSON Schema](../schemas/runtime-profile.v0.1.schema.json),

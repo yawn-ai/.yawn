@@ -30,6 +30,8 @@ and historical material so each can be read with the right level of trust.
 8. Try [Runtime Profile 0.1](../spec/runtime-profile.md) and the
    [developer guide](development.md) for validated configuration and explicit
    ancestry resolution.
+   Connect a bounded path with the [host integration guide](runtime-host-integration.md)
+   and [Skill migration guide](skill-migration.md).
 9. Read [serialization and compatibility](../spec/serialization.md).
 10. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
 

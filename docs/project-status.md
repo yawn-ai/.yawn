@@ -7,6 +7,21 @@ YAWN is public, MIT licensed, maintainer-led, and under active development.
 Parts of the protocol are stable enough to build against; the integrated
 ontology and document format are still a working draft.
 
+## Runtime contract stages
+
+| Stage | Current evidence |
+| --- | --- |
+| Runtime Profile 0.1 syntax and composition | Strict schema, bounded parser, ancestry and lifecycle reference tests |
+| Structural/action host contract | Additive `yawn.runtime-action.v0.1` implementation and offline adversarial tests |
+| Interoperability | Language-neutral corpus with exact expected JSON, issue codes and SHA-256 digests |
+| Disclosure | Default-deny record projection with private-rule enforcement tests; production policy remains host-owned |
+| Reuse | Explicit private-package exports and an exact-file vendoring contract |
+| Live host admission | Requires consuming-host adapter, authenticated store, concurrency/fence and delivery/outcome evidence; this protocol suite does not establish it |
+
+The [host contract](../spec/runtime-host-contract.md) preserves Runtime Profile
+0.1. Proposed skill I/O schemas, validity windows, richer privacy and MCP schema
+pins remain future versioned work rather than silent 0.1 changes.
+
 ## What is stable now
 
 - `@yawn/contracts` v1 constitutional invariants and generated TypeScript

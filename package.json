@@ -3,14 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./runtime-profile/v0.1": "./lib/runtime-profile-v0.1.mjs",
+    "./runtime-action/v0.1": "./lib/runtime-action-v0.1.mjs",
+    "./runtime-rule-events/v0.1": "./lib/runtime-rule-events-v0.1.mjs",
+    "./conformance/runtime-action/v0.1": "./lib/runtime-action-conformance-v0.1.mjs",
+    "./schemas/runtime-profile.v0.1.schema.json": "./schemas/runtime-profile.v0.1.schema.json",
+    "./fixtures/runtime-action-golden.v0.1.json": "./fixtures/runtime-action-golden.v0.1.json"
+  },
   "scripts": {
     "generate:inquiry-selection-receipt": "node scripts/generate-inquiry-selection-receipt-v0.1.mjs",
     "generate:articulation-floor": "node scripts/generate-articulation-floor-v0.1.mjs",
     "validate:runtime-profile": "node scripts/validate-runtime-profile-v0.1.mjs",
+    "test:runtime-action": "node --test tests/runtime-action-v0.1.test.mjs",
     "test": "npm run validate && node --test --test-concurrency=1 tests/*.test.mjs",
     "validate": "node scripts/validate-canonical-extension.mjs && node scripts/validate-state-target-v1.mjs && node scripts/validate-agency-holarchy-v0.2.mjs && node scripts/validate-objective-holon-v0.1.mjs && node scripts/validate-orientation-map-v0.1.mjs && node scripts/validate-inquiry-selection-receipt-v0.1.mjs && node scripts/validate-articulation-floor-v0.1.mjs && node scripts/validate-runtime-profile-v0.1.mjs && node scripts/validate-mental-models.mjs && node scripts/generate-manifest.mjs && node scripts/validate-proof-refs.mjs && node scripts/render-bot-state.mjs --check"
   },
-  "devDependencies": {
+  "dependencies": {
     "ajv": "8.20.0",
     "yaml": "2.9.1"
   }
