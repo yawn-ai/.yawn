@@ -24,7 +24,7 @@ leaving an unrelated comparison available.
 | Action-specific host preflight | Reference module, registered programs, current host callbacks and tests |
 | Private disclosure and blockers | Default-deny projection; no eligible method does not prove impossibility |
 | Cross-host interoperability | Committed language-neutral golden outputs, issue codes and digests |
-| Bounded consuming-host integration | One local Movement comparison implemented and tested in [YAWN.bot PR395](https://github.com/yawn-ai/yawn.bot/pull/395); [host evidence](docs/runtime-host-integration.md#consuming-host-evidence) recorded, app main merge pending |
+| Bounded consuming-host integration | One local Movement comparison implemented, tested and merged in [YAWN.bot PR395](https://github.com/yawn-ai/yawn.bot/pull/395); [bounded host evidence](docs/runtime-host-integration.md#consuming-host-evidence) recorded |
 | Production enablement and live execution | Hosted migration, production enablement and observed live execution remain unverified |
 
 [Build one bounded path](docs/runtime-host-integration.md) ·

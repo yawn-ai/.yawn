@@ -16,7 +16,7 @@ ontology and document format are still a working draft.
 | Interoperability | Language-neutral corpus with exact expected JSON, issue codes and SHA-256 digests |
 | Disclosure | Default-deny reference projection; bounded consuming-host Rules/privacy tests attributed to PR395; production policy remains host-owned |
 | Reuse | Explicit private-package exports and an exact-file vendoring contract |
-| Bounded consuming-host admission | Local function-only Movement comparison implemented and tested in [YAWN.bot PR395](https://github.com/yawn-ai/yawn.bot/pull/395), with PostgreSQL admission fence and separate admission/result receipts; app main merge pending |
+| Bounded consuming-host admission | Local function-only Movement comparison merged in [YAWN.bot PR395](https://github.com/yawn-ai/yawn.bot/pull/395), with PostgreSQL admission fence and separate admission/result receipts |
 | Host conformance and browser evidence | Same ten golden vectors, five fresh Chromium cases with zero skips/retries, twelve PGlite and fifteen native PostgreSQL cases; [attributed scope and source](runtime-host-integration.md#consuming-host-evidence) |
 | Production enablement and live execution | Hosted migration, production enablement and observed live execution remain unverified |
 
@@ -109,8 +109,8 @@ Draft artifacts are useful for experiments but may change after RFC review.
     `movement.compare` through the function-only `yawn.movement.compare@1`
     program. Its [bounded evidence](runtime-host-integration.md#consuming-host-evidence)
     covers authenticated governance, primary ancestry, private Rules disclosure,
-    current admission fencing and separate receipts. App main merge is pending
-    at the recorded checkpoint. MCP tool-schema pins, further live adapters and
+    current admission fencing and separate receipts. The app integration merged
+    at `ad4cf0dbe24b0b3d8f06041c24e7c33bead02608`. MCP tool-schema pins, further live adapters and
     their versioned contracts remain future work; hosted migration, production
     enablement and observed live execution have not been established.
 

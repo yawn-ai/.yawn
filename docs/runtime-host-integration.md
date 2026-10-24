@@ -9,8 +9,10 @@ It does not add the proposed 0.2 schema fields.
 
 [YAWN.bot PR395](https://github.com/yawn-ai/yawn.bot/pull/395) implements and
 tests one bounded consuming-host path at recorded source commit
-`48db88a44154945bca29aaaf21b7ca5ae5112b93`. App main merge remains pending at
-this checkpoint. The evidence below is attributed to that pull request and its
+`48db88a44154945bca29aaaf21b7ca5ae5112b93`. It merged to app main at
+`ad4cf0dbe24b0b3d8f06041c24e7c33bead02608`; the final follow-up changes only
+the tooling test's expected pin count from eleven to eighteen. The evidence
+below is attributed to that pull request and its
 task verification; it does not expose private source, fixture data or account
 records.
 
