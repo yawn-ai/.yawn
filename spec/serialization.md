@@ -49,6 +49,25 @@ Portable `.yawn` documents SHOULD use a conservative YAML 1.2 subset:
 Parsers MUST treat content as data and MUST NOT execute commands embedded in a
 `.yawn` document.
 
+## Declarative runtime profiles
+
+A document MAY declare the opt-in
+[`yawn.runtime-profile.v0.1`](runtime-profile.md) profile. Its fields are
+declarative data with versioned semantics. They are not embedded source code
+and do not turn the legacy full template into a universal runtime schema.
+
+An implementation MUST NOT execute arbitrary commands, YAML tags, module
+paths, or scripts merely because they occur in a record. A code-enforced field
+requires a trusted, recognized semantic handler. Unknown handlers MUST leave
+dependent configuration unresolved; they MUST NOT silently become model
+advice. Skill, tool, connector, and secret references do not grant authority to
+use their targets.
+
+The reference runtime-profile parser accepts only the documented data subset;
+it is not a general YAML processor. Canonical JSON is an unambiguous authoring
+and interchange option. A host must reject duplicate keys and unsupported
+syntax rather than interpreting them differently at separate ingestion points.
+
 ## Envelope
 
 New protocol records SHOULD declare:
@@ -119,6 +138,28 @@ escape hatch. Implementations MUST preserve unknown namespaced extensions even
 when they cannot interpret them.
 
 ## Migration
+
+Runtime Profile 0.1 uses top-level `primary_parent_id` for explicit ancestry.
+Existing executable modules retain their own versioned field names. Migration
+is an explicit operation selected by source version, not a permissive alias
+search:
+
+| Source version | Source field | Runtime-profile output |
+| --- | --- | --- |
+| `agency-holarchy.v0.2` | `primaryParentYawnRef` | `primary_parent_id` |
+| Human `0.2-draft` | `primary_parent_yawn_ref` or `context.primary_parent_yawn_ref` | `primary_parent_id` |
+| `yawn.app-legacy.v0` | `primary_parent`, `parent_coordinate`, or their forms under `context` | `primary_parent_id` |
+
+Conflicting supplied parent representations MUST be rejected. Equivalent
+values may be normalized with a migration warning. A migration MUST NOT infer
+parent identity from a path, URL, slash address, title, or lateral link. The
+adapter needs a stable ID, or a host-verified identity mapping. Older templates
+that place structural data elsewhere require an explicit extraction step; a
+field with a familiar name is not enough to select a source grammar.
+
+See [Runtime Profile migration](runtime-profile.md#compatibility-and-migration)
+for the bounded compatibility contract. Agency Holarchy 0.2 schemas and
+runtime behavior are unchanged by the new profile.
 
 Every breaking schema change requires:
 

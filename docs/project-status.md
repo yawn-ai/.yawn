@@ -1,6 +1,7 @@
 # Project status
 
-Last verified: 2026-08-27
+Runtime-profile addition reviewed: 2026-10-24. Other status statements below
+retain their earlier verification boundary of 2026-08-27.
 
 YAWN is public, MIT licensed, maintainer-led, and under active development.
 Parts of the protocol are stable enough to build against; the integrated
@@ -37,6 +38,10 @@ packages. Security or correctness fixes may still require additive changes.
 - Articulation Floor 0.1: sealed predictions written before a question renders,
   reason-checked answers, a per-axis floor that replays from its ledger, and a
   readout that refuses a verdict below ten closed records
+- Runtime Profile 0.1: an opt-in configuration schema, versioned ancestry
+  migration, semantic hashing, lifecycle checks, and a reference resolver with
+  provenance and explicit unresolved results; see its
+  [implementation boundary](../spec/runtime-profile.md#implementation-boundary)
 - the exact portable `.yawn` document envelope
 - cross-module canonical hashing and reference resolution beyond the new
   Observation/record-subject slice
@@ -58,8 +63,9 @@ Draft artifacts are useful for experiments but may change after RFC review.
    modules. A future unified package must preserve both rather than silently
    selecting one.
 3. JSON-compatible YAML Observation exports now have a reference implementation;
-   human-authored YAML parsing, broader schema resolution, and whole-repository
-   conformance still need a shared implementation.
+   Runtime Profile 0.1 adds a bounded parser/resolver for its own profile.
+   Broader human-authored document parsing, cross-module schema resolution, and
+   whole-repository conformance still need a shared implementation.
 4. Privacy/egress and multi-principal authority require more executable tests.
 5. Merge, split, and reparent operations need field evidence before thresholds
    become normative.
@@ -81,6 +87,11 @@ Draft artifacts are useful for experiments but may change after RFC review.
     a unified aggregate and cross-document resolver remain future work.
 12. Orientation Map 0.1 implements deterministic heuristic ranking, not a
     calibrated psychometric instrument or proof of one universal question order.
+13. Runtime Profile 0.1 does not ship an execution adapter or establish live
+    YAWN.bot integration. A host must authenticate rule/adoption references,
+    maintain trusted handler and capability registries, filter disclosures,
+    and fence current grants and revisions at final dispatch admission.
+    Reference resolution alone is not evidence that these controls exist.
 
 ## Historical naming migration
 

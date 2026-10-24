@@ -23,12 +23,15 @@ and historical material so each can be read with the right level of trust.
 5. Compile a signal into an [Objective Holon Draft 0.1](../spec/objective-holons.md).
 6. Resolve adaptive inquiry with the [Orientation Map Draft 0.1](../schemas/orientation-map.v0.1.schema.json)
    and its [closed selection receipt](../schemas/inquiry-selection-receipt.v0.1.schema.json).
-6b. Seal a prediction before a question renders and measure the floor with the
+7. Seal a prediction before a question renders and measure the floor with the
    [Articulation Floor Draft 0.1](../schemas/articulation-floor.v0.1.schema.json)
    and its [governing record](../core/articulation-floor.yawn); the
    [Polanyi packet](../question-packets/polanyi.yawn) is the worked example.
-7. Read [serialization and compatibility](../spec/serialization.md).
-8. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
+8. Try [Runtime Profile 0.1](../spec/runtime-profile.md) and the
+   [developer guide](development.md) for validated configuration and explicit
+   ancestry resolution.
+9. Read [serialization and compatibility](../spec/serialization.md).
+10. Apply the [canonical naming and transcript-normalization contract](../core/canonical-extension.yawn) before creating records.
 
 ### I want to understand the theory
 

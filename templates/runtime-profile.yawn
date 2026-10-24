@@ -1,0 +1,53 @@
+# Working Draft 0.1. This is portable configuration data, never a grant.
+# Replace example IDs and source references with verified host identities.
+# Parse/validate before resolution; see docs/development.md.
+record_shape: spec-version
+spec_version: yawn.runtime-profile.v0.1
+kind: yawn
+id: yawn:example
+revision: 1
+title: "A bounded draft task"
+primary_parent_id: null # Explicit root; a child names one stable yawn: ID.
+
+runtime:
+  instructions:
+    - id: preserve-uncertainty
+      text: "Distinguish source claims, inferences, unknowns, and outcome evidence."
+      effect: model # Model guidance is not code enforcement or permission.
+      source_refs: [source:example]
+  rules:
+    - id: review-before-sharing
+      revision: 1
+      type: permission_requirement
+      state: proposed # Does not govern until adopted through an authorized event.
+      statement: "Obtain current authorization before sharing the draft externally."
+      scope:
+        descendants: true
+        actions: [send]
+      enforcement:
+        mode: human # The host must obtain and record review when adopted.
+      source_refs: [source:example]
+      # An adopted rule needs an adoption_ref verified by the host.
+  skills: [] # Enabled skills need a version, digest, and host trust verification.
+  capabilities: [] # A binding always requires current grants at admission.
+  execution:
+    max_model_calls: 8
+    max_paid_cost_microusd: 0
+    max_concurrency: 1
+    max_retries: 1
+    timeout_ms: 60000
+    stop_semantics: fenced_admission # Host obligation; no adapter ships here.
+  verification:
+    required: []
+  privacy:
+    model_context:
+      mode: permitted_only
+    egress:
+      default: deny
+    secrets:
+      inline: forbidden
+
+provenance:
+  source_refs: [source:example]
+lateral_relations: [] # Evidence/coordination only; never governing ancestry.
+extensions: {}

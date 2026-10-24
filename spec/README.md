@@ -1,7 +1,7 @@
 # YAWN specification
 
 Status: **Working Draft 0.2**
-Last updated: 2026-09-30
+Last updated: 2026-10-24
 
 This directory is the human-readable specification for `.yawn`: an open
 protocol for inspectable relationships, orientation, and agency.
@@ -25,6 +25,7 @@ It does not claim that the record is the world.
 | Orientation map | Nine-axis semantic coverage, adaptive inquiry ranking, closed selection receipts, and presentation hypotheses | [Draft 0.1 schema](../schemas/orientation-map.v0.1.schema.json) |
 | Relationship Core | Stable relationship identity, time-indexed participation, directional slash addresses, and persisted inference envelopes | [Draft 0.1 contracts](../schemas/relationship.v0.1.schema.json) |
 | Articulation floor | A prediction sealed before a question renders, the principal's answer scored against it, the sealed reason checked, and a rolling per-axis floor | [Draft 0.1 schema](../schemas/articulation-floor.v0.1.schema.json) |
+| Runtime profile | Portable configuration, explicit ancestry, adopted-rule composition, and semantic revisions | [Draft 0.1 schema](../schemas/runtime-profile.v0.1.schema.json) and [reference semantics](runtime-profile.md) |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
 | View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
 
@@ -34,6 +35,11 @@ future unified protocol. Relationship Core 0.1 is likewise additive and keeps
 the Agency Holarchy Structural Relation, execution relationship, and
 interpersonal template as distinct specialized constructs. Where prose and an executable schema disagree, treat
 that as a lacuna and open an issue; do not invent a silent reconciliation.
+
+Runtime Profile 0.1 is a separate, opt-in draft. It does not replace those
+modules or validate every existing human document. Its resolver produces
+configuration, while adoption verification, capability binding, privacy
+projection, current grants, and dispatch admission remain host obligations.
 
 ## Normative core
 
@@ -75,6 +81,8 @@ can be tested.
 - [Objective holons](objective-holons.md): compile, ratify, bind, activate, and spawn
 - [Nine questions](questions.md): the human orientation projection
 - [Serialization](serialization.md): identifiers, extensions, time, and hashes
+- [Runtime profile](runtime-profile.md): portable configuration, migration,
+  lifecycle, composition, and the boundary between resolution and execution
 - [Observation schema](../schemas/observation.v1.schema.json): source-backed state valid before Yawn promotion
 - [Delegated execution](../schemas/execution-relationship.v1.schema.json): revocable owner authority that cannot be self-granted by an agent or model output
 - [Relationship Core](../core/relationship.yawn): stable relationship identity,

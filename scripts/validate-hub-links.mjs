@@ -17,6 +17,7 @@ const markdownFiles = [
   "docs/README.md",
   "docs/quickstart.md",
   "docs/project-status.md",
+  "docs/development.md",
   "docs/repository-map.md",
   "docs/projections/README.md",
   "docs/research-basis.md",
@@ -28,9 +29,11 @@ const markdownFiles = [
   "spec/objective-holons.md",
   "spec/questions.md",
   "spec/serialization.md",
+  "spec/runtime-profile.md",
   "rfcs/README.md",
   "rfcs/0001-agency-holarchy-working-draft.md",
   "rfcs/0003-objective-holon-and-yawn-bot-lifecycle.md",
+  "rfcs/0006-runtime-profile-v0.1.md",
   "adr/README.md",
 ];
 

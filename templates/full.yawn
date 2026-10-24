@@ -11,6 +11,10 @@ updated: ""
 # Draft 0.2 structural context. These references connect this human-readable
 # document to the executable Agency Holarchy module without claiming that this
 # legacy full template is already the one complete .yawn serialization.
+# This template retains its historical protocol_context grammar. Runtime Profile
+# 0.1 uses top-level primary_parent_id; see templates/runtime-profile.yawn and
+# spec/runtime-profile.md. Migration requires explicit source extraction and
+# conflict checks, never a guessed parent from a title, path, or array order.
 protocol_context:
   agent_space_ref: ""
   arena_ref: "" # Arena bounds relevance; it is not the world or this Yawn.
@@ -262,7 +266,7 @@ agent:
     - "silently mutate memory or canon"
 
 coherence:
-  parent_yawns: [] # Legacy compatibility only; migrate the first to primary_parent_yawn_ref.
+  parent_yawns: [] # Legacy evidence only; verify one explicit parent before migration.
   child_yawns: [] # Derived index in Draft 0.2, not canonical containment data.
   supports: []
   conflicts_with: []

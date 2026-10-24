@@ -70,6 +70,34 @@ a parent.
 - Proof may roll up only when the parent declares how child proof satisfies a
   parent condition.
 
+### Runtime configuration inheritance
+
+[Runtime Profile 0.1](runtime-profile.md) resolves configuration only through
+the explicit primary-parent backbone. It uses `primary_parent_id` in its new
+grammar; Agency Holarchy 0.2 keeps `primaryParentYawnRef` in its executable
+schema. The [versioned migration contract](serialization.md#migration) bridges
+those forms without changing either historical grammar in place.
+
+Only adopted rules can govern. Proposed, superseded, and retired rules remain
+inspectable history. Defaults specialize at the nearest applicable descendant
+with the same rule ID, type, and action scope;
+applicable boundaries compose. Compatible numeric upper limits take the
+minimum rather than allowing a descendant to raise an ancestor's limit.
+Permission and verification requirements accumulate as declared by the profile.
+A requirement can inherit; a permission grant cannot appear through
+inheritance. Skill availability likewise does not confer the capabilities a
+skill requires.
+
+Same-ID type conflicts and default action-scope conflicts hold resolution
+rather than replacing inherited requirements with a different kind of rule.
+
+Lateral relations may contribute permitted evidence, dependency, coordination,
+or proof. They MUST NOT import governing rules into runtime-profile resolution.
+Neither source text nor an answered norm becomes an adopted rule merely
+because it is relevant. Hosts must verify adoption and reference authority
+before admitting an effect, and must filter any configuration explanation to
+the viewer's disclosure permissions.
+
 ## Yawn.bot inheritance and spawning
 
 The Yawn holarchy and bot runtime tree are related but not identical. A Yawn

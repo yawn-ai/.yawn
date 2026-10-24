@@ -8,6 +8,15 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Runtime Profile Working Draft 0.1: a strict configuration schema, bounded
+  YAML/JSON parser, versioned parent normalization, rule-adoption lifecycle,
+  semantic hashes, and explicit-ancestry resolver with host trust checks;
+  synthetic nested scheduling fixtures, adversarial tests, a template, an RFC,
+  and a developer guide. This adds no runtime effect authority or execution
+  adapter and does not change the stable v1 contracts.
+- `npm run validate:runtime-profile` for data/shape conformance of the profile
+  fixtures, authoring template, or explicit input files.
+
 - Relationship Core Working Draft 0.1: generic Relationship, Participation,
   Relation Address, and provenance-and-replay inference-envelope contracts; a source-safe `Dave / Christianity`
   conformance record and page; and a Relationship View contract that keeps
