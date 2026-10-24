@@ -145,6 +145,7 @@ schema_links:
   participation_v0_1: schemas/participation.v0.1.schema.json
   relation_address_v0_1: schemas/relation-address.v0.1.schema.json
   relationship_v0_1: schemas/relationship.v0.1.schema.json
+  runtime_profile_v0_1: schemas/runtime-profile.v0.1.schema.json
 
 spec_links:
   root: spec/README.md
@@ -155,6 +156,7 @@ spec_links:
   objective_holons: spec/objective-holons.md
   questions: spec/questions.md
   serialization: spec/serialization.md
+  runtime_profile: spec/runtime-profile.md
 
 documentation_links:
   root: docs/README.md
@@ -316,6 +318,7 @@ template_links:
   answer: templates/answer.yawn
   floor: templates/floor.yawn
   seal: templates/seal.yawn
+  runtime_profile: templates/runtime-profile.yawn
 
 example_links:
   stuck: examples/stuck.yawn
@@ -351,6 +354,7 @@ fixture_links:
   articulation_floor_v0_1: fixtures/articulation-floor.v0.1.json
   relationship_core_v0_1_invalid: fixtures/relationship-core.v0.1.invalid.json
   relationship_core_v0_1: fixtures/relationship-core.v0.1.json
+  runtime_profile_v0_1: fixtures/runtime-profile.v0.1.json
 
 governance_links:
   governance: GOVERNANCE.md

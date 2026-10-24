@@ -1,0 +1,121 @@
+{
+  "$comment": "Synthetic conformance data only. Adoption event references and the skill digest do not identify verified real authority or an installed skill. Host callbacks in tests establish fixture assumptions only; production hosts must verify their own event and artifact stores.",
+  "profiles": [
+    {
+      "spec_version": "yawn.runtime-profile.v0.1",
+      "kind": "yawn",
+      "id": "yawn:shop",
+      "revision": 1,
+      "title": "Shop",
+      "primary_parent_id": null,
+      "purpose": {
+        "text": "Run the shop while respecting customer contact permissions.",
+        "status": "adopted",
+        "source_refs": ["source:shop-purpose"]
+      },
+      "runtime": {
+        "rules": [
+          {
+            "id": "customer-contact-approval",
+            "revision": 1,
+            "type": "permission_requirement",
+            "state": "adopted",
+            "statement": "Customer contact requires an appropriate current grant.",
+            "scope": { "actions": ["customer.contact"], "descendants": true },
+            "enforcement": {
+              "mode": "code",
+              "handler": "yawn.require-grant@1",
+              "parameters": { "grant": "shop.customer-contact" }
+            },
+            "adoption_ref": "event:adopt-customer-contact-rule",
+            "source_refs": ["source:shop-contact-rule"]
+          }
+        ],
+        "execution": {
+          "max_model_calls": 5,
+          "max_paid_cost_microusd": 500000,
+          "max_concurrency": 2,
+          "max_retries": 1,
+          "timeout_ms": 120000,
+          "stop_semantics": "fenced_admission"
+        },
+        "privacy": {
+          "model_context": { "mode": "permitted_only" },
+          "egress": { "default": "deny" },
+          "secrets": { "inline": "forbidden" }
+        }
+      },
+      "provenance": { "source_refs": ["source:shop-purpose"], "protocol_manifest_ref": "manifest:yawn-protocol:fixture" }
+    },
+    {
+      "spec_version": "yawn.runtime-profile.v0.1",
+      "kind": "yawn",
+      "id": "yawn:shop:scheduling",
+      "revision": 2,
+      "title": "Improve scheduling",
+      "primary_parent_id": "yawn:shop",
+      "runtime": {
+        "instructions": [
+          {
+            "id": "preserve-participant-words",
+            "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+            "effect": "model",
+            "source_refs": ["policy:yawn:shared-orientation"]
+          }
+        ],
+        "rules": [
+          {
+            "id": "evening-preference",
+            "revision": 1,
+            "type": "default",
+            "state": "adopted",
+            "statement": "Prefer schedules that preserve evenings.",
+            "scope": { "descendants": true },
+            "enforcement": { "mode": "model" },
+            "adoption_ref": "event:adopt-evening-preference",
+            "source_refs": ["source:scheduling-preference"]
+          }
+        ],
+        "execution": { "max_model_calls": 3, "max_concurrency": 1, "stop_semantics": "fenced_admission" }
+      },
+      "lateral_relations": [{ "type": "informs", "target_id": "yawn:customer-feedback" }],
+      "provenance": { "source_refs": ["source:scheduling-request"] }
+    },
+    {
+      "spec_version": "yawn.runtime-profile.v0.1",
+      "kind": "yawn",
+      "id": "yawn:shop:scheduling:draft",
+      "revision": 1,
+      "title": "Draft and test a booking arrangement",
+      "primary_parent_id": "yawn:shop:scheduling",
+      "runtime": {
+        "skills": [
+          {
+            "id": "draft-schedule",
+            "source": {
+              "kind": "agent_skill",
+              "ref": "skill:draft-schedule",
+              "version": "1.4.2",
+              "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+            },
+            "activation": "manual",
+            "trust": "reviewed",
+            "config": { "alternatives": 2 },
+            "capabilities": ["research.read"]
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "research.read",
+            "effect": "read",
+            "binding": { "protocol": "mcp", "server_ref": "connector:research", "operation": "tools/call", "tool": "search" },
+            "authorization": { "mode": "current_grant_required" }
+          }
+        ],
+        "verification": { "required": [{ "id": "artifact-exists", "mode": "code", "handler": "yawn.verify.artifact-exists@1" }] }
+      },
+      "provenance": { "source_refs": ["source:booking-draft-request"] },
+      "extensions": { "ai.yawn.fixture": { "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle." } }
+    }
+  ]
+}

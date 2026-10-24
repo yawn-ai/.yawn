@@ -31,6 +31,7 @@ holds:
   - structural routing proposal template
   - structural change receipt template
   - objective holon template
+  - runtime profile template (additive Working Draft 0.1)
   - mental model template (questions first)
   - orientation_inquiry projection fields over an independent orientation_map
   - seal, answer, and floor templates (the articulation-floor loop)
@@ -64,6 +65,7 @@ record_shapes:
     floor.yawn: header
     arena.yawn: spec-version
     objective-holon.yawn: spec-version
+    runtime-profile.yawn: spec-version
     routing-proposal.yawn: spec-version
     structural-change-receipt.yawn: spec-version
     turn.yawn: spec-version

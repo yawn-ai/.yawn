@@ -77,6 +77,7 @@ yaml_files = [
     "templates/routing-proposal.yawn",
     "templates/structural-change-receipt.yawn",
     "templates/objective-holon.yawn",
+    "templates/runtime-profile.yawn",
     "templates/orientation-shape.yawn",
     "examples/nested-agent-arena.yawn",
     "examples/waiting-turn.yawn",

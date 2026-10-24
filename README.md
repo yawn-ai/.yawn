@@ -64,6 +64,29 @@ Relationship it traverses.
 [Write your first Yawn](docs/quickstart.md) ·
 [See nested Agent Arena](examples/nested-agent-arena.yawn)
 
+## Portable runtime configuration
+
+[Runtime Profile 0.1](spec/runtime-profile.md) is an additive Working Draft for
+declaring a Yawn's instructions, versioned skills, capability requirements,
+adopted rules, execution limits, verification, and privacy settings. It gives
+implementers one inspectable configuration input alongside the existing
+orientation records.
+
+The reference resolver follows explicit primary-parent ancestry, retains
+provenance, and reports incomplete or unsupported configuration. A resolved
+profile never grants permission. Skills describe procedures; tools expose
+capabilities; a host must still verify adoption, bind trusted handlers, and
+check current authorization at final admission before an external effect.
+
+This repository supplies a schema, fixtures, migration helpers, and a reference
+resolver. It does not ship a live execution adapter or claim that YAWN.bot
+already consumes the profile. Source documents and model output remain data
+or proposals until an authorized adoption process accepts configuration.
+
+[Start with the developer guide](docs/development.md) ·
+[Copy a runtime profile](templates/runtime-profile.yawn) ·
+[Review RFC 0006](rfcs/0006-runtime-profile-v0.1.md)
+
 ## One name, one extension
 
 <!-- yawn-invalid-alias-guard:start -->
@@ -398,6 +421,7 @@ test failure and cannot replace a commit-bound local result.
 | Write one useful record | [Five-minute quickstart](docs/quickstart.md) |
 | Copy a human template | [Basic](templates/basic.yawn), [Arena](templates/arena.yawn), [Turn](templates/turn.yawn) |
 | Build an implementation | [Specification](spec/), [schemas](schemas/), [fixtures](fixtures/) |
+| Resolve portable runtime configuration | [Runtime Profile 0.1](spec/runtime-profile.md) · [Developer guide](docs/development.md) |
 | See the holarchy in use | [Nested Agent Arena](examples/nested-agent-arena.yawn) |
 | Model an async dependency | [Waiting turn](examples/waiting-turn.yawn) |
 | Import a long conversation archive | [Conversation routing](examples/conversation-import-routing.yawn) |

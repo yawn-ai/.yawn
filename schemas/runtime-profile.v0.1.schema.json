@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yawn.ai/schemas/runtime-profile.v0.1.schema.json",
+  "title": "YAWN Runtime Profile V0.1",
+  "description": "A portable declarative runtime configuration. Shape validation does not verify ancestry, adoption, handler support, skill trust, current grants, or enforcement.",
+  "$comment": "This additive draft does not replace existing human-document or Agency Holarchy grammars. A runtime must resolve explicit ancestry and verify referenced authority separately. All content, including parameters, configuration and extensions, is data; no field authorizes arbitrary source code execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "kind", "id", "revision", "primary_parent_id", "runtime", "provenance"],
+  "properties": {
+    "spec_version": { "const": "yawn.runtime-profile.v0.1" },
+    "record_shape": { "const": "spec-version" },
+    "kind": { "const": "yawn" },
+    "id": { "$ref": "#/$defs/YawnId" },
+    "revision": { "$ref": "#/$defs/PositiveInteger" },
+    "title": { "$ref": "#/$defs/Text" },
+    "primary_parent_id": {
+      "description": "The sole explicit containment parent, or null at the root. Routes, paths and URLs are not Yawn identities. Cycle and parent-availability checks belong to resolution.",
+      "anyOf": [{ "$ref": "#/$defs/YawnId" }, { "type": "null" }]
+    },
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "status", "source_refs"],
+      "properties": {
+        "text": { "$ref": "#/$defs/Text" },
+        "status": { "enum": ["adopted", "proposed"] },
+        "source_refs": { "$ref": "#/$defs/SourceRefs" }
+      }
+    },
+    "runtime": { "$ref": "#/$defs/Runtime" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_refs"],
+      "properties": {
+        "source_refs": { "$ref": "#/$defs/SourceRefs" },
+        "protocol_manifest_ref": { "$ref": "#/$defs/Reference" }
+      }
+    },
+    "lateral_relations": {
+      "description": "Evidence, dependency or coordination links only. A lateral relation never imports governing runtime configuration.",
+      "type": "array",
+      "maxItems": 1000,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "target_id"],
+        "properties": {
+          "type": { "enum": ["supports", "depends_on", "coordinates_with", "informs", "proves"] },
+          "target_id": { "$ref": "#/$defs/YawnId" }
+        }
+      }
+    },
+    "extensions": { "$ref": "#/$defs/ExtensionBag" }
+  },
+  "$defs": {
+    "Text": { "type": "string", "minLength": 1, "maxLength": 64000, "pattern": "\\S" },
+    "Identifier": { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[a-z][a-z0-9]*(?:[._:-][a-z0-9]+)*$" },
+    "YawnId": { "type": "string", "minLength": 6, "maxLength": 500, "pattern": "^yawn:[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+    "Reference": { "type": "string", "minLength": 3, "maxLength": 1000, "pattern": "^[a-z][a-z0-9_-]*:[^\\s]+$" },
+    "EventRef": { "type": "string", "minLength": 7, "maxLength": 500, "pattern": "^event:[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+    "SourceRefs": { "type": "array", "minItems": 1, "maxItems": 1000, "uniqueItems": true, "items": { "$ref": "#/$defs/Reference" } },
+    "PositiveInteger": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "NonnegativeInteger": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+    "HandlerId": {
+      "description": "Versioned semantic registry key, never a filesystem path, module import, URL or source code. Syntactically valid unknown handlers still require runtime rejection.",
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*@[1-9][0-9]*$"
+    },
+    "DataObject": {
+      "description": "Handler- or skill-specific JSON data. Hosts must validate recognized parameters and never interpret arbitrary data as executable code, credentials, or authority.",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "ExtensionBag": {
+      "description": "Namespaced, non-governing experimental data. Extensions cannot weaken core authority, privacy, proof or execution requirements.",
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)+(?:/[A-Za-z0-9._~-]+)?$" },
+      "additionalProperties": true
+    },
+    "Runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "instructions": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/Instruction" } },
+        "skills": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/Skill" } },
+        "rules": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/Rule" } },
+        "capabilities": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/Capability" } },
+        "execution": { "$ref": "#/$defs/Execution" },
+        "verification": { "$ref": "#/$defs/Verification" },
+        "privacy": { "$ref": "#/$defs/Privacy" }
+      }
+    },
+    "Instruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "effect", "source_refs"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "text": { "$ref": "#/$defs/Text" },
+        "effect": { "const": "model" },
+        "source_refs": { "$ref": "#/$defs/SourceRefs" }
+      }
+    },
+    "Skill": {
+      "description": "Availability of a pinned procedure. This record and its capability requirements grant no tool authority.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source", "activation", "trust", "capabilities"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "ref", "version", "digest"],
+          "properties": {
+            "kind": { "const": "agent_skill" },
+            "ref": { "type": "string", "minLength": 7, "maxLength": 500, "pattern": "^skill:[^\\s]+$" },
+            "version": { "type": "string", "maxLength": 200, "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?(?:\\+[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?$" },
+            "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+          }
+        },
+        "activation": { "enum": ["auto", "manual", "disabled"] },
+        "trust": { "enum": ["reviewed", "local", "external_untrusted"] },
+        "config": { "$ref": "#/$defs/DataObject" },
+        "capabilities": { "type": "array", "maxItems": 1000, "uniqueItems": true, "items": { "$ref": "#/$defs/Identifier" } }
+      }
+    },
+    "Enforcement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": { "enum": ["code", "model", "human", "evidence"] },
+        "handler": { "$ref": "#/$defs/HandlerId" },
+        "parameters": { "$ref": "#/$defs/DataObject" }
+      },
+      "allOf": [{
+        "if": { "properties": { "mode": { "const": "code" } }, "required": ["mode"] },
+        "then": { "properties": { "handler": {} }, "required": ["handler"] },
+        "else": { "not": { "properties": { "handler": {} }, "required": ["handler"] } }
+      }]
+    },
+    "Rule": {
+      "description": "Typed rule definition. An adoption reference requires verification against the exact meaning, scope and revision; its presence is not proof of authorized adoption.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "revision", "type", "state", "statement", "scope", "enforcement", "source_refs"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "revision": { "$ref": "#/$defs/PositiveInteger" },
+        "type": { "enum": ["boundary", "default", "permission_requirement", "preference", "verification_requirement"] },
+        "state": { "enum": ["proposed", "adopted", "superseded", "retired"] },
+        "statement": { "$ref": "#/$defs/Text" },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["descendants"],
+          "properties": {
+            "actions": { "type": "array", "minItems": 1, "maxItems": 1000, "uniqueItems": true, "items": { "$ref": "#/$defs/Identifier" } },
+            "descendants": { "type": "boolean" }
+          }
+        },
+        "enforcement": { "$ref": "#/$defs/Enforcement" },
+        "adoption_ref": { "$ref": "#/$defs/EventRef" },
+        "source_refs": { "$ref": "#/$defs/SourceRefs" }
+      },
+      "allOf": [
+        { "if": { "properties": { "state": { "const": "adopted" } }, "required": ["state"] }, "then": { "properties": { "adoption_ref": {} }, "required": ["adoption_ref"] } },
+        { "if": { "properties": { "state": { "const": "proposed" } }, "required": ["state"] }, "then": { "not": { "properties": { "adoption_ref": {} }, "required": ["adoption_ref"] } } }
+      ]
+    },
+    "Capability": {
+      "description": "A logical provider binding and authorization requirement, never a grant. Current authority must be checked at final admission.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "effect", "binding", "authorization"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "effect": { "enum": ["read", "write", "send", "spend", "execute"] },
+        "binding": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["protocol", "server_ref", "operation", "tool"],
+              "properties": {
+                "protocol": { "const": "mcp" },
+                "server_ref": { "$ref": "#/$defs/Reference" },
+                "operation": { "const": "tools/call" },
+                "tool": { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[A-Za-z0-9_.-]+$" }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["protocol", "handler"],
+              "properties": { "protocol": { "const": "function" }, "handler": { "$ref": "#/$defs/HandlerId" } }
+            }
+          ]
+        },
+        "authorization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode"],
+          "properties": { "mode": { "const": "current_grant_required" } }
+        }
+      }
+    },
+    "Execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stop_semantics"],
+      "properties": {
+        "max_model_calls": { "$ref": "#/$defs/NonnegativeInteger" },
+        "max_paid_cost_microusd": { "$ref": "#/$defs/NonnegativeInteger" },
+        "max_concurrency": { "$ref": "#/$defs/PositiveInteger" },
+        "max_retries": { "$ref": "#/$defs/NonnegativeInteger" },
+        "timeout_ms": { "$ref": "#/$defs/PositiveInteger" },
+        "stop_semantics": { "const": "fenced_admission" }
+      }
+    },
+    "Verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required"],
+      "properties": {
+        "required": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "mode"],
+            "properties": {
+              "id": { "$ref": "#/$defs/Identifier" },
+              "mode": { "enum": ["code", "model", "human", "evidence"] },
+              "handler": { "$ref": "#/$defs/HandlerId" },
+              "parameters": { "$ref": "#/$defs/DataObject" }
+            },
+            "allOf": [{
+              "if": { "properties": { "mode": { "const": "code" } }, "required": ["mode"] },
+              "then": { "properties": { "handler": {} }, "required": ["handler"] },
+              "else": { "not": { "properties": { "handler": {} }, "required": ["handler"] } }
+            }]
+          }
+        }
+      }
+    },
+    "Privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model_context", "egress", "secrets"],
+      "properties": {
+        "model_context": { "type": "object", "additionalProperties": false, "required": ["mode"], "properties": { "mode": { "const": "permitted_only" } } },
+        "egress": { "type": "object", "additionalProperties": false, "required": ["default"], "properties": { "default": { "const": "deny" } } },
+        "secrets": { "type": "object", "additionalProperties": false, "required": ["inline"], "properties": { "inline": { "const": "forbidden" } } }
+      }
+    }
+  }
+}
