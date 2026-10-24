@@ -3,7 +3,33 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-e8ff03.svg)](LICENSE)
 [![Status: working draft](https://img.shields.io/badge/ontology-working%20draft-fd49ac.svg)](docs/project-status.md)
 
-**An open protocol for inspectable relationships, orientation, and agency.**
+**Portable contracts for agent skills, nested game rules, and accountable execution.**
+
+An adopted `.yawn` describes how a Yawn works: its exact skills, inherited
+rules, capability requirements, limits, verification and privacy. Skills supply
+methods; tools expose capabilities; current host authorization decides whether
+an effect may run. Configuration never grants its own authority.
+
+[Runtime Profile 0.1](spec/runtime-profile.md) supplies bounded declarative
+configuration. The additive [Runtime Action host contract](spec/runtime-host-contract.md)
+builds a structural operating index, projects the configuration for one action,
+checks trusted host snapshots, and separates document, operational and action
+revisions. Unsupported optional email configuration can hold sending while
+leaving an unrelated comparison available.
+
+| Stage | Evidence in this repository |
+| --- | --- |
+| Portable syntax and ancestry | Strict 0.1 schema, bounded parser, versioned migration and tests |
+| Rule adoption and composition | Exact reviewed hashes, lifecycle replay and inherited boundaries |
+| Action-specific host preflight | Reference module, registered programs, current host callbacks and tests |
+| Private disclosure and blockers | Default-deny projection; no eligible method does not prove impossibility |
+| Cross-host interoperability | Committed language-neutral golden outputs, issue codes and digests |
+| Production execution | Requires a consuming host's authenticated stores, admission fence and outcome evidence; not established by this reference repository |
+
+[Build one bounded path](docs/runtime-host-integration.md) ·
+[Migrate a Skill](docs/skill-migration.md) ·
+[Read the host contract](spec/runtime-host-contract.md) ·
+[Copy a profile](templates/runtime-profile.yawn)
 
 `.yawn` gives human and AI agents a portable way to show what they noticed,
 what they inferred, what remains missing, what they were authorized to do, what
@@ -63,29 +89,6 @@ Relationship it traverses.
 [Read the specification](spec/) ·
 [Write your first Yawn](docs/quickstart.md) ·
 [See nested Agent Arena](examples/nested-agent-arena.yawn)
-
-## Portable runtime configuration
-
-[Runtime Profile 0.1](spec/runtime-profile.md) is an additive Working Draft for
-declaring a Yawn's instructions, versioned skills, capability requirements,
-adopted rules, execution limits, verification, and privacy settings. It gives
-implementers one inspectable configuration input alongside the existing
-orientation records.
-
-The reference resolver follows explicit primary-parent ancestry, retains
-provenance, and reports incomplete or unsupported configuration. A resolved
-profile never grants permission. Skills describe procedures; tools expose
-capabilities; a host must still verify adoption, bind trusted handlers, and
-check current authorization at final admission before an external effect.
-
-This repository supplies a schema, fixtures, migration helpers, and a reference
-resolver. It does not ship a live execution adapter or claim that YAWN.bot
-already consumes the profile. Source documents and model output remain data
-or proposals until an authorized adoption process accepts configuration.
-
-[Start with the developer guide](docs/development.md) ·
-[Copy a runtime profile](templates/runtime-profile.yawn) ·
-[Review RFC 0006](rfcs/0006-runtime-profile-v0.1.md)
 
 ## One name, one extension
 

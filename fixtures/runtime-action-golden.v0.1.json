@@ -1,0 +1,5026 @@
+{
+  "contract": "yawn.runtime-action-golden.v0.1",
+  "$comment": "Synthetic trusted host snapshots. These records are test assumptions, never authority or production grant evidence. Expected outputs and SHA-256 digests are committed language-neutral conformance vectors.",
+  "cases": [
+    {
+      "id": "optional-unverified-email-does-not-hold-comparison",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "issues": [],
+        "config": {
+          "id": "yawn:shop:scheduling:draft",
+          "ancestry": [
+            "yawn:shop",
+            "yawn:shop:scheduling",
+            "yawn:shop:scheduling:draft"
+          ],
+          "instructions": [
+            {
+              "id": "preserve-participant-words",
+              "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+              "effect": "model",
+              "source_refs": [
+                "policy:yawn:shared-orientation"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "rules": [
+            {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "skills": [
+            {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ],
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              },
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "execution": {
+            "max_model_calls": 3,
+            "max_paid_cost_microusd": 500000,
+            "max_concurrency": 1,
+            "max_retries": 1,
+            "timeout_ms": 120000,
+            "stop_semantics": "fenced_admission"
+          },
+          "verification": {
+            "required": [
+              {
+                "id": "artifact-exists",
+                "mode": "code",
+                "handler": "yawn.verify.artifact-exists@1",
+                "origin_id": "yawn:shop:scheduling:draft",
+                "origin_revision": 1
+              }
+            ]
+          },
+          "privacy": {
+            "model_context": {
+              "mode": "permitted_only"
+            },
+            "egress": {
+              "default": "deny"
+            },
+            "secrets": {
+              "inline": "forbidden"
+            }
+          },
+          "program": {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          "action": {
+            "id": "action:compare",
+            "kind": "movement.compare",
+            "program_id": "yawn.movement.compare@1",
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [],
+            "resource_refs": [
+              "schedule:shop"
+            ]
+          }
+        },
+        "document_hash": "sha256:e266aff46abb7fc075cad4d58f9b443f03e969184311036e795b6712176c6351",
+        "operational_revision": "sha256:c580b2b64ae71f6ff13a266133ab90dc382a6eb3a0bdea272db80e12fc4b2358",
+        "action_revision": "sha256:925564ab639ea843de1929efb2cfda0d25acd2fb0b673bc4398f16fbd563e3ec",
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "resolved",
+        "reason_codes": [],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "selected-unverified-email-is-held",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:send",
+        "kind": "customer.contact",
+        "program_id": "yawn.customer.contact@1",
+        "skill_ids": [],
+        "capability_ids": [
+          "email.send"
+        ],
+        "resource_refs": [
+          "customer:reviewed-recipient"
+        ],
+        "input_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "held",
+        "issues": [
+          {
+            "code": "unverified_capability",
+            "profile_id": "yawn:shop",
+            "component_id": "email.send"
+          }
+        ],
+        "config": null,
+        "document_hash": "sha256:e266aff46abb7fc075cad4d58f9b443f03e969184311036e795b6712176c6351",
+        "operational_revision": "sha256:c580b2b64ae71f6ff13a266133ab90dc382a6eb3a0bdea272db80e12fc4b2358",
+        "action_revision": null,
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:481d469cb07edc765394361a5a532585d3e819bb57e5b1b8c1c2916dfc0b8cc2"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "held",
+        "reason_codes": [
+          "unverified_capability"
+        ],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "revoked-grant-is-held",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:send",
+        "kind": "customer.contact",
+        "program_id": "yawn.customer.contact@1",
+        "skill_ids": [],
+        "capability_ids": [
+          "email.send"
+        ],
+        "resource_refs": [
+          "customer:reviewed-recipient"
+        ],
+        "input_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:2",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          },
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "email.send",
+              "effect": "send",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:mail",
+                "operation": "tools/call",
+                "tool": "send_message"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": false
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "held",
+        "issues": [
+          {
+            "code": "grant_unavailable",
+            "profile_id": null,
+            "component_id": null
+          }
+        ],
+        "config": null,
+        "document_hash": "sha256:e266aff46abb7fc075cad4d58f9b443f03e969184311036e795b6712176c6351",
+        "operational_revision": "sha256:c580b2b64ae71f6ff13a266133ab90dc382a6eb3a0bdea272db80e12fc4b2358",
+        "action_revision": null,
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:481d469cb07edc765394361a5a532585d3e819bb57e5b1b8c1c2916dfc0b8cc2"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:2",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "held",
+        "reason_codes": [
+          "grant_unavailable"
+        ],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "exhausted-budget-is-held",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:2",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": false
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "held",
+        "issues": [
+          {
+            "code": "budget_unavailable",
+            "profile_id": null,
+            "component_id": null
+          }
+        ],
+        "config": null,
+        "document_hash": "sha256:e266aff46abb7fc075cad4d58f9b443f03e969184311036e795b6712176c6351",
+        "operational_revision": "sha256:c580b2b64ae71f6ff13a266133ab90dc382a6eb3a0bdea272db80e12fc4b2358",
+        "action_revision": null,
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:2",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "held",
+        "reason_codes": [
+          "budget_unavailable"
+        ],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "cancelled-action-is-held",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 1
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": false
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "held",
+        "issues": [
+          {
+            "code": "cancelled_or_unknown",
+            "profile_id": null,
+            "component_id": null
+          }
+        ],
+        "config": null,
+        "document_hash": "sha256:e266aff46abb7fc075cad4d58f9b443f03e969184311036e795b6712176c6351",
+        "operational_revision": "sha256:c580b2b64ae71f6ff13a266133ab90dc382a6eb3a0bdea272db80e12fc4b2358",
+        "action_revision": null,
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 1
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "held",
+        "reason_codes": [
+          "cancelled_or_unknown"
+        ],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "display-edit-changes-only-document-hash",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 2,
+          "title": "A changed display title",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "issues": [],
+        "config": {
+          "id": "yawn:shop:scheduling:draft",
+          "ancestry": [
+            "yawn:shop",
+            "yawn:shop:scheduling",
+            "yawn:shop:scheduling:draft"
+          ],
+          "instructions": [
+            {
+              "id": "preserve-participant-words",
+              "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+              "effect": "model",
+              "source_refs": [
+                "policy:yawn:shared-orientation"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "rules": [
+            {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "skills": [
+            {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ],
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              },
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "execution": {
+            "max_model_calls": 3,
+            "max_paid_cost_microusd": 500000,
+            "max_concurrency": 1,
+            "max_retries": 1,
+            "timeout_ms": 120000,
+            "stop_semantics": "fenced_admission"
+          },
+          "verification": {
+            "required": [
+              {
+                "id": "artifact-exists",
+                "mode": "code",
+                "handler": "yawn.verify.artifact-exists@1",
+                "origin_id": "yawn:shop:scheduling:draft",
+                "origin_revision": 1
+              }
+            ]
+          },
+          "privacy": {
+            "model_context": {
+              "mode": "permitted_only"
+            },
+            "egress": {
+              "default": "deny"
+            },
+            "secrets": {
+              "inline": "forbidden"
+            }
+          },
+          "program": {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          "action": {
+            "id": "action:compare",
+            "kind": "movement.compare",
+            "program_id": "yawn.movement.compare@1",
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [],
+            "resource_refs": [
+              "schedule:shop"
+            ]
+          }
+        },
+        "document_hash": "sha256:e3e6d7559a2c71165b738fc0d2758432e92a75d63a32713baa0f969e76ff7037",
+        "operational_revision": "sha256:c580b2b64ae71f6ff13a266133ab90dc382a6eb3a0bdea272db80e12fc4b2358",
+        "action_revision": "sha256:925564ab639ea843de1929efb2cfda0d25acd2fb0b673bc4398f16fbd563e3ec",
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "resolved",
+        "reason_codes": [],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "unrelated-binding-changes-only-operational-revision",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "deliver_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "issues": [],
+        "config": {
+          "id": "yawn:shop:scheduling:draft",
+          "ancestry": [
+            "yawn:shop",
+            "yawn:shop:scheduling",
+            "yawn:shop:scheduling:draft"
+          ],
+          "instructions": [
+            {
+              "id": "preserve-participant-words",
+              "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+              "effect": "model",
+              "source_refs": [
+                "policy:yawn:shared-orientation"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "rules": [
+            {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "skills": [
+            {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ],
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              },
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "execution": {
+            "max_model_calls": 3,
+            "max_paid_cost_microusd": 500000,
+            "max_concurrency": 1,
+            "max_retries": 1,
+            "timeout_ms": 120000,
+            "stop_semantics": "fenced_admission"
+          },
+          "verification": {
+            "required": [
+              {
+                "id": "artifact-exists",
+                "mode": "code",
+                "handler": "yawn.verify.artifact-exists@1",
+                "origin_id": "yawn:shop:scheduling:draft",
+                "origin_revision": 1
+              }
+            ]
+          },
+          "privacy": {
+            "model_context": {
+              "mode": "permitted_only"
+            },
+            "egress": {
+              "default": "deny"
+            },
+            "secrets": {
+              "inline": "forbidden"
+            }
+          },
+          "program": {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          "action": {
+            "id": "action:compare",
+            "kind": "movement.compare",
+            "program_id": "yawn.movement.compare@1",
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [],
+            "resource_refs": [
+              "schedule:shop"
+            ]
+          }
+        },
+        "document_hash": "sha256:20bd2177f365059dd12559f8028ff031e145c86e6ed62bb4f8f04ec2b6795c8a",
+        "operational_revision": "sha256:3ed2d7f4c63b8409b439a79e132671ddf29319beb60090f4828465c6a1f03734",
+        "action_revision": "sha256:925564ab639ea843de1929efb2cfda0d25acd2fb0b673bc4398f16fbd563e3ec",
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "resolved",
+        "reason_codes": [],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "private-rule-enforced-before-public-projection",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              },
+              {
+                "id": "private-contact-policy",
+                "revision": 1,
+                "type": "boundary",
+                "state": "adopted",
+                "statement": "Private recipient details must never appear in a public explanation.",
+                "scope": {
+                  "actions": [
+                    "movement.compare"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.private-policy@1"
+                },
+                "adoption_ref": "event:private-policy",
+                "source_refs": [
+                  "source:private-recipient-details"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1",
+          "yawn.private-policy@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "private-contact-policy",
+              "revision": 1,
+              "type": "boundary",
+              "state": "adopted",
+              "statement": "Private recipient details must never appear in a public explanation.",
+              "scope": {
+                "actions": [
+                  "movement.compare"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.private-policy@1"
+              },
+              "adoption_ref": "event:private-policy",
+              "source_refs": [
+                "source:private-recipient-details"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          },
+          {
+            "action_id": "action:compare",
+            "rule_id": "private-contact-policy",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "issues": [],
+        "config": {
+          "id": "yawn:shop:scheduling:draft",
+          "ancestry": [
+            "yawn:shop",
+            "yawn:shop:scheduling",
+            "yawn:shop:scheduling:draft"
+          ],
+          "instructions": [
+            {
+              "id": "preserve-participant-words",
+              "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+              "effect": "model",
+              "source_refs": [
+                "policy:yawn:shared-orientation"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "rules": [
+            {
+              "id": "private-contact-policy",
+              "revision": 1,
+              "type": "boundary",
+              "state": "adopted",
+              "statement": "Private recipient details must never appear in a public explanation.",
+              "scope": {
+                "actions": [
+                  "movement.compare"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.private-policy@1"
+              },
+              "adoption_ref": "event:private-policy",
+              "source_refs": [
+                "source:private-recipient-details"
+              ],
+              "origin_id": "yawn:shop",
+              "origin_revision": 1
+            },
+            {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ],
+              "origin_id": "yawn:shop:scheduling",
+              "origin_revision": 2
+            }
+          ],
+          "skills": [
+            {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ],
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              },
+              "origin_id": "yawn:shop:scheduling:draft",
+              "origin_revision": 1
+            }
+          ],
+          "execution": {
+            "max_model_calls": 3,
+            "max_paid_cost_microusd": 500000,
+            "max_concurrency": 1,
+            "max_retries": 1,
+            "timeout_ms": 120000,
+            "stop_semantics": "fenced_admission"
+          },
+          "verification": {
+            "required": [
+              {
+                "id": "artifact-exists",
+                "mode": "code",
+                "handler": "yawn.verify.artifact-exists@1",
+                "origin_id": "yawn:shop:scheduling:draft",
+                "origin_revision": 1
+              }
+            ]
+          },
+          "privacy": {
+            "model_context": {
+              "mode": "permitted_only"
+            },
+            "egress": {
+              "default": "deny"
+            },
+            "secrets": {
+              "inline": "forbidden"
+            }
+          },
+          "program": {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          "action": {
+            "id": "action:compare",
+            "kind": "movement.compare",
+            "program_id": "yawn.movement.compare@1",
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [],
+            "resource_refs": [
+              "schedule:shop"
+            ]
+          }
+        },
+        "document_hash": "sha256:f8c3d7abf46599c31c21f5947c3626642bfa3f3479d1d7f956f7bab7a3e611ca",
+        "operational_revision": "sha256:0040d7e777d9fd386533da4aab20e90ef07b5a3bf450e2150557f0b32e5053d1",
+        "action_revision": "sha256:63d5f3927b09deb2b511e9ea741df85b51c05f43788da87ec8d1bed47be361fc",
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:e0b2993d6b0b2c1175e95b2f89726cbe53285efb6209ce64cd0cbf32e1d5f327"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "resolved",
+        "reason_codes": [],
+        "instructions": [
+          {
+            "id": "preserve-participant-words",
+            "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+            "effect": "model",
+            "source_refs": [
+              "policy:yawn:shared-orientation"
+            ],
+            "origin_id": "yawn:shop:scheduling",
+            "origin_revision": 2
+          }
+        ],
+        "rules": [
+          {
+            "id": "evening-preference",
+            "revision": 1,
+            "type": "default",
+            "state": "adopted",
+            "statement": "Prefer schedules that preserve evenings.",
+            "scope": {
+              "descendants": true
+            },
+            "enforcement": {
+              "mode": "model"
+            },
+            "adoption_ref": "event:adopt-evening-preference",
+            "source_refs": [
+              "source:scheduling-preference"
+            ],
+            "origin_id": "yawn:shop:scheduling",
+            "origin_revision": 2
+          }
+        ],
+        "skills": [
+          {
+            "id": "draft-schedule",
+            "source": {
+              "kind": "agent_skill",
+              "ref": "skill:draft-schedule",
+              "version": "1.4.2",
+              "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+            },
+            "activation": "manual",
+            "trust": "reviewed",
+            "config": {
+              "alternatives": 2
+            },
+            "capabilities": [
+              "research.read"
+            ],
+            "origin_id": "yawn:shop:scheduling:draft",
+            "origin_revision": 1
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "research.read",
+            "effect": "read",
+            "binding": {
+              "protocol": "mcp",
+              "server_ref": "connector:research",
+              "operation": "tools/call",
+              "tool": "search"
+            },
+            "authorization": {
+              "mode": "current_grant_required"
+            },
+            "origin_id": "yawn:shop:scheduling:draft",
+            "origin_revision": 1
+          }
+        ],
+        "verification": [
+          {
+            "id": "artifact-exists",
+            "mode": "code",
+            "handler": "yawn.verify.artifact-exists@1",
+            "origin_id": "yawn:shop:scheduling:draft",
+            "origin_revision": 1
+          }
+        ],
+        "execution": {
+          "max_model_calls": 3,
+          "max_paid_cost_microusd": 500000,
+          "max_concurrency": 1,
+          "max_retries": 1,
+          "timeout_ms": 120000,
+          "stop_semantics": "fenced_admission"
+        },
+        "privacy": {
+          "model_context": {
+            "mode": "permitted_only"
+          },
+          "egress": {
+            "default": "deny"
+          },
+          "secrets": {
+            "inline": "forbidden"
+          }
+        }
+      }
+    },
+    {
+      "id": "relevant-unsupported-handler-is-held",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop",
+          "revision": 1,
+          "title": "Shop",
+          "primary_parent_id": null,
+          "purpose": {
+            "text": "Run the shop while respecting customer contact permissions.",
+            "status": "adopted",
+            "source_refs": [
+              "source:shop-purpose"
+            ]
+          },
+          "runtime": {
+            "rules": [
+              {
+                "id": "customer-contact-approval",
+                "revision": 1,
+                "type": "permission_requirement",
+                "state": "adopted",
+                "statement": "Customer contact requires an appropriate current grant.",
+                "scope": {
+                  "actions": [
+                    "customer.contact"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.require-grant@1",
+                  "parameters": {
+                    "grant": "shop.customer-contact"
+                  }
+                },
+                "adoption_ref": "event:adopt-customer-contact-rule",
+                "source_refs": [
+                  "source:shop-contact-rule"
+                ]
+              },
+              {
+                "id": "private-contact-policy",
+                "revision": 1,
+                "type": "boundary",
+                "state": "adopted",
+                "statement": "Private recipient details must never appear in a public explanation.",
+                "scope": {
+                  "actions": [
+                    "movement.compare"
+                  ],
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "code",
+                  "handler": "yawn.private-policy@1"
+                },
+                "adoption_ref": "event:private-policy",
+                "source_refs": [
+                  "source:private-recipient-details"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 5,
+              "max_paid_cost_microusd": 500000,
+              "max_concurrency": 2,
+              "max_retries": 1,
+              "timeout_ms": 120000,
+              "stop_semantics": "fenced_admission"
+            },
+            "privacy": {
+              "model_context": {
+                "mode": "permitted_only"
+              },
+              "egress": {
+                "default": "deny"
+              },
+              "secrets": {
+                "inline": "forbidden"
+              }
+            },
+            "capabilities": [
+              {
+                "id": "email.send",
+                "effect": "send",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:mail",
+                  "operation": "tools/call",
+                  "tool": "send_message"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "source_refs": [
+              "source:shop-purpose"
+            ],
+            "protocol_manifest_ref": "manifest:yawn-protocol:fixture"
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "private-contact-policy",
+              "revision": 1,
+              "type": "boundary",
+              "state": "adopted",
+              "statement": "Private recipient details must never appear in a public explanation.",
+              "scope": {
+                "actions": [
+                  "movement.compare"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.private-policy@1"
+              },
+              "adoption_ref": "event:private-policy",
+              "source_refs": [
+                "source:private-recipient-details"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          },
+          {
+            "action_id": "action:compare",
+            "rule_id": "private-contact-policy",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "held",
+        "issues": [
+          {
+            "code": "unsupported_handler",
+            "profile_id": "yawn:shop",
+            "component_id": "private-contact-policy"
+          }
+        ],
+        "config": null,
+        "document_hash": "sha256:f8c3d7abf46599c31c21f5947c3626642bfa3f3479d1d7f956f7bab7a3e611ca",
+        "operational_revision": "sha256:0040d7e777d9fd386533da4aab20e90ef07b5a3bf450e2150557f0b32e5053d1",
+        "action_revision": null,
+        "dependencies": {
+          "ancestry": [
+            {
+              "id": "yawn:shop",
+              "primary_parent_id": null,
+              "rule_scope_hash": "sha256:e0b2993d6b0b2c1175e95b2f89726cbe53285efb6209ce64cd0cbf32e1d5f327"
+            },
+            {
+              "id": "yawn:shop:scheduling",
+              "primary_parent_id": "yawn:shop",
+              "rule_scope_hash": "sha256:d29d5a4de66fe162de7b59ece09d0b910b2668c1f22b4ec0ecfc28c61a5813ef"
+            },
+            {
+              "id": "yawn:shop:scheduling:draft",
+              "primary_parent_id": "yawn:shop:scheduling",
+              "rule_scope_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          ],
+          "dynamic": {
+            "grants_revision": "grants:1",
+            "budget_revision": "budget:1",
+            "cancellation_epoch": 0
+          }
+        }
+      },
+      "expected_disclosure": {
+        "status": "held",
+        "reason_codes": [
+          "unsupported_handler"
+        ],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    },
+    {
+      "id": "missing-parent-holds-structural-index",
+      "profiles": [
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling",
+          "revision": 2,
+          "title": "Improve scheduling",
+          "primary_parent_id": "yawn:shop",
+          "runtime": {
+            "instructions": [
+              {
+                "id": "preserve-participant-words",
+                "text": "Keep participant statements distinguishable from model interpretations and proposed rules.",
+                "effect": "model",
+                "source_refs": [
+                  "policy:yawn:shared-orientation"
+                ]
+              }
+            ],
+            "rules": [
+              {
+                "id": "evening-preference",
+                "revision": 1,
+                "type": "default",
+                "state": "adopted",
+                "statement": "Prefer schedules that preserve evenings.",
+                "scope": {
+                  "descendants": true
+                },
+                "enforcement": {
+                  "mode": "model"
+                },
+                "adoption_ref": "event:adopt-evening-preference",
+                "source_refs": [
+                  "source:scheduling-preference"
+                ]
+              }
+            ],
+            "execution": {
+              "max_model_calls": 3,
+              "max_concurrency": 1,
+              "stop_semantics": "fenced_admission"
+            }
+          },
+          "lateral_relations": [
+            {
+              "type": "informs",
+              "target_id": "yawn:customer-feedback"
+            }
+          ],
+          "provenance": {
+            "source_refs": [
+              "source:scheduling-request"
+            ]
+          }
+        },
+        {
+          "spec_version": "yawn.runtime-profile.v0.1",
+          "kind": "yawn",
+          "id": "yawn:shop:scheduling:draft",
+          "revision": 1,
+          "title": "Draft and test a booking arrangement",
+          "primary_parent_id": "yawn:shop:scheduling",
+          "runtime": {
+            "skills": [
+              {
+                "id": "draft-schedule",
+                "source": {
+                  "kind": "agent_skill",
+                  "ref": "skill:draft-schedule",
+                  "version": "1.4.2",
+                  "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+                },
+                "activation": "manual",
+                "trust": "reviewed",
+                "config": {
+                  "alternatives": 2
+                },
+                "capabilities": [
+                  "research.read"
+                ]
+              }
+            ],
+            "capabilities": [
+              {
+                "id": "research.read",
+                "effect": "read",
+                "binding": {
+                  "protocol": "mcp",
+                  "server_ref": "connector:research",
+                  "operation": "tools/call",
+                  "tool": "search"
+                },
+                "authorization": {
+                  "mode": "current_grant_required"
+                }
+              }
+            ],
+            "verification": {
+              "required": [
+                {
+                  "id": "artifact-exists",
+                  "mode": "code",
+                  "handler": "yawn.verify.artifact-exists@1"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "source_refs": [
+              "source:booking-draft-request"
+            ]
+          },
+          "extensions": {
+            "ai.yawn.fixture": {
+              "skill_digest_role": "Illustrative pin; this fixture does not claim an installed or verified skill bundle."
+            }
+          }
+        }
+      ],
+      "action": {
+        "id": "action:compare",
+        "kind": "movement.compare",
+        "program_id": "yawn.movement.compare@1",
+        "skill_ids": [
+          "draft-schedule"
+        ],
+        "capability_ids": [],
+        "resource_refs": [
+          "schedule:shop"
+        ]
+      },
+      "trusted_host": {
+        "programs": [
+          {
+            "id": "yawn.movement.compare@1",
+            "handler": "yawn.movement.compare@1",
+            "actions": [
+              "movement.compare"
+            ],
+            "skill_ids": [
+              "draft-schedule"
+            ],
+            "capability_ids": [
+              "research.read"
+            ]
+          },
+          {
+            "id": "yawn.customer.contact@1",
+            "handler": "yawn.customer.contact@1",
+            "actions": [
+              "customer.contact"
+            ],
+            "skill_ids": [],
+            "capability_ids": [
+              "email.send"
+            ]
+          }
+        ],
+        "supported_handlers": [
+          "yawn.movement.compare@1",
+          "yawn.customer.contact@1",
+          "yawn.require-grant@1",
+          "yawn.verify.artifact-exists@1"
+        ],
+        "dynamic": {
+          "grants_revision": "grants:1",
+          "budget_revision": "budget:1",
+          "cancellation_epoch": 0
+        },
+        "adoptions": [
+          {
+            "profile_id": "yawn:shop",
+            "item": {
+              "id": "customer-contact-approval",
+              "revision": 1,
+              "type": "permission_requirement",
+              "state": "adopted",
+              "statement": "Customer contact requires an appropriate current grant.",
+              "scope": {
+                "actions": [
+                  "customer.contact"
+                ],
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "code",
+                "handler": "yawn.require-grant@1",
+                "parameters": {
+                  "grant": "shop.customer-contact"
+                }
+              },
+              "adoption_ref": "event:adopt-customer-contact-rule",
+              "source_refs": [
+                "source:shop-contact-rule"
+              ]
+            }
+          },
+          {
+            "profile_id": "yawn:shop:scheduling",
+            "item": {
+              "id": "evening-preference",
+              "revision": 1,
+              "type": "default",
+              "state": "adopted",
+              "statement": "Prefer schedules that preserve evenings.",
+              "scope": {
+                "descendants": true
+              },
+              "enforcement": {
+                "mode": "model"
+              },
+              "adoption_ref": "event:adopt-evening-preference",
+              "source_refs": [
+                "source:scheduling-preference"
+              ]
+            }
+          }
+        ],
+        "skills": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "draft-schedule",
+              "source": {
+                "kind": "agent_skill",
+                "ref": "skill:draft-schedule",
+                "version": "1.4.2",
+                "digest": "sha256:42dbdf59422ea8e010f573946a6f31801ce12d65cd0602448879c52b6f557a2b"
+              },
+              "activation": "manual",
+              "trust": "reviewed",
+              "config": {
+                "alternatives": 2
+              },
+              "capabilities": [
+                "research.read"
+              ]
+            }
+          }
+        ],
+        "capabilities": [
+          {
+            "profile_id": "yawn:shop:scheduling:draft",
+            "item": {
+              "id": "research.read",
+              "effect": "read",
+              "binding": {
+                "protocol": "mcp",
+                "server_ref": "connector:research",
+                "operation": "tools/call",
+                "tool": "search"
+              },
+              "authorization": {
+                "mode": "current_grant_required"
+              }
+            }
+          }
+        ],
+        "rule_checks": [
+          {
+            "action_id": "action:send",
+            "rule_id": "customer-contact-approval",
+            "profile_id": "yawn:shop",
+            "allowed": true
+          }
+        ],
+        "grants": [
+          {
+            "action_id": "action:compare",
+            "capability_ids": [
+              "research.read"
+            ],
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "capability_ids": [
+              "email.send"
+            ],
+            "allowed": true
+          }
+        ],
+        "budgets": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ],
+        "cancellations": [
+          {
+            "action_id": "action:compare",
+            "allowed": true
+          },
+          {
+            "action_id": "action:send",
+            "allowed": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "held",
+        "issues": [
+          {
+            "code": "missing_parent",
+            "profile_id": "yawn:shop",
+            "component_id": null
+          }
+        ],
+        "index": null,
+        "document_hash": null,
+        "operational_revision": null
+      },
+      "expected_disclosure": {
+        "status": "held",
+        "reason_codes": [
+          "missing_parent"
+        ],
+        "instructions": [],
+        "rules": [],
+        "skills": [],
+        "capabilities": [],
+        "verification": []
+      }
+    }
+  ]
+}

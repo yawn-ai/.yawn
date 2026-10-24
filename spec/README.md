@@ -26,6 +26,7 @@ It does not claim that the record is the world.
 | Relationship Core | Stable relationship identity, time-indexed participation, directional slash addresses, and persisted inference envelopes | [Draft 0.1 contracts](../schemas/relationship.v0.1.schema.json) |
 | Articulation floor | A prediction sealed before a question renders, the principal's answer scored against it, the sealed reason checked, and a rolling per-axis floor | [Draft 0.1 schema](../schemas/articulation-floor.v0.1.schema.json) |
 | Runtime profile | Portable configuration, explicit ancestry, adopted-rule composition, and semantic revisions | [Draft 0.1 schema](../schemas/runtime-profile.v0.1.schema.json) and [reference semantics](runtime-profile.md) |
+| Runtime Action host contract | Structural index, action projection, host admission requirements, disclosure and cross-host fixtures | [Experimental host contract 0.1](runtime-host-contract.md); preserves Runtime Profile 0.1 |
 | Human document | Portable orientation written in `.yawn` | Existing templates; unified document schema is planned |
 | View | Arena, timeline, filesystem, memory, and proof/replay renderings | Informative only |
 

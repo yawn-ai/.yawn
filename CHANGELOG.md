@@ -8,6 +8,12 @@ labels and do not imply compatibility.
 
 ### Added
 
+- Additive Runtime Action host contract 0.1: structural indexing and per-action
+  projections, bounded registered programs, three revision identities, strict
+  current host checks, private disclosure, blocker alternatives, exact golden
+  conformance vectors, reusable private-package exports and migration guides.
+  Runtime Profile 0.1 semantics remain unchanged; no live effect adapter or
+  production admission fence is claimed.
 - Runtime Profile Working Draft 0.1: a strict configuration schema, bounded
   YAML/JSON parser, versioned parent normalization, rule-adoption lifecycle,
   semantic hashes, and explicit-ancestry resolver with host trust checks;

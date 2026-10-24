@@ -157,6 +157,7 @@ spec_links:
   questions: spec/questions.md
   serialization: spec/serialization.md
   runtime_profile: spec/runtime-profile.md
+  runtime_host_contract: spec/runtime-host-contract.md
 
 documentation_links:
   root: docs/README.md
@@ -355,6 +356,7 @@ fixture_links:
   relationship_core_v0_1_invalid: fixtures/relationship-core.v0.1.invalid.json
   relationship_core_v0_1: fixtures/relationship-core.v0.1.json
   runtime_profile_v0_1: fixtures/runtime-profile.v0.1.json
+  runtime_action_golden_v0_1: fixtures/runtime-action-golden.v0.1.json
 
 governance_links:
   governance: GOVERNANCE.md

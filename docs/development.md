@@ -5,6 +5,12 @@ Use it to experiment with explicit ancestry and inspectable configuration.
 Its output is an internal configuration result; executing effects still needs
 a host admission path.
 
+For action-specific integration, use the additive
+[Runtime Action host contract](../spec/runtime-host-contract.md) and
+[host integration guide](runtime-host-integration.md). The original 0.1
+interfaces below remain unchanged. `npm run test:runtime-action` compares the
+committed language-neutral golden outputs, issues and digests offline.
+
 ## Install and check the repository
 
 Use Node.js 22 or a current Node.js LTS release:
