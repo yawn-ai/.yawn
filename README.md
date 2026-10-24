@@ -17,14 +17,15 @@ checks trusted host snapshots, and separates document, operational and action
 revisions. Unsupported optional email configuration can hold sending while
 leaving an unrelated comparison available.
 
-| Stage | Evidence in this repository |
+| Stage | Current evidence |
 | --- | --- |
 | Portable syntax and ancestry | Strict 0.1 schema, bounded parser, versioned migration and tests |
 | Rule adoption and composition | Exact reviewed hashes, lifecycle replay and inherited boundaries |
 | Action-specific host preflight | Reference module, registered programs, current host callbacks and tests |
 | Private disclosure and blockers | Default-deny projection; no eligible method does not prove impossibility |
 | Cross-host interoperability | Committed language-neutral golden outputs, issue codes and digests |
-| Production execution | Requires a consuming host's authenticated stores, admission fence and outcome evidence; not established by this reference repository |
+| Bounded consuming-host integration | One local Movement comparison implemented, tested and merged in [YAWN.bot PR395](https://github.com/yawn-ai/yawn.bot/pull/395); [bounded host evidence](docs/runtime-host-integration.md#consuming-host-evidence) recorded |
+| Production enablement and live execution | Hosted migration, production enablement and observed live execution remain unverified |
 
 [Build one bounded path](docs/runtime-host-integration.md) ·
 [Migrate a Skill](docs/skill-migration.md) ·

@@ -5,6 +5,43 @@ Use Runtime Profile 0.1 unchanged as the compatibility baseline. The additive
 action projection, current host checks, disclosures and conformance vectors.
 It does not add the proposed 0.2 schema fields.
 
+## Consuming-host evidence
+
+[YAWN.bot PR395](https://github.com/yawn-ai/yawn.bot/pull/395) implements and
+tests one bounded consuming-host path at recorded source commit
+`48db88a44154945bca29aaaf21b7ca5ae5112b93`. It merged to app main at
+`ad4cf0dbe24b0b3d8f06041c24e7c33bead02608`; the final follow-up changes only
+the tooling test's expected pin count from eleven to eighteen. The evidence
+below is attributed to that pull request and its
+task verification; it does not expose private source, fixture data or account
+records.
+
+The covered action is local `movement.compare`, dispatched through the
+registered function-only program `yawn.movement.compare@1`. The host retains
+explicit owner profile selection, an authenticated canonical rule journal and
+current grants. Primary ancestry is checked before admission, including a hold
+when a configured ancestor requires a local profile selection. Lateral evidence
+does not supply governing authority. The Rules view applies owner and shared
+disclosure boundaries before serializing private configuration.
+
+The PostgreSQL admission fence rechecks complete current ancestry, exact
+resources, grants, budgets and stop state under the host's owner lock. It
+reserves shared-ancestor capacity and retains separate admission and result
+receipts. An admission without a known result stays occupied; replay does not
+authorize another dispatch.
+
+| Evidence | Recorded bounded result |
+| --- | --- |
+| Cross-host conformance | Same ten committed golden vectors, including exact output, issue codes and document/operational/action digests |
+| Browser | Five fresh Chromium cases passed with zero skips and zero retries |
+| Canonical SQL in PGlite | Twelve cases passed over the actual canonical commit and admission migration |
+| Native PostgreSQL | Fifteen cases passed, including owner-lock races, replay and concurrent sibling capacity reservations |
+
+These results establish the tested local comparison path. Hosted migration,
+production enablement and observed live execution remain unverified. MCP
+tool-schema pins and future live adapters require their own versioned contracts
+and evidence. Runtime Profile 0.1 remains unchanged.
+
 ## Reuse and pin the implementation
 
 The root package remains private. Its explicit exports support local/package
